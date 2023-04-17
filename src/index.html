@@ -1,0 +1,220 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KendoOrgChartTest</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.2.0/default/default-main.css" />
+
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/js/jquery.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/js/kendo.all.min.js"></script>
+</head>
+<body>
+  <div id="example">
+  <div id="orgchart"></div>
+
+  <script>
+      var data = [
+            { id: 1, name: "Gevin Bell", title: "CEO", expanded: true, avatar: "../content/web/treelist/people/1.jpg" },
+            { id: 2, name: "Clevey Thrustfield", title: "COO", expanded: true, parentId: 1, avatar: "../content/web/treelist/people/2.jpg" },
+            { id: 3, name: "Carol Baker", title: "CFO", expanded: false, parentId: 1, avatar: "../content/web/treelist/people/3.jpg" },
+            { id: 4, name: "Kendra Howell", title: "CMO", expanded: false, parentId: 1, avatar: "../content/web/treelist/people/4.jpg" },
+            { id: 5, name: "Sean Rusell", title: "Financial Manager", expanded: true, parentId: 3, avatar: "../content/web/treelist/people/5.jpg" },
+            { id: 6, name: "Steven North", title: "Senior Manager", expanded: false, parentId: 3, avatar: "../content/web/treelist/people/6.jpg" },
+            { id: 7, name: "Michelle Hudson", title: "Operations Manager", expanded: true, parentId: 2, avatar: "../content/web/treelist/people/7.jpg" },
+            { id: 8, name: "Andrew Berry", title: "Team Lead", parentId: 5, avatar: "../content/web/treelist/people/8.jpg" },
+            { id: 9, name: "Jake Miller", title: "Junior Accountant", parentId: 5, avatar: "../content/web/treelist/people/9.jpg" },
+            { id: 10, name: "Austin Piper", title: "Accountant", parentId: 5, avatar: "../content/web/treelist/people/10.jpg" },
+            { id: 11, name: "Dilyana Newman", title: "Accountant", parentId: 5, avatar: "../content/web/treelist/people/11.jpg" },
+            { id: 12, name: "Eva Andrews", title: "Team Lead", parentId: 6, avatar: "../content/web/treelist/people/12.jpg" }
+        ];
+
+     orgchart = $("#orgchart").kendoOrgChart({
+        dataSource: this.data,
+        parentNodeHeight:200,
+        template:function(e){
+          var orgChart = $("#orgchart").getKendoOrgChart();
+          var node = orgChart.items()[1];
+            var result = ''
+            if (e.title === "CEO") {
+                result = "<div class='modal-content'>"+
+                "<div class='modal-header'>"+
+                    "<h2>Modal Header</h2>"+
+                  "</div>"+
+                  "<div class='modal-body'>"+
+                    "<p>Some text in the Modal Body</p>"+
+                    "<p>Some other text...</p>"+
+                  "</div>"+
+                  "<div class='modal-footer'>"+
+                    "<h3>Modal Footer</h3>"+
+                  "</div>"+
+                "</div>"
+
+            } else {
+                result = "<div class='custom'>" +
+                "<div><img alt='Kendo UI for jQuery OrgChart #:name #' src=' #: avatar #'/></div>" +
+                "<span>Name: <strong> #: name # </strong></span>" +                
+                "</div>"
+            }
+            return result;    
+        },
+        editable: {
+          drag: {
+            snap: true,
+            constraints: "#orgchart",
+            dragstart: function(e) {
+              // Set the cursor to the move cursor when dragging starts
+              $("body").addClass("k-grabbing");
+            },
+            dragend: function(e) {
+              // Set the cursor back to the default cursor when dragging ends
+              $("body").removeClass("k-grabbing");
+            }
+          }
+        }
+    }).data('kendoOrgChart');
+
+    $(document).ready(function() {
+            $("#subtype").change(function() {
+                $("#diagram").getKendoDiagram().layout({
+                    subtype: $(this).val(),
+                    type: "tree",
+                    horizontalSeparation: 30,
+                    verticalSeparation: 20
+                });
+            });
+        });
+  </script>
+  <style>
+           .modal {
+              display: none; /* Hidden by default */
+              background-color: rgb(0,0,0); /* Fallback color */
+              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+              height: 100%;
+            }
+
+            /* Modal Content */
+            .modal-content {
+              background-color: #fefefe;
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            }
+
+            .modal-header {
+              background-color: #5cb85c;
+              color: white;
+            }
+
+
+            .modal-footer {
+              background-color: #5cb85c;
+              color: white;
+            }
+    </style>
+  </div>
+  <app-root></app-root>
+</body>
+</html> -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KendoOrgChartTest</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.2.0/default/default-main.css" />
+
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/js/jquery.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/js/kendo.all.min.js"></script>
+  <!-- <script src="https://kendo.cdn.telerik.com/2023.1.223/js/kendo.core.min.js"></script> -->
+</head>
+<body>
+      <!-- <div id="diagram"></div> -->
+      <style>
+        .container {
+          /* Move the rendering container off-screen. */
+          position: absolute;
+          left: -4000px;
+      
+          /* Set the dimensions. */
+          width: 100px;
+          height: 100px;
+        }
+      
+        .shape {
+          width: 100px;
+          border: 2px solid red;
+          text-align: center;
+          padding-bottom: 10px;
+        }
+      
+        .title {
+          font-size: 20px;
+          margin: 5px 0 20px 0;
+        }
+      
+        
+        /* Risk Card */
+        .risk-card-content {
+          border: 2px solid grey;
+          width: 250px;
+          display:grid;
+        }
+
+        .risk-card-body{
+          height: 150px;
+          display: grid;
+        }
+      
+        .risk-card-header {
+          background-color: #222c3d;
+          color: white;
+        }
+        .risk-card-header-top{
+          background-color: #222c3d;
+          color: white;
+          text-align: center;
+          border-bottom:1px solid white;
+        }
+        
+        .risk-card-header-top-text{
+        	
+        }
+      .risk-card-header-text{
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      
+        .risk-card-footer {
+          background-color: #e6e6ff;
+          color: white;
+          height: 70px;
+        }
+
+        /* Control Card */
+        .control-card-content {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          border: 2px solid grey;
+          display: grid;
+        }
+      
+        .control-card-header {
+          background-color: #1b4287;
+          color: white;
+          text-align: center;
+        }
+      
+      
+        .control-card-footer {
+          background-color: #5cb85c;
+          color: white;
+        }
+      </style>
+  <app-root></app-root>
+</body>
+</html>
