@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-chart-pure',
@@ -6,65 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chart-pure.component.css'],
 })
 export class ChartPureComponent implements OnInit {
-  nodes = [
-    {
-      name: 'CEO',
-      children: [
-        {
-          name: 'CFO',
-          children: [
-            {
-              name: 'Accounting',
-            },
-            {
-              name: 'Finance',
-            },
-          ],
-        },
-        {
-          name: 'COO',
-          children: [
-            {
-              name: 'Operations',
-            },
-            {
-              name: 'Logistics',
-            },
-          ],
-        },
-        {
-          name: 'CTO',
-          children: [
-            {
-              name: 'Engineering',
-            },
-            {
-              name: 'IT',
-            },
-          ],
-        },
-      ],
-    },
-  ];
-
-  edges = [
-    {
-      source: 'CEO',
-      target: 'CFO',
-    },
-    {
-      source: 'CEO',
-      target: 'COO',
-    },
-    {
-      source: 'CEO',
-      target: 'CTO',
-    },
-  ];
-
-  constructor() {}
-
-  ngOnInit() {}
-
-  renderChart() {}
+  @ViewChild('my') input;
+  a: any;
+  ngOnInit(): void {}
+  ngAfterViewInit() {
+    console.log(this.input.nativeElement);
+  }
 }
