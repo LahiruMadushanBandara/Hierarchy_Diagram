@@ -1,32 +1,24 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import '@progress/kendo-ui';
 
 declare var $: any;
 
 @Component({
   selector: 'app-chart',
-  template: `<div class="risk-card-content">
-    <div class="risk-card-header-top">
-      <p class="risk-card-header-top-text">Risk</p>
-    </div>
-    <div class="risk-card-header">
-      <p class="risk-card-header-text">Protective and Cyber Security Ratings</p>
-    </div>
-    <div class="risk-card-body">
-      <div class="row" style="display:flex;">
-        <div style="background-color:green; width:50%;"><p>rating1</p></div>
-        <div style="background-color:yellow; width:50%;"><p>rating2</p></div>
-      </div>
-      <div class="row" style="display:flex;">
-        <div style="background-color:green; width:50%;"><p>rating3</p></div>
-        <div style="background-color:yellow width:50%;"><p>rating4</p></div>
-      </div>
-    </div>
-    <div class="risk-card-footer"></div>
-  </div>`,
+
+  templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
 export class ChartComponent implements OnInit, AfterViewInit {
+  @ViewChild('my') input;
+  @ViewChild('my2') input2;
+
   @ViewChild('diagram', { static: false }) diagram: any;
 
   constructor() {}
@@ -36,47 +28,20 @@ export class ChartComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
+    var ab = this.input.nativeElement.outerHTML;
+    var cd = this.input2.nativeElement.outerHTML;
     function createDiagram() {
       // Import the Drawing API namespaces.
       var geom = kendo.geometry;
       var draw = kendo.drawing;
 
-      var riskemplate = `<div>hi</div>`;
+      var rs = `${ab}`;
 
-      var riskTemplate = `<div class='risk-card-content'>
-        <div class='risk-card-header-top'>
-        <p class='risk-card-header-top-text'>Risk</p>
-        </div>
-        <div class='risk-card-header'>
-        <p class='risk-card-header-text'>Protective and Cyber Security Ratings</p>
-        </div>
-        <div class='risk-card-body'>
-        <div class='row' style='display:flex;'>
-        <div style='background-color:green; width:50%;'><p>rating1</p></div>
-        <div style='background-color:yellow; width:50%;'><p>rating2</p></div>
-        </div>
-        <div class='row' style='display:flex;'>
-        <div style='background-color:green; width:50%;'><p>rating3</p></div>
-        <div style='background-color:yellow width:50%;'><p>rating4</p></div>
-        </div>
-        </div>
-        <div class='risk-card-footer'>
-        </div>
-      </div>`;
-
-      var controlTemplate =
-        "<div class='control-card-content'>" +
-        "<div class='control-card-header'>" +
-        '<h4>Modal Header</h4>' +
-        '</div>' +
-        "<div class='control-card-body'>" +
-        '<p>Some text in the Modal Body</p>' +
-        '<p>Some other text...</p>' +
-        '</div>' +
-        '</div>';
+      var controlTemplate = `${cd}`;
 
       // Compile the shape template.
-      var riskNodeTemplate = kendo.template(riskTemplate);
+      var riskNodeTemplate = kendo.template(rs);
+
       var controlNodeTemplate = kendo.template(controlTemplate);
 
       function visualTemplate(options: any) {
@@ -107,7 +72,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
           output.append(group);
 
           /* Clean up. */
-          renderElement.remove();
+          // renderElement.remove();
         });
 
         var visual = new kendo.dataviz.diagram.Group();
