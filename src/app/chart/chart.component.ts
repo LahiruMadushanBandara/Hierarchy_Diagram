@@ -1,47 +1,52 @@
 import {
   AfterViewInit,
   Component,
-  Input,
+  ComponentFactoryResolver,
+  Injector,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import '@progress/kendo-ui';
+import { ControlNodeComponent } from './nodes/control/control-node.component';
+import { RiskNodeComponent } from './nodes/risk/risk-node.component';
 
 declare var $: any;
 
 @Component({
   selector: 'app-chart',
-
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
+
 export class ChartComponent implements OnInit, AfterViewInit {
-  @ViewChild('my') input;
-  @ViewChild('my2') input2;
-
   @ViewChild('diagram', { static: false }) diagram: any;
+  
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private injector: Injector
+    ) {}
 
-  constructor() {}
-
-  public diagramChart: any;
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
-    var ab = this.input.nativeElement.outerHTML;
-    var cd = this.input2.nativeElement.outerHTML;
+    debugger;
+    const controlTemplateComponent = this.componentFactoryResolver
+    .resolveComponentFactory(ControlNodeComponent).create(this.injector);
+
+    const riskTemplateComponent = this.componentFactoryResolver
+    .resolveComponentFactory(RiskNodeComponent).create(this.injector);
+
+    var riskTemplate = riskTemplateComponent.location.nativeElement.innerHTML;
+    var controlTemplate = controlTemplateComponent.location.nativeElement.innerHTML;
+
     function createDiagram() {
       // Import the Drawing API namespaces.
       var geom = kendo.geometry;
       var draw = kendo.drawing;
 
-      var rs = `${ab}`;
-
-      var controlTemplate = `${cd}`;
-
       // Compile the shape template.
-      var riskNodeTemplate = kendo.template(rs);
-
+      var riskNodeTemplate = kendo.template(riskTemplate);
       var controlNodeTemplate = kendo.template(controlTemplate);
 
       function visualTemplate(options: any) {
@@ -68,21 +73,13 @@ export class ChartComponent implements OnInit, AfterViewInit {
         draw.drawDOM(renderElement, options).then(function (group) {
           /* Remove the helper rectangle. */
           output.clear();
-
           output.append(group);
-
-          /* Clean up. */
-          // renderElement.remove();
         });
 
         var visual = new kendo.dataviz.diagram.Group();
         visual.drawingElement.append(output);
 
         return visual;
-      }
-
-      function subtype(type: any) {
-        return 'left';
       }
 
       var data = [
@@ -114,23 +111,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
           visual: visualTemplate,
         },
       });
-    }
 
-    function diagramNodes() {
-      var root = { name: '0', items: [] };
-      addNodes(root, [3, 2, 2]);
-      return [root];
-    }
-
-    function addNodes(root: any, levels: any) {
-      if (levels.length > 0) {
-        for (var i = 0; i < levels[0]; i++) {
-          var node = { name: '0', items: [] };
-          root.items.push(node);
-
-          addNodes(node, levels.slice(1));
-        }
-      }
+      // Hide other templates
+      $(document.body).addClass('hide-control-card-content');
+      $(document.body).addClass('hide-risk-card-content');
     }
     $(document).ready(createDiagram);
   }

@@ -8,10 +8,8 @@ import '@progress/kendo-ui';
 import { CardComponent } from './card/card.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { ChartPureComponent } from './chart-pure/chart-pure.component';
-import { CentralNodeComponent } from './central-node/central-node.component';
-import { ChildNodeComponent } from './child-node/child-node.component';
+import { RiskNodeComponent } from './chart/nodes/risk/risk-node.component';
+import { ControlNodeComponent } from './chart/nodes/control/control-node.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +17,8 @@ import { ChildNodeComponent } from './child-node/child-node.component';
     ChartComponent,
 
     CardComponent,
-    ChartPureComponent,
-    CentralNodeComponent,
-    ChildNodeComponent,
+    RiskNodeComponent,
+    ControlNodeComponent,
   ],
   imports: [
     BrowserModule,
