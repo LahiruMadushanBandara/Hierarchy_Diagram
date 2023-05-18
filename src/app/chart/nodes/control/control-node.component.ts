@@ -8,7 +8,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ControlNodeComponent implements OnInit {
   @ViewChild('controlTemplate') controlTemplateInput;
-
+  @Input() nodeDetail: any;
+  
   constructor(private dataService: DataService) { }
   
   ngOnInit(): void {

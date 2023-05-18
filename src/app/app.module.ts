@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
@@ -10,12 +9,12 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RiskNodeComponent } from './chart/nodes/risk/risk-node.component';
 import { ControlNodeComponent } from './chart/nodes/control/control-node.component';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
-
     CardComponent,
     RiskNodeComponent,
     ControlNodeComponent,
@@ -29,4 +28,9 @@ import { ControlNodeComponent } from './chart/nodes/control/control-node.compone
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private injector: Injector){
+    const diagramElement = createCustomElement(ChartComponent, { injector: this.injector });
+    customElements.define('bow-tie-diagram', diagramElement);
+  }
+}

@@ -125,16 +125,313 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://kendo.cdn.telerik.com/themes/6.2.0/default/default-main.css"
-    />
+    
 
-    <script src="https://kendo.cdn.telerik.com/2023.1.314/js/jquery.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2023.1.314/js/kendo.all.min.js"></script>
-    <!-- <script src="https://kendo.cdn.telerik.com/2023.1.223/js/kendo.core.min.js"></script> -->
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.3.0/default/default-ocean-blue.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.1.425/js/kendo.all.min.js"></script>
+
+    
   </head>
   <body>
+    <style>
+      .container {
+    /* Move the rendering container off-screen. */
+    position: absolute;
+    left: -4000px;
+  
+    /* Set the dimensions. */
+    width: 100px;
+    height: 100px;
+  }
+  .ab {
+    background-color: green;
+    width: 50%;
+  }
+  .shape {
+    width: 100px;
+    border: 2px solid red;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  
+  .title {
+    font-size: 20px;
+    margin: 5px 0 20px 0;
+  }
+  
+  /* Risk Card */
+  .risk-card-content {
+    border: 2px solid grey;
+    width: 250px;
+    display: grid;
+    box-shadow: 10px 10px lightblue;
+  }
+  
+  .risk-card-body {
+    height: 150px;
+    display: grid;
+  }
+  
+  .risk-card-header {
+    background-color: #222c3d;
+    color: white;
+  }
+  .risk-card-header-top {
+    background-color: #222c3d;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid white;
+  }
+  
+  /* .risk-card-header-top-text {
+    } */
+  .risk-card-header-text {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  
+  .risk-card-footer {
+    background-color: #e6e6ff;
+    color: white;
+    height: 70px;
+  }
+  
+  /* Control Card */
+  .control-card-content {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border: 2px solid grey;
+    display: grid;
+  }
+  
+  .control-card-header {
+    background-color: #1b4287;
+    color: white;
+    text-align: center;
+  }
+  
+  .control-card-footer {
+    background-color: #5cb85c;
+    color: white;
+  }
+
+  .container {
+    /* Move the rendering container off-screen. */
+    position: absolute;
+    left: -4000px;
+  
+    /* Set the dimensions. */
+    width: 100px;
+    height: 100px;
+  }
+  .ab {
+    background-color: green;
+    width: 50%;
+  }
+  .shape {
+    width: 100px;
+    border: 2px solid red;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  
+  .title {
+    font-size: 20px;
+    margin: 5px 0 20px 0;
+  }
+  
+  /* Risk Card */
+  .risk-card-content {
+    border: 2px solid grey;
+    width: 250px;
+    display: grid;
+    box-shadow: 10px 10px lightblue;
+  }
+  
+  .risk-card-body {
+    height: 150px;
+    display: grid;
+  }
+  
+  .risk-card-header {
+    background-color: #222c3d;
+    color: white;
+  }
+  .risk-card-header-top {
+    background-color: #222c3d;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid white;
+  }
+  
+  /* .risk-card-header-top-text {
+    } */
+  .risk-card-header-text {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  
+  .risk-card-footer {
+    background-color: #e6e6ff;
+    color: white;
+    height: 70px;
+  }
+  
+  /* Control Card */
+  .control-card-content {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border: 2px solid grey;
+    display: grid;
+  }
+  
+  .control-card-header {
+    background-color: #1b4287;
+    color: white;
+    text-align: center;
+  }
+  
+  .control-card-footer {
+    background-color: #5cb85c;
+    color: white;
+  }
+
+
+
+
+
+
+
+  
+  .panel {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    width: 200px;
+    height: 150px;
+    text-align: center;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.panel-header:hover {
+    background-color: #e6e6e6;
+}
+
+.toggle-button {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0 8px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.panel-content {
+    display: none;
+    padding: 12px;
+}
+
+.panel-content.show {
+    display: block;
+}
+.container {
+  /* Move the rendering container off-screen. */
+  position: absolute;
+  left: -4000px;
+
+  /* Set the dimensions. */
+  width: 100px;
+  height: 100px;
+}
+.ab {
+  background-color: green;
+  width: 50%;
+}
+.shape {
+  width: 100px;
+  border: 2px solid red;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 20px;
+  margin: 5px 0 20px 0;
+}
+
+/* Risk Card */
+.risk-card-content {
+  border: 2px solid grey;
+  width: 250px;
+  display: grid;
+  box-shadow: 10px 10px lightblue;
+}
+
+.risk-card-body {
+  height: 150px;
+  display: grid;
+}
+
+.risk-card-header {
+  background-color: #222c3d;
+  color: white;
+}
+.risk-card-header-top {
+  background-color: #222c3d;
+  color: white;
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+
+/* .risk-card-header-top-text {
+  } */
+.risk-card-header-text {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.risk-card-footer {
+  background-color: #e6e6ff;
+  color: white;
+  height: 70px;
+}
+
+/* Control Card */
+.control-card-content {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: 2px solid grey;
+  display: grid;
+}
+
+.control-card-header {
+  background-color: #1b4287;
+  color: white;
+  text-align: center;
+}
+
+.control-card-footer {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.k-diagram {
+  height: 1000px;
+}
+
+    </style>
     <app-root></app-root>
+
+    
   </body>
 </html>

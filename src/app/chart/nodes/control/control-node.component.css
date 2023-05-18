@@ -78,4 +78,52 @@
     background-color: #5cb85c;
     color: white;
   }
+
+
+
+
+
+
+
+  
+  .panel {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    width: 200px;
+    height: 150px;
+    text-align: center;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.panel-header:hover {
+    background-color: #e6e6e6;
+}
+
+.toggle-button {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0 8px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.panel-content {
+    display: none;
+    padding: 12px;
+}
+
+.panel-content.show {
+    display: block;
+}
   

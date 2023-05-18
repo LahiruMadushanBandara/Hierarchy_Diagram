@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -14,6 +15,8 @@ import {
 export class RiskNodeComponent implements OnInit, AfterViewInit {
   @ViewChild('my') input;
   nodeSet = new EventEmitter<any>();
+  @Input() nodeDetail: any;
+  
   constructor() {}
 
   ngOnInit(): void {}
