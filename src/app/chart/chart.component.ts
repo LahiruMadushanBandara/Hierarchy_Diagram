@@ -53,51 +53,48 @@ export class ChartComponent implements OnInit, AfterViewInit {
     var draw = kendo.drawing;
 
 
-    function GetControlNodeTemplate(contentDetails : any){
-      return "<div class='control-card-content'>"
-      +"<div class='control-card-header'>"
-        +"<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
-        +"</div>"
-        +"<div class='control-card-body'>"
-          +"<p>"+((contentDetails === undefined) ? "Title" : contentDetails)+"</p>"
-          +"<p>Some other text...</p>"
-        +"</div>"
-      +"</div>"
+    function GetControlNodeTemplate(contentDetails: any) {
+      return "<div class='control-card-content rounded'style=' border: ; border-radius: 10px;'>"
+        + "<div class='control-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
+        + "</div>"
+        + "<div class='control-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
+        + "<p>Some other text...</p>"
+        + "</div>"
+        + "</div>";
     }
 
 
-    function GetRiskNodeTemplate(contentDetails : any){
-      return "<div class='risk-card-content style'='border-radius: 25px;'>"
-      +"<div class='risk-card-header-top' style='border-radius: 25px 25px 0px 0px'>"
-        +"<p class='risk-card-header-top-text'>"+ ((contentDetails === undefined) ? "Title" : contentDetails) +"</p>"
-      +"</div>"
-      +"<div class='risk-card-header'>"
-        +"<p class='risk-card-header-text'>Protective and Cyber Security Ratings</p>"
-      +"</div>"
-      +"<div class='risk-card-body'>"
-        +"<div class='row' style='display: flex'>"
-          +"<div style='background-color: blue; width: 50%'>"
-            +"<p>rating1</p>"
-          +"</div>"
-          +"<div style='background-color: red; width: 50%'>"
-            +"<p>rating2</p>"
-          +"</div>"
-        +"</div>"
-        +"<div class='row' style='display: flex'>"
-          +"<div class='ab'>"
-            +"<p>rating3</p>"
-          +"</div>"
-          +"<div style='background-color: yellow; width: 50%'>"
-            +"<p>rating4</p>"
-          +"</div>"
-        +"</div>"
-      +"</div>"
-      +"<div class='risk-card-footer' style='border-radius: 0px 0px 25px 25px'></div>"
-    +"</div>"
+    function GetRiskNodeTemplate(contentDetails: any) {
+      return "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);'>"
+        + "<div class='risk-card-header-top' style='border-radius: 25px 25px 0 0;'>"
+        + "<p class='risk-card-header-top-text'>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
+        + "</div>"
+        + "<div class='risk-card-header'>"
+        + "<p class='risk-card-header-text'>Protective and Cyber Security Ratings</p>"
+        + "</div>"
+        + "<div class='risk-card-body'>"
+        + "<div class='row' style='display: flex;'>"
+        + "<div style='background-color: blue; width: 50%;'>"
+        + "<p>rating1</p>"
+        + "</div>"
+        + "<div style='background-color: red; width: 50%;'>"
+        + "<p>rating2</p>"
+        + "</div>"
+        + "</div>"
+        + "<div class='row' style='display: flex;'>"
+        + "<div class='ab'>"
+        + "<p>rating3</p>"
+        + "</div>"
+        + "<div style='background-color: yellow; width: 50%;'>"
+        + "<p>rating4</p>"
+        + "</div>"
+        + "</div>"
+        + "</div>"
+        + "<div class='risk-card-footer' style='border-radius: 0 0 25px 25px;'></div>"
+        + "</div>";
     }
-
-
-
 
     function visualTemplate3(options: any) {
 

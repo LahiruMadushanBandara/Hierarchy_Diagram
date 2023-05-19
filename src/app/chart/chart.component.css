@@ -25,10 +25,11 @@
 
 /* Risk Card */
 .risk-card-content {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
   border: 2px solid grey;
-  width: 250px;
   display: grid;
-  box-shadow: 10px 10px lightblue;
+  border-radius: 10px;
 }
 
 .risk-card-body {
@@ -66,12 +67,17 @@
   transition: 0.3s;
   border: 2px solid grey;
   display: grid;
+  border-radius: 10px;
+
 }
+
+
 
 .control-card-header {
   background-color: #1b4287;
   color: white;
   text-align: center;
+  border-radius: 0 0 0 0
 }
 
 .control-card-footer {
@@ -82,3 +88,5 @@
 .k-diagram {
   height: 1000px;
 }
+
+
