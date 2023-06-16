@@ -1,0 +1,156 @@
+.container {
+  /* Move the rendering container off-screen. */
+ position: absolute;
+ left: -4000px;
+
+ /* Set the dimensions. */
+ width: 100px;
+ height: 100px;
+}
+.ab {
+ background-color: green;
+ width: 50%;
+}
+.shape {
+ width: 100px;
+ border: 2px solid red;
+ text-align: center;
+ padding-bottom: 10px;
+}
+
+.title {
+ font-size: 20px;
+ margin: 5px 0 20px 0;
+}
+
+/* Risk Card */
+.risk-card-content {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+transition: 0.3s;
+border: 2px solid grey;
+display: grid;
+border-radius: 10px;
+}
+
+.risk-card-body {
+ height: 150px;
+ display: grid;
+}
+
+.risk-card-header {
+ background-color: #222c3d;
+ color: hsl(175, 80%, 51%);
+}
+.risk-card-header-top {
+ background-color: #222c3d;
+ color: #45e8ee;
+ text-align: center;
+ border-bottom: 1px solid #37c9b5;
+}
+
+/* .risk-card-header-top-text {
+ } */
+.risk-card-header-text {
+ margin-left: 15px;
+ margin-right: 15px;
+}
+
+.risk-card-footer {
+ background-color: hsl(184, 79%, 49%);
+ color: #21ecca;
+ height: 70px;
+} 
+
+ /* Control Card */
+ .control-card-content {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: 2px solid grey;
+  display: grid;
+  border-radius: 10px;
+  
+}
+
+.control-card-header {
+  background-color: #1b4287;
+  color: white;
+  text-align: center;
+}
+
+.control-card-footer {
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* cause Card */
+.cause-card-content {
+ box-shadow: 0 4px 8px 0 #0aadb333;
+ transition: 0.3s;
+ border: 2px solid #74e22a;
+ display: grid;
+ border-radius: 10px;
+ 
+}
+
+.cause-card-header {
+ background-color: hsl(283, 93%, 48%);
+ color: hsl(180, 86%, 58%);
+ text-align: center;
+}
+
+.cause-card-footer {
+ background-color: hsl(182, 93%, 50%);
+ color: #28e7ce;
+}
+
+
+
+
+
+
+
+
+.panel {
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ overflow: hidden;
+ background-color:#f9f9f9;
+ width: 200px;
+ height: 150px;
+ text-align: center;
+}
+
+.panel-header {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 12px;
+ cursor: pointer;
+}
+
+.panel-header:hover {
+ background-color:#e6e6e6;
+}
+
+.toggle-button {
+ font-size: 24px;
+ font-weight: bold;
+ line-height: 1;
+ padding: 0 8px;
+ background-color: transparent;
+ border: none;
+ outline: none;
+}
+
+.panel-content {
+ display: none;
+ padding: 12px;
+}
+
+.panel-content.show {
+ display: block;
+}
+
+.rounded {
+border-radius: 25px; /* Adjust the value as needed */
+}

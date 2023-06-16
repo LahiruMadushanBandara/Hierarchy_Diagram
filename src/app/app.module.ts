@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RiskNodeComponent } from './chart/nodes/risk/risk-node.component';
 import { ControlNodeComponent } from './chart/nodes/control/control-node.component';
 import { createCustomElement } from '@angular/elements';
+import { CauseComponent } from './chart/nodes/cause/cause.component';
+import { ConsequencesComponent } from './chart/nodes/consequences/consequences.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { createCustomElement } from '@angular/elements';
     CardComponent,
     RiskNodeComponent,
     ControlNodeComponent,
+    CauseComponent,
+    ConsequencesComponent,
   ],
   imports: [
     BrowserModule,

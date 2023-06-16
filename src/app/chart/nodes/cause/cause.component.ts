@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-control-node',
-  templateUrl: './control-node.component.html',
-  styleUrls: ['./control-node.component.css']
+  selector: 'app-cause',
+  templateUrl: './cause.component.html',
+  styleUrls: ['./cause.component.css']
 })
-export class ControlNodeComponent implements OnInit {
-  @ViewChild('controlTemplate') controlTemplateInput;
+export class CauseComponent implements OnInit {
+  @ViewChild('causeTemplate') causeTemplateInput;
   @Input() nodeDetail: any;
   
   constructor(private dataService: DataService) { }

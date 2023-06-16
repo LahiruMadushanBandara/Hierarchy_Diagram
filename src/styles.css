@@ -3,6 +3,15 @@
     display: none !important;
 }
   
+.hide-cause-card-content .cause-card-content {
+    display: none !important;
+}
+
+.hide-concequences-card-content .consequences-card-content  {
+    display: none !important;
+}
+ 
+  
 .hide-risk-card-content .risk-card-content {
     display: none !important;
 }

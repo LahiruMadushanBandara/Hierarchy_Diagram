@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import '@progress/kendo-ui';
 import { ControlNodeComponent } from './nodes/control/control-node.component';
+import { ConsequencesComponent } from './nodes/consequences/consequences.component';
+import { CauseComponent } from './nodes/cause/cause.component';
 import { RiskNodeComponent } from './nodes/risk/risk-node.component';
 import { NavigationEnd, Router } from '@angular/router';
 
@@ -21,13 +23,16 @@ declare var $: any;
 
 export class ChartComponent implements OnInit, AfterViewInit {
   @ViewChild('diagram', { static: false }) diagram: any;
-  riskTemplate:string = "";
-  controlTemplate:string = "";
+  riskTemplate: string = "";
+  controlTemplate: string = "";
+  causeTemplate: string = "";
+  consequencesTemplate: string = "";
+
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
-    
+
   ) { }
 
   ngOnInit(): void {
@@ -35,19 +40,30 @@ export class ChartComponent implements OnInit, AfterViewInit {
     const controlTemplateComponent = this.componentFactoryResolver
       .resolveComponentFactory(ControlNodeComponent).create(this.injector);
 
+    const consequencesTemplateComponent = this.componentFactoryResolver
+      .resolveComponentFactory(ConsequencesComponent).create(this.injector);
+
+    const causeTemplateComponent = this.componentFactoryResolver
+      .resolveComponentFactory(CauseComponent).create(this.injector);
+
     const riskTemplateComponent = this.componentFactoryResolver
       .resolveComponentFactory(RiskNodeComponent).create(this.injector);
 
     var riskTemplate = riskTemplateComponent.location.nativeElement.innerHTML;
-    //this.controlTemplate = controlTemplateComponent.location.nativeElement.innerHTML;
+    this.controlTemplate = controlTemplateComponent.location.nativeElement.innerHTML;
+    this.causeTemplate = causeTemplateComponent.location.nativeElement.innerHTML;
+    this.consequencesTemplate = consequencesTemplateComponent.location.nativeElement.innerHTML;
 
     var tempTitleDetail = "";
 
     // Compile the shape template.
     var riskNodeTemplate = kendo.template(this.riskTemplate);
     var controlNodeTemplate = kendo.template(this.controlTemplate);
+    var caTemplate = kendo.template(this.causeTemplate);
+    var consequencesTemplate = kendo.template(this.consequencesTemplate);
 
-    
+
+
     // Import the Drawing API namespaces.
     var geom = kendo.geometry;
     var draw = kendo.drawing;
@@ -64,10 +80,31 @@ export class ChartComponent implements OnInit, AfterViewInit {
         + "</div>"
         + "</div>";
     }
+    function GetConsequencesTemplate(contentDetails: any) {
+      return "<div class='consequences-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>"
+        + "<div class='consequences-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
+        + "</div>"
+        + "<div class='consequences-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>"
+        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
+        + "<p>Some other text...</p>"
+        + "</div>"
+        + "</div>";
+    }
 
-
+    function GetCauseTemplate(contentDetails: any) {
+      return "<div class='cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>"
+        + "<div class='cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
+        + "</div>"
+        + "<div class='cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>"
+        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
+        + "<p>Some other text...</p>"
+        + "</div>"
+        + "</div>";
+    }
     function GetRiskNodeTemplate(contentDetails: any) {
-      return "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);'>"
+      return "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); '>"
         + "<div class='risk-card-header-top' style='border-radius: 25px 25px 0 0;'>"
         + "<p class='risk-card-header-top-text'>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
         + "</div>"
@@ -99,40 +136,70 @@ export class ChartComponent implements OnInit, AfterViewInit {
     function visualTemplate3(options: any) {
 
       var dataItem = options.dataItem;
-      
+
       tempTitleDetail = dataItem.Title
 
       var rTemp = GetRiskNodeTemplate(tempTitleDetail);
       var cTemp = GetControlNodeTemplate(tempTitleDetail);
+      var ccTemp = GetCauseTemplate(tempTitleDetail);
+      var csTemp = GetConsequencesTemplate(tempTitleDetail);
 
-      sessionStorage.setItem("riskTemplate", rTemp
-      );
+
+
+      sessionStorage.setItem("riskTemplate", rTemp);
       sessionStorage.setItem("controlTemplate", cTemp);
+      sessionStorage.setItem("causeTemplate", ccTemp);
+      sessionStorage.setItem("causeTemplate", ccTemp);
+      sessionStorage.setItem("consequencesTemplate", csTemp);
 
 
-      if(rTemp === "" || rTemp === null || rTemp === undefined){
+      if (rTemp === "" || rTemp === null || rTemp === undefined) {
         rTemp = sessionStorage.getItem("riskTemplate");
       }
-      if(cTemp === "" || cTemp === null || cTemp === undefined){
+      if (cTemp === "" || cTemp === null || cTemp === undefined) {
         cTemp = sessionStorage.getItem("controlTemplate");
       }
-      
+      if (ccTemp === "" || ccTemp === null || ccTemp === undefined) {
+        ccTemp = sessionStorage.getItem("causeTemplate");
+      }
+      if (csTemp === "" || csTemp === null || csTemp === undefined) {
+        ccTemp = sessionStorage.getItem("consequencesTemplate");
+      }
+
+
+
       var renderElement = $(
         "<div style='display:inline-block'; border:solid />"
       ).appendTo('body');
 
-      if (dataItem.Type === 1) {
+      if (dataItem.Title === "Risk Node") {
         riskTemplateComponent.instance.nodeDetail = dataItem;
         var riskNodeTemp = kendo.template(rTemp);
         renderElement.html(riskNodeTemp(dataItem));
 
 
-      } else {
+      }
+
+      else if (dataItem.Title === "Control Node") {
         controlTemplateComponent.instance.nodeDetail = dataItem;
         var controlNodeTemp = kendo.template(cTemp);
         renderElement.html(controlNodeTemp(dataItem));
 
       }
+      else if (dataItem.Title === "Consequences Node") {
+        consequencesTemplateComponent.instance.nodeDetail = dataItem;
+        var consequencesTemp = kendo.template(csTemp);
+        renderElement.html(consequencesTemp(dataItem));
+
+      }
+
+      else {
+        causeTemplateComponent.instance.nodeDetail = dataItem;
+        var causeTemp = kendo.template(ccTemp);
+        renderElement.html(causeTemp(dataItem));
+
+      }
+
 
       // Create a new group that will hold the rendered content.
       var output = new kendo.drawing.Group();
@@ -158,47 +225,152 @@ export class ChartComponent implements OnInit, AfterViewInit {
       return visual;
     }
 
-    function onEdit(e){
+    function onEdit(e) {
       /* The result can be observed in the DevTools(F12) console of the browser. */
       //e.container.find(".k-edit-buttons").remove();
-          console.log("Editing shape with model id: " + e.shape.id);
+      console.log("Editing shape with model id: " + e.shape.id);
     }
 
+    function arrangeNodes(originalData) {
+      const arrangedNodes = [];
+    
+      // Find the risk node (type 1 with ParentNodeId 0)
+      const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
+    
+      if (riskNode) {
+        const horizontalSpacing = 500;
+        const verticalSpacing = 300;
+        const verticalSpacing4 = 200;
+        const maxNodesPerRow = 4;
+        const maxNodesPerRow4 = 12; // Updated to 12 nodes per row for type 4
+    
+        let rowIndex = 0;
+        let type1Index = 0;
+        let type2Index = 0;
+        let type3Index = 0;
+        let type4Index = 0;
+    
+        // Arrange type 1 (risk) node
+        riskNode.x = 0;
+        riskNode.y = 0;
+        arrangedNodes.push(riskNode);
+    
+        // Arrange type 2 nodes (left of type 1)
+        const type2Nodes = originalData.filter((node) => node.Type === 2);
+        type2Nodes.forEach((node, index) => {
+          const rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
+          const columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
+    
+          const x = riskNode.x - (columnNumber + 1) * horizontalSpacing;
+          const y = riskNode.y + (rowNumber) * verticalSpacing;
+          node.x = x;
+          node.y = y;
+          arrangedNodes.push(node);
+          type2Index++;
+        });
+    
+        rowIndex = Math.max(rowIndex, Math.ceil(type2Nodes.length / maxNodesPerRow) + 1) + 1;
+    
+        // Arrange type 3 nodes (right of type 1)
+        const type3Nodes = originalData.filter((node) => node.Type === 3);
+        type3Nodes.forEach((node, index) => {
+          const rowNumber = Math.floor(type3Index / maxNodesPerRow); // Calculate the row number
+          const columnNumber = type3Index % maxNodesPerRow; // Calculate the column number
+    
+          const x = riskNode.x + (columnNumber + 1) * horizontalSpacing;
+          const y = riskNode.y + (rowNumber) * verticalSpacing;
+          node.x = x;
+          node.y = y;
+          arrangedNodes.push(node);
+          type3Index++;
+        });
+    
+        rowIndex = Math.max(rowIndex, Math.ceil(type3Nodes.length / maxNodesPerRow) + 1);
+    
+        // Arrange type 4 nodes (below type 2 and type 3)
+        const type4Nodes = originalData.filter((node) => node.Type === 4);
+        type4Nodes.forEach((node, index) => {
+          const rowNumber = Math.floor(type4Index / maxNodesPerRow4); // Calculate the row number
+          const columnNumber = type4Index % maxNodesPerRow4; // Calculate the column number
+    
+          const x = riskNode.x - (columnNumber - 5) * horizontalSpacing; // Adjusting the starting point for type 4 nodes
+          const y = riskNode.y + rowIndex * verticalSpacing4 + (rowNumber + 1) * verticalSpacing4;
+          node.x = x;
+          node.y = y;
+          arrangedNodes.push(node);
+          type4Index++;
+        });
+      }
+
+      return arrangedNodes;
+    }
+    
     
 
     var originalData = [
-      { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Color": "", "x": 1470, "y": 260, htmlTemplate: "<div>Node 1</div>" },
-      { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node1", "Color": "#3399cc", "x": 1980, "y": 280, htmlTemplate: "<div>Node 2</div>" },
-      { "Id": 3, "Type": 2, "ParentNodeId": 1, "Title": "Control Node2", "Color": "#3399cc", "x": 1790, "y": 1060, htmlTemplate: "<div>Node 3</div>" },
-      { "Id": 4, "Type": 3, "ParentNodeId": 1, "Title": "Consequence Node1", "Color": "#3399cc", "x": 1500, "y": 1050, htmlTemplate: "<div>Node 4</div>" },
-      { "Id": 5, "Type": 4, "ParentNodeId": 1, "Title": "Consequence Node2", "Color": "", "x": 1040, "y": 480, htmlTemplate: "<div>Node 1</div>" },
-      { "Id": 6, "Type": 4, "ParentNodeId": 1, "Title": "Risk Node", "Color": "#3399cc", "x": 1980, "y": 480, htmlTemplate: "<div>Node 2</div>" },
-      { "Id": 7, "Type": 4, "ParentNodeId": 1, "Title": "Risk Node", "Color": "#3399cc", "x": 1210, "y": 1060, htmlTemplate: "<div>Node 3</div>" },
-      { "Id": 8, "Type": 4, "ParentNodeId": 1, "Title": "Risk Node", "Color": "#3399cc", "x": 1040, "y": 260, htmlTemplate: "<div>Node 4</div>" },
-      { "Id": 9, "Type": 4, "ParentNodeId": 2, "Title": "Risk Node", "Color": "#3399cc", "x": 1900, "y": 1060, htmlTemplate: "<div>Node 3</div>" },
-      { "Id": 10, "Type": 4, "ParentNodeId": 2, "Title": "Risk Node", "Color": "#3399cc", "x": 2000, "y": 1160, htmlTemplate: "<div>Node 4</div>" }
-    ]
+      { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
+      { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 2</div>" },
+      { "Id": 3, "Type": 2, "ParentNodeId": 2, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 3</div>" },
+      { "Id": 4, "Type": 2, "ParentNodeId": 3, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 4</div>" },
+      { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 5</div>" },
+      { "Id": 6, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 6</div>" },
+      { "Id": 7, "Type": 2, "ParentNodeId": 6, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 7</div>" },
+      { "Id": 8, "Type": 2, "ParentNodeId": 7, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 8</div>" },
+      { "Id": 9, "Type": 2, "ParentNodeId": 8, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 9</div>" },
+      { "Id": 10, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 10</div>" },
+      { "Id": 11, "Type": 2, "ParentNodeId": 10, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 11</div>" },
+      { "Id": 12, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 12</div>" },
+      { "Id": 13, "Type": 3, "ParentNodeId": 12, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 13</div>" },
+      { "Id": 14, "Type": 3, "ParentNodeId": 13, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 14</div>" },
+      { "Id": 15, "Type": 3, "ParentNodeId": 14, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 15</div>" },
+      { "Id": 16, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 16</div>" },
+      { "Id": 17, "Type": 3, "ParentNodeId": 16, "Title": "Control Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
+      { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 2</div>" },
+      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 3</div>" },
+      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 4</div>" },
+      { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 5</div>" },
+      { "Id": 22, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 6</div>" },
+      { "Id": 23, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 7</div>" },
+      { "Id": 24, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 8</div>" },
+      { "Id": 25, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 9</div>" },
+      { "Id": 26, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 10</div>" },
+      { "Id": 27, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 11</div>" },
+      { "Id": 28, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 12</div>" },
+      { "Id": 29, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 13</div>" },
+      { "Id": 300, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 14</div>" },
+      { "Id": 31, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 15</div>" },
+
+    ];
+
+
+
+    const arrangedData = arrangeNodes(originalData);
+    console.log(arrangedData.map(node => ({ Id: node.Id, x: node.x, y: node.y })));
+
+
+
+
 
     $(function () {
       $(document).ready(function () {
         createDiagram();
       });
 
-      var detailTemp = 
-          "<div>"
-            +"<h3 class='centre'>Selected Node Details</h3>"
-            +"<div class='k-edit-label'>"
-            +"<p> Details of the selected node can show here...... </p>"
-            +"</div>"
-          +"</div> "  
-          
-     function onCancel(e){
-            e.preventDefault();
-            e.container.closest(".k-popup-edit-form").data("kendoWindow").close();
+      var detailTemp =
+        "<div>"
+        + "<h3 class='centre'>Selected Node Details</h3>"
+        + "<div class='k-edit-label'>"
+        + "<p> Details of the selected node can show here...... </p>"
+        + "</div>"
+        + "</div> "
+
+      function onCancel(e) {
+        e.preventDefault();
+        e.container.closest(".k-popup-edit-form").data("kendoWindow").close();
       }
 
       function createDiagram() {
-        
+
         var dataShapes = JSON.parse(sessionStorage.getItem("shapes"));
 
         if (!dataShapes || dataShapes.length == 0) {
@@ -209,15 +381,41 @@ export class ChartComponent implements OnInit, AfterViewInit {
         }
 
         var dataConnections = [
-          { "Id": 1, "FromShapeId": 1, "ToShapeId": 2, "Text": null },
-          { "Id": 2, "FromShapeId": 1, "ToShapeId": 3, "Text": null },
-          { "Id": 3, "FromShapeId": 1, "ToShapeId": 4, "Text": null },
-          { "Id": 4, "FromShapeId": 1, "ToShapeId": 5, "Text": null },
-          { "Id": 5, "FromShapeId": 1, "ToShapeId": 6, "Text": null },
-          { "Id": 6, "FromShapeId": 1, "ToShapeId": 7, "Text": null },
-          { "Id": 7, "FromShapeId": 1, "ToShapeId": 8, "Text": null },
-          { "Id": 8, "FromShapeId": 2, "ToShapeId": 9, "Text": null },
-          { "Id": 9, "FromShapeId": 2, "ToShapeId": 10, "Text": null }
+          { "Id": 0, "FromShapeId": 1, "ToShapeId": 2, "Text": null },
+          { "Id": 1, "FromShapeId": 2, "ToShapeId": 3, "Text": null },
+          { "Id": 2, "FromShapeId": 3, "ToShapeId": 4, "Text": null },
+          { "Id": 3, "FromShapeId": 4, "ToShapeId": 5, "Text": null },
+          { "Id": 4, "FromShapeId": 1, "ToShapeId": 6, "Text": null },
+          { "Id": 5, "FromShapeId": 6, "ToShapeId": 7, "Text": null },
+          { "Id": 6, "FromShapeId": 7, "ToShapeId": 8, "Text": null },
+          { "Id": 7, "FromShapeId": 8, "ToShapeId": 9, "Text": null },
+          { "Id": 8, "FromShapeId": 1, "ToShapeId": 10, "Text": null },
+          { "Id": 9, "FromShapeId": 10, "ToShapeId": 11, "Text": null },
+          
+          { "Id": 10, "FromShapeId": 1, "ToShapeId": 12, "Text": null },
+          { "Id": 11, "FromShapeId": 12, "ToShapeId": 13, "Text": null },
+          { "Id": 12, "FromShapeId": 13, "ToShapeId": 14, "Text": null },
+          { "Id": 13, "FromShapeId": 14, "ToShapeId": 15, "Text": null },
+          { "Id": 14, "FromShapeId": 1, "ToShapeId": 16, "Text": null },
+          { "Id": 15, "FromShapeId": 16, "ToShapeId": 17, "Text": null },
+          { "Id": 16, "FromShapeId": 17, "ToShapeId": 18, "Text": null },
+          { "Id": 17, "FromShapeId": 18, "ToShapeId": 19, "Text": null },
+          { "Id": 18, "FromShapeId": 1, "ToShapeId": 20, "Text": null },
+          { "Id": 19, "FromShapeId": 20, "ToShapeId": 21, "Text": null },
+          
+
+          { "Id": 20, "FromShapeId": 1, "ToShapeId": 22, "Text": null },
+          { "Id": 21, "FromShapeId": 1, "ToShapeId": 23, "Text": null },
+          { "Id": 22, "FromShapeId": 1, "ToShapeId": 24, "Text": null },
+          { "Id": 23, "FromShapeId": 1, "ToShapeId": 25, "Text": null },
+          { "Id": 24, "FromShapeId": 1, "ToShapeId": 26, "Text": null },
+          { "Id": 25, "FromShapeId": 1, "ToShapeId": 17, "Text": null },
+          { "Id": 26, "FromShapeId": 1, "ToShapeId": 28, "Text": null },
+          { "Id": 27, "FromShapeId": 1, "ToShapeId": 29, "Text": null },
+          { "Id": 28, "FromShapeId": 1, "ToShapeId": 30, "Text": null },
+          { "Id": 29, "FromShapeId": 1, "ToShapeId": 31, "Text": null },
+
+
         ];
 
         var kendoDiagram = $("#diagram").kendoDiagram({
@@ -246,7 +444,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
                   "Color": item.Color,
                   "x": item.x,
                   "y": item.y,
-                  "Title":item.Title,
+                  "Title": item.Title,
                 });
               }
               sessionStorage.setItem("shapes", JSON.stringify(newData));
@@ -271,23 +469,24 @@ export class ChartComponent implements OnInit, AfterViewInit {
             }
           }),
           layout: false,
-          edit:onEdit,
-          click:onNodeClick,
+          edit: onEdit,
+          click: onNodeClick,
           editable: {
             shapeTemplate: detailTemp,
             tools: [{
               type: "button",
               text: "Set Selected Content",
-              click: function(e) {
+              click: function (e) {
                 var selected = $("#diagram").getKendoDiagram().select();
                 var content = $("#content").val();
                 for (var idx = 0; idx < selected.length; idx++) {
                   selected[idx].content(content);
                 }
               }
-            }, {
+            },
+            {
               template: "<input id='content' class='k-textbox' value='Foo' />",
-              enable:true
+              enable: true
             }]
           },
           shapeDefaults: {
@@ -301,14 +500,20 @@ export class ChartComponent implements OnInit, AfterViewInit {
             stroke: {
               color: "#979797",
               width: 2
+            },
+            select: function (e) {
+              e.preventDefault(); // Prevent line selection
+            },
+            content: {
+              visible: false // Hide connection content
             }
           },
           zoom: 0.4,
-          cancel:onCancel
+          cancel: onCancel
         });
         var diagram = $("#diagram").getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
-debugger
+        debugger
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
         }
@@ -316,21 +521,24 @@ debugger
 
         // Hide other templates
         $(document.body).addClass('hide-control-card-content');
+        $(document.body).addClass('hide-cause-card-content');
         $(document.body).addClass('hide-risk-card-content');
+        $(document.body).addClass('hide-concequences-card-content');
+
       }
     });
 
-    function onNodeClick(node) {
-      
-      var diagram = $("#diagram").getKendoDiagram();
-        diagram.bringIntoView(diagram.shapes);
 
-        diagram.refresh();
-      //ReLoadDiagramWithSelectedNode(node);
+    function onNodeClick(node) {
+
+      var diagram = $("#diagram").getKendoDiagram();
+      diagram.bringIntoView(diagram.shapes);
+
+      diagram.refresh();
+      ReLoadDiagramWithSelectedNode(node);
       console.log(this.dataSource)
       // Do something when the node is clicked.
     }
-
 
     function ReLoadDiagramWithSelectedNode(node: any) {
       var diagram = $("#diagram").getKendoDiagram();
@@ -354,7 +562,14 @@ debugger
       if (node) {
         diagram.bringIntoView(node);
       }
+
     }
+    $(document).ready(function () {
+      $("#diagram").kendoDiagram({
+        // ... other diagram configurations ...
+        click: onNodeClick
+      });
+    });
 
     var focused = false;
 
@@ -386,13 +601,6 @@ debugger
   }
 
   ngAfterViewInit(): void {
-    
+
   }
 }
-
-
-
-
-
-
-
