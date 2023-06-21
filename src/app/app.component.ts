@@ -36,13 +36,8 @@ export class AppComponent {
 
     var tempTitleDetail = "";
 
-    // Compile the shape template.
-    var riskNodeTemplate = kendo.template(this.riskTemplate);
-    var controlNodeTemplate = kendo.template(this.controlTemplate);
-
-    
     // Import the Drawing API namespaces.
-    var geom = kendo.geometry;
+    
     var draw = kendo.drawing;
 
 
@@ -142,7 +137,6 @@ export class AppComponent {
       // Set the position of the node using the x and y coordinates from the data source.
       var x = parseInt(dataItem.x);
       var y = parseInt(dataItem.y);
-      var position = new kendo.dataviz.diagram.Point(x, y);
 
       draw.drawDOM(renderElement, options).then(function (group) {
         /* Remove the helper rectangle. */
@@ -304,7 +298,7 @@ export class AppComponent {
         });
         var diagram = $("#diagram").getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
-debugger
+
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
         }
