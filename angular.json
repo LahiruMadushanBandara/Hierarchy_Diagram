@@ -28,8 +28,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/kendo.all.min.js",
-              "src/kendo-ui-license.js",
-              "src/assets/js/kendo.dataviz.min.js"
+              "src/kendo-ui-license.js"
             ]
           },
           "configurations": {
