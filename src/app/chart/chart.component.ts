@@ -35,7 +35,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
 
     // Import the Drawing API namespaces.
-
+    
     var draw = kendo.drawing;
     var geom = kendo.geometry; 
 
@@ -571,9 +571,12 @@ export class ChartComponent implements OnInit, AfterViewInit {
         diagram.bringIntoView(new kendo.dataviz.diagram.Rect(point.x, point.y));
       }
     });
+
+    
   }
 
   ngAfterViewInit(): void {
 
  }
+
 }
