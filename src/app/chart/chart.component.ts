@@ -1,17 +1,11 @@
 import {
   AfterViewInit,
   Component,
-  ComponentFactoryResolver,
-  Injector,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import '@progress/kendo-ui';
-import { ControlNodeComponent } from './nodes/control/control-node.component';
-import { ConsequencesComponent } from './nodes/consequences/consequences.component';
-import { CauseComponent } from './nodes/cause/cause.component';
-import { RiskNodeComponent } from './nodes/risk/risk-node.component';
-import { NavigationEnd, Router } from '@angular/router';
+
 
 declare var $: any;
 
@@ -30,43 +24,21 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector,
 
   ) { }
 
   ngOnInit(): void {
 
-    const controlTemplateComponent = this.componentFactoryResolver
-      .resolveComponentFactory(ControlNodeComponent).create(this.injector);
-
-    const consequencesTemplateComponent = this.componentFactoryResolver
-      .resolveComponentFactory(ConsequencesComponent).create(this.injector);
-
-    const causeTemplateComponent = this.componentFactoryResolver
-      .resolveComponentFactory(CauseComponent).create(this.injector);
-
-    const riskTemplateComponent = this.componentFactoryResolver
-      .resolveComponentFactory(RiskNodeComponent).create(this.injector);
-
-    var riskTemplate = riskTemplateComponent.location.nativeElement.innerHTML;
-    this.controlTemplate = controlTemplateComponent.location.nativeElement.innerHTML;
-    this.causeTemplate = causeTemplateComponent.location.nativeElement.innerHTML;
-    this.consequencesTemplate = consequencesTemplateComponent.location.nativeElement.innerHTML;
 
     var tempTitleDetail = "";
-
-    // Compile the shape template.
-    var riskNodeTemplate = kendo.template(this.riskTemplate);
-    var controlNodeTemplate = kendo.template(this.controlTemplate);
-    var caTemplate = kendo.template(this.causeTemplate);
-    var consequencesTemplate = kendo.template(this.consequencesTemplate);
 
 
 
     // Import the Drawing API namespaces.
-    var geom = kendo.geometry;
+
     var draw = kendo.drawing;
+    var geom = kendo.geometry; 
+
 
 
     function GetControlNodeTemplate(contentDetails: any) {
@@ -104,54 +76,71 @@ export class ChartComponent implements OnInit, AfterViewInit {
         + "</div>";
     }
     function GetRiskNodeTemplate(contentDetails: any) {
-      return "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); '>"
-        + "<div class='risk-card-header-top' style='border-radius: 25px 25px 0 0;'>"
+      return "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); '>"
+        + "<div class='risk-card-header-top' style='border-radius: 10px 10px 0 0;'>"
         + "<p class='risk-card-header-top-text'>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
         + "</div>"
         + "<div class='risk-card-header'>"
-        + "<p class='risk-card-header-text'>Protective and Cyber Security Ratings</p>"
+        + "<p class='risk-card-header-text'> SR15-Protective and Cyber Security Ratings</p>"
         + "</div>"
         + "<div class='risk-card-body'>"
         + "<div class='row' style='display: flex;'>"
-        + "<div style='background-color: blue; width: 50%;'>"
-        + "<p>rating1</p>"
+        + "<div style='background-color: white; width: 50%;'>"
+        + "<p><b>Inherent Rating</b></p>"
+        + "<p>Extreme</p>"
         + "</div>"
-        + "<div style='background-color: red; width: 50%;'>"
-        + "<p>rating2</p>"
+        + "<div style='background-color: white; width: 50%;'>"
+        + "<p><b>Revised Rating</b></p>"
+        + "<p>Law</p>"
         + "</div>"
         + "</div>"
         + "<div class='row' style='display: flex;'>"
-        + "<div class='ab'>"
-        + "<p>rating3</p>"
+        + "<div class='column'style='background-color: white; width: 50%;'>"
+        + "<p><b>Future Ratings</b></p>"
+        + "<div class='row' style='display: flex;'>"
+        + "<img src='https://media.istockphoto.com/id/1059832578/pt/vetorial/abstract-circle-light-red-frame.jpg?s=612x612&w=0&k=20&c=QjIyDYq2IHyxP2GeJ68DtjWMoYmQp_u2v43ldRBM_uY='  style='width: 10px; height: 10px;'>"
+        + "<p>High</p>"
         + "</div>"
-        + "<div style='background-color: yellow; width: 50%;'>"
-        + "<p>rating4</p>"
+        + "</div>"
+        + "<div style='background-color: white; width: 50%;'>"
+        + "<p><b>Risk Appetite</b></p>"
+        + "<p>Within Appetite</p>"
         + "</div>"
         + "</div>"
         + "</div>"
-        + "<div class='risk-card-footer' style='border-radius: 0 0 25px 25px;'></div>"
+        + "<div class='risk-card-footer' style='border-radius: 0 0 10px 10px;'>"
+        + "<div class='row' style='display: flex;'>"
+        + "<div style='background-color: light gray; width: 50%;'>"
+        + "<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>"
+        + "</div>"
+        + "<div style='background-color: light gray; width: 50%;'>"
+        + "<p><b>Responsive Manager</b></p>"
+        + "<p>Talia Gisbon</p>"
+        + "</div>"
+        + "</div>"
+        + "</div>"
         + "</div>";
     }
+    
 
-    function visualTemplate3(options: any) {
+    
+    
+    
 
+
+    function visualTemplate(options: any) {
       var dataItem = options.dataItem;
-
-      tempTitleDetail = dataItem.Title
+      tempTitleDetail = dataItem.Title;
 
       var rTemp = GetRiskNodeTemplate(tempTitleDetail);
       var cTemp = GetControlNodeTemplate(tempTitleDetail);
       var ccTemp = GetCauseTemplate(tempTitleDetail);
       var csTemp = GetConsequencesTemplate(tempTitleDetail);
 
-
-
       sessionStorage.setItem("riskTemplate", rTemp);
       sessionStorage.setItem("controlTemplate", cTemp);
       sessionStorage.setItem("causeTemplate", ccTemp);
-      sessionStorage.setItem("causeTemplate", ccTemp);
       sessionStorage.setItem("consequencesTemplate", csTemp);
-
 
       if (rTemp === "" || rTemp === null || rTemp === undefined) {
         rTemp = sessionStorage.getItem("riskTemplate");
@@ -163,67 +152,50 @@ export class ChartComponent implements OnInit, AfterViewInit {
         ccTemp = sessionStorage.getItem("causeTemplate");
       }
       if (csTemp === "" || csTemp === null || csTemp === undefined) {
-        ccTemp = sessionStorage.getItem("consequencesTemplate");
+        csTemp = sessionStorage.getItem("consequencesTemplate");
       }
 
-
-
-      var renderElement = $(
-        "<div style='display:inline-block'; border:solid />"
-      ).appendTo('body');
+      var renderElement = $("<div style='display:inline-block' />").appendTo("body");
 
       if (dataItem.Title === "Risk Node") {
-        riskTemplateComponent.instance.nodeDetail = dataItem;
         var riskNodeTemp = kendo.template(rTemp);
         renderElement.html(riskNodeTemp(dataItem));
-
-
-      }
-
-      else if (dataItem.Title === "Control Node") {
-        controlTemplateComponent.instance.nodeDetail = dataItem;
+      } 
+      else if (dataItem.Title === "Control Node") { 
         var controlNodeTemp = kendo.template(cTemp);
         renderElement.html(controlNodeTemp(dataItem));
-
-      }
+      } 
       else if (dataItem.Title === "Consequences Node") {
-        consequencesTemplateComponent.instance.nodeDetail = dataItem;
         var consequencesTemp = kendo.template(csTemp);
         renderElement.html(consequencesTemp(dataItem));
-
-      }
-
+      } 
       else {
-        causeTemplateComponent.instance.nodeDetail = dataItem;
+
         var causeTemp = kendo.template(ccTemp);
         renderElement.html(causeTemp(dataItem));
-
       }
 
-
-      // Create a new group that will hold the rendered content.
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
       var height = renderElement.height();
-
-      // Create a rectangle by using the renderElement dimensions to expand the group while waiting for its actual content.
       var geom = new kendo.geometry.Rect([0, 0], [width, height]);
       output.append(new kendo.drawing.Rect(geom, { stroke: { width: 0 } }));
 
-      // Set the position of the node using the x and y coordinates from the data source.
       var x = parseInt(dataItem.x);
       var y = parseInt(dataItem.y);
-      var position = new kendo.dataviz.diagram.Point(x, y);
+     
 
       draw.drawDOM(renderElement, options).then(function (group) {
-        /* Remove the helper rectangle. */
         output.clear();
         output.append(group);
+        renderElement.remove();
       });
+
       var visual = new kendo.dataviz.diagram.Group();
       visual.drawingElement.append(output);
       return visual;
     }
+
 
     function onEdit(e) {
       /* The result can be observed in the DevTools(F12) console of the browser. */
@@ -233,34 +205,34 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
     function arrangeNodes(originalData) {
       const arrangedNodes = [];
-    
+
       // Find the risk node (type 1 with ParentNodeId 0)
       const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
-    
+
       if (riskNode) {
         const horizontalSpacing = 500;
         const verticalSpacing = 300;
         const verticalSpacing4 = 200;
         const maxNodesPerRow = 4;
         const maxNodesPerRow4 = 12; // Updated to 12 nodes per row for type 4
-    
+
         let rowIndex = 0;
-        let type1Index = 0;
+
         let type2Index = 0;
         let type3Index = 0;
         let type4Index = 0;
-    
+
         // Arrange type 1 (risk) node
         riskNode.x = 0;
         riskNode.y = 0;
         arrangedNodes.push(riskNode);
-    
+
         // Arrange type 2 nodes (left of type 1)
         const type2Nodes = originalData.filter((node) => node.Type === 2);
         type2Nodes.forEach((node, index) => {
           const rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
           const columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
-    
+
           const x = riskNode.x - (columnNumber + 1) * horizontalSpacing;
           const y = riskNode.y + (rowNumber) * verticalSpacing;
           node.x = x;
@@ -268,15 +240,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
           arrangedNodes.push(node);
           type2Index++;
         });
-    
+
         rowIndex = Math.max(rowIndex, Math.ceil(type2Nodes.length / maxNodesPerRow) + 1) + 1;
-    
+
         // Arrange type 3 nodes (right of type 1)
         const type3Nodes = originalData.filter((node) => node.Type === 3);
         type3Nodes.forEach((node, index) => {
           const rowNumber = Math.floor(type3Index / maxNodesPerRow); // Calculate the row number
           const columnNumber = type3Index % maxNodesPerRow; // Calculate the column number
-    
+
           const x = riskNode.x + (columnNumber + 1) * horizontalSpacing;
           const y = riskNode.y + (rowNumber) * verticalSpacing;
           node.x = x;
@@ -284,15 +256,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
           arrangedNodes.push(node);
           type3Index++;
         });
-    
+
         rowIndex = Math.max(rowIndex, Math.ceil(type3Nodes.length / maxNodesPerRow) + 1);
-    
+
         // Arrange type 4 nodes (below type 2 and type 3)
         const type4Nodes = originalData.filter((node) => node.Type === 4);
         type4Nodes.forEach((node, index) => {
           const rowNumber = Math.floor(type4Index / maxNodesPerRow4); // Calculate the row number
           const columnNumber = type4Index % maxNodesPerRow4; // Calculate the column number
-    
+
           const x = riskNode.x - (columnNumber - 5) * horizontalSpacing; // Adjusting the starting point for type 4 nodes
           const y = riskNode.y + rowIndex * verticalSpacing4 + (rowNumber + 1) * verticalSpacing4;
           node.x = x;
@@ -304,8 +276,8 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
       return arrangedNodes;
     }
-    
-    
+
+
 
     var originalData = [
       { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
@@ -324,21 +296,22 @@ export class ChartComponent implements OnInit, AfterViewInit {
       { "Id": 14, "Type": 3, "ParentNodeId": 13, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 14</div>" },
       { "Id": 15, "Type": 3, "ParentNodeId": 14, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 15</div>" },
       { "Id": 16, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 16</div>" },
-      { "Id": 17, "Type": 3, "ParentNodeId": 16, "Title": "Control Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
-      { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 2</div>" },
-      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 3</div>" },
-      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 4</div>" },
-      { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 5</div>" },
-      { "Id": 22, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 6</div>" },
-      { "Id": 23, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 7</div>" },
-      { "Id": 24, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 8</div>" },
-      { "Id": 25, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 9</div>" },
-      { "Id": 26, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 10</div>" },
-      { "Id": 27, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 11</div>" },
-      { "Id": 28, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 12</div>" },
-      { "Id": 29, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 13</div>" },
-      { "Id": 300, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 14</div>" },
-      { "Id": 31, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 15</div>" },
+      { "Id": 17, "Type": 3, "ParentNodeId": 16, "Title": "Control Node", "Color": "", htmlTemplate: "<div>Node 17</div>" },
+      { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 18</div>" },
+      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 19</div>" },
+      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 20</div>" },
+      { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 21</div>" },
+      { "Id": 22, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 22</div>" },
+      { "Id": 23, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 23</div>" },
+      { "Id": 24, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 24</div>" },
+      { "Id": 25, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 25</div>" },
+      { "Id": 26, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 26</div>" },
+      { "Id": 27, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 27</div>" },
+      { "Id": 28, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 28</div>" },
+      { "Id": 29, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 29</div>" },
+      { "Id": 30, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 30</div>" },
+      { "Id": 31, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 31</div>" },
+      
 
     ];
 
@@ -391,7 +364,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
           { "Id": 7, "FromShapeId": 8, "ToShapeId": 9, "Text": null },
           { "Id": 8, "FromShapeId": 1, "ToShapeId": 10, "Text": null },
           { "Id": 9, "FromShapeId": 10, "ToShapeId": 11, "Text": null },
-          
+
           { "Id": 10, "FromShapeId": 1, "ToShapeId": 12, "Text": null },
           { "Id": 11, "FromShapeId": 12, "ToShapeId": 13, "Text": null },
           { "Id": 12, "FromShapeId": 13, "ToShapeId": 14, "Text": null },
@@ -402,18 +375,18 @@ export class ChartComponent implements OnInit, AfterViewInit {
           { "Id": 17, "FromShapeId": 18, "ToShapeId": 19, "Text": null },
           { "Id": 18, "FromShapeId": 1, "ToShapeId": 20, "Text": null },
           { "Id": 19, "FromShapeId": 20, "ToShapeId": 21, "Text": null },
-          
 
+          { "Id": 30, "FromShapeId": 1, "ToShapeId": 31, "Text": null },
           { "Id": 20, "FromShapeId": 1, "ToShapeId": 22, "Text": null },
           { "Id": 21, "FromShapeId": 1, "ToShapeId": 23, "Text": null },
           { "Id": 22, "FromShapeId": 1, "ToShapeId": 24, "Text": null },
           { "Id": 23, "FromShapeId": 1, "ToShapeId": 25, "Text": null },
           { "Id": 24, "FromShapeId": 1, "ToShapeId": 26, "Text": null },
-          { "Id": 25, "FromShapeId": 1, "ToShapeId": 17, "Text": null },
+          { "Id": 25, "FromShapeId": 1, "ToShapeId": 27, "Text": null },
           { "Id": 26, "FromShapeId": 1, "ToShapeId": 28, "Text": null },
           { "Id": 27, "FromShapeId": 1, "ToShapeId": 29, "Text": null },
           { "Id": 28, "FromShapeId": 1, "ToShapeId": 30, "Text": null },
-          { "Id": 29, "FromShapeId": 1, "ToShapeId": 31, "Text": null },
+          // { "Id": 29, "FromShapeId": 32, "ToShapeId": 31, "Text": null },
 
 
         ];
@@ -494,7 +467,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
               color: "#979797",
               width: 10
             },
-            visual: visualTemplate3
+            visual: visualTemplate
           },
           connectionDefaults: {
             stroke: {
@@ -602,5 +575,5 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
 
-  }
+ }
 }
