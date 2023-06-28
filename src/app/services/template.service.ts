@@ -7,6 +7,7 @@ export class TemplateService {
   constructor() {}
 
   private _rTemp: any;
+
   public get rTemp(): any {
     return this._rTemp;
   }
