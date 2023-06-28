@@ -1,19 +1,21 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import '@progress/kendo-ui';
+import { TemplateService } from 'src/app/services/template.service';
 declare var $: any;
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-focus',
+  templateUrl: './focus.component.html',
+  styleUrls: ['./focus.component.css'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class FocusComponent implements OnInit, AfterViewInit {
   @ViewChild('diagram', { static: false }) diagram: any;
   riskTemplate: string = '';
   controlTemplate: string = '';
   causeTemplate: string = '';
   consequencesTemplate: string = '';
 
-  constructor() {}
+  constructor(private templateService: TemplateService) {}
 
   ngOnInit(): void {
     var tempTitleDetail = '';
@@ -28,14 +30,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         "<div class='control-card-content rounded'style=' border: ; border-radius: 10px;'>" +
         "<div class='control-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<h4>' +
-        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
         '</h4>' +
         '</div>' +
         "<div class='control-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<p>' +
-        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
         '</p>' +
-        contentDetails.htmlTemplate +
+        '<p>Some other text...</p>' +
         '</div>' +
         '</div>'
       );
@@ -45,14 +47,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         "<div class='consequences-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
         "<div class='consequences-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<h4>' +
-        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
         '</h4>' +
         '</div>' +
         "<div class='consequences-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
         '<p>' +
-        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
         '</p>' +
-        contentDetails.htmlTemplate +
+        '<p>Some other text...</p>' +
         '</div>' +
         '</div>'
       );
@@ -63,14 +65,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         "<div class='cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
         "<div class='cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<h4>' +
-        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
         '</h4>' +
         '</div>' +
         "<div class='cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
         '<p>' +
-        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
         '</p>' +
-        contentDetails.htmlTemplate +
+        '<p>Some other text...</p>' +
         '</div>' +
         '</div>'
       );
@@ -80,7 +82,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); '>" +
         "<div class='risk-card-header-top' style='border-radius: 10px 10px 0 0;'>" +
         "<p class='risk-card-header-top-text'>" +
-        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
         '</p>' +
         '</div>' +
         "<div class='risk-card-header'>" +
@@ -129,28 +131,30 @@ export class AppComponent implements OnInit, AfterViewInit {
     function visualTemplate(options: any) {
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
-      console.log(dataItem);
-      var rTemp = GetRiskNodeTemplate(dataItem);
-      var cTemp = GetControlNodeTemplate(dataItem);
-      var ccTemp = GetCauseTemplate(dataItem);
-      var csTemp = GetConsequencesTemplate(dataItem);
 
-      sessionStorage.setItem('riskTemplate', rTemp);
-      sessionStorage.setItem('controlTemplate', cTemp);
-      sessionStorage.setItem('causeTemplate', ccTemp);
-      sessionStorage.setItem('consequencesTemplate', csTemp);
+      var rTemp = GetRiskNodeTemplate(tempTitleDetail);
+      var cTemp = GetControlNodeTemplate(tempTitleDetail);
+      var ccTemp = GetCauseTemplate(tempTitleDetail);
+      var csTemp = GetConsequencesTemplate(tempTitleDetail);
+
+      localStorage.setItem('riskTemplate', rTemp);
+      localStorage.setItem('controlTemplate', cTemp);
+      localStorage.setItem('causeTemplate', ccTemp);
+      localStorage.setItem('consequencesTemplate', csTemp);
+
+      this.templateService.
 
       if (rTemp === '' || rTemp === null || rTemp === undefined) {
-        rTemp = sessionStorage.getItem('riskTemplate');
+        rTemp = localStorage.getItem('riskTemplate');
       }
       if (cTemp === '' || cTemp === null || cTemp === undefined) {
-        cTemp = sessionStorage.getItem('controlTemplate');
+        cTemp = localStorage.getItem('controlTemplate');
       }
       if (ccTemp === '' || ccTemp === null || ccTemp === undefined) {
-        ccTemp = sessionStorage.getItem('causeTemplate');
+        ccTemp = localStorage.getItem('causeTemplate');
       }
       if (csTemp === '' || csTemp === null || csTemp === undefined) {
-        csTemp = sessionStorage.getItem('consequencesTemplate');
+        csTemp = localStorage.getItem('consequencesTemplate');
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo(
@@ -559,13 +563,13 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
 
       function createDiagram() {
-        var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
+        var dataShapes = JSON.parse(localStorage.getItem('shapes'));
 
         if (!dataShapes || dataShapes.length == 0) {
-          sessionStorage.setItem('shapes', JSON.stringify(originalData));
+          localStorage.setItem('shapes', JSON.stringify(originalData));
           dataShapes = originalData;
         } else {
-          dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
+          dataShapes = JSON.parse(localStorage.getItem('shapes'));
         }
 
         var dataConnections = [
@@ -604,7 +608,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           // { "Id": 29, "FromShapeId": 32, "ToShapeId": 31, "Text": null },
         ];
 
-        var kendoDiagram = $('#diagram').kendoDiagram({
+        var kendoDiagram = $('#diagram1').kendoDiagram({
           dataSource: {
             data: dataShapes,
             schema: {
@@ -632,7 +636,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                   Title: item.Title,
                 });
               }
-              sessionStorage.setItem('shapes', JSON.stringify(newData));
+              localStorage.setItem('shapes', JSON.stringify(newData));
               console.log('saved');
             },
           },
@@ -663,7 +667,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                 type: 'button',
                 text: 'Set Selected Content',
                 click: function (e) {
-                  var selected = $('#diagram').getKendoDiagram().select();
+                  var selected = $('#diagram1').getKendoDiagram().select();
                   var content = $('#content').val();
                   for (var idx = 0; idx < selected.length; idx++) {
                     selected[idx].content(content);
@@ -701,7 +705,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           cancel: onCancel,
         });
 
-        var diagram = $('#diagram').getKendoDiagram();
+        var diagram = $('#diagram1').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
@@ -717,7 +721,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 
     function onNodeClick(node) {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
       diagram.bringIntoView(diagram.shapes);
 
       diagram.refresh();
@@ -727,7 +731,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     function ReLoadDiagramWithSelectedNode(node: any) {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
       var selectedNode = diagram.select();
 
       if (selectedNode) {
@@ -750,7 +754,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
     $(document).ready(function () {
-      $('#diagram').kendoDiagram({
+      $('#diagram1').kendoDiagram({
         // ... other diagram configurations ...
         click: onNodeClick,
       });
@@ -759,7 +763,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     var focused = false;
 
     $('.zoom-in').click(function () {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
 
       var point = diagram.boundingBox().center();
       diagram.zoom(diagram.zoom() + 0.1, {
@@ -773,7 +777,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 
     $('.zoom-out').click(function () {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
       var point = diagram.boundingBox().center();
       diagram.zoom(diagram.zoom() - 0.1, {
         point: new kendo.dataviz.diagram.Point(point.x, point.y),
