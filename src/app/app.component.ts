@@ -87,7 +87,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         + "</div>"
         + "<div class='row' style='display: flex;'>"
         + "<div class='column' style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Future Ratings</b></p>"
+        + "<p><b>Future Rating</b></p>"
         + "<p style='display: flex; align-items: center; line-height: 1;'>"
         + "<img src='../assets/icon/High.png' style='width: 50px; height: 50px;'>"
         + "<span style='position: relative; top: -2px; margin-left: 5px;'>High</span>"
