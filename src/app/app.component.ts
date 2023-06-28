@@ -518,6 +518,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     ];
 
     const arrangedData = arrangeNodes(originalData);
+
     console.log(
       arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }))
     );
@@ -664,6 +665,7 @@ export class AppComponent implements OnInit, AfterViewInit {
               color: '#979797',
               width: 10,
             },
+
             visual: visualTemplate,
           },
           connectionDefaults: {
@@ -684,7 +686,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
-        debugger;
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
         }
