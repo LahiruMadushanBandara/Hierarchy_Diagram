@@ -86,13 +86,13 @@
 /* Risk Card */
 .risk-card-content {
   border: 2px solid grey;
-  width: 350px;
+  width: 340px;
   display: grid;
   box-shadow: 10px 10px lightblue;
 }
 
 .risk-card-body {
-  height: 200px;
+  height: 250px;
   display: grid;
 }
 
