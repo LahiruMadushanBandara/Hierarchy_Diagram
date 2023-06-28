@@ -1,19 +1,21 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import '@progress/kendo-ui';
+import { TemplateService } from 'src/app/services/template.service';
 declare var $: any;
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-focus',
+  templateUrl: './focus.component.html',
+  styleUrls: ['./focus.component.css'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class FocusComponent implements OnInit, AfterViewInit {
   @ViewChild('diagram', { static: false }) diagram: any;
   riskTemplate: string = '';
   controlTemplate: string = '';
   causeTemplate: string = '';
   consequencesTemplate: string = '';
 
-  constructor() {}
+  constructor(private templateService: TemplateService) {}
 
   ngOnInit(): void {
     var tempTitleDetail = '';
@@ -76,102 +78,83 @@ export class AppComponent implements OnInit, AfterViewInit {
       );
     }
     function GetRiskNodeTemplate(contentDetails: any) {
-
-      return "<div class='risk-card-content rounded' style='border:none; border-radius: 10px; '>"
-        + "<div class='risk-card-header-top' style='border-radius: 10px 10px 0 0;'>"
-        + "<p class='risk-card-header-top-text'>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
-        + "</div>"
-        + "<div class='risk-card-header'>"
-        + "<p class='risk-card-header-text'>SR15-Protective and Cyber Security Ratings</p>"
-        + "</div>"
-        + "<div class='risk-card-body'>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Inherent Rating</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/Extream.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Extreme</span>"
-        + "</p>"
-        + "</div>"
-        + "<div style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Revised Rating</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/Low.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Low</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div class='column' style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Future Rating</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/High.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>High</span>"
-        + "</p>"
-        + "</div>"
-        + "<div style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Risk Appetite</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/WithinAppetite.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Within Appetite</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>"
-        + "</div>"
-        + "<div style='background-color: light gray; width:50%; padding-left: 15px;'>"
-        + "<p><b>Responsible Manager</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='https://api.sofascore.app/api/v1/team/197536/image' style='width: 30px; height: 30px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "</div>"
-        + "<div class='risk-card-footer' style='border: border-radius: 0 0 10px 10px;'>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>"
-        + "</div>"
-        + "<div style='background-color: light gray; width:50%; padding-left: 15px;'>"
-        + "<p><b>Responsible Manager</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='https://api.sofascore.app/api/v1/team/197536/image' style='width: 30px; height: 30px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "</div>";
+      return (
+        "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); '>" +
+        "<div class='risk-card-header-top' style='border-radius: 10px 10px 0 0;'>" +
+        "<p class='risk-card-header-top-text'>" +
+        (contentDetails === undefined ? 'Title' : contentDetails) +
+        '</p>' +
+        '</div>' +
+        "<div class='risk-card-header'>" +
+        "<p class='risk-card-header-text'> SR15-Protective and Cyber Security Ratings</p>" +
+        '</div>' +
+        "<div class='risk-card-body'>" +
+        "<div class='row' style='display: flex;'>" +
+        "<div style='background-color: white; width: 50%;'>" +
+        '<p><b>Inherent Rating</b></p>' +
+        '<p>Extreme</p>' +
+        '</div>' +
+        "<div style='background-color: white; width: 50%;'>" +
+        '<p><b>Revised Rating</b></p>' +
+        '<p>Law</p>' +
+        '</div>' +
+        '</div>' +
+        "<div class='row' style='display: flex;'>" +
+        "<div class='column'style='background-color: white; width: 50%;'>" +
+        '<p><b>Future Ratings</b></p>' +
+        "<div class='row' style='display: flex;'>" +
+        "<img src='https://media.istockphoto.com/id/1059832578/pt/vetorial/abstract-circle-light-red-frame.jpg?s=612x612&w=0&k=20&c=QjIyDYq2IHyxP2GeJ68DtjWMoYmQp_u2v43ldRBM_uY='  style='width: 10px; height: 10px;'>" +
+        '<p>High</p>' +
+        '</div>' +
+        '</div>' +
+        "<div style='background-color: white; width: 50%;'>" +
+        '<p><b>Risk Appetite</b></p>' +
+        '<p>Within Appetite</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        "<div class='risk-card-footer' style='border-radius: 0 0 10px 10px;'>" +
+        "<div class='row' style='display: flex;'>" +
+        "<div style='background-color: light gray; width: 50%;'>" +
+        '<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>' +
+        '</div>' +
+        "<div style='background-color: light gray; width: 50%;'>" +
+        '<p><b>Responsive Manager</b></p>' +
+        '<p>Talia Gisbon</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>'
+      );
     }
-
 
     function visualTemplate(options: any) {
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
-      console.log(dataItem);
-      var rTemp = GetRiskNodeTemplate(dataItem);
-      var cTemp = GetControlNodeTemplate(dataItem);
-      var ccTemp = GetCauseTemplate(dataItem);
-      var csTemp = GetConsequencesTemplate(dataItem);
 
-      sessionStorage.setItem('riskTemplate', rTemp);
-      sessionStorage.setItem('controlTemplate', cTemp);
-      sessionStorage.setItem('causeTemplate', ccTemp);
-      sessionStorage.setItem('consequencesTemplate', csTemp);
+      var rTemp = GetRiskNodeTemplate(tempTitleDetail);
+      var cTemp = GetControlNodeTemplate(tempTitleDetail);
+      var ccTemp = GetCauseTemplate(tempTitleDetail);
+      var csTemp = GetConsequencesTemplate(tempTitleDetail);
+
+      localStorage.setItem('riskTemplate', rTemp);
+      localStorage.setItem('controlTemplate', cTemp);
+      localStorage.setItem('causeTemplate', ccTemp);
+      localStorage.setItem('consequencesTemplate', csTemp);
+
+      // this.templateService.
 
       if (rTemp === '' || rTemp === null || rTemp === undefined) {
-        rTemp = sessionStorage.getItem('riskTemplate');
+        rTemp = localStorage.getItem('riskTemplate');
       }
       if (cTemp === '' || cTemp === null || cTemp === undefined) {
-        cTemp = sessionStorage.getItem('controlTemplate');
+        cTemp = localStorage.getItem('controlTemplate');
       }
       if (ccTemp === '' || ccTemp === null || ccTemp === undefined) {
-        ccTemp = sessionStorage.getItem('causeTemplate');
+        ccTemp = localStorage.getItem('causeTemplate');
       }
       if (csTemp === '' || csTemp === null || csTemp === undefined) {
-        csTemp = sessionStorage.getItem('consequencesTemplate');
+        csTemp = localStorage.getItem('consequencesTemplate');
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo(
@@ -233,12 +216,16 @@ export class AppComponent implements OnInit, AfterViewInit {
         const maxNodesPerRow = 4;
         const maxNodesPerRow4 = 12; // Updated to 12 nodes per row for type 4
 
+        let rowIndex = 0;
+
         let type2Index = 0;
         let type3Index = 0;
         let type4Index = 0;
 
-        const originX = 0;
-        const originY = 0;
+        // Arrange type 1 (risk) node
+        riskNode.x = 0;
+        riskNode.y = 0;
+        arrangedNodes.push(riskNode);
 
         // Arrange type 2 nodes (left of type 1)
         const type2Nodes = originalData.filter((node) => node.Type === 2);
@@ -246,22 +233,19 @@ export class AppComponent implements OnInit, AfterViewInit {
           const rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
           const columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
 
-          const x = originX - (columnNumber + 1) * horizontalSpacing;
-          const y = originY + rowNumber * verticalSpacing;
+          const x = riskNode.x - (columnNumber + 1) * horizontalSpacing;
+          const y = riskNode.y + rowNumber * verticalSpacing;
           node.x = x;
           node.y = y;
           arrangedNodes.push(node);
           type2Index++;
         });
 
-        // Arrange type 1 (risk) node
-        const type2Rows = Math.ceil(type2Nodes.length / maxNodesPerRow);
-        // Move the risk node down a little bit
-        const riskNodeX = originX - 30;
-        const riskNodeY = originY + 190; // Adjust the Y-coordinate to move the risk node down
-        riskNode.x = riskNodeX;
-        riskNode.y = riskNodeY;
-        arrangedNodes.push(riskNode);
+        rowIndex =
+          Math.max(
+            rowIndex,
+            Math.ceil(type2Nodes.length / maxNodesPerRow) + 1
+          ) + 1;
 
         // Arrange type 3 nodes (right of type 1)
         const type3Nodes = originalData.filter((node) => node.Type === 3);
@@ -269,28 +253,29 @@ export class AppComponent implements OnInit, AfterViewInit {
           const rowNumber = Math.floor(type3Index / maxNodesPerRow); // Calculate the row number
           const columnNumber = type3Index % maxNodesPerRow; // Calculate the column number
 
-          const x = originX + (columnNumber + 1) * horizontalSpacing;
-          const y = originY + rowNumber * verticalSpacing;
+          const x = riskNode.x + (columnNumber + 1) * horizontalSpacing;
+          const y = riskNode.y + rowNumber * verticalSpacing;
           node.x = x;
           node.y = y;
           arrangedNodes.push(node);
           type3Index++;
         });
 
+        rowIndex = Math.max(
+          rowIndex,
+          Math.ceil(type3Nodes.length / maxNodesPerRow) + 1
+        );
+
         // Arrange type 4 nodes (below type 2 and type 3)
         const type4Nodes = originalData.filter((node) => node.Type === 4);
-        const maxType2Type3Rows = Math.max(
-          type2Rows,
-          Math.ceil(type3Nodes.length / maxNodesPerRow)
-        );
         type4Nodes.forEach((node, index) => {
           const rowNumber = Math.floor(type4Index / maxNodesPerRow4); // Calculate the row number
           const columnNumber = type4Index % maxNodesPerRow4; // Calculate the column number
 
-          const x = originX - (columnNumber - 5) * horizontalSpacing; // Adjusting the starting point for type 4 nodes
+          const x = riskNode.x - (columnNumber - 5) * horizontalSpacing; // Adjusting the starting point for type 4 nodes
           const y =
-            originY +
-            (maxType2Type3Rows + 1) * verticalSpacing +
+            riskNode.y +
+            rowIndex * verticalSpacing4 +
             (rowNumber + 1) * verticalSpacing4;
           node.x = x;
           node.y = y;
@@ -578,13 +563,13 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
 
       function createDiagram() {
-        var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
+        var dataShapes = JSON.parse(localStorage.getItem('shapes'));
 
         if (!dataShapes || dataShapes.length == 0) {
-          sessionStorage.setItem('shapes', JSON.stringify(originalData));
+          localStorage.setItem('shapes', JSON.stringify(originalData));
           dataShapes = originalData;
         } else {
-          dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
+          dataShapes = JSON.parse(localStorage.getItem('shapes'));
         }
 
         var dataConnections = [
@@ -623,7 +608,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           // { "Id": 29, "FromShapeId": 32, "ToShapeId": 31, "Text": null },
         ];
 
-        var kendoDiagram = $('#diagram').kendoDiagram({
+        var kendoDiagram = $('#diagram1').kendoDiagram({
           dataSource: {
             data: dataShapes,
             schema: {
@@ -651,7 +636,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                   Title: item.Title,
                 });
               }
-              sessionStorage.setItem('shapes', JSON.stringify(newData));
+              localStorage.setItem('shapes', JSON.stringify(newData));
               console.log('saved');
             },
           },
@@ -682,7 +667,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                 type: 'button',
                 text: 'Set Selected Content',
                 click: function (e) {
-                  var selected = $('#diagram').getKendoDiagram().select();
+                  var selected = $('#diagram1').getKendoDiagram().select();
                   var content = $('#content').val();
                   for (var idx = 0; idx < selected.length; idx++) {
                     selected[idx].content(content);
@@ -720,25 +705,23 @@ export class AppComponent implements OnInit, AfterViewInit {
           cancel: onCancel,
         });
 
-        var diagram = $('#diagram').getKendoDiagram();
+        var diagram = $('#diagram1').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
         }
         diagram.refresh();
 
-        // Move the logic that "hides" the templates inside a setTimeout
-        setTimeout(() => {
-          $(document.body).addClass('hide-control-card-content');
-          $(document.body).addClass('hide-cause-card-content');
-          $(document.body).addClass('hide-risk-card-content');
-          $(document.body).addClass('hide-concequences-card-content');
-        }, 2000);
+        // Hide other templates
+        $(document.body).addClass('hide-control-card-content');
+        $(document.body).addClass('hide-cause-card-content');
+        $(document.body).addClass('hide-risk-card-content');
+        $(document.body).addClass('hide-concequences-card-content');
       }
     });
 
     function onNodeClick(node) {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
       diagram.bringIntoView(diagram.shapes);
 
       diagram.refresh();
@@ -748,7 +731,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     function ReLoadDiagramWithSelectedNode(node: any) {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
       var selectedNode = diagram.select();
 
       if (selectedNode) {
@@ -771,7 +754,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
     $(document).ready(function () {
-      $('#diagram').kendoDiagram({
+      $('#diagram1').kendoDiagram({
         // ... other diagram configurations ...
         click: onNodeClick,
       });
@@ -780,7 +763,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     var focused = false;
 
     $('.zoom-in').click(function () {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
 
       var point = diagram.boundingBox().center();
       diagram.zoom(diagram.zoom() + 0.1, {
@@ -794,7 +777,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 
     $('.zoom-out').click(function () {
-      var diagram = $('#diagram').getKendoDiagram();
+      var diagram = $('#diagram1').getKendoDiagram();
       var point = diagram.boundingBox().center();
       diagram.zoom(diagram.zoom() - 0.1, {
         point: new kendo.dataviz.diagram.Point(point.x, point.y),
