@@ -142,7 +142,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
       localStorage.setItem('causeTemplate', ccTemp);
       localStorage.setItem('consequencesTemplate', csTemp);
 
-      this.templateService.
+      // this.templateService.
 
       if (rTemp === '' || rTemp === null || rTemp === undefined) {
         rTemp = localStorage.getItem('riskTemplate');
