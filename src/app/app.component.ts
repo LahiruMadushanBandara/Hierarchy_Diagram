@@ -21,8 +21,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   consequencesTemplate: string = '';
 
 
-  constructor(private cdr: ChangeDetectorRef) {}
-  ngAfterViewInit(): void {}
+  constructor(private cdr: ChangeDetectorRef) { }
+  ngAfterViewInit(): void { }
 
   ngOnInit(): void {
     sessionStorage.clear();
@@ -143,17 +143,35 @@ export class AppComponent implements OnInit, AfterViewInit {
         // }
         // Arrange type 2 nodes (left of type 1)
         const type2Nodes = originalData.filter((node) => node.Type === 2);
+        console.log("type2Nodes", type2Nodes);
         type2Nodes.forEach((node, index) => {
-          const rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
-          const columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
+          console.log("node->", node, "index->", index);
+          let rowNumber = 0 ;
+          let columnNumber = 0;
+          if (node.Title == "Cause Node" && index == 0) {
+            rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
+            columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
+            type2Index++;
+
+          } else if (index != 0 && type2Nodes[index - 1].Title == "Cause Node") {
+            rowNumber = Math.floor(type2Index / maxNodesPerRow); 
+            columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
+            type2Index++;
+           
+          } else {
+            rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
+            columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
+            type2Index++;
+          }
 
           const x = originX - (columnNumber + 1) * horizontalSpacing;
           const y = originY + rowNumber * verticalSpacing;
           node.x = x;
           node.y = y;
           arrangedNodes.push(node);
-          type2Index++;
+          
         });
+
 
 
         // Arrange type 3 nodes (right of type 1)
@@ -171,22 +189,22 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
 
 
-         // Arrange type 1 (risk) node
-         const type2Rows = Math.ceil(type2Nodes.length / maxNodesPerRow);
-         const type3Rows = Math.ceil(type3Nodes.length / maxNodesPerRow);
- 
-         // Calculate the maximum number of rows between type 2 and type 3 nodes
-         const maxRows = Math.max(type2Rows, type3Rows);
- 
-         // Calculate the Y-coordinate for the risk node
-         const riskNodeY = originY + maxRows + verticalSpacing4;
- 
-         // Move the risk node to the calculated Y-coordinate
-         riskNode.x = originX;
-         riskNode.y = riskNodeY;
-         arrangedNodes.push(riskNode);
+        // Arrange type 1 (risk) node
+        const type2Rows = Math.ceil(type2Nodes.length / maxNodesPerRow);
+        const type3Rows = Math.ceil(type3Nodes.length / maxNodesPerRow);
 
-         
+        // Calculate the maximum number of rows between type 2 and type 3 nodes
+        const maxRows = Math.max(type2Rows, type3Rows);
+
+        // Calculate the Y-coordinate for the risk node
+        const riskNodeY = originY + maxRows + verticalSpacing4;
+
+        // Move the risk node to the calculated Y-coordinate
+        riskNode.x = originX;
+        riskNode.y = riskNodeY;
+        arrangedNodes.push(riskNode);
+
+
 
         // Arrange type 4 nodes (below type 2 and type 3)
         const type4Nodes = originalData.filter((node) => node.Type === 4);
@@ -217,7 +235,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
       { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 2</div>" },
       { "Id": 3, "Type": 2, "ParentNodeId": 2, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 3</div>" },
-      { "Id": 4, "Type": 2, "ParentNodeId": 3, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 4</div>" },
+      
       { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 5</div>" },
       { "Id": 6, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 6</div>" },
       { "Id": 7, "Type": 2, "ParentNodeId": 6, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 7</div>" },
