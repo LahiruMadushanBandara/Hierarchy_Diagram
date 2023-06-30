@@ -13,9 +13,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   causeTemplate: string = '';
   consequencesTemplate: string = '';
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
+    sessionStorage.clear();
+
     var tempTitleDetail = '';
 
     // Import the Drawing API namespaces.
@@ -23,57 +25,40 @@ export class AppComponent implements OnInit, AfterViewInit {
     var draw = kendo.drawing;
     var geom = kendo.geometry;
 
+
     function GetControlNodeTemplate(contentDetails: any) {
-      return (
-        "<div class='control-card-content rounded'style=' border: ; border-radius: 10px;'>" +
-        "<div class='control-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-        '<h4>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
-        '</h4>' +
-        '</div>' +
-        "<div class='control-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-        '<p>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
-        '</p>' +
-        '<p>Some other text...</p>' +
-        '</div>' +
-        '</div>'
-      );
+      return "<div class='control-card-content rounded'style=' border: ; border-radius: 10px;'>"
+        + "<div class='control-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
+        + "</div>"
+        + "<div class='control-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
+        + "<p>Some other text...</p>"
+        + "</div>"
+        + "</div>";
     }
     function GetConsequencesTemplate(contentDetails: any) {
-      return (
-        "<div class='consequences-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
-        "<div class='consequences-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-        '<h4>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
-        '</h4>' +
-        '</div>' +
-        "<div class='consequences-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
-        '<p>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
-        '</p>' +
-        '<p>Some other text...</p>' +
-        '</div>' +
-        '</div>'
-      );
+      return "<div class='consequences-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>"
+        + "<div class='consequences-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
+        + "</div>"
+        + "<div class='consequences-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>"
+        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
+        + "<p>Some other text...</p>"
+        + "</div>"
+        + "</div>";
     }
 
     function GetCauseTemplate(contentDetails: any) {
-      return (
-        "<div class='cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
-        "<div class='cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-        '<h4>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
-        '</h4>' +
-        '</div>' +
-        "<div class='cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
-        '<p>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
-        '</p>' +
-        '<p>Some other text...</p>' +
-        '</div>' +
-        '</div>'
-      );
+      return "<div class='cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>"
+        + "<div class='cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
+        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
+        + "</div>"
+        + "<div class='cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>"
+        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
+        + "<p>Some other text...</p>"
+        + "</div>"
+        + "</div>";
     }
     function GetRiskNodeTemplate(contentDetails: any) {
 
@@ -241,6 +226,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         const originY = 0;
 
         // Arrange type 2 nodes (left of type 1)
+        // const type2Nodes = [];
+        // for(let i=0; i<=originalData.length; i++){
+        //   if(original)
+        // }
+        // Arrange type 2 nodes (left of type 1)
         const type2Nodes = originalData.filter((node) => node.Type === 2);
         type2Nodes.forEach((node, index) => {
           const rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
@@ -254,14 +244,6 @@ export class AppComponent implements OnInit, AfterViewInit {
           type2Index++;
         });
 
-        // Arrange type 1 (risk) node
-        const type2Rows = Math.ceil(type2Nodes.length / maxNodesPerRow);
-        // Move the risk node down a little bit
-        const riskNodeX = originX - 30;
-        const riskNodeY = originY + 190; // Adjust the Y-coordinate to move the risk node down
-        riskNode.x = riskNodeX;
-        riskNode.y = riskNodeY;
-        arrangedNodes.push(riskNode);
 
         // Arrange type 3 nodes (right of type 1)
         const type3Nodes = originalData.filter((node) => node.Type === 3);
@@ -276,6 +258,24 @@ export class AppComponent implements OnInit, AfterViewInit {
           arrangedNodes.push(node);
           type3Index++;
         });
+
+
+         // Arrange type 1 (risk) node
+         const type2Rows = Math.ceil(type2Nodes.length / maxNodesPerRow);
+         const type3Rows = Math.ceil(type3Nodes.length / maxNodesPerRow);
+ 
+         // Calculate the maximum number of rows between type 2 and type 3 nodes
+         const maxRows = Math.max(type2Rows, type3Rows);
+ 
+         // Calculate the Y-coordinate for the risk node
+         const riskNodeY = originY + maxRows + verticalSpacing4;
+ 
+         // Move the risk node to the calculated Y-coordinate
+         riskNode.x = originX;
+         riskNode.y = riskNodeY;
+         arrangedNodes.push(riskNode);
+
+         
 
         // Arrange type 4 nodes (below type 2 and type 3)
         const type4Nodes = originalData.filter((node) => node.Type === 4);
@@ -303,256 +303,39 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     var originalData = [
-      {
-        Id: 1,
-        Type: 1,
-        ParentNodeId: 0,
-        Title: 'Risk Node',
-        Color: '',
-        htmlTemplate: '<div>Node 1</div>',
-      },
-      {
-        Id: 2,
-        Type: 2,
-        ParentNodeId: 1,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 2</div>',
-      },
-      {
-        Id: 3,
-        Type: 2,
-        ParentNodeId: 2,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 3</div>',
-      },
-      {
-        Id: 4,
-        Type: 2,
-        ParentNodeId: 3,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 4</div>',
-      },
-      {
-        Id: 5,
-        Type: 2,
-        ParentNodeId: 4,
-        Title: 'Cause Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 5</div>',
-      },
-      {
-        Id: 6,
-        Type: 2,
-        ParentNodeId: 1,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 6</div>',
-      },
-      {
-        Id: 7,
-        Type: 2,
-        ParentNodeId: 6,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 7</div>',
-      },
-      {
-        Id: 8,
-        Type: 2,
-        ParentNodeId: 7,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 8</div>',
-      },
-      {
-        Id: 9,
-        Type: 2,
-        ParentNodeId: 8,
-        Title: 'Cause Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 9</div>',
-      },
-      {
-        Id: 10,
-        Type: 2,
-        ParentNodeId: 1,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 10</div>',
-      },
-      {
-        Id: 11,
-        Type: 2,
-        ParentNodeId: 10,
-        Title: 'Cause Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 11</div>',
-      },
-      {
-        Id: 12,
-        Type: 3,
-        ParentNodeId: 1,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 12</div>',
-      },
-      {
-        Id: 13,
-        Type: 3,
-        ParentNodeId: 12,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 13</div>',
-      },
-      {
-        Id: 14,
-        Type: 3,
-        ParentNodeId: 13,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 14</div>',
-      },
-      {
-        Id: 15,
-        Type: 3,
-        ParentNodeId: 14,
-        Title: 'Cause Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 15</div>',
-      },
-      {
-        Id: 16,
-        Type: 3,
-        ParentNodeId: 1,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 16</div>',
-      },
-      {
-        Id: 17,
-        Type: 3,
-        ParentNodeId: 16,
-        Title: 'Control Node',
-        Color: '',
-        htmlTemplate: '<div>Node 17</div>',
-      },
-      {
-        Id: 18,
-        Type: 3,
-        ParentNodeId: 17,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 18</div>',
-      },
-      {
-        Id: 19,
-        Type: 3,
-        ParentNodeId: 18,
-        Title: 'Cause Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 19</div>',
-      },
-      {
-        Id: 20,
-        Type: 3,
-        ParentNodeId: 1,
-        Title: 'Control Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 20</div>',
-      },
-      {
-        Id: 21,
-        Type: 3,
-        ParentNodeId: 20,
-        Title: 'Cause Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 21</div>',
-      },
-      {
-        Id: 22,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 22</div>',
-      },
-      {
-        Id: 23,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 23</div>',
-      },
-      {
-        Id: 24,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 24</div>',
-      },
-      {
-        Id: 25,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 25</div>',
-      },
-      {
-        Id: 26,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 26</div>',
-      },
-      {
-        Id: 27,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 27</div>',
-      },
-      {
-        Id: 28,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 28</div>',
-      },
-      {
-        Id: 29,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 29</div>',
-      },
-      {
-        Id: 30,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 30</div>',
-      },
-      {
-        Id: 31,
-        Type: 4,
-        ParentNodeId: 1,
-        Title: 'Consequences Node',
-        Color: '#3399cc',
-        htmlTemplate: '<div>Node 31</div>',
-      },
-    ];
+      { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
+      { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 2</div>" },
+      { "Id": 3, "Type": 2, "ParentNodeId": 2, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 3</div>" },
+      { "Id": 4, "Type": 2, "ParentNodeId": 3, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 4</div>" },
+      { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 5</div>" },
+      { "Id": 6, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 6</div>" },
+      { "Id": 7, "Type": 2, "ParentNodeId": 6, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 7</div>" },
+      { "Id": 8, "Type": 2, "ParentNodeId": 7, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 8</div>" },
+      { "Id": 9, "Type": 2, "ParentNodeId": 8, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 9</div>" },
+      { "Id": 10, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 10</div>" },
+      { "Id": 11, "Type": 2, "ParentNodeId": 10, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 11</div>" },
+      { "Id": 12, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 12</div>" },
+      { "Id": 13, "Type": 3, "ParentNodeId": 12, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 13</div>" },
+      { "Id": 14, "Type": 3, "ParentNodeId": 13, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 14</div>" },
+      { "Id": 15, "Type": 3, "ParentNodeId": 14, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 15</div>" },
+      { "Id": 16, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 16</div>" },
+      { "Id": 17, "Type": 3, "ParentNodeId": 16, "Title": "Control Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
+      { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 2</div>" },
+      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 3</div>" },
+      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 4</div>" },
+      { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 5</div>" },
+      { "Id": 22, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 6</div>" },
+      { "Id": 23, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 7</div>" },
+      { "Id": 24, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 8</div>" },
+      { "Id": 25, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 9</div>" },
+      { "Id": 26, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 10</div>" },
+      { "Id": 27, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 11</div>" },
+      { "Id": 28, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 12</div>" },
+      { "Id": 29, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 13</div>" },
+      { "Id": 30, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 14</div>" },
+      { "Id": 31, "Type": 4, "ParentNodeId": 1, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Node 15</div>" },
 
+    ];
     const arrangedData = arrangeNodes(originalData);
 
     console.log(
@@ -807,5 +590,5 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 }
