@@ -1,5 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import '@progress/kendo-ui';
+import { TemplateClass } from './utils/classes/TemplateClass';
 declare var $: any;
 @Component({
   selector: 'app-root',
@@ -13,7 +20,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   causeTemplate: string = '';
   consequencesTemplate: string = '';
 
-  constructor() { }
+
+  constructor(private cdr: ChangeDetectorRef) {}
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
     sessionStorage.clear();
@@ -21,125 +30,27 @@ export class AppComponent implements OnInit, AfterViewInit {
     var tempTitleDetail = '';
 
     // Import the Drawing API namespaces.
-
     var draw = kendo.drawing;
     var geom = kendo.geometry;
+    //  var Templates = new TemplateClass();
 
-
-    function GetControlNodeTemplate(contentDetails: any) {
-      return "<div class='control-card-content rounded'style=' border: ; border-radius: 10px;'>"
-        + "<div class='control-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
-        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
-        + "</div>"
-        + "<div class='control-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
-        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
-        + "<p>Some other text...</p>"
-        + "</div>"
-        + "</div>";
-    }
-    function GetConsequencesTemplate(contentDetails: any) {
-      return "<div class='consequences-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>"
-        + "<div class='consequences-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
-        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
-        + "</div>"
-        + "<div class='consequences-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>"
-        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
-        + "<p>Some other text...</p>"
-        + "</div>"
-        + "</div>";
-    }
-
-    function GetCauseTemplate(contentDetails: any) {
-      return "<div class='cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>"
-        + "<div class='cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>"
-        + "<h4>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</h4>"
-        + "</div>"
-        + "<div class='cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>"
-        + "<p>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
-        + "<p>Some other text...</p>"
-        + "</div>"
-        + "</div>";
-    }
-    function GetRiskNodeTemplate(contentDetails: any) {
-
-      return "<div class='risk-card-content rounded' style='border:none; border-radius: 10px; '>"
-        + "<div class='risk-card-header-top' style='border-radius: 10px 10px 0 0;'>"
-        + "<p class='risk-card-header-top-text'>" + ((contentDetails === undefined) ? "Title" : contentDetails) + "</p>"
-        + "</div>"
-        + "<div class='risk-card-header'>"
-        + "<p class='risk-card-header-text'>SR15-Protective and Cyber Security Ratings</p>"
-        + "</div>"
-        + "<div class='risk-card-body'>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Inherent Rating</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/Extream.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Extreme</span>"
-        + "</p>"
-        + "</div>"
-        + "<div style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Revised Rating</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/Low.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Low</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div class='column' style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Future Rating</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/High.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>High</span>"
-        + "</p>"
-        + "</div>"
-        + "<div style='background-color: white; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Risk Appetite</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='../assets/icon/WithinAppetite.png' style='width: 50px; height: 50px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Within Appetite</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>"
-        + "</div>"
-        + "<div style='background-color: light gray; width:50%; padding-left: 15px;'>"
-        + "<p><b>Responsible Manager</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='https://api.sofascore.app/api/v1/team/197536/image' style='width: 30px; height: 30px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "</div>"
-        + "<div class='risk-card-footer' style='border: border-radius: 0 0 10px 10px;'>"
-        + "<div class='row' style='display: flex;'>"
-        + "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>"
-        + "<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>"
-        + "</div>"
-        + "<div style='background-color: light gray; width:50%; padding-left: 15px;'>"
-        + "<p><b>Responsible Manager</b></p>"
-        + "<p style='display: flex; align-items: center; line-height: 1;'>"
-        + "<img src='https://api.sofascore.app/api/v1/team/197536/image' style='width: 30px; height: 30px;'>"
-        + "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>"
-        + "</p>"
-        + "</div>"
-        + "</div>"
-        + "</div>";
-    }
+    // var GetControlNodeTemplate: any =
+    //   Templates.GetControlNodeTemplateGlobal();
+    // var GetConsequencesTemplate: any = this.GetConsequencesTemplateGlobal;
+    // var GetCauseTemplate: any = this.GetCauseTemplateGlobal;
+    // var GetRiskNodeTemplate: any = this.GetRiskNodeTemplateGlobal;
+    // var nodeClickChek: any = this.nodeClick;
 
 
     function visualTemplate(options: any) {
+      var Templates = new TemplateClass();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
-      console.log(dataItem);
-      var rTemp = GetRiskNodeTemplate(dataItem);
-      var cTemp = GetControlNodeTemplate(dataItem);
-      var ccTemp = GetCauseTemplate(dataItem);
-      var csTemp = GetConsequencesTemplate(dataItem);
+
+      var rTemp = Templates.GetRiskNodeTemplateGlobal(dataItem);
+      var cTemp = Templates.GetControlNodeTemplateGlobal(dataItem);
+      var ccTemp = Templates.GetCauseTemplateGlobal(dataItem);
+      var csTemp = Templates.GetConsequencesTemplateGlobal(dataItem);
 
       sessionStorage.setItem('riskTemplate', rTemp);
       sessionStorage.setItem('controlTemplate', cTemp);
@@ -337,7 +248,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     ];
     const arrangedData = arrangeNodes(originalData);
-
+    console.log('arrangedData->', arrangedData);
     console.log(
       arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }))
     );
@@ -523,14 +434,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     function onNodeClick(node) {
       var diagram = $('#diagram').getKendoDiagram();
       diagram.bringIntoView(diagram.shapes);
-
-      diagram.refresh();
-      ReLoadDiagramWithSelectedNode(node);
-      console.log(this.dataSource);
-      // Do something when the node is clicked.
+      // console.log(node.item.dataItem);
+      this.nodeClickChek(node.item.dataItem);
+      // diagram.refresh();
+      // ReloadDiagramWithSelectedNode(node);
     }
 
-    function ReLoadDiagramWithSelectedNode(node: any) {
+    function ReloadDiagramWithSelectedNode(node: any) {
       var diagram = $('#diagram').getKendoDiagram();
       var selectedNode = diagram.select();
 
@@ -561,34 +471,72 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 
     var focused = false;
-
-    $('.zoom-in').click(function () {
-      var diagram = $('#diagram').getKendoDiagram();
-
-      var point = diagram.boundingBox().center();
-      diagram.zoom(diagram.zoom() + 0.1, {
-        point: new kendo.dataviz.diagram.Point(point.x, point.y),
-      });
-      if (focused) {
-        diagram.bringIntoView(diagram.shapes[10]);
-      } else {
-        diagram.bringIntoView(new kendo.dataviz.diagram.Rect(point.x, point.y));
-      }
-    });
-
-    $('.zoom-out').click(function () {
-      var diagram = $('#diagram').getKendoDiagram();
-      var point = diagram.boundingBox().center();
-      diagram.zoom(diagram.zoom() - 0.1, {
-        point: new kendo.dataviz.diagram.Point(point.x, point.y),
-      });
-      if (focused) {
-        diagram.bringIntoView(diagram.shapes[10]);
-      } else {
-        diagram.bringIntoView(new kendo.dataviz.diagram.Rect(point.x, point.y));
-      }
-    });
   }
 
-  ngAfterViewInit(): void { }
+
+
+
+  public nodeClick(data) {
+    sessionStorage.clear();
+    console.log(data);
+  }
+
+  public findChildrens() {
+    var data = [
+      { Id: 0, FromShapeId: 1, ToShapeId: 2, Text: null },
+      { Id: 1, FromShapeId: 2, ToShapeId: 3, Text: null },
+      { Id: 2, FromShapeId: 3, ToShapeId: 4, Text: null },
+      { Id: 3, FromShapeId: 4, ToShapeId: 5, Text: null },
+      { Id: 4, FromShapeId: 1, ToShapeId: 6, Text: null },
+      { Id: 5, FromShapeId: 6, ToShapeId: 7, Text: null },
+      { Id: 6, FromShapeId: 7, ToShapeId: 8, Text: null },
+      { Id: 7, FromShapeId: 8, ToShapeId: 9, Text: null },
+      { Id: 8, FromShapeId: 1, ToShapeId: 10, Text: null },
+      { Id: 9, FromShapeId: 10, ToShapeId: 11, Text: null },
+
+      { Id: 10, FromShapeId: 1, ToShapeId: 12, Text: null },
+      { Id: 11, FromShapeId: 12, ToShapeId: 13, Text: null },
+      { Id: 12, FromShapeId: 13, ToShapeId: 14, Text: null },
+      { Id: 13, FromShapeId: 14, ToShapeId: 15, Text: null },
+      { Id: 14, FromShapeId: 1, ToShapeId: 16, Text: null },
+      { Id: 15, FromShapeId: 16, ToShapeId: 17, Text: null },
+      { Id: 16, FromShapeId: 17, ToShapeId: 18, Text: null },
+      { Id: 17, FromShapeId: 18, ToShapeId: 19, Text: null },
+      { Id: 18, FromShapeId: 1, ToShapeId: 20, Text: null },
+      { Id: 19, FromShapeId: 20, ToShapeId: 21, Text: null },
+
+      { Id: 30, FromShapeId: 1, ToShapeId: 31, Text: null },
+      { Id: 20, FromShapeId: 1, ToShapeId: 22, Text: null },
+      { Id: 21, FromShapeId: 1, ToShapeId: 23, Text: null },
+      { Id: 22, FromShapeId: 1, ToShapeId: 24, Text: null },
+      { Id: 23, FromShapeId: 1, ToShapeId: 25, Text: null },
+      { Id: 24, FromShapeId: 1, ToShapeId: 26, Text: null },
+      { Id: 25, FromShapeId: 1, ToShapeId: 27, Text: null },
+      { Id: 26, FromShapeId: 1, ToShapeId: 28, Text: null },
+      { Id: 27, FromShapeId: 1, ToShapeId: 29, Text: null },
+      { Id: 28, FromShapeId: 1, ToShapeId: 30, Text: null },
+      // { "Id": 29, "FromShapeId": 32, "ToShapeId": 31, "Text": null },
+    ];
+    function findChildNodes(node) {
+      const childNodes = [];
+
+      function findChildren(node) {
+        for (const connection of data) {
+          if (connection.FromShapeId === node.ToShapeId) {
+            childNodes.push(connection.ToShapeId);
+            findChildren(connection);
+          }
+        }
+      }
+
+      findChildren(node);
+      return childNodes;
+    }
+
+    // Example usage:
+    const givenNode = { Id: 1, FromShapeId: 2, ToShapeId: 27, Text: null };
+    const childNodes = findChildNodes(givenNode);
+    console.log(childNodes);
+  }
+
 }
