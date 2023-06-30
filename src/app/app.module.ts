@@ -1,35 +1,31 @@
-import { NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChartComponent } from './chart/chart.component';
 import '@progress/kendo-ui';
-import { CardComponent } from './card/card.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ChartPureComponent } from './chart-pure/chart-pure.component';
-import { CentralNodeComponent } from './central-node/central-node.component';
-import { ChildNodeComponent } from './child-node/child-node.component';
+import { createCustomElement } from '@angular/elements';
+import { FocusComponent } from './components/focus/focus.component';
 
-
-  
 @NgModule({
-  declarations: [
-    AppComponent,
-    ChartComponent,
-    CardComponent,
-    ChartPureComponent,
-    CentralNodeComponent,
-    ChildNodeComponent
-  ],
+  declarations: [AppComponent, FocusComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule implements DoBootstrap {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap(appRef: ApplicationRef): void {
+    const element = createCustomElement(AppComponent, {
+      injector: this.injector,
+    });
+    customElements.define('bow-tie-element', element);
+  }
+}
