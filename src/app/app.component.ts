@@ -146,30 +146,38 @@ export class AppComponent implements OnInit, AfterViewInit {
         console.log("type2Nodes", type2Nodes);
         type2Nodes.forEach((node, index) => {
           console.log("node->", node, "index->", index);
-          let rowNumber = 0 ;
+          let rowNumber = 0;
           let columnNumber = 0;
           if (node.Title == "Cause Node" && index == 0) {
             rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
             columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
-            type2Index++;
+            const x = originX - (columnNumber + 1) * horizontalSpacing;
+            const y = originY + rowNumber * verticalSpacing;
+            node.x = x;
+            node.y = y;
+            arrangedNodes.push(node);
 
           } else if (index != 0 && type2Nodes[index - 1].Title == "Cause Node") {
-            rowNumber = Math.floor(type2Index / maxNodesPerRow); 
+            rowNumber++; // Increment the row number
             columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
-            type2Index++;
-           
+            const x = originX - (columnNumber + 1) * horizontalSpacing;
+            const y = originY + rowNumber * verticalSpacing;
+            node.x = x;
+            node.y = y;
+            arrangedNodes.push(node);
+
           } else {
             rowNumber = Math.floor(type2Index / maxNodesPerRow); // Calculate the row number
             columnNumber = type2Index % maxNodesPerRow; // Calculate the column number
-            type2Index++;
+            const x = originX - (columnNumber + 1) * horizontalSpacing;
+            const y = originY + rowNumber * verticalSpacing;
+            node.x = x;
+            node.y = y;
+            arrangedNodes.push(node);
           }
 
-          const x = originX - (columnNumber + 1) * horizontalSpacing;
-          const y = originY + rowNumber * verticalSpacing;
-          node.x = x;
-          node.y = y;
-          arrangedNodes.push(node);
-          
+
+          type2Index++;
         });
 
 
@@ -235,7 +243,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
       { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 2</div>" },
       { "Id": 3, "Type": 2, "ParentNodeId": 2, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 3</div>" },
-      
+      { "Id": 4, "Type": 2, "ParentNodeId": 3, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 4</div>" },
       { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Node 5</div>" },
       { "Id": 6, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 6</div>" },
       { "Id": 7, "Type": 2, "ParentNodeId": 6, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Node 7</div>" },
