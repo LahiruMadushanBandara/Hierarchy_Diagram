@@ -140,7 +140,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       );
 
       if (riskNode) {
-        const horizontalSpacing = 800;
+        const horizontalSpacing = 500;
         const verticalSpacing = 300;
         const verticalSpacing4 = 200;
         const maxNodesPerRow = 5;
