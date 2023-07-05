@@ -9,7 +9,7 @@ declare var $: any;
   styleUrls: ['./focus.component.css'],
 })
 export class FocusComponent implements OnInit, AfterViewInit {
-  @ViewChild('diagram', { static: false }) diagram: any;
+  @ViewChild('diagram1', { static: false }) diagram: any;
   riskTemplate: string = '';
   controlTemplate: string = '';
   causeTemplate: string = '';
@@ -30,14 +30,14 @@ export class FocusComponent implements OnInit, AfterViewInit {
         "<div class='control-card-content rounded'style=' border: ; border-radius: 10px;'>" +
         "<div class='control-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<h4>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
+        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
         '</h4>' +
         '</div>' +
         "<div class='control-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<p>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
+        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
         '</p>' +
-        '<p>Some other text...</p>' +
+        contentDetails.htmlTemplate +
         '</div>' +
         '</div>'
       );
@@ -47,14 +47,14 @@ export class FocusComponent implements OnInit, AfterViewInit {
         "<div class='consequences-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
         "<div class='consequences-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<h4>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
+        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
         '</h4>' +
         '</div>' +
         "<div class='consequences-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
         '<p>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
+        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
         '</p>' +
-        '<p>Some other text...</p>' +
+        contentDetails.htmlTemplate +
         '</div>' +
         '</div>'
       );
@@ -65,63 +65,86 @@ export class FocusComponent implements OnInit, AfterViewInit {
         "<div class='cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
         "<div class='cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
         '<h4>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
+        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
         '</h4>' +
         '</div>' +
         "<div class='cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
         '<p>' +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
+        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
         '</p>' +
-        '<p>Some other text...</p>' +
+        contentDetails.htmlTemplate +
         '</div>' +
         '</div>'
       );
     }
     function GetRiskNodeTemplate(contentDetails: any) {
       return (
-        "<div class='risk-card-content rounded' style='border: 2px dotted darkblue; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); '>" +
+        "<div class='risk-card-content rounded' style='border:none; border-radius: 10px; '>" +
         "<div class='risk-card-header-top' style='border-radius: 10px 10px 0 0;'>" +
         "<p class='risk-card-header-top-text'>" +
-        (contentDetails === undefined ? 'Title' : contentDetails) +
+        (contentDetails.Title === undefined ? 'Title' : contentDetails.Title) +
         '</p>' +
         '</div>' +
         "<div class='risk-card-header'>" +
-        "<p class='risk-card-header-text'> SR15-Protective and Cyber Security Ratings</p>" +
+        "<p class='risk-card-header-text'>SR15-Protective and Cyber Security Ratings</p>" +
         '</div>' +
         "<div class='risk-card-body'>" +
         "<div class='row' style='display: flex;'>" +
-        "<div style='background-color: white; width: 50%;'>" +
+        "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
         '<p><b>Inherent Rating</b></p>' +
-        '<p>Extreme</p>' +
+        "<p style='display: flex; align-items: center; line-height: 1;'>" +
+        "<img src='../assets/icon/Extream.png' style='width: 50px; height: 50px;'>" +
+        "<span style='position: relative; top: -2px; margin-left: 5px;'>Extreme</span>" +
+        '</p>' +
         '</div>' +
-        "<div style='background-color: white; width: 50%;'>" +
+        "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
         '<p><b>Revised Rating</b></p>' +
-        '<p>Law</p>' +
+        "<p style='display: flex; align-items: center; line-height: 1;'>" +
+        "<img src='../assets/icon/Low.png' style='width: 50px; height: 50px;'>" +
+        "<span style='position: relative; top: -2px; margin-left: 5px;'>Low</span>" +
+        '</p>' +
         '</div>' +
         '</div>' +
         "<div class='row' style='display: flex;'>" +
-        "<div class='column'style='background-color: white; width: 50%;'>" +
-        '<p><b>Future Ratings</b></p>' +
-        "<div class='row' style='display: flex;'>" +
-        "<img src='https://media.istockphoto.com/id/1059832578/pt/vetorial/abstract-circle-light-red-frame.jpg?s=612x612&w=0&k=20&c=QjIyDYq2IHyxP2GeJ68DtjWMoYmQp_u2v43ldRBM_uY='  style='width: 10px; height: 10px;'>" +
-        '<p>High</p>' +
+        "<div class='column' style='background-color: white; width: 50%; padding-left: 15px;'>" +
+        '<p><b>Future Rating</b></p>' +
+        "<p style='display: flex; align-items: center; line-height: 1;'>" +
+        "<img src='../assets/icon/High.png' style='width: 50px; height: 50px;'>" +
+        "<span style='position: relative; top: -2px; margin-left: 5px;'>High</span>" +
+        '</p>' +
         '</div>' +
-        '</div>' +
-        "<div style='background-color: white; width: 50%;'>" +
+        "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
         '<p><b>Risk Appetite</b></p>' +
-        '<p>Within Appetite</p>' +
+        "<p style='display: flex; align-items: center; line-height: 1;'>" +
+        "<img src='../assets/icon/WithinAppetite.png' style='width: 50px; height: 50px;'>" +
+        "<span style='position: relative; top: -2px; margin-left: 5px;'>Within Appetite</span>" +
+        '</p>' +
         '</div>' +
         '</div>' +
-        '</div>' +
-        "<div class='risk-card-footer' style='border-radius: 0 0 10px 10px;'>" +
         "<div class='row' style='display: flex;'>" +
-        "<div style='background-color: light gray; width: 50%;'>" +
+        "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>" +
         '<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>' +
         '</div>' +
-        "<div style='background-color: light gray; width: 50%;'>" +
-        '<p><b>Responsive Manager</b></p>' +
-        '<p>Talia Gisbon</p>' +
+        "<div style='background-color: light gray; width:50%; padding-left: 15px;'>" +
+        '<p><b>Responsible Manager</b></p>' +
+        "<p style='display: flex; align-items: center; line-height: 1;'>" +
+        "<img src='https://api.sofascore.app/api/v1/team/197536/image' style='width: 30px; height: 30px;'>" +
+        "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>" +
+        '</p>' +
         '</div>' +
+        '</div>' +
+        '</div>' +
+        "<div class='risk-card-footer' style='border: border-radius: 0 0 10px 10px;'>" +
+        "<div class='row' style='display: flex;'>" +
+        "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>" +
+        '<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>' +
+        '</div>' +
+        "<div style='background-color: light gray; width:50%; padding-left: 15px;'>" +
+        '<p><b>Responsible Manager</b></p>' +
+        "<p style='display: flex; align-items: center; line-height: 1;'>" +
+        "<img src='https://api.sofascore.app/api/v1/team/197536/image' style='width: 30px; height: 30px;'>" +
+        "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>" +
+        '</p>' +
         '</div>' +
         '</div>' +
         '</div>'
@@ -132,29 +155,29 @@ export class FocusComponent implements OnInit, AfterViewInit {
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
-      var rTemp = GetRiskNodeTemplate(tempTitleDetail);
-      var cTemp = GetControlNodeTemplate(tempTitleDetail);
-      var ccTemp = GetCauseTemplate(tempTitleDetail);
-      var csTemp = GetConsequencesTemplate(tempTitleDetail);
+      var rTemp = GetRiskNodeTemplate(dataItem);
+      var cTemp = GetControlNodeTemplate(dataItem);
+      var ccTemp = GetCauseTemplate(dataItem);
+      var csTemp = GetConsequencesTemplate(dataItem);
 
-      localStorage.setItem('riskTemplate', rTemp);
-      localStorage.setItem('controlTemplate', cTemp);
-      localStorage.setItem('causeTemplate', ccTemp);
-      localStorage.setItem('consequencesTemplate', csTemp);
+      localStorage.setItem('riskTemplate1', rTemp);
+      localStorage.setItem('controlTemplate1', cTemp);
+      localStorage.setItem('causeTemplate1', ccTemp);
+      localStorage.setItem('consequencesTemplate1', csTemp);
 
       // this.templateService.
 
       if (rTemp === '' || rTemp === null || rTemp === undefined) {
-        rTemp = localStorage.getItem('riskTemplate');
+        rTemp = localStorage.getItem('riskTemplate1');
       }
       if (cTemp === '' || cTemp === null || cTemp === undefined) {
-        cTemp = localStorage.getItem('controlTemplate');
+        cTemp = localStorage.getItem('controlTemplate1');
       }
       if (ccTemp === '' || ccTemp === null || ccTemp === undefined) {
-        ccTemp = localStorage.getItem('causeTemplate');
+        ccTemp = localStorage.getItem('causeTemplate1');
       }
       if (csTemp === '' || csTemp === null || csTemp === undefined) {
-        csTemp = localStorage.getItem('consequencesTemplate');
+        csTemp = localStorage.getItem('consequencesTemplate1');
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo(
