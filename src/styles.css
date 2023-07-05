@@ -62,16 +62,18 @@
   width: 340px;
   display: grid;
   box-shadow: 10px 10px lightblue;
+  
 }
 
 .risk-card-body {
-  height: 250px;
+ 
   display: grid;
 }
 
 .risk-card-header {
   background-color: #323250;
   color: white;
+  height: 75px;
 }
 .risk-card-header-top {
   background-color: #323250;
@@ -118,6 +120,8 @@
 .control-card-body {
     height: 60px;
    
+
+   
   }
   
 .control-card-header {
@@ -132,6 +136,33 @@
   height: 1000px;
 }
 
+/* Extra Card */
+.extra-card-content {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: 2px solid grey;
+  display: grid;
+  width: 400px;
+}
+
+.extra-card-body {
+    height: 300px;
+   
+
+   
+  }
+  
+.extra-card-header {
+  background-color: #1b4287;
+  color: white;
+  text-align: center;
+  height: 50px;
+  display: grid;
+}
+
+.k-diagram {
+  height: 1000px;
+}
 
 /* Cause Card */
 .cause-card-content {
@@ -164,8 +195,41 @@
 .k-diagram {
   height: 1000px;
 }
-/* Consequences Card */
+
+/*  consequences Card */
 .consequences-card-content {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: 2px solid grey;
+  display: grid;
+  width: 400px;
+}
+
+.consequences-card-body {
+  height: 60px;
+ 
+}
+
+.consequences-card-header {
+background-color: hwb(192 13% 27%);
+color: rgb(255, 255, 255);
+text-align: center;
+}
+
+.consequences-card-body {
+background-color: hwb(192 13% 27%);
+color: rgb(255, 255, 255);
+text-align: center;
+display: grid;
+border-radius: 0px 0px 10px 10px;
+}
+
+.k-diagram {
+height: 1000px;
+}
+
+/* Other Card */
+.Other-card-content {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
   transition: 0.3s;
   border: 2px solid rgb(255, 255, 255);
@@ -174,14 +238,14 @@
   border: 2px solid rgb(220, 220, 220);
 }
 
-.consequences-card-header {
+.Other-card-header {
   background-color: rgb(240, 240, 240);
   color: #000000;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
 }
 
-.consequences-card-body {
+.Other-card-body {
   background-color: rgb(255, 255, 255);
   color: #000000;
   text-align: center;
