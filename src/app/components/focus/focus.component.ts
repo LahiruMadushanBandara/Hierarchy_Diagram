@@ -680,30 +680,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
               },
             },
           },
-          layout: false,
-          edit: onEdit,
-          click: onNodeClick,
-          editable: {
-            shapeTemplate: detailTemp,
-            tools: [
-              {
-                type: 'button',
-                text: 'Set Selected Content',
-                click: function (e) {
-                  var selected = $('#diagram1').getKendoDiagram().select();
-                  var content = $('#content').val();
-                  for (var idx = 0; idx < selected.length; idx++) {
-                    selected[idx].content(content);
-                  }
-                },
-              },
-              {
-                template:
-                  "<input id='content' class='k-textbox' value='Foo' />",
-                enable: true,
-              },
-            ],
-          },
+          
           shapeDefaults: {
             stroke: {
               color: '#979797',
