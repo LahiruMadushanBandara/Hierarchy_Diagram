@@ -1,18 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-.hide-control-card-content .control-card-content {
+.hide-bow-tie-control-card-content .bow-tie-control-card-content {
     display: none !important;
 }
   
-.hide-cause-card-content .cause-card-content {
+.hide-bow-tie-cause-card-content .bow-tie-cause-card-content {
     display: none !important;
 }
 
-.hide-concequences-card-content .consequences-card-content  {
+.hide-concequences-card-content .bow-tie-consequences-card-content  {
     display: none !important;
 }
  
   
-.hide-risk-card-content .risk-card-content {
+.hide-bow-tie-risk-card-content .bow-tie-risk-card-content {
     display: none !important;
 }
 
@@ -57,7 +57,7 @@
 }
 
 /* Risk Card */
-.risk-card-content {
+.bow-tie-risk-card-content {
   border: 2px solid grey;
   width: 340px;
   display: grid;
@@ -65,31 +65,31 @@
   
 }
 
-.risk-card-body {
+.bow-tie-risk-card-body {
  
   display: grid;
 }
 
-.risk-card-header {
+.bow-tie-risk-card-header {
   background-color: #323250;
   color: white;
   height: 75px;
 }
-.risk-card-header-top {
+.bow-tie-risk-card-header-top {
   background-color: #323250;
   color: white;
   text-align: center;
   border-bottom: 1px solid white;
 }
 
-/* .risk-card-header-top-text {
+/* .bow-tie-risk-card-header-top-text {
   } */
-.risk-card-header-text {
+.bow-tie-risk-card-header-text {
   margin-left: 15px;
   margin-right: 15px;
 }
 
-.risk-card-footer {
+.bow-tie-risk-card-footer {
   background-color: hsl(240, 26%, 93%);
   color: #000000;
   height: 100px;
@@ -109,7 +109,7 @@
 
 
 /* Control Card */
-.control-card-content {
+.bow-tie-control-card-content {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border: 2px solid grey;
@@ -117,14 +117,14 @@
   width: 400px;
 }
 
-.control-card-body {
+.bow-tie-control-card-body {
     height: 60px;
    
 
    
   }
   
-.control-card-header {
+.bow-tie-control-card-header {
   background-color: #1b4287;
   color: white;
   text-align: center;
@@ -137,22 +137,22 @@
 }
 
 /* Extra Card */
-.extra-card-content {
+.bow-tie-extra-card-content {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border: 2px solid grey;
   display: grid;
-  width: 400px;
+  width: 300px;
 }
 
-.extra-card-body {
-    height: 300px;
+.bow-tie-extra-card-body {
+    height: 290px;
    
 
    
   }
   
-.extra-card-header {
+.bow-tie-extra-card-header {
   background-color: #1b4287;
   color: white;
   text-align: center;
@@ -165,7 +165,7 @@
 }
 
 /* Cause Card */
-.cause-card-content {
+.bow-tie-cause-card-content {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     border: 2px solid grey;
@@ -173,18 +173,18 @@
     width: 400px;
 }
 
-.cause-card-body {
+.bow-tie-cause-card-body {
     height: 60px;
    
   }
   
-.cause-card-header {
+.bow-tie-cause-card-header {
   background-color: hwb(192 13% 27%);
   color: rgb(255, 255, 255);
   text-align: center;
 }
 
-.cause-card-body {
+.bow-tie-cause-card-body {
   background-color: hwb(192 13% 27%);
   color: rgb(255, 255, 255);
   text-align: center;
@@ -197,7 +197,7 @@
 }
 
 /*  consequences Card */
-.consequences-card-content {
+.bow-tie-consequences-card-content {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border: 2px solid grey;
@@ -205,18 +205,18 @@
   width: 400px;
 }
 
-.consequences-card-body {
+.bow-tie-consequences-card-body {
   height: 60px;
  
 }
 
-.consequences-card-header {
+.bow-tie-consequences-card-header {
 background-color: hwb(192 13% 27%);
 color: rgb(255, 255, 255);
 text-align: center;
 }
 
-.consequences-card-body {
+.bow-tie-consequences-card-body {
 background-color: hwb(192 13% 27%);
 color: rgb(255, 255, 255);
 text-align: center;
@@ -229,7 +229,7 @@ height: 1000px;
 }
 
 /* Other Card */
-.Other-card-content {
+.Bow-tie-Other-card-content {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
   transition: 0.3s;
   border: 2px solid rgb(255, 255, 255);
@@ -238,14 +238,14 @@ height: 1000px;
   border: 2px solid rgb(220, 220, 220);
 }
 
-.Other-card-header {
+.Bow-tie-Other-card-header {
   background-color: rgb(240, 240, 240);
   color: #000000;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
 }
 
-.Other-card-body {
+.Bow-tie-Other-card-body {
   background-color: rgb(255, 255, 255);
   color: #000000;
   text-align: center;

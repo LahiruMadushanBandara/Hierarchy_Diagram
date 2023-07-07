@@ -20,11 +20,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   causeTemplate: string = '';
   consequencesTemplate: string = '';
   otherTemplate: string = '';
-  extraTemplate: string = '';
+  expandTemplate: string = '';
 
   constructor(private cdr: ChangeDetectorRef) { }
-  ngAfterViewInit(): void { }
-
+  ngAfterViewInit(): void {
+    // Fit the diagram to the screen after the view is initialized
+    this.diagram?.resize();
+  }
   ngOnInit(): void {
     sessionStorage.clear();
 
@@ -60,7 +62,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       sessionStorage.setItem('causeTemplate', ccTemp);
       sessionStorage.setItem('consequencesTemplate', csTemp);
       sessionStorage.setItem('otherTemplate', oTemp);
-      sessionStorage.setItem('extraTemplate', eTemp);
+      sessionStorage.setItem('expandTemplate', eTemp);
 
       if (rTemp === '' || rTemp === null || rTemp === undefined) {
         rTemp = sessionStorage.getItem('riskTemplate');
@@ -78,7 +80,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         oTemp = sessionStorage.getItem('otherTemplate');
       }
       if (eTemp === '' || eTemp === null || eTemp === undefined) {
-        eTemp = sessionStorage.getItem('extraTemplate');
+        eTemp = sessionStorage.getItem('expandTemplate');
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo(
@@ -97,7 +99,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       } else if (dataItem.Title === 'Cause Node') {
         var causeTemp = kendo.template(ccTemp);
         renderElement.html(causeTemp(dataItem));
-      } else if (dataItem.Title === 'Extra Node') {
+      } else if (dataItem.Title === 'Expand Node') {
         var extraTemp = kendo.template(eTemp);
         renderElement.html(extraTemp(dataItem));
       } else {
@@ -142,21 +144,21 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (riskNode) {
         const horizontalSpacing = 500;
         const verticalSpacing = 300;
-        const verticalSpacing4 = 200;
+        const verticalSpacingFour = 200;
         const maxNodesPerRow = 5;
-        const maxNodesPerRow4 = 12; // Updated to 12 nodes per row for type 4
+        const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
 
         let typeTwoIndex = 0;
-        let type3Index = 0;
-        let type4Index = 0;
+        let typeThreeIndex = 0;
+        let typeFourIndex = 0;
         let rowIndex = 0;
 
         const originX = 0;
         const originY = 0;
 
         // arrange type 2 nodes (left of type 1)
-        const type2Nodes = originalData.filter((node) => node.Type === 2);
-        console.log('type2Nodes', type2Nodes);
+        const typeTwoNodes = originalData.filter((node) => node.Type === 2);
+        console.log('typeTwoNodes', typeTwoNodes);
 
         let typeTwoMaxNode = 4;
         let findControlNodeInFirstPlace = false;
@@ -165,29 +167,31 @@ export class AppComponent implements OnInit, AfterViewInit {
         let rowNumber = 0;
         let columnNumber = 0;
         let rowNodeCount = 0;
-        for (let i = 0; i < type2Nodes.length; i++) {
-          console.log('type2Nodes->', type2Nodes[i].ParentNodeId);
+
+
+        for (let i = 0; i < typeTwoNodes.length; i++) {
+          console.log('typeTwoNodes->', typeTwoNodes[i].ParentNodeId);
           if (
-            type2Nodes[i].ParentNodeId == 1 &&
-            type2Nodes[i].Title == 'Cause Node'
+            typeTwoNodes[i].ParentNodeId == 1 &&
+            typeTwoNodes[i].Title == 'Cause Node'
           ) {
             console.log('cause node with parent node id = 1 ');
 
             // Calculate the x and y coordinates for the cause node
-            const x = originX - 4 * horizontalSpacing; // Fifth place from the left
+            const x = originX - 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
 
-            type2Nodes[i].x = x;
-            type2Nodes[i].y = y;
-            arrangedNodes.push(type2Nodes[i]);
+            typeTwoNodes[i].x = x;
+            typeTwoNodes[i].y = y;
+            arrangedNodes.push(typeTwoNodes[i]);
             rowNumber++;
 
-          } else if (type2Nodes[i].Title == 'Control Node') {
+          } else if (typeTwoNodes[i].Title == 'Control Node') {
             const x = originX - (columnNumber + 1) * horizontalSpacing;
             const y = originY + rowNumber * verticalSpacing;
-            type2Nodes[i].x = x;
-            type2Nodes[i].y = y;
-            arrangedNodes.push(type2Nodes[i]);
+            typeTwoNodes[i].x = x;
+            typeTwoNodes[i].y = y;
+            arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
             if (rowNodeCount === maxNodesPerRow) {
               rowNumber++;
@@ -195,14 +199,14 @@ export class AppComponent implements OnInit, AfterViewInit {
             }
             columnNumber = rowNodeCount;
           } else if (
-            type2Nodes[i].ParentNodeId !== 1 &&
-            type2Nodes[i].Title == 'Cause Node'
+            typeTwoNodes[i].ParentNodeId !== 1 &&
+            typeTwoNodes[i].Title == 'Cause Node'
           ) {
-            const x = originX - 4 * horizontalSpacing; // Fifth place from the left
+            const x = originX - 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
-            type2Nodes[i].x = x;
-            type2Nodes[i].y = y;
-            arrangedNodes.push(type2Nodes[i]);
+            typeTwoNodes[i].x = x;
+            typeTwoNodes[i].y = y;
+            arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
 
             rowNumber++;
@@ -214,28 +218,28 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         // Arrange type 3 nodes (right of type 1)
         rowNumber = 0;
-        const type3Nodes = originalData.filter((node) => node.Type === 3);
-        console.log('type3Nodes', type3Nodes);
+        const typeThreeNodes = originalData.filter((node) => node.Type === 3);
+        console.log('typeThreeNodes', typeThreeNodes);
 
-        for (let i = 0; i < type3Nodes.length; i++) {
-          console.log('type3Nodes->', type3Nodes[i].ParentNodeId);
+        for (let i = 0; i < typeThreeNodes.length; i++) {
+          console.log('typeThreeNodes->', typeThreeNodes[i].ParentNodeId);
           if (
-            type3Nodes[i].ParentNodeId == 1 &&
-            type3Nodes[i].Title == 'Consequences Node'
+            typeThreeNodes[i].ParentNodeId == 1 &&
+            typeThreeNodes[i].Title == 'Consequences Node'
           ) {
             console.log('cause node with parent node id = 1 ');
-            const x = originX + 4 * horizontalSpacing; // Fifth place from the left
+            const x = originX + 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
-            type3Nodes[i].x = x;
-            type3Nodes[i].y = y;
-            arrangedNodes.push(type3Nodes[i]);
+            typeThreeNodes[i].x = x;
+            typeThreeNodes[i].y = y;
+            arrangedNodes.push(typeThreeNodes[i]);
             rowNumber++;
-          } else if (type3Nodes[i].Title == 'Control Node') {
+          } else if (typeThreeNodes[i].Title == 'Control Node') {
             const x = originX + (columnNumber + 1) * horizontalSpacing;
             const y = originY + rowNumber * verticalSpacing;
-            type3Nodes[i].x = x;
-            type3Nodes[i].y = y;
-            arrangedNodes.push(type3Nodes[i]);
+            typeThreeNodes[i].x = x;
+            typeThreeNodes[i].y = y;
+            arrangedNodes.push(typeThreeNodes[i]);
             rowNodeCount++;
             if (rowNodeCount === maxNodesPerRow) {
               rowNumber++;
@@ -243,14 +247,14 @@ export class AppComponent implements OnInit, AfterViewInit {
             }
             columnNumber = rowNodeCount;
           } else if (
-            type3Nodes[i].ParentNodeId !== 1 &&
-            type3Nodes[i].Title == 'Consequences Node'
+            typeThreeNodes[i].ParentNodeId !== 1 &&
+            typeThreeNodes[i].Title == 'Consequences Node'
           ) {
-            const x = originX + 4 * horizontalSpacing; // Fifth place from the left
+            const x = originX + 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
-            type3Nodes[i].x = x;
-            type3Nodes[i].y = y;
-            arrangedNodes.push(type3Nodes[i]);
+            typeThreeNodes[i].x = x;
+            typeThreeNodes[i].y = y;
+            arrangedNodes.push(typeThreeNodes[i]);
             rowNodeCount++;
 
             rowNumber++;
@@ -261,17 +265,17 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
 
         // Arrange type 1 (risk) node
-        const type2Rows = Math.ceil(type2Nodes.length / maxNodesPerRow);
-        const type3Rows = Math.ceil(type3Nodes.length / maxNodesPerRow);
+        const typeTwoRows = Math.ceil(typeTwoNodes.length / maxNodesPerRow);
+        const typeThreeRows = Math.ceil(typeThreeNodes.length / maxNodesPerRow);
 
-        let maxType2Type3Rows = Math.max(type2Rows, type3Rows);
+        let maxTypeTwoTypeThreeRows = Math.max(typeTwoRows, typeThreeRows);
 
-        if (type2Rows === type3Rows) {
+        if (typeTwoRows === typeThreeRows) {
 
 
           const riskNodeX = originX;
           const riskNodeY =
-            originY + (maxType2Type3Rows - 2) * verticalSpacing + verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
+            originY + (maxTypeTwoTypeThreeRows - 2) * verticalSpacing + verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
           riskNode.x = riskNodeX;
           riskNode.y = riskNodeY;
           arrangedNodes.push(riskNode);
@@ -292,18 +296,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
         // Arrange type 4 nodes (below type 2 and type 3)
-        const type4Nodes = originalData.filter((node) => node.Type === 4);
-        type4Nodes.forEach((node, index) => {
-          const rowNumber = Math.floor(type4Index / maxNodesPerRow4); // Calculate the row number
+        const typeFourNodes = originalData.filter((node) => node.Type === 4);
+        typeFourNodes.forEach((node, index) => {
+          const rowNumber = Math.floor(typeFourIndex / maxNodesPerRowFour); // Calculate the row number
 
-          const columnNumber = type4Index % maxNodesPerRow4; // Calculate the column number
+          const columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
 
           const x = riskNode.x - (columnNumber - 5) * horizontalSpacing; // Adjusting the starting point for type 4 nodes
-          const y = riskNode.y + rowNumber * verticalSpacing4 + (maxType2Type3Rows + 4) * verticalSpacing4;
+          const y = riskNode.y + rowNumber * verticalSpacingFour + (maxTypeTwoTypeThreeRows + 4) * verticalSpacingFour;
           node.x = x;
           node.y = y;
           arrangedNodes.push(node);
-          type4Index++;
+          typeFourIndex++;
 
         });
 
@@ -317,13 +321,16 @@ export class AppComponent implements OnInit, AfterViewInit {
       { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 3, "Type": 2, "ParentNodeId": 2, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 4, "Type": 2, "ParentNodeId": 3, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
+      { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
       { "Id": 6, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 7, "Type": 2, "ParentNodeId": 6, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 8, "Type": 2, "ParentNodeId": 7, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 9, "Type": 2, "ParentNodeId": 8, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
+      { "Id": 9, "Type": 2, "ParentNodeId": 8, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
       { "Id": 10, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 11, "Type": 2, "ParentNodeId": 10, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
+
+
+      
 
 
       { "Id": 12, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
@@ -333,7 +340,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       { "Id": 16, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 17, "Type": 3, "ParentNodeId": 16, "Title": "Control Node", "Color": "", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process /div>" },
+      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
       { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
@@ -352,6 +359,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       { "Id": 32, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 33, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 34, "Type": 2, "ParentNodeId": 1, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
+      // { "Id": 35, "Type": 2, "ParentNodeId": 1, "Title": "Expand Node", "Color": "#3399cc", htmlTemplate: "<div><b>Agreed process Agreed process for staff to anonymously raise concerns about workplacr practices </b></div>" },
      
     ];
 
@@ -402,7 +410,6 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 8, "FromShapeId": 1, "ToShapeId": 10, "Text": null },
           { "Id": 9, "FromShapeId": 10, "ToShapeId": 11, "Text": null },
 
-
           { "Id": 10, "FromShapeId": 1, "ToShapeId": 12, "Text": null },
           { "Id": 11, "FromShapeId": 12, "ToShapeId": 13, "Text": null },
           { "Id": 12, "FromShapeId": 13, "ToShapeId": 14, "Text": null },
@@ -428,6 +435,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 30, "FromShapeId": 1, "ToShapeId": 32, "Text": null },
           { "Id": 23, "FromShapeId": 1, "ToShapeId": 33, "Text": null },
           { "Id": 24, "FromShapeId": 1, "ToShapeId": 34, "Text": null },
+          { "Id": 24, "FromShapeId": 1, "ToShapeId": 35, "Text": null },
          
 
         ];
