@@ -24,8 +24,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(private cdr: ChangeDetectorRef) { }
   ngAfterViewInit(): void {
-    // Fit the diagram to the screen after the view is initialized
-    this.diagram?.resize();
+
   }
   ngOnInit(): void {
     sessionStorage.clear();
@@ -330,7 +329,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       { "Id": 11, "Type": 2, "ParentNodeId": 10, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
 
 
-      
+
 
 
       { "Id": 12, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
@@ -360,7 +359,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       { "Id": 33, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
       { "Id": 34, "Type": 2, "ParentNodeId": 1, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
       // { "Id": 35, "Type": 2, "ParentNodeId": 1, "Title": "Expand Node", "Color": "#3399cc", htmlTemplate: "<div><b>Agreed process Agreed process for staff to anonymously raise concerns about workplacr practices </b></div>" },
-     
+
     ];
 
     const arrangedData = arrangeNodes(originalData);
@@ -435,11 +434,11 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 30, "FromShapeId": 1, "ToShapeId": 32, "Text": null },
           { "Id": 23, "FromShapeId": 1, "ToShapeId": 33, "Text": null },
           { "Id": 24, "FromShapeId": 1, "ToShapeId": 34, "Text": null },
-          { "Id": 24, "FromShapeId": 1, "ToShapeId": 35, "Text": null },
-         
+          // { "Id": 24, "FromShapeId": 1, "ToShapeId": 35, "Text": null },
+
 
         ];
-        
+
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -489,7 +488,7 @@ export class AppComponent implements OnInit, AfterViewInit {
               },
             },
           },
-         
+
           shapeDefaults: {
             stroke: {
               color: '#979797',
@@ -510,16 +509,50 @@ export class AppComponent implements OnInit, AfterViewInit {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.4,
+
+          // zomm: 0.5,
           cancel: onCancel,
+
+
+
         });
 
+
+
         var diagram = $('#diagram').getKendoDiagram();
-        diagram.bringIntoView(diagram.shapes);
-        for (var i = 0; i < diagram.shapes.length; i++) {
-          diagram.shapes[i].options.stroke.width = 0;
+
+
+        // diagram.bringIntoView(diagram.shapes);
+        // for (var i = 0; i < diagram.shapes.length; i++) {
+        //   diagram.shapes[i].options.stroke.width = 0;
+
+        // }
+        // diagram.refresh();
+
+         
+        function zoomDiagram() {
+          var diagramWrapper = $('#diagram').data('kendoDiagram');
+          diagramWrapper.bringIntoView(diagramWrapper.shapes);
+          diagramWrapper.zoom(0.4); // Set the desired zoom level
         }
-        diagram.refresh();
+        
+        // Automatically zoom the diagram when it loads
+        $(document).ready(function() {
+          zoomDiagram();
+        });
+        
+        // Center the diagram when zooming
+        $('#diagram').on('DOMMouseScroll mousewheel', function (e) {
+          var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+          if (delta > 0) {
+            kendoDiagram.zoomIn();
+          } else {
+            kendoDiagram.zoomOut();
+          }
+          kendoDiagram.bringIntoView();
+        });
+
+
 
         // Move the logic that "hides" the templates inside a setTimeout
         setTimeout(() => {
@@ -570,6 +603,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
     });
 
+
     var focused = false;
   }
 
@@ -577,6 +611,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     sessionStorage.clear();
     console.log(data);
   }
+
+
 
   public findChildrens() {
     var data = [
@@ -636,4 +672,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     const childNodes = findChildNodes(givenNode);
     console.log(childNodes);
   }
+
+
+
 }
