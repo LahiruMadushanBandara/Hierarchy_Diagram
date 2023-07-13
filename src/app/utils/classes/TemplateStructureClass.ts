@@ -1,5 +1,49 @@
-export class TemplateClass {
-  constructor() { }
+import { Templates } from 'src/app/models/templates.model';
+
+export class TemplateStructureClass {
+  constructor() {}
+
+  public getTemplates(dataItem: any): Templates {
+    var allTemplate: Templates;
+    allTemplate.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
+
+    allTemplate.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem);
+
+    allTemplate.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
+
+    allTemplate.consequencesTemplate =
+      this.GetConsequencesTemplateGlobal(dataItem);
+
+    allTemplate.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+
+    allTemplate.controlTemplateExpand =
+      this.GetControlNodeTemplateGlobalExpand(dataItem);
+
+    allTemplate.riskTemplateExpand =
+      this.GetRiskNodeTemplateGlobalExpand(dataItem);
+
+    allTemplate.riskActionTemplateExpand =
+      this.GetRiskActionTreatmentExpand(dataItem);
+
+    allTemplate.incidentTemplateExpand = this.GetIncidentExpand(dataItem);
+
+    allTemplate.complianceTemplateExpand =
+      this.GetComplianceObligationExpand(dataItem);
+
+    allTemplate.kpiTemplateExpand = this.GetKPIExpand(dataItem);
+    allTemplate.auditTemplateExpand = this.GetAuditExpand(dataItem);
+    allTemplate.hierarchyTemplateExpand = this.GetHierarchyExpand(dataItem);
+    allTemplate.authorityDocumentTemplateExpand =
+      this.GetAuthorityDocumentExpand(dataItem);
+    allTemplate.policyTemplateExpand = this.GetPolicyExpand(dataItem);
+
+    allTemplate.auditRecommendationsTemplateExpand =
+      this.GetAuditRecommendationsExpand(dataItem);
+
+    allTemplate.auditFinfingTemplateExpand =
+      this.GetAuditFinfingExpand(dataItem);
+    return allTemplate;
+  }
 
   public GetControlNodeTemplateGlobal(contentDetails: any) {
     return (
@@ -37,17 +81,13 @@ export class TemplateClass {
 
   public GetConsequencesTemplateGlobal(contentDetails: any) {
     return (
-
       "<div class='bow-tie-cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
       "<div class='bow-tie-cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-
       '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</h4>' +
       '</div>' +
-
       "<div class='bow-tie-cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
-
       '<p>' +
       contentDetails.htmlTemplate +
       '</p>' +
@@ -136,37 +176,37 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-control-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1;'>" +
       "<span style='margin-right: 10px;'>" +
-      "Control Type" +
-      "</span>" +
+      'Control Type' +
+      '</span>' +
       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>Preventive</b>" +
-      "</p>" +
-      "</p>" +
+      '<b>Preventive</b>' +
+      '</p>' +
+      '</p>' +
       "<p style='margin-top: -10px;' >Control Owner</p>" +
       "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 30px; '>" +
       "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
       "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Talia Gisbon</b></span>" +
       '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
-      "Control Owner Rating" +
+      'Control Owner Rating' +
       "<p style='display: flex; align-items: center; line-height: 1; '>" +
       "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
       "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Partially Effective</b></span>" +
       '</p>' +
       "<img src='<image-url>' alt='Additional Image' style='margin-left: auto;'>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
 
@@ -174,32 +214,32 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1;'>" +
       "<span style='margin-right: 10px;'>" +
-      "Due Date" +
-      "</span>" +
+      'Due Date' +
+      '</span>' +
       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>11March,2020</b>" +
-      "</p>" +
-      "</p>" +
+      '<b>11March,2020</b>' +
+      '</p>' +
+      '</p>' +
       "<p style='margin-top: -10px;' >Owner</p>" +
       "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 30px; '>" +
       "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
       "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Talia Gisbon</b></span>" +
       '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
-      "Complete" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      'Complete' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
 
@@ -212,9 +252,9 @@ export class TemplateClass {
       '</p>' +
       '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
+      '</p>' +
       "<div class='bow-tie-risk-card-body-expand'>" +
       "<div class='row' style='display: flex;'>" +
       "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
@@ -248,7 +288,6 @@ export class TemplateClass {
       '</p>' +
       '</div>' +
       '</div>' +
-
       "<div class='bow-tie-risk-card-footer-expand' style='border: border-radius: 0 0 10px 10px;'>" +
       "<div class='row' style='display: flex;'>" +
       "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>" +
@@ -270,14 +309,14 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
+      '</p>' +
       "<p style='margin-top:30px;' >Reported By</p>" +
       "<p style='display: flex; align-items: center; line-height: 1;   '>" +
       "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
@@ -289,15 +328,15 @@ export class TemplateClass {
       "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Joe Smith</b></span>" +
       '</p>' +
       "<p style='display: flex; align-items: left; '>" +
-       "<span style='margin-right: 10px;'>" +
-       "Reported Date/Time" +
-       "</span>" +
-       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-       "<b>26 Nov, 2020 01:48 PM</b>" +
-       "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'Reported Date/Time' +
+      '</span>' +
+      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      '<b>26 Nov, 2020 01:48 PM</b>' +
+      '</p>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
 
@@ -305,30 +344,29 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
-    
-      '</p>' + 
+      '</p>' +
+      '</p>' +
       "<p style='margin-top: 10px;' >Obligation Owner</p>" +
       "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 20px; '>" +
       "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-      "<span style= 'position: relative; top: -2px; margin-left: 5px;'><b>Joe Smith</b></span>"+
+      "<span style= 'position: relative; top: -2px; margin-left: 5px;'><b>Joe Smith</b></span>" +
       "<p style='display: flex; align-items: left; line-height: 1;'>" +
-       "<span style='margin-right: 10px;'>" +
-       "compliance Status" +
-       "</span>" +
-       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-       "<b>Pending Review</b>" +
-       "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'compliance Status' +
+      '</span>' +
+      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      '<b>Pending Review</b>' +
+      '</p>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
 
@@ -344,7 +382,6 @@ export class TemplateClass {
       '<p>' +
       contentDetails.htmlTemplate +
       '</p>' +
-  
       "<div style='display: flex; align-items: center; justify-content: center; margin-bottom: 2px; margin-top: -18px;'>" +
       "<div style='display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 5px;'>" +
       "<span style='margin-right: 10px; font-size: 15px; color: black;'>" +
@@ -353,7 +390,6 @@ export class TemplateClass {
       "<span style='font-size: 36px; color: blue;'>%</span>" +
       '</div>' +
       '</div>' +
-  
       "<div style='display: flex; align-items: center; justify-content: space-between; '>" +
       "<div style='display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 20px;'>" +
       "<span style='margin-right: 10px; font-size: 15px; color: black;'>" +
@@ -361,9 +397,7 @@ export class TemplateClass {
       '</span>' +
       "<span style='margin-right: 10px; font-size: 36px; color: blue;'>10</span>" +
       '</div>' +
-
       "<div style='width: 50px;'></div>" +
-  
       "<div style='display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 20px;'>" +
       "<span style='margin-right: 10px; font-size: 15px; color: black;'>" +
       '<b>Target</b>' +
@@ -371,180 +405,157 @@ export class TemplateClass {
       "<span style='font-size: 36px; color: blue;'>12</span>" +
       '</div>' +
       '</div>' +
-  
       "<div style='display: flex; align-items: center; justify-content: center; margin-top: 5px;'>" +
       "<span style='position: relative; margin-right: 25px; font-size: 18px;'>Performance</span>" +
       "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 20px; height: 20px;  '>" +
       "<span style='position: relative; margin-left: 5px; font-size: 18px;'>On Track</span>" +
       '</div>' +
-  
       '</div>' +
       '</div>'
     );
   }
-  
-   public GetAuditExpand(contentDetails: any) {
+
+  public GetAuditExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
-
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-       "<span style='margin-right: 10px;'>" +
-       "Audit Date" +
-       "</span>" +
-       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-       "<b>22  October,2021</b>" +
-       "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'Audit Date' +
+      '</span>' +
+      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      '<b>22  October,2021</b>' +
+      '</p>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
-
 
   public GetHierarchyExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
-
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-       "<span style='margin-right: 10px;'>" +
-       "Hierarchy Name:" +
-       "</span>" +
-       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-       "<b>path:</b>" +
-       "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'Hierarchy Name:' +
+      '</span>' +
+      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      '<b>path:</b>' +
+      '</p>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
-
-
 
   public GetAuthorityDocumentExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
-
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-       "<span style='margin-right: 10px;'>" +
-       "Type:" +
-       "</span>" +
-       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-       "<b>Responsible Ofiicer:</b>" +
-       "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'Type:' +
+      '</span>' +
+      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      '<b>Responsible Ofiicer:</b>' +
+      '</p>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
-
-
 
   public GetPolicyExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
-
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-       "<span style='margin-right: 10px;'>" +
-       "Type:" +
-       "</span>" +
-       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-       "<b>Responsible Ofiicer:</b>" +
-       "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'Type:' +
+      '</span>' +
+      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      '<b>Responsible Ofiicer:</b>' +
+      '</p>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
-
 
   public GetAuditRecommendationsExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
-
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-       "<span style='margin-right: 10px;'>" +
-       "Name of the audit recommendation:" +
-       "</span>" +
-       
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'Name of the audit recommendation:' +
+      '</span>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
-
 
   public GetAuditFinfingExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<h4>" +
+      '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
+      '</h4>' +
+      '</div>' +
       "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
-      "<p>" +
+      '<p>' +
       contentDetails.htmlTemplate +
-      "</p>" +
-
+      '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-       "<span style='margin-right: 10px;'>" +
-       "Name of the audit finding:" +
-       "</span>" +
-       
-      "</p>" +
-      "</div>" +
-      "</div>"
+      "<span style='margin-right: 10px;'>" +
+      'Name of the audit finding:' +
+      '</span>' +
+      '</p>' +
+      '</div>' +
+      '</div>'
     );
   }
-
-
-  
-
-
-
 }

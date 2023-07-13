@@ -8,7 +8,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import '@progress/kendo-ui';
-import { TemplateClass } from './utils/classes/TemplateClass';
+import { TemplateStructureClass } from './utils/classes/TemplateStructureClass';
 
 import { DataService } from './services/data.service';
 
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
     var geom = kendo.geometry;
-    //  var Templates = new TemplateClass();
+    //  var Templates = new TemplateStructureClass();
 
     // var GetControlNodeTemplate: any =
     //   Templates.GetControlNodeTemplateGlobal();
@@ -77,7 +77,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
 
     function visualTemplate(options: any) {
-      var Templates = new TemplateClass();
+      var Templates = new TemplateStructureClass();
 
       // return renderTemplate(Templates , options , isExpanded);
 
