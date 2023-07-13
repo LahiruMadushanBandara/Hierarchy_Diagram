@@ -142,7 +142,7 @@
   transition: 0.3s;
   border: 2px solid grey;
   display: grid;
-  width: 290px;
+  width: 300px;
 }
 
 .bow-tie-extra-card-body {
@@ -234,7 +234,7 @@ height: 1000px;
   transition: 0.3s;
   border: 2px solid rgb(255, 255, 255);
   display: grid;
-  width: 480px;
+  width: 420px;
   border: 2px solid rgb(220, 220, 220);
 }
 

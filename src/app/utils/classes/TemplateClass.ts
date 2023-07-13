@@ -131,7 +131,7 @@ export class TemplateClass {
   public GetControlNodeTemplateGlobalExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-control-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
@@ -207,9 +207,10 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</p>' +
       '</div>' +
-      "<div class='bow-tie-risk-card-header-expand'>" +
-      "<p class='bow-tie-risk-card-header-text'>SR15-Protective and Cyber Security Ratings</p>" +
-      '</div>' +
+      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<p>" +
+      contentDetails.htmlTemplate +
+      "</p>" +
       "<div class='bow-tie-risk-card-body-expand'>" +
       "<div class='row' style='display: flex;'>" +
       "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
