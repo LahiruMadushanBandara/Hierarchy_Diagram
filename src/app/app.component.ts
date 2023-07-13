@@ -125,7 +125,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       );
 
       if (isExpanded) {
-        console.log('Expand');
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
@@ -157,8 +156,6 @@ export class AppComponent implements OnInit, AfterViewInit {
           }
         }
       } else {
-        console.log('collaps');
-
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
@@ -215,7 +212,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     function onEdit(e) {
       /* The result can be observed in the DevTools(F12) console of the browser. */
       //e.container.find(".k-edit-buttons").remove();
-      console.log('Editing shape with model id: ' + e.shape.id);
     }
 
     function arrangeNodes(originalData, verticalSpacing) {
@@ -243,7 +239,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         // arrange type 2 nodes (left of type 1)
         const typeTwoNodes = originalData.filter((node) => node.Type === 2);
-        console.log('typeTwoNodes', typeTwoNodes);
 
         let typeTwoMaxNode = 4;
         let findControlNodeInFirstPlace = false;
@@ -254,13 +249,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         let rowNodeCount = 0;
 
         for (let i = 0; i < typeTwoNodes.length; i++) {
-          console.log('typeTwoNodes->', typeTwoNodes[i].ParentNodeId);
           if (
             typeTwoNodes[i].ParentNodeId == 1 &&
             typeTwoNodes[i].Title == 'Cause Node'
           ) {
-            console.log('cause node with parent node id = 1 ');
-
             // Calculate the x and y coordinates for the cause node
             const x = originX - 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
@@ -302,15 +294,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         // Arrange type 3 nodes (right of type 1)
         rowNumber = 0;
         const typeThreeNodes = originalData.filter((node) => node.Type === 3);
-        console.log('typeThreeNodes', typeThreeNodes);
 
         for (let i = 0; i < typeThreeNodes.length; i++) {
-          console.log('typeThreeNodes->', typeThreeNodes[i].ParentNodeId);
           if (
             typeThreeNodes[i].ParentNodeId == 1 &&
             typeThreeNodes[i].Title == 'Consequences Node'
           ) {
-            console.log('cause node with parent node id = 1 ');
             const x = originX + 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
             typeThreeNodes[i].x = x;
@@ -393,13 +382,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     var originalData = this.dataService.originalData;
-    console.log('originaldata:', originalData);
 
     const arrangedData = arrangeNodes(originalData, 420);
-    console.log('arrangedData->', arrangedData);
-    console.log(
-      arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }))
-    );
 
     $(function () {
       $(document).ready(function () {
@@ -496,7 +480,6 @@ export class AppComponent implements OnInit, AfterViewInit {
                 });
               }
               sessionStorage.setItem('shapes', JSON.stringify(newData));
-              console.log('saved');
             },
           },
           connectionsDataSource: {
@@ -592,8 +575,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     function onNodeClick(node) {
       var diagram = $('#diagram').getKendoDiagram();
       diagram.bringIntoView(diagram.shapes);
-      console.log('heloo');
-      this.nodeClickChek(node.item.dataItem);
+      // this.nodeClickChek(node.item.dataItem);
       diagram.refresh();
       // ReloadDiagramWithSelectedNode(node);
     }
@@ -633,7 +615,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   public nodeClick(data) {
     sessionStorage.clear();
-    console.log(data);
   }
 
   public findChildrens() {
@@ -691,7 +672,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Example usage:
     const givenNode = { Id: 1, FromShapeId: 2, ToShapeId: 27, Text: null };
     const childNodes = findChildNodes(givenNode);
-    console.log(childNodes);
   }
 
   // private expandedView(){
