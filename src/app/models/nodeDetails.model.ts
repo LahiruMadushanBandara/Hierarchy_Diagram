@@ -4,3 +4,4 @@ export interface NodeDetails{
   Title: string;
 
 }
+
