@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateClass } from './utils/classes/TemplateClass';
+
+import { DataService } from './services/data.service';
+
 declare var $: any;
 @Component({
   selector: 'app-root',
@@ -10,7 +13,7 @@ declare var $: any;
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
-
+  private dataItem
 
   riskTemplate: string = '';
   controlTemplate: string = '';
@@ -19,7 +22,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   otherTemplate: string = '';
 
 
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) { }
+  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef , private dataService:DataService) { }
   ngAfterViewInit(): void { }
 
   ngOnInit(): void {
@@ -73,14 +76,14 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
       //get templates from template class
-      var rTemp = Templates.GetRiskNodeTemplateGlobal(dataItem);
-      var cTemp = Templates.GetControlNodeTemplateGlobal(dataItem);
-      var ccTemp = Templates.GetCauseTemplateGlobal(dataItem);
-      var csTemp = Templates.GetConsequencesTemplateGlobal(dataItem);
-      var oTemp = Templates.GetOtherTemplateGlobal(dataItem);
-      var ceTemp = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
-      var reTemp = Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
-      var teTemp = Templates.GetRiskActionTreatmentExpand(dataItem);
+      var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
+      var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
+      var causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
+      var consequencesTemplate = Templates.GetConsequencesTemplateGlobal(dataItem);
+      var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
+      var controlTemplateExpand = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
+      var riskTemplateExpand = Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
+      var riskActionTemplateExpand = Templates.GetRiskActionTreatmentExpand(dataItem);
       var ieTemp = Templates.GetIncidentExpand(dataItem);
       var coeTemp = Templates.GetComplianceObligationExpand(dataItem);
       var keTemp = Templates.GetKPIExpand(dataItem);
@@ -92,14 +95,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       var afeTemp = Templates.GetAuditFinfingExpand(dataItem);
 
       // templates are assigned to corresponding variables
-      sessionStorage.setItem('riskTemplate', rTemp);
-      sessionStorage.setItem('controlTemplate', cTemp);
-      sessionStorage.setItem('causeTemplate', ccTemp);
-      sessionStorage.setItem('consequencesTemplate', csTemp);
-      sessionStorage.setItem('otherTemplate', oTemp);
-      sessionStorage.setItem('expandTemplate', ceTemp);
-      sessionStorage.setItem('riskExpand', reTemp);
-      sessionStorage.setItem('riskActionExpand', teTemp);
+      sessionStorage.setItem('riskTemplate', riskTemplate);
+      sessionStorage.setItem('controlTemplate', controlTemplate);
+      sessionStorage.setItem('causeTemplate', causeTemplate);
+      sessionStorage.setItem('consequencesTemplate', consequencesTemplate);
+      sessionStorage.setItem('otherTemplate', bottomTemplate);
+      sessionStorage.setItem('expandTemplate', controlTemplateExpand);
+      sessionStorage.setItem('riskExpand', riskTemplateExpand);
+      sessionStorage.setItem('riskActionExpand', riskActionTemplateExpand);
       sessionStorage.setItem('incidentExpand', ieTemp);
       sessionStorage.setItem('complianceExpand', coeTemp);
       sessionStorage.setItem('KPIExpand', keTemp);
@@ -115,24 +118,24 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (isExpanded) {
         console.log("Expand");
         if (dataItem.Title === 'Risk Node') {
-          var riskNodeTemp = kendo.template(rTemp);
+          var riskNodeTemp = kendo.template(riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
         } else if (dataItem.Title === 'Control Node') {
-          var controlNodeExpandTemp = kendo.template(ceTemp);
+          var controlNodeExpandTemp = kendo.template(controlTemplateExpand);
           renderElement.html(controlNodeExpandTemp(dataItem));
         } else if (dataItem.Title === 'Consequences Node') {
-          var consequencesTemp = kendo.template(csTemp);
+          var consequencesTemp = kendo.template(consequencesTemplate);
           renderElement.html(consequencesTemp(dataItem));
         } else if (dataItem.Title === 'Cause Node') {
-          var causeTemp = kendo.template(ccTemp);
+          var causeTemp = kendo.template(causeTemplate);
           renderElement.html(causeTemp(dataItem));
         } else {
 
           if (dataItem.Header === 'riskExpand') {
-            var riskExpandTemp = kendo.template(reTemp);
+            var riskExpandTemp = kendo.template(riskTemplateExpand);
             renderElement.html(riskExpandTemp(dataItem));
           } else if (dataItem.Header === 'riskActionExpand') {
-            var riskActionExpandTemp = kendo.template(teTemp);
+            var riskActionExpandTemp = kendo.template(riskActionTemplateExpand);
             renderElement.html(riskActionExpandTemp(dataItem));
           } else if (dataItem.Header === 'incidentExpand') {
             var incidentExpandTemp = kendo.template(ieTemp);
@@ -145,26 +148,27 @@ export class AppComponent implements OnInit, AfterViewInit {
             renderElement.html(KPIExpandTemp(dataItem));
           }
         }
+
       } else {
         console.log("collaps");
 
         if (dataItem.Title === 'Risk Node') {
-          var riskNodeTemp = kendo.template(rTemp);
+          var riskNodeTemp = kendo.template(riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
         } else if (dataItem.Title === 'Control Node') {
-          var controlNodeTemp = kendo.template(cTemp);
+          var controlNodeTemp = kendo.template(controlTemplate);
           renderElement.html(controlNodeTemp(dataItem));
         } else if (dataItem.Title === 'Consequences Node') {
-          var consequencesTemp = kendo.template(csTemp);
+          var consequencesTemp = kendo.template(consequencesTemplate);
           renderElement.html(consequencesTemp(dataItem));
         } else if (dataItem.Title === 'Cause Node') {
-          var causeTemp = kendo.template(ccTemp);
+          var causeTemp = kendo.template(causeTemplate);
           renderElement.html(causeTemp(dataItem));
         } else if (dataItem.Title === 'Expand Node') {
-          var extraTemp = kendo.template(ceTemp);
+          var extraTemp = kendo.template(controlTemplateExpand);
           renderElement.html(extraTemp(dataItem));
         } else {
-          var otherTemp = kendo.template(oTemp);
+          var otherTemp = kendo.template(bottomTemplate);
           renderElement.html(otherTemp(dataItem));
         }
       }
@@ -399,52 +403,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       return arrangedNodes;
     }
 
-    var originalData = [
-      { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Header": "Risk", "Color": "", htmlTemplate: "<div>Node 1</div>" },
-      { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 3, "Type": 2, "ParentNodeId": 2, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 4, "Type": 2, "ParentNodeId": 3, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Header": "Cause", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      { "Id": 6, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 7, "Type": 2, "ParentNodeId": 6, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 8, "Type": 2, "ParentNodeId": 7, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 9, "Type": 2, "ParentNodeId": 8, "Title": "Cause Node", "Header": "Cause", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
-      { "Id": 10, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 11, "Type": 2, "ParentNodeId": 10, "Title": "Cause Node", "Header": "Cause", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
-
-
-
-
-
-      { "Id": 12, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 13, "Type": 3, "ParentNodeId": 12, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 14, "Type": 3, "ParentNodeId": 13, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 15, "Type": 3, "ParentNodeId": 14, "Title": "Consequences Node", "Header": "Consequences", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      { "Id": 16, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 17, "Type": 3, "ParentNodeId": 16, "Title": "Control Node", "Header": "Control", "Color": "", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Consequences Node", "Header": "Consequences", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Consequences Node", "Header": "Consequences", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-
-
-      { "Id": 22, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "riskExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 23, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "riskActionExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 24, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "incidentExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 25, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "complianceExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 26, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "KPIExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 27, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "riskActionExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 28, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "incidentExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 29, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "complianceExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 30, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "KPIExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 31, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "incidentExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 32, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "complianceExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 33, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "complianceExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 34, "Type": 2, "ParentNodeId": 1, "Title": "Cause Node", "Header": "Cause", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      // { "Id": 35, "Type": 2, "ParentNodeId": 1, "Title": "Expand Node", "Header": "Expand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-
-    ];
+    var originalData = this.dataService.originalData
+    console.log("originaldata:", originalData)
+    
 
     const arrangedData = arrangeNodes(originalData, 420);
     console.log('arrangedData->', arrangedData);
@@ -492,7 +453,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 7, "FromShapeId": 8, "ToShapeId": 9, "Text": null },
           { "Id": 8, "FromShapeId": 1, "ToShapeId": 10, "Text": null },
           { "Id": 9, "FromShapeId": 10, "ToShapeId": 11, "Text": null },
-
+      
           { "Id": 10, "FromShapeId": 1, "ToShapeId": 12, "Text": null },
           { "Id": 11, "FromShapeId": 12, "ToShapeId": 13, "Text": null },
           { "Id": 12, "FromShapeId": 13, "ToShapeId": 14, "Text": null },
@@ -503,8 +464,8 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 17, "FromShapeId": 18, "ToShapeId": 19, "Text": null },
           { "Id": 18, "FromShapeId": 1, "ToShapeId": 20, "Text": null },
           { "Id": 19, "FromShapeId": 20, "ToShapeId": 21, "Text": null },
-
-
+      
+      
           { "Id": 20, "FromShapeId": 1, "ToShapeId": 22, "Text": null },
           { "Id": 21, "FromShapeId": 1, "ToShapeId": 23, "Text": null },
           { "Id": 22, "FromShapeId": 1, "ToShapeId": 24, "Text": null },
@@ -518,11 +479,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 30, "FromShapeId": 1, "ToShapeId": 32, "Text": null },
           { "Id": 23, "FromShapeId": 1, "ToShapeId": 33, "Text": null },
           { "Id": 24, "FromShapeId": 1, "ToShapeId": 34, "Text": null },
-          // { "Id": 24, "FromShapeId": 1, "ToShapeId": 35, "Text": null },
-
-
         ];
-
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -787,6 +744,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log(childNodes);
   }
 
+// private expandedView(){
 
+//   
 
 }
