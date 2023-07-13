@@ -33,7 +33,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     private dataService: DataService
   ) {}
-  private dataConnection = this.dataService.dataConnections;
   ngAfterViewInit(): void {}
 
   ngOnInit(): void {
