@@ -1,12 +1,9 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateClass } from './utils/classes/TemplateClass';
+
+import { DataService } from './services/data.service';
+
 declare var $: any;
 @Component({
   selector: 'app-root',
@@ -15,21 +12,24 @@ declare var $: any;
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('diagram', { static: false }) diagram: any;
+  @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
+  private dataItem
+
   riskTemplate: string = '';
   controlTemplate: string = '';
   causeTemplate: string = '';
   consequencesTemplate: string = '';
   otherTemplate: string = '';
-  expandTemplate: string = '';
 
-  constructor(private cdr: ChangeDetectorRef) { }
-  ngAfterViewInit(): void {
 
-  }
+  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef , private dataService:DataService) { }
+  ngAfterViewInit(): void { }
+
   ngOnInit(): void {
     sessionStorage.clear();
 
     var tempTitleDetail = '';
+    var isExpanded = false;
 
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
@@ -43,68 +43,136 @@ export class AppComponent implements OnInit, AfterViewInit {
     // var GetRiskNodeTemplate: any = this.GetRiskNodeTemplateGlobal;
     // var nodeClickChek: any = this.nodeClick;
 
+    const toggleExpand = (event: Event) => {
+      event.preventDefault();
+      const button = document.querySelector('.toggle-button') as HTMLElement;//Select the button element and cast it as an HTML element
+      isExpanded = !isExpanded;
+
+      //change the text content of the button
+      if (isExpanded) {
+        button.innerHTML = 'Normal';
+        var diagram = $('#diagram').getKendoDiagram();
+        diagram.bringIntoView(diagram.shapes);
+        diagram.refresh();
+
+      } else {
+        button.innerHTML = 'Expand';
+        var diagram = $('#diagram').getKendoDiagram();
+        diagram.bringIntoView(diagram.shapes);
+        diagram.refresh();
+      }
+
+      // Call the change detection manually
+      this.cdr.detectChanges();
+    };
+
     function visualTemplate(options: any) {
       var Templates = new TemplateClass();
+
+      // return renderTemplate(Templates , options , isExpanded);
+
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
-      var rTemp = Templates.GetRiskNodeTemplateGlobal(dataItem);
-      var cTemp = Templates.GetControlNodeTemplateGlobal(dataItem);
-      var ccTemp = Templates.GetCauseTemplateGlobal(dataItem);
-      var csTemp = Templates.GetConsequencesTemplateGlobal(dataItem);
-      var oTemp = Templates.GetOtherTemplateGlobal(dataItem);
-      var eTemp = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
+
+      //get templates from template class
+      var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
+      var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
+      var causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
+      var consequencesTemplate = Templates.GetConsequencesTemplateGlobal(dataItem);
+      var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
+      var controlTemplateExpand = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
+      var riskTemplateExpand = Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
+      var riskActionTemplateExpand = Templates.GetRiskActionTreatmentExpand(dataItem);
+      var ieTemp = Templates.GetIncidentExpand(dataItem);
+      var coeTemp = Templates.GetComplianceObligationExpand(dataItem);
+      var keTemp = Templates.GetKPIExpand(dataItem);
+      var aeTemp = Templates.GetAuditExpand(dataItem);
+      var heTemp = Templates.GetHierarchyExpand(dataItem);
+      var aueTemp = Templates.GetAuthorityDocumentExpand(dataItem);
+      var peTemp = Templates.GetPolicyExpand(dataItem);
+      var areTemp = Templates.GetAuditRecommendationsExpand(dataItem);
+      var afeTemp = Templates.GetAuditFinfingExpand(dataItem);
+
+      // templates are assigned to corresponding variables
+      sessionStorage.setItem('riskTemplate', riskTemplate);
+      sessionStorage.setItem('controlTemplate', controlTemplate);
+      sessionStorage.setItem('causeTemplate', causeTemplate);
+      sessionStorage.setItem('consequencesTemplate', consequencesTemplate);
+      sessionStorage.setItem('otherTemplate', bottomTemplate);
+      sessionStorage.setItem('expandTemplate', controlTemplateExpand);
+      sessionStorage.setItem('riskExpand', riskTemplateExpand);
+      sessionStorage.setItem('riskActionExpand', riskActionTemplateExpand);
+      sessionStorage.setItem('incidentExpand', ieTemp);
+      sessionStorage.setItem('complianceExpand', coeTemp);
+      sessionStorage.setItem('KPIExpand', keTemp);
 
 
-      sessionStorage.setItem('riskTemplate', rTemp);
-      sessionStorage.setItem('controlTemplate', cTemp);
-      sessionStorage.setItem('causeTemplate', ccTemp);
-      sessionStorage.setItem('consequencesTemplate', csTemp);
-      sessionStorage.setItem('otherTemplate', oTemp);
-      sessionStorage.setItem('expandTemplate', eTemp);
-
-      if (rTemp === '' || rTemp === null || rTemp === undefined) {
-        rTemp = sessionStorage.getItem('riskTemplate');
-      }
-      if (cTemp === '' || cTemp === null || cTemp === undefined) {
-        cTemp = sessionStorage.getItem('controlTemplate');
-      }
-      if (ccTemp === '' || ccTemp === null || ccTemp === undefined) {
-        ccTemp = sessionStorage.getItem('causeTemplate');
-      }
-      if (csTemp === '' || csTemp === null || csTemp === undefined) {
-        csTemp = sessionStorage.getItem('consequencesTemplate');
-      }
-      if (oTemp === '' || oTemp === null || oTemp === undefined) {
-        oTemp = sessionStorage.getItem('otherTemplate');
-      }
-      if (eTemp === '' || eTemp === null || eTemp === undefined) {
-        eTemp = sessionStorage.getItem('expandTemplate');
-      }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
 
-      if (dataItem.Title === 'Risk Node') {
-        var riskNodeTemp = kendo.template(rTemp);
-        renderElement.html(riskNodeTemp(dataItem));
-      } else if (dataItem.Title === 'Control Node') {
-        var controlNodeTemp = kendo.template(cTemp);
-        renderElement.html(controlNodeTemp(dataItem));
-      } else if (dataItem.Title === 'Consequences Node') {
-        var consequencesTemp = kendo.template(csTemp);
-        renderElement.html(consequencesTemp(dataItem));
-      } else if (dataItem.Title === 'Cause Node') {
-        var causeTemp = kendo.template(ccTemp);
-        renderElement.html(causeTemp(dataItem));
-      } else if (dataItem.Title === 'Expand Node') {
-        var extraTemp = kendo.template(eTemp);
-        renderElement.html(extraTemp(dataItem));
+
+
+      if (isExpanded) {
+        console.log("Expand");
+        if (dataItem.Title === 'Risk Node') {
+          var riskNodeTemp = kendo.template(riskTemplate);
+          renderElement.html(riskNodeTemp(dataItem));
+        } else if (dataItem.Title === 'Control Node') {
+          var controlNodeExpandTemp = kendo.template(controlTemplateExpand);
+          renderElement.html(controlNodeExpandTemp(dataItem));
+        } else if (dataItem.Title === 'Consequences Node') {
+          var consequencesTemp = kendo.template(consequencesTemplate);
+          renderElement.html(consequencesTemp(dataItem));
+        } else if (dataItem.Title === 'Cause Node') {
+          var causeTemp = kendo.template(causeTemplate);
+          renderElement.html(causeTemp(dataItem));
+        } else {
+
+          if (dataItem.Header === 'riskExpand') {
+            var riskExpandTemp = kendo.template(riskTemplateExpand);
+            renderElement.html(riskExpandTemp(dataItem));
+          } else if (dataItem.Header === 'riskActionExpand') {
+            var riskActionExpandTemp = kendo.template(riskActionTemplateExpand);
+            renderElement.html(riskActionExpandTemp(dataItem));
+          } else if (dataItem.Header === 'incidentExpand') {
+            var incidentExpandTemp = kendo.template(ieTemp);
+            renderElement.html(incidentExpandTemp(dataItem));
+          } else if (dataItem.Header === 'complianceExpand') {
+            var complianceExpandTemp = kendo.template(coeTemp);
+            renderElement.html(complianceExpandTemp(dataItem));
+          } else if (dataItem.Header === 'KPIExpand') {
+            var KPIExpandTemp = kendo.template(keTemp);
+            renderElement.html(KPIExpandTemp(dataItem));
+          }
+        }
+
       } else {
-        var otherTemp = kendo.template(oTemp);
-        renderElement.html(otherTemp(dataItem));
+        console.log("collaps");
+
+        if (dataItem.Title === 'Risk Node') {
+          var riskNodeTemp = kendo.template(riskTemplate);
+          renderElement.html(riskNodeTemp(dataItem));
+        } else if (dataItem.Title === 'Control Node') {
+          var controlNodeTemp = kendo.template(controlTemplate);
+          renderElement.html(controlNodeTemp(dataItem));
+        } else if (dataItem.Title === 'Consequences Node') {
+          var consequencesTemp = kendo.template(consequencesTemplate);
+          renderElement.html(consequencesTemp(dataItem));
+        } else if (dataItem.Title === 'Cause Node') {
+          var causeTemp = kendo.template(causeTemplate);
+          renderElement.html(causeTemp(dataItem));
+        } else if (dataItem.Title === 'Expand Node') {
+          var extraTemp = kendo.template(controlTemplateExpand);
+          renderElement.html(extraTemp(dataItem));
+        } else {
+          var otherTemp = kendo.template(bottomTemplate);
+          renderElement.html(otherTemp(dataItem));
+        }
       }
+
 
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
@@ -124,7 +192,24 @@ export class AppComponent implements OnInit, AfterViewInit {
       var visual = new kendo.dataviz.diagram.Group();
       visual.drawingElement.append(output);
       return visual;
+
+     
     }
+
+     //// Create the button element
+     const button = this.renderer.createElement('button');
+     const buttonText = this.renderer.createText('Expand');
+     this.renderer.appendChild(button, buttonText);
+     this.renderer.addClass(button, 'toggle-button');
+ 
+     // Add a click event listener to the button
+     this.renderer.listen(button, 'click', toggleExpand);
+ 
+     // Append the button to the buttonContainer element
+     this.renderer.appendChild(this.buttonContainer.nativeElement, button);
+
+
+
 
     function onEdit(e) {
       /* The result can be observed in the DevTools(F12) console of the browser. */
@@ -132,7 +217,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       console.log('Editing shape with model id: ' + e.shape.id);
     }
 
-    function arrangeNodes(originalData) {
+
+    function arrangeNodes(originalData, verticalSpacing) {
+
       const arrangedNodes = [];
 
       // Find the risk node (type 1 with ParentNodeId 0)
@@ -141,8 +228,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       );
 
       if (riskNode) {
-        const horizontalSpacing = 500;
-        const verticalSpacing = 300;
+
+        const horizontalSpacing = 450;
+        // const verticalSpacing = 300;
         const verticalSpacingFour = 200;
         const maxNodesPerRow = 5;
         const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
@@ -315,54 +403,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       return arrangedNodes;
     }
 
-    var originalData = [
-      { "Id": 1, "Type": 1, "ParentNodeId": 0, "Title": "Risk Node", "Color": "", htmlTemplate: "<div>Node 1</div>" },
-      { "Id": 2, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 3, "Type": 2, "ParentNodeId": 2, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 4, "Type": 2, "ParentNodeId": 3, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 5, "Type": 2, "ParentNodeId": 4, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      { "Id": 6, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 7, "Type": 2, "ParentNodeId": 6, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 8, "Type": 2, "ParentNodeId": 7, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 9, "Type": 2, "ParentNodeId": 8, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
-      { "Id": 10, "Type": 2, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 11, "Type": 2, "ParentNodeId": 10, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process</div>" },
+    var originalData = this.dataService.originalData
+    console.log("originaldata:", originalData)
+    
 
-
-
-
-
-      { "Id": 12, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 13, "Type": 3, "ParentNodeId": 12, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 14, "Type": 3, "ParentNodeId": 13, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 15, "Type": 3, "ParentNodeId": 14, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      { "Id": 16, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 17, "Type": 3, "ParentNodeId": 16, "Title": "Control Node", "Color": "", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Consequences Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-
-
-      { "Id": 22, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 23, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 24, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 25, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 26, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 27, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 28, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 29, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 30, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 31, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 32, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 33, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-      { "Id": 34, "Type": 2, "ParentNodeId": 1, "Title": "Cause Node", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
-      // { "Id": 35, "Type": 2, "ParentNodeId": 1, "Title": "Expand Node", "Color": "#3399cc", htmlTemplate: "<div><b>Agreed process Agreed process for staff to anonymously raise concerns about workplacr practices </b></div>" },
-
-    ];
-
-    const arrangedData = arrangeNodes(originalData);
+    const arrangedData = arrangeNodes(originalData, 420);
     console.log('arrangedData->', arrangedData);
     console.log(
       arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }))
@@ -408,7 +453,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 7, "FromShapeId": 8, "ToShapeId": 9, "Text": null },
           { "Id": 8, "FromShapeId": 1, "ToShapeId": 10, "Text": null },
           { "Id": 9, "FromShapeId": 10, "ToShapeId": 11, "Text": null },
-
+      
           { "Id": 10, "FromShapeId": 1, "ToShapeId": 12, "Text": null },
           { "Id": 11, "FromShapeId": 12, "ToShapeId": 13, "Text": null },
           { "Id": 12, "FromShapeId": 13, "ToShapeId": 14, "Text": null },
@@ -419,8 +464,8 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 17, "FromShapeId": 18, "ToShapeId": 19, "Text": null },
           { "Id": 18, "FromShapeId": 1, "ToShapeId": 20, "Text": null },
           { "Id": 19, "FromShapeId": 20, "ToShapeId": 21, "Text": null },
-
-
+      
+      
           { "Id": 20, "FromShapeId": 1, "ToShapeId": 22, "Text": null },
           { "Id": 21, "FromShapeId": 1, "ToShapeId": 23, "Text": null },
           { "Id": 22, "FromShapeId": 1, "ToShapeId": 24, "Text": null },
@@ -434,11 +479,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 30, "FromShapeId": 1, "ToShapeId": 32, "Text": null },
           { "Id": 23, "FromShapeId": 1, "ToShapeId": 33, "Text": null },
           { "Id": 24, "FromShapeId": 1, "ToShapeId": 34, "Text": null },
-          // { "Id": 24, "FromShapeId": 1, "ToShapeId": 35, "Text": null },
-
-
         ];
-
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -458,6 +499,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
               for (var i = 0; i < dataSourceData.length; i++) {
                 var item = dataSourceData[i];
+
                 newData.push({
                   Id: item.id,
                   Type: item.Type,
@@ -489,6 +531,30 @@ export class AppComponent implements OnInit, AfterViewInit {
             },
           },
 
+
+          layout: false,
+          edit: onEdit,
+          click: onNodeClick,
+          editable: {
+            shapeTemplate: detailTemp,
+            tools: [{
+              type: "button",
+              text: "Set Selected Content",
+              click: function (e) {
+                var selected = $("#diagram").getKendoDiagram().select();
+                var content = $("#content").val();
+                for (var idx = 0; idx < selected.length; idx++) {
+                  selected[idx].content(content);
+                }
+              }
+            },
+            {
+              template: "<input id='content' class='k-textbox' value='Foo' />",
+              enable: true
+            }]
+          },
+
+
           shapeDefaults: {
             stroke: {
               color: '#979797',
@@ -496,7 +562,9 @@ export class AppComponent implements OnInit, AfterViewInit {
             },
 
             visual: visualTemplate,
+
           },
+
           connectionDefaults: {
             stroke: {
               color: '#979797',
@@ -510,7 +578,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             },
           },
 
-          // zomm: 0.5,
+          zoom: 0.5,
           cancel: onCancel,
 
 
@@ -522,35 +590,35 @@ export class AppComponent implements OnInit, AfterViewInit {
         var diagram = $('#diagram').getKendoDiagram();
 
 
-        // diagram.bringIntoView(diagram.shapes);
-        // for (var i = 0; i < diagram.shapes.length; i++) {
-        //   diagram.shapes[i].options.stroke.width = 0;
+        diagram.bringIntoView(diagram.shapes);
+        for (var i = 0; i < diagram.shapes.length; i++) {
+          diagram.shapes[i].options.stroke.width = 0;
 
-        // }
-        // diagram.refresh();
-
-         
-        function zoomDiagram() {
-          var diagramWrapper = $('#diagram').data('kendoDiagram');
-          diagramWrapper.bringIntoView(diagramWrapper.shapes);
-          diagramWrapper.zoom(0.4); // Set the desired zoom level
         }
-        
-        // Automatically zoom the diagram when it loads
-        $(document).ready(function() {
-          zoomDiagram();
-        });
-        
-        // Center the diagram when zooming
-        $('#diagram').on('DOMMouseScroll mousewheel', function (e) {
-          var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-          if (delta > 0) {
-            kendoDiagram.zoomIn();
-          } else {
-            kendoDiagram.zoomOut();
-          }
-          kendoDiagram.bringIntoView();
-        });
+        diagram.refresh();
+
+
+        // function zoomDiagram() {
+        //   var diagramWrapper = $('#diagram').data('kendoDiagram');
+        //   diagramWrapper.bringIntoView(diagramWrapper.shapes);
+        //   diagramWrapper.zoom(0.4); // Set the desired zoom level
+        // }
+
+        // // Automatically zoom the diagram when it loads
+        // $(document).ready(function() {
+        //   zoomDiagram();
+        // });
+
+        // // Center the diagram when zooming
+        // $('#diagram').on('DOMMouseScroll mousewheel', function (e) {
+        //   var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+        //   if (delta > 0) {
+        //     kendoDiagram.zoomIn();
+        //   } else {
+        //     kendoDiagram.zoomOut();
+        //   }
+        //   kendoDiagram.bringIntoView();
+        // });
 
 
 
@@ -567,9 +635,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     function onNodeClick(node) {
       var diagram = $('#diagram').getKendoDiagram();
       diagram.bringIntoView(diagram.shapes);
-      // console.log(node.item.dataItem);
+      console.log("heloo");
       this.nodeClickChek(node.item.dataItem);
-      // diagram.refresh();
+      diagram.refresh();
       // ReloadDiagramWithSelectedNode(node);
     }
 
@@ -606,6 +674,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     var focused = false;
   }
+
+
+
 
   public nodeClick(data) {
     sessionStorage.clear();
@@ -673,6 +744,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log(childNodes);
   }
 
+// private expandedView(){
 
+//   
 
 }
