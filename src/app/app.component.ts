@@ -4,14 +4,12 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
-  AfterViewInit,
   ChangeDetectorRef,
 } from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateStructureClass } from './utils/classes/TemplateStructureClass';
 
 import { DataService } from './services/data.service';
-import { DataConnection } from './models/dataConnection.model';
 import { findChildNodes } from './utils/functions/findChildrenClass';
 import { NodePlaceClass } from './utils/classes/NodePlaceClass';
 import { data } from './models/data.model';
@@ -22,28 +20,20 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
-
-  riskTemplate: string = '';
-  controlTemplate: string = '';
-  causeTemplate: string = '';
-  consequencesTemplate: string = '';
-  otherTemplate: string = '';
 
   constructor(
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
     private dataService: DataService
   ) {}
-  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
     sessionStorage.clear();
     let dataConnection = this.dataService.dataConnections;
-    let originalData = this.dataService.originalData;
-    var tempTitleDetail = '';
+    let originalData: data[] = this.dataService.originalData;
     var isExpanded = false;
     var isNodeClicked = false;
 
@@ -76,11 +66,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     function visualTemplate(options: any) {
       var dataItem = options.dataItem;
       var Templates = new TemplateStructureClass(dataItem);
-      tempTitleDetail = dataItem.Title;
+
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
 
+      //use template class to  render templates
       Templates.setView(renderElement, isExpanded, dataItem);
 
       var output = new kendo.drawing.Group();
@@ -88,9 +79,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       var height = renderElement.height();
       var geom = new kendo.geometry.Rect([0, 0], [width, height]);
       output.append(new kendo.drawing.Rect(geom, { stroke: { width: 0 } }));
-
-      var x = parseInt(dataItem.x);
-      var y = parseInt(dataItem.y);
 
       draw.drawDOM(renderElement, options).then(function (group) {
         output.clear();
@@ -103,7 +91,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       return visual;
     }
 
-    //// Create the button element
+    // Create the button element
     const button = this.renderer.createElement('button');
     const buttonText = this.renderer.createText('Expand');
     this.renderer.appendChild(button, buttonText);
@@ -120,7 +108,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       //e.container.find(".k-edit-buttons").remove();
     }
 
-    function arrangeNodes(originalData, verticalSpacing) {
+    function arrangeNodes(originalData) {
       let arrangedNodes = [];
 
       // Find the risk node (type 1 with ParentNodeId 0)
@@ -144,13 +132,18 @@ export class AppComponent implements OnInit, AfterViewInit {
           centralizedNode,
           typeFourNodes
         );
+
+        //get arranged nodes using node placing class
         arrangedNodes = nodePlace.getArrangedNodes();
       }
 
       return arrangedNodes;
     }
 
-    const arrangedData = arrangeNodes(originalData, 420);
+    if (isNodeClicked) {
+    } else {
+      const arrangedData = arrangeNodes(originalData);
+    }
 
     $(function () {
       $(document).ready(function () {
@@ -177,9 +170,9 @@ export class AppComponent implements OnInit, AfterViewInit {
             data: dataShapes,
             schema: {
               model: {
-                id: 'id',
+                id: 'Id',
                 fields: {
-                  id: { from: 'Id', type: 'number', editable: false },
+                  Id: { from: 'Id', type: 'number', editable: false },
                   Type: { type: 'number' },
                   Color: { type: 'string' },
                 },
@@ -280,12 +273,19 @@ export class AppComponent implements OnInit, AfterViewInit {
         selectedNodeId
       );
       console.log('selectedNodeWithChildrens', selectedNodeWithChildrens);
+      var clickedData: data[] = [];
+
+      for (let i = 0; i < selectedNodeWithChildrens.childnodes.length; i++) {
+        let clickedDataItem = originalData.filter(
+          (x) => x.Id == selectedNodeWithChildrens.childnodes[i]
+        );
+        clickedData.push(clickedDataItem[0]);
+      }
+      console.log(clickedData);
+      arrangeNodes(clickedData);
+      sessionStorage.clear();
     }
 
     var focused = false;
-  }
-
-  public nodeClick(data) {
-    sessionStorage.clear();
   }
 }
