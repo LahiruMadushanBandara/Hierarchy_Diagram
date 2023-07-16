@@ -12,6 +12,7 @@ import { TemplateStructureClass } from './utils/classes/TemplateStructureClass';
 
 import { DataService } from './services/data.service';
 import { DataConnection } from './models/dataConnection.model';
+import { findChildNodes } from './utils/functions/findChildrenClass';
 
 declare var $: any;
 @Component({
@@ -38,22 +39,16 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     sessionStorage.clear();
-    var dataConnection = this.dataService.dataConnections;
-    var originalData = this.dataService.originalData;
+    let dataConnection = this.dataService.dataConnections;
+    let originalData = this.dataService.originalData;
     var tempTitleDetail = '';
     var isExpanded = false;
+    var isNodeClicked = false;
 
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
     var geom = kendo.geometry;
     //  var Templates = new TemplateStructureClass();
-
-    // var GetControlNodeTemplate: any =
-    //   Templates.GetControlNodeTemplateGlobal();
-    // var GetConsequencesTemplate: any = this.GetConsequencesTemplateGlobal;
-    // var GetCauseTemplate: any = this.GetCauseTemplateGlobal;
-    // var GetRiskNodeTemplate: any = this.GetRiskNodeTemplateGlobal;
-    // var nodeClickChek: any = this.nodeClick;
 
     const toggleExpand = (event: Event) => {
       event.preventDefault();
@@ -78,6 +73,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
 
     function visualTemplate(options: any) {
+      console.log(options.dataItem);
       var Templates = new TemplateStructureClass();
       var dataConnection = this.dataConnection;
       // return renderTemplate(Templates , options , isExpanded);
@@ -101,6 +97,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       var ieTemp = Templates.GetIncidentExpand(dataItem);
       var coeTemp = Templates.GetComplianceObligationExpand(dataItem);
       var keTemp = Templates.GetKPIExpand(dataItem);
+
       var aeTemp = Templates.GetAuditExpand(dataItem);
       var heTemp = Templates.GetHierarchyExpand(dataItem);
       var aueTemp = Templates.GetAuthorityDocumentExpand(dataItem);
@@ -513,18 +510,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 
     function onNodeClick(node) {
-      console.log('helooo');
-      var diagram = $('#diagram').getKendoDiagram();
-      // diagram.bringIntoView(diagram.shapes);
-      diagram.refresh();
+      isNodeClicked = true;
+      console.log(node.item.dataItem.id);
+      var selectedNodeId = node.item.dataItem.id;
+      console.log('selectedNodeId', selectedNodeId);
+      var k = findChildNodes(dataConnection, selectedNodeId);
+      console.log('child node->', k);
     }
-
-    $(document).ready(function () {
-      $('#diagram').kendoDiagram({
-        // ... other diagram configurations ...
-        click: onNodeClick,
-      });
-    });
 
     var focused = false;
   }
@@ -533,27 +525,3 @@ export class AppComponent implements OnInit, AfterViewInit {
     sessionStorage.clear();
   }
 }
-
-// function ReloadDiagramWithSelectedNode(node: any) {
-//   var diagram = $('#diagram').getKendoDiagram();
-//   var selectedNode = diagram.select();
-
-//   if (selectedNode) {
-//     var nodesToRemove = [];
-
-//     diagram.shapes.forEach(function (shape) {
-//       if (shape !== selectedNode && !selectedNode.isContained(shape)) {
-//         nodesToRemove.push(shape);
-//       }
-//     });
-
-//     nodesToRemove.forEach(function (node) {
-//       diagram.removeShape(node);
-//     });
-//   }
-
-//   // Focus on the selected node
-//   if (node) {
-//     diagram.bringIntoView(node);
-//   }
-// }
