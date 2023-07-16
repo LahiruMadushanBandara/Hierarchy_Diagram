@@ -107,19 +107,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       var areTemp = Templates.GetAuditRecommendationsExpand(dataItem);
       var afeTemp = Templates.GetAuditFinfingExpand(dataItem);
 
-      // templates are assigned to corresponding variables
-      sessionStorage.setItem('riskTemplate', riskTemplate);
-      sessionStorage.setItem('controlTemplate', controlTemplate);
-      sessionStorage.setItem('causeTemplate', causeTemplate);
-      sessionStorage.setItem('consequencesTemplate', consequencesTemplate);
-      sessionStorage.setItem('otherTemplate', bottomTemplate);
-      sessionStorage.setItem('expandTemplate', controlTemplateExpand);
-      sessionStorage.setItem('riskExpand', riskTemplateExpand);
-      sessionStorage.setItem('riskActionExpand', riskActionTemplateExpand);
-      sessionStorage.setItem('incidentExpand', ieTemp);
-      sessionStorage.setItem('complianceExpand', coeTemp);
-      sessionStorage.setItem('KPIExpand', keTemp);
-
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
