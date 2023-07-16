@@ -1,48 +1,62 @@
 import { Templates } from 'src/app/models/templates.model';
 
 export class TemplateStructureClass {
-  constructor() {}
+  private allTemplate: Templates;
 
-  public getTemplates(dataItem: any): Templates {
-    var allTemplate: Templates;
-    allTemplate.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
+  constructor(private dataItem: any) {}
 
-    allTemplate.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem);
+  public getTemplates(): Templates {
+    this.allTemplate.riskTemplate = this.GetRiskNodeTemplateGlobal(
+      this.dataItem
+    );
 
-    allTemplate.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
+    this.allTemplate.controlTemplate = this.GetControlNodeTemplateGlobal(
+      this.dataItem
+    );
 
-    allTemplate.consequencesTemplate =
-      this.GetConsequencesTemplateGlobal(dataItem);
+    this.allTemplate.causeTemplate = this.GetCauseTemplateGlobal(this.dataItem);
 
-    allTemplate.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+    this.allTemplate.consequencesTemplate = this.GetConsequencesTemplateGlobal(
+      this.dataItem
+    );
 
-    allTemplate.controlTemplateExpand =
-      this.GetControlNodeTemplateGlobalExpand(dataItem);
+    this.allTemplate.bottomTemplate = this.GetOtherTemplateGlobal(
+      this.dataItem
+    );
 
-    allTemplate.riskTemplateExpand =
-      this.GetRiskNodeTemplateGlobalExpand(dataItem);
+    this.allTemplate.controlTemplateExpand =
+      this.GetControlNodeTemplateGlobalExpand(this.dataItem);
 
-    allTemplate.riskActionTemplateExpand =
-      this.GetRiskActionTreatmentExpand(dataItem);
+    this.allTemplate.riskTemplateExpand = this.GetRiskNodeTemplateGlobalExpand(
+      this.dataItem
+    );
 
-    allTemplate.incidentTemplateExpand = this.GetIncidentExpand(dataItem);
+    this.allTemplate.riskActionTemplateExpand =
+      this.GetRiskActionTreatmentExpand(this.dataItem);
 
-    allTemplate.complianceTemplateExpand =
-      this.GetComplianceObligationExpand(dataItem);
+    this.allTemplate.incidentTemplateExpand = this.GetIncidentExpand(
+      this.dataItem
+    );
 
-    allTemplate.kpiTemplateExpand = this.GetKPIExpand(dataItem);
-    allTemplate.auditTemplateExpand = this.GetAuditExpand(dataItem);
-    allTemplate.hierarchyTemplateExpand = this.GetHierarchyExpand(dataItem);
-    allTemplate.authorityDocumentTemplateExpand =
-      this.GetAuthorityDocumentExpand(dataItem);
-    allTemplate.policyTemplateExpand = this.GetPolicyExpand(dataItem);
+    this.allTemplate.complianceTemplateExpand =
+      this.GetComplianceObligationExpand(this.dataItem);
 
-    allTemplate.auditRecommendationsTemplateExpand =
-      this.GetAuditRecommendationsExpand(dataItem);
+    this.allTemplate.kpiTemplateExpand = this.GetKPIExpand(this.dataItem);
+    this.allTemplate.auditTemplateExpand = this.GetAuditExpand(this.dataItem);
+    this.allTemplate.hierarchyTemplateExpand = this.GetHierarchyExpand(
+      this.dataItem
+    );
+    this.allTemplate.authorityDocumentTemplateExpand =
+      this.GetAuthorityDocumentExpand(this.dataItem);
+    this.allTemplate.policyTemplateExpand = this.GetPolicyExpand(this.dataItem);
 
-    allTemplate.auditFinfingTemplateExpand =
-      this.GetAuditFinfingExpand(dataItem);
-    return allTemplate;
+    this.allTemplate.auditRecommendationsTemplateExpand =
+      this.GetAuditRecommendationsExpand(this.dataItem);
+
+    this.allTemplate.auditFinfingTemplateExpand = this.GetAuditFinfingExpand(
+      this.dataItem
+    );
+    return this.allTemplate;
   }
 
   public GetControlNodeTemplateGlobal(contentDetails: any) {

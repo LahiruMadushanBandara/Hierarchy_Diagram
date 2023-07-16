@@ -13,6 +13,7 @@ import { TemplateStructureClass } from './utils/classes/TemplateStructureClass';
 import { DataService } from './services/data.service';
 import { DataConnection } from './models/dataConnection.model';
 import { findChildNodes } from './utils/functions/findChildrenClass';
+import { NodePlaceClass } from './utils/classes/NodePlaceClass';
 
 declare var $: any;
 @Component({
@@ -73,14 +74,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
 
     function visualTemplate(options: any) {
-      console.log(options.dataItem);
-      var Templates = new TemplateStructureClass();
+      var dataItem = options.dataItem;
+      var Templates = new TemplateStructureClass(dataItem);
+      var Templates2 = new TemplateStructureClass(dataItem);
       var dataConnection = this.dataConnection;
       // return renderTemplate(Templates , options , isExpanded);
 
-      var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
-
+      // var allTemplates = Templates2.getTemplates();
+      // console.log(allTemplates);
       //get templates from template class
       var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
       var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
@@ -213,167 +215,24 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     function arrangeNodes(originalData, verticalSpacing) {
-      const arrangedNodes = [];
+      let arrangedNodes = [];
 
       // Find the risk node (type 1 with ParentNodeId 0)
-      const riskNode = originalData.find(
+      const centralizedNode = originalData.find(
         (node) => node.Type === 1 && node.ParentNodeId === 0
       );
 
-      if (riskNode) {
-        const horizontalSpacing = 450;
-        // const verticalSpacing = 300;
-        const verticalSpacingFour = 200;
-        const maxNodesPerRow = 5;
-        const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
-
-        let typeTwoIndex = 0;
-        let typeThreeIndex = 0;
-        let typeFourIndex = 0;
-        let rowIndex = 0;
-
-        const originX = 0;
-        const originY = 0;
-
-        // arrange type 2 nodes (left of type 1)
+      if (centralizedNode) {
         const typeTwoNodes = originalData.filter((node) => node.Type === 2);
-
-        let typeTwoMaxNode = 4;
-        let findControlNodeInFirstPlace = false;
-        let findCauseNodeInFirstPlace = false;
-        let rowComplete = false;
-        let rowNumber = 0;
-        let columnNumber = 0;
-        let rowNodeCount = 0;
-
-        for (let i = 0; i < typeTwoNodes.length; i++) {
-          if (
-            typeTwoNodes[i].ParentNodeId == 1 &&
-            typeTwoNodes[i].Title == 'Cause Node'
-          ) {
-            // Calculate the x and y coordinates for the cause node
-            const x = originX - 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
-
-            typeTwoNodes[i].x = x;
-            typeTwoNodes[i].y = y;
-            arrangedNodes.push(typeTwoNodes[i]);
-            rowNumber++;
-          } else if (typeTwoNodes[i].Title == 'Control Node') {
-            const x = originX - (columnNumber + 1) * horizontalSpacing;
-            const y = originY + rowNumber * verticalSpacing;
-            typeTwoNodes[i].x = x;
-            typeTwoNodes[i].y = y;
-            arrangedNodes.push(typeTwoNodes[i]);
-            rowNodeCount++;
-            if (rowNodeCount === maxNodesPerRow) {
-              rowNumber++;
-              rowNodeCount = 0;
-            }
-            columnNumber = rowNodeCount;
-          } else if (
-            typeTwoNodes[i].ParentNodeId !== 1 &&
-            typeTwoNodes[i].Title == 'Cause Node'
-          ) {
-            const x = originX - 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
-            typeTwoNodes[i].x = x;
-            typeTwoNodes[i].y = y;
-            arrangedNodes.push(typeTwoNodes[i]);
-            rowNodeCount++;
-
-            rowNumber++;
-            rowNodeCount = 0;
-
-            columnNumber = rowNodeCount;
-          }
-        }
-
-        // Arrange type 3 nodes (right of type 1)
-        rowNumber = 0;
         const typeThreeNodes = originalData.filter((node) => node.Type === 3);
-
-        for (let i = 0; i < typeThreeNodes.length; i++) {
-          if (
-            typeThreeNodes[i].ParentNodeId == 1 &&
-            typeThreeNodes[i].Title == 'Consequences Node'
-          ) {
-            const x = originX + 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
-            typeThreeNodes[i].x = x;
-            typeThreeNodes[i].y = y;
-            arrangedNodes.push(typeThreeNodes[i]);
-            rowNumber++;
-          } else if (typeThreeNodes[i].Title == 'Control Node') {
-            const x = originX + (columnNumber + 1) * horizontalSpacing;
-            const y = originY + rowNumber * verticalSpacing;
-            typeThreeNodes[i].x = x;
-            typeThreeNodes[i].y = y;
-            arrangedNodes.push(typeThreeNodes[i]);
-            rowNodeCount++;
-            if (rowNodeCount === maxNodesPerRow) {
-              rowNumber++;
-              rowNodeCount = 0;
-            }
-            columnNumber = rowNodeCount;
-          } else if (
-            typeThreeNodes[i].ParentNodeId !== 1 &&
-            typeThreeNodes[i].Title == 'Consequences Node'
-          ) {
-            const x = originX + 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
-            typeThreeNodes[i].x = x;
-            typeThreeNodes[i].y = y;
-            arrangedNodes.push(typeThreeNodes[i]);
-            rowNodeCount++;
-
-            rowNumber++;
-            rowNodeCount = 0;
-
-            columnNumber = rowNodeCount;
-          }
-        }
-
-        // Arrange type 1 (risk) node
-        const typeTwoRows = Math.ceil(typeTwoNodes.length / maxNodesPerRow);
-        const typeThreeRows = Math.ceil(typeThreeNodes.length / maxNodesPerRow);
-
-        let maxTypeTwoTypeThreeRows = Math.max(typeTwoRows, typeThreeRows);
-
-        if (typeTwoRows === typeThreeRows) {
-          const riskNodeX = originX;
-          const riskNodeY =
-            originY +
-            (maxTypeTwoTypeThreeRows - 2) * verticalSpacing +
-            verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
-          riskNode.x = riskNodeX;
-          riskNode.y = riskNodeY;
-          arrangedNodes.push(riskNode);
-        } else {
-          const riskNodeX = originX;
-          const riskNodeY = originY + verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
-          riskNode.x = riskNodeX;
-          riskNode.y = riskNodeY;
-          arrangedNodes.push(riskNode);
-        }
-
-        // Arrange type 4 nodes (below type 2 and type 3)
         const typeFourNodes = originalData.filter((node) => node.Type === 4);
-        typeFourNodes.forEach((node, index) => {
-          const rowNumber = Math.floor(typeFourIndex / maxNodesPerRowFour); // Calculate the row number
-
-          const columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
-
-          const x = riskNode.x - (columnNumber - 5) * horizontalSpacing; // Adjusting the starting point for type 4 nodes
-          const y =
-            riskNode.y +
-            rowNumber * verticalSpacingFour +
-            (maxTypeTwoTypeThreeRows + 4) * verticalSpacingFour;
-          node.x = x;
-          node.y = y;
-          arrangedNodes.push(node);
-          typeFourIndex++;
-        });
+        var nodePlace = new NodePlaceClass(
+          typeTwoNodes,
+          typeThreeNodes,
+          centralizedNode,
+          typeFourNodes
+        );
+        arrangedNodes = nodePlace.getArrangedNodes();
       }
 
       return arrangedNodes;
@@ -385,14 +244,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       $(document).ready(function () {
         createDiagram();
       });
-
-      var detailTemp =
-        '<div>' +
-        "<h3 class='centre'>Selected Node Details</h3>" +
-        "<div class='k-edit-label'>" +
-        '<p> Details of the selected node can show here...... </p>' +
-        '</div>' +
-        '</div> ';
 
       function onCancel(e) {
         e.preventDefault();
@@ -511,11 +362,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     function onNodeClick(node) {
       isNodeClicked = true;
-      console.log(node.item.dataItem.id);
       var selectedNodeId = node.item.dataItem.id;
-      console.log('selectedNodeId', selectedNodeId);
-      var k = findChildNodes(dataConnection, selectedNodeId);
-      console.log('child node->', k);
+      var selectedNodeWithChildrens = findChildNodes(
+        dataConnection,
+        selectedNodeId
+      );
+      console.log('selectedNodeWithChildrens', selectedNodeWithChildrens);
     }
 
     var focused = false;
