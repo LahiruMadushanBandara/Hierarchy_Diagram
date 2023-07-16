@@ -14,6 +14,7 @@ import { DataService } from './services/data.service';
 import { DataConnection } from './models/dataConnection.model';
 import { findChildNodes } from './utils/functions/findChildrenClass';
 import { NodePlaceClass } from './utils/classes/NodePlaceClass';
+import { data } from './models/data.model';
 
 declare var $: any;
 @Component({
@@ -72,97 +73,15 @@ export class AppComponent implements OnInit, AfterViewInit {
       // Call the change detection manually
       this.cdr.detectChanges();
     };
-
     function visualTemplate(options: any) {
       var dataItem = options.dataItem;
       var Templates = new TemplateStructureClass(dataItem);
-      var Templates2 = new TemplateStructureClass(dataItem);
-      var dataConnection = this.dataConnection;
-      // return renderTemplate(Templates , options , isExpanded);
-
       tempTitleDetail = dataItem.Title;
-      // var allTemplates = Templates2.getTemplates();
-      // console.log(allTemplates);
-      //get templates from template class
-      var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
-      var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
-      var causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
-      var consequencesTemplate =
-        Templates.GetConsequencesTemplateGlobal(dataItem);
-      var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
-      var controlTemplateExpand =
-        Templates.GetControlNodeTemplateGlobalExpand(dataItem);
-      var riskTemplateExpand =
-        Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
-      var riskActionTemplateExpand =
-        Templates.GetRiskActionTreatmentExpand(dataItem);
-      var ieTemp = Templates.GetIncidentExpand(dataItem);
-      var coeTemp = Templates.GetComplianceObligationExpand(dataItem);
-      var keTemp = Templates.GetKPIExpand(dataItem);
-
-      var aeTemp = Templates.GetAuditExpand(dataItem);
-      var heTemp = Templates.GetHierarchyExpand(dataItem);
-      var aueTemp = Templates.GetAuthorityDocumentExpand(dataItem);
-      var peTemp = Templates.GetPolicyExpand(dataItem);
-      var areTemp = Templates.GetAuditRecommendationsExpand(dataItem);
-      var afeTemp = Templates.GetAuditFinfingExpand(dataItem);
-
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
 
-      if (isExpanded) {
-        if (dataItem.Title === 'Risk Node') {
-          var riskNodeTemp = kendo.template(riskTemplate);
-          renderElement.html(riskNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Control Node') {
-          var controlNodeExpandTemp = kendo.template(controlTemplateExpand);
-          renderElement.html(controlNodeExpandTemp(dataItem));
-        } else if (dataItem.Title === 'Consequences Node') {
-          var consequencesTemp = kendo.template(consequencesTemplate);
-          renderElement.html(consequencesTemp(dataItem));
-        } else if (dataItem.Title === 'Cause Node') {
-          var causeTemp = kendo.template(causeTemplate);
-          renderElement.html(causeTemp(dataItem));
-        } else {
-          if (dataItem.Header === 'riskExpand') {
-            var riskExpandTemp = kendo.template(riskTemplateExpand);
-            renderElement.html(riskExpandTemp(dataItem));
-          } else if (dataItem.Header === 'riskActionExpand') {
-            var riskActionExpandTemp = kendo.template(riskActionTemplateExpand);
-            renderElement.html(riskActionExpandTemp(dataItem));
-          } else if (dataItem.Header === 'incidentExpand') {
-            var incidentExpandTemp = kendo.template(ieTemp);
-            renderElement.html(incidentExpandTemp(dataItem));
-          } else if (dataItem.Header === 'complianceExpand') {
-            var complianceExpandTemp = kendo.template(coeTemp);
-            renderElement.html(complianceExpandTemp(dataItem));
-          } else if (dataItem.Header === 'KPIExpand') {
-            var KPIExpandTemp = kendo.template(keTemp);
-            renderElement.html(KPIExpandTemp(dataItem));
-          }
-        }
-      } else {
-        if (dataItem.Title === 'Risk Node') {
-          var riskNodeTemp = kendo.template(riskTemplate);
-          renderElement.html(riskNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Control Node') {
-          var controlNodeTemp = kendo.template(controlTemplate);
-          renderElement.html(controlNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Consequences Node') {
-          var consequencesTemp = kendo.template(consequencesTemplate);
-          renderElement.html(consequencesTemp(dataItem));
-        } else if (dataItem.Title === 'Cause Node') {
-          var causeTemp = kendo.template(causeTemplate);
-          renderElement.html(causeTemp(dataItem));
-        } else if (dataItem.Title === 'Expand Node') {
-          var extraTemp = kendo.template(controlTemplateExpand);
-          renderElement.html(extraTemp(dataItem));
-        } else {
-          var otherTemp = kendo.template(bottomTemplate);
-          renderElement.html(otherTemp(dataItem));
-        }
-      }
+      Templates.setView(renderElement, isExpanded, dataItem);
 
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
@@ -206,13 +125,19 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       // Find the risk node (type 1 with ParentNodeId 0)
       const centralizedNode = originalData.find(
-        (node) => node.Type === 1 && node.ParentNodeId === 0
+        (node: data) => node.Type === 1 && node.ParentNodeId === 0
       );
 
       if (centralizedNode) {
-        const typeTwoNodes = originalData.filter((node) => node.Type === 2);
-        const typeThreeNodes = originalData.filter((node) => node.Type === 3);
-        const typeFourNodes = originalData.filter((node) => node.Type === 4);
+        const typeTwoNodes = originalData.filter(
+          (node: data) => node.Type === 2
+        );
+        const typeThreeNodes = originalData.filter(
+          (node: data) => node.Type === 3
+        );
+        const typeFourNodes = originalData.filter(
+          (node: data) => node.Type === 4
+        );
         var nodePlace = new NodePlaceClass(
           typeTwoNodes,
           typeThreeNodes,

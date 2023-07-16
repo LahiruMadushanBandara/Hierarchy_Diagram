@@ -1,5 +1,5 @@
 export interface Templates {
-  riskTemplate?: string;
+  riskTemplate: string;
 
   controlTemplate?: string;
 

@@ -1,63 +1,7 @@
 import { Templates } from 'src/app/models/templates.model';
 
 export class TemplateStructureClass {
-  private allTemplate: Templates;
-
   constructor(private dataItem: any) {}
-
-  public getTemplates(): Templates {
-    this.allTemplate.riskTemplate = this.GetRiskNodeTemplateGlobal(
-      this.dataItem
-    );
-
-    this.allTemplate.controlTemplate = this.GetControlNodeTemplateGlobal(
-      this.dataItem
-    );
-
-    this.allTemplate.causeTemplate = this.GetCauseTemplateGlobal(this.dataItem);
-
-    this.allTemplate.consequencesTemplate = this.GetConsequencesTemplateGlobal(
-      this.dataItem
-    );
-
-    this.allTemplate.bottomTemplate = this.GetOtherTemplateGlobal(
-      this.dataItem
-    );
-
-    this.allTemplate.controlTemplateExpand =
-      this.GetControlNodeTemplateGlobalExpand(this.dataItem);
-
-    this.allTemplate.riskTemplateExpand = this.GetRiskNodeTemplateGlobalExpand(
-      this.dataItem
-    );
-
-    this.allTemplate.riskActionTemplateExpand =
-      this.GetRiskActionTreatmentExpand(this.dataItem);
-
-    this.allTemplate.incidentTemplateExpand = this.GetIncidentExpand(
-      this.dataItem
-    );
-
-    this.allTemplate.complianceTemplateExpand =
-      this.GetComplianceObligationExpand(this.dataItem);
-
-    this.allTemplate.kpiTemplateExpand = this.GetKPIExpand(this.dataItem);
-    this.allTemplate.auditTemplateExpand = this.GetAuditExpand(this.dataItem);
-    this.allTemplate.hierarchyTemplateExpand = this.GetHierarchyExpand(
-      this.dataItem
-    );
-    this.allTemplate.authorityDocumentTemplateExpand =
-      this.GetAuthorityDocumentExpand(this.dataItem);
-    this.allTemplate.policyTemplateExpand = this.GetPolicyExpand(this.dataItem);
-
-    this.allTemplate.auditRecommendationsTemplateExpand =
-      this.GetAuditRecommendationsExpand(this.dataItem);
-
-    this.allTemplate.auditFinfingTemplateExpand = this.GetAuditFinfingExpand(
-      this.dataItem
-    );
-    return this.allTemplate;
-  }
 
   public GetControlNodeTemplateGlobal(contentDetails: any) {
     return (
@@ -571,5 +515,80 @@ export class TemplateStructureClass {
       '</div>' +
       '</div>'
     );
+  }
+
+  public setView(renderElement: any, isExpanded: boolean, dataItem) {
+    var riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
+    var controlTemplate = this.GetControlNodeTemplateGlobal(dataItem);
+    var causeTemplate = this.GetCauseTemplateGlobal(dataItem);
+    var consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
+    var bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+    var controlTemplateExpand =
+      this.GetControlNodeTemplateGlobalExpand(dataItem);
+    var riskTemplateExpand = this.GetRiskNodeTemplateGlobalExpand(dataItem);
+    var riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
+    var ieTemp = this.GetIncidentExpand(dataItem);
+    var coeTemp = this.GetComplianceObligationExpand(dataItem);
+    var keTemp = this.GetKPIExpand(dataItem);
+
+    var aeTemp = this.GetAuditExpand(dataItem);
+    var heTemp = this.GetHierarchyExpand(dataItem);
+    var aueTemp = this.GetAuthorityDocumentExpand(dataItem);
+    var peTemp = this.GetPolicyExpand(dataItem);
+    var areTemp = this.GetAuditRecommendationsExpand(dataItem);
+    var afeTemp = this.GetAuditFinfingExpand(dataItem);
+
+    if (isExpanded) {
+      if (dataItem.Title === 'Risk Node') {
+        var riskNodeTemp = kendo.template(riskTemplate);
+        renderElement.html(riskNodeTemp(dataItem));
+      } else if (dataItem.Title === 'Control Node') {
+        var controlNodeExpandTemp = kendo.template(controlTemplateExpand);
+        renderElement.html(controlNodeExpandTemp(dataItem));
+      } else if (dataItem.Title === 'Consequences Node') {
+        var consequencesTemp = kendo.template(consequencesTemplate);
+        renderElement.html(consequencesTemp(dataItem));
+      } else if (dataItem.Title === 'Cause Node') {
+        var causeTemp = kendo.template(causeTemplate);
+        renderElement.html(causeTemp(dataItem));
+      } else {
+        if (dataItem.Header === 'riskExpand') {
+          var riskExpandTemp = kendo.template(riskTemplateExpand);
+          renderElement.html(riskExpandTemp(dataItem));
+        } else if (dataItem.Header === 'riskActionExpand') {
+          var riskActionExpandTemp = kendo.template(riskActionTemplateExpand);
+          renderElement.html(riskActionExpandTemp(dataItem));
+        } else if (dataItem.Header === 'incidentExpand') {
+          var incidentExpandTemp = kendo.template(ieTemp);
+          renderElement.html(incidentExpandTemp(dataItem));
+        } else if (dataItem.Header === 'complianceExpand') {
+          var complianceExpandTemp = kendo.template(coeTemp);
+          renderElement.html(complianceExpandTemp(dataItem));
+        } else if (dataItem.Header === 'KPIExpand') {
+          var KPIExpandTemp = kendo.template(keTemp);
+          renderElement.html(KPIExpandTemp(dataItem));
+        }
+      }
+    } else {
+      if (dataItem.Title === 'Risk Node') {
+        var riskNodeTemp = kendo.template(riskTemplate);
+        renderElement.html(riskNodeTemp(dataItem));
+      } else if (dataItem.Title === 'Control Node') {
+        var controlNodeTemp = kendo.template(controlTemplate);
+        renderElement.html(controlNodeTemp(dataItem));
+      } else if (dataItem.Title === 'Consequences Node') {
+        var consequencesTemp = kendo.template(consequencesTemplate);
+        renderElement.html(consequencesTemp(dataItem));
+      } else if (dataItem.Title === 'Cause Node') {
+        var causeTemp = kendo.template(causeTemplate);
+        renderElement.html(causeTemp(dataItem));
+      } else if (dataItem.Title === 'Expand Node') {
+        var extraTemp = kendo.template(controlTemplateExpand);
+        renderElement.html(extraTemp(dataItem));
+      } else {
+        var otherTemp = kendo.template(bottomTemplate);
+        renderElement.html(otherTemp(dataItem));
+      }
+    }
   }
 }
