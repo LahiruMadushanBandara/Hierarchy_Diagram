@@ -5,6 +5,8 @@ import {
   Renderer2,
   ViewChild,
   ChangeDetectorRef,
+  SimpleChanges,
+  DoCheck,
 } from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateStructureClass } from './utils/classes/TemplateStructureClass';
@@ -20,22 +22,31 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
-
+  public viewMainDiagram = true;
+  private isNodeClicked = false;
   constructor(
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
     private dataService: DataService
   ) {}
 
+  ngDoCheck(): void {
+    // console.log('hi changes');
+  }
+
   ngOnInit(): void {
+    console.log('onInitWorks');
     sessionStorage.clear();
     let dataConnection = this.dataService.dataConnections;
     let originalData: data[] = this.dataService.originalData;
     var isExpanded = false;
-    var isNodeClicked = false;
+
+    var isNodeClick = false;
+
+    // var detectChange = this.cdr.detectChanges();
 
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
@@ -61,8 +72,9 @@ export class AppComponent implements OnInit {
       }
 
       // Call the change detection manually
-      this.cdr.detectChanges();
+      // this.cdr.detectChanges();
     };
+
     function visualTemplate(options: any) {
       var dataItem = options.dataItem;
       var Templates = new TemplateStructureClass(dataItem);
@@ -140,11 +152,8 @@ export class AppComponent implements OnInit {
       return arrangedNodes;
     }
 
-    if (isNodeClicked) {
-    } else {
-      const arrangedData = arrangeNodes(originalData);
-    }
-
+    let arrangedData = arrangeNodes(originalData);
+    console.log('arrangedData->', arrangedData);
     $(function () {
       $(document).ready(function () {
         createDiagram();
@@ -265,13 +274,22 @@ export class AppComponent implements OnInit {
       }
     });
 
-    function onNodeClick(node) {
-      isNodeClicked = true;
+    function onNodeClick(node: any) {
+      isNodeClick = true;
       var selectedNodeId = node.item.dataItem.id;
+      console.log('selectedNodeId', selectedNodeId);
       var selectedNodeWithChildrens = findChildNodes(
         dataConnection,
         selectedNodeId
       );
+      var clickedDataConnection = selectedNodeWithChildrens.dataConnections;
+      console.log(clickedDataConnection);
+      clickedDataConnection.push({
+        Id: 0,
+        FromShapeId: selectedNodeId,
+        ToShapeId: 1,
+        Text: null,
+      });
       console.log('selectedNodeWithChildrens', selectedNodeWithChildrens);
       var clickedData: data[] = [];
 
@@ -281,8 +299,22 @@ export class AppComponent implements OnInit {
         );
         clickedData.push(clickedDataItem[0]);
       }
-      console.log(clickedData);
-      arrangeNodes(clickedData);
+      clickedData.push({
+        Id: 1,
+        Type: 1,
+        ParentNodeId: 0,
+        Title: 'Risk Node',
+        Header: 'Risk',
+        Color: '',
+        htmlTemplate: '<div>Node 1</div>',
+      });
+      console.log('clickedData->', clickedData);
+
+      var clickedArrangedData = arrangeNodes(clickedData);
+      console.log('arrangedData', clickedArrangedData);
+      var diagram = $('#diagram').getKendoDiagram();
+      diagram.bringIntoView(diagram.shapes);
+      diagram.refresh();
       sessionStorage.clear();
     }
 
