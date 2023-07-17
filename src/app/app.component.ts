@@ -7,12 +7,14 @@ import {
   ChangeDetectorRef,
   SimpleChanges,
   DoCheck,
+  AfterViewInit,
+  AfterViewChecked,
 } from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateStructureClass } from './utils/classes/TemplateStructureClass';
 
 import { DataService } from './services/data.service';
-import { findChildNodes } from './utils/functions/findChildrenClass';
+import { findChildNodes } from './utils/functions/findChildrenFunction';
 import { NodePlaceClass } from './utils/classes/NodePlaceClass';
 import { data } from './models/data.model';
 
@@ -22,20 +24,19 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, DoCheck {
+export class AppComponent implements OnInit {
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
   public viewMainDiagram = true;
   private isNodeClicked = false;
+  display: boolean = true;
+
   constructor(
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
     private dataService: DataService
   ) {}
-
-  ngDoCheck(): void {
-    // console.log('hi changes');
-  }
+  chnage = this.cdr.detectChanges;
 
   ngOnInit(): void {
     console.log('onInitWorks');
@@ -43,8 +44,10 @@ export class AppComponent implements OnInit, DoCheck {
     let dataConnection = this.dataService.dataConnections;
     let originalData: data[] = this.dataService.originalData;
     var isExpanded = false;
-
+    var click = this.clickd;
     var isNodeClick = false;
+
+    var display = this.display;
 
     // var detectChange = this.cdr.detectChanges();
 
@@ -153,7 +156,6 @@ export class AppComponent implements OnInit, DoCheck {
     }
 
     let arrangedData = arrangeNodes(originalData);
-    console.log('arrangedData->', arrangedData);
     $(function () {
       $(document).ready(function () {
         createDiagram();
@@ -282,15 +284,16 @@ export class AppComponent implements OnInit, DoCheck {
         dataConnection,
         selectedNodeId
       );
+      console.log('selectedNodeWithChildrens', selectedNodeWithChildrens);
       var clickedDataConnection = selectedNodeWithChildrens.dataConnections;
-      console.log(clickedDataConnection);
+      console.log('clickedDataConnection->', clickedDataConnection);
       clickedDataConnection.push({
         Id: 0,
         FromShapeId: selectedNodeId,
         ToShapeId: 1,
         Text: null,
       });
-      console.log('selectedNodeWithChildrens', selectedNodeWithChildrens);
+
       var clickedData: data[] = [];
 
       for (let i = 0; i < selectedNodeWithChildrens.childnodes.length; i++) {
@@ -313,11 +316,17 @@ export class AppComponent implements OnInit, DoCheck {
       var clickedArrangedData = arrangeNodes(clickedData);
       console.log('arrangedData', clickedArrangedData);
       var diagram = $('#diagram').getKendoDiagram();
-      diagram.bringIntoView(diagram.shapes);
+      // diagram.bringIntoView(diagram.shapes);
       diagram.refresh();
       sessionStorage.clear();
+      this.display = false;
+      console.log(this.display);
     }
-
     var focused = false;
+  }
+  clickd() {
+    console.log('hi');
+    this.display = false;
+    console.log(this.display);
   }
 }
