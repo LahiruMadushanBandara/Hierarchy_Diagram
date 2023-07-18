@@ -309,7 +309,7 @@ height: 1000px;
   height: 1000px;
 }
 
-/* expand view button  */
+/* expand view toggle-button  */
 
 .button-container {
   position: fixed;
@@ -319,14 +319,16 @@ height: 1000px;
 
 .toggle-button {
   background-color: #070707;
-  border: none;
-  color: white;
+  border: black;
+  color: #ffffff;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: transform 0.3s;
+  margin-left: 1200px;
+ 
 }
 
 .toggle-button:hover {
@@ -335,4 +337,11 @@ height: 1000px;
 
 .toggle-button:active {
   transform: translateY(0);
+}
+
+label[for="toggle-switch"] {
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;  
+
 }
