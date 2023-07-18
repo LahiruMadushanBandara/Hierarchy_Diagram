@@ -18,6 +18,7 @@ import { FocusComponent } from './components/focus/focus.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  //entryComponents:[AppComponent]
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
