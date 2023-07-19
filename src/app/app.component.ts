@@ -41,10 +41,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     console.log('onInitWorks');
     sessionStorage.clear();
+    var clickedArrangedData = [];
     let dataConnection = this.dataService.dataConnections;
     let originalData: data[] = this.dataService.originalData;
     var isExpanded = false;
-    var click = this.clickd;
     var isNodeClick = false;
 
     var display = this.display;
@@ -73,9 +73,6 @@ export class AppComponent implements OnInit {
         diagram.bringIntoView(diagram.shapes);
         diagram.refresh();
       }
-
-      // Call the change detection manually
-      // this.cdr.detectChanges();
     };
 
     function visualTemplate(options: any) {
@@ -286,7 +283,7 @@ export class AppComponent implements OnInit {
       );
       console.log('selectedNodeWithChildrens', selectedNodeWithChildrens);
       var clickedDataConnection = selectedNodeWithChildrens.dataConnections;
-      console.log('clickedDataConnection->', clickedDataConnection);
+      console.log(' ->', clickedDataConnection);
       clickedDataConnection.push({
         Id: 0,
         FromShapeId: selectedNodeId,
@@ -313,7 +310,7 @@ export class AppComponent implements OnInit {
       });
       console.log('clickedData->', clickedData);
 
-      var clickedArrangedData = arrangeNodes(clickedData);
+      clickedArrangedData = arrangeNodes(clickedData);
       console.log('arrangedData', clickedArrangedData);
       var diagram = $('#diagram').getKendoDiagram();
       // diagram.bringIntoView(diagram.shapes);
@@ -321,12 +318,8 @@ export class AppComponent implements OnInit {
       sessionStorage.clear();
       this.display = false;
       console.log(this.display);
+      sessionStorage.setItem('newshape', JSON.stringify(clickedArrangedData));
     }
     var focused = false;
-  }
-  clickd() {
-    console.log('hi');
-    this.display = false;
-    console.log(this.display);
   }
 }

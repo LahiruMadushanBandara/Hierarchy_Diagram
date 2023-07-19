@@ -6,6 +6,7 @@ export function findChildNodes(
 ) {
   const childNodes = [];
   const conection = [];
+  const firstSelectedNode = selectedNodeId;
 
   function findChildren(selectedNodeId: number) {
     for (const connection of dataConnection) {
@@ -18,5 +19,7 @@ export function findChildNodes(
   }
 
   findChildren(selectedNodeId);
+
+  dataConnection.forEach((x) => (x.FromShapeId = firstSelectedNode));
   return { childnodes: childNodes, dataConnections: conection };
 }
