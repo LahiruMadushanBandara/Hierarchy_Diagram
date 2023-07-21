@@ -309,39 +309,42 @@ height: 1000px;
   height: 1000px;
 }
 
-/* expand view toggle-button  */
-
-.button-container {
-  position: fixed;
+/* Add this CSS to style the toggle switch */
+.switch-container {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  position: absolute;
   top: 10px;
   right: 10px;
-}
-
-.toggle-button {
-  background-color: #070707;
-  border: black;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: transform 0.3s;
   margin-left: 1200px;
- 
 }
 
-.toggle-button:hover {
-  transform: translateY(-2px);
+.switch-slider {
+  width: 26px;
+  height: 26px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
 }
 
-.toggle-button:active {
-  transform: translateY(0);
+.switch-container.active .switch-slider {
+  transform: translateX(30px);
 }
 
-label[for="toggle-switch"] {
-  font-size: 20px;
-  color: #333;
-  font-weight: bold;  
+.switch-label{
+
+  margin-left: 1180px;
+  font-size: large;
+  position: relative;
+  top: 2px;
+  left: 2px;
+  font-weight: bolder;
 
 }

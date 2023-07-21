@@ -35,7 +35,7 @@ export class DataService {
     { "Id": 18, "Type": 3, "ParentNodeId": 17, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
     { "Id": 19, "Type": 3, "ParentNodeId": 18, "Title": "Consequences Node", "Header": "Consequences", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
     { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
-    { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
+    { "Id": 20, "Type": 3, "ParentNodeId": 1, "Title": "Control Node", "Header": "Control", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },      
     { "Id": 21, "Type": 3, "ParentNodeId": 20, "Title": "Consequences Node", "Header": "Consequences", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
 
 
@@ -52,6 +52,9 @@ export class DataService {
     { "Id": 32, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "complianceExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
     { "Id": 33, "Type": 4, "ParentNodeId": 1, "Title": "Other Node", "Header": "complianceExpand", "Color": "#3399cc", htmlTemplate: "<div>Agreed process for staff to anonymously raise concerns about workplacr practices</div>" },
     { "Id": 34, "Type": 2, "ParentNodeId": 1, "Title": "Cause Node", "Header": "Cause", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
+    // { "Id": 35, "Type": 2, "ParentNodeId": 1, "Title": "Cause Node", "Header": "Cause", "Color": "#3399cc", htmlTemplate: "<div>Agreed process </div>" },
+   
+    
   ];
 
 

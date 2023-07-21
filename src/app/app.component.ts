@@ -14,7 +14,7 @@ declare var $: any;
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
-  private dataItem
+
 
   riskTemplate: string = '';
   controlTemplate: string = '';
@@ -47,10 +47,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     function visualTemplate(options: any) {
 
       var Templates = new TemplateClass();
-
-
-      // return renderTemplate(Templates , options , isExpanded);
-
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
@@ -181,20 +177,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     }
 
-    //  //// Create the button element
-    //  const button = this.renderer.createElement('button');
-    //  const buttonText = this.renderer.createText('Expand');
-    //  this.renderer.appendChild(button, buttonText);
-    //  this.renderer.addClass(button, 'toggle-button');
-
-    //  // Add a click event listener to the button
-    //  this.renderer.listen(button, 'click', toggleExpand);
-
-    //  // Append the button to the buttonContainer element
-    //  this.renderer.appendChild(this.buttonContainer.nativeElement, button);
-
-
-
 
     function onEdit(e) {
       /* The result can be observed in the DevTools(F12) console of the browser. */
@@ -203,7 +185,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
 
-    function arrangeNodes(originalData, verticalSpacing) {
+    function arrangeNodes(originalData) {
 
       const arrangedNodes = [];
 
@@ -214,8 +196,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       if (riskNode) {
 
+
+
         const horizontalSpacing = 450;
-        // const verticalSpacing = 300;
+        const horizontalSpacingFour = 470;
+        const verticalSpacing = 420;
         const verticalSpacingFour = 200;
         const maxNodesPerRow = 5;
         const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
@@ -365,8 +350,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
 
-
-
         // Arrange type 4 nodes (below type 2 and type 3)
         const typeFourNodes = originalData.filter((node) => node.Type === 4);
         typeFourNodes.forEach((node, index) => {
@@ -383,6 +366,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         });
 
+
+
+
+
+
+
       }
 
       return arrangedNodes;
@@ -392,7 +381,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log("originaldata:", originalData)
 
 
-    const arrangedData = arrangeNodes(originalData, 420);
+    const arrangedData = arrangeNodes(originalData);
     console.log('arrangedData->', arrangedData);
     console.log(
       arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }))
@@ -464,31 +453,30 @@ export class AppComponent implements OnInit, AfterViewInit {
           { "Id": 30, "FromShapeId": 1, "ToShapeId": 32, "Text": null },
           { "Id": 23, "FromShapeId": 1, "ToShapeId": 33, "Text": null },
           { "Id": 24, "FromShapeId": 1, "ToShapeId": 34, "Text": null },
+
         ];
 
-
-
-
-        function toggleExpand(event) {
-          event.preventDefault();
-          const button = document.querySelector('.toggle-button');//Select the button element
+        // Function to handle the toggle switch behavior
+        function toggleExpand() {
           isExpanded = !isExpanded;
 
-          //change the text content of the button
-          if (isExpanded) {
-            button.innerHTML = 'Normal';
-            var diagram = $('#diagram').getKendoDiagram();
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          } else {
-            button.innerHTML = 'Expand';
-            var diagram = $('#diagram').getKendoDiagram();
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          }
+          // Update the switch state
+          const toggleSwitch = document.getElementById('expandSwitch');
+          toggleSwitch.classList.toggle('active', isExpanded);
 
-          
+          // Update the label text
+          const switchLabel = document.getElementById('switchLabel');
+          switchLabel.innerText = isExpanded ? 'Expand' : 'Collapse';
+
+          // Use kendoDiagram variable to get the diagram instance
+          var diagram = kendoDiagram.getKendoDiagram();
+          diagram.bringIntoView(diagram.shapes);
+          diagram.refresh();
         }
+
+
+
+
 
 
 
@@ -542,18 +530,23 @@ export class AppComponent implements OnInit, AfterViewInit {
               }
             }
           }),
+
           editable: {
             shapeTemplate: detailTemp,
             tools: [
               {
                 template: `
-                  <button class="toggle-button">Expand</button>
+                
+                <span  class="switch-label" id="switchLabel"><b>Collapes</b></span>
+                <div class="switch-container" id="expandSwitch" onclick="toggleExpand()">
+                <div class="switch-slider"></div>
+                </div>
                 `,
-                enable: true,
-                click: toggleExpand
+                enable: true
               }
             ]
           },
+
           shapeDefaults: {
             stroke: {
               color: "#979797",
@@ -578,12 +571,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
 
 
-        // Get the button element and attach the click event listener
-        var button = document.querySelector('.toggle-button');
-        button.addEventListener('click', toggleExpand);
-        var diagram = $('#diagram').getKendoDiagram();
 
 
+
+        // Get the switch element and attach the click event listener
+        var toggleSwitch = document.getElementById('expandSwitch');
+        if (toggleSwitch) {
+          toggleSwitch.addEventListener('click', toggleExpand);
+        }
 
 
         var diagram = $('#diagram').getKendoDiagram();
