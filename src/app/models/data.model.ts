@@ -7,6 +7,7 @@ export interface data {
   Header: string,
   Color: string,
   htmlTemplate: string,
+ 
 
 }
 

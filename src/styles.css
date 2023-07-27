@@ -348,3 +348,78 @@ height: 1000px;
   font-weight: bolder;
 
 }
+
+
+/* CSS for Switch 2  */
+.switch-container2 {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px; /* Adjust the top position to set the distance from the top edge of the page */
+  left: 20px; /* Adjust the left position to set the distance from the left edge of the page */
+}
+
+.switch-slider2 {
+  width: 26px;
+  height: 26px;
+  background-color: #fff; /* Customize background color for switch 2 */
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.switch-container2.active .switch-slider2 {
+  transform: translateX(30px); /* Customize the position when switch 2 is active */
+}
+
+
+.switch-label2 {
+  position: absolute;
+  top: 18px;
+  left: 80px;
+  font-weight: bold;
+}
+
+
+
+/* CSS for Switch 3  */
+.switch-container3 {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px; /* Adjust the top position to set the distance from the top edge of the page */
+  left: 150px; /* Adjust the left position to set the distance from the left edge of the page */
+}
+
+.switch-slider3 {
+  width: 26px;
+  height: 26px;
+  background-color: #fff; /* Customize background color for switch 2 */
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.switch-container3.active .switch-slider3 {
+  transform: translateX(30px); /* Customize the position when switch 3 is active */
+}
+
+
+.switch-label3 {
+  position: absolute;
+  top: 18px;
+  left: 210px;
+  font-weight: bold;
+}

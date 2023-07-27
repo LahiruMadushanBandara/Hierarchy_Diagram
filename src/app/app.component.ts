@@ -1,4 +1,13 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+} from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateClass } from './utils/classes/TemplateClass';
 
@@ -9,12 +18,10 @@ declare var $: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
-
 
   riskTemplate: string = '';
   controlTemplate: string = '';
@@ -22,15 +29,21 @@ export class AppComponent implements OnInit, AfterViewInit {
   consequencesTemplate: string = '';
   otherTemplate: string = '';
 
-
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef, private dataService: DataService) { }
+  constructor(
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
+    private dataService: DataService
+  ) { }
   ngAfterViewInit(): void { }
 
   ngOnInit(): void {
     sessionStorage.clear();
 
     var tempTitleDetail = '';
-    var isExpanded = false;
+    let isExpanded = false;
+    let enableriskview = false;
+    let enableKPIview = false;
+    var originalConnections; // Variable to store the original connections
 
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
@@ -45,21 +58,23 @@ export class AppComponent implements OnInit, AfterViewInit {
     // var nodeClickChek: any = this.nodeClick;
 
     function visualTemplate(options: any) {
-
       var Templates = new TemplateClass();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
-
 
       //get templates from template class
       var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
       var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
       var causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
-      var consequencesTemplate = Templates.GetConsequencesTemplateGlobal(dataItem);
+      var consequencesTemplate =
+        Templates.GetConsequencesTemplateGlobal(dataItem);
       var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
-      var controlTemplateExpand = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
-      var riskTemplateExpand = Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
-      var riskActionTemplateExpand = Templates.GetRiskActionTreatmentExpand(dataItem);
+      var controlTemplateExpand =
+        Templates.GetControlNodeTemplateGlobalExpand(dataItem);
+      var riskTemplateExpand =
+        Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
+      var riskActionTemplateExpand =
+        Templates.GetRiskActionTreatmentExpand(dataItem);
       var ieTemp = Templates.GetIncidentExpand(dataItem);
       var coeTemp = Templates.GetComplianceObligationExpand(dataItem);
       var keTemp = Templates.GetKPIExpand(dataItem);
@@ -83,75 +98,110 @@ export class AppComponent implements OnInit, AfterViewInit {
       sessionStorage.setItem('complianceExpand', coeTemp);
       sessionStorage.setItem('KPIExpand', keTemp);
 
-
-
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
 
 
-
-      if (isExpanded) {
-        console.log("Expand");
-        if (dataItem.Title === 'Risk Node') {
-          var riskNodeTemp = kendo.template(riskTemplate);
-          renderElement.html(riskNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Control Node') {
-          var controlNodeExpandTemp = kendo.template(controlTemplateExpand);
-          renderElement.html(controlNodeExpandTemp(dataItem));
-        } else if (dataItem.Title === 'Consequences Node') {
-          var consequencesTemp = kendo.template(consequencesTemplate);
-          renderElement.html(consequencesTemp(dataItem));
-        } else if (dataItem.Title === 'Cause Node') {
-          var causeTemp = kendo.template(causeTemplate);
-          renderElement.html(causeTemp(dataItem));
-        } else {
-
+      if (enableriskview) {
+        enableKPIview = false;
+        if (isExpanded) {
           if (dataItem.Header === 'riskExpand') {
             var riskExpandTemp = kendo.template(riskTemplateExpand);
             renderElement.html(riskExpandTemp(dataItem));
-          } else if (dataItem.Header === 'riskActionExpand') {
-            var riskActionExpandTemp = kendo.template(riskActionTemplateExpand);
-            renderElement.html(riskActionExpandTemp(dataItem));
-          } else if (dataItem.Header === 'incidentExpand') {
-            var incidentExpandTemp = kendo.template(ieTemp);
-            renderElement.html(incidentExpandTemp(dataItem));
-          } else if (dataItem.Header === 'complianceExpand') {
-            var complianceExpandTemp = kendo.template(coeTemp);
-            renderElement.html(complianceExpandTemp(dataItem));
-          } else if (dataItem.Header === 'KPIExpand') {
-            var KPIExpandTemp = kendo.template(keTemp);
-            renderElement.html(KPIExpandTemp(dataItem));
+          }
+        } else {
+          if (dataItem.Header === 'riskExpand') {
+            var otherTemp = kendo.template(bottomTemplate);
+            renderElement.html(otherTemp(dataItem));
           }
         }
-
-      } else {
-        console.log("collaps");
 
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Control Node') {
-          var controlNodeTemp = kendo.template(controlTemplate);
-          renderElement.html(controlNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Consequences Node') {
-          var consequencesTemp = kendo.template(consequencesTemplate);
-          renderElement.html(consequencesTemp(dataItem));
-        } else if (dataItem.Title === 'Cause Node') {
-          var causeTemp = kendo.template(causeTemplate);
-          renderElement.html(causeTemp(dataItem));
-        } else if (dataItem.Title === 'Expand Node') {
-          var extraTemp = kendo.template(controlTemplateExpand);
-          renderElement.html(extraTemp(dataItem));
+        }
+
+
+      } else if (enableKPIview) {
+        enableriskview = false;
+        if (isExpanded) {
+          if (dataItem.Header === 'KPIExpand') {
+            var KPIExpandTemp = kendo.template(keTemp);
+            renderElement.html(KPIExpandTemp(dataItem));
+          }
         } else {
-          var otherTemp = kendo.template(bottomTemplate);
-          renderElement.html(otherTemp(dataItem));
+          if (dataItem.Header === 'KPIExpand') {
+            var otherTemp = kendo.template(bottomTemplate);
+            renderElement.html(otherTemp(dataItem));
+          }
+        }
+
+        if (dataItem.Title === 'Risk Node') {
+          var riskNodeTemp = kendo.template(riskTemplate);
+          renderElement.html(riskNodeTemp(dataItem));
+        }
+
+
+      } else {
+        if (isExpanded) {
+          console.log('Expand');
+          if (dataItem.Title === 'Risk Node') {
+            var riskNodeTemp = kendo.template(riskTemplate);
+            renderElement.html(riskNodeTemp(dataItem));
+          } else if (dataItem.Title === 'Control Node') {
+            var controlNodeExpandTemp = kendo.template(controlTemplateExpand);
+            renderElement.html(controlNodeExpandTemp(dataItem));
+          } else if (dataItem.Title === 'Consequences Node') {
+            var consequencesTemp = kendo.template(consequencesTemplate);
+            renderElement.html(consequencesTemp(dataItem));
+          } else if (dataItem.Title === 'Cause Node') {
+            var causeTemp = kendo.template(causeTemplate);
+            renderElement.html(causeTemp(dataItem));
+          } else {
+            if (dataItem.Header === 'riskExpand') {
+              var riskExpandTemp = kendo.template(riskTemplateExpand);
+              renderElement.html(riskExpandTemp(dataItem));
+            } else if (dataItem.Header === 'riskActionExpand') {
+              var riskActionExpandTemp = kendo.template(
+                riskActionTemplateExpand
+              );
+              renderElement.html(riskActionExpandTemp(dataItem));
+            } else if (dataItem.Header === 'incidentExpand') {
+              var incidentExpandTemp = kendo.template(ieTemp);
+              renderElement.html(incidentExpandTemp(dataItem));
+            } else if (dataItem.Header === 'complianceExpand') {
+              var complianceExpandTemp = kendo.template(coeTemp);
+              renderElement.html(complianceExpandTemp(dataItem));
+            } else if (dataItem.Header === 'KPIExpand') {
+              var KPIExpandTemp = kendo.template(keTemp);
+              renderElement.html(KPIExpandTemp(dataItem));
+            }
+          }
+        } else {
+          console.log('collaps');
+
+          if (dataItem.Title === 'Risk Node') {
+            var riskNodeTemp = kendo.template(riskTemplate);
+            renderElement.html(riskNodeTemp(dataItem));
+          } else if (dataItem.Title === 'Control Node') {
+            var controlNodeTemp = kendo.template(controlTemplate);
+            renderElement.html(controlNodeTemp(dataItem));
+          } else if (dataItem.Title === 'Consequences Node') {
+            var consequencesTemp = kendo.template(consequencesTemplate);
+            renderElement.html(consequencesTemp(dataItem));
+          } else if (dataItem.Title === 'Cause Node') {
+            var causeTemp = kendo.template(causeTemplate);
+            renderElement.html(causeTemp(dataItem));
+          } else if (dataItem.Title === 'Expand Node') {
+            var extraTemp = kendo.template(controlTemplateExpand);
+            renderElement.html(extraTemp(dataItem));
+          } else {
+            var otherTemp = kendo.template(bottomTemplate);
+            renderElement.html(otherTemp(dataItem));
+          }
         }
       }
-
-
-
-
 
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
@@ -171,12 +221,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       var visual = new kendo.dataviz.diagram.Group();
       visual.drawingElement.append(output);
       return visual;
-
-
-
-
     }
-
 
     function onEdit(e) {
       /* The result can be observed in the DevTools(F12) console of the browser. */
@@ -184,9 +229,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       console.log('Editing shape with model id: ' + e.shape.id);
     }
 
-
     function arrangeNodes(originalData) {
-
       const arrangedNodes = [];
 
       // Find the risk node (type 1 with ParentNodeId 0)
@@ -195,9 +238,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       );
 
       if (riskNode) {
-
-
-
         const horizontalSpacing = 450;
         const horizontalSpacingFour = 470;
         const verticalSpacing = 420;
@@ -225,7 +265,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         let columnNumber = 0;
         let rowNodeCount = 0;
 
-
         for (let i = 0; i < typeTwoNodes.length; i++) {
           console.log('typeTwoNodes->', typeTwoNodes[i].ParentNodeId);
           if (
@@ -242,7 +281,6 @@ export class AppComponent implements OnInit, AfterViewInit {
             typeTwoNodes[i].y = y;
             arrangedNodes.push(typeTwoNodes[i]);
             rowNumber++;
-
           } else if (typeTwoNodes[i].Title == 'Control Node') {
             const x = originX - (columnNumber + 1) * horizontalSpacing;
             const y = originY + rowNumber * verticalSpacing;
@@ -322,33 +360,23 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
 
         // Arrange type 1 (risk) node
-        const typeTwoRows = Math.ceil(typeTwoNodes.length / maxNodesPerRow);
-        const typeThreeRows = Math.ceil(typeThreeNodes.length / maxNodesPerRow);
+        const typeTwoRows = Math.ceil(
+          typeTwoNodes.length / (maxNodesPerRow - 1)
+        );
+        const typeThreeRows = Math.ceil(
+          typeThreeNodes.length / (maxNodesPerRow - 1)
+        );
 
         let maxTypeTwoTypeThreeRows = Math.max(typeTwoRows, typeThreeRows);
 
-        if (typeTwoRows === typeThreeRows) {
-
-
-          const riskNodeX = originX;
-          const riskNodeY =
-            originY + (maxTypeTwoTypeThreeRows - 2) * verticalSpacing + verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
-          riskNode.x = riskNodeX;
-          riskNode.y = riskNodeY;
-          arrangedNodes.push(riskNode);
-
-        }
-        else {
-          const riskNodeX = originX;
-          const riskNodeY =
-            originY + verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
-          riskNode.x = riskNodeX;
-          riskNode.y = riskNodeY;
-          arrangedNodes.push(riskNode);
-
-        }
-
-
+        let riskNodeX = originX;
+        let riskNodeY =
+          originY +
+          (maxTypeTwoTypeThreeRows - 2) * verticalSpacing +
+          verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
+        riskNode.x = riskNodeX;
+        riskNode.y = riskNodeY;
+        arrangedNodes.push(riskNode);
 
         // Arrange type 4 nodes (below type 2 and type 3)
         const typeFourNodes = originalData.filter((node) => node.Type === 4);
@@ -358,28 +386,22 @@ export class AppComponent implements OnInit, AfterViewInit {
           const columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
 
           const x = riskNode.x - (columnNumber - 5) * horizontalSpacing; // Adjusting the starting point for type 4 nodes
-          const y = riskNode.y + rowNumber * verticalSpacingFour + (maxTypeTwoTypeThreeRows + 4) * verticalSpacingFour;
+          const y =
+            riskNode.y +
+            rowNumber * verticalSpacingFour +
+            (maxTypeTwoTypeThreeRows + 4) * verticalSpacingFour;
           node.x = x;
           node.y = y;
           arrangedNodes.push(node);
           typeFourIndex++;
-
         });
-
-
-
-
-
-
-
       }
 
       return arrangedNodes;
     }
 
-    var originalData = this.dataService.originalData
-    console.log("originaldata:", originalData)
-
+    var originalData = this.dataService.originalData;
+    console.log('originaldata:', originalData);
 
     const arrangedData = arrangeNodes(originalData);
     console.log('arrangedData->', arrangedData);
@@ -415,45 +437,42 @@ export class AppComponent implements OnInit, AfterViewInit {
           dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         }
 
-
         var dataConnections = [
-          { "Id": 0, "FromShapeId": 1, "ToShapeId": 2, "Text": null },
-          { "Id": 1, "FromShapeId": 2, "ToShapeId": 3, "Text": null },
-          { "Id": 2, "FromShapeId": 3, "ToShapeId": 4, "Text": null },
-          { "Id": 3, "FromShapeId": 4, "ToShapeId": 5, "Text": null },
-          { "Id": 4, "FromShapeId": 1, "ToShapeId": 6, "Text": null },
-          { "Id": 5, "FromShapeId": 6, "ToShapeId": 7, "Text": null },
-          { "Id": 6, "FromShapeId": 7, "ToShapeId": 8, "Text": null },
-          { "Id": 7, "FromShapeId": 8, "ToShapeId": 9, "Text": null },
-          { "Id": 8, "FromShapeId": 1, "ToShapeId": 10, "Text": null },
-          { "Id": 9, "FromShapeId": 10, "ToShapeId": 11, "Text": null },
+          { Id: 0, FromShapeId: 1, ToShapeId: 2, Text: null },
+          { Id: 1, FromShapeId: 2, ToShapeId: 3, Text: null },
+          { Id: 2, FromShapeId: 3, ToShapeId: 4, Text: null },
+          { Id: 3, FromShapeId: 4, ToShapeId: 5, Text: null },
+          { Id: 4, FromShapeId: 1, ToShapeId: 6, Text: null },
+          { Id: 5, FromShapeId: 6, ToShapeId: 7, Text: null },
+          { Id: 6, FromShapeId: 7, ToShapeId: 8, Text: null },
+          { Id: 7, FromShapeId: 8, ToShapeId: 9, Text: null },
+          { Id: 8, FromShapeId: 1, ToShapeId: 10, Text: null },
+          { Id: 9, FromShapeId: 10, ToShapeId: 11, Text: null },
 
-          { "Id": 10, "FromShapeId": 1, "ToShapeId": 12, "Text": null },
-          { "Id": 11, "FromShapeId": 12, "ToShapeId": 13, "Text": null },
-          { "Id": 12, "FromShapeId": 13, "ToShapeId": 14, "Text": null },
-          { "Id": 13, "FromShapeId": 14, "ToShapeId": 15, "Text": null },
-          { "Id": 14, "FromShapeId": 1, "ToShapeId": 16, "Text": null },
-          { "Id": 15, "FromShapeId": 16, "ToShapeId": 17, "Text": null },
-          { "Id": 16, "FromShapeId": 17, "ToShapeId": 18, "Text": null },
-          { "Id": 17, "FromShapeId": 18, "ToShapeId": 19, "Text": null },
-          { "Id": 18, "FromShapeId": 1, "ToShapeId": 20, "Text": null },
-          { "Id": 19, "FromShapeId": 20, "ToShapeId": 21, "Text": null },
+          { Id: 10, FromShapeId: 1, ToShapeId: 12, Text: null },
+          { Id: 11, FromShapeId: 12, ToShapeId: 13, Text: null },
+          { Id: 12, FromShapeId: 13, ToShapeId: 14, Text: null },
+          { Id: 13, FromShapeId: 14, ToShapeId: 15, Text: null },
+          { Id: 14, FromShapeId: 1, ToShapeId: 16, Text: null },
+          { Id: 15, FromShapeId: 16, ToShapeId: 17, Text: null },
+          { Id: 16, FromShapeId: 17, ToShapeId: 18, Text: null },
+          { Id: 17, FromShapeId: 18, ToShapeId: 19, Text: null },
+          { Id: 18, FromShapeId: 1, ToShapeId: 20, Text: null },
+          { Id: 19, FromShapeId: 20, ToShapeId: 21, Text: null },
 
-
-          { "Id": 20, "FromShapeId": 1, "ToShapeId": 22, "Text": null },
-          { "Id": 21, "FromShapeId": 1, "ToShapeId": 23, "Text": null },
-          { "Id": 22, "FromShapeId": 1, "ToShapeId": 24, "Text": null },
-          { "Id": 23, "FromShapeId": 1, "ToShapeId": 25, "Text": null },
-          { "Id": 24, "FromShapeId": 1, "ToShapeId": 26, "Text": null },
-          { "Id": 25, "FromShapeId": 1, "ToShapeId": 27, "Text": null },
-          { "Id": 26, "FromShapeId": 1, "ToShapeId": 28, "Text": null },
-          { "Id": 27, "FromShapeId": 1, "ToShapeId": 29, "Text": null },
-          { "Id": 28, "FromShapeId": 1, "ToShapeId": 30, "Text": null },
-          { "Id": 29, "FromShapeId": 1, "ToShapeId": 31, "Text": null },
-          { "Id": 30, "FromShapeId": 1, "ToShapeId": 32, "Text": null },
-          { "Id": 23, "FromShapeId": 1, "ToShapeId": 33, "Text": null },
-          { "Id": 24, "FromShapeId": 1, "ToShapeId": 34, "Text": null },
-
+          { Id: 20, FromShapeId: 1, ToShapeId: 22, Text: null },
+          { Id: 21, FromShapeId: 1, ToShapeId: 23, Text: null },
+          { Id: 22, FromShapeId: 1, ToShapeId: 24, Text: null },
+          { Id: 23, FromShapeId: 1, ToShapeId: 25, Text: null },
+          { Id: 24, FromShapeId: 1, ToShapeId: 26, Text: null },
+          { Id: 25, FromShapeId: 1, ToShapeId: 27, Text: null },
+          { Id: 26, FromShapeId: 1, ToShapeId: 28, Text: null },
+          { Id: 27, FromShapeId: 1, ToShapeId: 29, Text: null },
+          { Id: 28, FromShapeId: 1, ToShapeId: 30, Text: null },
+          { Id: 29, FromShapeId: 1, ToShapeId: 31, Text: null },
+          { Id: 30, FromShapeId: 1, ToShapeId: 32, Text: null },
+          { Id: 31, FromShapeId: 1, ToShapeId: 33, Text: null },
+          { Id: 32, FromShapeId: 1, ToShapeId: 34, Text: null },
         ];
 
         // Function to handle the toggle switch behavior
@@ -474,62 +493,135 @@ export class AppComponent implements OnInit, AfterViewInit {
           diagram.refresh();
         }
 
+       
 
+        function toggleRiskview() {
+          enableriskview = !enableriskview;
+          const toggleSwitch2 = document.getElementById('expandSwitch2');
+          toggleSwitch2.classList.toggle('active', enableriskview);
 
+          var diagram = kendoDiagram.getKendoDiagram();
+          var connectionsDataSource = diagram.connectionsDataSource;
 
+          
+          if (enableriskview) {
+            // Clear connections that are not linked to nodes with header = riskExpand
+            var visibleConnections = diagram.connectionsDataSource
+              .data()
+              .filter(function (connection) {
+                var fromNode = diagram.dataSource.get(connection.from);
+                var toNode = diagram.dataSource.get(connection.to);
+                return (
+                  (fromNode && fromNode.Header === 'riskExpand') ||
+                  (toNode && toNode.Header === 'riskExpand')
+                );
+              });
 
+            // Store the original connections before clearing them
+            originalConnections = diagram.connectionsDataSource.data().slice();
 
+            // Clear all connections
+            connectionsDataSource.data([]);
 
-        var kendoDiagram = $("#diagram").kendoDiagram({
-          dataSource: ({
+            // Re-add visible connections
+            connectionsDataSource.data(visibleConnections);
+          } else {
+            // Re-establish all the original connections
+            connectionsDataSource.data(originalConnections);
+          }
+
+          diagram.bringIntoView(diagram.shapes);
+          diagram.refresh();
+        }
+
+        function toggleKPIview() {
+          enableKPIview = !enableKPIview;
+          const toggleSwitch3 = document.getElementById('expandSwitch3');
+          toggleSwitch3.classList.toggle('active', enableKPIview);
+
+          var diagram = kendoDiagram.getKendoDiagram();
+          var connectionsDataSource = diagram.connectionsDataSource;
+
+         
+          if (enableKPIview) {
+            // Clear connections that are not linked to nodes with header = riskExpand
+            var visibleConnections = diagram.connectionsDataSource
+              .data()
+              .filter(function (connection) {
+                var fromNode = diagram.dataSource.get(connection.from);
+                var toNode = diagram.dataSource.get(connection.to);
+                return (
+                  (fromNode && fromNode.Header === 'KPIExpand') ||
+                  (toNode && toNode.Header === 'KPIExpand')
+                );
+              });
+
+            // Store the original connections before clearing them
+            originalConnections = diagram.connectionsDataSource.data().slice();
+
+            // Clear all connections
+            connectionsDataSource.data([]);
+
+            // Re-add visible connections
+            connectionsDataSource.data(visibleConnections);
+          } else {
+            // Re-establish all the original connections
+            connectionsDataSource.data(originalConnections);
+          }
+
+          diagram.bringIntoView(diagram.shapes);
+          diagram.refresh();
+        }
+
+        var kendoDiagram = $('#diagram').kendoDiagram({
+          dataSource: {
             data: dataShapes,
             schema: {
               model: {
-                id: "id",
+                id: 'id',
                 fields: {
-                  id: { from: "Id", type: "number", editable: false },
-                  Type: { type: "number" },
-                  Color: { type: "string" }
-                }
-              }
+                  id: { from: 'Id', type: 'number', editable: false },
+                  Type: { type: 'number' },
+                  Color: { type: 'string' },
+                },
+              },
             },
             change: function (ev) {
               var newData = [];
               var dataSourceData = ev.sender.view().toJSON();
 
               for (var i = 0; i < dataSourceData.length; i++) {
-
                 var item = dataSourceData[i];
                 newData.push({
-                  "Id": item.id,
-                  "Type": item.Type,
-                  "Color": item.Color,
-                  "x": item.x,
-                  "y": item.y,
-                  "Title": item.Title,
+                  Id: item.id,
+                  Type: item.Type,
+                  Color: item.Color,
+                  x: item.x,
+                  y: item.y,
+                  Title: item.Title,
                 });
               }
-              sessionStorage.setItem("shapes", JSON.stringify(newData));
-              console.log("saved");
-            }
-          }),
-          connectionsDataSource: ({
+              sessionStorage.setItem('shapes', JSON.stringify(newData));
+              console.log('saved');
+            },
+          },
+          connectionsDataSource: {
             data: dataConnections,
             schema: {
               model: {
-                id: "id",
+                id: 'id',
                 fields: {
-                  id: { from: "Id", type: "number", editable: false },
-                  from: { from: "FromShapeId", type: "number" },
-                  to: { from: "ToShapeId", type: "number" },
-                  fromX: { from: "FromPointX", type: "number" },
-                  fromY: { from: "FromPointY", type: "number" },
-                  toX: { from: "ToPointX", type: "number" },
-                  toY: { from: "ToPointY", type: "number" }
-                }
-              }
-            }
-          }),
+                  id: { from: 'Id', type: 'number', editable: false },
+                  from: { from: 'FromShapeId', type: 'number' },
+                  to: { from: 'ToShapeId', type: 'number' },
+                  fromX: { from: 'FromPointX', type: 'number' },
+                  fromY: { from: 'FromPointY', type: 'number' },
+                  toX: { from: 'ToPointX', type: 'number' },
+                  toY: { from: 'ToPointY', type: 'number' },
+                },
+              },
+            },
+          },
 
           editable: {
             shapeTemplate: detailTemp,
@@ -541,54 +633,65 @@ export class AppComponent implements OnInit, AfterViewInit {
                 <div class="switch-container" id="expandSwitch" onclick="toggleExpand()">
                 <div class="switch-slider"></div>
                 </div>
+
+                <span class="switch-label2" id="switchLabel2"><b>risk view</b></span>
+                <div class="switch-container2" id="expandSwitch2" onclick="toggleRiskview()">
+                  <div class="switch-slider2"></div>
+                </div>
+
+                <span class="switch-label3" id="switchLabel3"><b>KPI view</b></span>
+                <div class="switch-container3" id="expandSwitch3" onclick="toggleKPIview()">
+                  <div class="switch-slider3"></div>
+                </div>
                 `,
-                enable: true
-              }
-            ]
+                enableriskview: true,
+              },
+            ],
           },
 
           shapeDefaults: {
             stroke: {
-              color: "#979797",
-              width: 10
+              color: '#979797',
+              width: 10,
             },
-            visual: visualTemplate
+            visual: visualTemplate,
           },
           connectionDefaults: {
             stroke: {
-              color: "#979797",
-              width: 2
+              color: '#979797',
+              width: 2,
             },
             select: function (e) {
               e.preventDefault(); // Prevent line selection
             },
             content: {
-              visible: false // Hide connection content
-            }
+              visible: false, // Hide connection content
+            },
           },
           zoom: 0.4,
-          cancel: onCancel
+          cancel: onCancel,
         });
-
-
-
-
 
         // Get the switch element and attach the click event listener
         var toggleSwitch = document.getElementById('expandSwitch');
+        var toggleSwitch2 = document.getElementById('expandSwitch2');
+        var toggleSwitch3 = document.getElementById('expandSwitch3');
         if (toggleSwitch) {
           toggleSwitch.addEventListener('click', toggleExpand);
         }
-
+        if (toggleSwitch2) {
+          toggleSwitch2.addEventListener('click', toggleRiskview);
+        }
+        if (toggleSwitch3) {
+          toggleSwitch3.addEventListener('click', toggleKPIview);
+        }
 
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
-
         }
         diagram.refresh();
-
 
         // function zoomDiagram() {
         //   var diagramWrapper = $('#diagram').data('kendoDiagram');
@@ -612,8 +715,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         //   kendoDiagram.bringIntoView();
         // });
 
-
-
         // Move the logic that "hides" the templates inside a setTimeout
         setTimeout(() => {
           $(document.body).addClass('hide-control-card-content');
@@ -627,7 +728,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     function onNodeClick(node) {
       var diagram = $('#diagram').getKendoDiagram();
       diagram.bringIntoView(diagram.shapes);
-      console.log("heloo");
+      console.log('heloo');
       this.nodeClickChek(node.item.dataItem);
       diagram.refresh();
       // ReloadDiagramWithSelectedNode(node);
@@ -663,19 +764,13 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
     });
 
-
     var focused = false;
   }
-
-
-
 
   public nodeClick(data) {
     sessionStorage.clear();
     console.log(data);
   }
-
-
 
   public findChildrens() {
     var data = [
@@ -712,7 +807,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       { Id: 27, FromShapeId: 1, ToShapeId: 29, Text: null },
       { Id: 28, FromShapeId: 1, ToShapeId: 30, Text: null },
       { Id: 29, FromShapeId: 1, ToShapeId: 31, Text: null },
-
     ];
     function findChildNodes(node) {
       const childNodes = [];
@@ -738,6 +832,5 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   // private expandedView(){
 
-  //   
-
+  //
 }
