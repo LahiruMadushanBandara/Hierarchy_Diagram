@@ -157,7 +157,11 @@ export class TemplateClass {
       "Control Owner Rating" +
       "<p style='display: flex; align-items: center; line-height: 1; '>" +
       "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Partially Effective</b></span>" +
+      "<span style='position: relative; top: -2px; margin-left: 5px;'>"+
+      "<b>"+
+      contentDetails.Rating +
+      "</b>"+
+      "</span>" +
       '</p>' +
       "<img src='<image-url>' alt='Additional Image' style='margin-left: auto;'>" +
       "</p>" +
@@ -514,7 +518,7 @@ export class TemplateClass {
   }
 
 
-  public GetAuditFinfingExpand(contentDetails: any) {
+  public GetAuditFindingExpand(contentDetails: any) {
     return (
       "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
       "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
