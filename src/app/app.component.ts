@@ -6,7 +6,7 @@ import {
   ViewChild,
   AfterViewInit,
   ChangeDetectorRef,
-  ViewEncapsulation,
+ 
 } from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateClass } from './utils/classes/TemplateClass';
@@ -31,15 +31,15 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
   constructor(
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef,
+    
+   
     private dataService: DataService
   ) { }
   ngAfterViewInit(): void { }
 
   ngOnInit(): void {
     sessionStorage.clear();
-    var Templates = new TemplateClass();
+   
 
     var tempTitleDetail = '';
     let isExpanded = false;
@@ -51,15 +51,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
-    var geom = kendo.geometry;
+    
     //  var Templates = new TemplateClass();
 
-    // var GetControlNodeTemplate: any =
-    //   Templates.GetControlNodeTemplateGlobal();
-    // var GetConsequencesTemplate: any = this.GetConsequencesTemplateGlobal;
-    // var GetCauseTemplate: any = this.GetCauseTemplateGlobal;
-    // var GetRiskNodeTemplate: any = this.GetRiskNodeTemplateGlobal;
-    // var nodeClickChek: any = this.nodeClick;
 
     function visualTemplate(options: any) {
       var Templates = new TemplateClass();
@@ -145,7 +139,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       } else {
         if (isExpanded) {
-          console.log('Expand');
+         
           if (dataItem.Title === 'Risk Node') {
             var riskNodeTemp = kendo.template(riskTemplate);
             renderElement.html(riskNodeTemp(dataItem));
@@ -179,7 +173,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             }
           }
         } else {
-          console.log('collaps');
+         
 
           if (dataItem.Title === 'Risk Node') {
             var riskNodeTemp = kendo.template(riskTemplate);
@@ -224,9 +218,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     function onEdit(e) {
-      /* The result can be observed in the DevTools(F12) console of the browser. */
-      //e.container.find(".k-edit-buttons").remove();
-      console.log('Editing shape with model id: ' + e.shape.id);
+      
+     
     }
 
     function arrangeNodes(originalData) {
@@ -245,33 +238,28 @@ export class AppComponent implements OnInit, AfterViewInit {
         const maxNodesPerRow = 5;
         const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
 
-        let typeTwoIndex = 0;
-        let typeThreeIndex = 0;
+        
         let typeFourIndex = 0;
-        let rowIndex = 0;
+        
 
         const originX = 0;
         const originY = 0;
 
         // arrange type 2 nodes (left of type 1)
         const typeTwoNodes = originalData.filter((node) => node.Type === 2);
-        console.log('typeTwoNodes', typeTwoNodes);
-
-        let typeTwoMaxNode = 4;
-        let findControlNodeInFirstPlace = false;
-        let findCauseNodeInFirstPlace = false;
-        let rowComplete = false;
+      
+       
         let rowNumber = 0;
         let columnNumber = 0;
         let rowNodeCount = 0;
 
         for (let i = 0; i < typeTwoNodes.length; i++) {
-          console.log('typeTwoNodes->', typeTwoNodes[i].ParentNodeId);
+         
           if (
             typeTwoNodes[i].ParentNodeId == 1 &&
             typeTwoNodes[i].Title == 'Cause Node'
           ) {
-            console.log('cause node with parent node id = 1 ');
+           
 
             // Calculate the x and y coordinates for the cause node
             const x = originX - 5 * horizontalSpacing; // Fifth place from the left
@@ -314,15 +302,15 @@ export class AppComponent implements OnInit, AfterViewInit {
         // Arrange type 3 nodes (right of type 1)
         rowNumber = 0;
         const typeThreeNodes = originalData.filter((node) => node.Type === 3);
-        console.log('typeThreeNodes', typeThreeNodes);
+       
 
         for (let i = 0; i < typeThreeNodes.length; i++) {
-          console.log('typeThreeNodes->', typeThreeNodes[i].ParentNodeId);
+         
           if (
             typeThreeNodes[i].ParentNodeId == 1 &&
             typeThreeNodes[i].Title == 'Consequences Node'
           ) {
-            console.log('cause node with parent node id = 1 ');
+           
             const x = originX + 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
             typeThreeNodes[i].x = x;
@@ -401,13 +389,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     var originalData = this.dataService.originalData;
-    console.log('originaldata:', originalData);
+    
 
     const arrangedData = arrangeNodes(originalData);
-    console.log('arrangedData->', arrangedData);
-    console.log(
-      arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }))
-    );
+   
 
     $(function () {
       $(document).ready(function () {
@@ -438,44 +423,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
 
         
-        var dataConnections = [
-          // { "Id": 0, "FromShapeId": 1, "ToShapeId": 2, "Text": null },
-          // { "Id": 1, "FromShapeId": 2, "ToShapeId": 3, "Text": null },
-          // { "Id": 2, "FromShapeId": 3, "ToShapeId": 4, "Text": null },
-          // { "Id": 3, "FromShapeId": 4, "ToShapeId": 5, "Text": null },
-          // { "Id": 4, "FromShapeId": 1, "ToShapeId": 6, "Text": null },
-          // { "Id": 5, "FromShapeId": 6, "ToShapeId": 7, "Text": null },
-          // { "Id": 6, "FromShapeId": 7, "ToShapeId": 8, "Text": null },
-          // { "Id": 7, "FromShapeId": 8, "ToShapeId": 9, "Text": null },
-          // { "Id": 8, "FromShapeId": 1, "ToShapeId": 10, "Text": null },
-          // { "Id": 9, "FromShapeId": 10, "ToShapeId": 11, "Text": null },
-
-          // { "Id": 10, "FromShapeId": 1, "ToShapeId": 12, "Text": null },
-          // { "Id": 11, "FromShapeId": 12, "ToShapeId": 13, "Text": null },
-          // { "Id": 12, "FromShapeId": 13, "ToShapeId": 14, "Text": null },
-          // { "Id": 13, "FromShapeId": 14, "ToShapeId": 15, "Text": null },
-          // { "Id": 14, "FromShapeId": 1, "ToShapeId": 16, "Text": null },
-          // { "Id": 15, "FromShapeId": 16, "ToShapeId": 17, "Text": null },
-          // { "Id": 16, "FromShapeId": 17, "ToShapeId": 18, "Text": null },
-          // { "Id": 17, "FromShapeId": 18, "ToShapeId": 19, "Text": null },
-          // { "Id": 18, "FromShapeId": 1, "ToShapeId": 20, "Text": null },
-          // { "Id": 19, "FromShapeId": 20, "ToShapeId": 21, "Text": null },
-
-
-          // { "Id": 20, "FromShapeId": 1, "ToShapeId": 22, "Text": null },
-          // { "Id": 21, "FromShapeId": 1, "ToShapeId": 23, "Text": null },
-          // { "Id": 22, "FromShapeId": 1, "ToShapeId": 24, "Text": null },
-          // { "Id": 23, "FromShapeId": 1, "ToShapeId": 25, "Text": null },
-          // { "Id": 24, "FromShapeId": 1, "ToShapeId": 26, "Text": null },
-          // { "Id": 25, "FromShapeId": 1, "ToShapeId": 27, "Text": null },
-          // { "Id": 26, "FromShapeId": 1, "ToShapeId": 28, "Text": null },
-          // { "Id": 27, "FromShapeId": 1, "ToShapeId": 29, "Text": null },
-          // { "Id": 28, "FromShapeId": 1, "ToShapeId": 30, "Text": null },
-          // { "Id": 29, "FromShapeId": 1, "ToShapeId": 31, "Text": null },
-          // { "Id": 30, "FromShapeId": 1, "ToShapeId": 32, "Text": null },
-          // { "Id": 23, "FromShapeId": 1, "ToShapeId": 33, "Text": null },
-          // { "Id": 24, "FromShapeId": 1, "ToShapeId": 34, "Text": null },
-        ];
+        var dataConnections = [  ];
       
           for(let i =0; i< originalData.length; i++)
 
@@ -613,7 +561,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         function togglePerformanceview() {
 
-          console.log("hello performence", enablePerformanceview);
+         
 
           enablePerformanceview = !enablePerformanceview;
 
@@ -658,7 +606,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                 });
               }
               sessionStorage.setItem('shapes', JSON.stringify(newData));
-              console.log('saved');
+             
             },
           },
           connectionsDataSource: {
@@ -764,27 +712,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
         diagram.refresh();
 
-        // function zoomDiagram() {
-        //   var diagramWrapper = $('#diagram').data('kendoDiagram');
-        //   diagramWrapper.bringIntoView(diagramWrapper.shapes);
-        //   diagramWrapper.zoom(0.4); // Set the desired zoom level
-        // }
-
-        // // Automatically zoom the diagram when it loads
-        // $(document).ready(function() {
-        //   zoomDiagram();
-        // });
-
-        // // Center the diagram when zooming
-        // $('#diagram').on('DOMMouseScroll mousewheel', function (e) {
-        //   var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-        //   if (delta > 0) {
-        //     kendoDiagram.zoomIn();
-        //   } else {
-        //     kendoDiagram.zoomOut();
-        //   }
-        //   kendoDiagram.bringIntoView();
-        // });
 
         // Move the logic that "hides" the templates inside a setTimeout
         setTimeout(() => {
@@ -799,7 +726,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     function onNodeClick(node) {
       var diagram = $('#diagram').getKendoDiagram();
       diagram.bringIntoView(diagram.shapes);
-      console.log('heloo');
+     
       this.nodeClickChek(node.item.dataItem);
       diagram.refresh();
       // ReloadDiagramWithSelectedNode(node);
@@ -835,12 +762,12 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
     });
 
-    var focused = false;
+   
   }
 
   public nodeClick(data) {
     sessionStorage.clear();
-    console.log(data);
+   
   }
 
   public findChildrens() {
@@ -898,10 +825,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Example usage:
     const givenNode = { Id: 1, FromShapeId: 2, ToShapeId: 27, Text: null };
     const childNodes = findChildNodes(givenNode);
-    console.log(childNodes);
+   
   }
 
-  // private expandedView(){
+ 
 
-  //
+ 
 }

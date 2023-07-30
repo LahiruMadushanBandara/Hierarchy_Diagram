@@ -325,7 +325,7 @@ height: 1000px;
 .switch-slider {
   width: 26px;
   height: 26px;
-  background-color: #fff;
+  background-color: #1b4287;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -365,7 +365,7 @@ height: 1000px;
 .switch-slider2 {
   width: 26px;
   height: 26px;
-  background-color: #fff; /* Customize background color for switch 2 */
+  background-color: #1b4287; /* Customize background color for switch 2 */
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -403,7 +403,7 @@ height: 1000px;
 .switch-slider3 {
   width: 26px;
   height: 26px;
-  background-color: #fff; /* Customize background color for switch 3 */
+  background-color: #1b4287; /* Customize background color for switch 3 */
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -440,7 +440,7 @@ height: 1000px;
 .switch-slider4 {
   width: 26px;
   height: 26px;
-  background-color: #fff; /* Customize background color for switch 3 */
+  background-color: #1b4287; /* Customize background color for switch 3 */
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
