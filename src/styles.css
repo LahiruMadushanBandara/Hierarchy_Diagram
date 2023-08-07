@@ -58,10 +58,12 @@
 
 /* Risk Card */
 .bow-tie-risk-card-content {
-  border: 2px solid grey;
+ 
   width: 340px;
   display: grid;
   box-shadow: 10px 10px lightblue;
+  border:none; 
+  border-radius: 10px;
   
 }
 
@@ -80,6 +82,7 @@
   color: white;
   text-align: center;
   border-bottom: 1px solid white;
+  border-radius: 10px 10px 0 0;
 }
 
 /* .bow-tie-risk-card-header-top-text {
@@ -93,7 +96,8 @@
   background-color: hsl(240, 26%, 93%);
   color: #000000;
   height: 100px;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px; 
+  
 }
 
 .rating-icon {
@@ -115,13 +119,14 @@
   border: 2px solid grey;
   display: grid;
   width: 400px;
+  border-radius: 12px;
+
 }
 
 .bow-tie-control-card-body {
-    height: 60px;
-   
-
-   
+    height: auto;
+    padding: 10px;  
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9); 
   }
   
 .bow-tie-control-card-header {
@@ -130,6 +135,9 @@
   text-align: center;
   height: 50px;
   display: grid;
+  padding: 10px; 
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .k-diagram {
@@ -143,13 +151,13 @@
   border: 2px solid grey;
   display: grid;
   width: 300px;
+  border-radius: 10px;
 }
 
 .bow-tie-extra-card-body {
     height: 300px;
-   
+    padding: 10px;
 
-   
   }
   
 .bow-tie-extra-card-header {
@@ -158,6 +166,8 @@
   text-align: center;
   height: 50px;
   display: grid;
+  padding: 10px; 
+  border-radius: 10px 10px 0px 0px;
 }
 
 .k-diagram {
@@ -171,6 +181,8 @@
     border: 2px solid grey;
     display: grid;
     width: 400px;
+    border: none; 
+    border-radius: 10px 10px 10px 10px;
 }
 
 .bow-tie-cause-card-body {
@@ -182,6 +194,8 @@
   background-color: hwb(192 13% 27%);
   color: rgb(255, 255, 255);
   text-align: center;
+  padding: 10px;   
+  border-radius: 10px 10px 0px 0px;
 }
 
 .bow-tie-cause-card-body {
@@ -190,6 +204,7 @@
   text-align: center;
   display: grid;
   border-radius: 0px 0px 10px 10px;
+  padding: 10px; 
 }
 
 .k-diagram {
@@ -198,15 +213,18 @@
 
 /*  consequences Card */
 .bow-tie-consequences-card-content {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  
   transition: 0.3s;
-  border: 2px solid grey;
   display: grid;
   width: 400px;
+  border:none ; 
+  border-radius: 10px 10px 10px 10px;
 }
 
 .bow-tie-consequences-card-body {
   height: 60px;
+  padding: 10px; 
+  border-radius: 0px 0px 10px 10px;
  
 }
 
@@ -214,6 +232,8 @@
 background-color: hwb(192 13% 27%);
 color: rgb(255, 255, 255);
 text-align: center;
+padding: 10px;
+border-radius: 10px 10px 10px 10px;
 }
 
 .bow-tie-consequences-card-body {
@@ -236,6 +256,7 @@ height: 1000px;
   display: grid;
   width: 420px;
   border: 2px solid rgb(220, 220, 220);
+  border-radius: 12px;
 }
 
 .Bow-tie-Other-card-header {
@@ -243,6 +264,8 @@ height: 1000px;
   color: #000000;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .Bow-tie-Other-card-body {
@@ -252,6 +275,8 @@ height: 1000px;
   height: 70px;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+  padding: 10px; 
+  border-radius: 10px 10px 10px 10px;
 }
 
 
@@ -261,12 +286,14 @@ height: 1000px;
   width: 340px;
   display: grid;
   box-shadow: 10px 10px lightblue;
+  border-radius: 10px;
   
 }
 
 .bow-tie-risk-card-body-expand {
  
   display: grid;
+  padding: 10px;
 }
 
 .bow-tie-risk-card-header-expand {
@@ -279,7 +306,13 @@ height: 1000px;
   color: #000000;
   text-align: center;
   border-bottom: 1px solid white;
+  border-radius: 10px 10px 0px 0px ;
 }
+
+.bow-tie-risk-card-footer-expand{
+  border-radius: 0 0 10px 10px;
+}
+
 
 /* .bow-tie-risk-card-header-top-text-expand {
   } */
@@ -309,169 +342,156 @@ height: 1000px;
   height: 1000px;
 }
 
-/* Add this CSS to style the toggle switch */
-.switch-container {
-  width: 60px;
-  height: 30px;
+/* Add this CSS to style the toggle switch - expand */
+.expandswitch-container {
+  width: 40px; 
+  height: 18px; 
   background-color: #ccc;
-  border-radius: 15px;
+  border-radius: 9px; 
   cursor: pointer;
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 10px;
   margin-left: 1200px;
 }
 
-.switch-slider {
-  width: 26px;
-  height: 26px;
-  background-color: #fff;
+.expandswitch-slider {
+  width: 16px; 
+  height: 16px; 
+  background-color: #1b4287;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 1px;
+  left: 1px; 
   transition: transform 0.3s;
 }
 
-.switch-container.active .switch-slider {
-  transform: translateX(30px);
+.expandswitch-container.active .expandswitch-slider {
+  transform: translateX(20px); 
 }
 
-.switch-label{
-
-  margin-left: 1180px;
-  font-size: large;
+.expandswitch-label {
+  margin-left: 1210px;
+  font-size: medium; 
   position: relative;
-  top: 2px;
-  left: 2px;
+  top: 4px; 
+  left: 4px; 
   font-weight: bolder;
-
 }
 
 
-/* CSS for Switch 2  */
-.switch-container2 {
-  width: 60px;
-  height: 30px;
+
+/* Updated CSS for riskview */
+.riskswitch-container {
+  width: 40px;
+  height: 18px;
   background-color: #ccc;
-  border-radius: 15px;
+  border-radius: 9px;
   cursor: pointer;
   position: absolute;
-  top: 10px; /* Adjust the top position to set the distance from the top edge of the page */
-  left: 20px; /* Adjust the left position to set the distance from the left edge of the page */
+  top: 20px; 
+  left: 20px; 
 }
 
-.switch-slider2 {
-  width: 26px;
-  height: 26px;
-  background-color: #fff; /* Customize background color for switch 2 */
+.riskswitch-slider {
+  width: 16px;
+  height: 16px;
+  background-color: #1b4287; 
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 1px;
+  left: 1px;
   transition: transform 0.3s;
 }
 
-.switch-container2.active .switch-slider2 {
-  transform: translateX(30px); /* Customize the position when switch 2 is active */
+.riskswitch-container.active .riskswitch-slider {
+  transform: translateX(20px);
+}
+
+.riskswitch-label {
+  position: absolute;
+  top: 20px;
+  left: 68px; 
+  font-weight: bold;
 }
 
 
-.switch-label2 {
+/* Updated CSS for kpiview */
+.kpiswitch-container {
+  width: 40px;
+  height: 18px;
+  background-color: #ccc;
+  border-radius: 9px;
+  cursor: pointer;
   position: absolute;
-  top: 18px;
-  left: 80px;
+  top: 20px; 
+  left: 130px;
+}
+
+.kpiswitch-slider {
+  width: 16px;
+  height: 16px;
+  background-color: #1b4287; 
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: transform 0.3s;
+}
+
+.kpiswitch-container.active .kpiswitch-slider {
+  transform: translateX(20px);
+}
+
+.kpiswitch-label {
+  position: absolute;
+  top: 20px;
+  left: 175px; 
+  font-weight: bold;
+}
+
+
+/* Updated CSS for performance */
+.performanceswitch-container {
+  width: 40px;
+  height: 18px;
+  background-color: #ccc;
+  border-radius: 9px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px; 
+  left: 240px;
+}
+
+.performanceswitch-slider {
+  width: 16px;
+  height: 16px;
+  background-color: #1b4287; 
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: transform 0.3s;
+}
+
+.performanceswitch-container.active .performanceswitch-slider {
+  transform: translateX(20px);
+}
+
+.performanceswitch-label {
+  position: absolute;
+  top: 20px;
+  left: 285px; 
   font-weight: bold;
 }
 
 
 
-/* CSS for Switch 3  */
-.switch-container3 {
-  width: 60px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 15px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px; /* Adjust the top position to set the distance from the top edge of the page */
-  left: 150px; /* Adjust the left position to set the distance from the left edge of the page */
-}
+.performance-view{
 
-.switch-slider3 {
-  width: 26px;
-  height: 26px;
-  background-color: #fff; /* Customize background color for switch 3 */
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.3s;
-}
-
-.switch-container3.active .switch-slider3 {
-  transform: translateX(30px); /* Customize the position when switch 3 is active */
-}
-
-
-.switch-label3 {
-  position: absolute;
-  top: 18px;
-  left: 210px;
-  font-weight: bold;
-}
-
-
-/* CSS for Switch 4  */
-.switch-container4 {
-  width: 60px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 15px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px; /* Adjust the top position to set the distance from the top edge of the page */
-  left: 280px; /* Adjust the left position to set the distance from the left edge of the page */
-}
-
-.switch-slider4 {
-  width: 26px;
-  height: 26px;
-  background-color: #fff; /* Customize background color for switch 3 */
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.3s;
-}
-
-.switch-container3.active .switch-slider4 {
-  transform: translateX(30px); /* Customize the position when switch 3 is active */
-}
-
-
-.switch-label4 {
-  position: absolute;
-  top: 18px;
-  left: 340px;
-  font-weight: bold;
-}
-
-/* CSS classes for different ratings  */
-
-.fully-effective {
-  background-color: green;
-}
-
-.partially-effective {
   background-color: red;
 }
-
-.substantially-effective {
-  background-color: yellow;
-}
-
