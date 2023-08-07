@@ -2,10 +2,9 @@ import {
   Component,
   ElementRef,
   OnInit,
-  Renderer2,
   ViewChild,
   AfterViewInit,
-  ChangeDetectorRef,
+  
  
 } from '@angular/core';
 import '@progress/kendo-ui';
@@ -52,8 +51,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
     
-    //  var Templates = new TemplateClass();
-
+   
 
     function visualTemplate(options: any) {
       var Templates = new TemplateClass();
@@ -427,10 +425,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       
           for(let i =0; i< originalData.length; i++)
 
-        {
+        {                                                          
 
             var conObj = {
-
+              
               "Id":i,
 
               "FromShapeId": originalData[i].ParentNodeId,
@@ -451,12 +449,12 @@ export class AppComponent implements OnInit, AfterViewInit {
           isExpanded = !isExpanded;
 
           // Update the switch state
-          const toggleSwitch = document.getElementById('expandSwitch');
-          toggleSwitch.classList.toggle('active', isExpanded);
+          const expandSwitch = document.getElementById('expandSwitch');
+          expandSwitch.classList.toggle('active', isExpanded);
 
           // Update the label text
-          const switchLabel = document.getElementById('switchLabel');
-          switchLabel.innerText = isExpanded ? 'Expand' : 'Collapse';
+          const expandSwitchlabel = document.getElementById('expandSwitchlabel');
+          expandSwitchlabel.innerText = isExpanded ? 'Expand' : 'Collapse';
 
           // Use kendoDiagram variable to get the diagram instance
           var diagram = kendoDiagram.getKendoDiagram();
@@ -470,8 +468,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
           if (enableKPIview == false) {
             enableriskview = !enableriskview;
-            const toggleSwitch2 = document.getElementById('expandSwitch2');
-            toggleSwitch2.classList.toggle('active', enableriskview);
+            const riskviewSwitch = document.getElementById('riskviewSwitch');
+            riskviewSwitch.classList.toggle('active', enableriskview);
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
 
@@ -510,8 +508,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         function toggleKPIview() {
           if (enableriskview == false) {
             enableKPIview = !enableKPIview;
-            const toggleSwitch3 = document.getElementById('expandSwitch3');
-            toggleSwitch3.classList.toggle('active', enableKPIview);
+            const kpiviewSwitch = document.getElementById('kpiviewSwitch');
+            kpiviewSwitch.classList.toggle('active', enableKPIview);
 
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
@@ -549,28 +547,18 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
 
 
-        //Method to toggle the CSS classes based on the rating
-        function updateClasses(rating: string) {
-          return {
-            'no-rating': rating === '',
-            'fully-effective': rating === 'Fully Effective',
-            'partially-effective': rating === 'Partially Effective',
-            'substantially-effective': rating === 'Substantially Effective'
-          };
-        }
-
+       
         function togglePerformanceview() {
-
-         
 
           enablePerformanceview = !enablePerformanceview;
 
-          const toggleSwitch4 = document.getElementById('expandSwitch4');
-          toggleSwitch4.classList.toggle('active', enablePerformanceview);
+          const performanceviewSwitch = document.getElementById('performanceviewSwitch');
+          performanceviewSwitch.classList.toggle('active', enablePerformanceview);
 
           var diagram = kendoDiagram.getKendoDiagram();
           diagram.bringIntoView(diagram.shapes);
           diagram.refresh();
+          console.log("enablePerformanceview" , enablePerformanceview);
         }
 
 
@@ -633,29 +621,26 @@ export class AppComponent implements OnInit, AfterViewInit {
               {
                 template: `
                 
-                <span  class="switch-label" id="switchLabel"><b>Collapes</b></span>
-                <div class="switch-container" id="expandSwitch" onclick="toggleExpand()">
-                <div class="switch-slider"></div>
+                <span  class="expandswitch-label" id="expandSwitchlabel"><b>Collapes</b></span>
+                <div class="expandswitch-container" id="expandSwitch" onclick="toggleExpand()">
+                <div class="expandswitch-slider"></div>
                 </div>
 
-                <span class="switch-label2" id="switchLabel2"><b>risk view</b></span>
-                <div class="switch-container2" id="expandSwitch2" onclick="toggleRiskview()">
-                  <div class="switch-slider2"></div>
+                <span class="riskswitch-label" id="riskswitchLabel"><b>risk view</b></span>
+                <div class="riskswitch-container" id="riskviewSwitch" onclick="toggleRiskview()">
+                  <div class="riskswitch-slider"></div>
                 </div>
 
-                <span class="switch-label3" id="switchLabel3"><b>KPI view</b></span>
-                <div class="switch-container3" id="expandSwitch3" onclick="toggleKPIview()">
-                  <div class="switch-slider3"></div>
+                <span class="kpiswitch-label" id="kpiswitchLabel"><b>KPI view</b></span>
+                <div class="kpiswitch-container" id="kpiviewSwitch" onclick="toggleKPIview()">
+                  <div class="kpiswitch-slider"></div>
                 </div>
 
-                <div *ngFor="let dataItem of originalData">
-                <div [ngClass]="enablePerformanceview ? updateClasses(dataItem.Rating) : ''">
-                <span class="switch-label4" id="switchLabel4"><b>Performance view</b></span>
-                <div class="switch-container4" id="expandSwitch4" (click)="togglePerformanceview()">
-                <div class="switch-slider4"></div>
+                <span class="performanceswitch-label" id="performanceswitchLabel"><b>performance view</b></span>
+                <div class="performanceswitch-container" id="performanceviewSwitch" (click)="togglePerformanceview()">
+                <div class="performanceswitch-slider"></div>
                 </div>
-                </div>
-                </div>
+               
                 `,
                 enableriskview: true,
               },
@@ -686,22 +671,22 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
 
         // Get the switch element and attach the click event listener
-        var toggleSwitch = document.getElementById('expandSwitch');
-        var toggleSwitch2 = document.getElementById('expandSwitch2');
-        var toggleSwitch3 = document.getElementById('expandSwitch3');
-        var toggleSwitch4 = document.getElementById('expandSwitch4');
+        var expandSwitch = document.getElementById('expandSwitch');
+        var riskviewSwitch = document.getElementById('riskviewSwitch');
+        var kpiviewSwitch = document.getElementById('kpiviewSwitch');
+        var performanceviewSwitch = document.getElementById('performanceviewSwitch');
 
-        if (toggleSwitch) {
-          toggleSwitch.addEventListener('click', toggleExpand);
+        if (expandSwitch) {
+          expandSwitch.addEventListener('click', toggleExpand);
         }
-        if (toggleSwitch2) {
-          toggleSwitch2.addEventListener('click', toggleRiskview);
+        if (riskviewSwitch) {
+          riskviewSwitch.addEventListener('click', toggleRiskview);
         }
-        if (toggleSwitch3) {
-          toggleSwitch3.addEventListener('click', toggleKPIview);
+        if (kpiviewSwitch) {
+          kpiviewSwitch.addEventListener('click', toggleKPIview);
         }
-        if (toggleSwitch4) {
-          toggleSwitch4.addEventListener('click', togglePerformanceview);
+        if (performanceviewSwitch) {
+          performanceviewSwitch.addEventListener('click', togglePerformanceview);
         }
 
 

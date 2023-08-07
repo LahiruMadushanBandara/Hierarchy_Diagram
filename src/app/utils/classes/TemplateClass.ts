@@ -3,13 +3,13 @@ export class TemplateClass {
 
   public GetControlNodeTemplateGlobal(contentDetails: any) {
     return (
-      "<div class='bow-tie-control-card-content rounded'style=' border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-control-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-control-card-content rounded'>" +
+      "<div class='bow-tie-control-card-header'>" +
       '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</h4>' +
       '</div>' +
-      "<div class='bow-tie-control-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-control-card-body'>" +
       '<p>' +
       contentDetails.htmlTemplate +
       '</p>' +
@@ -17,16 +17,19 @@ export class TemplateClass {
       '</div>'
     );
   }
+  
+  
+  
 
   public GetOtherTemplateGlobal(contentDetails: any) {
     return (
-      "<div class='Bow-tie-Other-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
-      "<div class='Bow-tie-Other-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='Bow-tie-Other-card-content rounded'>" +
+      "<div class='Bow-tie-Other-card-header'>" +
       '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</h4>' +
       '</div>' +
-      "<div class='Bow-tie-Other-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
+      "<div class='Bow-tie-Other-card-body'>" +
       '<p>' +
       contentDetails.htmlTemplate +
       '</p>' +
@@ -37,13 +40,13 @@ export class TemplateClass {
 
   public GetConsequencesTemplateGlobal(contentDetails: any) {
     return (
-      "<div class='bow-tie-cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
-      "<div class='bow-tie-cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-cause-card-content rounded'>" +
+      "<div class='bow-tie-cause-card-header'>" +
       '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</h4>' +
       '</div>' +
-      "<div class='bow-tie-cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
+      "<div class='bow-tie-cause-card-body'>" +
       '<p>' +
       contentDetails.htmlTemplate +
       '</p>' +
@@ -51,15 +54,17 @@ export class TemplateClass {
       '</div>'
     );
   }
+
+
   public GetCauseTemplateGlobal(contentDetails: any) {
     return (
-      "<div class='bow-tie-cause-card-content rounded'style=' border: ; border-radius: 10px 10px 10px 10px;'>" +
-      "<div class='bow-tie-cause-card-header' style=' padding: 10px;   border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-cause-card-content rounded'>" +
+      "<div class='bow-tie-cause-card-header'>" +
       '<h4>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</h4>' +
       '</div>' +
-      "<div class='bow-tie-cause-card-body' style='padding: 10px; border-radius: 10px 10px 10px 10px;'>" +
+      "<div class='bow-tie-cause-card-body' >" +
       '<p>' +
       contentDetails.htmlTemplate +
       '</p>' +
@@ -70,8 +75,8 @@ export class TemplateClass {
 
   public GetRiskNodeTemplateGlobal(contentDetails: any) {
     return (
-      "<div class='bow-tie-risk-card-content rounded' style='border:none; border-radius: 10px; '>" +
-      "<div class='bow-tie-risk-card-header-top' style='border-radius: 10px 10px 0 0;'>" +
+      "<div class='bow-tie-risk-card-content rounded'>" +
+      "<div class='bow-tie-risk-card-header-top' >" +
       "<p class='bow-tie-risk-card-header-top-text'>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</p>' +
@@ -112,7 +117,7 @@ export class TemplateClass {
       '</p>' +
       '</div>' +
       '</div>' +
-      "<div class='bow-tie-risk-card-footer' style='border: border-radius: 0 0 10px 10px;'>" +
+      "<div class='bow-tie-risk-card-footer'>" +
       "<div class='row' style='display: flex;'>" +
       "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>" +
       '<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>' +
@@ -128,15 +133,16 @@ export class TemplateClass {
       '</div>'
     );
   }
+
   public GetControlNodeTemplateGlobalExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-control-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-control-card-header'>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -162,9 +168,6 @@ export class TemplateClass {
       contentDetails.Rating +
       "</b>"+
       "</span>" +
-      '</p>' +
-      "<img src='<image-url>' alt='Additional Image' style='margin-left: auto;'>" +
-      "</p>" +
       "</div>" +
       "</div>"
     );
@@ -172,13 +175,13 @@ export class TemplateClass {
 
   public GetRiskActionTreatmentExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded''>" +
+      "<div class='bow-tie-extra-card-header''>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -205,13 +208,13 @@ export class TemplateClass {
 
   public GetRiskNodeTemplateGlobalExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-risk-card-content-expand rounded' style='border:none; border-radius: 10px; '>" +
-      "<div class='bow-tie-risk-card-header-top-expand' style='border-radius: 10px 10px 0 0;'>" +
+      "<div class='bow-tie-risk-card-content-expand rounded' >" +
+      "<div class='bow-tie-risk-card-header-top-expand' >" +
       "<p class='bow-tie-risk-card-header-top-text-expand'>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</p>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body' >" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -249,7 +252,7 @@ export class TemplateClass {
       '</div>' +
       '</div>' +
 
-      "<div class='bow-tie-risk-card-footer-expand' style='border: border-radius: 0 0 10px 10px;'>" +
+      "<div class='bow-tie-risk-card-footer-expand'>" +
       "<div class='row' style='display: flex;'>" +
       "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>" +
       '<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>' +
@@ -268,13 +271,13 @@ export class TemplateClass {
 
   public GetIncidentExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header' style=>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -303,13 +306,13 @@ export class TemplateClass {
 
   public GetComplianceObligationExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header'>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -334,13 +337,13 @@ export class TemplateClass {
 
   public GetKPIExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header' >" +
       "<h4 style='text-align: center;'>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</h4>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9); display: flex; flex-direction: column; align-items: center;  margin-top: -18px;'>" +
+      "<div class='bow-tie-extra-card-body' >" +
       '<p>' +
       contentDetails.htmlTemplate +
       '</p>' +
@@ -377,7 +380,6 @@ export class TemplateClass {
       "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 20px; height: 20px;  '>" +
       "<span style='position: relative; margin-left: 5px; font-size: 18px;'>On Track</span>" +
       '</div>' +
-  
       '</div>' +
       '</div>'
     );
@@ -385,13 +387,13 @@ export class TemplateClass {
   
    public GetAuditExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header' >" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -412,13 +414,13 @@ export class TemplateClass {
 
   public GetHierarchyExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded'>" +
+      "<div class='bow-tie-extra-card-header'>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body' >" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -440,13 +442,13 @@ export class TemplateClass {
 
   public GetAuthorityDocumentExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header'>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -468,13 +470,13 @@ export class TemplateClass {
 
   public GetPolicyExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header' >" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -495,13 +497,13 @@ export class TemplateClass {
 
   public GetAuditRecommendationsExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header'>" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
@@ -520,13 +522,13 @@ export class TemplateClass {
 
   public GetAuditFindingExpand(contentDetails: any) {
     return (
-      "<div class='bow-tie-extra-card-content rounded' style='border: ; border-radius: 10px;'>" +
-      "<div class='bow-tie-extra-card-header' style='padding: 10px; border-radius: 10px 10px 0px 0px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-content rounded' >" +
+      "<div class='bow-tie-extra-card-header' >" +
       "<h4>" +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</h4>" +
       "</div>" +
-      "<div class='bow-tie-extra-card-body' style='padding: 10px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);'>" +
+      "<div class='bow-tie-extra-card-body' >" +
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
