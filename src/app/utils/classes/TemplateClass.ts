@@ -1,7 +1,9 @@
+import { data } from "src/app/models/data.model";
+
 export class TemplateClass {
   constructor() { }
 
-  public GetControlNodeTemplateGlobal(contentDetails: any) {
+  public GetControlNodeTemplateGlobal(contentDetails: data) {
     return (
       "<div class='bow-tie-control-card-content rounded'>" +
       "<div class='bow-tie-control-card-header'>" +
@@ -21,7 +23,7 @@ export class TemplateClass {
   
   
 
-  public GetOtherTemplateGlobal(contentDetails: any) {
+  public GetOtherTemplateGlobal(contentDetails: data) {
     return (
       "<div class='Bow-tie-Other-card-content rounded'>" +
       "<div class='Bow-tie-Other-card-header'>" +
@@ -38,7 +40,7 @@ export class TemplateClass {
     );
   }
 
-  public GetConsequencesTemplateGlobal(contentDetails: any) {
+  public GetConsequencesTemplateGlobal(contentDetails: data) {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
       "<div class='bow-tie-cause-card-header'>" +
@@ -56,7 +58,7 @@ export class TemplateClass {
   }
 
 
-  public GetCauseTemplateGlobal(contentDetails: any) {
+  public GetCauseTemplateGlobal(contentDetails: data) {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
       "<div class='bow-tie-cause-card-header'>" +
@@ -73,7 +75,7 @@ export class TemplateClass {
     );
   }
 
-  public GetRiskNodeTemplateGlobal(contentDetails: any) {
+  public GetRiskNodeTemplateGlobal(contentDetails: data) {
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
       "<div class='bow-tie-risk-card-header-top' >" +
@@ -134,7 +136,7 @@ export class TemplateClass {
     );
   }
 
-  public GetControlNodeTemplateGlobalExpand(contentDetails: any) {
+  public GetControlNodeTemplateGlobalExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-control-card-header'>" +
@@ -165,7 +167,7 @@ export class TemplateClass {
       "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
       "<span style='position: relative; top: -2px; margin-left: 5px;'>"+
       "<b>"+
-      contentDetails.Rating +
+      contentDetails.ControlData + 
       "</b>"+
       "</span>" +
       "</div>" +
@@ -173,7 +175,7 @@ export class TemplateClass {
     );
   }
 
-  public GetRiskActionTreatmentExpand(contentDetails: any) {
+  public GetRiskActionTreatmentExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded''>" +
       "<div class='bow-tie-extra-card-header''>" +
@@ -206,7 +208,7 @@ export class TemplateClass {
     );
   }
 
-  public GetRiskNodeTemplateGlobalExpand(contentDetails: any) {
+  public GetRiskNodeTemplateGlobalExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
       "<div class='bow-tie-risk-card-header-top-expand' >" +
@@ -269,7 +271,7 @@ export class TemplateClass {
     );
   }
 
-  public GetIncidentExpand(contentDetails: any) {
+  public GetIncidentExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' style=>" +
@@ -304,7 +306,7 @@ export class TemplateClass {
     );
   }
 
-  public GetComplianceObligationExpand(contentDetails: any) {
+  public GetComplianceObligationExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -335,7 +337,7 @@ export class TemplateClass {
     );
   }
 
-  public GetKPIExpand(contentDetails: any) {
+  public GetKPIExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -385,7 +387,7 @@ export class TemplateClass {
     );
   }
   
-   public GetAuditExpand(contentDetails: any) {
+   public GetAuditExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -412,7 +414,7 @@ export class TemplateClass {
   }
 
 
-  public GetHierarchyExpand(contentDetails: any) {
+  public GetHierarchyExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -440,7 +442,7 @@ export class TemplateClass {
 
 
 
-  public GetAuthorityDocumentExpand(contentDetails: any) {
+  public GetAuthorityDocumentExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -468,7 +470,7 @@ export class TemplateClass {
 
 
 
-  public GetPolicyExpand(contentDetails: any) {
+  public GetPolicyExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -495,7 +497,7 @@ export class TemplateClass {
   }
 
 
-  public GetAuditRecommendationsExpand(contentDetails: any) {
+  public GetAuditRecommendationsExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -520,7 +522,7 @@ export class TemplateClass {
   }
 
 
-  public GetAuditFindingExpand(contentDetails: any) {
+  public GetAuditFindingExpand(contentDetails: data) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +

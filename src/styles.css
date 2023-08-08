@@ -358,7 +358,7 @@ height: 1000px;
 .expandswitch-slider {
   width: 16px; 
   height: 16px; 
-  background-color: #1b4287;
+  background-color: #ececec;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -368,7 +368,11 @@ height: 1000px;
 }
 
 .expandswitch-container.active .expandswitch-slider {
-  transform: translateX(20px); 
+  transform: translateX(20px);
+ 
+}
+.expandswitch-container.active {
+   background-color: #1b4287;
 }
 
 .expandswitch-label {
@@ -397,7 +401,7 @@ height: 1000px;
 .riskswitch-slider {
   width: 16px;
   height: 16px;
-  background-color: #1b4287; 
+  background-color: #ececec; 
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -408,7 +412,13 @@ height: 1000px;
 
 .riskswitch-container.active .riskswitch-slider {
   transform: translateX(20px);
+ 
 }
+
+.riskswitch-container.active {
+  background-color: #1b4287;
+}
+
 
 .riskswitch-label {
   position: absolute;
@@ -433,7 +443,7 @@ height: 1000px;
 .kpiswitch-slider {
   width: 16px;
   height: 16px;
-  background-color: #1b4287; 
+  background-color: #ececec; 
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -444,7 +454,13 @@ height: 1000px;
 
 .kpiswitch-container.active .kpiswitch-slider {
   transform: translateX(20px);
+  
 }
+
+.kpiswitch-container.active{
+  background-color: #1b4287;
+}
+
 
 .kpiswitch-label {
   position: absolute;
@@ -469,7 +485,7 @@ height: 1000px;
 .performanceswitch-slider {
   width: 16px;
   height: 16px;
-  background-color: #1b4287; 
+  background-color: #ececec; 
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -480,6 +496,13 @@ height: 1000px;
 
 .performanceswitch-container.active .performanceswitch-slider {
   transform: translateX(20px);
+
+}
+
+
+.performanceswitch-container.active  {
+  
+  background-color: #1b4287;
 }
 
 .performanceswitch-label {
