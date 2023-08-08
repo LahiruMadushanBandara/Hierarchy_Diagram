@@ -148,24 +148,24 @@ export class TemplateClass {
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1;'>" +
-      "<span style='margin-right: 10px;'>" +
+      "<p class='bow-tie-control-type-details' >" +
+      "<span class='bow-tie-control-type'>" +
       "Control Type" +
       "</span>" +
-      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      "<p class='bow-tie-control-type-text'>" +
       "<b>Preventive</b>" +
       "</p>" +
       "</p>" +
-      "<p style='margin-top: -10px;' >Control Owner</p>" +
-      "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 30px; '>" +
-      "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Talia Gisbon</b></span>" +
+      "<p class='bow-tie-control-owner'>Control Owner</p>" +
+      "<p class='bow-tie-control-owner-details'>" +
+      "<img class ='bow-tie-control-owner-image'src='../assets/bow-tie/icon/image.png'>" +
+      "<span class=bow-tie-control-owner-name'><b>Talia Gisbon</b></span>" +
       '</p>' +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
+      "<p class='bow-tie-control-owner-rating'>" +
       "Control Owner Rating" +
-      "<p style='display: flex; align-items: center; line-height: 1; '>" +
-      "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>"+
+      "<p class='bow-tie-control-owner-rating-details'>" +
+      "<img class='bow-tie-control-owner-rating-icon' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+      "<span class='bow-tie-control-owner-rating-name'>"+
       "<b>"+
       contentDetails.ControlData + 
       "</b>"+
@@ -283,21 +283,20 @@ export class TemplateClass {
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
-      "<p style='margin-top:30px;' >Reported By</p>" +
-      "<p style='display: flex; align-items: center; line-height: 1;   '>" +
-      "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Clarke Chan</b></span>" +
+      "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
+      "<p class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-control-owner-image'src='../assets/bow-tie/icon/image.png' >" +
+      "<span class='bow-tie-control-owner-name'><b>Clarke Chan</b></span>" +
       '</p>' +
-      "<p style='margin-top: 10px;' >Responsible Officer</p>" +
-      "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 20px; '>" +
-      "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Joe Smith</b></span>" +
+      "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
+      "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+      "<img class='bow-tie-incident-expand-responsible-officer-image' src='../assets/bow-tie/icon/image.png'>" +
+      "<span class='bow-tie-incident-expand-responsible-officer-name'><b>Joe Smith</b></span>" +
       '</p>' +
-      "<p style='display: flex; align-items: left; '>" +
-       "<span style='margin-right: 10px;'>" +
+      "<p class='bow-tie-incident-expand-reported-date-time'>" +
        "Reported Date/Time" +
        "</span>" +
-       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+       "<p class='bow-tie-incident-expand-reported-date'>" +
        "<b>26 Nov, 2020 01:48 PM</b>" +
        "</p>" +
       "</p>" +

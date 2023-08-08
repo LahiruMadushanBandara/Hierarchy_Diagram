@@ -134,7 +134,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Consequences Node",
         "Header": "Consequence",
         "Rating": "",
-        "htmlTemplate": "<dev>Risktoreputationasaresultofmediacoverageandadverse</dev>"
+        "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>"
       },
       {
         "Id": 2775,
@@ -365,7 +365,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Cause Node",
         "Header": "Cause",
         "Rating": "",
-        "htmlTemplate": "<dev>AdversefindingsagainstLRHasaresultoftheMentalHealt</dev>"
+        "htmlTemplate": "<dev>Adverse findings against LRH as a result of the Mental Healt</dev>"
       },
       {
         "Id": 2787,
@@ -445,7 +445,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Cause Node",
         "Header": "Cause",
         "Rating": "",
-        "htmlTemplate": "<dev>MediacoverageofadversefindingsagainstLRHasaresulto</dev>"
+        "htmlTemplate": "<dev>Media coverage of adverse findings against LRH as a resulto</dev>"
       },
 
       {
