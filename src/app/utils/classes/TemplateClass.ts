@@ -72,7 +72,7 @@ export class TemplateClass {
       '</div>'
     );
   }
-
+ 
   public GetRiskNodeTemplateGlobal(contentDetails: any) {
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
@@ -82,7 +82,7 @@ export class TemplateClass {
       '</p>' +
       '</div>' +
       "<div class='bow-tie-risk-card-header'>" +
-      "<p class='bow-tie-risk-card-header-text'>SR15-Protective and Cyber Security Ratings</p>" +
+      "<p class='bow-tie-risk-card-header-text'>"+ contentDetails.htmlTemplate + "</p>" +
       '</div>' +
       "<div class='bow-tie-risk-card-body'>" +
       "<div class='row' style='display: flex;'>" +
@@ -90,14 +90,14 @@ export class TemplateClass {
       '<p><b>Inherent Rating</b></p>' +
       "<p style='display: flex; align-items: center; line-height: 1;'>" +
       "<img src='../assets/bow-tie/icon/Extream.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Extreme</span>" +
+      "<span style='position: relative; top: -2px; margin-left: 5px;'>"+ contentDetails.RiskData.InherentRiskRating +"</span>" +
       '</p>' +
       '</div>' +
       "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
       '<p><b>Revised Rating</b></p>' +
       "<p style='display: flex; align-items: center; line-height: 1;'>" +
       "<img src='../assets/bow-tie/icon/Low.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Low</span>" +
+      "<span style='position: relative; top: -2px; margin-left: 5px;'>"+ contentDetails.RiskData.ResidualRiskRating +"</span>" +
       '</p>' +
       '</div>' +
       '</div>' +
@@ -106,14 +106,14 @@ export class TemplateClass {
       '<p><b>Future Rating</b></p>' +
       "<p style='display: flex; align-items: center; line-height: 1;'>" +
       "<img src='../assets/bow-tie/icon/High.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>High</span>" +
+      "<span style='position: relative; top: -2px; margin-left: 5px;'>"+ contentDetails.RiskData.TargetRiskRatinng +"</span>" +
       '</p>' +
       '</div>' +
       "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
       '<p><b>Risk Appetite</b></p>' +
       "<p style='display: flex; align-items: center; line-height: 1;'>" +
       "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Within Appetite</span>" +
+      "<span style='position: relative; top: -2px; margin-left: 5px;'>"+ contentDetails.RiskData.AppetiteRating +"</span>" +
       '</p>' +
       '</div>' +
       '</div>' +
@@ -126,7 +126,7 @@ export class TemplateClass {
       '<p><b>Responsible Manager</b></p>' +
       "<p style='display: flex; align-items: center; line-height: 1;'>" +
       "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>" +
+      "<span style='position: relative; top: -2px; margin-left: 5px;'>"+ contentDetails.RiskData.ResponsibleManager +"</span>" +
       '</p>' +
       '</div>' +
       '</div>' +
@@ -157,7 +157,7 @@ export class TemplateClass {
       "<p style='margin-top: -10px;' >Control Owner</p>" +
       "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 30px; '>" +
       "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Talia Gisbon</b></span>" +
+      "<span style='position: relative; top: -2px; margin-left: 5px;'><b>"+ contentDetails.ControlData.ControlOwner +"</b></span>" +
       '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
       "Control Owner Rating" +
@@ -165,7 +165,7 @@ export class TemplateClass {
       "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
       "<span style='position: relative; top: -2px; margin-left: 5px;'>"+
       "<b>"+
-      contentDetails.Rating +
+      contentDetails.ControlData.ControlOwnerRating +
       "</b>"+
       "</span>" +
       "</div>" +
