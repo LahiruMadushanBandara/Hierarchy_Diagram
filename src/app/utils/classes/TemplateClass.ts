@@ -87,48 +87,48 @@ export class TemplateClass {
       "<p class='bow-tie-risk-card-header-text'>SR15-Protective and Cyber Security Ratings</p>" +
       '</div>' +
       "<div class='bow-tie-risk-card-body'>" +
-      "<div class='row' style='display: flex;'>" +
-      "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
+      "<div class='row'>" +
+      "<div class='column'>" +
       '<p><b>Inherent Rating</b></p>' +
-      "<p style='display: flex; align-items: center; line-height: 1;'>" +
-      "<img src='../assets/bow-tie/icon/Extream.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Extreme</span>" +
+      "<p class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Extream.png' >" +
+      "<span class='bow-tie-risk-rating-details-text'>Extreme</span>" +
       '</p>' +
       '</div>' +
-      "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
+      "<div class='column'>" +
       '<p><b>Revised Rating</b></p>' +
-      "<p style='display: flex; align-items: center; line-height: 1;'>" +
-      "<img src='../assets/bow-tie/icon/Low.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Low</span>" +
+      "<p class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Low.png'>" +
+      "<span class='bow-tie-risk-rating-details-text'>Low</span>" +
       '</p>' +
       '</div>' +
       '</div>' +
-      "<div class='row' style='display: flex;'>" +
-      "<div class='column' style='background-color: white; width: 50%; padding-left: 15px;'>" +
+      "<div class='row'>" +
+      "<div class='column'>" +
       '<p><b>Future Rating</b></p>' +
-      "<p style='display: flex; align-items: center; line-height: 1;'>" +
-      "<img src='../assets/bow-tie/icon/High.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>High</span>" +
+      "<p  class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
+      "<span class='bow-tie-risk-rating-details-text'>High</span>" +
       '</p>' +
       '</div>' +
-      "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
+      "<div class='column'>" +
       '<p><b>Risk Appetite</b></p>' +
-      "<p style='display: flex; align-items: center; line-height: 1;'>" +
-      "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 50px; height: 50px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Within Appetite</span>" +
+      "<p class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+      "<span class='bow-tie-risk-rating-details-text'>Within Appetite</span>" +
       '</p>' +
       '</div>' +
       '</div>' +
       "<div class='bow-tie-risk-card-footer'>" +
-      "<div class='row' style='display: flex;'>" +
-      "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>" +
+      "<div class='row'>" +
+      "<div class='bow-tie-risk-footer-details'>" +
       '<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>' +
       '</div>' +
-      "<div style='background-color: light gray; width:50%; padding-left: 15px;'>" +
+      "<div class='bow-tie-risk-footer-details'>" +
       '<p><b>Responsible Manager</b></p>' +
-      "<p style='display: flex; align-items: center; line-height: 1;'>" +
-      "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px;'>" +
-      "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>" +
+      "<p class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/image.png' >" +
+      "<span class='bow-tie-risk-rating-details-text'>Talia Gisbon</span>" +
       '</p>' +
       '</div>' +
       '</div>' +

@@ -100,14 +100,35 @@
   
 }
 
-.rating-icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-repeat: no-repeat;
-  background-position: center;
-  vertical-align: middle;
-  margin-right: 5px;
+
+.row{
+  display: flex;
+}
+
+.column{
+  background-color: white; 
+  width: 50%; 
+  padding-left: 15px;
+}
+.bow-tie-risk-rating-details{
+  display: flex; 
+  align-items: center; 
+  line-height: 1;
+}
+.bow-tie-risk-rating-details-image{
+  width: 50px; 
+  height: 50px;
+}
+.bow-tie-risk-rating-details-text{
+  position: relative; 
+  top: -2px; 
+  margin-left: 5px;
+}
+
+.bow-tie-risk-footer-details{
+background-color: light gray; 
+width:50%; 
+padding-left: 15px;
 }
 
 
