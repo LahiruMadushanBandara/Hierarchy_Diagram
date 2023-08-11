@@ -54,36 +54,69 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     var geom = kendo.geometry;
 
     function visualTemplate(options: any) {
+      debugger
       var Templates = new TemplateClass();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
+      var riskTemplate = "";
+      var controlTemplate = "";
+      var controlTemplateExpand = ""
+      var causeTemplate = "";
+      var consequencesTemplate = "";
+      var incidentTemplateExpnad = "";
+      var kpiTemplateExpnad = "";
+      var bottomTemplate = ""
+      console.log(dataItem.Header)
+      switch(dataItem.Header) 
+      {
+        case "Risk":
+          riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
+          sessionStorage.setItem('riskTemplate', riskTemplate);
+          break;
+        case "Control":
+          controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
+          controlTemplateExpand = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
+          sessionStorage.setItem('controlTemplate', controlTemplate);
+          sessionStorage.setItem('controlExpandTemplate', controlTemplateExpand);
+          break;
+        case "Cause":
+          causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
+          sessionStorage.setItem('causeTemplate', causeTemplate);
+          break;
+        case "Consequence":
+          consequencesTemplate = Templates.GetConsequencesTemplateGlobal(dataItem);
+          sessionStorage.setItem('consequencesTemplate', consequencesTemplate);
+          break;
+        case "Incident":
+          incidentTemplateExpnad = Templates.GetIncidentExpand(dataItem);
+          bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
+          sessionStorage.setItem('Incident', incidentTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', bottomTemplate);
+          break;
+        case "Kpi":
+          kpiTemplateExpnad = Templates.GetKPIExpand(dataItem);
+          bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
+          sessionStorage.setItem('Kpi', kpiTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', bottomTemplate);
+          break;
+        default:
+      }
+
       //get templates from template class
-      var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
-      var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
-      var causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
-      var consequencesTemplate = Templates.GetConsequencesTemplateGlobal(dataItem);
-      var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
-      var controlTemplateExpand = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
+      
       var riskTemplateExpand = Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
       var riskActionTemplateExpand = Templates.GetRiskActionTreatmentExpand(dataItem);
       var incidentTemplateExpnad = Templates.GetIncidentExpand(dataItem);
       var complianceTemplateExpnad = Templates.GetComplianceObligationExpand(dataItem);
-      var kpiTemplateExpnad = Templates.GetKPIExpand(dataItem);
+      
 
       // templates are assigned to corresponding variables
-      sessionStorage.setItem('riskTemplate', riskTemplate);
-      sessionStorage.setItem('controlTemplate', controlTemplate);
-      sessionStorage.setItem('causeTemplate', causeTemplate);
-      sessionStorage.setItem('consequencesTemplate', consequencesTemplate);
-      sessionStorage.setItem('otherTemplate', bottomTemplate);
-      sessionStorage.setItem('expandTemplate', controlTemplateExpand);
       sessionStorage.setItem('riskExpand', riskTemplateExpand);
       sessionStorage.setItem('riskActionExpand', riskActionTemplateExpand);
-      sessionStorage.setItem('incidentExpand', incidentTemplateExpnad);
       sessionStorage.setItem('complianceExpand', complianceTemplateExpnad);
-      sessionStorage.setItem('KPIExpand', kpiTemplateExpnad);
 
+      
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
@@ -112,12 +145,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       } else if (enableKPIview) {
         enableriskview = false;
         if (isExpanded) {
-          if (dataItem.Header === 'KPIExpand') {
+          if (dataItem.Header === 'Kpi') {
             var KPIExpandTemp = kendo.template(kpiTemplateExpnad);
             renderElement.html(KPIExpandTemp(dataItem));
           }
         } else {
-          if (dataItem.Header === 'KPIExpand') {
+          if (dataItem.Header === 'Kpi') {
             var otherTemp = kendo.template(bottomTemplate);
             renderElement.html(otherTemp(dataItem));
           }
@@ -159,7 +192,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             } else if (dataItem.Header === 'Compliance') {
               var complianceExpandTemp = kendo.template(complianceTemplateExpnad);
               renderElement.html(complianceExpandTemp(dataItem));
-            } else if (dataItem.Header === 'KPI') {
+            } else if (dataItem.Header === 'Kpi') {
               var KPIExpandTemp = kendo.template(kpiTemplateExpnad);
               renderElement.html(KPIExpandTemp(dataItem));
             }
@@ -493,8 +526,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   var fromNode = diagram.dataSource.get(connection.from);
                   var toNode = diagram.dataSource.get(connection.to);
                   return (
-                    (fromNode && fromNode.Header === 'KPIExpand') ||
-                    (toNode && toNode.Header === 'KPIExpand')
+                    (fromNode && fromNode.Header === 'Kpi') ||
+                    (toNode && toNode.Header === 'Kpi')
                   );
                 });
 
@@ -586,22 +619,22 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               {
                 template: `
                 
-                <span  class="expandswitch-label" id="expandSwitchlabel"><b>Collapes</b></span>
+                <span  class="expandswitch-label" id="expandSwitchlabel">Collapse</span>
                 <div class="expandswitch-container" id="expandSwitch" onclick="toggleExpand()">
                 <div class="expandswitch-slider"></div>
                 </div>
 
-                <span class="riskswitch-label" id="riskswitchLabel"><b>risk view</b></span>
+                <span class="riskswitch-label" id="riskswitchLabel">Risk View</span>
                 <div class="riskswitch-container" id="riskviewSwitch" onclick="toggleRiskview()">
                   <div class="riskswitch-slider"></div>
                 </div>
 
-                <span class="kpiswitch-label" id="kpiswitchLabel"><b>KPI view</b></span>
+                <span class="kpiswitch-label" id="kpiswitchLabel">KPI View</span>
                 <div class="kpiswitch-container" id="kpiviewSwitch" onclick="toggleKPIview()">
                   <div class="kpiswitch-slider"></div>
                 </div>
 
-                <span class="performanceswitch-label" id="performanceswitchLabel"><b>performance view</b></span>
+                <span class="performanceswitch-label" id="performanceswitchLabel">Performance View</span>
                 <div class="performanceswitch-container" id="performanceviewSwitch" (click)="togglePerformanceview()">
                 <div class="performanceswitch-slider"></div>
                 </div>
@@ -715,7 +748,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnInit(): void {
     
-
+    
    
   }
 
