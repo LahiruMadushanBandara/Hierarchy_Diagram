@@ -1,4 +1,15 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, ChangeDetectorRef, ViewEncapsulation, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+  Input,
+  OnChanges,
+} from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateClass } from './utils/classes/TemplateClass';
 
@@ -23,17 +34,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   otherTemplate: string = '';
   originalData: data[] = [];
 
+  constructor(private dataService: DataService) {}
 
+  ngAfterViewInit(): void {}
 
-  constructor(private dataService: DataService) { }
-
-  ngAfterViewInit(): void { }
-
-  ngOnChanges(): void { }
-
+  ngOnChanges(): void {}
 
   ngOnInit(): void {
-
     sessionStorage.clear();
 
     this.originalData = [
@@ -506,12 +513,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       }
 
-
-
     ];
-
-
-
 
     var tempTitleDetail = '';
     let isExpanded = false;
@@ -520,12 +522,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     let enablePerformanceview = false;
     var originalConnections; // Variable to store the original connections
 
-
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
     var geom = kendo.geometry;
+    
+
 
     function visualTemplate(options: any) {
+
       var Templates = new TemplateClass();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
@@ -534,13 +538,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
       var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
       var causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
-      var consequencesTemplate = Templates.GetConsequencesTemplateGlobal(dataItem);
+      var consequencesTemplate =
+        Templates.GetConsequencesTemplateGlobal(dataItem);
       var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
-      var controlTemplateExpand = Templates.GetControlNodeTemplateGlobalExpand(dataItem);
-      var riskTemplateExpand = Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
-      var riskActionTemplateExpand = Templates.GetRiskActionTreatmentExpand(dataItem);
+      var controlTemplateExpand =
+        Templates.GetControlNodeTemplateGlobalExpand(dataItem);
+      var riskTemplateExpand =
+        Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
+      var riskActionTemplateExpand =
+        Templates.GetRiskActionTreatmentExpand(dataItem);
       var incidentTemplateExpnad = Templates.GetIncidentExpand(dataItem);
-      var complianceTemplateExpnad = Templates.GetComplianceObligationExpand(dataItem);
+      var complianceTemplateExpnad =
+        Templates.GetComplianceObligationExpand(dataItem);
       var kpiTemplateExpnad = Templates.GetKPIExpand(dataItem);
 
       // templates are assigned to corresponding variables
@@ -555,13 +564,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       sessionStorage.setItem('Incident', incidentTemplateExpnad);
       sessionStorage.setItem('complianceExpand', complianceTemplateExpnad);
       sessionStorage.setItem('KPIExpand', kpiTemplateExpnad);
-
+      
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
-
-
-
+     
       if (enableriskview) {
         enableKPIview = false;
         if (isExpanded) {
@@ -580,8 +587,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           var riskNodeTemp = kendo.template(riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
         }
-
-
       } else if (enableKPIview) {
         enableriskview = false;
         if (isExpanded) {
@@ -600,11 +605,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           var riskNodeTemp = kendo.template(riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
         }
-
-
       } else {
         if (isExpanded) {
-
           if (dataItem.Title === 'Risk Node') {
             var riskNodeTemp = kendo.template(riskTemplate);
             renderElement.html(riskNodeTemp(dataItem));
@@ -631,7 +633,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               var incidentExpandTemp = kendo.template(incidentTemplateExpnad);
               renderElement.html(incidentExpandTemp(dataItem));
             } else if (dataItem.Header === 'Compliance') {
-              var complianceExpandTemp = kendo.template(complianceTemplateExpnad);
+              var complianceExpandTemp = kendo.template(
+                complianceTemplateExpnad
+              );
               renderElement.html(complianceExpandTemp(dataItem));
             } else if (dataItem.Header === 'KPI') {
               var KPIExpandTemp = kendo.template(kpiTemplateExpnad);
@@ -639,8 +643,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             }
           }
         } else {
-
-
           if (dataItem.Title === 'Risk Node') {
             var riskNodeTemp = kendo.template(riskTemplate);
             renderElement.html(riskNodeTemp(dataItem));
@@ -718,7 +720,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             typeTwoNodes[i].ParentNodeId == 1 &&
             typeTwoNodes[i].Title == 'Cause Node'
           ) {
-
             // Calculate the x and y coordinates for the cause node
             const x = originX - 5 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumber * verticalSpacing;
@@ -846,7 +847,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     const arrangedData = arrangeNodes(this.originalData);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
-
     $(() => {
       $(document).ready(() => {
         createDiagram(this.originalData);
@@ -875,20 +875,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
 
-        var dataConnections = [
-        ];
-
-        for (let i = 0; i < originalData.length; i++) {
-
+        //creating connection lines
+        var dataConnections = [];
+      
+        for (let i = 1; i < originalData.length; i++) {
           var conObj = {
-            "Id": i,
-            "FromShapeId": originalData[i].ParentNodeId,
-            "ToShapeId": originalData[i].Id,
-            "Text": null
-          }
+            Id: originalData[i].Type === 4 ? 0 : i,
+            FromShapeId: originalData[i].ParentNodeId,
+            ToShapeId: originalData[i].Id,
+            Text: null,
+            
+          };
           dataConnections.push(conObj);
+          
+
         }
 
+        
 
         // Function to handle the toggle switch behavior
         function toggleExpand() {
@@ -899,7 +902,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           expandSwitch.classList.toggle('active', isExpanded);
 
           // Update the label text
-          const expandSwitchlabel = document.getElementById('expandSwitchlabel');
+          const expandSwitchlabel =
+            document.getElementById('expandSwitchlabel');
           expandSwitchlabel.innerText = isExpanded ? 'Expand' : 'Collapse';
 
           // Use kendoDiagram variable to get the diagram instance
@@ -909,7 +913,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
         function toggleRiskview() {
-
           if (enableKPIview == false) {
             enableriskview = !enableriskview;
             const riskviewSwitch = document.getElementById('riskviewSwitch');
@@ -931,14 +934,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 });
 
               // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource.data().slice();
+              originalConnections = diagram.connectionsDataSource
+                .data()
+                .slice();
 
               // Clear all connections
               connectionsDataSource.data([]);
 
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
-
             } else {
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
@@ -958,7 +962,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
 
-
             if (enableKPIview) {
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
@@ -973,7 +976,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 });
 
               // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource.data().slice();
+              originalConnections = diagram.connectionsDataSource
+                .data()
+                .slice();
 
               // Clear all connections
               connectionsDataSource.data([]);
@@ -990,19 +995,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
         }
 
-
-
         function togglePerformanceview() {
-
           enablePerformanceview = !enablePerformanceview;
 
-          const performanceviewSwitch = document.getElementById('performanceviewSwitch');
-          performanceviewSwitch.classList.toggle('active', enablePerformanceview);
+          const performanceviewSwitch = document.getElementById(
+            'performanceviewSwitch'
+          );
+          performanceviewSwitch.classList.toggle(
+            'active',
+            enablePerformanceview
+          );
 
+              
           var diagram = kendoDiagram.getKendoDiagram();
           diagram.bringIntoView(diagram.shapes);
           diagram.refresh();
-
         }
 
         var kendoDiagram = $('#diagram').kendoDiagram({
@@ -1060,24 +1067,24 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               {
                 template: `
                 
-                <span  class="expandswitch-label" id="expandSwitchlabel"><b>Collapes</b></span>
+                <span  class="expandswitch-label" id="expandSwitchlabel">Collapse</span>
                 <div class="expandswitch-container" id="expandSwitch" onclick="toggleExpand()">
-                <div class="expandswitch-slider"></div>
+                  <div class="expandswitch-slider"></div>
                 </div>
 
-                <span class="riskswitch-label" id="riskswitchLabel"><b>risk view</b></span>
+                <span class="riskswitch-label" id="riskswitchLabel">Risk View</span>
                 <div class="riskswitch-container" id="riskviewSwitch" onclick="toggleRiskview()">
                   <div class="riskswitch-slider"></div>
                 </div>
 
-                <span class="kpiswitch-label" id="kpiswitchLabel"><b>KPI view</b></span>
+                <span class="kpiswitch-label" id="kpiswitchLabel">KPI View</span>
                 <div class="kpiswitch-container" id="kpiviewSwitch" onclick="toggleKPIview()">
                   <div class="kpiswitch-slider"></div>
                 </div>
 
-                <span class="performanceswitch-label" id="performanceswitchLabel"><b>performance view</b></span>
+                <span class="performanceswitch-label" id="performanceswitchLabel">Performance View</span>
                 <div class="performanceswitch-container" id="performanceviewSwitch" (click)="togglePerformanceview()">
-                <div class="performanceswitch-slider"></div>
+                  <div class="performanceswitch-slider"></div>
                 </div>
                
                 `,
@@ -1113,7 +1120,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var expandSwitch = document.getElementById('expandSwitch');
         var riskviewSwitch = document.getElementById('riskviewSwitch');
         var kpiviewSwitch = document.getElementById('kpiviewSwitch');
-        var performanceviewSwitch = document.getElementById('performanceviewSwitch');
+        var performanceviewSwitch = document.getElementById(
+          'performanceviewSwitch'
+        );
 
         if (expandSwitch) {
           expandSwitch.addEventListener('click', toggleExpand);
@@ -1125,9 +1134,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           kpiviewSwitch.addEventListener('click', toggleKPIview);
         }
         if (performanceviewSwitch) {
-          performanceviewSwitch.addEventListener('click', togglePerformanceview);
+          performanceviewSwitch.addEventListener(
+            'click',
+            togglePerformanceview
+          );
         }
-
 
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
@@ -1183,13 +1194,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         click: onNodeClick,
       });
     });
-
-
-
   }
 
   public nodeClick(data) {
     sessionStorage.clear();
   }
-
 }
