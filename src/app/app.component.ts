@@ -13,8 +13,10 @@ import {
 import '@progress/kendo-ui';
 import { TemplateClass } from './utils/classes/TemplateClass';
 
+
 import { DataService } from './services/data.service';
 import { data } from './models/data.model';
+
 
 declare var $: any;
 @Component({
@@ -32,7 +34,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   causeTemplate: string = '';
   consequencesTemplate: string = '';
   otherTemplate: string = '';
-  originalData: data[] = [];
+  originalData:data[] =[]; 
+  
 
   constructor(private dataService: DataService) {}
 
@@ -55,11 +58,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "RiskData": {
           "RiskCode": "OR-81",
           "ResponsibleManager": "Anita Raymond2",
-          "Category": "3",
-          "ResidualRiskRating": "2",
-          "TargetRiskRatinng": "2",
-          "InherentRiskRating": "",
-          "AppetiteRating": ""
+          "Category": "customer/Reliability",
+          "ResidualRiskRating": "Low",
+          "TargetRiskRatinng": "High",
+          "InherentRiskRating": "Extreme",
+          "AppetiteRating": "Within Appetite"
         }
       },
 
@@ -77,7 +80,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -95,7 +99,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -113,7 +118,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -131,7 +137,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -141,8 +148,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Consequences Node",
         "Header": "Consequence",
         "Rating": "",
-        "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>"
+        "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>",
+        "LinkedControlIds": [1779,1778,1777,1776,2775]
       },
+    
       {
         "Id": 2775,
         "Type": 3,
@@ -150,14 +159,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Falls risk assessment</dev>",
+        "htmlTemplate": "<dev>Falls risk assessment 2775</dev>",
         "ControlData": {
           "ControlTitle": "Falls risk assessment",
           "ControlOwner": "Anita Raymond2",
           "ControlOwnerRating": "Strongest",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -175,7 +185,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -193,8 +204,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strongest",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
-        }
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
+        },
+
       },
       {
         "Id": 2778,
@@ -211,7 +224,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -221,8 +235,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Consequences Node",
         "Header": "Consequence",
         "Rating": "",
-        "htmlTemplate": "<dev>Sustainability innovation and quality of care is affected</dev>"
+        "htmlTemplate": "<dev>Sustainability innovation and quality of care is affected</dev>",
+        "LinkedControlIds":[2778,2777,2776,2775]
       },
+     
       {
         "Id": 2779,
         "Type": 3,
@@ -237,9 +253,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Moderate",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false          
+          
         }
       },
+      
       {
         "Id": 2780,
         "Type": 3,
@@ -255,7 +274,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false
         }
       },
       {
@@ -273,7 +293,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false
         }
       },
       {
@@ -291,13 +312,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false
         }
       },
       {
         "Id": 2783,
         "Type": 2,
-        "ParentNodeId": 0,
+        "ParentNodeId": 2782,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
@@ -308,9 +330,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Weak",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
+     
       {
         "Id": 2784,
         "Type": 2,
@@ -326,7 +350,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Moderate",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -344,7 +369,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Moderate",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -362,7 +388,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -372,12 +399,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Cause Node",
         "Header": "Cause",
         "Rating": "",
-        "htmlTemplate": "<dev>Adverse findings against LRH as a result of the Mental Healt</dev>"
+        "htmlTemplate": "<dev>Adverse findings against LRH as a result of the Mental Healt</dev>",
+        "LinkedControlIds":[2786,2785,2784,2783]
+
       },
+     
+      
       {
         "Id": 2787,
         "Type": 2,
-        "ParentNodeId": 0,
+        "ParentNodeId": 2786,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
@@ -388,9 +419,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Moderate",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
+     
       {
         "Id": 2788,
         "Type": 2,
@@ -406,7 +439,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -424,7 +458,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
@@ -442,17 +477,50 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Strong",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
+        }
+      },
+
+      {
+        "Id": 2791,
+        "Type": 2,
+        "ParentNodeId": 2790,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Occupational Violence and Aggression  Protocol</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Occupational Violence and Aggression  Protocol",
+          "ControlOwner": "Chris Lonergan",
+          "ControlOwnerRating": "Strong",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true
         }
       },
       {
         "Id": 58,
         "Type": 2,
-        "ParentNodeId": 2790,
+        "ParentNodeId": 2791,
         "Title": "Cause Node",
         "Header": "Cause",
         "Rating": "",
-        "htmlTemplate": "<dev>Media coverage of adverse findings against LRH as a resulto</dev>"
+        "htmlTemplate": "<dev>Media coverage of adverse findings against LRH as a resulto</dev>",
+        "LinkedControlIds":[2790,2789,2788,2787,2791]
+      },
+
+      {
+        "Id": 644,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>",
+        "LinkedControlIds": [0]
       },
 
       {
@@ -470,7 +538,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRating": "Moderate",
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
-          "Active": true
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false
         }
       },
 
@@ -486,10 +555,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "LinkageId": 2,
           "IncidentId": 1,
           "IncidentTitle": "IMS - 1",
-          "IncidentCode": "Test",
-          "IncidentType": "Mar 30 2020  9:55PM",
-          "ReportedDate": "Near Miss",
-          "ResponsiblePerson": "",
+          "IncidentCode": "",
+          "IncidentType": "Test",
+          "ReportedDate": "Mar 30 2020  9:55PM",
+          "ResponsiblePerson": "Near Miss",
           "ImageType": ""
         }
       },
@@ -505,21 +574,68 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "LinkageId": 3,
           "IncidentId": 2,
           "IncidentTitle": "IMS - 2",
-          "IncidentCode": "test",
-          "IncidentType": "Oct 26 2020  7:04PM",
-          "ReportedDate": "Hazard",
-          "ResponsiblePerson": "",
+          "IncidentCode": "",
+          "IncidentType": "test",
+          "ReportedDate": "Oct 26 2020  7:04PM",
+          "ResponsiblePerson": "Hazard",
           "ImageType": ""
+        }
+      },
+
+      {
+        "Id": 12,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Kpi",
+        "Rating": "",
+        "htmlTemplate": "<dev>% reduction in non-clinically indicated surgery</dev>",
+        "KPIData":{
+          "RiskLinkId":2078,
+          "KpiIntId":12,
+          "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
+          "KPITitle":"% reduction in non-clinically indicated surgery",
+          "Unit":"#",
+          "ReportingPeriod":"Month",
+          "Actual":0.00,
+          "Target":0.00,
+          "PerformanceImg":"N/A",
+          "TrendImg":"Not Applicable"
+        }
+      },
+
+
+      {
+        "Id": 202,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Kpi",
+        "Rating": "",
+        "htmlTemplate": "<dev>Time spent on non-billable projects</dev>",
+        "KPIData":{
+          "RiskLinkId":2077,
+          "KpiIntId":202,
+          "KpiGuidId":"1d6cfec3-2b88-4dba-bb24-40f08d54352e",
+          "KPITitle":"Time spent on non-billable projects",
+          "Unit":"%",
+          "ReportingPeriod":"Month",
+          "Actual":0.0,
+          "Target":0.0,
+          "PerformanceImg":"N/A",
+          "TrendImg":"Not Applicable"
         }
       }
 
     ];
+
 
     var tempTitleDetail = '';
     let isExpanded = false;
     let enableriskview = false;
     let enableKPIview = false;
     let enablePerformanceview = false;
+  
     var originalConnections; // Variable to store the original connections
 
     // Import the Drawing API namespaces.
@@ -529,55 +645,86 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
     function visualTemplate(options: any) {
-
+     
       var Templates = new TemplateClass();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
+      var riskTemplate = "";
+      var controlTemplate = "";
+      var controlTemplateExpand = ""
+      var causeTemplate = "";
+      var consequencesTemplate = "";
+      var incidentTemplateExpnad = "";
+      var kpiTemplateExpnad = "";
+      var bottomTemplate = ""
+     
+     
+      switch(dataItem.Header) 
+      {
+        case "Risk":
+          riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
+          sessionStorage.setItem('riskTemplate', riskTemplate);
+          break;
+        case "Control":
+          controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem , enablePerformanceview);
+          controlTemplateExpand = Templates.GetControlNodeTemplateGlobalExpand(dataItem , enablePerformanceview);
+          sessionStorage.setItem('controlTemplate', controlTemplate);
+          sessionStorage.setItem('controlExpandTemplate', controlTemplateExpand);
+          break;
+        case "Cause":
+          causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
+          sessionStorage.setItem('causeTemplate', causeTemplate);
+          break;
+        case "Consequence":
+          consequencesTemplate = Templates.GetConsequencesTemplateGlobal(dataItem);
+          sessionStorage.setItem('consequencesTemplate', consequencesTemplate);
+          break;
+        case "Incident":
+          incidentTemplateExpnad = Templates.GetIncidentExpand(dataItem);
+          bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
+          sessionStorage.setItem('Incident', incidentTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', bottomTemplate);
+          break;
+        case "Kpi":
+          kpiTemplateExpnad = Templates.GetKPIExpand(dataItem);
+          bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
+          sessionStorage.setItem('Kpi', kpiTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', bottomTemplate);
+          break;
+        default:
+      }
+
       //get templates from template class
-      var riskTemplate = Templates.GetRiskNodeTemplateGlobal(dataItem);
-      var controlTemplate = Templates.GetControlNodeTemplateGlobal(dataItem);
-      var causeTemplate = Templates.GetCauseTemplateGlobal(dataItem);
-      var consequencesTemplate =
-        Templates.GetConsequencesTemplateGlobal(dataItem);
-      var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);
-      var controlTemplateExpand =
-        Templates.GetControlNodeTemplateGlobalExpand(dataItem);
-      var riskTemplateExpand =
-        Templates.GetRiskNodeTemplateGlobalExpand(dataItem);
+      
+      var bottomTemplate = Templates.GetOtherTemplateGlobal(dataItem);       
+      var linkRiskTemplate =
+        Templates.GetLinkRiskNodeTemplateGlobal(dataItem);
       var riskActionTemplateExpand =
         Templates.GetRiskActionTreatmentExpand(dataItem);
-      var incidentTemplateExpnad = Templates.GetIncidentExpand(dataItem);
-      var complianceTemplateExpnad =
+           var complianceTemplateExpnad =
         Templates.GetComplianceObligationExpand(dataItem);
-      var kpiTemplateExpnad = Templates.GetKPIExpand(dataItem);
+     
 
       // templates are assigned to corresponding variables
-      sessionStorage.setItem('riskTemplate', riskTemplate);
-      sessionStorage.setItem('controlTemplate', controlTemplate);
-      sessionStorage.setItem('causeTemplate', causeTemplate);
-      sessionStorage.setItem('consequencesTemplate', consequencesTemplate);
-      sessionStorage.setItem('otherTemplate', bottomTemplate);
-      sessionStorage.setItem('expandTemplate', controlTemplateExpand);
-      sessionStorage.setItem('riskExpand', riskTemplateExpand);
+      sessionStorage.setItem('linkRiskTemplate', linkRiskTemplate);
       sessionStorage.setItem('riskActionExpand', riskActionTemplateExpand);
-      sessionStorage.setItem('Incident', incidentTemplateExpnad);
       sessionStorage.setItem('complianceExpand', complianceTemplateExpnad);
-      sessionStorage.setItem('KPIExpand', kpiTemplateExpnad);
       
       var renderElement = $("<div style='display:inline-block' />").appendTo(
         'body'
       );
-     
+
+
       if (enableriskview) {
         enableKPIview = false;
         if (isExpanded) {
-          if (dataItem.Header === 'riskExpand') {
-            var riskExpandTemp = kendo.template(riskTemplateExpand);
-            renderElement.html(riskExpandTemp(dataItem));
+          if (dataItem.Header === 'LinkRisk') {
+            var linkRiskBottomTemp = kendo.template(linkRiskTemplate);
+            renderElement.html(linkRiskBottomTemp(dataItem));
           }
         } else {
-          if (dataItem.Header === 'riskExpand') {
+          if (dataItem.Header === 'LinkRisk') {
             var otherTemp = kendo.template(bottomTemplate);
             renderElement.html(otherTemp(dataItem));
           }
@@ -590,12 +737,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       } else if (enableKPIview) {
         enableriskview = false;
         if (isExpanded) {
-          if (dataItem.Header === 'KPIExpand') {
+         
+          if (dataItem.Header === 'Kpi') {
             var KPIExpandTemp = kendo.template(kpiTemplateExpnad);
             renderElement.html(KPIExpandTemp(dataItem));
           }
         } else {
-          if (dataItem.Header === 'KPIExpand') {
+          if (dataItem.Header === 'Kpi') {
             var otherTemp = kendo.template(bottomTemplate);
             renderElement.html(otherTemp(dataItem));
           }
@@ -607,12 +755,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       } else {
         if (isExpanded) {
+         
           if (dataItem.Title === 'Risk Node') {
             var riskNodeTemp = kendo.template(riskTemplate);
             renderElement.html(riskNodeTemp(dataItem));
           } else if (dataItem.Title === 'Control Node') {
             var controlNodeExpandTemp = kendo.template(controlTemplateExpand);
-
             renderElement.html(controlNodeExpandTemp(dataItem));
           } else if (dataItem.Title === 'Consequences Node') {
             var consequencesTemp = kendo.template(consequencesTemplate);
@@ -621,9 +769,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             var causeTemp = kendo.template(causeTemplate);
             renderElement.html(causeTemp(dataItem));
           } else {
-            if (dataItem.Header === 'riskExpand') {
-              var riskExpandTemp = kendo.template(riskTemplateExpand);
-              renderElement.html(riskExpandTemp(dataItem));
+            if (dataItem.Header === 'linkRiskTemplate') {
+              var linkRiskBottomTemp = kendo.template(linkRiskTemplate);
+              renderElement.html(linkRiskBottomTemp(dataItem));
             } else if (dataItem.Header === 'riskActionExpand') {
               var riskActionExpandTemp = kendo.template(
                 riskActionTemplateExpand
@@ -637,12 +785,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 complianceTemplateExpnad
               );
               renderElement.html(complianceExpandTemp(dataItem));
-            } else if (dataItem.Header === 'KPI') {
+            } else if (dataItem.Header === 'Kpi') {
               var KPIExpandTemp = kendo.template(kpiTemplateExpnad);
               renderElement.html(KPIExpandTemp(dataItem));
             }
           }
         } else {
+         
+
           if (dataItem.Title === 'Risk Node') {
             var riskNodeTemp = kendo.template(riskTemplate);
             renderElement.html(riskNodeTemp(dataItem));
@@ -655,9 +805,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           } else if (dataItem.Title === 'Cause Node') {
             var causeTemp = kendo.template(causeTemplate);
             renderElement.html(causeTemp(dataItem));
-          } else if (dataItem.Title === 'Expand Node') {
-            var extraTemp = kendo.template(controlTemplateExpand);
-            renderElement.html(extraTemp(dataItem));
           } else {
             var otherTemp = kendo.template(bottomTemplate);
             renderElement.html(otherTemp(dataItem));
@@ -703,6 +850,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         const verticalSpacingFour = 200;
         const maxNodesPerRow = 5;
         const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
+         let controlNodeCount = 0; // Counter for control nodes in the current row
 
         let typeFourIndex = 0;
 
@@ -711,47 +859,46 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         // arrange type 2 nodes (left of type 1)
         const typeTwoNodes = originalData.filter((node) => node.Type === 2);
-        let rowNumber = 0;
+        let rowNumbertypetwo = 0;
         let columnNumber = 0;
         let rowNodeCount = 0;
 
         for (let i = 0; i < typeTwoNodes.length; i++) {
           if (
-            typeTwoNodes[i].ParentNodeId == 1 &&
+            typeTwoNodes[i].ParentNodeId == 0 &&
             typeTwoNodes[i].Title == 'Cause Node'
           ) {
+           
             // Calculate the x and y coordinates for the cause node
             const x = originX - 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
+            const y = originY + rowNumbertypetwo * verticalSpacing;
 
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
             arrangedNodes.push(typeTwoNodes[i]);
-            rowNumber++;
-          } else if (typeTwoNodes[i].Title == 'Control Node') {
+            rowNumbertypetwo++;
+          } 
+          else if (typeTwoNodes[i].Title == 'Control Node') {
             const x = originX - (columnNumber + 1) * horizontalSpacing;
-            const y = originY + rowNumber * verticalSpacing;
+            const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
-            if (rowNodeCount === maxNodesPerRow) {
-              rowNumber++;
+            if (columnNumber === 4) {
+              rowNumbertypetwo++;
               rowNodeCount = 0;
             }
             columnNumber = rowNodeCount;
-          } else if (
-            typeTwoNodes[i].ParentNodeId !== 1 &&
-            typeTwoNodes[i].Title == 'Cause Node'
+          } else if ( typeTwoNodes[i].ParentNodeId !== 0 && typeTwoNodes[i].Title == 'Cause Node'
           ) {
             const x = originX - 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
+            const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
             arrangedNodes.push(typeTwoNodes[i]);
-            rowNodeCount++;
-
-            rowNumber++;
+           
+            rowNumbertypetwo++;
             rowNodeCount = 0;
 
             columnNumber = rowNodeCount;
@@ -759,68 +906,68 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
         // Arrange type 3 nodes (right of type 1)
-        rowNumber = 0;
+         let rowNumbertypethree = 0;
         const typeThreeNodes = originalData.filter((node) => node.Type === 3);
 
         for (let i = 0; i < typeThreeNodes.length; i++) {
           if (
-            typeThreeNodes[i].ParentNodeId == 1 &&
+            typeThreeNodes[i].ParentNodeId == 0 &&
             typeThreeNodes[i].Title == 'Consequences Node'
           ) {
+            rowNumbertypethree++;
             const x = originX + 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
+            const y = originY + rowNumbertypethree * verticalSpacing;
             typeThreeNodes[i].x = x;
             typeThreeNodes[i].y = y;
             arrangedNodes.push(typeThreeNodes[i]);
-            rowNumber++;
+            rowNumbertypethree++;
+
+
           } else if (typeThreeNodes[i].Title == 'Control Node') {
             const x = originX + (columnNumber + 1) * horizontalSpacing;
-            const y = originY + rowNumber * verticalSpacing;
+            const y = originY + rowNumbertypethree * verticalSpacing;
             typeThreeNodes[i].x = x;
             typeThreeNodes[i].y = y;
             arrangedNodes.push(typeThreeNodes[i]);
             rowNodeCount++;
-            if (rowNodeCount === maxNodesPerRow) {
-              rowNumber++;
+            if (rowNodeCount === maxNodesPerRow ) {
+              rowNumbertypethree++;
               rowNodeCount = 0;
             }
-            columnNumber = rowNodeCount;
-          } else if (
-            typeThreeNodes[i].ParentNodeId !== 1 &&
-            typeThreeNodes[i].Title == 'Consequences Node'
+             columnNumber = rowNodeCount;
+          }else if (
+            typeThreeNodes[i].ParentNodeId !== 0 &&
+            typeThreeNodes[i].Title == 'Consequences Node' 
           ) {
             const x = originX + 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumber * verticalSpacing;
+            const y = originY + rowNumbertypethree * verticalSpacing;
             typeThreeNodes[i].x = x;
             typeThreeNodes[i].y = y;
             arrangedNodes.push(typeThreeNodes[i]);
             rowNodeCount++;
-
-            rowNumber++;
+            rowNumbertypethree++;
             rowNodeCount = 0;
+           columnNumber = rowNodeCount;
+          
+           
+          } 
 
-            columnNumber = rowNodeCount;
-          }
+          
         }
-
+        
         // Arrange type 1 (risk) node
-        const typeTwoRows = Math.ceil(
-          typeTwoNodes.length / (maxNodesPerRow - 1)
-        );
-        const typeThreeRows = Math.ceil(
-          typeThreeNodes.length / (maxNodesPerRow - 1)
-        );
+       
 
-        let maxTypeTwoTypeThreeRows = Math.max(typeTwoRows, typeThreeRows);
-
+        let maxTypeTwoTypeThreeRows = Math.max(rowNumbertypetwo, rowNumbertypethree);
         let riskNodeX = originX;
         let riskNodeY =
           originY +
-          (maxTypeTwoTypeThreeRows - 3) * verticalSpacing +
+          (maxTypeTwoTypeThreeRows - 2) * verticalSpacing +
           verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
-        riskNode.x = riskNodeX;
-        riskNode.y = riskNodeY;
-        arrangedNodes.push(riskNode);
+          riskNode.x = riskNodeX;
+          riskNode.y = riskNodeY;
+          arrangedNodes.push(riskNode);
+          
 
         // Arrange type 4 nodes (below type 2 and type 3)
         const typeFourNodes = originalData.filter((node) => node.Type === 4);
@@ -839,15 +986,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           arrangedNodes.push(node);
           typeFourIndex++;
         });
-      }
+      
 
+
+     
+    }
       return arrangedNodes;
     }
 
     const arrangedData = arrangeNodes(this.originalData);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
-    $(() => {
+    
+    $(()=> {
       $(document).ready(() => {
         createDiagram(this.originalData);
       });
@@ -865,7 +1016,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         e.container.closest('.k-popup-edit-form').data('kendoWindow').close();
       }
 
-      function createDiagram(originalData: any[]) {
+      function createDiagram(originalData:any[]) {
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         if (!dataShapes || dataShapes.length == 0) {
           sessionStorage.setItem('shapes', JSON.stringify(originalData));
@@ -879,6 +1030,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var dataConnections = [];
       
         for (let i = 1; i < originalData.length; i++) {
+          if(originalData[i].Title == "Other Node" ){
           var conObj = {
             Id: originalData[i].Type === 4 ? 0 : i,
             FromShapeId: originalData[i].ParentNodeId,
@@ -887,12 +1039,38 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             
           };
           dataConnections.push(conObj);
-          
-
         }
 
-        
+          // if(originalData[i].Title == "Cause Node" ||  originalData[i].Title == "Consequences Node"){
 
+          //   for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
+
+          //     var conObj2 = {
+          //       Id: j,
+          //       FromShapeId: originalData[i].LinkedControlIds[j],
+          //       ToShapeId: originalData[i].Id,
+          //       Text: null,
+                
+          //     };
+          //     dataConnections.push(conObj2);
+          //   }
+
+          // }
+
+          if(originalData[i].Title == "Control Node"){
+
+                var conObj1 = {
+                  Id:  i,
+                  FromShapeId: 0,
+                  ToShapeId: originalData[i].Id,
+                  Text: null,
+                  
+                };
+                dataConnections.push(conObj1);
+              }
+
+        }
+        
         // Function to handle the toggle switch behavior
         function toggleExpand() {
           isExpanded = !isExpanded;
@@ -970,8 +1148,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   var fromNode = diagram.dataSource.get(connection.from);
                   var toNode = diagram.dataSource.get(connection.to);
                   return (
-                    (fromNode && fromNode.Header === 'KPIExpand') ||
-                    (toNode && toNode.Header === 'KPIExpand')
+                    (fromNode && fromNode.Header === 'Kpi') ||
+                    (toNode && toNode.Header === 'Kpi')
                   );
                 });
 

@@ -8,7 +8,9 @@ import { DataConnection } from '../models/dataConnection.model';
 })
 export class DataService {
 
-  
+
+
+
   private data = new BehaviorSubject('');
   currentData = this.data.asObservable();
 

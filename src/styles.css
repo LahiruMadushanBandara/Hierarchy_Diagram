@@ -43,7 +43,7 @@
   height: 100px;
 }
 .ab {
-  background-color: green;
+  background-color: rgb(2, 74, 2);
   width: 50%;
 }
 .shape {
@@ -232,7 +232,6 @@
   display: grid;
   width: 300px;
   border-radius: 10px;
-  font-family: "Graphik";
 }
 
 .bow-tie-extra-card-body {
@@ -298,7 +297,6 @@
   width: 400px;
   border: none;
   border-radius: 10px 10px 10px 10px;
-  font-family: "Graphik";
 }
 
 .bow-tie-consequences-card-body {
@@ -336,7 +334,6 @@
   width: 420px;
   border: 2px solid rgb(220, 220, 220);
   border-radius: 12px;
-  font-family: "Graphik";
 }
 
 .Bow-tie-Other-card-header {
@@ -452,6 +449,103 @@
 .bow-tie-incident-expand-reported-date {
   margin-top: -10px;
   margin-bottom: 30px;
+}
+
+
+/*add css to KPI-card-expand */
+
+.bow-tie-kpi{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 2px; 
+    margin-top: -5px;
+
+}
+
+.bow-tie-unit-flex{
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-bottom: 1px;
+
+}
+
+.bow-tie-unit-text{
+    font-size: 15px; 
+    color: black;
+}
+
+.bow-tie-unit-symbol{
+    font-size: 36px; 
+    color: blue;
+}
+
+.bow-tie-unit-details{
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+}
+
+.bow-tie-actual-flex{
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  margin-bottom: 20px;
+  margin-left: 40px;
+}
+
+.bow-tie-actual-text{
+  margin-right: 10px; 
+  font-size: 15px; 
+  color: black;
+}
+
+.bow-tie-actual-value{
+  margin-right: 10px; 
+  font-size: 36px; 
+  color: blue;
+}
+
+.bow-tie-target-flex{
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-end;
+  margin-bottom: 20px;
+  margin-right: 40px;
+}
+.bow-tie-target-text{
+  margin-right: 10px; 
+  font-size: 15px; 
+  color: black;
+}
+.bow-tie-target-value{
+  margin-right: 10px; 
+  font-size: 36px; 
+  color: blue;
+}
+
+.bow-tie-performance-flex{
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  margin-top: 20px;
+}
+.bow-tie-performance-text{
+  position: relative; 
+  margin-right: 25px; 
+  font-size: 18px;
+}
+
+.bow-tie-performance-icon{
+  width: 20px; 
+  height: 20px;
+
+}
+.bow-tie-performance-rating{
+  position: relative; 
+  margin-left: 5px; 
+  font-size: 18px;
 }
 
 /* Add  CSS to style the toggle switch - expand */

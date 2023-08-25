@@ -5,7 +5,9 @@ export interface data {
 
   Type: number;
 
-  ParentNodeId: number;
+  ParentNodeId?: number;
+
+  LinkedControlIds?: number[];
 
   Title: string;
 
@@ -20,6 +22,8 @@ export interface data {
   ControlData?: ControlData;
 
   IncidentData?: IncidentData;
+
+  KPIData?: KPIData;
 
 }
 
@@ -47,8 +51,6 @@ interface RiskData {
 
 interface ControlData {
 
- 
-
   ControlTitle: string;
 
   ControlOwner: string;
@@ -60,6 +62,8 @@ interface ControlData {
   ControlAuthorizerRating: string;
 
   Active: boolean;
+  
+  IsLinkedToCauseOrConsequence: boolean;
 
 }
 
@@ -82,5 +86,31 @@ interface IncidentData {
   ResponsiblePerson: string;
 
   ImageType: string;
+
+}
+
+
+interface KPIData {
+
+  RiskLinkId: number;
+
+  KpiIntId: number;
+
+  KpiGuidId: string;
+
+  KPITitle: string;
+
+  Unit: string;
+
+  ReportingPeriod: string;
+
+  Actual: number;
+
+  Target: number;
+
+  PerformanceImg: string;
+
+  TrendImg: string;
+
 
 }
