@@ -737,7 +737,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       } else if (enableKPIview) {
         enableriskview = false;
         if (isExpanded) {
-         
+       
           if (dataItem.Header === 'Kpi') {
             var KPIExpandTemp = kendo.template(kpiTemplateExpnad);
             renderElement.html(KPIExpandTemp(dataItem));
@@ -989,7 +989,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       
 
 
-     
+      
     }
       return arrangedNodes;
     }
@@ -1041,21 +1041,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           dataConnections.push(conObj);
         }
 
-          // if(originalData[i].Title == "Cause Node" ||  originalData[i].Title == "Consequences Node"){
+          if(originalData[i].Title == "Cause Node" ||  originalData[i].Title == "Consequences Node"){
 
-          //   for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
+            for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
 
-          //     var conObj2 = {
-          //       Id: j,
-          //       FromShapeId: originalData[i].LinkedControlIds[j],
-          //       ToShapeId: originalData[i].Id,
-          //       Text: null,
+              var conObj2 = {
+                Id: j,
+                FromShapeId: originalData[i].LinkedControlIds[j],
+                ToShapeId: originalData[i].Id,
+                Text: null,
                 
-          //     };
-          //     dataConnections.push(conObj2);
-          //   }
+              };
+              dataConnections.push(conObj2);
+            }
 
-          // }
+          }
 
           if(originalData[i].Title == "Control Node"){
 
