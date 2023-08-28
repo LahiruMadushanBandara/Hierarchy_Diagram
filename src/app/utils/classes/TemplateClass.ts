@@ -386,7 +386,7 @@ export class TemplateClass {
                 "<b>Unit</b>" +
               "</span>" +
               "<span class='bow-tie-unit-symbol'>\\"+
-                contentDetails.KPIData.Unit +
+                contentDetails.KpiData.Unit +
               "</span>"+
             "</div>" +
           "</div>" +
