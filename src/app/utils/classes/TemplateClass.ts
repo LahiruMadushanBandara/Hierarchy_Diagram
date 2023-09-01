@@ -245,53 +245,69 @@ export class TemplateClass {
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</p>" +
         "</div>" +
-        "<div class='bow-tie-extra-card-body' >" +
-          "<p>" +
-            contentDetails.htmlTemplate +
+         "<div class='bow-tie-risk-card-header-expand'>" +
+           "<p class='bow-tie-risk-card-header-text-expand'>"+
+            contentDetails.LinkedRiskData.RiskCode+ 
+             "-"+
+             contentDetails.htmlTemplate+
           "</p>" +
-          "<div class='bow-tie-risk-card-body-expand'>" +
-          "<div class='row' style='display: flex;'>" +
-            "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
+          "</div>" +
+          "<div class='bow-tie-risk-card-body'>" +
+          "<div class='row'>" +
+            "<div class-'column'>" +
               "<p><b>Inherent Rating</b></p>" +
-              "<p style='display: flex; align-items: center; line-height: 1;'>" +
-                "<img src='../assets/bow-tie/icon/Extream.png' style='width: 50px; height: 50px;'>" +
-                "<span style='position: relative; top: -2px; margin-left: 5px;'>Extreme</span>" +
+              "<p class='bow-tie-risk-rating-details'>" +
+                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Extream.png' >" +
+                "<span class='bow-tie-risk-rating-details-text'>" +
+                 contentDetails.LinkedRiskData.InherentRiskRating +
+                "</span>" +
               "</p>" +
             "</div>" +
-            "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
+            "<div class='column'>" +
               "<p><b>Revised Rating</b></p>" +
-              "<p style='display: flex; align-items: center; line-height: 1;'>" +
-                "<img src='../assets/bow-tie/icon/Low.png' style='width: 50px; height: 50px;'>" +
-                "<span style='position: relative; top: -2px; margin-left: 5px;'>Low</span>" +
+              "<p class='bow-tie-risk-rating-details'>" +
+                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Low.png' >" +
+                "<span  class='bow-tie-risk-rating-details-text'>" +
+                contentDetails.LinkedRiskData.ResidualRiskRating+
+                "</span>" +
               "</p>" +
             "</div>" +
           "</div>" +
-          "<div class='row' style='display: flex;'>" +
-          "<div class='column' style='background-color: white; width: 50%; padding-left: 15px;'>" +
+          "<div class='row' >" +
+          "<div class='column'>" +
             "<p><b>Future Rating</b></p>" +
-            "<p style='display: flex; align-items: center; line-height: 1;'>" +
-              "<img src='../assets/bow-tie/icon/High.png' style='width: 50px; height: 50px;'>" +
-              "<span style='position: relative; top: -2px; margin-left: 5px;'>High</span>" +
+            "<p class='bow-tie-risk-rating-details'>" +
+              "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
+              "<span class='bow-tie-risk-rating-details-text'>" +
+                contentDetails.LinkedRiskData.TargetRiskRatinng +
+              "</span>" +
             "</p>" +
           "</div>" +
-          "<div style='background-color: white; width: 50%; padding-left: 15px;'>" +
+          "<div class='column'>" +
             "<p><b>Risk Appetite</b></p>" +
-            "<p style='display: flex; align-items: center; line-height: 1;'>" +
-              "<img src='../assets/bow-tie/icon/WithinAppetite.png' style='width: 50px; height: 50px;'>" +
-              "<span style='position: relative; top: -2px; margin-left: 5px;'>Within Appetite</span>" +
+            "<p  class='bow-tie-risk-rating-details'>" +
+              "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+              "<span class='bow-tie-risk-rating-details-text'>"+
+               contentDetails.LinkedRiskData.AppetiteRating +
+              "</span>" +
             "</p>" +
           "</div>" +
         "</div>" +
         "<div class='bow-tie-risk-card-footer-expand'>" +
-          "<div class='row' style='display: flex;'>" +
-          "<div style='background-color: light gray; width: 50%; padding-left: 15px;'>" +
-            "<p><b>Risk Category</b></p><p>customer/<br>Reliability</p>" +
+          "<div class='row'>" +
+          "<div  class='bow-tie-risk-footer-details'>" +
+            "<p><b>Risk Category</b></p><p>" +
+            "<p>"+
+              contentDetails.LinkedRiskData.Category +
+            "</p>"+
           "</div>" +
-          "<div style='background-color: light gray; width:50%; padding-left: 15px;'>" +
+          "<div class='bow-tie-risk-footer-details'>" +
             "<p><b>Responsible Manager</b></p>" +
-            "<p style='display: flex; align-items: center; line-height: 1;'>" +
-              "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px;'>" +
-              "<span style='position: relative; top: -2px; margin-left: 5px;'>Talia Gisbon</span>" +
+            "<p sclass='bow-tie-risk-rating-details'>" +
+              "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/image.png' >" +
+              "<span class='bow-tie-risk-rating-details-text'>" +
+                contentDetails.LinkedRiskData.ResponsibleManager +
+              "</span>" +
             "</p>" +
           "</div>" +
         "</div>" +
@@ -558,13 +574,7 @@ export class TemplateClass {
     );
   }
 
-  public AddTemplatesToNode(dataItem, templatesObj, isExpanded, enablePerformanceview, enableKPIview, enableriskview, renderElement){
-    console.log("Add template called")
-    console.log("dataItem - ")
-    console.log(dataItem)
-
-    console.log("isExpanded - ")
-    console.log(isExpanded)
+  public AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement){  
 
 
     switch(dataItem.Header) 
@@ -574,8 +584,8 @@ export class TemplateClass {
         sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
         break;
       case "Control":
-        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem , enablePerformanceview);
-        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem , enablePerformanceview);
+        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem , isPerformanceView);
+        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem , isPerformanceView);
         sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
         sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
         break;
@@ -599,14 +609,20 @@ export class TemplateClass {
         sessionStorage.setItem('Kpi', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
+
+      case "LinkedRisk":
+        templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+          sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
       default:
     }
 
     //get templates from template class
     
     templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);       
-    templatesObj.linkRiskTemplate =
-    this.GetLinkRiskNodeTemplateGlobal(dataItem);
+    
       templatesObj.riskActionTemplateExpand =
       this.GetRiskActionTreatmentExpand(dataItem);
          var complianceTemplateExpnad =
@@ -614,23 +630,22 @@ export class TemplateClass {
    
 
     // templates are assigned to corresponding variables
-    sessionStorage.setItem('linkRiskTemplate', templatesObj.linkRiskTemplate);
+    
     sessionStorage.setItem('riskActionExpand', templatesObj.riskActionTemplateExpand);
     sessionStorage.setItem('complianceExpand', templatesObj.complianceTemplateExpnad);
     
     
 
-    if (enableriskview) {
-      enableKPIview = false;
-      if (isExpanded) {
-        console.log("enable risk View and expanded")
-
-        if (dataItem.Header === 'LinkRisk') {
+    if (isRiskView) {
+      isKpIview = false;
+      if (isExpand) {
+       
+        if (dataItem.Header === 'LinkedRisk') {
           var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
           renderElement.html(linkRiskBottomTemp(dataItem));
         }
       } else {
-        if (dataItem.Header === 'LinkRisk') {
+        if (dataItem.Header === 'LinkedRisk') {
           var otherTemp = kendo.template(templatesObj.bottomTemplate);
           renderElement.html(otherTemp(dataItem));
         }
@@ -640,9 +655,9 @@ export class TemplateClass {
         var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
         renderElement.html(riskNodeTemp(dataItem));
       }
-    } else if (enableKPIview) {
-      enableriskview = false;
-      if (isExpanded) {
+    } else if (isKpIview) {
+      isRiskView = false;
+      if (isExpand) {
        
         if (dataItem.Header === 'Kpi') {
           var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
@@ -660,12 +675,7 @@ export class TemplateClass {
         renderElement.html(riskNodeTemp(dataItem));
       }
     } else {
-      if (isExpanded) {
-        console.log("Is expand called set template")
-        console.log(templatesObj)
-        console.log(dataItem.Title)
-
-        
+      if (isExpand) {       
        
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
@@ -680,9 +690,10 @@ export class TemplateClass {
           var causeTemp = kendo.template(templatesObj.causeTemplate);
           renderElement.html(causeTemp(dataItem));
         } else {
-          if (dataItem.Header === 'linkRiskTemplate') {
-            var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
-            renderElement.html(linkRiskBottomTemp(dataItem));
+          
+          if (dataItem.Header === 'LinkedRisk') {
+          var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
+          renderElement.html(linkRiskBottomTemp(dataItem));
           } else if (dataItem.Header === 'riskActionExpand') {
             var riskActionExpandTemp = kendo.template(
               templatesObj.riskActionTemplateExpand
