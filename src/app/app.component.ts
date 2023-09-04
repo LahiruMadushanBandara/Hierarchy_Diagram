@@ -184,14 +184,22 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
         }
         
+
+
+
+
+
+
+
+
         function toggleExpand() {
           isExpand = !isExpand;
         
           // Change the text content of the button
           if (isExpand) {
-            button.textContent = 'Collapse';
+            buttonExpand.textContent = 'Collapse';
           } else {
-            button.textContent = 'Expand';
+            buttonExpand.textContent = 'Expand';
           }
         
           var diagram = kendoDiagram.getKendoDiagram();
@@ -203,8 +211,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         function toggleRiskview() {
           if (isKpIview == false) {
             isRiskView = !isRiskView;
-            const riskviewSwitch = document.getElementById('riskviewSwitch');
-            riskviewSwitch.classList.toggle('active', isRiskView);
+              // Change the text content of the button
+          if (isRiskView) {
+            buttonRisk.textContent = 'Risk View Off';
+          } else {
+            buttonRisk.textContent = 'ExpRisk View On';
+          }
+        
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
 
@@ -216,8 +229,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   var fromNode = diagram.dataSource.get(connection.from);
                   var toNode = diagram.dataSource.get(connection.to);
                   return (
-                    (fromNode && fromNode.Header === 'riskExpand') ||
-                    (toNode && toNode.Header === 'riskExpand')
+                    (fromNode && fromNode.Header === 'LinkedRisk') ||
+                    (toNode && toNode.Header === 'LinkedRisk')
                   );
                 });
 
@@ -241,9 +254,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         function toggleKPIview() {
           if (isRiskView == false) {
             isKpIview = !isKpIview;
-            const kpiviewSwitch = document.getElementById('kpiviewSwitch');
-            kpiviewSwitch.classList.toggle('active', isKpIview);
-
+            
+            if (isKpIview) {
+              buttonKpi.textContent = 'Kpi View Off';
+            } else {
+              buttonKpi.textContent = 'Kpi View On';
+            }
+          
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
 
@@ -283,14 +300,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         function togglePerformanceview() {
           isPerformanceView = !isPerformanceView;
 
-          const performanceviewSwitch = document.getElementById(
-            'performanceviewSwitch'
-          );
-          performanceviewSwitch.classList.toggle(
-            'active',
-            isPerformanceView
-          );
-
+          if (isPerformanceView) {
+            buttonPerformance.textContent = 'Performance View Off';
+          } else {
+            buttonPerformance.textContent = 'Performance View On';
+          }
               
           var diagram = kendoDiagram.getKendoDiagram();
           diagram.bringIntoView(diagram.shapes);
@@ -355,6 +369,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
                 <div class="k-actions btn-row-bottom k-actions-end align-items-end">
                  <button  id="ExpandButton" class="bt-Expand btn btn-outline-primary" onclick="toggleExpand()">Expand</button>
+                 <button  id="RiskButton" class="bt-Risk btn btn-outline-primary" onclick="toggleRiskview()">Risk View On </button>
+                 <button  id="KpiButton" class="bt-Kpi btn btn-outline-primary" onclick="toggleKPIview()">Kpi View On </button>
+                 <button  id="PerformanceButton" class="bt-Performance btn btn-outline-primary" onclick="togglePerformanceview()">Performance View On </button>
+
+
                 </div>
                 `,
                 enable: true,
@@ -388,13 +407,22 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           cancel: onCancel,
         });
 
+
+        
       // Get the button element and attach the click event listener
               
-       // Get the button element by its ID
-        var button = document.getElementById('ExpandButton');
+        var buttonExpand = document.getElementById('ExpandButton');        
+        buttonExpand.addEventListener('click', toggleExpand);
 
-        // Attach a click event listener
-        button.addEventListener('click', toggleExpand);
+        var buttonRisk = document.getElementById('RiskButton');        
+        buttonRisk.addEventListener('click', toggleRiskview);
+
+        var buttonKpi= document.getElementById('KpiButton');        
+        buttonKpi.addEventListener('click', toggleKPIview);
+
+        var buttonPerformance= document.getElementById('PerformanceButton');        
+        buttonPerformance.addEventListener('click', togglePerformanceview);
+
 
 
         if (isExpanded)
