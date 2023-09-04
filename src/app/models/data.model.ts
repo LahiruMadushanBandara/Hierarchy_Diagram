@@ -12,6 +12,7 @@ export interface data {
   ControlData?: ControlData;
   IncidentData?: IncidentData;
   KpiData?: KPIData;
+  LinkedRiskData?: LinkedRiskData;
 }
 
 interface RiskData {
@@ -56,4 +57,14 @@ interface KPIData {
   Target: number;
   PerformanceImg: string;
   TrendImg: string;
+}
+
+interface LinkedRiskData {
+  RiskCode: string;
+  ResponsibleManager: string;
+  Category: string;
+  InherentRiskRating: string;
+  ResidualRiskRating: string;
+  TargetRiskRatinng: string;
+  AppetiteRating: string;
 }
