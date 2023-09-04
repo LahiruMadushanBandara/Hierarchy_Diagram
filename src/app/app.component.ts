@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() expandChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
-  @Input() testData: data[] = [];
+  @Input() bowTieNodeDetails: data[] = [];
 
   riskTemplate: string = '';
   controlTemplate: string = '';
@@ -46,21 +46,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     let elrf = this.eleRef.nativeElement
     sessionStorage.clear();
 
-    console.log(change);
-    console.log("elrf -")
-    console.log(elrf)
+ 
 
     // !change?.['getfilterCriteriaEvent']?.currentValue !==
     // !change?.['getfilterCriteriaEvent']?.previousValue
     // var tem = new TemplateClass();
     // this.originalData = tem.NodeSampleData;
 
-    this.originalData = this.testData;
+    this.originalData = this.bowTieNodeDetails;
     
     var tempTitleDetail = '';
     let isRiskView = false;
     let isKpIview = false;
     let isPerformanceView = false;
+    let isExpand = false;
   
     var originalConnections; // Variable to store the original connections
 
@@ -68,10 +67,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     var draw = kendo.drawing;
     
     function visualTemplate(options: any, isExpanded) {
-      console.log("options - ")
+     
       
-
-      console.log(options)
       var Templates = new TemplateClass();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
@@ -92,8 +89,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
       
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
-      console.log("near add template in VT")
-      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpanded, isPerformanceView, isKpIview, isRiskView, renderElement);
+  
+      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
 
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
@@ -136,10 +133,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
 
       function createDiagram(originalData:any[], isExpanded:boolean) {
-        console.log("create diagram called")
+    
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         var isExpanded = isExpanded;
-        console.log(isExpanded)
+    
 
         if (!dataShapes || dataShapes.length == 0) {
           sessionStorage.setItem('shapes', JSON.stringify(originalData));
@@ -187,21 +184,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
         }
         
-        // Function to handle the toggle switch behavior
         function toggleExpand() {
-          isExpanded = !isExpanded;
-
-          // Update the switch state
-          // const expandSwitch = document.getElementById('expandSwitch');
-          // expandSwitch.classList.toggle('active', isExpanded);
-
-          // Use kendoDiagram variable to get the diagram instance
-
-          console.log("toggleExpandCalling")
+          isExpand = !isExpand;
+        
+          // Change the text content of the button
+          if (isExpand) {
+            button.textContent = 'Collapse';
+          } else {
+            button.textContent = 'Expand';
+          }
+        
           var diagram = kendoDiagram.getKendoDiagram();
           diagram.bringIntoView(diagram.shapes);
           diagram.refresh();
         }
+
 
         function toggleRiskview() {
           if (isKpIview == false) {
@@ -352,7 +349,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           editable: {
             shapeTemplate: detailTemp,
-            tools: false
+            tools: [
+              {
+                template: `
+
+                <div class="k-actions btn-row-bottom k-actions-end align-items-end">
+                 <button  id="ExpandButton" class="bt-Expand btn btn-outline-primary" onclick="toggleExpand()">Expand</button>
+                </div>
+                `,
+                enable: true,
+                click: toggleExpand
+              }
+            ]
           },
 
           shapeDefaults: {
@@ -380,35 +388,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           cancel: onCancel,
         });
 
-        // Get the switch element and attach the click event listener
-        var expandSwitch = document.getElementById('expandSwitch');
-        var riskviewSwitch = document.getElementById('riskviewSwitch');
-        var kpiviewSwitch = document.getElementById('kpiviewSwitch');
-        var performanceviewSwitch = document.getElementById(
-          'performanceviewSwitch'
-        );
+      // Get the button element and attach the click event listener
+              
+       // Get the button element by its ID
+        var button = document.getElementById('ExpandButton');
 
-        if (expandSwitch) {
-          expandSwitch.addEventListener('click', toggleExpand);
-        }
-        if (riskviewSwitch) {
-          riskviewSwitch.addEventListener('click', toggleRiskview);
-        }
-        if (kpiviewSwitch) {
-          kpiviewSwitch.addEventListener('click', toggleKPIview);
-        }
-        if (performanceviewSwitch) {
-          performanceviewSwitch.addEventListener(
-            'click',
-            togglePerformanceview
-          );
-        }
+        // Attach a click event listener
+        button.addEventListener('click', toggleExpand);
 
-        console.log("Outside is expand- before call")
 
         if (isExpanded)
         {
-            console.log("inside is expand- before call")
+          
             toggleExpand();
         }
 
