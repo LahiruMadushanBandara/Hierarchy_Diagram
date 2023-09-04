@@ -145,7 +145,44 @@ export class BowTieDiagramHelper {
           arrangedNodes.push(node);
           typeFourIndex++;
         });
-    }
+
+        // Arrange control nodes that are not link to cause or consequence nodes (below type 2 and type 3)
+        // if (originalData.ControlData.IsLinkedToCauseOrConsequence == false) {
+        //   const notLinkedNodes = originalData.filter((node) => node.IsLinkedToCauseOrConsequence === false);
+        //   const typeTwoNode = arrangedNodes.filter((node) => node.Type === 2);
+        //   const typeThreeNode = arrangedNodes.filter((node) => node.Type === 3);
+        //   let isTypeTwo = true; // Start with type 2 placement
+        //   let typeTwoIndex = typeTwoNode.length - 1; // Start from the last type 2 node
+        //   let typeThreeIndex = typeThreeNode.length - 1; // Start from the last type 3 node
+
+        //   const lastRowNumber = Math.max(rowNumbertypetwo, rowNumbertypethree);
+
+        //   for (const node of notLinkedNodes) {
+        //     const rowNumber = lastRowNumber;
+        //     const columnNumber = isTypeTwo ? typeTwoIndex : typeThreeIndex;
+
+        //     const x = node.Type === 2
+        //       ? originX - (columnNumber + 1) * horizontalSpacing
+        //       : originX + (columnNumber + 1) * horizontalSpacing;
+
+        //     const y = originY + rowNumber * verticalSpacing;
+
+        //     node.x = x;
+        //     node.y = y;
+        //     node.Type = isTypeTwo ? 2 : 3; // Update the node type
+        //     arrangedNodes.push(node);
+
+        //     if (isTypeTwo) {
+        //       typeTwoIndex--;
+        //     } else {
+        //       typeThreeIndex--;
+        //     }
+        //     isTypeTwo = !isTypeTwo;
+
+        //   }
+        // }
+      }
+    
     return arrangedNodes;
   }
 

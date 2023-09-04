@@ -559,14 +559,8 @@ export class TemplateClass {
   }
 
   public AddTemplatesToNode(dataItem, templatesObj, isExpanded, enablePerformanceview, enableKPIview, enableriskview, renderElement){
-    console.log("Add template called")
-    console.log("dataItem - ")
+    
     console.log(dataItem)
-
-    console.log("isExpanded - ")
-    console.log(isExpanded)
-
-
     switch(dataItem.Header) 
     {
       case "Risk":
@@ -623,7 +617,6 @@ export class TemplateClass {
     if (enableriskview) {
       enableKPIview = false;
       if (isExpanded) {
-        console.log("enable risk View and expanded")
 
         if (dataItem.Header === 'LinkRisk') {
           var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
@@ -661,12 +654,7 @@ export class TemplateClass {
       }
     } else {
       if (isExpanded) {
-        console.log("Is expand called set template")
-        console.log(templatesObj)
-        console.log(dataItem.Title)
-
         
-       
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
