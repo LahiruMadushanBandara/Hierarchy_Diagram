@@ -245,72 +245,74 @@ export class TemplateClass {
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</p>" +
         "</div>" +
-         "<div class='bow-tie-risk-card-header-expand'>" +
+        "<div class='bow-tie-risk-card-header-expand'>" +
            "<p class='bow-tie-risk-card-header-text-expand'>"+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
               contentDetails.htmlTemplate+
             "</p>" +
           "</div>" +
-          "<div class='bow-tie-risk-card-body'>" +
-          "<div class='row'>" +
-            "<div class='column'>" +
-              "<p><b>Inherent Rating</b></p>" +
-              "<p class='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Extream.png' >" +
-                "<span class='bow-tie-risk-rating-details-text'>"+
-                  contentDetails.LinkedRiskData.InherentRiskRating+
-                "</span>" +
-              "</p>" +
+          "<div class='bow-tie-risk-card-body-expand'>" +
+            "<div class='row'>" +
+              "<div class='column'>" +
+                "<p><b>Inherent Rating</b></p>" +
+                "<p class='bow-tie-risk-rating-details'>" +
+                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Extream.png' >" +
+                  "<span class='bow-tie-risk-rating-details-text'>"+
+                    contentDetails.LinkedRiskData.InherentRiskRating+
+                  "</span>" +
+                "</p>" +
+              "</div>" +
+              "<div class='column'>" +
+                "<p><b>Revised Rating</b></p>" +
+                "<p class='bow-tie-risk-rating-details'>" +
+                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Low.png'>" +
+                  "<span class='bow-tie-risk-rating-details-text'>"+
+                    contentDetails.LinkedRiskData.ResidualRiskRating+
+                  "</span>" +
+                "</p>" +
+              "</div>" +
             "</div>" +
-            "<div class='column'>" +
-              "<p><b>Revised Rating</b></p>" +
-              "<p class='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Low.png'>" +
-                "<span class='bow-tie-risk-rating-details-text'>"+
-                  contentDetails.LinkedRiskData.ResidualRiskRating+
-                "</span>" +
-              "</p>" +
+            "<div class='row'>" +
+              "<div class='column'>" +
+                "<p><b>Future Rating</b></p>" +
+                "<p  class='bow-tie-risk-rating-details'>" +
+                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
+                  "<span class='bow-tie-risk-rating-details-text'>"+
+                  contentDetails.LinkedRiskData.TargetRiskRatinng+
+                  "</span>" +
+                "</p>" +
+              "</div>" +
+              "<div class='column'>" +
+                "<p><b>Risk Appetite</b></p>" +
+                "<p class='bow-tie-risk-rating-details'>" +
+                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+                  "<span class='bow-tie-risk-rating-details-text'>"+
+                    contentDetails.LinkedRiskData.AppetiteRating+
+                  "</span>" +
+                "</p>" +
+              "</div>" +
             "</div>" +
           "</div>" +
-          "<div class='row'>" +
-            "<div class='column'>" +
-              "<p><b>Future Rating</b></p>" +
-              "<p  class='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
-                "<span class='bow-tie-risk-rating-details-text'>"+
-                 contentDetails.LinkedRiskData.TargetRiskRatinng+
-                "</span>" +
-              "</p>" +
-            "</div>" +
-            "<div class='column'>" +
-              "<p><b>Risk Appetite</b></p>" +
-              "<p class='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
-                "<span class='bow-tie-risk-rating-details-text'>"+
-                  contentDetails.LinkedRiskData.AppetiteRating+
-                "</span>" +
-              "</p>" +
-            "</div>" +
-        "</div>" +
         
         "<div class='bow-tie-risk-card-footer-expand'>" +
           "<div class='row'>" +
-          "<div  class='bow-tie-risk-footer-details'>" +
-            "<p><b>Risk Category</b><p>" +
-            "<p>"+
-              contentDetails.LinkedRiskData.Category +
-            "</p>"+
-          "</div>" +
-          "<div class='bow-tie-risk-footer-details'>" +
-            "<p><b>Responsible Manager</b></p>" +
-            "<p sclass='bow-tie-risk-rating-details'>" +
-              "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/image.png' >" +
-              "<span class='bow-tie-risk-rating-details-text'>" +
-                contentDetails.LinkedRiskData.ResponsibleManager +
-              "</span>" +
-            "</p>" +
-          "</div>" +
+            "<div  class='bow-tie-risk-footer-details'>" +
+              "<p><b>Risk Category</b><p>" +
+              "<p>"+
+                contentDetails.LinkedRiskData.Category +
+              "</p>"+
+            "</div>" +
+            "<div class='bow-tie-risk-footer-details'>" +
+              "<p><b>Responsible Manager</b></p>" +
+              "<p sclass='bow-tie-risk-rating-details'>" +
+                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/image.png' >" +
+                "<span class='bow-tie-risk-rating-details-text'>" +
+                  contentDetails.LinkedRiskData.ResponsibleManager +
+                "</span>" +
+              "</p>" +
+            "</div>" +
+         "</div>" +
         "</div>" +
       "</div>"
     );
