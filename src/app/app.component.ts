@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
     
-    function visualTemplate(options: any, isExpanded) {
+    function visualTemplate(options: any) {
      
       
       var Templates = new TemplateClass();
@@ -366,15 +366,98 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             tools: [
               {
                 template: `
-
-                <div class="k-actions btn-row-bottom k-actions-end align-items-end">
-                 <button  id="ExpandButton" class="bt-Expand btn btn-outline-primary" onclick="toggleExpand()">Expand</button>
-                 <button  id="RiskButton" class="bt-Risk btn btn-outline-primary" onclick="toggleRiskview()">Risk View On </button>
-                 <button  id="KpiButton" class="bt-Kpi btn btn-outline-primary" onclick="toggleKPIview()">Kpi View On </button>
-                 <button  id="PerformanceButton" class="bt-Performance btn btn-outline-primary" onclick="togglePerformanceview()">Performance View On </button>
-
-
+                <div style="margin-right: 100px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
+                  <h3 style="font-size: 20px; margin-bottom: 10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
                 </div>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-end">
+                  <div
+                                kendoTooltip
+                                position="bottom"
+                                [title]="'Risk View'"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn img-btn-outline-primary"
+                                    id="btRiskView"
+                                    onClick="toggleRiskview()"
+                                >
+                                    <span>Risk View</span>
+                                </button>
+                 </div>
+                  <div
+                                kendoTooltip
+                                position="bottom"
+                                [title]="'Kpi View'"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn img-btn-outline-primary"
+                                    id="btKpikView"
+                                    onClick="toggleKPIview()"
+                                >
+                                    <span>Kpi View</span>
+                                </button>
+                 </div>
+                  <div
+                                kendoTooltip
+                                position="bottom"
+                                [title]="'Performance View'"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn img-btn-outline-primary"
+                                    id="btPerformanceView"
+                                    onClick="togglePerformanceview()"
+                                >
+                                    <span>Performance View</span>
+                                </button>
+                 </div>
+                </div>
+                <div style="float:right; margin-left:100px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
+                  <div
+                                kendoTooltip
+                                position="bottom"
+                                [title]="'Expand Nodes'"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn img-btn-outline-primary"
+                                    id="btExpandView"
+                                    onClick="toggleExpand()"
+                                >
+                                    <span>Expand</span>
+                                </button>
+                            
+                 </div>
+                  <div
+                                kendoTooltip
+                                position="bottom"
+                                [title]="'Export Diagram'"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn img-btn-outline-primary"
+                                    id="btExport"
+                                >
+                                    <i
+                                        class="cam-icon cam-i-export"
+                                        aria-hidden="true"
+                                    ></i>
+                                    <span>Export</span>
+                                </button>
+                   </div>
+                </div>
+
+                <style>
+                  .k-toolbar
+                  {
+                    border-top: none !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    border-bottom: inset !important;
+                    border-bottom-width: 2px !important;
+                  }
+                </style>
                 `,
                 enable: true,
                 click: toggleExpand
@@ -388,7 +471,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               width: 10,
             },
             visual: function(options){
-              return visualTemplate(options, isExpanded)
+              return visualTemplate(options)
             },
           },
           connectionDefaults: {
@@ -423,13 +506,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var buttonPerformance= document.getElementById('PerformanceButton');        
         buttonPerformance.addEventListener('click', togglePerformanceview);
 
-
-
-        if (isExpanded)
-        {
-          
-            toggleExpand();
-        }
 
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
