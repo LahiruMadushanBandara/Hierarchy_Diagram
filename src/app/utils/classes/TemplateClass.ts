@@ -78,6 +78,8 @@ export class TemplateClass {
   }
  
   public GetRiskNodeTemplateGlobal(contentDetails: data) {
+
+    console.log(contentDetails.RiskData)
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
           "<div class='bow-tie-risk-card-header-top' >" +
@@ -97,7 +99,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Inherent Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Extream.png' >" +
+                          "<img class='bow-tie-risk-rating-details-image'"+
+                            "src=" + contentDetails.RiskData.InherentRiskRatingImg +""+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.InherentRiskRating+
                   "</span>" +
@@ -737,588 +740,589 @@ export class TemplateClass {
   }
 
 
-  NodeSampleData:data[] = [
-    {
-      "Id": 0,
-      "Type": 1,
-      "ParentNodeId": 0,
-      "Title": "Risk Node",
-      "Header": "Risk",
-      "Rating": "",
-      "htmlTemplate": "<dev>test_SH</dev>",
-      "RiskData": {
-        "RiskCode": "OR-81",
-        "ResponsibleManager": "Anita Raymond2",
-        "Category": "customer/Reliability",
-        "ResidualRiskRating": "Low",
-        "TargetRiskRatinng": "High",
-        "InherentRiskRating": "Extreme",
-        "AppetiteRating": "Within Appetite"
-      }
-    },
+  // NodeSampleData:data[] = [
+  //   {
+  //     "Id": 0,
+  //     "Type": 1,
+  //     "ParentNodeId": 0,
+  //     "Title": "Risk Node",
+  //     "Header": "Risk",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>test_SH</dev>",
+  //     "RiskData": {
+  //       "RiskCode": "OR-81",
+  //       "ResponsibleManager": "Anita Raymond2",
+  //       "Category": "customer/Reliability",
+  //       "ResidualRiskRating": "Low",
+  //       "TargetRiskRatinng": "High",
+  //       "InherentRiskRating": "Extreme",
+  //       "AppetiteRating": "Within Appetite",
+  //       "InherentRiskRatingImg":""
+  //     }
+  //   },
 
-    {
-      "Id": 1776,
-      "Type": 3,
-      "ParentNodeId": 0,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Electrical Test and Tag </dev>",
-      "ControlData": {
-        "ControlTitle": "Electrical Test and Tag ",
-        "ControlOwner": "Owen Drummond",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 1777,
-      "Type": 3,
-      "ParentNodeId": 1776,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Mechanical aids</dev>",
-      "ControlData": {
+  //   {
+  //     "Id": 1776,
+  //     "Type": 3,
+  //     "ParentNodeId": 0,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Electrical Test and Tag </dev>",
+  //     "ControlData": {
+  //       "ControlTitle": "Electrical Test and Tag ",
+  //       "ControlOwner": "Owen Drummond",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 1777,
+  //     "Type": 3,
+  //     "ParentNodeId": 1776,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Mechanical aids</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Mechanical aids",
-        "ControlOwner": "Owen Drummond",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 1778,
-      "Type": 3,
-      "ParentNodeId": 1777,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Emergency procedure drills</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Mechanical aids",
+  //       "ControlOwner": "Owen Drummond",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 1778,
+  //     "Type": 3,
+  //     "ParentNodeId": 1777,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Emergency procedure drills</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Emergency procedure drills",
-        "ControlOwner": "Chris Lonergan",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 1779,
-      "Type": 3,
-      "ParentNodeId": 1778,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>VINAH reporting guidelines</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Emergency procedure drills",
+  //       "ControlOwner": "Chris Lonergan",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 1779,
+  //     "Type": 3,
+  //     "ParentNodeId": 1778,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>VINAH reporting guidelines</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "VINAH reporting guidelines",
-        "ControlOwner": "Anne Lawrence",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 6,
-      "Type": 3,
-      "ParentNodeId": 1779,
-      "Title": "Consequences Node",
-      "Header": "Consequence",
-      "Rating": "",
-      "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>",
-      "LinkedControlIds": [1779,1778,1777,1776,2775]
-    },
+  //       "ControlTitle": "VINAH reporting guidelines",
+  //       "ControlOwner": "Anne Lawrence",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 6,
+  //     "Type": 3,
+  //     "ParentNodeId": 1779,
+  //     "Title": "Consequences Node",
+  //     "Header": "Consequence",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>",
+  //     "LinkedControlIds": [1779,1778,1777,1776,2775]
+  //   },
   
-    {
-      "Id": 2775,
-      "Type": 3,
-      "ParentNodeId": 0,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Falls risk assessment 2775</dev>",
-      "ControlData": {
-        "ControlTitle": "Falls risk assessment",
-        "ControlOwner": "Anita Raymond2",
-        "ControlOwnerRating": "Strongest",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 2776,
-      "Type": 3,
-      "ParentNodeId": 2775,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Cleaning practices</dev>",
-      "ControlData": {
+  //   {
+  //     "Id": 2775,
+  //     "Type": 3,
+  //     "ParentNodeId": 0,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Falls risk assessment 2775</dev>",
+  //     "ControlData": {
+  //       "ControlTitle": "Falls risk assessment",
+  //       "ControlOwner": "Anita Raymond2",
+  //       "ControlOwnerRating": "Strongest",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 2776,
+  //     "Type": 3,
+  //     "ParentNodeId": 2775,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Cleaning practices</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Cleaning practices",
-        "ControlOwner": "Michelle Brady",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 2777,
-      "Type": 3,
-      "ParentNodeId": 2776,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Drugs and poisons legislation - DPCS </dev>",
-      "ControlData": {
+  //       "ControlTitle": "Cleaning practices",
+  //       "ControlOwner": "Michelle Brady",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 2777,
+  //     "Type": 3,
+  //     "ParentNodeId": 2776,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Drugs and poisons legislation - DPCS </dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Drugs and poisons legislation - DPCS ",
-        "ControlOwner": "Louise McMahon",
-        "ControlOwnerRating": "Strongest",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      },
+  //       "ControlTitle": "Drugs and poisons legislation - DPCS ",
+  //       "ControlOwner": "Louise McMahon",
+  //       "ControlOwnerRating": "Strongest",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     },
 
-    },
-    {
-      "Id": 2778,
-      "Type": 3,
-      "ParentNodeId": 2777,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Procurement Framework</dev>",
-      "ControlData": {
+  //   },
+  //   {
+  //     "Id": 2778,
+  //     "Type": 3,
+  //     "ParentNodeId": 2777,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Procurement Framework</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Procurement Framework",
-        "ControlOwner": "Owen Drummond",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 67,
-      "Type": 3,
-      "ParentNodeId": 2778,
-      "Title": "Consequences Node",
-      "Header": "Consequence",
-      "Rating": "",
-      "htmlTemplate": "<dev>Sustainability innovation and quality of care is affected</dev>",
-      "LinkedControlIds":[2778,2777,2776,2775]
-    },
+  //       "ControlTitle": "Procurement Framework",
+  //       "ControlOwner": "Owen Drummond",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 67,
+  //     "Type": 3,
+  //     "ParentNodeId": 2778,
+  //     "Title": "Consequences Node",
+  //     "Header": "Consequence",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Sustainability innovation and quality of care is affected</dev>",
+  //     "LinkedControlIds":[2778,2777,2776,2775]
+  //   },
    
-    {
-      "Id": 2779,
-      "Type": 3,
-      "ParentNodeId": 0,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Uniform and dress code protocol</dev>",
-      "ControlData": {
-        "ControlTitle": "Uniform and dress code protocol",
-        "ControlOwner": "Lee Cochrane",
-        "ControlOwnerRating": "Moderate",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": false          
+  //   {
+  //     "Id": 2779,
+  //     "Type": 3,
+  //     "ParentNodeId": 0,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Uniform and dress code protocol</dev>",
+  //     "ControlData": {
+  //       "ControlTitle": "Uniform and dress code protocol",
+  //       "ControlOwner": "Lee Cochrane",
+  //       "ControlOwnerRating": "Moderate",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": false          
         
-      }
-    },
+  //     }
+  //   },
     
-    {
-      "Id": 2780,
-      "Type": 3,
-      "ParentNodeId": 2779,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Hospital Pool Vehicles Protocol</dev>",
-      "ControlData": {
+  //   {
+  //     "Id": 2780,
+  //     "Type": 3,
+  //     "ParentNodeId": 2779,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Hospital Pool Vehicles Protocol</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Hospital Pool Vehicles Protocol",
-        "ControlOwner": "Michael Glaubitz",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": false
-      }
-    },
-    {
-      "Id": 2781,
-      "Type": 3,
-      "ParentNodeId": 2780,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Emergency Procedures Training</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Hospital Pool Vehicles Protocol",
+  //       "ControlOwner": "Michael Glaubitz",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": false
+  //     }
+  //   },
+  //   {
+  //     "Id": 2781,
+  //     "Type": 3,
+  //     "ParentNodeId": 2780,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Emergency Procedures Training</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Emergency Procedures Training",
-        "ControlOwner": "Chris Lonergan",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": false
-      }
-    },
-    {
-      "Id": 2782,
-      "Type": 3,
-      "ParentNodeId": 2781,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Occupational Violence and Aggression Prevention Protocol</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Emergency Procedures Training",
+  //       "ControlOwner": "Chris Lonergan",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": false
+  //     }
+  //   },
+  //   {
+  //     "Id": 2782,
+  //     "Type": 3,
+  //     "ParentNodeId": 2781,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Occupational Violence and Aggression Prevention Protocol</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Occupational Violence and Aggression Prevention Protocol",
-        "ControlOwner": "Chris Lonergan",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": false
-      }
-    },
-    {
-      "Id": 2783,
-      "Type": 2,
-      "ParentNodeId": 2782,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Continual improvement of electronic discharge summaries</dev>",
-      "ControlData": {
-        "ControlTitle": "Continual improvement of electronic discharge summaries",
-        "ControlOwner": "Adrian Shearer",
-        "ControlOwnerRating": "Weak",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
+  //       "ControlTitle": "Occupational Violence and Aggression Prevention Protocol",
+  //       "ControlOwner": "Chris Lonergan",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": false
+  //     }
+  //   },
+  //   {
+  //     "Id": 2783,
+  //     "Type": 2,
+  //     "ParentNodeId": 2782,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Continual improvement of electronic discharge summaries</dev>",
+  //     "ControlData": {
+  //       "ControlTitle": "Continual improvement of electronic discharge summaries",
+  //       "ControlOwner": "Adrian Shearer",
+  //       "ControlOwnerRating": "Weak",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
    
-    {
-      "Id": 2784,
-      "Type": 2,
-      "ParentNodeId": 2783,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Development of internal process for the psychological support for patients, staff and families during the time period of the commission.</dev>",
-      "ControlData": {
+  //   {
+  //     "Id": 2784,
+  //     "Type": 2,
+  //     "ParentNodeId": 2783,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Development of internal process for the psychological support for patients, staff and families during the time period of the commission.</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Development of internal process for the psychological support for patients, staff and families during the time period of the commission.",
-        "ControlOwner": "Sebastian Romano",
-        "ControlOwnerRating": "Moderate",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 2785,
-      "Type": 2,
-      "ParentNodeId": 2784,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Senior mental health management forum utilised to monitor Weighted Occupancy Target (WOTs) for bed based services against performance.</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Development of internal process for the psychological support for patients, staff and families during the time period of the commission.",
+  //       "ControlOwner": "Sebastian Romano",
+  //       "ControlOwnerRating": "Moderate",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 2785,
+  //     "Type": 2,
+  //     "ParentNodeId": 2784,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Senior mental health management forum utilised to monitor Weighted Occupancy Target (WOTs) for bed based services against performance.</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Senior mental health management forum utilised to monitor Weighted Occupancy Target (WOTs) for bed based services against performance.",
-        "ControlOwner": "Sebastian Romano",
-        "ControlOwnerRating": "Moderate",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 2786,
-      "Type": 2,
-      "ParentNodeId": 2785,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Falls Prevention and Management Policy</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Senior mental health management forum utilised to monitor Weighted Occupancy Target (WOTs) for bed based services against performance.",
+  //       "ControlOwner": "Sebastian Romano",
+  //       "ControlOwnerRating": "Moderate",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 2786,
+  //     "Type": 2,
+  //     "ParentNodeId": 2785,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Falls Prevention and Management Policy</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Falls Prevention and Management Policy",
-        "ControlOwner": "Glenn Boulton",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 165,
-      "Type": 2,
-      "ParentNodeId": 2786,
-      "Title": "Cause Node",
-      "Header": "Cause",
-      "Rating": "",
-      "htmlTemplate": "<dev>Adverse findings against LRH as a result of the Mental Healt</dev>",
-      "LinkedControlIds":[2786,2785,2784,2783]
+  //       "ControlTitle": "Falls Prevention and Management Policy",
+  //       "ControlOwner": "Glenn Boulton",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 165,
+  //     "Type": 2,
+  //     "ParentNodeId": 2786,
+  //     "Title": "Cause Node",
+  //     "Header": "Cause",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Adverse findings against LRH as a result of the Mental Healt</dev>",
+  //     "LinkedControlIds":[2786,2785,2784,2783]
 
-    },
+  //   },
    
     
-    {
-      "Id": 2787,
-      "Type": 2,
-      "ParentNodeId": 2786,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Uniform and dress code protocol</dev>",
-      "ControlData": {
-        "ControlTitle": "Uniform and dress code protocol",
-        "ControlOwner": "Lee Cochrane",
-        "ControlOwnerRating": "Moderate",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
+  //   {
+  //     "Id": 2787,
+  //     "Type": 2,
+  //     "ParentNodeId": 2786,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Uniform and dress code protocol</dev>",
+  //     "ControlData": {
+  //       "ControlTitle": "Uniform and dress code protocol",
+  //       "ControlOwner": "Lee Cochrane",
+  //       "ControlOwnerRating": "Moderate",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
    
-    {
-      "Id": 2788,
-      "Type": 2,
-      "ParentNodeId": 2787,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Hospital Pool Vehicles Protocol</dev>",
-      "ControlData": {
+  //   {
+  //     "Id": 2788,
+  //     "Type": 2,
+  //     "ParentNodeId": 2787,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Hospital Pool Vehicles Protocol</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Hospital Pool Vehicles Protocol",
-        "ControlOwner": "Michael Glaubitz",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 2789,
-      "Type": 2,
-      "ParentNodeId": 2788,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Emergency Procedures Training</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Hospital Pool Vehicles Protocol",
+  //       "ControlOwner": "Michael Glaubitz",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 2789,
+  //     "Type": 2,
+  //     "ParentNodeId": 2788,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Emergency Procedures Training</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Emergency Procedures Training",
-        "ControlOwner": "Chris Lonergan",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 2790,
-      "Type": 2,
-      "ParentNodeId": 2789,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Occupational Violence and Aggression Prevention Protocol</dev>",
-      "ControlData": {
+  //       "ControlTitle": "Emergency Procedures Training",
+  //       "ControlOwner": "Chris Lonergan",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 2790,
+  //     "Type": 2,
+  //     "ParentNodeId": 2789,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Occupational Violence and Aggression Prevention Protocol</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Occupational Violence and Aggression Prevention Protocol",
-        "ControlOwner": "Chris Lonergan",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
+  //       "ControlTitle": "Occupational Violence and Aggression Prevention Protocol",
+  //       "ControlOwner": "Chris Lonergan",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
 
-    {
-      "Id": 2791,
-      "Type": 2,
-      "ParentNodeId": 2790,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Occupational Violence and Aggression  Protocol</dev>",
-      "ControlData": {
+  //   {
+  //     "Id": 2791,
+  //     "Type": 2,
+  //     "ParentNodeId": 2790,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Occupational Violence and Aggression  Protocol</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Occupational Violence and Aggression  Protocol",
-        "ControlOwner": "Chris Lonergan",
-        "ControlOwnerRating": "Strong",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": true
-      }
-    },
-    {
-      "Id": 58,
-      "Type": 2,
-      "ParentNodeId": 2791,
-      "Title": "Cause Node",
-      "Header": "Cause",
-      "Rating": "",
-      "htmlTemplate": "<dev>Media coverage of adverse findings against LRH as a resulto</dev>",
-      "LinkedControlIds":[2790,2789,2788,2787,2791]
-    },
+  //       "ControlTitle": "Occupational Violence and Aggression  Protocol",
+  //       "ControlOwner": "Chris Lonergan",
+  //       "ControlOwnerRating": "Strong",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": true
+  //     }
+  //   },
+  //   {
+  //     "Id": 58,
+  //     "Type": 2,
+  //     "ParentNodeId": 2791,
+  //     "Title": "Cause Node",
+  //     "Header": "Cause",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Media coverage of adverse findings against LRH as a resulto</dev>",
+  //     "LinkedControlIds":[2790,2789,2788,2787,2791]
+  //   },
 
-    {
-      "Id": 644,
-      "Type": 2,
-      "ParentNodeId": 0,
-      "Title": "Cause Node",
-      "Header": "Cause",
-      "Rating": "",
-      "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>",
-      "LinkedControlIds": [0]
-    },
+  //   {
+  //     "Id": 644,
+  //     "Type": 2,
+  //     "ParentNodeId": 0,
+  //     "Title": "Cause Node",
+  //     "Header": "Cause",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Risk to reputation as a result of media coverage and adverse</dev>",
+  //     "LinkedControlIds": [0]
+  //   },
 
-    {
-      "Id": 1775,
-      "Type": 3,
-      "ParentNodeId": 0,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Development of communication strategy to manage internal and external stakeholders.</dev>",
-      "ControlData": {
+  //   {
+  //     "Id": 1775,
+  //     "Type": 3,
+  //     "ParentNodeId": 0,
+  //     "Title": "Control Node",
+  //     "Header": "Control",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Development of communication strategy to manage internal and external stakeholders.</dev>",
+  //     "ControlData": {
 
-        "ControlTitle": "Development of communication strategy to manage internal and external stakeholders.",
-        "ControlOwner": "Sebastian Romano",
-        "ControlOwnerRating": "Moderate",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": false
-      }
-    },
+  //       "ControlTitle": "Development of communication strategy to manage internal and external stakeholders.",
+  //       "ControlOwner": "Sebastian Romano",
+  //       "ControlOwnerRating": "Moderate",
+  //       "ControlAuthorizer": "",
+  //       "ControlAuthorizerRating": "",
+  //       "Active": true,
+  //       "IsLinkedToCauseOrConsequence": false
+  //     }
+  //   },
 
-    {
-      "Id": 1,
-      "Type": 4,
-      "ParentNodeId": 0,
-      "Title": "Other Node",
-      "Header": "Incident",
-      "Rating": "",
-      "htmlTemplate": "<dev>IMS - 1</dev>",
-      "IncidentData": {
-        "LinkageId": 2,
-        "IncidentId": 1,
-        "IncidentTitle": "IMS - 1",
-        "IncidentCode": "",
-        "IncidentType": "Test",
-        "ReportedDate": "Mar 30 2020  9:55PM",
-        "ResponsiblePerson": "Near Miss",
-        "ImageType": ""
-      }
-    },
-    {
-      "Id": 2,
-      "Type": 4,
-      "ParentNodeId": 0,
-      "Title": "Other Node",
-      "Header": "Incident",
-      "Rating": "",
-      "htmlTemplate": "<dev>IMS - 2</dev>",
-      "IncidentData": {
-        "LinkageId": 3,
-        "IncidentId": 2,
-        "IncidentTitle": "IMS - 2",
-        "IncidentCode": "",
-        "IncidentType": "test",
-        "ReportedDate": "Oct 26 2020  7:04PM",
-        "ResponsiblePerson": "Hazard",
-        "ImageType": ""
-      }
-    },
+  //   {
+  //     "Id": 1,
+  //     "Type": 4,
+  //     "ParentNodeId": 0,
+  //     "Title": "Other Node",
+  //     "Header": "Incident",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>IMS - 1</dev>",
+  //     "IncidentData": {
+  //       "LinkageId": 2,
+  //       "IncidentId": 1,
+  //       "IncidentTitle": "IMS - 1",
+  //       "IncidentCode": "",
+  //       "IncidentType": "Test",
+  //       "ReportedDate": "Mar 30 2020  9:55PM",
+  //       "ResponsiblePerson": "Near Miss",
+  //       "ImageType": ""
+  //     }
+  //   },
+  //   {
+  //     "Id": 2,
+  //     "Type": 4,
+  //     "ParentNodeId": 0,
+  //     "Title": "Other Node",
+  //     "Header": "Incident",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>IMS - 2</dev>",
+  //     "IncidentData": {
+  //       "LinkageId": 3,
+  //       "IncidentId": 2,
+  //       "IncidentTitle": "IMS - 2",
+  //       "IncidentCode": "",
+  //       "IncidentType": "test",
+  //       "ReportedDate": "Oct 26 2020  7:04PM",
+  //       "ResponsiblePerson": "Hazard",
+  //       "ImageType": ""
+  //     }
+  //   },
 
-    {
-      "Id": 12,
-      "Type": 4,
-      "ParentNodeId": 0,
-      "Title": "Other Node",
-      "Header": "Kpi",
-      "Rating": "",
-      "htmlTemplate": "<dev>% reduction in non-clinically indicated surgery</dev>",
-      "KpiData":{
-        "RiskLinkId":2078,
-        "KpiIntId":12,
-        "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
-        "KPITitle":"% reduction in non-clinically indicated surgery",
-        "Unit":"#",
-        "ReportingPeriod":"Month",
-        "Actual":0.00,
-        "Target":0.00,
-        "PerformanceImg":"N/A",
-        "TrendImg":"Not Applicable"
-      }
-    },
+  //   {
+  //     "Id": 12,
+  //     "Type": 4,
+  //     "ParentNodeId": 0,
+  //     "Title": "Other Node",
+  //     "Header": "Kpi",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>% reduction in non-clinically indicated surgery</dev>",
+  //     "KpiData":{
+  //       "RiskLinkId":2078,
+  //       "KpiIntId":12,
+  //       "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
+  //       "KPITitle":"% reduction in non-clinically indicated surgery",
+  //       "Unit":"#",
+  //       "ReportingPeriod":"Month",
+  //       "Actual":0.00,
+  //       "Target":0.00,
+  //       "PerformanceImg":"N/A",
+  //       "TrendImg":"Not Applicable"
+  //     }
+  //   },
 
 
-    {
-      "Id": 202,
-      "Type": 4,
-      "ParentNodeId": 0,
-      "Title": "Other Node",
-      "Header": "Kpi",
-      "Rating": "",
-      "htmlTemplate": "<dev>Time spent on non-billable projects</dev>",
-      "KpiData":{
-        "RiskLinkId":2077,
-        "KpiIntId":202,
-        "KpiGuidId":"1d6cfec3-2b88-4dba-bb24-40f08d54352e",
-        "KPITitle":"Time spent on non-billable projects",
-        "Unit":"%",
-        "ReportingPeriod":"Month",
-        "Actual":0.0,
-        "Target":0.0,
-        "PerformanceImg":"N/A",
-        "TrendImg":"Not Applicable"
-      }
-    }
+  //   {
+  //     "Id": 202,
+  //     "Type": 4,
+  //     "ParentNodeId": 0,
+  //     "Title": "Other Node",
+  //     "Header": "Kpi",
+  //     "Rating": "",
+  //     "htmlTemplate": "<dev>Time spent on non-billable projects</dev>",
+  //     "KpiData":{
+  //       "RiskLinkId":2077,
+  //       "KpiIntId":202,
+  //       "KpiGuidId":"1d6cfec3-2b88-4dba-bb24-40f08d54352e",
+  //       "KPITitle":"Time spent on non-billable projects",
+  //       "Unit":"%",
+  //       "ReportingPeriod":"Month",
+  //       "Actual":0.0,
+  //       "Target":0.0,
+  //       "PerformanceImg":"N/A",
+  //       "TrendImg":"Not Applicable"
+  //     }
+  //   }
 
-  ];
+  // ];
 }
 
 
