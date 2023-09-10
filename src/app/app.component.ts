@@ -194,14 +194,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         function toggleExpand() {
           isExpand = !isExpand;
+
+          const Expandbutton = document.getElementById('btExpandView');
+          Expandbutton.classList.toggle('active', isExpand);
+
         
-          // Change the text content of the button
-          if (isExpand) {
-            buttonExpand.textContent = 'Collapse';
-          } else {
-            buttonExpand.textContent = 'Expand';
-          }
-        
+          
           var diagram = kendoDiagram.getKendoDiagram();
           diagram.bringIntoView(diagram.shapes);
           diagram.refresh();
@@ -211,13 +209,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         function toggleRiskview() {
           if (isKpIview == false) {
             isRiskView = !isRiskView;
-              // Change the text content of the button
-          if (isRiskView) {
-            buttonRisk.textContent = 'Risk View Off';
-          } else {
-            buttonRisk.textContent = 'ExpRisk View On';
-          }
-        
+              
+            const Riskbutton = document.getElementById('btRiskView');
+            Riskbutton.classList.toggle('active', isRiskView);
+
+
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
 
@@ -255,11 +251,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           if (isRiskView == false) {
             isKpIview = !isKpIview;
             
-            if (isKpIview) {
-              buttonKpi.textContent = 'Kpi View Off';
-            } else {
-              buttonKpi.textContent = 'Kpi View On';
-            }
+            const Kpidbutton = document.getElementById('btKpikView');
+            Kpidbutton.classList.toggle('active', isKpIview);
           
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
@@ -300,11 +293,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         function togglePerformanceview() {
           isPerformanceView = !isPerformanceView;
 
-          if (isPerformanceView) {
-            buttonPerformance.textContent = 'Performance View Off';
-          } else {
-            buttonPerformance.textContent = 'Performance View On';
-          }
+          const Performancebutton = document.getElementById('btPerformanceView');
+          Performancebutton.classList.toggle('active', isPerformanceView);
               
           var diagram = kendoDiagram.getKendoDiagram();
           diagram.bringIntoView(diagram.shapes);
@@ -366,101 +356,137 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             tools: [
               {
                 template: `
-                <div style="margin-right: 100px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
-                  <h3 style="font-size: 20px; margin-bottom: 10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-end">
-                  <div
-                                kendoTooltip
-                                position="bottom"
-                                [title]="'Risk View'"
-                            >
-                                <button
-                                    type="button"
-                                    class="btn img-btn-outline-primary"
-                                    id="btRiskView"
-                                    onClick="toggleRiskview()"
-                                >
-                                    <span>Risk View</span>
-                                </button>
-                 </div>
-                  <div
-                                kendoTooltip
-                                position="bottom"
-                                [title]="'Kpi View'"
-                            >
-                                <button
-                                    type="button"
-                                    class="btn img-btn-outline-primary"
-                                    id="btKpikView"
-                                    onClick="toggleKPIview()"
-                                >
-                                    <span>Kpi View</span>
-                                </button>
-                 </div>
-                  <div
-                                kendoTooltip
-                                position="bottom"
-                                [title]="'Performance View'"
-                            >
-                                <button
-                                    type="button"
-                                    class="btn img-btn-outline-primary"
-                                    id="btPerformanceView"
-                                    onClick="togglePerformanceview()"
-                                >
-                                    <span>Performance View</span>
-                                </button>
-                 </div>
-                </div>
-                <div style="float:right; margin-left:100px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
-                  <div
-                                kendoTooltip
-                                position="bottom"
-                                [title]="'Expand Nodes'"
-                            >
-                                <button
-                                    type="button"
-                                    class="btn img-btn-outline-primary"
-                                    id="btExpandView"
-                                    onClick="toggleExpand()"
-                                >
-                                    <span>Expand</span>
-                                </button>
-                            
-                 </div>
-                  <div
-                                kendoTooltip
-                                position="bottom"
-                                [title]="'Export Diagram'"
-                            >
-                                <button
-                                    type="button"
-                                    class="btn img-btn-outline-primary"
-                                    id="btExport"
-                                >
-                                    <i
-                                        class="cam-icon cam-i-export"
-                                        aria-hidden="true"
-                                    ></i>
-                                    <span>Export</span>
-                                </button>
+                <div class="k-toolbar-container">
+                  <div style="" class="k-actions btn-row-bottom k-actions-end align-items-end">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;  margin-left:10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+                
+                  <div style=" margin-left:100px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
+                    <div
+                                  kendoTooltip
+                                  position="bottom"
+                                  [title]="'Risk View'"
+                              >
+                                  <button
+                                      type="button"
+                                      class="bt-Risk btn img-btn-outline-primary"
+                                      id="btRiskView"
+                                      onClick="toggleRiskview()"
+                                  >
+                                      <span>Risk View</span>
+                                  </button>
+                    </div>
+                    <div
+                                  kendoTooltip
+                                  position="bottom"
+                                  [title]="'Kpi View'"
+                              >
+                                  <button
+                                      type="button"
+                                      class="bt-Kpi btn img-btn-outline-primary"
+                                      id="btKpikView"
+                                      onClick="toggleKPIview()"
+                                  >
+                                      <span>Kpi View</span>
+                                  </button>
                    </div>
+                    <div
+                                  kendoTooltip
+                                  position="bottom"
+                                  [title]="'Performance View'"
+                              >
+                                  <button
+                                      type="button"
+                                      class="bt-Performance btn img-btn-outline-primary"
+                                      id="btPerformanceView"
+                                      onClick="togglePerformanceview()"
+                                  >
+                                      <span>Performance View</span>
+                                  </button>
+                    </div>
+                  </div> 
+                   <div style=" margin-left: 600px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
+                      <div
+                                    kendoTooltip
+                                    position="bottom"
+                                    [title]="'Expand Nodes'"
+                                >
+                                    <button
+                                        type="button"
+                                        class="bt-Expand btn img-btn-outline-primary"
+                                        id="btExpandView"
+                                        onClick="toggleExpand()"
+                                    >
+                                        <span>Expand</span>
+                                    </button>
+                                
+                      </div>
+                      <div
+                                    kendoTooltip
+                                    position="bottom"
+                                    [title]="'Export Diagram'"
+                                >
+                                    <button
+                                        type="button"
+                                        class="btn img-btn-outline-primary"
+                                        id="btExport"
+                                    >
+                                        <i
+                                            class="cam-icon cam-i-export"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <span>Export</span>
+                                    </button>
+                      </div>
+                   </div>
+                  </div>
                 </div>
+                  <style>
+                    .k-toolbar
+                    {
+                      border-top: none !important;
+                      border-left: none !important;
+                      border-right: none !important;
+                      border-bottom: inset !important;
+                      border-bottom-width: 2px !important;
+                     
+                    }
 
-                <style>
-                  .k-toolbar
-                  {
-                    border-top: none !important;
-                    border-left: none !important;
-                    border-right: none !important;
-                    border-bottom: inset !important;
-                    border-bottom-width: 2px !important;
-                  }
+                    .k-toolbar-container {
+                      position: fixed;
+                      margin-top: -23px;
+                      background-color: white;
+                      z-index: 999;
+                      /* Add any other styles you need */
+                    }
+                    
+
+                    .bt-Expand.active 
+                    {
+                        background-color:   hwb(223 55% 8%);
+                        color: rgb(255, 255, 255) !important;
+                        
+                    }
+                    .bt-Risk.active 
+                    {
+                        background-color:   hwb(223 55% 8%);
+                        color: rgb(255, 255, 255) !important;
+                    }
+                    .bt-Kpi.active 
+                    {
+                        background-color:   hwb(223 55% 8%);
+                        color: rgb(255, 255, 255) !important;
+
+                    }
+                    .bt-Performance.active 
+                    {
+                        background-color:   hwb(223 55% 8%);
+                        color: rgb(255, 255, 255) !important;
+                    }
+               
                 </style>
                 `,
                 enable: true,
-                click: toggleExpand
+                
               }
             ]
           },
@@ -494,16 +520,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         
       // Get the button element and attach the click event listener
               
-        var buttonExpand = document.getElementById('ExpandButton');        
+        var buttonExpand = document.getElementById('btExpandView');        
         buttonExpand.addEventListener('click', toggleExpand);
 
-        var buttonRisk = document.getElementById('RiskButton');        
+        var buttonRisk = document.getElementById('btRiskView');        
         buttonRisk.addEventListener('click', toggleRiskview);
 
-        var buttonKpi= document.getElementById('KpiButton');        
+        var buttonKpi= document.getElementById('btKpikView');        
         buttonKpi.addEventListener('click', toggleKPIview);
 
-        var buttonPerformance= document.getElementById('PerformanceButton');        
+        var buttonPerformance= document.getElementById('btPerformanceView');        
         buttonPerformance.addEventListener('click', togglePerformanceview);
 
 
