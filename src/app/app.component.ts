@@ -356,138 +356,125 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             tools: [
               {
                 template: `
-                <div class="k-toolbar-container">
-                  <div style="" class="k-actions btn-row-bottom k-actions-end align-items-end">
-                    <h3 style="font-size: 20px; margin-bottom: 10px;  margin-left:10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-                
-                  <div style=" margin-left:100px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
-                    <div
-                                  kendoTooltip
-                                  position="bottom"
-                                  [title]="'Risk View'"
-                              >
-                                  <button
-                                      type="button"
-                                      class="bt-Risk btn img-btn-outline-primary"
-                                      id="btRiskView"
-                                      onClick="toggleRiskview()"
-                                  >
-                                      <span>Risk View</span>
-                                  </button>
-                    </div>
-                    <div
-                                  kendoTooltip
-                                  position="bottom"
-                                  [title]="'Kpi View'"
-                              >
-                                  <button
-                                      type="button"
-                                      class="bt-Kpi btn img-btn-outline-primary"
-                                      id="btKpikView"
-                                      onClick="toggleKPIview()"
-                                  >
-                                      <span>Kpi View</span>
-                                  </button>
-                   </div>
-                    <div
-                                  kendoTooltip
-                                  position="bottom"
-                                  [title]="'Performance View'"
-                              >
-                                  <button
-                                      type="button"
-                                      class="bt-Performance btn img-btn-outline-primary"
-                                      id="btPerformanceView"
-                                      onClick="togglePerformanceview()"
-                                  >
-                                      <span>Performance View</span>
-                                  </button>
-                    </div>
-                  </div> 
-                   <div style=" margin-left: 600px;" class="k-actions btn-row-bottom k-actions-end align-items-end">
-                      <div
-                                    kendoTooltip
-                                    position="bottom"
-                                    [title]="'Expand Nodes'"
-                                >
-                                    <button
-                                        type="button"
-                                        class="bt-Expand btn img-btn-outline-primary"
-                                        id="btExpandView"
-                                        onClick="toggleExpand()"
-                                    >
-                                        <span>Expand</span>
-                                    </button>
-                                
-                      </div>
-                      <div
-                                    kendoTooltip
-                                    position="bottom"
-                                    [title]="'Export Diagram'"
-                                >
-                                    <button
-                                        type="button"
-                                        class="btn img-btn-outline-primary"
-                                        id="btExport"
-                                    >
-                                        <i
-                                            class="cam-icon cam-i-export"
-                                            aria-hidden="true"
-                                        ></i>
-                                        <span>Export</span>
-                                    </button>
-                      </div>
-                   </div>
-                  </div>
-                </div>
-                  <style>
-                    .k-toolbar
-                    {
-                      border-top: none !important;
-                      border-left: none !important;
-                      border-right: none !important;
-                      border-bottom: inset !important;
-                      border-bottom-width: 2px !important;
-                     
-                    }
-
-                    .k-toolbar-container {
-                      position: fixed;
-                      margin-top: -23px;
-                      background-color: white;
-                      z-index: 999;
-                      /* Add any other styles you need */
-                    }
-                    
-
-                    .bt-Expand.active 
-                    {
-                        background-color:   hwb(223 55% 8%);
-                        color: rgb(255, 255, 255) !important;
-                        
-                    }
-                    .bt-Risk.active 
-                    {
-                        background-color:   hwb(223 55% 8%);
-                        color: rgb(255, 255, 255) !important;
-                    }
-                    .bt-Kpi.active 
-                    {
-                        background-color:   hwb(223 55% 8%);
-                        color: rgb(255, 255, 255) !important;
-
-                    }
-                    .bt-Performance.active 
-                    {
-                        background-color:   hwb(223 55% 8%);
-                        color: rgb(255, 255, 255) !important;
-                    }
                
-                </style>
-                `,
-                enable: true,
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar">
+                <h3 style="font-size: 20px; margin-bottom: 10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
+                    <div kendoTooltip position="bottom" [title]="'Risk View'">
+                        <button type="button" class="bt-Risk btn img-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
+                            <span>Risk View</span>
+                        </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
+                        <button type="button" class="bt-Kpi btn img-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
+                            <span>Kpi View</span>
+                        </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Performance View'">
+                        <button type="button" class="bt-Performance btn img-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
+                            <span>Performance View</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start flex-grow">
+                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+                        <button type="button" class="bt-Expand btn img-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
+                            <span>Expand</span>
+                        </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                        <button type="button" class="btn img-btn-outline-primary" id="btExport">
+                            <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                            <span>Export</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                .k-toolbar {
+                    border-top: none !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    border-bottom: inset !important;
+                    border-bottom-width: 2px !important;
+                    z-index: 99;
+                    position: fixed;
+                }
+            
+                .top-bar {
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: white;
+                    margin-top: -40px;
+                    margin-bottom: -20px;
+                    padding-right: 700px;
+                }
                 
-              }
+                
+                .flex-grow{
+                  float: right;
+                }
+                .bt-analsys-header-txt {
+                    font-size: 20px;
+                    padding: 12px;
+                }
+            
+                /* Style your buttons as needed */
+                .bt-Expand.active {
+                    background-color: hwb(223 55% 8%);
+                    color: rgb(255, 255, 255) !important;
+                }
+            
+                .bt-Risk.active {
+                    background-color: hwb(223 55% 8%);
+                    color: rgb(255, 255, 255) !important;
+                }
+            
+                .bt-Kpi.active {
+                    background-color: hwb(223 55% 8%);
+                    color: rgb(255, 255, 255) !important;
+                }
+            
+                .bt-Performance.active {
+                    background-color: hwb(223 55% 8%);
+                    color: rgb(255, 255, 255) !important;
+                }
+            
+                @media screen and (max-width: 500px) {
+                    .top-bar {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        float: none;
+                        width: 100%; /* Full width on smaller screens */
+                    }
+            
+                    .bt-analsys-header-txt {
+                        margin-bottom: 0;
+                    }
+            
+                    .flex {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        display: block;
+                        float: left;
+                    }
+            
+                    .flex-grow {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        float: left;
+                        display: block;
+                    }
+                }
+            </style>
+            
+                  `,
+                  enable: true,
+                  
+                }
             ]
           },
 
