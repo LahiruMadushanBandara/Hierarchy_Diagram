@@ -100,7 +100,7 @@ export class TemplateClass {
                 "<p><b>Inherent Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                           "<img class='bow-tie-risk-rating-details-image'"+
-                            "src=" + contentDetails.RiskData.InherentRiskRatingImg +""+
+                            "src='"+ contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.InherentRiskRating+
                   "</span>" +
@@ -109,7 +109,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Revised Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Low.png'>" +
+                      "<img class='bow-tie-risk-rating-details-image'"+
+                          "src='"+ contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.ResidualRiskRating+
                   "</span>" +
@@ -120,16 +121,18 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Future Rating</b></p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
+                      "<img class='bow-tie-risk-rating-details-image'"+
+                          "src='"+ contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
-                   contentDetails.RiskData.TargetRiskRatinng+
+                   contentDetails.RiskData.TargetRiskRating+
                   "</span>" +
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
                 "<p><b>Risk Appetite</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+                      "<img class='bow-tie-risk-rating-details-image'"+
+                          "src='"+ contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.AppetiteRating+
                   "</span>" +

@@ -21,9 +21,12 @@ interface RiskData {
   Category: string;
   InherentRiskRating: string;
   ResidualRiskRating: string;
-  TargetRiskRatinng: string;
+  TargetRiskRating: string;
   AppetiteRating: string;
   InherentRiskRatingImg:any;
+  ResidualRiskRatingImg:any;
+  TargetRiskRatingImg:any;
+  AppetiteRatingImg:any;
 }
 
 interface ControlData {
