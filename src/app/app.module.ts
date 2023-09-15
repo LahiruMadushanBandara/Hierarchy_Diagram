@@ -17,7 +17,7 @@ import { FocusComponent } from './components/focus/focus.component';
     BrowserAnimationsModule,
   ],
   providers: [],
-  //bootstrap: [AppComponent],
+  // bootstrap: [AppComponent],
   entryComponents:[AppComponent]
 })
 export class AppModule implements DoBootstrap {

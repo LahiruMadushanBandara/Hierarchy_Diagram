@@ -60,16 +60,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     let isKpIview = false;
     let isPerformanceView = false;
     let isExpand = false;
+    let clicked = false;
+    var clickedNodeHeader = "";
   
     var originalConnections; // Variable to store the original connections
-
+    var Templates = new TemplateClass();
+      
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
     
     function visualTemplate(options: any) {
      
       
-      var Templates = new TemplateClass();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
@@ -390,87 +392,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                     </div>
                 </div>
             </div>
-            
-            <style>
-                .k-toolbar {
-                    border-top: none !important;
-                    border-left: none !important;
-                    border-right: none !important;
-                    border-bottom: inset !important;
-                    border-bottom-width: 2px !important;
-                    z-index: 99;
-                    position: fixed;
-                }
-            
-                .top-bar {
-                    overflow: hidden;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    background-color: white;
-                    margin-top: -40px;
-                    margin-bottom: -20px;
-                    padding-right: 700px;
-                }
-                
-                
-                .flex-grow{
-                  float: right;
-                }
-                .bt-analsys-header-txt {
-                    font-size: 20px;
-                    padding: 12px;
-                }
-            
-                /* Style your buttons as needed */
-                .bt-Expand.active {
-                    background-color: hwb(223 55% 8%);
-                    color: rgb(255, 255, 255) !important;
-                }
-            
-                .bt-Risk.active {
-                    background-color: hwb(223 55% 8%);
-                    color: rgb(255, 255, 255) !important;
-                }
-            
-                .bt-Kpi.active {
-                    background-color: hwb(223 55% 8%);
-                    color: rgb(255, 255, 255) !important;
-                }
-            
-                .bt-Performance.active {
-                    background-color: hwb(223 55% 8%);
-                    color: rgb(255, 255, 255) !important;
-                }
-            
-                @media screen and (max-width: 500px) {
-                    .top-bar {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        float: none;
-                        width: 100%; /* Full width on smaller screens */
-                    }
-            
-                    .bt-analsys-header-txt {
-                        margin-bottom: 0;
-                    }
-            
-                    .flex {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        display: block;
-                        float: left;
-                    }
-            
-                    .flex-grow {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        float: left;
-                        display: block;
-                    }
-                }
-            </style>
-            
+                       
                   `,
                   enable: true,
                   
@@ -501,6 +423,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           },
           zoom: 0.4,
           cancel: onCancel,
+
+          // layout: false,
+         
+          // click:  onNodeClick,
+          // editable: false, 
         });
 
 
@@ -537,32 +464,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
     });
 
-    function onNodeClick(node) {
-      var diagram = $('#diagram').getKendoDiagram();
-      diagram.bringIntoView(diagram.shapes);
-      this.nodeClickChek(node.item.dataItem);
-      diagram.refresh();
-      // ReloadDiagramWithSelectedNode(node);
-    }
+   
+    // $(document).ready(function () {
+    //   $('#diagram').kendoDiagram({
+    //     // ... other diagram configurations ...
+    //     click: onNodeClick,
+    //   });
+    // });
 
-    $(document).ready(function () {
-      $('#diagram').kendoDiagram({
-        // ... other diagram configurations ...
-        click: onNodeClick,
-      });
-    });
   }
-
-  ExpandCollapse(){
-    alert("expand called");
-  }
-
+  
   ngOnInit(): void {
-    
+
   }
 
-  public nodeClick(data) {
-    sessionStorage.clear();
-  }
+  // ExpandCollapse(){
+  //   alert("expand called");
+  // }
+
+
+  // public nodeClick(data) {
+  //   sessionStorage.clear();
+  // }
   
 }
