@@ -363,17 +363,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 <h3 style="font-size: 20px; margin-bottom: 10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
                     <div kendoTooltip position="bottom" [title]="'Risk View'">
-                        <button type="button" class="bt-Risk btn img-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
+                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
                             <span>Risk View</span>
                         </button>
                     </div>
                     <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                        <button type="button" class="bt-Kpi btn img-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
+                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
                             <span>Kpi View</span>
                         </button>
                     </div>
                     <div kendoTooltip position="bottom" [title]="'Performance View'">
-                        <button type="button" class="bt-Performance btn img-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
+                        <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
                             <span>Performance View</span>
                         </button>
                     </div>
