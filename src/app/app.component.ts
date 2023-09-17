@@ -303,6 +303,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           diagram.refresh();
         }
 
+      
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -352,7 +353,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           },
-
           editable: {
             shapeTemplate: detailTemp,
             tools: [
@@ -380,14 +380,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 </div>
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start flex-grow">
                     <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                        <button type="button" class="bt-Expand btn img-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
+                        <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
                             <span>Expand</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-                        <button type="button" class="btn img-btn-outline-primary" id="btExport">
-                            <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                            <span>Export</span>
                         </button>
                     </div>
                 </div>
@@ -429,7 +423,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           // click:  onNodeClick,
           // editable: false, 
         });
-
 
         
       // Get the button element and attach the click event listener

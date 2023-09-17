@@ -79,7 +79,6 @@ export class TemplateClass {
  
   public GetRiskNodeTemplateGlobal(contentDetails: data) {
 
-    
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
           "<div class='bow-tie-risk-card-header-top' >" +
@@ -583,7 +582,7 @@ export class TemplateClass {
     );
   }
 
-  public AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement , clicked , clickedNodeHeader){  
+  public AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement){  
 
 
     switch(dataItem.Header) 
@@ -741,36 +740,7 @@ export class TemplateClass {
           renderElement.html(otherTemp(dataItem));
         }
       }
-  
-
-    
-      if (clicked) { 
-            
-        if(isExpand){
-          if (clickedNodeHeader === 'Control') {
-            var controlNodeExpandTemp = kendo.template(templatesObj.controlTemplateExpand);
-            renderElement.html(controlNodeExpandTemp(dataItem));
-          }
-        } else {
-            if (clickedNodeHeader === 'Control') {
-              var controlNodeTemp = kendo.template(templatesObj.controlTemplate);
-              renderElement.html(controlNodeTemp(dataItem));
-            }
-          }
-          if (clickedNodeHeader=== 'Consequences') {
-            var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
-            renderElement.html(consequencesTemp(dataItem));
-          } else if (clickedNodeHeader === 'Cause') {
-            var causeTemp = kendo.template(templatesObj.causeTemplate);
-            renderElement.html(causeTemp(dataItem));
-          }  
-            var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-            renderElement.html(riskNodeTemp(dataItem));
-      }
-      
     }
-
-    
   }
 
 
