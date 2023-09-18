@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import '@progress/kendo-ui';
 import { TemplateClass } from './utils/classes/TemplateClass';
-import { data } from './models/data.model';
+import { DiagramNodeData } from './models/data.model';
 import { BowTieDiagramHelper } from './utils/classes/BowTieDiagramHelper';
 
 
@@ -26,14 +26,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() expandChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
-  @Input() bowTieNodeDetails: data[] = [];
+  @Input() bowTieNodeDetails: DiagramNodeData[] = [];
 
   riskTemplate: string = '';
   controlTemplate: string = '';
   causeTemplate: string = '';
   consequencesTemplate: string = '';
   otherTemplate: string = '';
-  originalData:data[] =[];
+  originalData:DiagramNodeData[] =[];
 
   @Input() IsExpanded:boolean = false;
   

@@ -1,5 +1,5 @@
 
-export interface data {
+export interface DiagramNodeData {
   Id: number;
   Type: number;
   ParentNodeId?: number;
@@ -42,12 +42,14 @@ interface ControlData {
 interface IncidentData {
   LinkageId: number;
   IncidentId: number;
-  IncidentTitle: string;
   IncidentCode: string;
-  IncidentType: string;
+  IncidentTitle: string;
   ReportedDate: string;
+  IncidentType: string;
   ResponsiblePerson: string;
+  ByteImage:string;
   ImageType: string;
+  ResponsibleManagerProfilePic:any;
 }
 
 interface KPIData {
@@ -69,6 +71,10 @@ interface LinkedRiskData {
   Category: string;
   InherentRiskRating: string;
   ResidualRiskRating: string;
-  TargetRiskRatinng: string;
+  TargetRiskRating: string;
   AppetiteRating: string;
+  InherentRiskRatingImg:any;
+  ResidualRiskRatingImg:any;
+  TargetRiskRatingImg:any;
+  AppetiteRatingImg:any;
 }

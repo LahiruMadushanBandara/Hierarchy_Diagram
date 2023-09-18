@@ -1,4 +1,4 @@
-import { data } from 'src/app/models/data.model';
+import { DiagramNodeData } from 'src/app/models/data.model';
 import { PerformanceView } from './PerformanceViewComponent ';
 
 export class TemplateClass {
@@ -6,7 +6,7 @@ export class TemplateClass {
 
 
 
-  public GetControlNodeTemplateGlobal(contentDetails: data , enablePerformanceview: boolean) {
+  public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
     
@@ -26,7 +26,7 @@ export class TemplateClass {
     );
   }
 
-  public GetOtherTemplateGlobal(contentDetails: data) {
+  public GetOtherTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
       "<div class='Bow-tie-Other-card-content rounded'>" +
         "<div class='Bow-tie-Other-card-header'>" +
@@ -43,7 +43,7 @@ export class TemplateClass {
     );
   }
 
-  public GetConsequencesTemplateGlobal(contentDetails: data) {
+  public GetConsequencesTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
@@ -60,7 +60,7 @@ export class TemplateClass {
     );
   }
 
-  public GetCauseTemplateGlobal(contentDetails: data) {
+  public GetCauseTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
@@ -77,7 +77,7 @@ export class TemplateClass {
     );
   }
  
-  public GetRiskNodeTemplateGlobal(contentDetails: data) {
+  public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
 
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
@@ -163,7 +163,7 @@ export class TemplateClass {
 
  
 
-  public GetControlNodeTemplateGlobalExpand(contentDetails: data , enablePerformanceview: boolean) {
+  public GetControlNodeTemplateGlobalExpand(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
 
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
@@ -209,7 +209,7 @@ export class TemplateClass {
   
 }
 
-  public GetRiskActionTreatmentExpand(contentDetails: data) {
+  public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded''>" +
         "<div class='bow-tie-extra-card-header''>" +
@@ -242,7 +242,7 @@ export class TemplateClass {
     );
   }
 
-  public GetLinkRiskNodeTemplateGlobal(contentDetails: data) {
+  public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
@@ -262,7 +262,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Inherent Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Extream.png' >" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.InherentRiskRating+
                   "</span>" +
@@ -271,7 +272,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Revised Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Low.png'>" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.ResidualRiskRating+
                   "</span>" +
@@ -282,16 +284,18 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Future Rating</b></p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
-                  contentDetails.LinkedRiskData.TargetRiskRatinng+
+                  contentDetails.LinkedRiskData.TargetRiskRating+
                   "</span>" +
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
                 "<p><b>Risk Appetite</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.AppetiteRating+
                   "</span>" +
@@ -323,7 +327,7 @@ export class TemplateClass {
     );
   }
 
-  public GetIncidentExpand(contentDetails: data) {
+  public GetIncidentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -342,7 +346,8 @@ export class TemplateClass {
           "</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-            "<img class='bow-tie-incident-expand-responsible-officer-image' src='../assets/bow-tie/icon/image.png'>" +
+          "<img class='bow-tie-incident-expand-responsible-officer-image'"+
+                          "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity +"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
               "<b>"+
                 contentDetails.IncidentData.ResponsiblePerson+
@@ -362,7 +367,7 @@ export class TemplateClass {
     );
   }
 
-  public GetComplianceObligationExpand(contentDetails: data) {
+  public GetComplianceObligationExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
@@ -391,7 +396,7 @@ export class TemplateClass {
     );
   }
 
-  public GetKPIExpand(contentDetails: data) {
+  public GetKPIExpand(contentDetails: DiagramNodeData) {
     var HASH = ""
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
@@ -438,7 +443,7 @@ export class TemplateClass {
     );
   }
 
-  public GetAuditExpand(contentDetails: data) {
+  public GetAuditExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -463,7 +468,7 @@ export class TemplateClass {
     );
   }
 
-  public GetHierarchyExpand(contentDetails: data) {
+  public GetHierarchyExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -488,7 +493,7 @@ export class TemplateClass {
     );
   }
 
-  public GetAuthorityDocumentExpand(contentDetails: data) {
+  public GetAuthorityDocumentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -513,7 +518,7 @@ export class TemplateClass {
     );
   }
 
-  public GetPolicyExpand(contentDetails: data) {
+  public GetPolicyExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -538,7 +543,7 @@ export class TemplateClass {
     );
   }
 
-  public GetAuditRecommendationsExpand(contentDetails: data) {
+  public GetAuditRecommendationsExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -560,7 +565,7 @@ export class TemplateClass {
     );
   }
 
-  public GetAuditFindingExpand(contentDetails: data) {
+  public GetAuditFindingExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -758,7 +763,7 @@ export class TemplateClass {
   //       "ResponsibleManager": "Anita Raymond2",
   //       "Category": "customer/Reliability",
   //       "ResidualRiskRating": "Low",
-  //       "TargetRiskRatinng": "High",
+  //       "TargetRiskRating": "High",
   //       "InherentRiskRating": "Extreme",
   //       "AppetiteRating": "Within Appetite",
   //       "InherentRiskRatingImg":""
