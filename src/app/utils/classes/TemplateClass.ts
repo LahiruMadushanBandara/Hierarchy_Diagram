@@ -79,6 +79,11 @@ export class TemplateClass {
  
   public GetRiskNodeTemplateGlobal(contentDetails: data) {
 
+    (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.RiskData.InherentRiskRating;
+    (contentDetails.RiskData.AppetiteRating == ""|| contentDetails.RiskData.AppetiteRating == undefined) ? "N/A" : contentDetails.RiskData.AppetiteRating;
+    (contentDetails.RiskData.ResidualRiskRating  == "" || contentDetails.RiskData.ResidualRiskRating  == undefined) ? "N/A" : contentDetails.RiskData.ResidualRiskRating;
+    (contentDetails.RiskData.TargetRiskRating  == "" || contentDetails.RiskData.TargetRiskRating  == undefined) ? "N/A" : contentDetails.RiskData.TargetRiskRating;
+   
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
           "<div class='bow-tie-risk-card-header-top' >" +
@@ -170,40 +175,42 @@ export class TemplateClass {
    
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-control-card-header' "+ styles +">" +
-      "<h4>" +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
-      "<div class='bow-tie-extra-card-body' "+ styles +">" +
-      "<p>" +
-      contentDetails.htmlTemplate +
-      "</p>" +
-      "<p class='bow-tie-control-type-details' >" +
-      "<span class='bow-tie-control-type'>" +
-      "Control Type" +
-      "</span>" +
-      "<p class='bow-tie-control-type-text'>" +
-      "<b>Preventive</b>" +
-      "</p>" +
-      "</p>" +
-      "<p class='bow-tie-control-owner'>Control Owner</p>" +
-      "<p class='bow-tie-control-owner-details'>" +
-      "<img class ='bow-tie-control-owner-image'src='../assets/bow-tie/icon/image.png'>" +
-      "<span class=bow-tie-control-owner-name'><b>"+
-      contentDetails.ControlData.ControlOwner +
-      "</b></span>" +
-      "</p>" +
-      "<p class='bow-tie-control-owner-rating'>" +
-      "Control Owner Rating" +
-      "<p class='bow-tie-control-owner-rating-details'>" +
-      "<img class='bow-tie-control-owner-rating-icon' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
-      "<span class='bow-tie-control-owner-rating-name'>"+
-      "<b>"+ 
-      contentDetails.ControlData.ControlOwnerRating+
-      "</b>"+
-      "</span>" +
-      "</div>" +
+        "<div class='bow-tie-control-card-header' "+ styles +">" +
+          "<h4>" +
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</h4>" +
+        "</div>" +
+        "<div class='bow-tie-extra-card-body' "+ styles +">" +
+          "<p>" +
+            "<b>" +
+              contentDetails.htmlTemplate +
+  
+            "</b>" +
+          "</p>" +
+          "<p class='bow-tie-control-type-details' >" +
+            "<span class='bow-tie-control-type'>" +
+              "Control Type" +
+            "</span>" +
+            "<p class='bow-tie-control-type-text'>" +
+            "Preventive " +
+            "</p>" +
+          "</p>" +
+          "<p class='bow-tie-control-owner'>Control Owner</p>" +
+          "<p class='bow-tie-control-owner-details'>" +
+            "<img class ='bow-tie-control-owner-image'src='../assets/bow-tie/icon/image.png'>" +
+            "<span class=bow-tie-control-owner-name'>"+
+              contentDetails.ControlData.ControlOwner +
+            "</span>" +
+          "</p>" +
+          "<p class='bow-tie-control-owner-rating'>" +
+          "Control Owner Rating" +
+          "<p class='bow-tie-control-owner-rating-details'>" +
+            "<img class='bow-tie-control-owner-rating-icon' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+            "<span class='bow-tie-control-owner-rating-name'>"+
+              contentDetails.ControlData.ControlOwnerRating+
+            "</span>" +
+          "</p>"+
+        "</div>" +
       "</div>"
     );
   
@@ -243,6 +250,11 @@ export class TemplateClass {
   }
 
   public GetLinkRiskNodeTemplateGlobal(contentDetails: data) {
+    (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.LinkedRiskData.InherentRiskRating;
+    (contentDetails.LinkedRiskData.AppetiteRating == ""|| contentDetails.LinkedRiskData.AppetiteRating == undefined) ? "N/A" : contentDetails.LinkedRiskData.AppetiteRating;
+    (contentDetails.LinkedRiskData.ResidualRiskRating  == "" || contentDetails.LinkedRiskData.ResidualRiskRating  == undefined) ? "N/A" : contentDetails.LinkedRiskData.ResidualRiskRating;
+    (contentDetails.LinkedRiskData.TargetRiskRating  == "" || contentDetails.LinkedRiskData.TargetRiskRating  == undefined) ? "N/A" : contentDetails.LinkedRiskData.TargetRiskRating;
+     
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
@@ -251,11 +263,11 @@ export class TemplateClass {
           "</p>" +
         "</div>" +
         "<div class='bow-tie-risk-card-header-expand'>" +
-           "<p class='bow-tie-risk-card-header-text-expand'>"+
+           "<p class='bow-tie-risk-card-header-text-expand'> <b>"+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
               contentDetails.htmlTemplate+
-            "</p>" +
+            " </b></p> " +
           "</div>" +
           "<div class='bow-tie-risk-card-body-expand'>" +
             "<div class='row'>" +
@@ -284,7 +296,7 @@ export class TemplateClass {
                 "<p  class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
                   "<span class='bow-tie-risk-rating-details-text'>"+
-                  contentDetails.LinkedRiskData.TargetRiskRatinng+
+                  contentDetails.LinkedRiskData.TargetRiskRating+
                   "</span>" +
                 "</p>" +
               "</div>" +
@@ -332,9 +344,9 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p>" +
+          "<p> <b>" +
              contentDetails.htmlTemplate +
-          "</p>" +
+          " </b><p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
           "<p class='bow-tie-risk-rating-details'>" +
             "<img class='bow-tie-control-owner-image'src='../assets/bow-tie/icon/image.png' >" +
@@ -392,7 +404,9 @@ export class TemplateClass {
   }
 
   public GetKPIExpand(contentDetails: data) {
-    var HASH = ""
+   
+    contentDetails.KpiData.Actual != null  ? contentDetails.KpiData.Actual : 0  ;
+    contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -401,16 +415,18 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
-          "<p>" +
+          "<p> <b>" +
               contentDetails.htmlTemplate +
-          "</p>" +
+          " </b> </p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
               "<span class='bow-tie-unit-text'>" +
                 "<b>Unit</b>" +
               "</span>" +
               "<span class='bow-tie-unit-symbol'>\\"+
+             
                 contentDetails.KpiData.Unit +
+              
               "</span>"+
             "</div>" +
           "</div>" +
@@ -419,13 +435,21 @@ export class TemplateClass {
               "<span class='bow-tie-actual-text'>" +
                 "<b>Actual</b>" +
               "</span>" +
-              "<span class='bow-tie-actual-value'>10</span>" +
+              "<span class='bow-tie-actual-value'>"+ 
+            
+                contentDetails.KpiData.Actual +
+             
+              "</span>" +
             "</div>" +
               "<div class='bow-tie-target-flex'>" +
                 "<span class='bow-tie-target-text'>" +
                   "<b>Target</b>" +
                 "</span>" +
-                "<span class='bow-tie-target-value'>12</span>" +
+                "<span class='bow-tie-target-value'>"+                
+                contentDetails.KpiData.Actual  +
+               "</span>" +
+                
+                "</span>" +
               "</div>" +
           "</div>" +
           "<div class='bow-tie-performance-flex'>" +
@@ -611,10 +635,10 @@ export class TemplateClass {
         sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
-      case "Kpi":
+      case "KPI":
         templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
         templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
-        sessionStorage.setItem('Kpi', templatesObj.kpiTemplateExpnad);
+        sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
@@ -667,12 +691,12 @@ export class TemplateClass {
       isRiskView = false;
       if (isExpand) {
        
-        if (dataItem.Header === 'Kpi') {
+        if (dataItem.Header === 'KPI') {
           var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
           renderElement.html(KPIExpandTemp(dataItem));
         }
       } else {
-        if (dataItem.Header === 'Kpi') {
+        if (dataItem.Header === 'KPI') {
           var otherTemp = kendo.template(templatesObj.bottomTemplate);
           renderElement.html(otherTemp(dataItem));
         }
@@ -715,7 +739,7 @@ export class TemplateClass {
               complianceTemplateExpnad
             );
             renderElement.html(complianceExpandTemp(dataItem));
-          } else if (dataItem.Header === 'Kpi') {
+          } else if (dataItem.Header === 'KPI') {
             var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
             renderElement.html(KPIExpandTemp(dataItem));
           }

@@ -69,6 +69,6 @@ interface LinkedRiskData {
   Category: string;
   InherentRiskRating: string;
   ResidualRiskRating: string;
-  TargetRiskRatinng: string;
+  TargetRiskRating: string;
   AppetiteRating: string;
 }

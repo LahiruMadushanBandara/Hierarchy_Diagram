@@ -267,8 +267,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   var fromNode = diagram.dataSource.get(connection.from);
                   var toNode = diagram.dataSource.get(connection.to);
                   return (
-                    (fromNode && fromNode.Header === 'Kpi') ||
-                    (toNode && toNode.Header === 'Kpi')
+                    (fromNode && fromNode.Header === 'KPI') ||
+                    (toNode && toNode.Header === 'KPI')
                   );
                 });
 
@@ -377,14 +377,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                             <span>Performance View</span>
                         </button>
                     </div>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start flex-grow">
+
                     <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                        <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
-                            <span>Expand</span>
-                        </button>
+                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
+                          <span>Expand</span>
+                      </button>
                     </div>
-                </div>
+                </div>                 
+              
             </div>
                        
                   `,
