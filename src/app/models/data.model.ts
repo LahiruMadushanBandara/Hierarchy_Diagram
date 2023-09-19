@@ -27,6 +27,7 @@ interface RiskData {
   ResidualRiskRatingImg:any;
   TargetRiskRatingImg:any;
   AppetiteRatingImg:any;
+  profileImageUrl:any;
 }
 
 interface ControlData {
@@ -36,6 +37,7 @@ interface ControlData {
   ControlAuthorizer: string;
   ControlAuthorizerRating: string;
   Active: boolean;
+  ControlOwnerRatingImage:any;
   IsLinkedToCauseOrConsequence: boolean;
 }
 
@@ -61,7 +63,7 @@ interface KPIData {
   ReportingPeriod: string;
   Actual: number;
   Target: number;
-  PerformanceImg: string;
+  Performance: string;
   TrendImg: string;
 }
 
