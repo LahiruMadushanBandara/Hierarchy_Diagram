@@ -1,4 +1,4 @@
-import { data } from 'src/app/models/data.model';
+import { DiagramNodeData } from 'src/app/models/data.model';
 import { PerformanceView } from './PerformanceViewComponent ';
 
 export class TemplateClass {
@@ -6,7 +6,7 @@ export class TemplateClass {
 
 
 
-  public GetControlNodeTemplateGlobal(contentDetails: data , enablePerformanceview: boolean) {
+  public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
     
@@ -26,7 +26,7 @@ export class TemplateClass {
     );
   }
 
-  public GetOtherTemplateGlobal(contentDetails: data) {
+  public GetOtherTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
       "<div class='Bow-tie-Other-card-content rounded'>" +
         "<div class='Bow-tie-Other-card-header'>" +
@@ -43,7 +43,7 @@ export class TemplateClass {
     );
   }
 
-  public GetConsequencesTemplateGlobal(contentDetails: data) {
+  public GetConsequencesTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
@@ -60,7 +60,7 @@ export class TemplateClass {
     );
   }
 
-  public GetCauseTemplateGlobal(contentDetails: data) {
+  public GetCauseTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
@@ -77,7 +77,7 @@ export class TemplateClass {
     );
   }
  
-  public GetRiskNodeTemplateGlobal(contentDetails: data) {
+  public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
 
     (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.RiskData.InherentRiskRating;
     (contentDetails.RiskData.AppetiteRating == ""|| contentDetails.RiskData.AppetiteRating == undefined) ? "N/A" : contentDetails.RiskData.AppetiteRating;
@@ -155,7 +155,8 @@ export class TemplateClass {
             "<div class='bow-tie-risk-footer-details'>" +
               "<p><b>Responsible Manager</b></p>" +
               "<p class='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/image.png' >" +
+                "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.RiskData.profileImageUrl.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity +"'"+
                 "<span class='bow-tie-risk-rating-details-text'>"+
                 contentDetails.RiskData.ResponsibleManager+
                 "</span>" +
@@ -168,7 +169,7 @@ export class TemplateClass {
 
  
 
-  public GetControlNodeTemplateGlobalExpand(contentDetails: data , enablePerformanceview: boolean) {
+  public GetControlNodeTemplateGlobalExpand(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
 
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
@@ -197,7 +198,7 @@ export class TemplateClass {
           "</p>" +
           "<p class='bow-tie-control-owner'>Control Owner</p>" +
           "<p class='bow-tie-control-owner-details'>" +
-            "<img class ='bow-tie-control-owner-image'src='../assets/bow-tie/icon/image.png'>" +
+            "<img class ='bow-tie-control-owner-image'src='theavo_risk/assets/bow-tie/icon/image.png'>" +
             "<span class=bow-tie-control-owner-name'>"+
               contentDetails.ControlData.ControlOwner +
             "</span>" +
@@ -205,7 +206,8 @@ export class TemplateClass {
           "<p class='bow-tie-control-owner-rating'>" +
           "Control Owner Rating" +
           "<p class='bow-tie-control-owner-rating-details'>" +
-            "<img class='bow-tie-control-owner-rating-icon' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+            "<img class='bow-tie-control-owner-rating-icon'"+
+                            "src='"+ contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity +"'"+
             "<span class='bow-tie-control-owner-rating-name'>"+
               contentDetails.ControlData.ControlOwnerRating+
             "</span>" +
@@ -216,7 +218,7 @@ export class TemplateClass {
   
 }
 
-  public GetRiskActionTreatmentExpand(contentDetails: data) {
+  public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded''>" +
         "<div class='bow-tie-extra-card-header''>" +
@@ -238,7 +240,7 @@ export class TemplateClass {
           "</p>" +
           "<p style='margin-top: -10px;' >Owner</p>" +
           "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 30px; '>" +
-            "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
+            "<img src='theavo_risk/assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
             "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Talia Gisbon</b></span>" +
           "</p>" +
           "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
@@ -249,7 +251,7 @@ export class TemplateClass {
     );
   }
 
-  public GetLinkRiskNodeTemplateGlobal(contentDetails: data) {
+  public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
     (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.LinkedRiskData.InherentRiskRating;
     (contentDetails.LinkedRiskData.AppetiteRating == ""|| contentDetails.LinkedRiskData.AppetiteRating == undefined) ? "N/A" : contentDetails.LinkedRiskData.AppetiteRating;
     (contentDetails.LinkedRiskData.ResidualRiskRating  == "" || contentDetails.LinkedRiskData.ResidualRiskRating  == undefined) ? "N/A" : contentDetails.LinkedRiskData.ResidualRiskRating;
@@ -262,7 +264,7 @@ export class TemplateClass {
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</p>" +
         "</div>" +
-        "<div class='bow-tie-risk-card-header-expand'>" +
+        "<div style='background-color:white;' class='bow-tie-risk-card-header-expand'>" +
            "<p class='bow-tie-risk-card-header-text-expand'> <b>"+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
@@ -274,7 +276,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Inherent Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Extream.png' >" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.InherentRiskRating+
                   "</span>" +
@@ -283,7 +286,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Revised Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/Low.png'>" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.ResidualRiskRating+
                   "</span>" +
@@ -294,7 +298,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Future Rating</b></p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/High.png' >" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                   contentDetails.LinkedRiskData.TargetRiskRating+
                   "</span>" +
@@ -303,7 +308,8 @@ export class TemplateClass {
               "<div class='column'>" +
                 "<p><b>Risk Appetite</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/WithinAppetite.png' >" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.AppetiteRating+
                   "</span>" +
@@ -323,7 +329,7 @@ export class TemplateClass {
             "<div class='bow-tie-risk-footer-details'>" +
               "<p><b>Responsible Manager</b></p>" +
               "<p sclass='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image' src='../assets/bow-tie/icon/image.png' >" +
+                "<img class='bow-tie-risk-rating-details-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
                 "<span class='bow-tie-risk-rating-details-text'>" +
                   contentDetails.LinkedRiskData.ResponsibleManager +
                 "</span>" +
@@ -335,7 +341,7 @@ export class TemplateClass {
     );
   }
 
-  public GetIncidentExpand(contentDetails: data) {
+  public GetIncidentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -349,12 +355,12 @@ export class TemplateClass {
           " </b><p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
           "<p class='bow-tie-risk-rating-details'>" +
-            "<img class='bow-tie-control-owner-image'src='../assets/bow-tie/icon/image.png' >" +
+            "<img class='bow-tie-control-owner-image'src='theavo_risk/assets/bow-tie/icon/image.png' >" +
             "<span class='bow-tie-control-owner-name'><b>Clarke Chan</b></span>" +
           "</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-            "<img class='bow-tie-incident-expand-responsible-officer-image' src='../assets/bow-tie/icon/image.png'>" +
+          "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png'>" +
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
               "<b>"+
                 contentDetails.IncidentData.ResponsiblePerson+
@@ -374,7 +380,7 @@ export class TemplateClass {
     );
   }
 
-  public GetComplianceObligationExpand(contentDetails: data) {
+  public GetComplianceObligationExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
@@ -388,7 +394,7 @@ export class TemplateClass {
           "</p>" +
           "<p style='margin-top: 10px;' >Obligation Owner</p>" +
           "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 20px; '>" +
-            "<img src='../assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
+            "<img src='theavo_risk/assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
             "<span style= 'position: relative; top: -2px; margin-left: 5px;'><b>Joe Smith</b></span>" +
             "<p style='display: flex; align-items: left; line-height: 1;'>" +
             "<span style='margin-right: 10px;'>" +
@@ -403,10 +409,29 @@ export class TemplateClass {
     );
   }
 
-  public GetKPIExpand(contentDetails: data) {
+  public GetKPIExpand(contentDetails: DiagramNodeData) {
    
     contentDetails.KpiData.Actual != null  ? contentDetails.KpiData.Actual : 0  ;
     contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
+    
+    var currentIndicator:string;
+
+    if(contentDetails.KpiData.Performance === 'N/A'){
+      currentIndicator = 'na-badge';
+    }
+    else if(contentDetails.KpiData.Performance === 'On Track'){
+      currentIndicator = 'onTrack-badge';
+    }
+    else if(contentDetails.KpiData.Performance === 'Off Track'){
+      currentIndicator = 'offTrack-badge';
+    }
+    else if(contentDetails.KpiData.Performance === 'Monitor'){
+      currentIndicator = 'monitor-badge';
+    }
+    else{
+      currentIndicator = 'na-badge';
+    }
+
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -446,7 +471,7 @@ export class TemplateClass {
                   "<b>Target</b>" +
                 "</span>" +
                 "<span class='bow-tie-target-value'>"+                
-                contentDetails.KpiData.Actual  +
+                contentDetails.KpiData.Target  +
                "</span>" +
                 
                 "</span>" +
@@ -454,15 +479,15 @@ export class TemplateClass {
           "</div>" +
           "<div class='bow-tie-performance-flex'>" +
             "<span class='bow-tie-performance-text' >Performance</span>" +
-            "<img class='bow-tie-performance-icon'src='../assets/bow-tie/icon/WithinAppetite.png' >" +
-            "<span class='bow-tie-performance-rating'>On Track</span>" +
+            `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'</span>`+
+            `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'}</span`+
           "</div>" +
         "</div>" +
       "</div>"
     );
   }
 
-  public GetAuditExpand(contentDetails: data) {
+  public GetAuditExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -487,7 +512,7 @@ export class TemplateClass {
     );
   }
 
-  public GetHierarchyExpand(contentDetails: data) {
+  public GetHierarchyExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -512,7 +537,7 @@ export class TemplateClass {
     );
   }
 
-  public GetAuthorityDocumentExpand(contentDetails: data) {
+  public GetAuthorityDocumentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -537,7 +562,7 @@ export class TemplateClass {
     );
   }
 
-  public GetPolicyExpand(contentDetails: data) {
+  public GetPolicyExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -562,7 +587,7 @@ export class TemplateClass {
     );
   }
 
-  public GetAuditRecommendationsExpand(contentDetails: data) {
+  public GetAuditRecommendationsExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -584,7 +609,7 @@ export class TemplateClass {
     );
   }
 
-  public GetAuditFindingExpand(contentDetails: data) {
+  public GetAuditFindingExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -782,7 +807,7 @@ export class TemplateClass {
   //       "ResponsibleManager": "Anita Raymond2",
   //       "Category": "customer/Reliability",
   //       "ResidualRiskRating": "Low",
-  //       "TargetRiskRatinng": "High",
+  //       "TargetRiskRating": "High",
   //       "InherentRiskRating": "Extreme",
   //       "AppetiteRating": "Within Appetite",
   //       "InherentRiskRatingImg":""

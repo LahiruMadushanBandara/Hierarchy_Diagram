@@ -1,10 +1,10 @@
-import { data } from "src/app/models/data.model";
+import { DiagramNodeData } from "src/app/models/data.model";
 
 export class PerformanceView {
  
   constructor() {}
 
-  public PerformanceviewDetails(contentDetails: data , enablePerformanceview: boolean){
+  public PerformanceviewDetails(contentDetails: DiagramNodeData , enablePerformanceview: boolean){
 
     enum PerfoemanceViewStyle {
 

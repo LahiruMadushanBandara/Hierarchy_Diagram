@@ -1,4 +1,3 @@
-import { data } from 'src/app/models/data.model';
 
 export class BowTieDiagramHelper {
   constructor(
