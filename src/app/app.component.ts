@@ -41,7 +41,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngAfterViewInit(): void {}
 
-  ngOnChanges(change: SimpleChanges): void {
+  ngOnChanges(change: SimpleChanges): void {  }
+  
+  ngOnInit(): void {
 
     let elrf = this.eleRef.nativeElement
     sessionStorage.clear();
@@ -53,7 +55,222 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     // var tem = new TemplateClass();
     // this.originalData = tem.NodeSampleData;
 
-    this.originalData = this.bowTieNodeDetails;
+    this.originalData = [ 
+      {
+              "Id": 0,
+              "Type": 1,
+              "ParentNodeId": 0,
+              "Title": "Risk Node",
+              "Header": "Risk",
+              "Rating": "",
+              "htmlTemplate":"<dev>Failure to appropriately implement business continuity program/policy</dev>",
+              "RiskData": {
+                "RiskCode":"OR24",
+                "ResponsibleManager": "Elizabeth McMahon",
+                "Category": "Architecture",
+                "ResidualRiskRating":"Moderate",
+                "TargetRiskRating": "Moderate",
+                "InherentRiskRating": "High",
+                "AppetiteRating": "Within Appetite",
+                "InherentRiskRatingImg":"",
+                "ResidualRiskRatingImg":"",
+                "TargetRiskRatingImg":"",
+                "AppetiteRatingImg":""
+              }
+            },
+      
+            {
+              "Id": 19,
+              "Type": 2,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+              "ControlData": {
+      
+                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+                "ControlOwner": "Joe Smith",
+                "ControlOwnerRating":"Largely Ineffective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": true
+              }
+        },
+      
+       {
+              "Id": 23,
+              "Type": 2,
+              "ParentNodeId": 19,
+              "Title": "Cause Node",
+              "Header": "Cause",
+              "Rating": "",
+              "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+              "LinkedControlIds":[19,22,28]
+      
+            },
+            {
+              "Id": 22,
+              "Type": 2,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+              "ControlData": {
+      
+                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+                "ControlOwner": "Joe Smith",
+                "ControlOwnerRating":"Largely Ineffective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": true
+              }
+        },
+        
+        {
+          "Id": 28,
+          "Type": 2,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+          "ControlData": {
+  
+            "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+            "ControlOwner": "Joe Smith",
+            "ControlOwnerRating":"Largely Ineffective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": true
+          }
+    },
+     
+      
+       {
+              "Id": 16,
+              "Type": 2,
+              "ParentNodeId": 19,
+              "Title": "Cause Node",
+              "Header": "Cause",
+              "Rating": "",
+              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
+              "LinkedControlIds":[19,19]
+      
+            },
+
+            {
+              "Id": 29,
+              "Type": 2,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+              "ControlData": {
+      
+                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+                "ControlOwner": "Joe Smith",
+                "ControlOwnerRating":"Largely Ineffective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": true
+              }
+        },
+          
+      
+            
+      
+      
+        {
+              "Id": 3,
+              "Type": 3,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+              "ControlData": {
+      
+                "ControlTitle": "Prioritize critical business functions",
+                "ControlOwner": "Madeline Jones",
+                "ControlOwnerRating":"Partially Effective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": false
+              }
+        },
+      
+      {
+              "Id": 500,
+              "Type": 3,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+              "ControlData": {
+      
+                "ControlTitle":"Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
+                "ControlOwner":"Andrew James",
+                "ControlOwnerRating":"Substantially Effective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": false
+              }
+     },
+      
+      
+        {
+              "Id": 201,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": ""
+              }
+            },
+      
+       {
+              "Id": 182,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "KPI",
+              "Rating": "",
+              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+              "KpiData":{
+                "RiskLinkId":2078,
+                "KpiIntId":12,
+                "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
+                "KPITitle":"% reduction in non-clinically indicated surgery",
+                "Unit":"#",
+                "ReportingPeriod":"Month",
+                "Actual":21,
+                "Target":20,
+                "PerformanceImg":"Monitor",
+                "TrendImg":"Not Applicable"
+              }
+            },
+          
+  ]
     
     var tempTitleDetail = '';
     let isRiskView = false;
@@ -408,6 +625,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               color: '#979797',
               width: 2,
             },
+            
             select: function (e) {
               e.preventDefault(); // Prevent line selection
             },
@@ -464,10 +682,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     //     click: onNodeClick,
     //   });
     // });
-
-  }
-  
-  ngOnInit(): void {
 
   }
 

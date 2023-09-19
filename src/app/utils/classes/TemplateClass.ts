@@ -446,7 +446,7 @@ export class TemplateClass {
                   "<b>Target</b>" +
                 "</span>" +
                 "<span class='bow-tie-target-value'>"+                
-                contentDetails.KpiData.Actual  +
+                contentDetails.KpiData.Target  +
                "</span>" +
                 
                 "</span>" +

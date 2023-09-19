@@ -4,93 +4,121 @@ export class BowTieDiagramHelper {
   constructor(
   ) {}
   
-  ArrangeNodes(originalData)
-  {
+  ArrangeNodes(originalData){
+   
+      console.log(originalData);
       const arrangedNodes = [];
       // Find the risk node (type 1 with ParentNodeId 0)
       const riskNode = originalData.find(
         (node) => node.Type === 1 && node.ParentNodeId === 0
       );
 
-      if (riskNode) {
-        const horizontalSpacing = 450;
-        const verticalSpacing = 420;
+      const causeNodes = originalData.filter((node) => node.Title == 'Cause Node');
+      let maxCauseNodeLength = 0;
+      let causeNodeLength = 0;
+      
+      for (let i = 0; i < causeNodes.length; i++) {
+
+          if(causeNodes[i].LinkedControlIds.length < 5){
+
+            causeNodeLength = causeNodes[i].LinkedControlIds.length;
+
+          
+          if(causeNodeLength > maxCauseNodeLength)
+          {
+            maxCauseNodeLength = causeNodeLength;
+          }
+        }
+        
+        else{
+          maxCauseNodeLength = 5;
+        }
+      
+       }
+       if (riskNode) {
+        const horizontalSpacing = 520;
+        const verticalSpacing = 520;
         const verticalSpacingFour = 200;
         const maxNodesPerRow = 5;
         const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
-
+        let rowNumber = 0;
         let typeFourIndex = 0;
 
         const originX = 0;
-        const originY = 0;
-
-        // arrange type 2 nodes (left of type 1)
+        const originY = 0;                                                                                                  // arrange type 2 nodes (left of type 1)
         const typeTwoNodes = originalData.filter((node) => node.Type === 2);
         let rowNumbertypetwo = 0;
         let columnNumber = 0;
         let rowNodeCount = 0;
+        
 
-        for (let i = 0; i < typeTwoNodes.length; i++) {
-          if (
-            typeTwoNodes[i].ParentNodeId == 0 &&
-            typeTwoNodes[i].Title == 'Cause Node'
-          ) {
-           
-            // Calculate the x and y coordinates for the cause node
-            const x = originX - 5 * horizontalSpacing; // Fifth place from the left
+      for (let i = 0; i < typeTwoNodes.length; i++) {
+
+        let controlHorizontalSpacing = horizontalSpacing;
+        if(rowNodeCount == 0)
+        {
+          controlHorizontalSpacing = 600;
+        }
+        
+        if (
+          typeTwoNodes[i].ParentNodeId == 1 &&
+          typeTwoNodes[i].Title == 'Cause Node'
+        ) {
+          // Calculate the x and y coordinates for the cause node
+          const x = originX - 5 * horizontalSpacing; // Fifth place from the left
+          const y = originY + rowNumber * verticalSpacing;
+
+          typeTwoNodes[i].x = x;
+          typeTwoNodes[i].y = y;
+          arrangedNodes.push(typeTwoNodes[i]);
+          rowNumber++;
+        } else 
+        
+        if (typeTwoNodes[i].Title == 'Control Node') {
+            
+                
+            const x = originX - (columnNumber + 1) * controlHorizontalSpacing ;
             const y = originY + rowNumbertypetwo * verticalSpacing;
-
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
-            arrangedNodes.push(typeTwoNodes[i]);
-            rowNumbertypetwo++;
-          } 
-          else if (typeTwoNodes[i].Title == 'Control Node') {
-            const x = originX - (columnNumber + 1) * horizontalSpacing;
-            const y = originY + rowNumbertypetwo * verticalSpacing;
-            typeTwoNodes[i].x = x;
-            typeTwoNodes[i].y = y;
+            debugger;
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
-            if (columnNumber === 4) {
+            if (rowNodeCount === maxNodesPerRow ) {
               rowNumbertypetwo++;
               rowNodeCount = 0;
             }
             columnNumber = rowNodeCount;
           } else if ( typeTwoNodes[i].ParentNodeId !== 0 && typeTwoNodes[i].Title == 'Cause Node'
           ) {
-            const x = originX - 5 * horizontalSpacing; // Fifth place from the left
+            const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
             arrangedNodes.push(typeTwoNodes[i]);
-           
+            rowNodeCount++;
             rowNumbertypetwo++;
-            rowNodeCount = 0;
+            
             columnNumber = rowNodeCount;
           }
-        }
+          rowNodeCount = 0;
+          columnNumber = 0;
+      }
 
         // Arrange type 3 nodes (right of type 1)
-         let rowNumbertypethree = 0;
+        let rowNumbertypethree = 0;
         const typeThreeNodes = originalData.filter((node) => node.Type === 3);
 
         for (let i = 0; i < typeThreeNodes.length; i++) {
-          if (
-            typeThreeNodes[i].ParentNodeId == 0 &&
-            typeThreeNodes[i].Title == 'Consequences Node'
-          ) {
-            rowNumbertypethree++;
-            const x = originX + 5 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumbertypethree * verticalSpacing;
-            typeThreeNodes[i].x = x;
-            typeThreeNodes[i].y = y;
-            arrangedNodes.push(typeThreeNodes[i]);
-            rowNumbertypethree++;
+           let controlHorizontalSpacing = horizontalSpacing;
+       
+          if(rowNodeCount == 0)
+          {
+            controlHorizontalSpacing = 600;
+          }
 
-
-          } else if (typeThreeNodes[i].Title == 'Control Node') {
-            const x = originX + (columnNumber + 1) * horizontalSpacing;
+          if (typeThreeNodes[i].Title == 'Control Node') {
+            const x = originX + (columnNumber + 1) * controlHorizontalSpacing;
             const y = originY + rowNumbertypethree * verticalSpacing;
             typeThreeNodes[i].x = x;
             typeThreeNodes[i].y = y;
@@ -139,7 +167,7 @@ export class BowTieDiagramHelper {
           const y =
             riskNode.y +
             rowNumber * verticalSpacingFour +
-            (maxTypeTwoTypeThreeRows + 4) * verticalSpacingFour;
+            (maxTypeTwoTypeThreeRows + 3) * verticalSpacingFour;
           node.x = x;
           node.y = y;
           arrangedNodes.push(node);
@@ -181,8 +209,8 @@ export class BowTieDiagramHelper {
             isTypeTwo = !isTypeTwo;
           }
         }
-      }
-    
+   
+    }
     return arrangedNodes;
   }
 
