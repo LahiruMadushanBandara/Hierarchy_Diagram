@@ -163,26 +163,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       
             },
 
-            {
-              "Id": 29,
-              "Type": 2,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
-              "Rating": "",
-              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-              "ControlData": {
-      
-                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-                "ControlOwner": "Joe Smith",
-                "ControlOwnerRating":"Largely Ineffective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": true
-              }
-        },
-          
       
             
       

@@ -41,7 +41,7 @@ export class BowTieDiagramHelper {
         const verticalSpacingFour = 200;
         const maxNodesPerRow = 5;
         const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
-        let rowNumber = 0;
+        
         let typeFourIndex = 0;
 
         const originX = 0;
@@ -50,11 +50,12 @@ export class BowTieDiagramHelper {
         let rowNumbertypetwo = 0;
         let columnNumber = 0;
         let rowNodeCount = 0;
+        let controlHorizontalSpacing = 0;
         
 
       for (let i = 0; i < typeTwoNodes.length; i++) {
 
-        let controlHorizontalSpacing = horizontalSpacing;
+        controlHorizontalSpacing = horizontalSpacing;
         if(rowNodeCount == 0)
         {
           controlHorizontalSpacing = 600;
@@ -66,12 +67,12 @@ export class BowTieDiagramHelper {
         ) {
           // Calculate the x and y coordinates for the cause node
           const x = originX - 5 * horizontalSpacing; // Fifth place from the left
-          const y = originY + rowNumber * verticalSpacing;
+          const y = originY + rowNumbertypetwo * verticalSpacing;
 
           typeTwoNodes[i].x = x;
           typeTwoNodes[i].y = y;
           arrangedNodes.push(typeTwoNodes[i]);
-          rowNumber++;
+          rowNumbertypetwo++;
         } else 
         
         if (typeTwoNodes[i].Title == 'Control Node') {
@@ -81,7 +82,7 @@ export class BowTieDiagramHelper {
             const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
-            debugger;
+       
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
             if (rowNodeCount === maxNodesPerRow ) {
@@ -98,11 +99,10 @@ export class BowTieDiagramHelper {
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
             rowNumbertypetwo++;
-            
+            rowNodeCount = 0;
             columnNumber = rowNodeCount;
           }
-          rowNodeCount = 0;
-          columnNumber = 0;
+          
       }
 
         // Arrange type 3 nodes (right of type 1)
@@ -110,7 +110,7 @@ export class BowTieDiagramHelper {
         const typeThreeNodes = originalData.filter((node) => node.Type === 3);
 
         for (let i = 0; i < typeThreeNodes.length; i++) {
-           let controlHorizontalSpacing = horizontalSpacing;
+          controlHorizontalSpacing = horizontalSpacing;
        
           if(rowNodeCount == 0)
           {
@@ -121,7 +121,7 @@ export class BowTieDiagramHelper {
             const x = originX + (columnNumber + 1) * controlHorizontalSpacing;
             const y = originY + rowNumbertypethree * verticalSpacing;
             typeThreeNodes[i].x = x;
-            typeThreeNodes[i].y = y;
+            typeThreeNodes[i].y = y;            
             arrangedNodes.push(typeThreeNodes[i]);
             rowNodeCount++;
             if (rowNodeCount === maxNodesPerRow ) {
