@@ -311,10 +311,6 @@
   margin-left: 5px;
 }
 
-.k-diagram {
-  height: 1000px;
-}
-
 /* Extra Card */
 .bow-tie-extra-card-content {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -339,10 +335,6 @@
   display: grid;
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
-}
-
-.k-diagram {
-  height: 1000px;
 }
 
 
@@ -379,9 +371,6 @@
   padding: 10px;
 }
 
-.k-diagram {
-  height: 1000px;
-}
 
 /*  consequences Card */
 .bow-tie-consequences-card-content {
@@ -415,7 +404,7 @@
 }
 
 .k-diagram {
-  height: 1000px;
+  height: 100%;
 }
 
 /* Other Card */
