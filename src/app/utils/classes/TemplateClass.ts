@@ -88,7 +88,9 @@ export class TemplateClass {
       "<div class='bow-tie-risk-card-content rounded'>" +
           "<div class='bow-tie-risk-card-header-top' >" +
             "<p class='bow-tie-risk-card-header-top-text'>" +
+            "<h4>" +
                 (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+            "</h4>" +
             "</p>" +
           "</div>" +
           "<div class='bow-tie-risk-card-header'>" +
@@ -260,9 +262,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
-          "<p class='bow-tie-risk-card-header-top-text-expand'>" +
+          "<h4>" +
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</p>" +
+          "</h4>" +
         "</div>" +
         "<div style='background-color:white;' class='bow-tie-risk-card-header-expand'>" +
            "<p class='bow-tie-risk-card-header-text-expand'> <b>"+
@@ -360,7 +362,8 @@ export class TemplateClass {
           "</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-          "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png'>" +
+          "<img class='bow-tie-incident-expand-responsible-officer-image'"+
+              "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
               "<b>"+
                 contentDetails.IncidentData.ResponsiblePerson+
@@ -461,9 +464,7 @@ export class TemplateClass {
                 "<b>Actual</b>" +
               "</span>" +
               "<span class='bow-tie-actual-value'>"+ 
-            
                 contentDetails.KpiData.Actual +
-             
               "</span>" +
             "</div>" +
               "<div class='bow-tie-target-flex'>" +
@@ -471,16 +472,14 @@ export class TemplateClass {
                   "<b>Target</b>" +
                 "</span>" +
                 "<span class='bow-tie-target-value'>"+                
-                contentDetails.KpiData.Target  +
-               "</span>" +
-                
+                   contentDetails.KpiData.Target  +
                 "</span>" +
               "</div>" +
           "</div>" +
           "<div class='bow-tie-performance-flex'>" +
             "<span class='bow-tie-performance-text' >Performance</span>" +
-            `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'</span>`+
-            `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'}</span`+
+            `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'></span>`+
+            `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'}</span>`+
           "</div>" +
         "</div>" +
       "</div>"
@@ -788,6 +787,10 @@ export class TemplateClass {
           var otherTemp = kendo.template(templatesObj.bottomTemplate);
           renderElement.html(otherTemp(dataItem));
         }
+        
+
+
+
       }
     }
   }

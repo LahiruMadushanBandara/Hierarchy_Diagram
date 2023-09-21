@@ -106,13 +106,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         renderElement.remove();
       });
 
+
       var visual = new kendo.dataviz.diagram.Group();
       visual.drawingElement.append(output);
+
+      
       return visual;
+     
+      
     }
 
     var diagramHelper = new BowTieDiagramHelper();
-    const arrangedData = diagramHelper.ArrangeNodes(this.originalData);
+    const arrangedData = diagramHelper.ArrangeNodes(this.originalData, isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
     
@@ -200,13 +205,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           const Expandbutton = document.getElementById('btExpandView');
           Expandbutton.classList.toggle('active', isExpand);
 
-        
+  
+
           
-          var diagram = kendoDiagram.getKendoDiagram();
+          var diagram = kendoDiagram.getKendoDiagram();    
           diagram.bringIntoView(diagram.shapes);
           diagram.refresh();
-        }
-
+   
+        
+      }
 
         function toggleRiskview() {
           if (isKpIview == false) {
@@ -416,6 +423,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             },
           },
           zoom: 0.4,
+          zoomRate: 0.02,
           cancel: onCancel,
 
           // layout: false,
