@@ -1,12 +1,91 @@
-/* @font-face {
+/* @use "variables" as *;
+@use "mixins" as *; */
 
-  font-family: "Graphik";
+.k-diagram .km-scroll-wrapper {
+  overflow: scroll !important;
+  height: 100% !important;
+}
 
-  src: url("./assets/fonts/Graphik.otf");
+.k-actions, .k-edit-buttons, .k-action-buttons, .k-columnmenu-actions {
+  padding: 7px 7px 0px 30px;
+}
 
-} */
+.k-animation-container
+{
+  display: none !important;
+}
 
-/* You can add global styles to this file, and also import other style files */
+.k-animation-container-shown{
+  display: none !important;
+
+}
+
+/* .bow-tie-btn-outline-primary {
+  padding: 8px 15px;
+  line-height: 0px;
+  display: flex;
+  place-content: center;
+  align-items: center;
+  border: 2px solid $camms-button__border-color !important;
+  color: $camms-font-color__primary !important;
+  font-family: $camms-font__regular;
+  background-color: $camms-button-bg__secondary;
+  min-width: 85px;
+  font-weight: 500;
+
+  i {
+      color: $camms-brand-color__primary;
+      margin-right: 5px;
+      font-size: 17px;
+      -webkit-text-stroke: 0.2px;
+  }
+  .cam-i-filter {
+      margin-bottom: -1px;
+      &::before {
+          line-height: 1;
+          margin-bottom: -1px !important;
+      }
+  }
+
+  span {
+      //margin-top: 2px;
+      font-family: $camms-font__regular;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      height: 35px;
+      top: -1px;
+      position: relative;
+  }
+
+  &:hover {
+      color: $camms-login__bg !important;
+      background-color: #0050a0 !important;
+      border: 2px solid $camms-button-hover__border-color !important;
+      span {
+          margin-top: 2px;
+          font-family: $camms-font__regular;
+          font-size: 14px;
+          color: $camms-login__bg !important;
+      }
+
+      i {
+          color: $camms-login__bg;
+      }
+  }
+  &:disabled {
+      border: 2px solid $camms-button__border-color;
+      opacity: 0.4;
+  }
+}
+
+
+
+
+
+//....................css from standalone app.................. */
+
+
 .hide-bow-tie-control-card-content .bow-tie-control-card-content {
   display: none !important;
 }
@@ -40,7 +119,7 @@
 
   /* Set the dimensions. */
   width: 100px;
-  height: 100px;
+  min-height: 100px;
 }
 .ab {
   background-color: rgb(2, 74, 2);
@@ -60,22 +139,24 @@
 
 /* Risk Card */
 .bow-tie-risk-card-content {
-  width: 340px;
+  width: 400px;
   display: grid;
-  box-shadow: 10px 10px lightblue;
   border: none;
   border-radius: 10px;
   font-family: "Graphik";
+  font-size: 18px;
 }
 
 .bow-tie-risk-card-body {
   display: grid;
+  min-height: 300px;
+  padding: 10px;
 }
 
 .bow-tie-risk-card-header {
   background-color: #323250;
   color: white;
-  height: 75px;
+  height: auto;
 }
 .bow-tie-risk-card-header-top {
   background-color: #323250;
@@ -85,18 +166,24 @@
   border-radius: 10px 10px 0 0;
 }
 
-/* .bow-tie-risk-card-header-top-text {
-  } */
+.bow-tie-risk-card-header-top-text {
+  padding: 15px;
+
+  } 
 .bow-tie-risk-card-header-text {
   margin-left: 15px;
   margin-right: 15px;
+  margin-top: 10px;
+  text-align: left;
+  padding: 10px;
 }
 
 .bow-tie-risk-card-footer {
   background-color: hsl(240, 26%, 93%);
   color: #000000;
-  height: 100px;
+  height: auto;
   border-radius: 0 0 10px 10px;
+  padding: 10px;
 }
 
 .row {
@@ -112,11 +199,13 @@
   display: flex;
   align-items: center;
   line-height: 1;
-  margin-top: -5px;
+  margin-top: 5px;
 }
 .bow-tie-risk-rating-details-image {
   width: 50px;
   height: 50px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 25px;
 }
 .bow-tie-risk-rating-details-text {
   position: relative;
@@ -136,30 +225,31 @@
 
 /* Control Card */
 .bow-tie-control-card-content {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
   transition: 0.3s;
-  border: 2px solid grey;
+  border: 1px solid grey;
   display: grid;
   width: 400px;
-  border-radius: 12px;
+  font-size: 18px;
+ 
   font-family: "Graphik";
 }
 
 .bow-tie-control-card-body {
-  height: auto;
+  min-height: 75px;
   padding: 10px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);
+ 
 }
 
 .bow-tie-control-card-header {
   background-color: #1b4287;
   color: white;
   text-align: center;
-  height: 50px;
+  min-height: 50px;
   display: grid;
   padding: 10px;
-  border-radius: 10px 10px 0px 0px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);
+  border-radius: 8px 8px 0px 0px;
+  
 }
 
 .bow-tie-control-type-details {
@@ -167,20 +257,22 @@
   align-items: left;
   line-height: 1;
   margin-bottom: 1px;
+  margin-top: 10px;
+ 
 }
 .bow-tie-control-type {
   margin-right: 10px;
 }
 .bow-tie-control-type-text {
   width: 50px;
-  height: 50px;
-  margin-top: 10px;
+  min-height: 50px;
+  margin-top: 2px;
 }
  
 
 
 .bow-tie-control-owner {
-  margin-top: -30px;
+  margin-top: -20px;
 }
 .bow-tie-control-owner-details {
   display: flex;
@@ -191,7 +283,8 @@
 .bow-tie-control-owner-image {
   width: 30px;
   height: 30px;
-  margin-top: -10px;
+  margin: 5px 5px 5px 5px;
+  
 }
 .bow-tie-control-owner-name {
   position: relative;
@@ -212,16 +305,14 @@
 .bow-tie-control-owner-rating-icon {
   width: 30px;
   height: 30px;
-  margin-top: -10px;
+  margin-top: 10px;
+  margin-right: 10px;
 }
-.bow-tie-control-owner-rating-name {
-  position: relative;
-  top: -2px;
-  margin-left: 5px;
-}
+
 
 .k-diagram {
   height: 1000px;
+ 
 }
 
 /* Extra Card */
@@ -230,32 +321,30 @@
   transition: 0.3s;
   border: 2px solid grey;
   display: grid;
-  width: 300px;
+  width: 400px;
   border-radius: 10px;
+  font-size: 18px;
 }
 
 .bow-tie-extra-card-body {
-  height: 300px;
-  padding: 10px;
+  min-height: 300px;
+  padding: 20px;
 }
 
 .bow-tie-extra-card-header {
-  background-color: hwb(220 82% 17%);
+  background-color: #f8f9fa;
   color: #000000;
   text-align: center;
-  height: 50px;
+  min-height: 50px;
   display: grid;
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
 }
 
-.k-diagram {
-  height: 1000px;
-}
 
 /* Cause Card */
 .bow-tie-cause-card-content {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+ 
   transition: 0.3s;
   border: 2px solid grey;
   display: grid;
@@ -263,10 +352,11 @@
   border: none;
   border-radius: 10px 10px 10px 10px;
   font-family: "Graphik";
+  font-size: 18px;
 }
 
 .bow-tie-cause-card-body {
-  height: 60px;
+  min-height: 60px;
 }
 
 .bow-tie-cause-card-header {
@@ -286,10 +376,6 @@
   padding: 10px;
 }
 
-.k-diagram {
-  height: 1000px;
-}
-
 /*  consequences Card */
 .bow-tie-consequences-card-content {
   transition: 0.3s;
@@ -297,10 +383,11 @@
   width: 400px;
   border: none;
   border-radius: 10px 10px 10px 10px;
+  font-size: 18px;
 }
 
 .bow-tie-consequences-card-body {
-  height: 60px;
+  min-height: 60px;
   padding: 10px;
   border-radius: 0px 0px 10px 10px;
 }
@@ -321,26 +408,21 @@
   border-radius: 0px 0px 10px 10px;
 }
 
-.k-diagram {
-  height: 1000px;
-}
-
 /* Other Card */
 .Bow-tie-Other-card-content {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
   transition: 0.3s;
-  border: 2px solid rgb(255, 255, 255);
   display: grid;
-  width: 420px;
+  width: 400px;
   border: 2px solid rgb(220, 220, 220);
   border-radius: 12px;
+  font-size: 18px;
 }
 
 .Bow-tie-Other-card-header {
-  background-color: rgb(240, 240, 240);
+  background-color: #f8f9fa;
   color: #000000;
   text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+ 
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
 }
@@ -349,57 +431,67 @@
   background-color: rgb(255, 255, 255);
   color: #000000;
   text-align: center;
-  height: 70px;
+  min-height: 70px;
   border-radius: 0px 0px 10px 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+ 
   padding: 10px;
   border-radius: 10px 10px 10px 10px;
 }
 
 /* Risk Card-expand */
 .bow-tie-risk-card-content-expand {
-  border: 2px solid rgb(0, 0, 0);
-  width: 340px;
+  width: 400px;
   display: grid;
-  box-shadow: 10px 10px lightblue;
+  border: 2px solid grey;
   border-radius: 10px;
-  font-family: "Graphik";
+  font-size: 18px;
+  
 }
 
 .bow-tie-risk-card-body-expand {
   display: grid;
+  height: auto;
   padding: 10px;
+  border-left: 2px solid grey;
+  border-right: 2px solid grey;
 }
 
 .bow-tie-risk-card-header-expand {
-  background-color: hsl(0, 6%, 91%);
+  background-color:  #f8f9fa;;
   color: #000000;
-  height: 75px;
+  height: auto;
 }
 .bow-tie-risk-card-header-top-expand {
-  background-color: hwb(0 90% 10%);
+  background-color: #f8f9fa;
   color: #000000;
   text-align: center;
-  border-bottom: 1px solid white;
+  min-height: 50px;
+  display: grid;
+  padding: 10px;
   border-radius: 10px 10px 0px 0px;
+  font-weight: bold;
+ 
 }
 
-.bow-tie-risk-card-footer-expand {
-  border-radius: 0 0 10px 10px;
-}
+
 
 /* .bow-tie-risk-card-header-top-text-expand {
   } */
 .bow-tie-risk-card-header-text-expand {
   margin-left: 15px;
   margin-right: 15px;
+  margin-top: 10px;
+  text-align: left;
+  padding: 10px;;
 }
 
 .bow-tie-risk-card-footer-expand {
   background-color: hwb(0 100% 0%);
   color: #000000;
-  height: 100px;
+  height: auto;
   border-radius: 0 0 10px 10px;
+  padding: 10px;
+  
 }
 
 .rating-icon {
@@ -412,9 +504,7 @@
   margin-right: 5px;
 }
 
-.k-diagram {
-  height: 1000px;
-}
+
 
 /*add css to incident-card-expand */
 .bow-tie-incident-expand-reportedby {
@@ -434,7 +524,8 @@
 .bow-tie-incident-expand-responsible-officer-image {
   width: 30px;
   height: 30px;
-  margin-top: -10px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 25px;
 }
 .bow-tie-incident-expand-responsible-officer-name {
   position: relative;
@@ -447,265 +538,393 @@
   margin-right: 10px;
 }
 .bow-tie-incident-expand-reported-date {
-  margin-top: -10px;
+  margin-top: 2px;
   margin-bottom: 30px;
 }
 
 
 /*add css to KPI-card-expand */
 
+ 
+
 .bow-tie-kpi{
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-bottom: 2px; 
-    margin-top: -5px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 2px;
+
+  margin-top: -5px;
+
+
 
 }
+
+
 
 .bow-tie-unit-flex{
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    margin-bottom: 1px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  margin: 20px 5px 5px 5px ;
+
+
 
 }
+
+
 
 .bow-tie-unit-text{
-    font-size: 15px; 
-    color: black;
+
+  font-size: 18px;
+
+  color: black;
+
+ 
+
 }
+
+
 
 .bow-tie-unit-symbol{
-    font-size: 36px; 
-    color: blue;
+
+  font-size: 30px;
+
+  color: #0050a0;
+
+  position: relative;
+
+  left: 10px;
+
+  font-weight: bold;
+
 }
+
+
 
 .bow-tie-unit-details{
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-around ;
+
 }
+
+
 
 .bow-tie-actual-flex{
-  display: flex; 
-  flex-direction: column; 
-  align-items: flex-start; 
-  margin-bottom: 20px;
-  margin-left: 40px;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: flex-start;
+
+margin-bottom: 20px;
+
+margin-left: 40px;
+
 }
+
+
 
 .bow-tie-actual-text{
-  margin-right: 10px; 
-  font-size: 15px; 
+
+  margin-right: 10px;
+
+  font-size: 18px;
+
   color: black;
+
+  position: relative;
+
 }
+
+
 
 .bow-tie-actual-value{
-  margin-right: 10px; 
-  font-size: 36px; 
-  color: blue;
+
+  margin-right: 15px;
+
+  font-size: 20px;
+
+  color: #0050a0;
+
+  position: relative;
+
+  left: 10px;
+
+  font-weight: bold;
+
 }
+
+
 
 .bow-tie-target-flex{
-  display: flex; 
-  flex-direction: column; 
+
+  display: flex;
+
+  flex-direction: column;
+
   align-items: flex-end;
+
   margin-bottom: 20px;
+
   margin-right: 40px;
+
 }
+
 .bow-tie-target-text{
-  margin-right: 10px; 
-  font-size: 15px; 
+
+  margin-right: 10px;
+
+  font-size: 15px;
+
   color: black;
+
+  position: relative;
+
 }
+
 .bow-tie-target-value{
-  margin-right: 10px; 
-  font-size: 36px; 
-  color: blue;
+
+  margin-right: 10px;
+
+  font-size: 20px;
+
+  color: #0050a0;
+
+  position: relative;
+
+  right: 10px;
+
+  font-weight: bold;
+
 }
+
+
 
 .bow-tie-performance-flex{
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
 }
+
 .bow-tie-performance-text{
-  position: relative; 
-  margin-right: 25px; 
-  font-size: 18px;
+  position: relative;
+  margin-right: 30px;
+  font-size: 15px;
+
 }
+
+
 
 .bow-tie-performance-icon{
-  width: 20px; 
+  width: 20px;
   height: 20px;
-
-}
-.bow-tie-performance-rating{
-  position: relative; 
-  margin-left: 5px; 
-  font-size: 18px;
 }
 
-/* Add  CSS to style the toggle switch - expand */
-.expandswitch-container {
-  width: 40px;
-  height: 18px;
-  background-color: #ccc;
-  border-radius: 9px;
-  cursor: pointer;
+.performanceIndicator-badge{
+  margin-right:10px;
+}
+
+.bow-tie-performance-rating
+{
+    position: relative;
+    margin-left: 2px;
+    font-size: 15px;
+}
+
+
+
+/* 
+//css for header tool bar  */
+
+
+.k-toolbar {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: inset !important;
+  border-bottom-width: 1px !important;
+  z-index: 99;
+  position: fixed;
+  width: 100% !important;
+  background-color: white !important;
+  padding: 0px;
+  min-height: 50px;
+  
+  }
+
+
+.top-bar {
+
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  width: 100% ;
+  min-height: 50px;
+  
+}
+ 
+
+.bt-analsys-header-txt {
+  font-size: 20px;
+  padding: 10px;
+}
+
+/* Style of buttons */
+
+.bt-analsys-header-txt {
   position: absolute;
-  top: 20px;
-  right: 10px;
-  margin-left: 1200px;
+  top: 10%;
+  left: 10%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  font-size: 20px;
+ 
+
+ 
 }
 
-.expandswitch-slider {
-  width: 16px;
-  height: 16px;
-  background-color: #ececec;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.Expand {
   position: absolute;
-  top: 1px;
-  left: 1px;
-  transition: transform 0.3s;
+  top: 50%;
+  right: 0.1%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  padding: 10px;
+ 
 }
 
-.expandswitch-container.active .expandswitch-slider {
-  transform: translateX(20px);
-}
-.expandswitch-container.active {
-  background-color: #1b4287;
-}
-
-.expandswitch-label {
-  margin-left: 1370px;
-  font-size: medium;
-  position: relative;
-  top: 4px;
-  left: 4px;
-  font-weight: bolder;
-}
-
-/* Updated CSS for riskview */
-.riskswitch-container {
-  width: 40px;
-  height: 18px;
-  background-color: #ccc;
-  border-radius: 9px;
-  cursor: pointer;
+.flex {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 50%; /* Adjust vertically as needed for centering */
+  left: 50%; /* Adjust horizontally as needed for centering */
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  padding: 10px;
+
 }
 
-.riskswitch-slider {
-  width: 16px;
-  height: 16px;
-  background-color: #ececec;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  transition: transform 0.3s;
+
+@media screen and (max-width: 500px) {
+
+  .k-toolbar {
+    height: auto;
+  }
+
+  .top-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      display: block;
+      float: left;
+      width: 100%;
+      height: auto;
+     
+  }
+
+  .bt-analsys-header-txt {
+      margin-bottom: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      display: block;
+      float: left;
+      width: 100%;
+      font-size:10px;
+
+  }
+
+ 
+  .flex {
+      flex-direction: column;
+      align-items: flex-start;
+      display: block;
+      float: left;
+      width: 100%;
+  }
+
+  .Expand {
+      flex-direction: column;
+      align-items: flex-start;
+      float: left;
+      display: block;
+  }
+} 
+
+
+
+
+
+
+
+
+
+.bt-Expand.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
 }
 
-.riskswitch-container.active .riskswitch-slider {
-  transform: translateX(20px);
+.bt-Risk.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
 }
 
-.riskswitch-container.active {
-  background-color: #1b4287;
+.bt-Kpi.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
 }
 
-.riskswitch-label {
-  position: absolute;
-  top: 20px;
-  left: 68px;
-  font-weight: bold;
+.bt-Performance.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
 }
 
-/* Updated CSS for kpiview */
-.kpiswitch-container {
-  width: 40px;
-  height: 18px;
-  background-color: #ccc;
-  border-radius: 9px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 130px;
+.btActive {
+  background-color: #0050a0 !important;
+  color: #fff !important;
 }
 
-.kpiswitch-slider {
-  width: 16px;
-  height: 16px;
-  background-color: #ececec;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  transition: transform 0.3s;
+
+
+
+
+
+
+.performanceIndicator-badge {
+  border-radius: 25px;
+  padding: 10px;
+  width: 10px;
+  height: 10px;
+}
+.performanceIndicator-text {
+  white-space: nowrap;
+  padding-left: 4px;
+}
+.na-badge {
+  background-color: #cccccc;
 }
 
-.kpiswitch-container.active .kpiswitch-slider {
-  transform: translateX(20px);
+.onTrack-badge {
+  background-color: #40b86e;
 }
 
-.kpiswitch-container.active {
-  background-color: #1b4287;
+.offTrack-badge {
+  background-color: #e54257;
 }
 
-.kpiswitch-label {
-  position: absolute;
-  top: 20px;
-  left: 175px;
-  font-weight: bold;
-}
-
-/* Updated CSS for performance */
-.performanceswitch-container {
-  width: 40px;
-  height: 18px;
-  background-color: #ccc;
-  border-radius: 9px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 240px;
-}
-
-.performanceswitch-slider {
-  width: 16px;
-  height: 16px;
-  background-color: #ececec;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  transition: transform 0.3s;
-}
-
-.performanceswitch-container.active .performanceswitch-slider {
-  transform: translateX(20px);
-}
-
-.performanceswitch-container.active {
-  background-color: #1b4287;
-}
-
-.performanceswitch-label {
-  position: absolute;
-  top: 20px;
-  left: 285px;
-  font-weight: bold;
-}
-
-.performance-view {
-  background-color: red;
+.monitor-badge {
+  background-color: #faab2c;
 }

@@ -61,8 +61,6 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 520;
       let verticalSpacing = 520;
-      let verticalSpacingFour = 200;
-      const horizontalSpacingFour = 520;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -164,76 +162,92 @@ export class BowTieDiagramHelper {
           columnNumber = rowNodeCount;
         }
       }
+      let riskYCodinate = 0;
 
-      let maxTypeTwoTypeThreeRows = Math.max(rowNumbertypetwo, rowNumbertypethree);
+      
+      //Arrange Risk node (in the middle)
+      
+      if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0 && typeTwoNodes.length > typeThreeNodes.length){
+         riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
+      }
+      else if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0){
+         riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
+      }
+
+      if(typeTwoNodes.length == 0 || typeThreeNodes.length == 0){
+        let riskNodeX = originX;
+        let riskNodeY = originY;
+        riskNode.x = riskNodeX;
+        riskNode.y = riskNodeY;
+        arrangedNodes.push(riskNode);
+      }
+      else{
+      
       let riskNodeX = originX;
-      let riskNodeY =
-        originY +
-        (maxTypeTwoTypeThreeRows - 2) * verticalSpacing +
-        verticalSpacing / 2; // Adjust the Y-coordinate to place it in the center of the last two rows
+      let riskNodeY = originY + riskYCodinate - verticalSpacing / 2; 
       riskNode.x = riskNodeX;
       riskNode.y = riskNodeY;
       arrangedNodes.push(riskNode);
+    }
+
+     
 
 
       // Arrange type 4 nodes (below type 2 and type 3)
       const typeFourNodes = originalData.filter((node) => node.Type === 4);
       let typeFourNodeCount = typeFourNodes.length / 2;
       typeFourNodes.forEach((node, index) => {
-        const rowNumber = Math.floor(typeFourIndex / maxNodesPerRowFour); // Calculate the row number
+        
 
         const columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
 
-        const x = riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
-        node.x = x;
-
-
         // Adjusting the starting point for type 4 nodes
-        const y =
-          riskNode.y +
-          rowNumber * verticalSpacingFour +
-          (maxTypeTwoTypeThreeRows + 1) * verticalSpacingFour;
+        
+        const x = riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;    
+        const y = riskNode.y + 2 * verticalSpacing;
 
+        node.x = x;
         node.y = y;
         arrangedNodes.push(node);
+      
         typeFourIndex++;
       });
-
+    
       // Arrange control nodes that are not link to cause or consequence nodes (below type 2 and type 3)
 
-      if (originalData.ControlData?.IsLinkedToCauseOrConsequence == false) {
-        const notLinkedNodes = originalData.filter((node) => node?.IsLinkedToCauseOrConsequence === false);
-        const typeTwoNode = arrangedNodes.filter((node) => node.Type === 2);
-        const typeThreeNode = arrangedNodes.filter((node) => node.Type === 3);
-        let isTypeTwo = true; // Start with type 2 placement
-        let typeTwoIndex = typeTwoNode.length - 1; // Start from the last type 2 node
-        let typeThreeIndex = typeThreeNode.length - 1; // Start from the last type 3 node
+      // if (originalData.ControlData?.IsLinkedToCauseOrConsequence == false) {
+      //   const notLinkedNodes = originalData.filter((node) => node?.IsLinkedToCauseOrConsequence === false);
+      //   const typeTwoNode = arrangedNodes.filter((node) => node.Type === 2);
+      //   const typeThreeNode = arrangedNodes.filter((node) => node.Type === 3);
+      //   let isTypeTwo = true; // Start with type 2 placement
+      //   let typeTwoIndex = typeTwoNode.length - 1; // Start from the last type 2 node
+      //   let typeThreeIndex = typeThreeNode.length - 1; // Start from the last type 3 node
 
-        const lastRowNumber = Math.max(rowNumbertypetwo, rowNumbertypethree);
+      //   const lastRowNumber = Math.max(rowNumbertypetwo, rowNumbertypethree);
 
-        for (const node of notLinkedNodes) {
-          const rowNumber = lastRowNumber;
-          const columnNumber = isTypeTwo ? typeTwoIndex : typeThreeIndex;
+      //   for (const node of notLinkedNodes) {
+      //     const rowNumber = lastRowNumber;
+      //     const columnNumber = isTypeTwo ? typeTwoIndex : typeThreeIndex;
 
-          const x = node.Type === 2
-            ? originX - (columnNumber + 1) * horizontalSpacing
-            : originX + (columnNumber + 1) * horizontalSpacing;
+      //     const x = node.Type === 2
+      //       ? originX - (columnNumber + 1) * horizontalSpacing
+      //       : originX + (columnNumber + 1) * horizontalSpacing;
 
-          const y = originY + rowNumber * verticalSpacing;
+      //     const y = originY + rowNumber * verticalSpacing;
 
-          node.x = x;
-          node.y = y;
-          node.Type = isTypeTwo ? 2 : 3; // Update the node type
-          arrangedNodes.push(node);
+      //     node.x = x;
+      //     node.y = y;
+      //     node.Type = isTypeTwo ? 2 : 3; // Update the node type
+      //     arrangedNodes.push(node);
 
-          if (isTypeTwo) {
-            typeTwoIndex--;
-          } else {
-            typeThreeIndex--;
-          }
-          isTypeTwo = !isTypeTwo;
-        }
-      }
+      //     if (isTypeTwo) {
+      //       typeTwoIndex--;
+      //     } else {
+      //       typeThreeIndex--;
+      //     }
+      //     isTypeTwo = !isTypeTwo;
+      //   }
+      // }
 
     }
     return arrangedNodes;

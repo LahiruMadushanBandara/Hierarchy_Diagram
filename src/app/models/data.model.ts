@@ -11,7 +11,7 @@ export interface DiagramNodeData {
   RiskData?: RiskData;
   ControlData?: ControlData;
   IncidentData?: IncidentData;
-  KpiData?: KPIData;
+  KPIData?: KPIData;
   LinkedRiskData?: LinkedRiskData;
 }
 
@@ -65,6 +65,7 @@ interface KPIData {
   Target: number;
   Performance: string;
   TrendImg: string;
+  PerformanceImg: string;
 }
 
 interface LinkedRiskData {

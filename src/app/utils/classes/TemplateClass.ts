@@ -106,7 +106,7 @@ export class TemplateClass {
                 "<p><b>Inherent Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                           "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.RiskData.InherentRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.InherentRiskRating+
                   "</span>" +
@@ -116,7 +116,7 @@ export class TemplateClass {
                 "<p><b>Revised Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                          "src='"+ contentDetails.RiskData.ResidualRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.ResidualRiskRating+
                   "</span>" +
@@ -128,7 +128,7 @@ export class TemplateClass {
                 "<p><b>Future Rating</b></p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                          "src='"+ contentDetails.RiskData.TargetRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                    contentDetails.RiskData.TargetRiskRating+
                   "</span>" +
@@ -138,7 +138,7 @@ export class TemplateClass {
                 "<p><b>Risk Appetite</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                          "src='"+ contentDetails.RiskData.AppetiteRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.AppetiteRating+
                   "</span>" +
@@ -158,7 +158,7 @@ export class TemplateClass {
               "<p><b>Responsible Manager</b></p>" +
               "<p class='bow-tie-risk-rating-details'>" +
                 "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.RiskData.profileImageUrl.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.RiskData.profileImageUrl +"'"+
                 "<span class='bow-tie-risk-rating-details-text'>"+
                 contentDetails.RiskData.ResponsibleManager+
                 "</span>" +
@@ -209,7 +209,7 @@ export class TemplateClass {
           "Control Owner Rating" +
           "<p class='bow-tie-control-owner-rating-details'>" +
             "<img class='bow-tie-control-owner-rating-icon'"+
-                            "src='"+ contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.ControlData.ControlOwnerRatingImage+"'"+
             "<span class='bow-tie-control-owner-rating-name'>"+
               contentDetails.ControlData.ControlOwnerRating+
             "</span>" +
@@ -279,7 +279,7 @@ export class TemplateClass {
                 "<p><b>Inherent Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.InherentRiskRating+
                   "</span>" +
@@ -289,7 +289,7 @@ export class TemplateClass {
                 "<p><b>Revised Rating</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.ResidualRiskRating+
                   "</span>" +
@@ -301,7 +301,7 @@ export class TemplateClass {
                 "<p><b>Future Rating</b></p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                   contentDetails.LinkedRiskData.TargetRiskRating+
                   "</span>" +
@@ -311,7 +311,7 @@ export class TemplateClass {
                 "<p><b>Risk Appetite</b></p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.AppetiteRating+
                   "</span>" +
@@ -363,7 +363,7 @@ export class TemplateClass {
           "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
           "<img class='bow-tie-incident-expand-responsible-officer-image'"+
-              "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity+"'"+
+              "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic  +"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
               "<b>"+
                 contentDetails.IncidentData.ResponsiblePerson+
@@ -414,21 +414,21 @@ export class TemplateClass {
 
   public GetKPIExpand(contentDetails: DiagramNodeData) {
    
-    contentDetails.KpiData.Actual != null  ? contentDetails.KpiData.Actual : 0  ;
-    contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
+    contentDetails.KPIData.Actual != null  ? contentDetails.KPIData.Actual : 0  ;
+    contentDetails.KPIData.Target != null  ? contentDetails.KPIData.Target : 0  ;
     
     var currentIndicator:string;
 
-    if(contentDetails.KpiData.Performance === 'N/A'){
+    if(contentDetails.KPIData.Performance === 'N/A'){
       currentIndicator = 'na-badge';
     }
-    else if(contentDetails.KpiData.Performance === 'On Track'){
+    else if(contentDetails.KPIData.Performance === 'On Track'){
       currentIndicator = 'onTrack-badge';
     }
-    else if(contentDetails.KpiData.Performance === 'Off Track'){
+    else if(contentDetails.KPIData.Performance === 'Off Track'){
       currentIndicator = 'offTrack-badge';
     }
-    else if(contentDetails.KpiData.Performance === 'Monitor'){
+    else if(contentDetails.KPIData.Performance === 'Monitor'){
       currentIndicator = 'monitor-badge';
     }
     else{
@@ -453,7 +453,7 @@ export class TemplateClass {
               "</span>" +
               "<span class='bow-tie-unit-symbol'>\\"+
              
-                contentDetails.KpiData.Unit +
+                contentDetails.KPIData.Unit +
               
               "</span>"+
             "</div>" +
@@ -464,7 +464,7 @@ export class TemplateClass {
                 "<b>Actual</b>" +
               "</span>" +
               "<span class='bow-tie-actual-value'>"+ 
-                contentDetails.KpiData.Actual +
+                contentDetails.KPIData.Actual +
               "</span>" +
             "</div>" +
               "<div class='bow-tie-target-flex'>" +
@@ -472,14 +472,14 @@ export class TemplateClass {
                   "<b>Target</b>" +
                 "</span>" +
                 "<span class='bow-tie-target-value'>"+                
-                   contentDetails.KpiData.Target  +
+                   contentDetails.KPIData.Target  +
                 "</span>" +
               "</div>" +
           "</div>" +
           "<div class='bow-tie-performance-flex'>" +
             "<span class='bow-tie-performance-text' >Performance</span>" +
             `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'></span>`+
-            `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'}</span>`+
+            `<span class="bow-tie-performance-rating">${contentDetails.KPIData.Performance ?? 'NotAvailable'}</span>`+
           "</div>" +
         "</div>" +
       "</div>"
