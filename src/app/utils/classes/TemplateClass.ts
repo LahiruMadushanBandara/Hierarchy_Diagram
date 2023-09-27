@@ -154,7 +154,7 @@ export class TemplateClass {
                  contentDetails.RiskData.Category+
                 "</p>" +
               "</div>" +
-            "<div class='bow-tie-risk-footer-details'>" +
+            "<div class='bow-tie-risk-footer-details-responsible'>" +
               "<p><b>Responsible Manager</b></p>" +
               "<p class='bow-tie-risk-rating-details'>" +
                 "<img class='bow-tie-risk-rating-details-image'"+

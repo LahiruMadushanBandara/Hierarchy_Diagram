@@ -366,8 +366,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               {
                 template: `
                
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar">
-                <h3 style="font-size: 20px; margin-bottom: 10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
+                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+                </div>
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
                     <div kendoTooltip position="bottom" [title]="'Risk View'">
                         <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
@@ -384,7 +385,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                             <span>Performance View</span>
                         </button>
                     </div>
-
+                </div>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start Expand">
                     <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
                       <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
                           <span>Expand</span>
