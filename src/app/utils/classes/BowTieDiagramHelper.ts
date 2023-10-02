@@ -19,14 +19,15 @@ export class BowTieDiagramHelper {
 
     for (let i = 0; i < causeNodes.length; i++) {
 
-      if (causeNodes[i].LinkedControlIds.length < 5) {
+      if (causeNodes[i].LinkedControlIds.length < 4) {
 
         causeNodeLength = causeNodes[i].LinkedControlIds.length;
 
 
-        if (causeNodeLength > maxCauseNodeLength) {
-          maxCauseNodeLength = causeNodeLength ;
+        if (causeNodeLength >= maxCauseNodeLength) {
+          maxCauseNodeLength = causeNodeLength  + 1;
         }
+        
       }
 
       else {
@@ -40,14 +41,15 @@ export class BowTieDiagramHelper {
 
     for (let i = 0; i < consequenceNodes.length; i++) {
 
-      if (consequenceNodes[i].LinkedControlIds.length < 5) {
+      if (consequenceNodes[i].LinkedControlIds.length < 4) {
 
         consequenceNodeLength = consequenceNodes[i].LinkedControlIds.length;
 
 
-        if (consequenceNodeLength > maxConsequenceNodeLength) {
-          maxConsequenceNodeLength = consequenceNodeLength + 1 ;
+        if (consequenceNodeLength >= maxConsequenceNodeLength) {
+          maxConsequenceNodeLength = consequenceNodeLength + 1  ;
         }
+      
       }
 
       else {
@@ -61,6 +63,7 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 520;
       let verticalSpacing = 520;
+      let verticalSpacingFour = 520;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -94,7 +97,7 @@ export class BowTieDiagramHelper {
 
        
 
-          if (typeTwoNodes[i].Title == 'Control Node') {
+        if (typeTwoNodes[i].Title == 'Control Node') {
 
 
             const x = originX - (columnNumber + 1) * controlHorizontalSpacing;
@@ -104,14 +107,16 @@ export class BowTieDiagramHelper {
 
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
+
             if (rowNodeCount === maxNodesPerRow) {
               rowNumbertypetwo++;
               rowNodeCount = 0;
             }
+          
             columnNumber = rowNodeCount;
-          } else if (typeTwoNodes[i].ParentNodeId !== 0 && 
-            typeTwoNodes[i].Title == 'Cause Node'
-          ) {
+
+          } else if (  typeTwoNodes[i].Title == 'Cause Node') {
+
             const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
@@ -126,31 +131,34 @@ export class BowTieDiagramHelper {
       }
 
       // Arrange type 3 nodes (right of type 1)
+      rowNodeCount = 0;
+      columnNumber = 0;
       let rowNumbertypethree = 0;
       const typeThreeNodes = originalData.filter((node) => node.Type === 3);
 
       for (let i = 0; i < typeThreeNodes.length; i++) {
-        controlHorizontalSpacing = horizontalSpacing;
 
+        controlHorizontalSpacing = horizontalSpacing;
         if (rowNodeCount == 0) {
           controlHorizontalSpacing = 600;
         }
-        if (typeThreeNodes[i].Title == 'Control Node') {
+
+       if (typeThreeNodes[i].Title == 'Control Node') {
+
           const x = originX + (columnNumber + 1) * controlHorizontalSpacing;
           const y = originY + rowNumbertypethree * verticalSpacing;
           typeThreeNodes[i].x = x;
           typeThreeNodes[i].y = y;
           arrangedNodes.push(typeThreeNodes[i]);
           rowNodeCount++;
+
           if (rowNodeCount === maxNodesPerRow) {
             rowNumbertypethree++;
             rowNodeCount = 0;
           }
           columnNumber = rowNodeCount;
-        } else if (
-          typeThreeNodes[i].ParentNodeId !== 0 &&
-          typeThreeNodes[i].Title == 'Consequences Node'
-        ) {
+
+        } else if (typeThreeNodes[i].Title == 'Consequences Node') {
           const x = originX + maxConsequenceNodeLength * horizontalSpacing; // Fifth place from the left
           const y = originY + rowNumbertypethree * verticalSpacing;
           typeThreeNodes[i].x = x;
@@ -168,10 +176,10 @@ export class BowTieDiagramHelper {
       //Arrange Risk node (in the middle)
       
       if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0 && typeTwoNodes.length > typeThreeNodes.length){
-         riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
+         riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y;
       }
-      else if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0){
-         riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
+      else if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length){
+         riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y;
       }
 
       if(typeTwoNodes.length == 0 || typeThreeNodes.length == 0){
@@ -195,22 +203,36 @@ export class BowTieDiagramHelper {
 
       // Arrange type 4 nodes (below type 2 and type 3)
       const typeFourNodes = originalData.filter((node) => node.Type === 4);
-      let typeFourNodeCount = typeFourNodes.length / 2;
+      let typeFourNodeCount = (typeFourNodes.length / 3);
+      let rowNumbertypeFour = 3;
+      columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
+     
       typeFourNodes.forEach((node, index) => {
         
 
-        const columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
+      
 
         // Adjusting the starting point for type 4 nodes
         
         const x = riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;    
-        const y = riskNode.y + 2 * verticalSpacing;
+        const y = riskNode.y + rowNumbertypeFour  * verticalSpacingFour;
 
         node.x = x;
         node.y = y;
         arrangedNodes.push(node);
       
         typeFourIndex++;
+        columnNumber++;
+        rowNodeCount++;
+
+        if (rowNodeCount === maxNodesPerRowFour) {
+          
+          rowNumbertypeFour++;
+          rowNodeCount = 0;
+          columnNumber = rowNodeCount; 
+         
+        }
+       
       });
     
       // Arrange control nodes that are not link to cause or consequence nodes (below type 2 and type 3)

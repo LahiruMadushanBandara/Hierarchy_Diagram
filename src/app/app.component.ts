@@ -110,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "Header": "Cause",
               "Rating": "",
               "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-              "LinkedControlIds":[19,22,28]
+              "LinkedControlIds":[19]
       
             },
             {
@@ -155,6 +155,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
     },
      
+  
       
        {
               "Id": 16,
@@ -164,7 +165,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "Header": "Cause",
               "Rating": "",
               "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
-              "LinkedControlIds":[19,19]
+              "LinkedControlIds":[22,28]
       
             },
 
@@ -193,6 +194,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 
               }
         },
+
+        {
+          "Id": 33,
+          "Type": 3,
+          "ParentNodeId": 3,
+          "Title": "Consequences Node",
+          "Header": "Consequence",
+          "Rating": "",
+          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+          "LinkedControlIds":[3]
+
+        },
       
       {
               "Id": 500,
@@ -215,7 +228,85 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               }
      },
       
+        {
+          "Id": 90,
+          "Type": 2,
+          "ParentNodeId": 0,
+          "Title": "Cause Node",
+          "Header": "Cause",
+          "Rating": "",
+          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+          "LinkedControlIds":[]
+
+        },
+       
+        {
+          "Id": 81,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Consequences Node",
+          "Header": "Consequence",
+          "Rating": "",
+          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+          "LinkedControlIds":[]
+
+        },
+        {
+          "Id": 82,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Consequences Node",
+          "Header": "Consequence",
+          "Rating": "",
+          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+          "LinkedControlIds":[]
+
+        },
       
+
+         {
+          "Id": 105,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+          "ControlData": {
+  
+            "ControlTitle":"Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
+            "ControlOwner":"Andrew James",
+            "ControlOwnerRating":"Substantially Effective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": false,
+            "ControlOwnerRatingImage":""
+          }
+         },
+
+        
+
+         {
+          "Id": 106,
+          "Type": 2,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+          "ControlData": {
+  
+            "ControlTitle":"Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
+            "ControlOwner":"Andrew James",
+            "ControlOwnerRating":"Substantially Effective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": false,
+            "ControlOwnerRatingImage":""
+          }
+         },
         {
               "Id": 201,
               "Type": 4,
@@ -223,7 +314,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "Title": "Other Node",
               "Header": "Incident",
               "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)</dev>",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
               "IncidentData": {
                 "LinkageId": 1217,
                 "IncidentId": 201,
@@ -237,9 +328,287 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ResponsibleManagerProfilePic":""
               }
             },
-      
+            {
+              "Id": 202,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 203,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 204,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 205,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 206,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 207,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 208,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 209,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 210,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 211,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 212,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
        {
               "Id": 182,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "KPI",
+              "Rating": "",
+              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+              "KPIData":{
+                "RiskLinkId":2078,
+                "KpiIntId":12,
+                "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
+                "KPITitle":"% reduction in non-clinically indicated surgery",
+                "Unit":"#",
+                "ReportingPeriod":"Month",
+                "Actual":21,
+                "Target":20,
+                "PerformanceImg":"Monitor",
+                "TrendImg":"Not Applicable",
+                "Performance":""
+              }
+            },
+            {
+              "Id": 183,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "KPI",
+              "Rating": "",
+              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+              "KPIData":{
+                "RiskLinkId":2078,
+                "KpiIntId":12,
+                "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
+                "KPITitle":"% reduction in non-clinically indicated surgery",
+                "Unit":"#",
+                "ReportingPeriod":"Month",
+                "Actual":21,
+                "Target":20,
+                "PerformanceImg":"Monitor",
+                "TrendImg":"Not Applicable",
+                "Performance":""
+              }
+            },
+            {
+              "Id": 184,
               "Type": 4,
               "ParentNodeId": 0,
               "Title": "Other Node",
@@ -376,16 +745,29 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             dataConnections.push(conObj);
           }
 
-          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
+          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node" 
+          || originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-              var conObj2 = {
+              var conObj = {
                 Id: j,
                 FromShapeId: originalData[i].LinkedControlIds[j],
                 ToShapeId: originalData[i].Id,
                 Text: null
               };
-              dataConnections.push(conObj2);
+              dataConnections.push(conObj);
             }
+          }
+
+          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node" 
+          || originalData[i].ParentNodeId == 0) {
+
+            var conObj1 = {
+              Id: i,
+              FromShapeId: 0,
+              ToShapeId: originalData[i].Id,
+              Text: null
+            };
+            dataConnections.push(conObj1);
           }
 
           if (originalData[i].Title == "Control Node") {
@@ -636,9 +1018,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           zoomRate: 0.02,
           cancel: onCancel,
 
-          // layout: false,
+          layout: false,
          
-          // click:  onNodeClick,
+          click:  onNodeClick,
           // editable: false, 
         });
 
@@ -674,6 +1056,73 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }, 2000);
       }
     });
+
+
+    
+ var dataArrayoriginal = this.originalData;
+    
+ 
+function onNodeClick(e) {
+  clicked = true;
+  // const header = new BowTieDiagramOnClick();
+  // header.NodeClick(arry,clickedNodeId,clicked,diagram);
+  var clickedNodeId = e.item.dataItem.id;
+  var diagram = $('#diagram').getKendoDiagram();  
+  
+  var connectionsDataSource = diagram.connectionsDataSource;
+  var dataSource = diagram.dataSource;
+
+
+  console.log("clickedNodeId",clickedNodeId);
+  var linkedCausesAndConsequencesIds = [];
+  
+ 
+    if (clicked) {
+      
+      for (var i = 0; i < dataArrayoriginal.length; i++) {
+       
+        var nodes = dataArrayoriginal[i];
+       
+        if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId)){
+
+          linkedCausesAndConsequencesIds.push(nodes.Id);
+                          
+         }
+      
+       }
+  //       // Clear the diagram and connection lines
+  //     diagram.clear();
+  //     connectionsDataSource.data([]);
+  //     dataSource.data([]);
+
+  // // Add the clicked node and the linked causes and consequences back to the diagram
+  // for (var j = 0; j < dataArrayoriginal.length; j++) {
+  //     var currentNode = dataArrayoriginal[j];
+     
+  //     // Add the clicked node
+  //     if (currentNode.id === clickedNodeId) {
+  //       diagram.addShape(currentNode);
+
+       
+  //     }
+      
+  //     // Add linked causes and consequences
+  //     if (
+  //       linkedCausesAndConsequencesIds.includes(currentNode.id)) {
+  //       diagram.addShape(currentNode);
+  //       console.log("helo"); 
+  //     }
+  //   }
+  //   // Refresh the diagram to display the changes
+  //   diagram.bringIntoView(diagram.shapes);
+  //   diagram.refresh();
+
+
+  }
+
+   
+
+}
 
    
     // $(document).ready(function () {
