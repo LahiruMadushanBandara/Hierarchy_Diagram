@@ -168,16 +168,29 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             dataConnections.push(conObj);
           }
 
-          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node" )
+          && (originalData[i].ParentNodeId != 0)) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-              var conObj2 = {
+              var conObj = {
                 Id: j,
                 FromShapeId: originalData[i].LinkedControlIds[j],
                 ToShapeId: originalData[i].Id,
                 Text: null
               };
-              dataConnections.push(conObj2);
+              dataConnections.push(conObj);
             }
+          }
+
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node" )
+          && (originalData[i].ParentNodeId == 0)) {
+
+            var conObj1 = {
+              Id: i,
+              FromShapeId: 0,
+              ToShapeId: originalData[i].Id,
+              Text: null
+            };
+            dataConnections.push(conObj1);
           }
 
           if (originalData[i].Title == "Control Node") {
@@ -190,8 +203,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             dataConnections.push(conObj1);
           }
         }
-        
-
 
 
 
@@ -385,13 +396,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                             <span>Performance View</span>
                         </button>
                     </div>
+                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+                    <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
+                        <span>Expand</span>
+                    </button>
+                  </div>
                 </div>
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start Expand">
-                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
-                          <span>Expand</span>
-                      </button>
-                    </div>
+                <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                  <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                      <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                      <span>Export</span>
+                  </button>
+                </div>
                 </div>                 
               
             </div>
