@@ -110,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "Header": "Cause",
               "Rating": "",
               "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-              "LinkedControlIds":[19]
+              "LinkedControlIds":[19,22]
       
             },
             {
@@ -228,17 +228,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               }
      },
       
-        {
-          "Id": 90,
-          "Type": 2,
-          "ParentNodeId": 0,
-          "Title": "Cause Node",
-          "Header": "Cause",
-          "Rating": "",
-          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-          "LinkedControlIds":[]
-
-        },
+       
        
         {
           "Id": 81,
@@ -251,62 +241,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "LinkedControlIds":[]
 
         },
-        {
-          "Id": 82,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Consequences Node",
-          "Header": "Consequence",
-          "Rating": "",
-          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-          "LinkedControlIds":[]
-
-        },
+        
       
 
-         {
-          "Id": 105,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
-          "ControlData": {
-  
-            "ControlTitle":"Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
-            "ControlOwner":"Andrew James",
-            "ControlOwnerRating":"Substantially Effective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": false,
-            "ControlOwnerRatingImage":""
-          }
-         },
-
-        
-
-         {
-          "Id": 106,
-          "Type": 2,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
-          "ControlData": {
-  
-            "ControlTitle":"Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
-            "ControlOwner":"Andrew James",
-            "ControlOwnerRating":"Substantially Effective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": false,
-            "ControlOwnerRatingImage":""
-          }
-         },
+         
         {
               "Id": 201,
               "Type": 4,
@@ -638,7 +576,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     let isPerformanceView = false;
     let isExpand = false;
     let clicked = false;
-    var clickedNodeHeader = "";
+    var clickedNodeHeader = "" ;
   
     var originalConnections; // Variable to store the original connections
     var Templates = new TemplateClass();
@@ -668,9 +606,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
       
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
-  
-      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
 
+      if(clicked){
+      Templates.RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand ,isPerformanceView , renderElement , linkedCausesAndConsequencesIds, clicked);
+      
+      }
+      else{
+        Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement );
+      }
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
       var height = renderElement.height();
@@ -1059,37 +1002,56 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
     
- var dataArrayoriginal = this.originalData;
+ 
     
  
-function onNodeClick(e) {
-  clicked = true;
-  // const header = new BowTieDiagramOnClick();
-  // header.NodeClick(arry,clickedNodeId,clicked,diagram);
-  var clickedNodeId = e.item.dataItem.id;
-  var diagram = $('#diagram').getKendoDiagram();  
-  
-  var connectionsDataSource = diagram.connectionsDataSource;
-  var dataSource = diagram.dataSource;
+ var dataArrayoriginal = this.originalData;
+ var linkedCausesAndConsequencesIds = [];
+    
+ function onNodeClick(e) {
+     clicked = true;
+    
+     // const header = new BowTieDiagramOnClick();
+     // header.NodeClick(arry,clickedNodeId,clicked,diagram);
+     var clickedNodeId = e.item.dataItem.id;
+     var diagram = $('#diagram').getKendoDiagram();  
+     var dataArray = diagram.dataSource.data();
+     var connectionsDataSource = diagram.connectionsDataSource;
+     var dataSource = diagram.dataSource;     
+     
+    
+       if (clicked) {
+         
+         for (var i = 0; i < dataArray.length; i++) {
+           var node = dataArray[i];
+           var nodes = dataArrayoriginal[i];
+          
+           if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk"){
 
+             linkedCausesAndConsequencesIds.push(node);
+                             
+            }
+          
+          }
 
-  console.log("clickedNodeId",clickedNodeId);
-  var linkedCausesAndConsequencesIds = [];
-  
- 
-    if (clicked) {
-      
-      for (var i = 0; i < dataArrayoriginal.length; i++) {
+          linkedCausesAndConsequencesIds.push(e.item.dataItem);
+           // Clear the diagram and connection lines
+         diagram.clear();
+         connectionsDataSource.data([]);         
        
-        var nodes = dataArrayoriginal[i];
-       
-        if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId)){
 
-          linkedCausesAndConsequencesIds.push(nodes.Id);
-                          
-         }
+       // Refresh the diagram to display the changes
+       
+       diagram.bringIntoView(diagram.shapes);
+       diagram.refresh();
+
       
-       }
+     }
+     console.log("linkedCausesAndConsequencesIds",linkedCausesAndConsequencesIds);
+     return (linkedCausesAndConsequencesIds);
+    }
+      
+  
   //       // Clear the diagram and connection lines
   //     diagram.clear();
   //     connectionsDataSource.data([]);
@@ -1132,9 +1094,9 @@ function onNodeClick(e) {
     //   });
     // });
 
-  }
+  
 
-  }
+  
 
   // ExpandCollapse(){
   //   alert("expand called");

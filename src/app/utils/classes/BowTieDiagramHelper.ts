@@ -6,7 +6,7 @@ export class BowTieDiagramHelper {
   
   ArrangeNodes(originalData, isExpand:boolean) {
 
-    console.log(originalData);
+    // console.log(originalData);
     const arrangedNodes = [];
     // Find the risk node (type 1 with ParentNodeId 0)
     const riskNode = originalData.find(
@@ -80,7 +80,7 @@ export class BowTieDiagramHelper {
       {
       
        verticalSpacing = 400;
-       console.log("verticalSpacing  not Expand:",verticalSpacing);
+      
        
       }
       
