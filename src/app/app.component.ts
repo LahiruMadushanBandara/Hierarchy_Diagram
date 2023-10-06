@@ -877,6 +877,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             },
           },
           connectionsDataSource: {
+         
             data: dataConnections,
             schema: {
               model: {
@@ -1007,49 +1008,64 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
  
  var dataArrayoriginal = this.originalData;
  var linkedCausesAndConsequencesIds = [];
+ var dataConnectionsCentralizedNode = [];
     
  function onNodeClick(e) {
-     clicked = true;
-    
-     // const header = new BowTieDiagramOnClick();
-     // header.NodeClick(arry,clickedNodeId,clicked,diagram);
-     var clickedNodeId = e.item.dataItem.id;
-     var diagram = $('#diagram').getKendoDiagram();  
-     var dataArray = diagram.dataSource.data();
-     var connectionsDataSource = diagram.connectionsDataSource;
-     var dataSource = diagram.dataSource;     
-     
-    
-       if (clicked) {
-         
-         for (var i = 0; i < dataArray.length; i++) {
-           var node = dataArray[i];
-           var nodes = dataArrayoriginal[i];
-          
-           if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk"){
+    // Reset clicked variable based on your logic
+    var clicked = true;
 
-             linkedCausesAndConsequencesIds.push(node);
-                             
+    var clickedNodeId = e.item.dataItem.id;
+    var diagram = $('#diagram').getKendoDiagram();
+    var dataArray = diagram.dataSource.data();
+  
+
+    var linkedCausesAndConsequencesIds = [];
+    var dataConnectionsCentralizedNode = [];
+
+    if (clicked) {
+
+      linkedCausesAndConsequencesIds.push(e.item.dataItem);
+        for (var i = 0; i < dataArray.length; i++) {
+            var node = dataArray[i];
+            var nodes = dataArrayoriginal[i];
+            
+            // Review this condition based on your requirements
+            if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk") {
+                linkedCausesAndConsequencesIds.push(node);
             }
+        }
+      }
+
+
+      var connectionsDataSource = {
+        data: []
+      };
+
+      for (let i = 1; i < linkedCausesAndConsequencesIds.length; i++) {
+        var conObj = {
           
-          }
-
-          linkedCausesAndConsequencesIds.push(e.item.dataItem);
-           // Clear the diagram and connection lines
-         diagram.clear();
-         connectionsDataSource.data([]);         
-       
-
-       // Refresh the diagram to display the changes
-       
-       diagram.bringIntoView(diagram.shapes);
-       diagram.refresh();
-
-      
-     }
-     console.log("linkedCausesAndConsequencesIds",linkedCausesAndConsequencesIds);
-     return (linkedCausesAndConsequencesIds);
+          From: linkedCausesAndConsequencesIds[0].id.toString(), // Convert to string
+          To: linkedCausesAndConsequencesIds[i].id.toString()    // Convert to string
+      };   
+        
+      connectionsDataSource.data.push(conObj);
     }
+    
+   
+
+    // Set the data source and connections data source
+    e.sender.setDataSource(linkedCausesAndConsequencesIds);
+    e.sender.setConnectionsDataSource(connectionsDataSource);
+    
+    console.log(linkedCausesAndConsequencesIds)
+
+      // Refresh the diagram to display the changes    
+    
+      // diagram.refresh();
+
+    return linkedCausesAndConsequencesIds;
+  }
+
       
   
   //       // Clear the diagram and connection lines
