@@ -39,6 +39,7 @@ interface ControlData {
   Active: boolean;
   ControlOwnerRatingImage:any;
   IsLinkedToCauseOrConsequence: boolean;
+  ControlOwnerImageUrl: any;
 }
 
 interface IncidentData {

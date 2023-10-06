@@ -200,7 +200,8 @@ export class TemplateClass {
           "</p>" +
           "<p class='bow-tie-control-owner'>Control Owner</p>" +
           "<p class='bow-tie-control-owner-details'>" +
-            "<img class ='bow-tie-control-owner-image'src='theavo_risk/assets/bow-tie/icon/image.png'>" +
+            "<img class ='bow-tie-control-owner-image'"+
+               "src='"+ contentDetails.ControlData.ControlOwnerImageUrl.changingThisBreaksApplicationSecurity +"'"+
             "<span class=bow-tie-control-owner-name'>"+
               contentDetails.ControlData.ControlOwner +
             "</span>" +
