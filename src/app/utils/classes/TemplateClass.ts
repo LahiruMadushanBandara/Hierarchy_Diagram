@@ -630,18 +630,17 @@ export class TemplateClass {
     );
   }
 
-  public AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement){  
+  public AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement) {
 
 
-    switch(dataItem.Header) 
-    {
+    switch (dataItem.Header) {
       case "Risk":
         templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
         sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
         break;
       case "Control":
-        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem , isPerformanceView);
-        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem , isPerformanceView);
+        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
+        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
         sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
         sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
         break;
@@ -668,34 +667,34 @@ export class TemplateClass {
 
       case "LinkedRisk":
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
-          sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
-          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-          break;
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
       default:
     }
 
     //get templates from template class
-    
-    templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);       
-    
-      templatesObj.riskActionTemplateExpand =
+
+    templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+
+    templatesObj.riskActionTemplateExpand =
       this.GetRiskActionTreatmentExpand(dataItem);
-         var complianceTemplateExpnad =
-         this.GetComplianceObligationExpand(dataItem);
-   
+    var complianceTemplateExpnad =
+      this.GetComplianceObligationExpand(dataItem);
+
 
     // templates are assigned to corresponding variables
-    
+
     sessionStorage.setItem('riskActionExpand', templatesObj.riskActionTemplateExpand);
     sessionStorage.setItem('complianceExpand', templatesObj.complianceTemplateExpnad);
-    
-    
+
+
 
     if (isRiskView) {
       isKpIview = false;
       if (isExpand) {
-       
+
         if (dataItem.Header === 'LinkedRisk') {
           var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
           renderElement.html(linkRiskBottomTemp(dataItem));
@@ -714,7 +713,7 @@ export class TemplateClass {
     } else if (isKpIview) {
       isRiskView = false;
       if (isExpand) {
-       
+
         if (dataItem.Header === 'KPI') {
           var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
           renderElement.html(KPIExpandTemp(dataItem));
@@ -731,8 +730,8 @@ export class TemplateClass {
         renderElement.html(riskNodeTemp(dataItem));
       }
     } else {
-      if (isExpand) {       
-       
+      if (isExpand) {
+
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
@@ -746,10 +745,10 @@ export class TemplateClass {
           var causeTemp = kendo.template(templatesObj.causeTemplate);
           renderElement.html(causeTemp(dataItem));
         } else {
-          
+
           if (dataItem.Header === 'LinkedRisk') {
-          var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
-          renderElement.html(linkRiskBottomTemp(dataItem));
+            var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
+            renderElement.html(linkRiskBottomTemp(dataItem));
           } else if (dataItem.Header === 'riskActionExpand') {
             var riskActionExpandTemp = kendo.template(
               templatesObj.riskActionTemplateExpand
@@ -769,7 +768,7 @@ export class TemplateClass {
           }
         }
       } else {
-       
+
 
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
@@ -789,120 +788,115 @@ export class TemplateClass {
         }
 
       }
-    }         
-    
-              
     }
-  
-    public RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement, linkedCausesAndConsequencesIds ,clicked){  
-     
-      // debugger;
-     
-    
-        
-        switch(dataItem.Header) 
-        {
-         
-          case "Risk":
-            templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
-            sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
-            break;
-          case "Control":
-            templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem , isPerformanceView);
-            templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem , isPerformanceView);
-            sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
-            sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
-            break;
-          case "Cause":
-            templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
-            sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
-            break;
-          case "Consequence":
-            templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
-            sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
-            break;
-          case "Incident":
-            templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-            templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
-            sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
-            sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-            break;
-          case "KPI":
-            templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
-            templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
-            sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
-            sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-            break;
-    
-          case "LinkedRisk":
-            templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-              templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
-              sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
-              sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-              break;
-          default:
-        }
-      
-      
-    
 
-              
-          if (isExpand) {      
-            if (dataItem.Header === 'Risk') {
-              var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-              renderElement.html(riskNodeTemp(dataItem));
-            } else if (dataItem.Header === 'Control') {
-              var controlNodeExpandTemp = kendo.template(templatesObj.controlTemplateExpand);
-              renderElement.html(controlNodeExpandTemp(dataItem));
-            } else if (dataItem.Header === 'Consequence') {
-              var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
-              renderElement.html(consequencesTemp(dataItem));
-            } else if (dataItem.Header === 'Cause') {
-              var causeTemp = kendo.template(templatesObj.causeTemplate);
-              renderElement.html(causeTemp(dataItem));
-            } else {
-              
-              if (dataItem.Header === 'LinkedRisk') {
-              var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
-              renderElement.html(linkRiskBottomTemp(dataItem));
-              } else if (dataItem.Header === 'riskActionExpand') {
-                var riskActionExpandTemp = kendo.template(
-                  templatesObj.riskActionTemplateExpand
-                );
-                renderElement.html(riskActionExpandTemp(dataItem));
-              } else if (dataItem.Header === 'Incident') {
-                var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
-                renderElement.html(incidentExpandTemp(dataItem));
-              }
-              else if (dataItem.Header === 'KPI') {
-                var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
-                renderElement.html(KPIExpandTemp(dataItem));
-              }
-          }
-        }
-        else {      
 
-          if (dataItem.Header === 'Risk') {
-            var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-            renderElement.html(riskNodeTemp(dataItem));
-          } else if (dataItem.Header === 'Control') {
-            var controlNodeTemp = kendo.template(templatesObj.controlTemplate);
-            renderElement.html(controlNodeTemp(dataItem));
-          } else if (dataItem.Header === 'Consequence') {
-            var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
-            renderElement.html(consequencesTemp(dataItem));
-          } else if (dataItem.Header === 'Cause') {
-            var causeTemp = kendo.template(templatesObj.causeTemplate);
-            renderElement.html(causeTemp(dataItem));
-          } else {
-            var otherTemp = kendo.template(templatesObj.bottomTemplate);
-            renderElement.html(otherTemp(dataItem));
-          }
+  }
   
+  public RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement) {
+
+    switch (dataItem.Header) {
+
+      case "Risk":
+        templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
+        sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
+        break;
+      case "Control":
+        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
+        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
+        sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
+        sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
+        break;
+      case "Cause":
+        templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
+        sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
+        break;
+      case "Consequence":
+        templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
+        sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
+        break;
+      case "Incident":
+        templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      case "KPI":
+        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+
+      case "LinkedRisk":
+        templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      default:
+    }
+
+
+
+
+
+    if (isExpand) {
+      if (dataItem.Header === 'Risk') {
+        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+        renderElement.html(riskNodeTemp(dataItem));
+      } else if (dataItem.Header === 'Control') {
+        var controlNodeExpandTemp = kendo.template(templatesObj.controlTemplateExpand);
+        renderElement.html(controlNodeExpandTemp(dataItem));
+      } else if (dataItem.Header === 'Consequence') {
+        var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
+        renderElement.html(consequencesTemp(dataItem));
+      } else if (dataItem.Header === 'Cause') {
+        var causeTemp = kendo.template(templatesObj.causeTemplate);
+        renderElement.html(causeTemp(dataItem));
+      } else {
+
+        if (dataItem.Header === 'LinkedRisk') {
+          var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
+          renderElement.html(linkRiskBottomTemp(dataItem));
+        } else if (dataItem.Header === 'riskActionExpand') {
+          var riskActionExpandTemp = kendo.template(
+            templatesObj.riskActionTemplateExpand
+          );
+          renderElement.html(riskActionExpandTemp(dataItem));
+        } else if (dataItem.Header === 'Incident') {
+          var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
+          renderElement.html(incidentExpandTemp(dataItem));
         }
-      
-      // console.log("linkedCausesAndConsequencesIds",linkedCausesAndConsequencesIds);
-     
+        else if (dataItem.Header === 'KPI') {
+          var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
+          renderElement.html(KPIExpandTemp(dataItem));
+        }
+      }
+    }
+    else {
+
+      if (dataItem.Header === 'Risk') {
+        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+        renderElement.html(riskNodeTemp(dataItem));
+      } else if (dataItem.Header === 'Control') {
+        var controlNodeTemp = kendo.template(templatesObj.controlTemplate);
+        renderElement.html(controlNodeTemp(dataItem));
+      } else if (dataItem.Header === 'Consequence') {
+        var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
+        renderElement.html(consequencesTemp(dataItem));
+      } else if (dataItem.Header === 'Cause') {
+        var causeTemp = kendo.template(templatesObj.causeTemplate);
+        renderElement.html(causeTemp(dataItem));
+      } else {
+        var otherTemp = kendo.template(templatesObj.bottomTemplate);
+        renderElement.html(otherTemp(dataItem));
+      }
+
+    }
+
+   
+
   }
   // NodeSampleData:data[] = [
   //   {
