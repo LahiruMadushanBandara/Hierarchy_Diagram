@@ -233,18 +233,18 @@ export class TemplateClass {
           "<p>" +
               contentDetails.htmlTemplate +
           "</p>" +
-          "<p style='display: flex; align-items: left; line-height: 1;'>" +
-            "<span style='margin-right: 10px;'>" +
+          "<p class='bow-tie-details-name'>" +
+          "<span class='bow-tie-control-type''>" +
               'Due Date' +
             "</span>" +
-            "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+            "<p class='bow-tie-date'>" +
               "<b>11March,2020</b>" +
             "</p>" +
           "</p>" +
-          "<p style='margin-top: -10px;' >Owner</p>" +
-          "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 30px; '>" +
-            "<img src='theavo_risk/assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-            "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Talia Gisbon</b></span>" +
+          "<p class='bow-tie-treatment-expand-owner' >Owner</p>" +
+          "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+            "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
+            "<span class='bow-tie-incident-expand-responsible-officer-name'><b>Talia Gisbon</b></span>" +
           "</p>" +
           "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
             'Complete' +
@@ -263,11 +263,13 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
+        "<p class='bow-tie-risk-card-header-top-text'>" +
           "<h4>" +
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</h4>" +
+          "</p>" +
         "</div>" +
-        "<div style='background-color:white;' class='bow-tie-risk-card-header-expand'>" +
+        "<div class='bow-tie-risk-card-header-expand'>" +
            "<p class='bow-tie-risk-card-header-text-expand'> <b>"+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
@@ -322,25 +324,25 @@ export class TemplateClass {
           "</div>" +
         
         "<div class='bow-tie-risk-card-footer-expand'>" +
-          "<div class='row'>" +
-            "<div  class='bow-tie-risk-footer-details'>" +
-              "<p><b>Risk Category</b><p>" +
-              "<p>"+
-                contentDetails.LinkedRiskData.Category +
-              "</p>"+
-            "</div>" +
-            "<div class='bow-tie-risk-footer-details'>" +
-              "<p><b>Responsible Manager</b></p>" +
-              "<p sclass='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
-                "<span class='bow-tie-risk-rating-details-text'>" +
-                  contentDetails.LinkedRiskData.ResponsibleManager +
-                "</span>" +
-              "</p>" +
-            "</div>" +
-         "</div>" +
+        "<div class='row'>" +
+        "<div class='bow-tie-risk-footer-details'>" +
+          "<p><b>Risk Category</b></p>"+
+          "<p>"+
+           contentDetails.LinkedRiskData.Category+
+          "</p>" +
         "</div>" +
-      "</div>"
+      "<div class='bow-tie-risk-footer-details-responsible'>" +
+        "<p><b>Responsible Manager</b></p>" +
+        "<p class='bow-tie-risk-rating-details'>" +
+          "<img class='bow-tie-risk-rating-details-image'"+
+                      "src='"+ contentDetails.LinkedRiskData.profileImageUrl.changingThisBreaksApplicationSecurity +"'"+
+          "<span class='bow-tie-risk-rating-details-text'>"+
+          contentDetails.LinkedRiskData.ResponsibleManager+
+          "</span>" +
+        "</p>" +
+      "</div>" +
+    "</div>" +
+"</div>"
     );
   }
 
@@ -358,12 +360,18 @@ export class TemplateClass {
           " </b><p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
           "<p class='bow-tie-risk-rating-details'>" +
-            "<img class='bow-tie-control-owner-image'src='theavo_risk/assets/bow-tie/icon/image.png' >" +
-            "<span class='bow-tie-control-owner-name'><b>Clarke Chan</b></span>" +
+            "<img class='bow-tie-control-owner-image'"+
+            "src='"+ contentDetails.IncidentData.ReportedOfficerImageUrl.changingThisBreaksApplicationSecurity+"'"+
+            "<span class='bow-tie-control-owner-name'>"+
+              "<b>"+
+                contentDetails.IncidentData.ReportedOfficerName+
+              "</b>"+
+            "</span>" +
+            
           "</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-          "<img class='bow-tie-incident-expand-responsible-officer-image'"+
+              "<img class='bow-tie-incident-expand-responsible-officer-image'"+
               "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
               "<b>"+
@@ -499,11 +507,11 @@ export class TemplateClass {
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
+      "<p class='bow-tie-details-name'>" +
+      "<span class='bow-tie-control-type''>" +
       'Audit Date' +
       "</span>" +
-      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+      "<p class='bow-tie-audit-date'>" +
       "<b>22  October,2021</b>" +
       "</p>" +
       "</p>" +
@@ -540,24 +548,26 @@ export class TemplateClass {
   public GetAuthorityDocumentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header'>" +
-      "<h4>" +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
-      "<div class='bow-tie-extra-card-body'>" +
-      "<p>" +
-      contentDetails.htmlTemplate +
-      "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Type:' +
-      "</span>" +
-      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>Responsible Ofiicer:</b>" +
-      "</p>" +
-      "</p>" +
-      "</div>" +
+        "<div class='bow-tie-extra-card-header'>" +
+          "<h4>" +
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</h4>" +
+        "</div>" +
+        "<div class='bow-tie-extra-card-body'>" +
+          "<p>" +
+           contentDetails.htmlTemplate +
+          "</p>" +
+          "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
+          "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+            "<img class='bow-tie-incident-expand-responsible-officer-image'" +
+            "src='" + contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity + "'" +
+            "<span class='bow-tie-incident-expand-responsible-officer-name'>" +
+              "<b>" +
+                contentDetails.IncidentData.ResponsiblePerson +
+              "</b>" +
+            "</span>" +
+          "</p>" +
+        "</div>" +
       "</div>"
     );
   }
@@ -669,10 +679,18 @@ export class TemplateClass {
 
       case "LinkedRisk":
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
-          sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
-          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-          break;
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+
+      case "Treatment":
+        templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('Treatment', templatesObj.riskActionTemplateExpand);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+
       default:
     }
 
@@ -680,10 +698,8 @@ export class TemplateClass {
     
     templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);       
     
-      templatesObj.riskActionTemplateExpand =
-      this.GetRiskActionTreatmentExpand(dataItem);
-         var complianceTemplateExpnad =
-         this.GetComplianceObligationExpand(dataItem);
+      templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
+         var complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
    
 
     // templates are assigned to corresponding variables
@@ -796,7 +812,113 @@ export class TemplateClass {
     }
   }
 
+  public RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement) {
 
+    switch (dataItem.Header) {
+
+      case "Risk":
+        templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
+        sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
+        break;
+      case "Control":
+        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
+        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
+        sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
+        sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
+        break;
+      case "Cause":
+        templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
+        sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
+        break;
+      case "Consequence":
+        templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
+        sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
+        break;
+      case "Incident":
+        templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      case "KPI":
+        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+
+      case "LinkedRisk":
+        templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      default:
+    }
+
+
+
+
+
+  
+      if (isExpand) {
+        if (dataItem.Header === 'Risk') {
+          var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+          renderElement.html(riskNodeTemp(dataItem));
+        } else if (dataItem.Header === 'Control') {
+          var controlNodeExpandTemp = kendo.template(templatesObj.controlTemplateExpand);
+          renderElement.html(controlNodeExpandTemp(dataItem));
+        } else if (dataItem.Header === 'Consequence') {
+          var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
+          renderElement.html(consequencesTemp(dataItem));
+        } else if (dataItem.Header === 'Cause') {
+          var causeTemp = kendo.template(templatesObj.causeTemplate);
+          renderElement.html(causeTemp(dataItem));
+        } else {
+
+          if (dataItem.Header === 'LinkedRisk') {
+            var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
+            renderElement.html(linkRiskBottomTemp(dataItem));
+          } else if (dataItem.Header === 'riskActionExpand') {
+            var riskActionExpandTemp = kendo.template(
+              templatesObj.riskActionTemplateExpand
+            );
+            renderElement.html(riskActionExpandTemp(dataItem));
+          } else if (dataItem.Header === 'Incident') {
+            var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
+            renderElement.html(incidentExpandTemp(dataItem));
+          }
+          else if (dataItem.Header === 'KPI') {
+            var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
+            renderElement.html(KPIExpandTemp(dataItem));
+          }
+        }
+      }
+      else {
+
+        if (dataItem.Header === 'Risk') {
+          var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+          renderElement.html(riskNodeTemp(dataItem));
+        } else if (dataItem.Header === 'Control') {
+          var controlNodeTemp = kendo.template(templatesObj.controlTemplate);
+          renderElement.html(controlNodeTemp(dataItem));
+        } else if (dataItem.Header === 'Consequence') {
+          var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
+          renderElement.html(consequencesTemp(dataItem));
+        } else if (dataItem.Header === 'Cause') {
+          var causeTemp = kendo.template(templatesObj.causeTemplate);
+          renderElement.html(causeTemp(dataItem));
+        } else {
+          var otherTemp = kendo.template(templatesObj.bottomTemplate);
+          renderElement.html(otherTemp(dataItem));
+        }
+
+      }
+  
+    
+   
+
+  }
   // NodeSampleData:data[] = [
   //   {
   //     "Id": 0,

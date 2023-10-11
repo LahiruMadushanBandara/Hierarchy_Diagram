@@ -53,6 +53,8 @@ interface IncidentData {
   ByteImage:string;
   ImageType: string;
   ResponsibleManagerProfilePic:any;
+  ReportedOfficerImageUrl: any;
+  ReportedOfficerName:string;
 }
 
 interface KPIData {
@@ -80,4 +82,5 @@ interface LinkedRiskData {
   ResidualRiskRatingImg:any;
   TargetRiskRatingImg:any;
   AppetiteRatingImg:any;
+  profileImageUrl:any;
 }
