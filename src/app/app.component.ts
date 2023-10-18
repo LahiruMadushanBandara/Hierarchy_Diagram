@@ -841,7 +841,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
   
        
-        $(document).ready(function () {         
+             
           $("#toolbar").kendoToolBar({
             items: [
               {
@@ -880,7 +880,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   `
             },
         ]})
-      })
+    
       
       
       
@@ -965,7 +965,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           layout: false,
 
           click: onNodeClick,
-          editable: false, 
+          editable: true, 
         });
 
 
@@ -1054,7 +1054,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           console.log("causeConsequenceColumnNumber risk", riskColumnNumber);
         }
         //causes and consequences placed left bottom to the clicked node
-        else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "ConseqConsequenceuences") {
+        else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
           linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
           linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
           causeConsequenceColumnNumber++;
