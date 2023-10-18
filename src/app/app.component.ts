@@ -83,7 +83,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         linkRiskTemplate: "",
         riskActionTemplateExpand: "",
         complianceTemplateExpnad: "",
-        authorityDocumentTemplateExpnad: ""
+        authorityDocumentTemplateExpnad: "",
+        auditTemplateExpnad: ""
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');

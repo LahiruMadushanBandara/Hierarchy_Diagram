@@ -455,7 +455,7 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
-          "<p> <b>" +
+          "<p> <b> \\" +
               contentDetails.htmlTemplate +
           " </b> </p>" +
           "<div class='bow-tie-kpi'>" +
@@ -501,24 +501,24 @@ export class TemplateClass {
   public GetAuditExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header' >" +
-      "<h4>" +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
-      "<div class='bow-tie-extra-card-body'>" +
-      "<p>" +
-      contentDetails.htmlTemplate +
-      "</p>" +
-      "<p class='bow-tie-details-name'>" +
-      "<span class='bow-tie-control-type''>" +
-      'Audit Date' +
-      "</span>" +
-      "<p class='bow-tie-audit-date'>" +
-      "<b>22  October,2021</b>" +
-      "</p>" +
-      "</p>" +
-      "</div>" +
+        "<div class='bow-tie-extra-card-header' >" +
+          "<h4>" +
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</h4>" +
+        "</div>" +
+        "<div class='bow-tie-extra-card-body'>" +
+          "<p>" +
+             contentDetails.htmlTemplate +
+          "</p>" +
+          "<p class='bow-tie-incident-expand-reported-date-time'>" +
+          'Reported Date/Time' +
+          "<p class='bow-tie-incident-expand-reported-date'>" +
+            "<b>"+
+              contentDetails.AuditData.AuditDate+
+            "</b>" +
+          "</p>" +
+           "</p>" +
+        "</div>" +
       "</div>"
     );
   }
@@ -708,6 +708,13 @@ export class TemplateClass {
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
+      case "Audit":
+        templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+  
       default:
     }
 
@@ -788,6 +795,9 @@ export class TemplateClass {
           } else if (dataItem.Header === 'Authority Document') {
             var authorityDocumentExpandTemp = kendo.template(templatesObj.authorityDocumentTemplateExpnad);
             renderElement.html(authorityDocumentExpandTemp(dataItem));
+          }else if (dataItem.Header === 'Audit') {
+            var auditDocumentExpandTemp = kendo.template(templatesObj.auditTemplateExpnad);
+            renderElement.html(auditDocumentExpandTemp(dataItem));
           }
         }
       } else {
@@ -876,6 +886,14 @@ export class TemplateClass {
         sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
+      
+      case "Audit":
+        templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+    
       default:
     }
 
@@ -917,6 +935,9 @@ export class TemplateClass {
         } else if (dataItem.Header === 'Authority Document') {
           var authorityDocumentExpandTemp = kendo.template(templatesObj.authorityDocumentTemplateExpnad);
           renderElement.html(authorityDocumentExpandTemp(dataItem));
+        }else if (dataItem.Header === 'Audit') {
+          var auditDocumentExpandTemp = kendo.template(templatesObj.auditTemplateExpnad);
+          renderElement.html(auditDocumentExpandTemp(dataItem));
         }
       }
     }

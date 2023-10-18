@@ -15,6 +15,7 @@ export interface DiagramNodeData {
   LinkedRiskData?: LinkedRiskData;
   AuthorityDocumentData?:AuthorityDocument;
   ComplianceData?:Compliance;
+  AuditData?: Audit;
 }
 
 interface RiskData {
@@ -102,4 +103,9 @@ interface Compliance {
   ResponsibleOfficer: string;
   ROImage: any;
   ReviewStatus?: string;
+}
+interface Audit {
+  AuditId: number;
+  AuditTitle : string;
+  AuditDate : string;
 }
