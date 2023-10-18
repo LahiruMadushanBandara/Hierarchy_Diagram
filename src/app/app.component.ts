@@ -462,6 +462,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var buttonPerformance = document.getElementById('btPerformanceView');
         buttonPerformance.addEventListener('click', togglePerformanceview);
 
+        $(".btn-Export").click(function() {
+          var diagram = $("#diagram").getKendoDiagram();
+          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function(data) {
+              kendo.saveAs({
+                  dataURI: data,
+                  fileName: "bow-tie-analysis.pdf"
+              });
+          });
+        });
 
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
