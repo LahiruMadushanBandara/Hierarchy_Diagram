@@ -580,7 +580,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                           <span>Expand</span>
                       </button>
                     </div>
-                </div>                 
+                </div>  
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start Expand">
+                <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                  <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                      <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                      <span>Export</span>
+                  </button>
+                </div>
+                </div>  
+               
               
             </div>
                        
@@ -637,6 +646,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var buttonPerformance= document.getElementById('btPerformanceView');        
         buttonPerformance.addEventListener('click', togglePerformanceview);
 
+        $(".btn-Export").click(function() {
+          alert("export clicked");
+          var diagram = $("#diagram").getKendoDiagram();
+          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function(data) {
+              kendo.saveAs({
+                  dataURI: data,
+                  fileName: "diagram.pdf"
+              });
+          });
+        });
 
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
