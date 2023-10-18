@@ -442,7 +442,7 @@ export class TemplateClass {
               (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</h4>" +
         "</div>" +
-        "<div class='bow-tie-extra-card-body' >" +
+        "<div class='bow-tie-extra-card-body'>\\" +
           "<p> <b>" +
               contentDetails.htmlTemplate +
           " </b> </p>" +

@@ -839,7 +839,51 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         
           diagram.refresh();
         }
-
+  
+       
+        $(document).ready(function () {         
+          $("#toolbar").kendoToolBar({
+            items: [
+              {
+                template: `
+               
+                <div class="kendo-tool-ber-button">
+                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+                </div>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
+                    <div kendoTooltip position="bottom" [title]="'Risk View'">
+                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
+                            <span>Risk View</span>
+                        </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
+                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
+                            <span>Kpi View</span>
+                        </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Performance View'">
+                        <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
+                            <span>Performance View</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start Expand">
+                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
+                          <span>Expand</span>
+                      </button>
+                    </div>
+                </div>                 
+              
+               </div>
+                       
+                  `
+            },
+        ]})
+      })
+      
+      
+      
 
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
@@ -891,48 +935,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           },
-          editable: {
-            shapeTemplate: detailTemp,
-            tools: [
-              {
-                template: `
-               
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
-                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
-                    <div kendoTooltip position="bottom" [title]="'Risk View'">
-                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
-                            <span>Risk View</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
-                            <span>Kpi View</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Performance View'">
-                        <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
-                            <span>Performance View</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start Expand">
-                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
-                          <span>Expand</span>
-                      </button>
-                    </div>
-                </div>                 
-              
-            </div>
-                       
-                  `,
-                enable: true,
-
-              }
-            ]
-          },
+         
 
           shapeDefaults: {
             stroke: {
@@ -962,7 +965,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           layout: false,
 
           click: onNodeClick,
-          // editable: false, 
+          editable: false, 
         });
 
 

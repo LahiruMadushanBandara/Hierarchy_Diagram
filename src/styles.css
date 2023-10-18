@@ -754,20 +754,6 @@ margin-left: 40px;
 //css for header tool bar  */
 
 
-.k-toolbar {
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: inset !important;
-  border-bottom-width: 1px !important;
-  z-index: 99;
-  position: fixed;
-  width: 100% !important;
-  background-color: white !important;
-  padding: 0px;
-  min-height: 50px;
-  
-  }
 
 
 .top-bar {
@@ -927,4 +913,20 @@ margin-left: 40px;
 
 .monitor-badge {
   background-color: #faab2c;
+}
+
+
+
+#toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+  float: right;
+}
+
+.kendo-tool-bar-button{
+  color: red !important;
+  text-align: center;
+  background-color: #0050a0;
 }
