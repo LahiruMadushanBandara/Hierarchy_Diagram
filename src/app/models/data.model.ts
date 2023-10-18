@@ -13,6 +13,8 @@ export interface DiagramNodeData {
   IncidentData?: IncidentData;
   KpiData?: KPIData;
   LinkedRiskData?: LinkedRiskData;
+  AuthorityDocumentData?:AuthorityDocument;
+  ComplianceData?:Compliance;
 }
 
 interface RiskData {
@@ -83,4 +85,21 @@ interface LinkedRiskData {
   TargetRiskRatingImg:any;
   AppetiteRatingImg:any;
   profileImageUrl:any;
+}
+interface AuthorityDocument {
+  AuthorityDocumentId: number;
+  Title : string;
+  Code : string;
+  ResponsibleOfficer: string;
+  IsActive: boolean;
+  ROImage: any;
+}
+
+interface Compliance {
+  ComplianceId: number;
+  Title : string;
+  Code : string;
+  ResponsibleOfficer: string;
+  ROImage: any;
+  ReviewStatus?: string;
 }
