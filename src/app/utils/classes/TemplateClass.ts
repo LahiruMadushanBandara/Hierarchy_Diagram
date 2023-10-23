@@ -18,7 +18,7 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-control-card-body' >" +
-        "<p class='bow-tie-htmlTemplate'>" +
+        "<p class='bow-tie-htmlTemplate' >" +
           contentDetails.htmlTemplate +
         "</p>" +
         "</div>" +
@@ -177,17 +177,17 @@ export class TemplateClass {
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
    
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-        "<div class='bow-tie-control-card-header' "+ styles +">" +
-          "<h4>" +
+      "<div class='bow-tie-extra-card-content rounded'"+ styles +" >" +
+        "<div class='bow-tie-control-card-header' >" +
+          "<h4 >" +
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</h4>" +
         "</div>" +
-        "<div class='bow-tie-extra-card-body' "+ styles +">" +
+        "<div class='bow-tie-extra-card-body' >" +
           "<p class='bow-tie-htmlTemplate'>" +            
               contentDetails.htmlTemplate +        
           "</p>" +
-          "<p class='bow-tie-control-type-details' >" +
+          "<p class='bow-tie-control-type-details'>" +
             "<span class='bow-tie-control-type'>" +
               "Control Type" +
             "</span>" +

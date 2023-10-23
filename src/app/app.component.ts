@@ -203,120 +203,59 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
         }
 
+    
+        $("#toolbar").kendoToolBar({
+          items: [
+            {
+              template: `
+               
+              <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
+                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+              
+              <div class="k-actions btn-row-bottom k-actions-end align-items-start Back">
+                <div kendoTooltip position="bottom" [title]="'Back'">
+                  <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload" onClick="reloadDiagram()" style="display: none;">
+                    <span>BACK</span>
+                  </button>
+                </div>
+              </div>
 
-
-
-
-
-
-        function toggleExpand() {
-          isExpand = !isExpand;
-
-          const Expandbutton = document.getElementById('btExpandView');
-          Expandbutton.classList.toggle('active', isExpand);
-
-          var diagram = kendoDiagram.getKendoDiagram();
-         
-          diagram.refresh();
-
-
-        }
-
-        function toggleRiskview() {
-          if (isKpIview == false) {
-            isRiskView = !isRiskView;
-
-            const Riskbutton = document.getElementById('btRiskView');
-            Riskbutton.classList.toggle('active', isRiskView);
-
-
-            var diagram = kendoDiagram.getKendoDiagram();
-            var connectionsDataSource = diagram.connectionsDataSource;
-
-            if (isRiskView) {
-              // Clear connections that are not linked to nodes with header = riskExpand
-              var visibleConnections = diagram.connectionsDataSource
-                .data()
-                .filter(function (connection) {
-                  var fromNode = diagram.dataSource.get(connection.from);
-                  var toNode = diagram.dataSource.get(connection.to);
-                  return (
-                    (fromNode && fromNode.Header === 'LinkedRisk') ||
-                    (toNode && toNode.Header === 'LinkedRisk')
-                  );
-                });
-
-              // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource.data().slice();
-
-              // Clear all connections
-              connectionsDataSource.data([]);
-
-              // Re-add visible connections
-              connectionsDataSource.data(visibleConnections);
-            } else {
-              // Re-establish all the original connections
-              connectionsDataSource.data(originalConnections);
-            }
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          }
-        }
-
-        function toggleKPIview() {
-          if (isRiskView == false) {
-            isKpIview = !isKpIview;
-
-            const Kpidbutton = document.getElementById('btKpikView');
-            Kpidbutton.classList.toggle('active', isKpIview);
-
-            var diagram = kendoDiagram.getKendoDiagram();
-            var connectionsDataSource = diagram.connectionsDataSource;
-
-            if (isKpIview) {
-              // Clear connections that are not linked to nodes with header = riskExpand
-              var visibleConnections = diagram.connectionsDataSource
-                .data()
-                .filter(function (connection) {
-                  var fromNode = diagram.dataSource.get(connection.from);
-                  var toNode = diagram.dataSource.get(connection.to);
-                  return (
-                    (fromNode && fromNode.Header === 'KPI') ||
-                    (toNode && toNode.Header === 'KPI')
-                  );
-                });
-
-              // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource
-                .data()
-                .slice();
-
-              // Clear all connections
-              connectionsDataSource.data([]);
-
-              // Re-add visible connections
-              connectionsDataSource.data(visibleConnections);
-            } else {
-              // Re-establish all the original connections
-              connectionsDataSource.data(originalConnections);
-            }
-
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          }
-        }
-
-        function togglePerformanceview() {
-          isPerformanceView = !isPerformanceView;
-
-          const Performancebutton = document.getElementById('btPerformanceView');
-          Performancebutton.classList.toggle('active', isPerformanceView);
-
-          var diagram = kendoDiagram.getKendoDiagram();
-        
-          diagram.refresh();
-        }
-
+              <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
+                  <div kendoTooltip position="bottom" [title]="'Risk View'">
+                      <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
+                        <span>Risk View</span>
+                      </button>
+                  </div>
+                  <div kendoTooltip position="bottom" [title]="'Kpi View'">
+                      <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
+                          <span>Kpi View</span>
+                      </button>
+                  </div>
+                  <div kendoTooltip position="bottom" [title]="'Performance View'">
+                    <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
+                        <span>Performance View</span>
+                    </button>
+                  </div>
+                  <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+                    <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
+                      <span>Expand</span>
+                    </button>
+                  </div>
+              </div>
+              <div class="k-actions btn-row-bottom k-actions-end align-items-start Export">
+                <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                  <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                      <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                      <span>Export</span>
+                  </button>
+                </div>
+              </div>                 
+            </div>        
+                `
+          },
+      ]})
+  
+    
       
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
@@ -367,55 +306,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           },
-          editable: {
-            shapeTemplate: detailTemp,
-            tools: [
-              {
-                template: `
-               
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
-                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
-                    <div kendoTooltip position="bottom" [title]="'Risk View'">
-                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
-                            <span>Risk View</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
-                            <span>Kpi View</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Performance View'">
-                        <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
-                            <span>Performance View</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                    <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
-                        <span>Expand</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start Expand">
-                <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-                  <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
-                      <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                      <span>Export</span>
-                  </button>
-                </div>
-                </div>                 
-              
-            </div>
-                       
-                  `,
-                  enable: true,
-                  
-                }
-            ]
-          },
-
+          
           shapeDefaults: {
             stroke: {
               color: '#979797',
@@ -443,24 +334,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           layout: false,
           click: onNodeClick,
-          // editable: false, 
+          editable: true, 
         });
 
       
   
         // Get the button element and attach the click event listener
 
-        var buttonExpand = document.getElementById('btExpandView');
-        buttonExpand.addEventListener('click', toggleExpand);
-
-        var buttonRisk = document.getElementById('btRiskView');
-        buttonRisk.addEventListener('click', toggleRiskview);
-
-        var buttonKpi = document.getElementById('btKpikView');
-        buttonKpi.addEventListener('click', toggleKPIview);
-
-        var buttonPerformance = document.getElementById('btPerformanceView');
-        buttonPerformance.addEventListener('click', togglePerformanceview);
+       
 
         $(".btn-Export").click(function() {
           var diagram = $("#diagram").getKendoDiagram();
@@ -471,6 +352,125 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               });
           });
         });
+
+        $(".bt-Expand").click(function() {
+          console.log("isExpand",isExpand);
+          var diagram = $("#diagram").getKendoDiagram();
+          isExpand = !isExpand;
+
+          const Expandbutton = document.getElementById('btExpandView');
+          Expandbutton.classList.toggle('active', isExpand);         
+          diagram.refresh();
+
+        });
+
+
+        $(".bt-Risk").click(function() {
+         
+          if (isKpIview == false) {
+            isRiskView = !isRiskView;
+
+            const Riskbutton = document.getElementById('btRiskView');
+            Riskbutton.classList.toggle('active', isRiskView);
+
+
+            var diagram = kendoDiagram.getKendoDiagram();
+            var connectionsDataSource = diagram.connectionsDataSource;
+
+            if (isRiskView) {
+              // Clear connections that are not linked to nodes with header = riskExpand
+              var visibleConnections = diagram.connectionsDataSource
+                .data()
+                .filter(function (connection) {
+                  var fromNode = diagram.dataSource.get(connection.from);
+                  var toNode = diagram.dataSource.get(connection.to);
+                  return (
+                    (fromNode && fromNode.Header === 'LinkedRisk') ||
+                    (toNode && toNode.Header === 'LinkedRisk')
+                  );
+                });
+
+              // Store the original connections before clearing them
+              originalConnections = diagram.connectionsDataSource.data().slice();
+
+              // Clear all connections
+              connectionsDataSource.data([]);
+
+              // Re-add visible connections
+              connectionsDataSource.data(visibleConnections);
+            } else {
+              // Re-establish all the original connections
+              connectionsDataSource.data(originalConnections);
+            }
+            diagram.bringIntoView(diagram.shapes);
+            diagram.refresh();
+          }
+        });
+
+
+        $(".bt-Kpi").click(function() {
+          if (isRiskView == false) {
+            isKpIview = !isKpIview;
+
+            const Kpidbutton = document.getElementById('btKpikView');
+            Kpidbutton.classList.toggle('active', isKpIview);
+
+            var diagram = kendoDiagram.getKendoDiagram();
+            var connectionsDataSource = diagram.connectionsDataSource;
+
+            if (isKpIview) {
+              // Clear connections that are not linked to nodes with header = riskExpand
+              var visibleConnections = diagram.connectionsDataSource
+                .data()
+                .filter(function (connection) {
+                  var fromNode = diagram.dataSource.get(connection.from);
+                  var toNode = diagram.dataSource.get(connection.to);
+                  return (
+                    (fromNode && fromNode.Header === 'KPI') ||
+                    (toNode && toNode.Header === 'KPI')
+                  );
+                });
+
+              // Store the original connections before clearing them
+              originalConnections = diagram.connectionsDataSource
+                .data()
+                .slice();
+
+              // Clear all connections
+              connectionsDataSource.data([]);
+
+              // Re-add visible connections
+              connectionsDataSource.data(visibleConnections);
+            } else {
+              // Re-establish all the original connections
+              connectionsDataSource.data(originalConnections);
+            }
+
+            diagram.bringIntoView(diagram.shapes);
+            diagram.refresh();
+          }
+
+        });
+
+        $(".bt-Performance").click(function() {
+          isPerformanceView = !isPerformanceView;
+
+          const Performancebutton = document.getElementById('btPerformanceView');
+          Performancebutton.classList.toggle('active', isPerformanceView);
+
+          var diagram = kendoDiagram.getKendoDiagram();
+        
+          diagram.refresh();
+        });
+
+        $(".bt-Reload").click(function() {
+          
+          location.reload();
+
+        });
+
+      
+
 
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
@@ -506,6 +506,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var diagram = $('#diagram').getKendoDiagram();
         var dataArray = diagram.dataSource.data();
         var linkedNodesToClickedNode = [];
+
+
+        var reloadButton = document.getElementById("btReload");
+        if (clicked) {
+          reloadButton.style.display = "block"; // Show the button
+        } else {
+          reloadButton.style.display = "none"; // Hide the button
+        }
 
         //create linkedNodesToClickedNode array to recreate the datasource
         if (clicked) {
