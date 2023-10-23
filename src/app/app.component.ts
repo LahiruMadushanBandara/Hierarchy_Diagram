@@ -555,10 +555,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             tools: [
               {
                 template: `
-               
+                
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar">
                 <h3 style="font-size: 20px; margin-bottom: 10px;" class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+                <div id="zoom-slider"></div>
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
+                
                     <div kendoTooltip position="bottom" [title]="'Risk View'">
                         <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
                             <span>Risk View</span>
@@ -630,6 +632,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           // click:  onNodeClick,
           // editable: false, 
         });
+
+        $("#zoom-slider").kendoSlider({
+          min: 0.02, // Minimum zoom level
+          max: 2,   // Maximum zoom level
+          smallStep: 0.01, // Small zoom increment
+          largeStep: 0.02, // Large zoom increment
+          value: 0.4,  // Initial zoom level
+          slide: function(e) {
+              var zoomLevel = e.value;
+              var diagram = $("#diagram").getKendoDiagram();
+              diagram.zoom(zoomLevel);
+          }
+      });
 
         
       // Get the button element and attach the click event listener
