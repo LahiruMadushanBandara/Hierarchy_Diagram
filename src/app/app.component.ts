@@ -211,7 +211,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                
               <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
                 <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-              
+                <div id="zoom-slider"></div>
+
               <div class="k-actions btn-row-bottom k-actions-end align-items-start Back">
                 <div kendoTooltip position="bottom" [title]="'Back'">
                   <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload" onClick="reloadDiagram()" style="display: none;">
@@ -337,7 +338,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           editable: true, 
         });
 
-      
+        $("#zoom-slider").kendoSlider({
+          min: 0.02, // Minimum zoom level
+          max: 2,   // Maximum zoom level
+          smallStep: 0.01, // Small zoom increment
+          largeStep: 0.02, // Large zoom increment
+          value: 0.4,  // Initial zoom level
+          slide: function(e) {
+              var zoomLevel = e.value;
+              var diagram = $("#diagram").getKendoDiagram();
+              diagram.zoom(zoomLevel);
+          }
+        });
   
         // Get the button element and attach the click event listener
 
