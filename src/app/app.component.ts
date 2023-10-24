@@ -732,154 +732,60 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-        function toggleExpand() {
-          isExpand = !isExpand;
-
-          const Expandbutton = document.getElementById('btExpandView');
-          Expandbutton.classList.toggle('active', isExpand);
-
-          var diagram = kendoDiagram.getKendoDiagram();
-         
-          diagram.refresh();
-
-
-        }
-
-        function toggleRiskview() {
-          if (isKpIview == false) {
-            isRiskView = !isRiskView;
-
-            const Riskbutton = document.getElementById('btRiskView');
-            Riskbutton.classList.toggle('active', isRiskView);
-
-
-            var diagram = kendoDiagram.getKendoDiagram();
-            var connectionsDataSource = diagram.connectionsDataSource;
-
-            if (isRiskView) {
-              // Clear connections that are not linked to nodes with header = riskExpand
-              var visibleConnections = diagram.connectionsDataSource
-                .data()
-                .filter(function (connection) {
-                  var fromNode = diagram.dataSource.get(connection.from);
-                  var toNode = diagram.dataSource.get(connection.to);
-                  return (
-                    (fromNode && fromNode.Header === 'LinkedRisk') ||
-                    (toNode && toNode.Header === 'LinkedRisk')
-                  );
-                });
-
-              // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource.data().slice();
-
-              // Clear all connections
-              connectionsDataSource.data([]);
-
-              // Re-add visible connections
-              connectionsDataSource.data(visibleConnections);
-            } else {
-              // Re-establish all the original connections
-              connectionsDataSource.data(originalConnections);
-            }
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          }
-        }
-
-        function toggleKPIview() {
-          if (isRiskView == false) {
-            isKpIview = !isKpIview;
-
-            const Kpidbutton = document.getElementById('btKpikView');
-            Kpidbutton.classList.toggle('active', isKpIview);
-
-            var diagram = kendoDiagram.getKendoDiagram();
-            var connectionsDataSource = diagram.connectionsDataSource;
-
-            if (isKpIview) {
-              // Clear connections that are not linked to nodes with header = riskExpand
-              var visibleConnections = diagram.connectionsDataSource
-                .data()
-                .filter(function (connection) {
-                  var fromNode = diagram.dataSource.get(connection.from);
-                  var toNode = diagram.dataSource.get(connection.to);
-                  return (
-                    (fromNode && fromNode.Header === 'KPI') ||
-                    (toNode && toNode.Header === 'KPI')
-                  );
-                });
-
-              // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource
-                .data()
-                .slice();
-
-              // Clear all connections
-              connectionsDataSource.data([]);
-
-              // Re-add visible connections
-              connectionsDataSource.data(visibleConnections);
-            } else {
-              // Re-establish all the original connections
-              connectionsDataSource.data(originalConnections);
-            }
-
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          }
-        }
-
-        function togglePerformanceview() {
-          isPerformanceView = !isPerformanceView;
-
-          const Performancebutton = document.getElementById('btPerformanceView');
-          Performancebutton.classList.toggle('active', isPerformanceView);
-
-          var diagram = kendoDiagram.getKendoDiagram();
-        
-          diagram.refresh();
-        }
-  
        
              
-          $("#toolbar").kendoToolBar({
-            items: [
-              {
-                template: `
+       
+        $("#toolbar").kendoToolBar({
+          items: [
+            {
+              template: `
                
-                <div class="kendo-tool-ber-button">
+              <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
                 <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
-                    <div kendoTooltip position="bottom" [title]="'Risk View'">
-                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
-                            <span>Risk View</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
-                            <span>Kpi View</span>
-                        </button>
-                    </div>
-                    <div kendoTooltip position="bottom" [title]="'Performance View'">
-                        <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
-                            <span>Performance View</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start Expand">
-                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
-                          <span>Expand</span>
-                      </button>
-                    </div>
-                </div>                 
+                <div id="zoom-slider"></div>
+
               
-               </div>
-                       
-                  `
-            },
-        ]})
+              <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
+
+              <div kendoTooltip position="bottom" [title]="'Back'">
+                <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload" onClick="reloadDiagram()" style="display: none;">
+                  <span>Back</span>
+                </button>
+              </div>
+                  <div kendoTooltip position="bottom" [title]="'Risk View'">
+                      <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
+                        <span>Risk View</span>
+                      </button>
+                  </div>
+                  <div kendoTooltip position="bottom" [title]="'Kpi View'">
+                      <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
+                          <span>Kpi View</span>
+                      </button>
+                  </div>
+                  <div kendoTooltip position="bottom" [title]="'Performance View'">
+                    <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
+                        <span>Performance View</span>
+                    </button>
+                  </div>
+                  <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+                    <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
+                      <span>Expand</span>
+                    </button>
+                  </div>
+              </div>
+              <div class="k-actions btn-row-bottom k-actions-end align-items-start Export">
+                <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                  <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                      <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                      <span>Export</span>
+                  </button>
+                </div>
+              </div>                 
+            </div>        
+                `
+          },
+      ]})
+  
     
       
       
@@ -969,21 +875,150 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
 
+        $("#zoom-slider").kendoSlider({
+          min: 0.02, // Minimum zoom level
+          max: 2,   // Maximum zoom level
+          smallStep: 0.01, // Small zoom increment
+          largeStep: 0.02, // Large zoom increment
+          value: 0.4,  // Initial zoom level
+          slide: function(e) {
+              var zoomLevel = e.value;
+              var diagram = $("#diagram").getKendoDiagram();
+              diagram.zoom(zoomLevel);
+          }
+        });
+  
         // Get the button element and attach the click event listener
 
-        var buttonExpand = document.getElementById('btExpandView');
-        buttonExpand.addEventListener('click', toggleExpand);
+       
 
-        var buttonRisk = document.getElementById('btRiskView');
-        buttonRisk.addEventListener('click', toggleRiskview);
+        $(".btn-Export").click(function() {
+          var diagram = $("#diagram").getKendoDiagram();
+          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function(data) {
+              kendo.saveAs({
+                  dataURI: data,
+                  fileName: "bow-tie-analysis.pdf"
+              });
+          });
+        });
 
-        var buttonKpi = document.getElementById('btKpikView');
-        buttonKpi.addEventListener('click', toggleKPIview);
+        $(".bt-Expand").click(function() {
+          console.log("isExpand",isExpand);
+          var diagram = $("#diagram").getKendoDiagram();
+          isExpand = !isExpand;
 
-        var buttonPerformance = document.getElementById('btPerformanceView');
-        buttonPerformance.addEventListener('click', togglePerformanceview);
+          const Expandbutton = document.getElementById('btExpandView');
+          Expandbutton.classList.toggle('active', isExpand);         
+          diagram.refresh();
+
+        });
 
 
+        $(".bt-Risk").click(function() {
+         
+          if (isKpIview == false) {
+            isRiskView = !isRiskView;
+
+            const Riskbutton = document.getElementById('btRiskView');
+            Riskbutton.classList.toggle('active', isRiskView);
+
+
+            var diagram = kendoDiagram.getKendoDiagram();
+            var connectionsDataSource = diagram.connectionsDataSource;
+
+            if (isRiskView) {
+              // Clear connections that are not linked to nodes with header = riskExpand
+              var visibleConnections = diagram.connectionsDataSource
+                .data()
+                .filter(function (connection) {
+                  var fromNode = diagram.dataSource.get(connection.from);
+                  var toNode = diagram.dataSource.get(connection.to);
+                  return (
+                    (fromNode && fromNode.Header === 'LinkedRisk') ||
+                    (toNode && toNode.Header === 'LinkedRisk')
+                  );
+                });
+
+              // Store the original connections before clearing them
+              originalConnections = diagram.connectionsDataSource.data().slice();
+
+              // Clear all connections
+              connectionsDataSource.data([]);
+
+              // Re-add visible connections
+              connectionsDataSource.data(visibleConnections);
+            } else {
+              // Re-establish all the original connections
+              connectionsDataSource.data(originalConnections);
+            }
+            diagram.bringIntoView(diagram.shapes);
+            diagram.refresh();
+          }
+        });
+
+
+        $(".bt-Kpi").click(function() {
+          if (isRiskView == false) {
+            isKpIview = !isKpIview;
+
+            const Kpidbutton = document.getElementById('btKpikView');
+            Kpidbutton.classList.toggle('active', isKpIview);
+
+            var diagram = kendoDiagram.getKendoDiagram();
+            var connectionsDataSource = diagram.connectionsDataSource;
+
+            if (isKpIview) {
+              // Clear connections that are not linked to nodes with header = riskExpand
+              var visibleConnections = diagram.connectionsDataSource
+                .data()
+                .filter(function (connection) {
+                  var fromNode = diagram.dataSource.get(connection.from);
+                  var toNode = diagram.dataSource.get(connection.to);
+                  return (
+                    (fromNode && fromNode.Header === 'KPI') ||
+                    (toNode && toNode.Header === 'KPI')
+                  );
+                });
+
+              // Store the original connections before clearing them
+              originalConnections = diagram.connectionsDataSource
+                .data()
+                .slice();
+
+              // Clear all connections
+              connectionsDataSource.data([]);
+
+              // Re-add visible connections
+              connectionsDataSource.data(visibleConnections);
+            } else {
+              // Re-establish all the original connections
+              connectionsDataSource.data(originalConnections);
+            }
+
+            diagram.bringIntoView(diagram.shapes);
+            diagram.refresh();
+          }
+
+        });
+
+        $(".bt-Performance").click(function() {
+          isPerformanceView = !isPerformanceView;
+
+          const Performancebutton = document.getElementById('btPerformanceView');
+          Performancebutton.classList.toggle('active', isPerformanceView);
+
+          var diagram = kendoDiagram.getKendoDiagram();
+        
+          diagram.refresh();
+        });
+
+        $(".bt-Reload").click(function() {
+          
+          location.reload();
+
+        });
+
+      
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
@@ -1012,100 +1047,122 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
     function onNodeClick(e) {
 
-      var clicked = true;
-      var clickedNodeId = e.item.dataItem.id;
-      var diagram = $('#diagram').getKendoDiagram();
-      var dataArray = diagram.dataSource.data();
-      var linkedNodesToClickedNode = [];
+      if (e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Compliance" || e.item.dataItem.Header == "Authority Document") {
+        var clickedNodeId = e.item.dataItem.id;
+        clicked = true;
+        var diagram = $('#diagram').getKendoDiagram();
+        var dataArray = diagram.dataSource.data();
+        var linkedNodesToClickedNode = [];
 
-      //create linkedNodesToClickedNode array to recreate the datasource
-      if (clicked) {
-        //push clicked node to the array 
-        linkedNodesToClickedNode.push(e.item.dataItem);
-        for (var i = 0; i < dataArray.length; i++) {
-          var node = dataArray[i];
-          var nodes = dataArrayoriginal[i];
 
-          // push nodes that are linked to clicked node
-          if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk") {
-            linkedNodesToClickedNode.push(node);
+        var reloadButton = document.getElementById("btReload");
+        if (clicked) {
+          reloadButton.style.display = "block"; // Show the button
+        } else {
+          reloadButton.style.display = "none"; // Hide the button
+        }
+
+        //create linkedNodesToClickedNode array to recreate the datasource
+        if (clicked) {
+
+          //push clicked node to the array 
+          linkedNodesToClickedNode.push(e.item.dataItem);
+          for (var i = 0; i < dataArray.length; i++) {
+            var node = dataArray[i];
+            var nodes = dataArrayoriginal[i];
+
+            // push nodes that are linked to clicked node
+            if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk") {
+              linkedNodesToClickedNode.push(node);
+            }
           }
         }
-      }
-      //update node placing
-      const originX = 0;
-      const originY = 0;
-      const horizontalSpacing = 720;
-      let riskRowNumber = 0.5;
-      let riskColumnNumber = 1;
-      let causeConsequenceRowNumber = 2;
-      let causeConsequenceColumnNumber = 1;
-      let otherNodesRowNumber = 1;
-      let otherNodesColumnNumber = 1;
-      let verticalSpacing = 520;
-      e.item.dataItem.x = 0;
-      e.item.dataItem.y = 0;
-      for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
-        //risk place left to clicked node
-        if (linkedNodesToClickedNode[i].Header == "Risk") {
-          linkedNodesToClickedNode[i].x = originX + riskColumnNumber * horizontalSpacing;
-          linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
-          riskColumnNumber++;
-          console.log("causeConsequenceColumnNumber risk", riskColumnNumber);
-        }
-        //causes and consequences placed left bottom to the clicked node
-        else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
-          linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
-          linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
-          causeConsequenceColumnNumber++;
-          console.log("causeConsequenceColumnNumber cause", causeConsequenceColumnNumber)
-        }
-        //all other nodes that linked to control placed right bottom of the clicked node
-        else {
-          linkedNodesToClickedNode[i].x = originX + otherNodesColumnNumber * horizontalSpacing;
-          linkedNodesToClickedNode[i].y = originY + otherNodesRowNumber * verticalSpacing;
-          otherNodesColumnNumber++;
-          console.log("causeConsequenceColumnNumber other", otherNodesColumnNumber)
-        }
 
-        if (riskColumnNumber > 4) {
-          riskRowNumber++;
+        //update node placing
+        const originX = 0;
+        const originY = 0;
+        const horizontalSpacing = 720;
+        let riskRowNumber = 0;
+        let riskColumnNumber = 1;      
+        let causeConsequenceColumnNumber = 0;       
+        let otherNodesColumnNumber = 0;
+        let verticalSpacing = 520;
+        var centralizedRiskNodes = []
+        e.item.dataItem.x = 0;
+        e.item.dataItem.y = 0;
+        for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+          
+         
+          if (linkedNodesToClickedNode[i].Header == "Risk") {
+            linkedNodesToClickedNode[i].x = originX + riskColumnNumber * horizontalSpacing;
+            linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
+            riskColumnNumber++;
+            centralizedRiskNodes.push(linkedNodesToClickedNode[i]);
+            console.log(centralizedRiskNodes);
+            var riskArrayLength = centralizedRiskNodes.length - 1;
+          }
+          
+          //causes and consequences placed left bottom to the clicked node
+          else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
+            let causeConsequenceRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
+         
+          //risk place left to clicked node
+            linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
+            linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
+            causeConsequenceColumnNumber++;
+            if (causeConsequenceColumnNumber > 4) {
+              causeConsequenceRowNumber++;
+            }
+           
+            console.log(causeConsequenceRowNumber);
+
+          }
+          //all other nodes that linked to control placed right bottom of the clicked node
+          else {
+            let otherNodesRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
+            linkedNodesToClickedNode[i].x = originX + otherNodesColumnNumber * horizontalSpacing;
+            linkedNodesToClickedNode[i].y = originY + otherNodesRowNumber * verticalSpacing;
+            otherNodesColumnNumber++;
+            if (otherNodesColumnNumber > 4) {
+              otherNodesRowNumber++;
+            }
+
+          }
+
+          if (riskColumnNumber > 4) {
+            riskRowNumber++;
+          }
+          
+         
+
         }
-        if (causeConsequenceColumnNumber > 4) {
-          causeConsequenceRowNumber++;
-        }
-        if (otherNodesColumnNumber > 4) {
-          otherNodesRowNumber++;
-        }
+        console.log(linkedNodesToClickedNode);
 
-      }
-
-
-      //rectreate the connection source
-      var connectionsDataSource = {
-        data: []
-      };
-
-      for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
-        var conObj = {
-
-          from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
-          to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+        //rectreate the connection source
+        var connectionsDataSource = {
+          data: []
         };
 
-        connectionsDataSource.data.push(conObj);
+        for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+          var conObj = {
+
+            from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+          };
+
+          connectionsDataSource.data.push(conObj);
+        }
+
+
+
+        // ReSet the data source and connections data source
+        e.sender.setDataSource(linkedNodesToClickedNode);
+        e.sender.setConnectionsDataSource(connectionsDataSource);
+
+
+        diagram.refresh();
+
       }
-
-
-
-      // ReSet the data source and connections data source
-      e.sender.setDataSource(linkedNodesToClickedNode);
-      e.sender.setConnectionsDataSource(connectionsDataSource);
-
-
-      diagram.refresh();
-      console.log(linkedNodesToClickedNode);
-
       return linkedNodesToClickedNode;
     }
 

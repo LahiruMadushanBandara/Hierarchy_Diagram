@@ -750,21 +750,25 @@ margin-left: 40px;
 
 
 
-/* 
-//css for header tool bar  */
+/*css for header tool bar  */
 
 
-
+#toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+ 
+}
 
 .top-bar {
 
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: white;
   width: 100% ;
-  min-height: 50px;
+  min-height: 40px;
   
 }
  
@@ -778,20 +782,27 @@ margin-left: 40px;
 
 .bt-analsys-header-txt {
   position: absolute;
-  top: 10%;
-  left: 10%;
+  top: 50%;
+  left: 6%;
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
-  font-size: 20px;
- 
-
- 
+  font-size: 20px; 
 }
 
-.Expand {
+/* .bt-Reload{
   position: absolute;
   top: 50%;
-  right: 0.1%;
-  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  right: 30%;
+  transform: translate(-50%, -50%); 
+  padding: 10px;
+  margin: 10px;
+  
+} */
+
+.Export {
+  position: absolute;
+  top: 50%;
+  right: -1%;
+  transform: translate(-50%, -50%); 
   padding: 10px;
  
 }
@@ -799,18 +810,16 @@ margin-left: 40px;
 .flex {
   position: absolute;
   top: 50%; /* Adjust vertically as needed for centering */
-  left: 50%; /* Adjust horizontally as needed for centering */
+  right: -4%; /* Adjust horizontally as needed for centering */
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
-  padding: 10px;
+  padding: 1px;
 
 }
 
 
 @media screen and (max-width: 500px) {
 
-  .k-toolbar {
-    height: auto;
-  }
+ 
 
   .top-bar {
       flex-direction: column;
@@ -833,7 +842,8 @@ margin-left: 40px;
 
   }
 
- 
+
+
   .flex {
       flex-direction: column;
       align-items: flex-start;
@@ -842,7 +852,7 @@ margin-left: 40px;
       width: 100%;
   }
 
-  .Expand {
+  .Export {
       flex-direction: column;
       align-items: flex-start;
       float: left;
