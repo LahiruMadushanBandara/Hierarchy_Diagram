@@ -126,6 +126,8 @@ export class BowTieDiagramHelper {
             rowNumbertypetwo++;
             rowNodeCount = 0;
             columnNumber = rowNodeCount;
+
+            console.log(typeTwoNodes);
           }
 
       }
@@ -175,14 +177,14 @@ export class BowTieDiagramHelper {
       
       //Arrange Risk node (in the middle)
       
-      if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0 && typeTwoNodes.length > typeThreeNodes.length){
+      if(typeTwoNodes.length!= 0  && typeTwoNodes.length > typeThreeNodes.length){
          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y;
       }
-      else if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length){
+      else if(typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length){
          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y;
       }
 
-      if(typeTwoNodes.length == 0 || typeThreeNodes.length == 0){
+      if(typeTwoNodes.length == 0 && typeThreeNodes.length == 0){
         let riskNodeX = originX;
         let riskNodeY = originY;
         riskNode.x = riskNodeX;

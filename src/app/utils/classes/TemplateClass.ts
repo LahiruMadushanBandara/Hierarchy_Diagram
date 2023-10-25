@@ -442,10 +442,10 @@ export class TemplateClass {
               (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</h4>" +
         "</div>" +
-        "<div class='bow-tie-extra-card-body'>\\" +
-          "<p> <b>" +
+        "<div class='bow-tie-extra-card-body'>" +
+        "<p class='bow-tie-htmlTemplate'> \\" +  
               contentDetails.htmlTemplate +
-          " </b> </p>" +
+          "</p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
               "<span class='bow-tie-unit-text'>" +
@@ -477,7 +477,7 @@ export class TemplateClass {
               "</div>" +
           "</div>" +
           "<div class='bow-tie-performance-flex'>" +
-            "<span class='bow-tie-performance-text' >Performance</span>" +
+            "<span class='bow-tie-performance-text'>"+ "Performance</span>" +
             `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'></span>`+
             `<span class="bow-tie-performance-rating">${contentDetails.KPIData.Performance ?? 'NotAvailable'}</span>`+
           "</div>" +

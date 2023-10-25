@@ -81,26 +81,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               }
             },
       
-            {
-              "Id": 19,
-              "Type": 2,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
-              "Rating": "",
-              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-              "ControlData": {
-      
-                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-                "ControlOwner": "Joe Smith",
-                "ControlOwnerRating":"Largely Ineffective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": true,
-                "ControlOwnerRatingImage":""
-              }
-        },
       
        {
               "Id": 23,
@@ -113,48 +93,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "LinkedControlIds":[19,22]
       
             },
-            {
-              "Id": 22,
-              "Type": 2,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
-              "Rating": "",
-              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-              "ControlData": {
-      
-                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-                "ControlOwner": "Joe Smith",
-                "ControlOwnerRating":"Largely Ineffective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": true,
-                "ControlOwnerRatingImage":""
-              }
-        },
-        
-        {
-          "Id": 28,
-          "Type": 2,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-          "ControlData": {
-  
-            "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-            "ControlOwner": "Joe Smith",
-            "ControlOwnerRating":"Largely Ineffective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": true,
-            "ControlOwnerRatingImage":""
-          }
-    },
-     
+           
   
       
        {
@@ -171,44 +110,57 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       
             
-      
-      
-        {
-              "Id": 3,
-              "Type": 3,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
+            {
+              "Id": 17,
+              "Type": 2,
+              "ParentNodeId": 19,
+              "Title": "Cause Node",
+              "Header": "Cause",
               "Rating": "",
-              "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
-              "ControlData": {
+              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
+              "LinkedControlIds":[22,28]
       
-                "ControlTitle": "Prioritize critical business functions",
-                "ControlOwner": "Madeline Jones",
-                "ControlOwnerRating":"Partially Effective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": false,
-                "ControlOwnerRatingImage":""
-                
-              }
-        },
-
-        {
-          "Id": 33,
-          "Type": 3,
-          "ParentNodeId": 3,
-          "Title": "Consequences Node",
-          "Header": "Consequence",
-          "Rating": "",
-          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-          "LinkedControlIds":[3]
-
-        },
+            },
       
-      {
-              "Id": 500,
+
+            {
+              "Id": 18,
+              "Type": 2,
+              "ParentNodeId": 19,
+              "Title": "Cause Node",
+              "Header": "Cause",
+              "Rating": "",
+              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
+              "LinkedControlIds":[22,28]
+      
+            },
+       
+            {
+              "Id": 19,
+              "Type": 2,
+              "ParentNodeId": 19,
+              "Title": "Cause Node",
+              "Header": "Cause",
+              "Rating": "",
+              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
+              "LinkedControlIds":[22,28]
+      
+            },
+
+            {
+              "Id": 20,
+              "Type": 2,
+              "ParentNodeId": 19,
+              "Title": "Cause Node",
+              "Header": "Cause",
+              "Rating": "",
+              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
+              "LinkedControlIds":[22,28]
+      
+            },
+
+            {
+              "Id": 3,
               "Type": 3,
               "ParentNodeId": 0,
               "Title": "Control Node",
@@ -227,23 +179,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ControlOwnerRatingImage":""
               }
      },
-      
-       
-       
-        {
-          "Id": 81,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Consequences Node",
-          "Header": "Consequence",
-          "Rating": "",
-          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-          "LinkedControlIds":[]
 
-        },
+            {
+              "Id": 33,
+              "Type": 3,
+              "ParentNodeId": 3,
+              "Title": "Consequences Node",
+              "Header": "Consequence",
+              "Rating": "",
+              "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+              "LinkedControlIds":[3]
+    
+            },
+          
         
-      
-
+          
          
         {
               "Id": 201,
@@ -330,177 +280,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ResponsibleManagerProfilePic":""
               }
             },
-            {
-              "Id": 205,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 206,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 207,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 208,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 209,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 210,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 211,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 212,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
+            
        {
               "Id": 182,
               "Type": 4,
@@ -508,7 +288,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "Title": "Other Node",
               "Header": "KPI",
               "Rating": "",
-              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+              "htmlTemplate": "#Number of ISP outages",
               "KPIData":{
                 "RiskLinkId":2078,
                 "KpiIntId":12,
@@ -536,7 +316,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "KpiIntId":12,
                 "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
                 "KPITitle":"% reduction in non-clinically indicated surgery",
-                "Unit":"#",
+                "Unit":"%",
                 "ReportingPeriod":"Month",
                 "Actual":21,
                 "Target":20,
@@ -545,29 +325,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "Performance":""
               }
             },
-            {
-              "Id": 184,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "KPI",
-              "Rating": "",
-              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
-              "KPIData":{
-                "RiskLinkId":2078,
-                "KpiIntId":12,
-                "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
-                "KPITitle":"% reduction in non-clinically indicated surgery",
-                "Unit":"#",
-                "ReportingPeriod":"Month",
-                "Actual":21,
-                "Target":20,
-                "PerformanceImg":"Monitor",
-                "TrendImg":"Not Applicable",
-                "Performance":""
-              }
-            },
-          
+           
     ]
     
     var tempTitleDetail = '';
@@ -724,63 +482,57 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
         }
 
-
-
-
-
-
-
-
-
-       
-             
-       
+    
         $("#toolbar").kendoToolBar({
           items: [
             {
               template: `
-               
+
               <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
                 <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-                <div id="zoom-slider"></div>
 
-              
-              <div class="k-actions btn-row-bottom k-actions-end align-items-start flex">
-
-              <div kendoTooltip position="bottom" [title]="'Back'">
-                <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload" onClick="reloadDiagram()" style="display: none;">
-                  <span>Back</span>
-                </button>
-              </div>
-                  <div kendoTooltip position="bottom" [title]="'Risk View'">
-                      <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" onClick="toggleRiskview()">
-                        <span>Risk View</span>
-                      </button>
-                  </div>
-                  <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                      <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" onClick="toggleKPIview()">
-                          <span>Kpi View</span>
-                      </button>
-                  </div>
-                  <div kendoTooltip position="bottom" [title]="'Performance View'">
-                    <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" onClick="togglePerformanceview()">
-                        <span>Performance View</span>
-                    </button>
-                  </div>
-                  <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                    <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" onClick="toggleExpand()">
-                      <span>Expand</span>
-                    </button>
-                  </div>
-              </div>
-              <div class="k-actions btn-row-bottom k-actions-end align-items-start Export">
-                <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-                  <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
-                      <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                      <span>Export</span>
-                  </button>
+                <div kendoTooltip position="bottom" [title]="'Slider'">
+                  <div id="zoom-slider" class="slider">
+                  </div>  
                 </div>
-              </div>                 
+
+                <div kendoTooltip position="bottom" [title]="'Back'">
+                    <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+                      <span>Back</span>
+                    </button>
+                </div>
+
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
+                    <div kendoTooltip position="bottom" [title]="'Risk View'">
+                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
+                          <span>Risk View</span>
+                        </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
+                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
+                            <span>Kpi View</span>
+                        </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Performance View'">
+                      <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
+                          <span>Performance View</span>
+                      </button>
+                    </div>
+                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" >
+                        <span>Expand</span>
+                      </button>
+                    </div>
+                </div>
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start Export">
+                  <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                    <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                        <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                        <span>Export</span>
+                    </button>
+                  </div>
+                </div>  
+                            
             </div>        
                 `
           },
@@ -788,9 +540,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   
     
       
-      
-      
-
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -802,7 +551,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   Type: { type: 'number' },
                   Color: { type: 'string' },
                 },
-                isExpanded: isExpanded
+                isExpanded:isExpanded
               },
             },
             change: function (ev) {
@@ -824,7 +573,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             },
           },
           connectionsDataSource: {
-
             data: dataConnections,
             schema: {
               model: {
@@ -841,14 +589,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           },
-         
-
+          
           shapeDefaults: {
             stroke: {
               color: '#979797',
               width: 10,
             },
-            visual: function (options) {
+            visual: function(options){
               return visualTemplate(options)
             },
           },
@@ -869,11 +616,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           cancel: onCancel,
 
           layout: false,
-
           click: onNodeClick,
           editable: true, 
         });
 
+        // Get the button element and attach the click event listener
 
         $("#zoom-slider").kendoSlider({
           min: 0.02, // Minimum zoom level
@@ -882,15 +629,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           largeStep: 0.02, // Large zoom increment
           value: 0.4,  // Initial zoom level
           slide: function(e) {
-              var zoomLevel = e.value;
-              var diagram = $("#diagram").getKendoDiagram();
-              diagram.zoom(zoomLevel);
-          }
+            var zoomLevel = e.value;
+            var diagram = $("#diagram").getKendoDiagram();
+            diagram.zoom(zoomLevel);
+        }
         });
-  
-        // Get the button element and attach the click event listener
-
-       
+      
 
         $(".btn-Export").click(function() {
           var diagram = $("#diagram").getKendoDiagram();
@@ -903,7 +647,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         $(".bt-Expand").click(function() {
-          console.log("isExpand",isExpand);
+         ;
           var diagram = $("#diagram").getKendoDiagram();
           isExpand = !isExpand;
 
@@ -1019,6 +763,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
       
+
+
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
@@ -1057,7 +803,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         var reloadButton = document.getElementById("btReload");
         if (clicked) {
-          reloadButton.style.display = "block"; // Show the button
+          reloadButton.style.display = "flex"; // Show the button
         } else {
           reloadButton.style.display = "none"; // Hide the button
         }
@@ -1165,7 +911,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
       return linkedNodesToClickedNode;
     }
-
 
 
   }
