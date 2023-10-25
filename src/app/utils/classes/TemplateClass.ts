@@ -103,7 +103,7 @@ export class TemplateClass {
           "<div class='bow-tie-risk-card-body'>" +
             "<div class='row'>" +
               "<div class='column'>" +
-                "<p><b>Inherent Rating</b></p>" +
+                "<p> Inherent Rating </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                           "<img class='bow-tie-risk-rating-details-image'"+
                             "src='"+ contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -113,7 +113,7 @@ export class TemplateClass {
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
-                "<p><b>Revised Rating</b></p>" +
+                "<p> Revised Rating  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
                           "src='"+ contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -125,7 +125,7 @@ export class TemplateClass {
             "</div>" +
             "<div class='row'>" +
               "<div class='column'>" +
-                "<p><b>Future Rating</b></p>" +
+                "<p>Future Rating</p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
                           "src='"+ contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -135,7 +135,7 @@ export class TemplateClass {
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
-                "<p><b>Risk Appetite</b></p>" +
+                "<p> Risk Appetite  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
                           "src='"+ contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -149,13 +149,13 @@ export class TemplateClass {
           "<div class='bow-tie-risk-card-footer'>" +
             "<div class='row'>" +
               "<div class='bow-tie-risk-footer-details'>" +
-                "<p><b>Risk Category</b></p>"+
+                "<p>Risk Category</p>"+
                 "<p class= 'bow-tie-risk-category'>"+
                  contentDetails.RiskData.Category+
                 "</p>" +
               "</div>" +
             "<div class='bow-tie-risk-footer-details-responsible'>" +
-              "<p class='bow-tie-risk-responsible-manager'><b>Responsible Manager</b></p>" +
+              "<p class='bow-tie-risk-responsible-manager'> Responsible Manager  </p>" +
               "<p class='bow-tie-risk-rating-details'>" +
                 "<img class='bow-tie-risk-rating-details-image'"+
                             "src='"+ contentDetails.RiskData.profileImageUrl.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity +"'"+
@@ -235,13 +235,13 @@ export class TemplateClass {
               'Due Date' +
             "</span>" +
             "<p class='bow-tie-date'>" +
-              "<b>11March,2020</b>" +
+              " 11March,2020  " +
             "</p>" +
           "</p>" +
           "<p class='bow-tie-treatment-expand-owner' >Owner</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
             "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
-            "<span class='bow-tie-incident-expand-responsible-officer-name'><b>Talia Gisbon</b></span>" +
+            "<span class='bow-tie-incident-expand-responsible-officer-name'> Talia Gisbon  </span>" +
           "</p>" +
           "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
             'Complete' +
@@ -267,16 +267,16 @@ export class TemplateClass {
           "</p>" +
         "</div>" +
         "<div class='bow-tie-risk-card-header-expand'>" +
-           "<p class='bow-tie-risk-card-header-text-expand'> <b>"+
+           "<p class='bow-tie-risk-card-header-text-expand'>  "+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
               contentDetails.htmlTemplate+
-            " </b></p> " +
+            "   </p> " +
           "</div>" +
           "<div class='bow-tie-risk-card-body-expand'>" +
             "<div class='row'>" +
               "<div class='column'>" +
-                "<p><b>Inherent Rating</b></p>" +
+                "<p> Inherent Rating  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
                             "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -286,7 +286,7 @@ export class TemplateClass {
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
-                "<p><b>Revised Rating</b></p>" +
+                "<p> Revised Rating  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
                             "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -298,7 +298,7 @@ export class TemplateClass {
             "</div>" +
             "<div class='row'>" +
               "<div class='column'>" +
-                "<p><b>Future Rating</b></p>" +
+                "<p> Future Rating  </p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
                             "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -308,7 +308,7 @@ export class TemplateClass {
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
-                "<p><b>Risk Appetite</b></p>" +
+                "<p> Risk Appetite  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
                             "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -323,13 +323,13 @@ export class TemplateClass {
         "<div class='bow-tie-risk-card-footer-expand'>" +
         "<div class='row'>" +
         "<div class='bow-tie-risk-footer-details'>" +
-          "<p><b>Risk Category</b></p>"+
+          "<p> Risk Category  </p>"+
           "<p class= 'bow-tie-risk-category'>"+
            contentDetails.LinkedRiskData.Category+
           "</p>" +
         "</div>" +
       "<div class='bow-tie-risk-footer-details-responsible'>" +
-        "<p><b>Responsible Manager</b></p>" +
+        "<p> Responsible Manager  </p>" +
         "<p class='bow-tie-risk-rating-details'>" +
           "<img class='bow-tie-risk-rating-details-image'"+
                       "src='"+ contentDetails.LinkedRiskData.profileImageUrl.changingThisBreaksApplicationSecurity +"'"+
@@ -352,17 +352,17 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p> <b>" +
+          "<p>  " +
              contentDetails.htmlTemplate +
-          " </b><p>" +
+          "   <p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
           "<p class='bow-tie-responsible-officer'>" +
             "<img class='bow-tie-control-owner-image'"+
             "src='"+ contentDetails.IncidentData.ReportedOfficerImageUrl.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-control-owner-name'>"+
-              "<b>"+
+              " "+
                 contentDetails.IncidentData.ReportedOfficerName+
-              "</b>"+
+              "  "+
             "</span>" +
             
           "</p>" +
@@ -371,17 +371,17 @@ export class TemplateClass {
               "<img class='bow-tie-incident-expand-responsible-officer-image'"+
               "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
-              "<b>"+
+              " "+
                 contentDetails.IncidentData.ResponsiblePerson+
-              "</b>"+
+              "  "+
             "</span>" +
           "</p>" +
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
             'Reported Date/Time' +
             "<p class='bow-tie-incident-expand-reported-date'>" +
-              "<b>"+
+              " "+
                 contentDetails.IncidentData.ReportedDate+
-              "</b>" +
+              "  " +
             "</p>" +
           "</p>" +
         "</div>" +
@@ -398,25 +398,25 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p> <b>" +
+          "<p>  " +
             contentDetails.htmlTemplate +
-          " </b><p>" +
+          "   <p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Responsible Officer</p>" +
           "<p class='bow-tie-responsible-officer'>" +
             "<img class='bow-tie-control-owner-image'"+
               "src='"+ contentDetails.ComplianceData.ROImage.changingThisBreaksApplicationSecurity+"'"+
               "<span class='bow-tie-control-owner-name'>"+
-              "<b>"+
+              " "+
                 contentDetails.ComplianceData.ResponsibleOfficer+
-              "</b>"+
+              "  "+
             "</span>" +
           "</p>" +
           "<p class='bow-tie-compliance-status'>" +
             'Compliance Status' +
             "<p class='bow-tie-incident-expand-reported-date'>" +
-              "<b>"+
+              " "+
                 contentDetails.ComplianceData?.ReviewStatus+
-              "</b>"+
+              "  "+
             "</p>" +
           "</p>" +
         "</div>" +
@@ -455,13 +455,13 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
-          "<p> <b> \\" +
+          "<p>   \\" +
               contentDetails.htmlTemplate +
-          " </b> </p>" +
+          "    </p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
               "<span class='bow-tie-unit-text'>" +
-                "<b>Unit</b>" +
+                " Unit  " +
               "</span>" +
               "<span class='bow-tie-unit-symbol'>\\"+
              
@@ -473,7 +473,7 @@ export class TemplateClass {
           "<div class='bow-tie-unit-details' >" +
             "<div class='bow-tie-actual-flex'>" +
               "<span class='bow-tie-actual-text'>" +
-                "<b>Actual</b>" +
+                " Actual  " +
               "</span>" +
               "<span class='bow-tie-actual-value'>"+ 
                 contentDetails.KpiData.Actual +
@@ -481,7 +481,7 @@ export class TemplateClass {
             "</div>" +
               "<div class='bow-tie-target-flex'>" +
                 "<span class='bow-tie-target-text'>" +
-                  "<b>Target</b>" +
+                  " Target  " +
                 "</span>" +
                 "<span class='bow-tie-target-value'>"+                
                    contentDetails.KpiData.Target  +
@@ -513,9 +513,9 @@ export class TemplateClass {
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
           'Reported Date/Time' +
           "<p class='bow-tie-incident-expand-reported-date'>" +
-            "<b>"+
+            " "+
               contentDetails.AuditData.AuditDate+
-            "</b>" +
+            "  " +
           "</p>" +
            "</p>" +
         "</div>" +
@@ -540,7 +540,7 @@ export class TemplateClass {
       'Hierarchy Name:' +
       "</span>" +
       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>path:</b>" +
+      " path:  " +
       "</p>" +
       "</p>" +
       "</div>" +
@@ -558,17 +558,17 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p> <b>" +
+          "<p>  " +
             contentDetails.htmlTemplate +
-          " </b><p>" +
+          "   <p>" +
           "<p class='bow-tie-authority-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
               "<img class='bow-tie-incident-expand-responsible-officer-image'"+
               "src='"+ contentDetails.AuthorityDocumentData.ROImage.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
-              "<b>"+
+              " "+
                 contentDetails.AuthorityDocumentData.ResponsibleOfficer+
-              "</b>"+
+              "  "+
             "</span>" +
           "</p>" +
         "</div>" +
@@ -593,7 +593,7 @@ export class TemplateClass {
       'Type:' +
       "</span>" +
       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>Responsible Ofiicer:</b>" +
+      " Responsible Ofiicer:  " +
       "</p>" +
       "</p>" +
       "</div>" +

@@ -200,7 +200,7 @@ export class BowTieDiagramHelper {
     
     //if type two nodes are more than type three and less than 6 then place risk at the end else place risk second last row
 
-      if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length){
+      if(typeTwoNodes.length!= 0 && typeTwoNodes.length >= typeThreeNodes.length){
           if(typeTwoNodes.length < 6 && typeTwoNodes.length != 0  ){
 
             riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
@@ -215,7 +215,7 @@ export class BowTieDiagramHelper {
 
     //if type three nodes are more than type two and less than 6 then place risk at the end else place risk second last row
 
-      else if(typeTwoNodes.length!= 0 && typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length){
+      else if(typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length){
 
           if(typeThreeNodes.length < 6 && typeThreeNodes.length != 0  ){
 
