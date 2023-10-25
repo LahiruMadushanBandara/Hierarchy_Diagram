@@ -12,7 +12,7 @@ export class TemplateClass {
     
     return (
       "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
-        "<div class='bow-tie-control-card-header' "+ styles +">" +
+        "<div class='bow-tie-control-card-header'>" +
           "<h4>" +
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</h4>" +
