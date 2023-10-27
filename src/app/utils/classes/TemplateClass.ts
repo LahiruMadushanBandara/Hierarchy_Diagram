@@ -35,7 +35,7 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='Bow-tie-Other-card-body'>" +
-        "<p class='bow-tie-htmlTemplate'>" +  
+        "<p class='bow-tie-htmlTemplate'>\\" +  
              contentDetails.htmlTemplate +
         "</p>" +
         "</div>" +
@@ -103,7 +103,7 @@ export class TemplateClass {
           "<div class='bow-tie-risk-card-body'>" +
             "<div class='row'>" +
               "<div class='column'>" +
-                "<p> Inherent Rating </p>" +
+                "<p class ='ratings'> Inherent Rating </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                           "<img class='bow-tie-risk-rating-details-image'"+
                             "src='"+ contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -113,7 +113,7 @@ export class TemplateClass {
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
-                "<p> Revised Rating  </p>" +
+                "<p class ='ratings'> Revised Rating  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
                           "src='"+ contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -125,7 +125,7 @@ export class TemplateClass {
             "</div>" +
             "<div class='row'>" +
               "<div class='column'>" +
-                "<p>Future Rating</p>" +
+                "<p class ='ratings'>Future Rating</p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
                           "src='"+ contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -135,7 +135,7 @@ export class TemplateClass {
                 "</p>" +
               "</div>" +
               "<div class='column'>" +
-                "<p> Risk Appetite  </p>" +
+                "<p class ='ratings'> Risk Appetite  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
                           "src='"+ contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
@@ -149,7 +149,7 @@ export class TemplateClass {
           "<div class='bow-tie-risk-card-footer'>" +
             "<div class='row'>" +
               "<div class='bow-tie-risk-footer-details'>" +
-                "<p>Risk Category</p>"+
+                "<p class ='ratings'>Risk Category</p>"+
                 "<p class= 'bow-tie-risk-category'>"+
                  contentDetails.RiskData.Category+
                 "</p>" +
@@ -455,7 +455,7 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
-          "<p>   \\" +
+          "<p>\\" +
               contentDetails.htmlTemplate +
           "    </p>" +
           "<div class='bow-tie-kpi'>" +

@@ -206,7 +206,7 @@ export class BowTieDiagramHelper {
             riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
 
           }
-          else if(typeTwoNodes.length <= 6 && typeTwoNodes.length != 0 ){
+          else if(typeTwoNodes.length >= 6 && typeTwoNodes.length != 0 ){
 
             riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y;
 
@@ -222,7 +222,7 @@ export class BowTieDiagramHelper {
             riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
 
           }
-          else if(typeThreeNodes.length <= 6 && typeThreeNodes.length != 0 ){
+          else if(typeThreeNodes.length >= 6 && typeThreeNodes.length != 0 ){
 
             riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y;
 
