@@ -35,7 +35,7 @@ export class TemplateClass {
           "</h4>" +
         "</div>" +
         "<div class='Bow-tie-Other-card-body'>" +
-          "<p>" +
+          "<p>\\" +
              contentDetails.htmlTemplate +
           "</p>" +
         "</div>" +
