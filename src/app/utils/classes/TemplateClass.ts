@@ -12,13 +12,13 @@ export class TemplateClass {
     
     return (
       "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
-        "<div class='bow-tie-control-card-header'>" +
-          "<h4>" +
+        "<div class='bow-tie-control-card-header' "+ styles +">" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-control-card-body' >" +
-        "<p class='bow-tie-htmlTemplate' >" +
+        "<p class='bow-tie-htmlTemplate'>\\" +
           contentDetails.htmlTemplate +
         "</p>" +
         "</div>" +
@@ -30,9 +30,9 @@ export class TemplateClass {
     return (
       "<div class='Bow-tie-Other-card-content rounded'>" +
         "<div class='Bow-tie-Other-card-header'>" +
-          "<h4>" +
+         
              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='Bow-tie-Other-card-body'>" +
         "<p class='bow-tie-htmlTemplate'>\\" +  
@@ -47,11 +47,11 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
-        "<div class='bow-tie-cause-card-body'>" +
+        "<div class='bow-tie-cause-card-body'>\\" +
           "<p>" +
               contentDetails.htmlTemplate +
           "</p>" +
@@ -64,11 +64,11 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
-          "<h4>" +
+         
               (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
-        "<div class='bow-tie-cause-card-body' >" +
+        "<div class='bow-tie-cause-card-body' >\\" +
           "<p>" +
               contentDetails.htmlTemplate +
           "</p>" +
@@ -88,13 +88,13 @@ export class TemplateClass {
       "<div class='bow-tie-risk-card-content rounded'>" +
           "<div class='bow-tie-risk-card-header-top' >" +
             "<p class='bow-tie-risk-card-header-top-text'>" +
-            "<h4>" +
+           
                 (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-            "</h4>" +
+           
             "</p>" +
           "</div>" +
           "<div class='bow-tie-risk-card-header'>" +
-            "<p class='bow-tie-risk-card-header-text'>"+
+            "<p class='bow-tie-risk-card-header-text'>\\"+
               contentDetails.RiskData.RiskCode+ 
               "-"+
               contentDetails.htmlTemplate+
@@ -178,34 +178,34 @@ export class TemplateClass {
    
     return (
       "<div class='bow-tie-extra-card-content rounded'"+ styles +" >" +
-        "<div class='bow-tie-control-card-header' >" +
+        "<div class='bow-tie-control-card-header' "+ styles +" >" +
           "<h4 >" +
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
-        "<div class='bow-tie-extra-card-body' >" +
-          "<p class='bow-tie-htmlTemplate'>" +            
+        "<div class='bow-tie-extra-card-body'>" +
+          "<p class='bow-tie-htmlTemplate'>\\" +            
               contentDetails.htmlTemplate +        
           "</p>" +
           "<p class='bow-tie-control-type-details'>" +
-            "<span class='bow-tie-control-type'>" +
+            "<span class='bow-tie-control-type' "+ styles +">" +
               "Control Type" +
             "</span>" +
-            "<p class='bow-tie-control-type-text'>" +
+            "<p class='bow-tie-control-type-text' "+ styles +">" +
             "Preventive " +
             "</p>" +
           "</p>" +
-          "<p class='bow-tie-control-owner'>Control Owner</p>" +
-          "<p class='bow-tie-control-owner-details'>" +
+          "<p class='bow-tie-control-owner' "+ styles +">Control Owner</p>" +
+          "<p class='bow-tie-control-owner-details' "+ styles +">" +
             "<img class ='bow-tie-control-owner-image'"+
                "src='"+ contentDetails.ControlData.ControlOwnerImageUrl.changingThisBreaksApplicationSecurity +"'"+
             "<span class='bow-tie-control-owner-name'>"+
               contentDetails.ControlData.ControlOwner +
             "</span>" +
           "</p>" +
-          "<p class='bow-tie-control-owner-rating'>" +
+          "<p class='bow-tie-control-owner-rating' "+ styles +">" +
           "Control Owner Rating" +
-          "<p class='bow-tie-control-owner-rating-details'>" +
+          "<p class='bow-tie-control-owner-rating-details' "+ styles +">" +
             "<img class='bow-tie-control-owner-rating-icon'"+
                             "src='"+ contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity +"'"+
             "<span class='bow-tie-control-owner-rating-name'>"+
@@ -222,12 +222,12 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded''>" +
         "<div class='bow-tie-extra-card-header''>" +
-          "<h4>" +
+         
               (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p>" +
+          "<p class='bow-tie-htmlTemplate'>\\" +
               contentDetails.htmlTemplate +
           "</p>" +
           "<p class='bow-tie-details-name'>" +
@@ -261,18 +261,18 @@ export class TemplateClass {
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
         "<p class='bow-tie-risk-card-header-top-text'>" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
           "</p>" +
         "</div>" +
         "<div class='bow-tie-risk-card-header-expand'>" +
-           "<p class='bow-tie-risk-card-header-text-expand'>  "+
+           "<p class='bow-tie-risk-card-header-text-expand'>\\"+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
               contentDetails.htmlTemplate+
             "   </p> " +
-          "</div>" +
+        "</div>" +
           "<div class='bow-tie-risk-card-body-expand'>" +
             "<div class='row'>" +
               "<div class='column'>" +
@@ -347,22 +347,22 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p>  " +
+          "<p class='bow-tie-htmlTemplate'>\\" +
              contentDetails.htmlTemplate +
-          "   <p>" +
+          "<p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
           "<p class='bow-tie-responsible-officer'>" +
             "<img class='bow-tie-control-owner-image'"+
             "src='"+ contentDetails.IncidentData.ReportedOfficerImageUrl.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-control-owner-name'>"+
-              " "+
+              
                 contentDetails.IncidentData.ReportedOfficerName+
-              "  "+
+            
             "</span>" +
             
           "</p>" +
@@ -371,17 +371,17 @@ export class TemplateClass {
               "<img class='bow-tie-incident-expand-responsible-officer-image'"+
               "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
-              " "+
+             
                 contentDetails.IncidentData.ResponsiblePerson+
-              "  "+
+             
             "</span>" +
           "</p>" +
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
             'Reported Date/Time' +
             "<p class='bow-tie-incident-expand-reported-date'>" +
-              " "+
+            
                 contentDetails.IncidentData.ReportedDate+
-              "  " +
+             
             "</p>" +
           "</p>" +
         "</div>" +
@@ -393,20 +393,20 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p>  " +
+          "<p class='bow-tie-htmlTemplate'>'\\" +
             contentDetails.htmlTemplate +
-          "   <p>" +
+          "<p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Responsible Officer</p>" +
           "<p class='bow-tie-responsible-officer'>" +
             "<img class='bow-tie-control-owner-image'"+
               "src='"+ contentDetails.ComplianceData.ROImage.changingThisBreaksApplicationSecurity+"'"+
               "<span class='bow-tie-control-owner-name'>"+
-              " "+
+              
                 contentDetails.ComplianceData.ResponsibleOfficer+
               "  "+
             "</span>" +
@@ -414,7 +414,7 @@ export class TemplateClass {
           "<p class='bow-tie-compliance-status'>" +
             'Compliance Status' +
             "<p class='bow-tie-incident-expand-reported-date'>" +
-              " "+
+              
                 contentDetails.ComplianceData?.ReviewStatus+
               "  "+
             "</p>" +
@@ -450,14 +450,14 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-          "<h4>" +
+         
               (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
-          "<p>\\" +
+          "<p class='bow-tie-htmlTemplate'>\\" +
               contentDetails.htmlTemplate +
-          "    </p>" +
+          " </p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
               "<span class='bow-tie-unit-text'>" +
@@ -502,18 +502,18 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p>" +
+          "<p class='bow-tie-htmlTemplate'>\\" +
              contentDetails.htmlTemplate +
           "</p>" +
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
           'Reported Date/Time' +
           "<p class='bow-tie-incident-expand-reported-date'>" +
-            " "+
+            
               contentDetails.AuditData.AuditDate+
             "  " +
           "</p>" +
@@ -527,12 +527,12 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
       "<div class='bow-tie-extra-card-header'>" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body' >" +
-      "<p>" +
+      "<p class='bow-tie-htmlTemplate'>\\" +
       contentDetails.htmlTemplate +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
@@ -553,20 +553,20 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p>  " +
+          "<p class='bow-tie-htmlTemplate'>\\" +
             contentDetails.htmlTemplate +
-          "   <p>" +
+          "<p>" +
           "<p class='bow-tie-authority-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
               "<img class='bow-tie-incident-expand-responsible-officer-image'"+
               "src='"+ contentDetails.AuthorityDocumentData.ROImage.changingThisBreaksApplicationSecurity+"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
-              " "+
+              
                 contentDetails.AuthorityDocumentData.ResponsibleOfficer+
               "  "+
             "</span>" +
@@ -580,12 +580,12 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
-      "<p>" +
+      "<p class='bow-tie-htmlTemplate'>\\" +
       contentDetails.htmlTemplate +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
@@ -605,12 +605,12 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
-      "<p>" +
+      "<p class='bow-tie-htmlTemplate'>\\" +
       contentDetails.htmlTemplate +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
@@ -626,21 +626,24 @@ export class TemplateClass {
   public GetAuditFindingExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header' >" +
-      "<h4>" +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
-      "<div class='bow-tie-extra-card-body' >" +
-      "<p>" +
-      contentDetails.htmlTemplate +
-      "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Name of the audit finding:' +
-      "</span>" +
-      "</p>" +
-      "</div>" +
+        "<div class='bow-tie-extra-card-header' >" +
+         
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+         
+        "</div>" +
+        "<div class='bow-tie-extra-card-body' >" +
+          "<p class='bow-tie-'htmlTemplate'>\\" +
+          contentDetails.htmlTemplate +
+          "</p>" +
+          "<p class='bow-tie-incident-expand-reported-date-time'>" +
+          "Audit Date" +
+          "<p class='bow-tie-incident-expand-reported-date'>" +
+            
+              contentDetails.AuditData.AuditDate+
+            
+           "</p>" +
+          "</p>" +
+        "</div>" +
       "</div>"
     );
   }

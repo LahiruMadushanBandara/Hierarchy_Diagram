@@ -240,10 +240,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                       </button>
                     </div>
                     <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" >
-                        <span>Expand</span>
-                      </button>
-                    </div>
+                    <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
+                      <img src="/assets/bow-tie/icon/expand-icon.png" alt="Expand Icon" class="expand-icon">
+                      <span>Expand</span>                      
+                    </button>
+                  </div>
                 </div>
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start Export">
                   <div kendoTooltip position="bottom" [title]="'Export Diagram'">

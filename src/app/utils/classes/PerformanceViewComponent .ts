@@ -8,14 +8,14 @@ export class PerformanceView {
 
     enum PerfoemanceViewStyle {
 
-      strong = "style='background-color: rgb(242,130,48); color: black;' ",
-      Moderate = "style='background-color: rgb(255,219,46); color: black;'",
-      Weak = "style='background-color:rgb(0, 185, 85); color: black;'",
-      Strongest = "style='background-color: rgb(155,10,10); color: black;'",
-      LargelyIneffective= "style='background-color: rgb(155,10,10); color: black;'",
-      PartiallyEffective = "style='background-color: rgb(242,130,48); color: black;' ",
-      SubstantiallyEffective = "style='background-color: rgb(255,219,46); color: black;'",
-      FullyEffective = "style='background-color:rgb(0, 185, 85); color: black;'",
+      strong = "style='background-color: rgb(242,130,48); color: black;  border: none;' ",
+      Moderate = "style='background-color: rgb(255,219,46); color: black;  border: none;'",
+      Weak = "style='background-color:rgb(0, 185, 85); color: black;  border: none;'",
+      Strongest = "style='background-color: rgb(155,10,10); color: white;  border: none;'",
+      LargelyIneffective= "style='background-color: rgb(155,10,10); color: white;  border: none;'",
+      PartiallyEffective = "style='background-color: rgb(242,130,48); color: black;  border: none;' ",
+      SubstantiallyEffective = "style='background-color: rgb(255,219,46); color: black;  border: none;'",
+      FullyEffective = "style='background-color:rgb(0, 185, 85); color: black;  border: none;'",
     } 
 
     enum controlOwnerRating {
