@@ -205,7 +205,7 @@ export class BowTieDiagramHelper {
 
       // Arrange type 4 nodes (below type 2 and type 3)
       const typeFourNodes = originalData.filter((node) => node.Type === 4);
-      let typeFourNodeCount = (typeFourNodes.length / 3);
+      let typeFourNodeCount = (typeFourNodes.length / 2);
       let rowNumbertypeFour = 3;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
      

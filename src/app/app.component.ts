@@ -82,6 +82,28 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             },
       
       
+     
+            {
+              "Id": 19,
+              "Type": 2,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+              "ControlData": {
+      
+                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+                "ControlOwner": "Joe Smith",
+                "ControlOwnerRating":"Largely Ineffective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": true,
+                "ControlOwnerRatingImage":""
+              }
+        },
+      
        {
               "Id": 23,
               "Type": 2,
@@ -93,7 +115,48 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "LinkedControlIds":[19,22]
       
             },
-           
+            {
+              "Id": 22,
+              "Type": 2,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+              "ControlData": {
+      
+                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+                "ControlOwner": "Joe Smith",
+                "ControlOwnerRating":"Largely Ineffective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": true,
+                "ControlOwnerRatingImage":""
+              }
+        },
+        
+        {
+          "Id": 28,
+          "Type": 2,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+          "ControlData": {
+  
+            "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+            "ControlOwner": "Joe Smith",
+            "ControlOwnerRating":"Largely Ineffective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": true,
+            "ControlOwnerRatingImage":""
+          }
+    },
+     
   
       
        {
@@ -110,57 +173,44 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       
             
-            {
-              "Id": 17,
-              "Type": 2,
-              "ParentNodeId": 19,
-              "Title": "Cause Node",
-              "Header": "Cause",
-              "Rating": "",
-              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
-              "LinkedControlIds":[22,28]
       
-            },
       
-
-            {
-              "Id": 18,
-              "Type": 2,
-              "ParentNodeId": 19,
-              "Title": "Cause Node",
-              "Header": "Cause",
-              "Rating": "",
-              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
-              "LinkedControlIds":[22,28]
-      
-            },
-       
-            {
-              "Id": 19,
-              "Type": 2,
-              "ParentNodeId": 19,
-              "Title": "Cause Node",
-              "Header": "Cause",
-              "Rating": "",
-              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
-              "LinkedControlIds":[22,28]
-      
-            },
-
-            {
-              "Id": 20,
-              "Type": 2,
-              "ParentNodeId": 19,
-              "Title": "Cause Node",
-              "Header": "Cause",
-              "Rating": "",
-              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
-              "LinkedControlIds":[22,28]
-      
-            },
-
-            {
+        {
               "Id": 3,
+              "Type": 3,
+              "ParentNodeId": 0,
+              "Title": "Control Node",
+              "Header": "Control",
+              "Rating": "",
+              "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+              "ControlData": {
+      
+                "ControlTitle": "Prioritize critical business functions",
+                "ControlOwner": "Madeline Jones",
+                "ControlOwnerRating":"Partially Effective",
+                "ControlAuthorizer": "",
+                "ControlAuthorizerRating": "",
+                "Active": true,
+                "IsLinkedToCauseOrConsequence": false,
+                "ControlOwnerRatingImage":""
+                
+              }
+        },
+
+        {
+          "Id": 33,
+          "Type": 3,
+          "ParentNodeId": 3,
+          "Title": "Consequences Node",
+          "Header": "Consequence",
+          "Rating": "",
+          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+          "LinkedControlIds":[3]
+
+        },
+      
+      {
+              "Id": 500,
               "Type": 3,
               "ParentNodeId": 0,
               "Title": "Control Node",
@@ -179,19 +229,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ControlOwnerRatingImage":""
               }
      },
+      
+       
+       
+        {
+          "Id": 81,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Consequences Node",
+          "Header": "Consequence",
+          "Rating": "",
+          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+          "LinkedControlIds":[]
 
-            {
-              "Id": 33,
-              "Type": 3,
-              "ParentNodeId": 3,
-              "Title": "Consequences Node",
-              "Header": "Consequence",
-              "Rating": "",
-              "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-              "LinkedControlIds":[3]
-    
-            },
-          
+        },
         
           
          
@@ -611,7 +662,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.4,
+          zoom: 0.3,
           zoomRate: 0.02,
           cancel: onCancel,
 
