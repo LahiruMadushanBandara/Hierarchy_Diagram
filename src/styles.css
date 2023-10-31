@@ -1,9 +1,25 @@
-/* @use "variables" as *;
-@use "mixins" as *; */
+@use "variables" as *;
+@use "mixins" as *;
+
+@font-face {
+  font-family: "Graphik-regular";
+  src:  
+  url("/assets/fonts/Font-Graphik/Graphik-Regular-Web.woff") format("woff"),
+  url("/assets/fonts/Font-Graphik/Graphik-Regular-Web.woff2") format("woff2");
+}
+
+
+@font-face {
+  font-family: "Graphik-medium";
+  src:  
+  url("/assets/fonts/Font-Graphik/Graphik-Medium-Web.woff") format("woff"),
+  url("/assets/fonts/Font-Graphik/Graphik-Medium-Web.woff2") format("woff2");
+}
+
 
 .k-diagram .km-scroll-wrapper {
   overflow: scroll !important;
-  height: 100% !important;
+  height: 125% !important;
 }
 
 .k-actions, .k-edit-buttons, .k-action-buttons, .k-columnmenu-actions {
@@ -77,13 +93,13 @@
       border: 2px solid $camms-button__border-color;
       opacity: 0.4;
   }
-}
+} */
 
 
 
 
 
-//....................css from standalone app.................. */
+/*....................css from standalone app..................*/
 
 
 .hide-bow-tie-control-card-content .bow-tie-control-card-content {
@@ -104,7 +120,6 @@
 
 .toggle-button {
   font-size: 24px;
-  font-weight: bold;
   line-height: 1;
   padding: 0 8px;
   background-color: transparent;
@@ -137,20 +152,20 @@
   margin: 5px 0 20px 0;
 }
 
+
 /* Risk Card */
 .bow-tie-risk-card-content {
   width: 400px;
   display: grid;
   border: none;
   border-radius: 10px;
-  font-family: "Graphik";
-  font-size: 18px;
 }
 
 .bow-tie-risk-card-body {
   display: grid;
-  min-height: 300px;
-  padding: 10px;
+  min-height: 350px;
+  margin-top: 20px;
+  width: 400px;
 }
 
 .bow-tie-risk-card-header {
@@ -164,53 +179,96 @@
   text-align: center;
   border-bottom: 1px solid white;
   border-radius: 10px 10px 0 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .bow-tie-risk-card-header-top-text {
-  padding: 15px;
+  align-content: center; 
+  font-size: 15px;
+  font-family: "Graphik-medium";
+  
 
   } 
 .bow-tie-risk-card-header-text {
-  margin-left: 15px;
+  margin-left: 10px;
   margin-right: 15px;
   margin-top: 10px;
+  margin-bottom: 10px;
   text-align: left;
   padding: 10px;
+  font-family: "Graphik-medium";
+  font-size: 15px;
+ 
 }
 
+
+
 .bow-tie-risk-card-footer {
+  
   background-color: hsl(240, 26%, 93%);
   color: #000000;
-  height: auto;
+  min-height: 10px;
   border-radius: 0 0 10px 10px;
-  padding: 10px;
+  padding: 20px 0px 10px 10px;
+  width: 400px !important;
 }
 
 .row {
   display: flex;
+  padding-left: 20px;
 }
 
 .column {
   background-color: white;
   width: 50%;
-  padding-left: 15px;
+  padding-right: 20px;
 }
+
+
+.ratings{
+  
+  font-size: 14px;
+  font-family:"Graphik-medium" ;
+  margin-bottom: 5px;
+  color: #323250
+}
+
 .bow-tie-risk-rating-details {
   display: flex;
   align-items: center;
   line-height: 1;
-  margin-top: 5px;
+  margin-top: -5px;
+  color: #323250;
+  padding-right: 30px;
+  font-size: 14px;
+  font-family: "Graphik-regular";
+  
 }
+
 .bow-tie-risk-rating-details-image {
+  position: relative;
+  top: 10px;
   width: 50px;
   height: 50px;
-  margin: 5px 5px 5px 5px;
+  margin: 1px 5px 5px 5px;
   border-radius: 25px;
 }
 .bow-tie-risk-rating-details-text {
   position: relative;
   top: -5px;
-  margin-left: 5px;
+  margin-left: 15px;
+  color: #323250;
+  font-size: 14px;
+  font-family: "Graphik-regular";
+}
+
+.bow-tie-risk-category{
+  color: #323250;
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: "Graphik-regular";
+ 
 }
 /* .bow-tie-risk-rating-details-text {
   margin-top: -10px;
@@ -220,35 +278,67 @@
 .bow-tie-risk-footer-details {
   background-color: light gray;
   width: 50%;
-  padding-left: 15px;
+  padding-left: 8px; 
+}
+
+
+.bow-tie-risk-footer-details-responsible {
+  background-color: light gray;
+  width: 50%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.bow-tie-risk-responsible-manager{
+  font-size: 14px;
+  font-family: "Graphik-medium";
+  color: #323250;
+ 
+}
+
+.bow-tie-htmlTemplate-control{
+  font-family:  "Graphik-medium";
+  font-size: 15px; 
+  padding: 10px;
+  white-space: normal !important; 
+}
+
+.bow-tie-htmlTemplate{
+  font-family:  "Graphik-medium";
+  font-size: 15px; 
+  white-space: normal !important; 
 }
 
 /* Control Card */
 .bow-tie-control-card-content {
-
   transition: 0.3s;
   border: 1px solid grey;
   display: grid;
   width: 400px;
-  font-size: 18px;
- 
-  font-family: "Graphik";
+
+   
 }
 
 .bow-tie-control-card-body {
-  min-height: 75px;
-  padding: 10px;
- 
+  min-height: 100px;
+  padding: 15px;
+  width: 400px;
+  border-radius:  0px 0px 10px 10px; 
+  margin-right: 5px;
+  font-size: 15px;
+  font-family:  "Graphik-medium";
 }
 
 .bow-tie-control-card-header {
-  background-color: #1b4287;
+  background-color: #0050a0;
   color: white;
   text-align: center;
   min-height: 50px;
   display: grid;
-  padding: 10px;
+  font-size: 15px;
   border-radius: 8px 8px 0px 0px;
+  width: 400px;
+  font-family:  "Graphik-medium";
   
 }
 
@@ -262,56 +352,91 @@
 }
 .bow-tie-control-type {
   margin-right: 10px;
+  color:#323250;
+  font-size: 14px;
+  margin-top: 5px;
+  font-family: "Graphik-regular";
+
 }
 .bow-tie-control-type-text {
   width: 50px;
   min-height: 50px;
   margin-top: 2px;
+  color:#525252;
+  font-family:"Graphik-medium";
+  font-size: 14px;
+
+ 
 }
  
 
 
 .bow-tie-control-owner {
   margin-top: -20px;
+  color:#323250;
+  font-size: 14px;
+  font-family: "Graphik-regular";
+
 }
 .bow-tie-control-owner-details {
   display: flex;
   align-items: center;
   line-height: 1;
   margin-bottom: 10px;
+  color:#525252;
+  font-family: "Graphik-medium";
+  font-size: 14px;
 }
 .bow-tie-control-owner-image {
-  width: 30px;
-  height: 30px;
-  margin: 5px 5px 5px 5px;
+  width: 50px;
+  height: 50px;
+  margin: 5px 5px 5px 0px;
+  border-radius: 25px;
+  margin-right: 8px;
   
 }
 .bow-tie-control-owner-name {
   position: relative;
   top: -2px;
   margin-left: 5px;
+  color:#525252;  
 }
 .bow-tie-control-owner-rating {
-  display: flex;
-  align-items: left;
-  line-height: 1;
-  margin-top: 10px;
+  margin-top: -5px;
+  color:#323250;
+  font-weight: normal;
+  font-size: 14px;
+  font-family: "Graphik-regular";
 }
 .bow-tie-control-owner-rating-details {
   display: flex;
   align-items: center;
   line-height: 1;
+  margin-bottom: 10px;
+  color:#525252;
+  font-family:"Graphik-medium";
+  font-size: 14px;
+  
 }
 .bow-tie-control-owner-rating-icon {
-  width: 30px;
-  height: 30px;
-  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  margin: 5px 5px 5px 0px;
   margin-right: 10px;
+  border-radius: 25px;
+}
+.bow-tie-control-owner-rating-name{
+  position: relative;
+  top: -2px;
+  margin-left: 5px;
+  color:#525252;
+ 
+  font-size: 16px;
+  
 }
 
-
 .k-diagram {
-  height: 1000px;
+  height: 125%;
  
 }
 
@@ -324,6 +449,7 @@
   width: 400px;
   border-radius: 10px;
   font-size: 18px;
+
 }
 
 .bow-tie-extra-card-body {
@@ -332,13 +458,16 @@
 }
 
 .bow-tie-extra-card-header {
-  background-color: #f8f9fa;
+  background-color: #f7f7f9;
   color: #000000;
   text-align: center;
   min-height: 50px;
   display: grid;
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
+  font-size: 15px;
+  font-family: "Graphik-medium";
+  
 }
 
 
@@ -351,29 +480,33 @@
   width: 400px;
   border: none;
   border-radius: 10px 10px 10px 10px;
-  font-family: "Graphik";
   font-size: 18px;
 }
 
-.bow-tie-cause-card-body {
-  min-height: 60px;
-}
+
 
 .bow-tie-cause-card-header {
-  background-color: hwb(192 13% 27%);
+  background-color: #009dd0;
   color: rgb(255, 255, 255);
   text-align: center;
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
+  font-size: 15px;
+  font-family: "Graphik-medium";
+  
 }
 
 .bow-tie-cause-card-body {
-  background-color: hwb(192 13% 27%);
+  background-color: #009dd0;
   color: rgb(255, 255, 255);
-  text-align: center;
+  text-align: left;
   display: grid;
   border-radius: 0px 0px 10px 10px;
-  padding: 10px;
+  min-height: 100px;
+  padding: 10px 10px 10px 20px;
+  align-content: center;
+  font-size: 15px;
+  font-family:"Graphik-medium";
 }
 
 /*  consequences Card */
@@ -386,56 +519,60 @@
   font-size: 18px;
 }
 
-.bow-tie-consequences-card-body {
-  min-height: 60px;
-  padding: 10px;
-  border-radius: 0px 0px 10px 10px;
-}
-
 .bow-tie-consequences-card-header {
-  background-color: hwb(192 13% 27%);
+  background-color: #009dd0;
   color: rgb(255, 255, 255);
   text-align: center;
   padding: 10px;
   border-radius: 10px 10px 10px 10px;
+  font-size: 15px;
+  font-family:"Graphik-medium";
+ 
 }
 
 .bow-tie-consequences-card-body {
-  background-color: hwb(192 13% 27%);
+  background-color: #009dd0;
   color: rgb(255, 255, 255);
-  text-align: center;
+  text-align: left;
   display: grid;
   border-radius: 0px 0px 10px 10px;
+  min-height: 100px;
+  padding: 10px 10px 10px 20px;
+  align-content: center;
+  font-size: 15px;
+  font-family:"Graphik-medium";
 }
 
 /* Other Card */
 .Bow-tie-Other-card-content {
-  transition: 0.3s;
+  
   display: grid;
   width: 400px;
-  border: 2px solid rgb(220, 220, 220);
-  border-radius: 12px;
-  font-size: 18px;
+  border: 1px solid rgb(220, 220, 220);
+  
 }
 
 .Bow-tie-Other-card-header {
-  background-color: #f8f9fa;
+  background-color: #f7f7f9;
   color: #000000;
-  text-align: center;
- 
+  display: grid;
+  font-family:"Graphik-medium";
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .Bow-tie-Other-card-body {
-  background-color: rgb(255, 255, 255);
-  color: #000000;
-  text-align: center;
-  min-height: 70px;
+  color: #323250;
+  text-align: left;
+  display: grid;
   border-radius: 0px 0px 10px 10px;
- 
-  padding: 10px;
-  border-radius: 10px 10px 10px 10px;
+  min-height: 100px;
+  padding: 10px 10px 10px 20px;
+  align-content: center;
+  font-size: 15px;
+  font-family:"Graphik-medium";
 }
 
 /* Risk Card-expand */
@@ -444,32 +581,35 @@
   display: grid;
   border: 2px solid grey;
   border-radius: 10px;
-  font-size: 18px;
   
 }
 
 .bow-tie-risk-card-body-expand {
   display: grid;
-  height: auto;
+  min-height: 200px;
   padding: 10px;
-  border-left: 2px solid grey;
   border-right: 2px solid grey;
+
 }
 
 .bow-tie-risk-card-header-expand {
-  background-color:  #f8f9fa;;
+  background-color: white;
   color: #000000;
-  height: auto;
+  height: auto;  
+  font-size: 15px;
+  font-family:  "Graphik-medium";
 }
+
 .bow-tie-risk-card-header-top-expand {
-  background-color: #f8f9fa;
+  background-color: #f7f7f9;
   color: #000000;
   text-align: center;
   min-height: 50px;
-  display: grid;
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
-  font-weight: bold;
+  font-family:  "Graphik-medium"; 
+  font-size: 15px;
+  
  
 }
 
@@ -482,15 +622,18 @@
   margin-right: 15px;
   margin-top: 10px;
   text-align: left;
-  padding: 10px;;
+  padding: 10px;
+  font-size: 15px;
+  font-family: "Graphik-medium";
+ 
 }
 
 .bow-tie-risk-card-footer-expand {
   background-color: hwb(0 100% 0%);
   color: #000000;
-  height: auto;
+  min-height: 10px;
   border-radius: 0 0 10px 10px;
-  padding: 10px;
+  padding: 10px 0px 10px 10px;
   
 }
 
@@ -509,10 +652,16 @@
 /*add css to incident-card-expand */
 .bow-tie-incident-expand-reportedby {
   margin-top: 30px;
+  font-size: 14px;
+  font-family:"Graphik-regular";
 }
 
 .bow-tie-incident-expand-responsible-officer {
   margin-top: 10px;
+  font-size: 14px;
+  font-family:"Graphik-regular";
+  color: #323250;
+
 }
 
 .bow-tie-incident-expand-responsible-officer-details {
@@ -520,199 +669,207 @@
   align-items: center;
   line-height: 1;
   margin-bottom: 20px;
+  font-size: 14px;
+  font-family:"Graphik-medium";
+  
 }
 .bow-tie-incident-expand-responsible-officer-image {
-  width: 30px;
-  height: 30px;
-  margin: 5px 5px 5px 5px;
+  width: 50px;
+  height: 50px;
+  margin: 5px 5px 5px 0px;
   border-radius: 25px;
 }
 .bow-tie-incident-expand-responsible-officer-name {
   position: relative;
   top: -2px;
   margin-left: 5px;
+  font-size: 18px;
+  font-family:"Graphik-medium";
 }
-.bow-tie-incident-expand-reported-details {
-  display: flex;
-  align-items: left;
-  margin-right: 10px;
+/* // .bow-tie-incident-expand-reported-details {
+//   display: flex;
+//   align-items: left;
+//   margin-right: 10px;
+//   font-size: 18px;
+//   font-family:"Graphik-medium";
+  
+// } */
+.bow-tie-incident-expand-reported-date-time{
+
+  margin-top: 2px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-family: "Graphik-regular";;
 }
 .bow-tie-incident-expand-reported-date {
   margin-top: 2px;
   margin-bottom: 30px;
+  font-size: 14px;
+  font-family: "Graphik-medium";;
+}
+.bow-tie-responsible-officer{
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: "Graphik-medium";
+}
+
+/*add css to Audit-card-expand */
+
+.bow-tie-details-name{
+  display: flex; 
+  align-items: left; 
+  line-height: 1; 
+  margin-top: 35px;
+ 
+ }
+
+ .bow-tie-date{
+  margin-top: -10px; 
+  margin-bottom: 30px;
+ }
+
+ /*add css to Treatment-card-expand */
+
+ .bow-tie-treatment-expand-owner {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+/*add css to authority-card-expand */
+
+.bow-tie-authority-expand-responsible-officer{
+  margin-top: 30px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+/*add css to compliance-card-expand */
+.bow-tie-compliance-status{
+  margin-top: 10px ;
+  font-size: 16px;
+  font-family:"Graphik-regular";
 }
 
 
 /*add css to KPI-card-expand */
 
- 
-
-.bow-tie-kpi{
+.bow-tie-kpi {
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   margin-bottom: 2px;
-
   margin-top: -5px;
-
-
-
 }
 
 
 
-.bow-tie-unit-flex{
+.bow-tie-unit-flex {
 
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-start;
-
   justify-content: center;
-
-  margin: 20px 5px 5px 5px ;
-
-
-
+  margin: 20px 5px 5px 5px;
 }
 
 
 
-.bow-tie-unit-text{
+.bow-tie-unit-text {
 
   font-size: 18px;
-
   color: black;
-
- 
-
+  font-family: "Graphik-medium";;
 }
 
 
 
-.bow-tie-unit-symbol{
+.bow-tie-unit-symbol {
 
   font-size: 30px;
-
   color: #0050a0;
-
   position: relative;
-
   left: 10px;
-
   font-weight: bold;
-
 }
 
 
 
-.bow-tie-unit-details{
-
-display: flex;
-
-align-items: center;
-
-justify-content: space-around ;
-
-}
-
-
-
-.bow-tie-actual-flex{
-
-display: flex;
-
-flex-direction: column;
-
-align-items: flex-start;
-
-margin-bottom: 20px;
-
-margin-left: 40px;
-
-}
-
-
-
-.bow-tie-actual-text{
-
-  margin-right: 10px;
-
-  font-size: 18px;
-
-  color: black;
-
-  position: relative;
-
-}
-
-
-
-.bow-tie-actual-value{
-
-  margin-right: 15px;
-
-  font-size: 20px;
-
-  color: #0050a0;
-
-  position: relative;
-
-  left: 10px;
-
-  font-weight: bold;
-
-}
-
-
-
-.bow-tie-target-flex{
+.bow-tie-unit-details {
 
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
+
+
+.bow-tie-actual-flex {
+
+  display: flex;
   flex-direction: column;
-
-  align-items: flex-end;
-
+  align-items: flex-start;
   margin-bottom: 20px;
+  margin-left: 40px;
+}
 
+
+
+.bow-tie-actual-text {
+
+  margin-right: 10px;
+  font-size: 15px;
+  color: black;
+  position: relative;
+  font-family: "Graphik-medium";
+}
+
+
+
+.bow-tie-actual-value {
+
+  margin-right: 15px;
+  font-size: 20px;
+  color: #0050a0;
+  position: relative;
+  left: 10px;
+  font-weight: bold;
+}
+
+
+
+.bow-tie-target-flex {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 20px;
   margin-right: 40px;
 
 }
 
-.bow-tie-target-text{
+.bow-tie-target-text {
 
   margin-right: 10px;
-
   font-size: 15px;
-
   color: black;
-
   position: relative;
-
+  font-family: "Graphik-medium";
 }
 
-.bow-tie-target-value{
+.bow-tie-target-value {
 
   margin-right: 10px;
-
   font-size: 20px;
-
   color: #0050a0;
-
   position: relative;
-
   right: 10px;
-
   font-weight: bold;
 
 }
-
 
 
 .bow-tie-performance-flex{
@@ -727,6 +884,7 @@ margin-left: 40px;
   position: relative;
   margin-right: 30px;
   font-size: 15px;
+  font-family: "Graphik-regular";
 
 }
 
@@ -738,27 +896,30 @@ margin-left: 40px;
 }
 
 .performanceIndicator-badge{
-  margin-right:10px;
+  margin-right: 4px;
 }
 
 .bow-tie-performance-rating
 {
-    position: relative;
-    margin-left: 2px;
+    position: relative;   
     font-size: 15px;
+    font-family: "Graphik-regular";
 }
 
 
 
-/*css for header tool bar  */
+
+/* 
+//css for header tool bar  */
 
 
 #toolbar {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 999999;
+  z-index: 99;
  
+
 }
 
 .top-bar {
@@ -788,26 +949,32 @@ margin-left: 40px;
   font-size: 20px; 
 }
 
-/* .bt-Reload{
+.slider{
   position: absolute;
   top: 50%;
-  right: 30%;
-  transform: translate(-50%, -50%); 
-  padding: 10px;
-  margin: 10px;
-  
-} */
+  left: 20%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  font-size: 20px; 
+}
+
+.bt-Reload{
+  position: absolute;
+  top: 50%;
+  right: 38%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  padding: 10px;  
+}
 
 .Export {
   position: absolute;
   top: 50%;
   right: -1%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
   padding: 10px;
  
 }
 
-.flex {
+.button-flex{
   position: absolute;
   top: 50%; /* Adjust vertically as needed for centering */
   right: -4%; /* Adjust horizontally as needed for centering */
@@ -818,8 +985,6 @@ margin-left: 40px;
 
 
 @media screen and (max-width: 500px) {
-
- 
 
   .top-bar {
       flex-direction: column;
@@ -861,13 +1026,6 @@ margin-left: 40px;
 } 
 
 
-
-
-
-
-
-
-
 .bt-Expand.active {
   background-color: #0050a0 !important;
   color: #fff !important;
@@ -888,11 +1046,45 @@ margin-left: 40px;
   color: #fff !important;
 }
 
-.btActive {
-  background-color: #0050a0 !important;
+.btActive{
+  background-color:#0050a0 !important;
   color: #fff !important;
 }
 
+
+.expand-icon{
+  vertical-align: middle; 
+  margin-right: 5px; 
+}
+
+/* Customize the slider's appearance */
+.k-slider .k-slider-selection {
+  background-color: #0050a0; 
+  border: 1px solid #0050a0;
+}
+
+.k-slider .k-draghandle {
+  background-color: #0050a0; 
+  border: 1px solid #0050a0; 
+}
+
+/* Change hover styles */
+.k-slider:hover .k-slider-selection {
+  background-color: #0050a0;
+  border: 1px solid #0050a0;
+}
+
+/* change active state (when dragging) */
+.k-slider .k-draghandle:active {
+  background-color: #0050a0; 
+  border: 1px solid #0050a0; 
+}
+
+.k-slider .k-draghandle:hover,
+.k-slider .k-draghandle.k-dragged {
+    background-color: #0050a0;
+    border: 1px solid #0050a0;
+}
 
 
 
@@ -926,17 +1118,3 @@ margin-left: 40px;
 }
 
 
-
-#toolbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999999;
-  float: right;
-}
-
-.kendo-tool-bar-button{
-  color: red !important;
-  text-align: center;
-  background-color: #0050a0;
-}
