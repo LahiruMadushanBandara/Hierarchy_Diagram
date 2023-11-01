@@ -339,7 +339,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               "Title": "Other Node",
               "Header": "KPI",
               "Rating": "",
-              "htmlTemplate": "#Number of ISP outages",
+              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
               "KPIData":{
                 "RiskLinkId":2078,
                 "KpiIntId":12,
@@ -533,6 +533,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
         }
 
+
+        // <div id="zoomSlider" class= "slider"></div>
+     
     
         $("#toolbar").kendoToolBar({
           items: [
@@ -542,10 +545,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
                 <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
 
-                <div kendoTooltip position="bottom" [title]="'Slider'">
-                  <div id="zoom-slider" class="slider">
-                  </div>  
+               
+                <div class="zoom">
+                    <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
+                    <div id="zoom-slider" class='slider'>
+                    </div>
+                    <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
                 </div>
+
 
                 <div kendoTooltip position="bottom" [title]="'Back'">
                     <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
@@ -589,7 +596,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           },
       ]})
   
-    
+      var currentZoom = 0.3; // Initialize the current zoom level
+
+      $("#zoomIn").click(function () {
+        currentZoom += 0.2; 
+        diagram.zoom(currentZoom); 
+      });
+      
+      $("#zoomOut").click(function () {
+        currentZoom -= 0.2; 
+        diagram.zoom(currentZoom); 
+      });
       
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
@@ -668,10 +685,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           layout: false,
           click: onNodeClick,
-          editable: true, 
+          editable: false, 
         });
 
         // Get the button element and attach the click event listener
+
+        
+        $(".btn-Export").click(function() {
+          currentZoom += 0.2; 
+          diagram.zoom(currentZoom); 
+        });
+
+        $(".btn-Export").click(function() {
+          currentZoom -= 0.2; 
+          diagram.zoom(currentZoom); 
+        });
 
         $("#zoom-slider").kendoSlider({
           min: 0.02, // Minimum zoom level
@@ -679,13 +707,36 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           smallStep: 0.01, // Small zoom increment
           largeStep: 0.02, // Large zoom increment
           value: 0.4,  // Initial zoom level
+          tooltip: {
+                enabled: false,
+                
+              }, 
           slide: function(e) {
             var zoomLevel = e.value;
             var diagram = $("#diagram").getKendoDiagram();
             diagram.zoom(zoomLevel);
         }
         });
-      
+
+       
+        // $("#zoomSlider").kendoSlider({
+        //   min: 0.02, // Minimum zoom level
+        //   max: 2, // Maximum zoom level
+        //   smallStep: 0.01, // Small step for slider movement
+        //   largeStep: 0.02, // Large step for slider movement
+        //   value: 0.4, // Initial zoom level
+        //   tickPlacement: "both", // Show tick marks on both sides of the slider
+        //   tooltip: {
+        //     enabled: true,
+        //     format: "{0}" // Format the tooltip to display the zoom percentage
+        //   }, 
+        //   change: function(e) {
+        //     var zoomLevel = e.value;
+        //     var diagram = $("#diagram").getKendoDiagram();
+        //     diagram.zoom(zoomLevel);
+        //   }
+        // });
+
 
         $(".btn-Export").click(function() {
           var diagram = $("#diagram").getKendoDiagram();
@@ -813,7 +864,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         });
 
-      
+        
 
 
         var diagram = $('#diagram').getKendoDiagram();

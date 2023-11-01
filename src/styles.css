@@ -20,6 +20,8 @@
 
 }
 
+
+
 /* .bow-tie-btn-outline-primary {
   padding: 8px 15px;
   line-height: 0px;
@@ -772,31 +774,31 @@ margin-left: 40px;
   
 }
  
-
+/* 
 .bt-analsys-header-txt {
   font-size: 20px;
   padding: 10px;
-}
+} */
 
 /* Style of buttons */
 
 .bt-analsys-header-txt {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 6%;
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
   font-size: 20px; 
 }
 
-/* .bt-Reload{
+.bt-Reload{
   position: absolute;
   top: 50%;
-  right: 30%;
+  right: 50%;
   transform: translate(-50%, -50%); 
   padding: 10px;
   margin: 10px;
   
-} */
+}
 
 .Export {
   position: absolute;
@@ -807,15 +809,63 @@ margin-left: 40px;
  
 }
 
-.flex {
+.button-flex {
   position: absolute;
   top: 50%; /* Adjust vertically as needed for centering */
-  right: -4%; /* Adjust horizontally as needed for centering */
+  right: 5%; /* Adjust horizontally as needed for centering */
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
   padding: 1px;
 
 }
 
+.slider{
+  border-left: 1px solid #1274AC;
+  border-right: 1px solid #1274AC;
+  height: 32px;
+  width: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+}
+
+
+/* Style for the "zoom" container */
+.zoom {
+
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #1274AC;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 25px;
+  height: 32px;
+}
+
+/* Style for the clickable icons */
+.zoomIcon {
+  cursor: pointer;
+  padding-top: 8px;
+  
+}
+
+/* Style for the zoom out icon */
+.zoomOutIcon::before {
+  content:  url('src/assets/bow-tie/icon/Zoom-Out.png') !important;
+  padding: 10px 10px 0px 10px;
+  /* border: 1px solid #ccc;
+  border-radius: 25px 0px 0px 25px; */
+}
+
+/* Style for the zoom in icon */
+.zoomInIcon::before {
+  content: url('src/assets/bow-tie/icon/Zoom-In.png') !important;
+  padding: 10px 10px 0px 10px;
+  /* border: 1px solid #ccc;
+  border-radius: 0px 25px 25px 0px; */
+}
 
 @media screen and (max-width: 500px) {
 
@@ -926,17 +976,7 @@ margin-left: 40px;
 }
 
 
-
-#toolbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999999;
-  float: right;
-}
-
-.kendo-tool-bar-button{
-  color: red !important;
-  text-align: center;
-  background-color: #0050a0;
+.k-slider .k-button {
+  flex: none;
+  display: none;
 }

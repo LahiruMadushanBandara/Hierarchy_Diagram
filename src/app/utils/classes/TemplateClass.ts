@@ -412,7 +412,14 @@ export class TemplateClass {
     );
   }
 
+  public escapeHtml(unsafe) {
+    var HandleSymbols = unsafe.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    return (HandleSymbols);
+  }
+
   public GetKPIExpand(contentDetails: DiagramNodeData) {
+
+    contentDetails.htmlTemplate = this.escapeHtml(contentDetails.htmlTemplate);
    
     contentDetails.KPIData.Actual != null  ? contentDetails.KPIData.Actual : 0  ;
     contentDetails.KPIData.Target != null  ? contentDetails.KPIData.Target : 0  ;
