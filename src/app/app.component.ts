@@ -204,7 +204,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
     
-        $("#toolbar").kendoToolBar({
+       var kendoToolBar = $("#toolbar").kendoToolBar({
           items: [
             {
               template: `
@@ -212,9 +212,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
                 <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
 
-                <div kendoTooltip position="bottom" [title]="'Slider'">
-                  <div id="zoom-slider" class="slider">
-                  </div>  
+                <div class="zoom">
+                  <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
+                  <div id="zoom-slider" class='slider'></div>
+                  <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
                 </div>
 
                 <div kendoTooltip position="bottom" [title]="'Back'">
@@ -333,30 +334,48 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.4,
+          zoom: 0.5,
           zoomRate: 0.02,
           cancel: onCancel,
 
           layout: false,
           click: onNodeClick,
-          editable: true, 
+          editable: false, 
         });
 
         // Get the button element and attach the click event listener
 
-        $("#zoom-slider").kendoSlider({
+        // var currentZoom = 0.4; // Initialize the current zoom level
+
+        $(".zoomInIcon").click(function () {
+          var currentZoom = diagram.zoom();
+          currentZoom += 0.02; 
+          diagram.zoom(currentZoom); 
+        });
+        
+        $(".zoomOutIcon").click(function () {
+          var currentZoom = diagram.zoom();
+          currentZoom -= 0.02; 
+          diagram.zoom(currentZoom); 
+        });
+        
+
+        $(".slider").kendoSlider({
           min: 0.02, // Minimum zoom level
           max: 2,   // Maximum zoom level
           smallStep: 0.01, // Small zoom increment
           largeStep: 0.02, // Large zoom increment
-          value: 0.4,  // Initial zoom level
+          value: 0.5,  // Initial zoom level
+          tooltip: {
+                enabled: true,                
+              }, 
           slide: function(e) {
             var zoomLevel = e.value;
             var diagram = $("#diagram").getKendoDiagram();
             diagram.zoom(zoomLevel);
         }
         });
-      
+
 
         $(".btn-Export").click(function() {
           var diagram = $("#diagram").getKendoDiagram();
