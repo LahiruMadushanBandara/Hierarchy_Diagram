@@ -13,12 +13,12 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
         "<div class='bow-tie-control-card-header' "+ styles +">" +
-         
+          "<span>"+
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+          "</span>"+
         "</div>" +
         "<div class='bow-tie-control-card-body' >" +
-        "<p class='bow-tie-htmlTemplate'>\\" +
+        "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +
           contentDetails.htmlTemplate +
         "</p>" +
         "</div>" +
@@ -30,9 +30,9 @@ export class TemplateClass {
     return (
       "<div class='Bow-tie-Other-card-content rounded'>" +
         "<div class='Bow-tie-Other-card-header'>" +
-         
+        "<span>"+
              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "</span>"+
         "</div>" +
         "<div class='Bow-tie-Other-card-body'>" +
         "<p class='bow-tie-htmlTemplate'>\\" +  
@@ -47,9 +47,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
-         
+        "<span>"+
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "</span>"+
         "</div>" +
         "<div class='bow-tie-cause-card-body'>\\" +
           "<p>" +
@@ -64,9 +64,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
-         
+        "<span>"+
               (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "</span>"+ 
         "</div>" +
         "<div class='bow-tie-cause-card-body' >\\" +
           "<p>" +
@@ -88,9 +88,9 @@ export class TemplateClass {
       "<div class='bow-tie-risk-card-content rounded'>" +
           "<div class='bow-tie-risk-card-header-top' >" +
             "<p class='bow-tie-risk-card-header-top-text'>" +
-           
+            "<span>"+
                 (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-           
+            "</span>"+
             "</p>" +
           "</div>" +
           "<div class='bow-tie-risk-card-header'>" +
@@ -179,12 +179,12 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded'"+ styles +" >" +
         "<div class='bow-tie-control-card-header' "+ styles +" >" +
-          "<h4 >" +
+        "<span>"+
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "</span>"+ 
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
-          "<p class='bow-tie-htmlTemplate'>\\" +            
+          "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +            
               contentDetails.htmlTemplate +        
           "</p>" +
           "<p class='bow-tie-control-type-details'>" +
@@ -222,9 +222,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded''>" +
         "<div class='bow-tie-extra-card-header''>" +
-         
-              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "<span>"+
+        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
@@ -347,9 +347,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-         
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "<span>"+
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
@@ -393,9 +393,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
-         
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "<span>"+
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>'\\" +
@@ -450,9 +450,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-         
-              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "<span>"+
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+ 
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
           "<p class='bow-tie-htmlTemplate'>\\" +
@@ -502,9 +502,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-         
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "<span>"+
+        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
@@ -527,9 +527,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
       "<div class='bow-tie-extra-card-header'>" +
-     
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-     
+      "<span>"+
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      "</span>"+
       "</div>" +
       "<div class='bow-tie-extra-card-body' >" +
       "<p class='bow-tie-htmlTemplate'>\\" +
@@ -553,9 +553,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
-         
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "<span>"+
+        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
@@ -580,9 +580,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
-     
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-     
+      "<span>"+
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      "</span>"+
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
@@ -605,9 +605,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
-     
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-     
+      "<span>"+
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      "</span>"+
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
@@ -627,9 +627,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-         
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
+        "<span>"+
+        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
           "<p class='bow-tie-'htmlTemplate'>\\" +
