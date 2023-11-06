@@ -204,7 +204,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "Title": "Consequences Node",
           "Header": "Consequence",
           "Rating": "",
-          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+          "htmlTemplate": "Reduced enter#prise IT support#",
           "LinkedControlIds":[3]
 
         },
@@ -546,51 +546,53 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
 
                
-                <div class="zoom">
-                    <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
-                    <div id="zoom-slider" class='slider'>
-                    </div>
-                    <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
-                </div>
-
-
-                <div kendoTooltip position="bottom" [title]="'Back'">
-                    <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
-                      <span>Back</span>
-                    </button>
-                </div>
-
+              
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
+
+                    <div class="zoom">
+                        <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
+                        <div id="zoom-slider" class='slider'>
+                        </div>
+                        <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
+                    </div>
+
+                    <div kendoTooltip position="bottom" [title]="'Back'">
+                        <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+                          <span>Back</span>
+                        </button>
+                    </div>
+
                     <div kendoTooltip position="bottom" [title]="'Risk View'">
                         <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
                           <span>Risk View</span>
                         </button>
                     </div>
+
                     <div kendoTooltip position="bottom" [title]="'Kpi View'">
                         <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
                             <span>Kpi View</span>
                         </button>
                     </div>
+
                     <div kendoTooltip position="bottom" [title]="'Performance View'">
                       <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
                           <span>Performance View</span>
                       </button>
                     </div>
+
                     <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
                       <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" >
                         <span>Expand</span>
                       </button>
                     </div>
-                </div>
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start Export">
-                  <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-                    <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
-                        <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                        <span>Export</span>
-                    </button>
-                  </div>
-                </div>  
-                            
+
+                    <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                      <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                          <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                          <span>Export</span>
+                      </button>
+                    </div>
+                </div>                            
             </div>        
                 `
           },

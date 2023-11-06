@@ -3,7 +3,7 @@ import { PerformanceView } from './PerformanceViewComponent ';
 
 export class TemplateClass {
   constructor() {}
-
+       
 
 
   public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
@@ -25,6 +25,7 @@ export class TemplateClass {
       "</div>"
     );
   }
+  
 
   public GetOtherTemplateGlobal(contentDetails: DiagramNodeData) {
     return (
@@ -43,8 +44,23 @@ export class TemplateClass {
     );
   }
 
+  // Function to escape HTML entities
+public htmlEntityDecode(input) {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = input;
+  return textarea.value;
+}
   public GetConsequencesTemplateGlobal(contentDetails: DiagramNodeData) {
+
+     // Extract the content within the <dev> tags
+  const htmlTemplate = contentDetails.htmlTemplate;
+  const contentWithinDev = htmlTemplate.match(/<dev>(.*?)<\/dev>/);
+
+  let decodedHtmlTemplate = contentWithinDev
+  ? this.htmlEntityDecode(contentWithinDev[1])
+  : htmlTemplate; 
     return (
+ 
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
           "<h4>" +
@@ -53,7 +69,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-cause-card-body'>" +
           "<p>" +
-              contentDetails.htmlTemplate +
+          contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "</p>" +
         "</div>" +
       "</div>"
@@ -70,7 +86,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-cause-card-body' >" +
           "<p>" +
-              contentDetails.htmlTemplate +
+          contentDetails.htmlTemplate +
           "</p>" +
         "</div>" +
       "</div>"
@@ -412,14 +428,16 @@ export class TemplateClass {
     );
   }
 
-  public escapeHtml(unsafe) {
-    var HandleSymbols = unsafe.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    return (HandleSymbols);
-  }
+  // public escapeHtml(unsafe) {
+  //   var HandleSymbols = unsafe.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  //   return (HandleSymbols);
+  // }
+
+
 
   public GetKPIExpand(contentDetails: DiagramNodeData) {
 
-    contentDetails.htmlTemplate = this.escapeHtml(contentDetails.htmlTemplate);
+    // contentDetails.htmlTemplate = this.escapeHtml(contentDetails.htmlTemplate);
    
     contentDetails.KPIData.Actual != null  ? contentDetails.KPIData.Actual : 0  ;
     contentDetails.KPIData.Target != null  ? contentDetails.KPIData.Target : 0  ;

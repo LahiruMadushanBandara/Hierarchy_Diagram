@@ -791,10 +791,7 @@ margin-left: 40px;
 }
 
 .bt-Reload{
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  transform: translate(-50%, -50%); 
+  
   padding: 10px;
   margin: 10px;
   
@@ -812,8 +809,8 @@ margin-left: 40px;
 .button-flex {
   position: absolute;
   top: 50%; /* Adjust vertically as needed for centering */
-  right: 5%; /* Adjust horizontally as needed for centering */
-  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  right: 0%; /* Adjust horizontally as needed for centering */
+  transform: translate(-7%, -50%); /* Center horizontally and vertically */
   padding: 1px;
 
 }
@@ -832,10 +829,7 @@ margin-left: 40px;
 /* Style for the "zoom" container */
 .zoom {
 
-  position: absolute;
-  top: 50%;
-  left: 30%;
-  transform: translate(-50%, -50%);
+ 
   border: 1px solid #1274AC;
   display: flex;
   align-items: center;
