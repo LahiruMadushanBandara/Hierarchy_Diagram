@@ -681,13 +681,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.3,
+          zoom: 0.4,
           zoomRate: 0.02,
           cancel: onCancel,
 
           layout: false,
           click: onNodeClick,
           editable: false, 
+          dataBound: function () {
+          var bbox = this.boundingBox();
+          this.wrapper.width(bbox.width - 1490);
+          this.wrapper.height(bbox.height - 1000);
+          this.resize();
+        }
         });
 
         // Get the button element and attach the click event listener

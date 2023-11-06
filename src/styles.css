@@ -1,10 +1,10 @@
 /* @use "variables" as *;
 @use "mixins" as *; */
-
+/* 
 .k-diagram .km-scroll-wrapper {
   overflow: scroll !important;
   height: 100% !important;
-}
+} */
 
 .k-actions, .k-edit-buttons, .k-action-buttons, .k-columnmenu-actions {
   padding: 7px 7px 0px 30px;
