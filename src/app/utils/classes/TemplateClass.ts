@@ -19,7 +19,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-control-card-body' >" +
         "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +
-          contentDetails.htmlTemplate +
+           contentDetails.htmlTemplate.replace(/#/g, '\\#') +
         "</p>" +
         "</div>" +
       "</div>"
@@ -36,7 +36,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='Bow-tie-Other-card-body'>" +
         "<p class='bow-tie-htmlTemplate'>\\" +  
-             contentDetails.htmlTemplate +
+        contentDetails.htmlTemplate.replace(/#/g, '\\#') +
         "</p>" +
         "</div>" +
       "</div>"
@@ -53,7 +53,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-cause-card-body'>\\" +
           "<p>" +
-              contentDetails.htmlTemplate +
+            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "</p>" +
         "</div>" +
       "</div>"
@@ -70,7 +70,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-cause-card-body' >\\" +
           "<p>" +
-              contentDetails.htmlTemplate +
+           contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "</p>" +
         "</div>" +
       "</div>"
@@ -97,7 +97,7 @@ export class TemplateClass {
             "<p class='bow-tie-risk-card-header-text'>\\"+
               contentDetails.RiskData.RiskCode+ 
               "-"+
-              contentDetails.htmlTemplate+
+                contentDetails.htmlTemplate.replace(/#/g, '\\#') +
             "</p>" +
           "</div>" +
           "<div class='bow-tie-risk-card-body'>" +
@@ -185,7 +185,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +            
-              contentDetails.htmlTemplate +        
+             contentDetails.htmlTemplate.replace(/#/g, '\\#') +    
           "</p>" +
           "<p class='bow-tie-control-type-details'>" +
             "<span class='bow-tie-control-type' "+ styles +">" +
@@ -228,7 +228,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-              contentDetails.htmlTemplate +
+              contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "</p>" +
           "<p class='bow-tie-details-name'>" +
           "<span class='bow-tie-control-type''>" +
@@ -270,7 +270,7 @@ export class TemplateClass {
            "<p class='bow-tie-risk-card-header-text-expand'>\\"+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
-              contentDetails.htmlTemplate+
+               contentDetails.htmlTemplate.replace(/#/g, '\\#') +
             "   </p> " +
         "</div>" +
           "<div class='bow-tie-risk-card-body-expand'>" +
@@ -353,7 +353,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-             contentDetails.htmlTemplate +
+            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "<p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
           "<p class='bow-tie-responsible-officer'>" +
@@ -399,7 +399,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>'\\" +
-            contentDetails.htmlTemplate +
+             contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "<p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Responsible Officer</p>" +
           "<p class='bow-tie-responsible-officer'>" +
@@ -456,7 +456,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-              contentDetails.htmlTemplate +
+              contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           " </p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
@@ -508,7 +508,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-             contentDetails.htmlTemplate +
+              contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "</p>" +
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
           'Reported Date/Time' +
@@ -533,7 +533,7 @@ export class TemplateClass {
       "</div>" +
       "<div class='bow-tie-extra-card-body' >" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-      contentDetails.htmlTemplate +
+        contentDetails.htmlTemplate.replace(/#/g, '\\#') +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
       "<span style='margin-right: 10px;'>" +
@@ -559,7 +559,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-            contentDetails.htmlTemplate +
+            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "<p>" +
           "<p class='bow-tie-authority-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
@@ -586,7 +586,7 @@ export class TemplateClass {
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-      contentDetails.htmlTemplate +
+         contentDetails.htmlTemplate.replace(/#/g, '\\#') +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
       "<span style='margin-right: 10px;'>" +
@@ -611,7 +611,7 @@ export class TemplateClass {
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-      contentDetails.htmlTemplate +
+        contentDetails.htmlTemplate.replace(/#/g, '\\#') +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
       "<span style='margin-right: 10px;'>" +
@@ -633,7 +633,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
           "<p class='bow-tie-'htmlTemplate'>\\" +
-          contentDetails.htmlTemplate +
+            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
           "</p>" +
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
           "Audit Date" +
