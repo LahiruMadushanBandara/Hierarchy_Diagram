@@ -256,10 +256,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                           <span>Export</span>
                       </button>
                     </div>
-
-                </div>
-               
-                            
+                </div>                  
             </div>        
                 `
           },
@@ -344,7 +341,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           layout: false,
           click: onNodeClick,
-          editable: false, 
+          editable: false,
+          dataBound: function () {
+            // Calculate the available screen width and height
+            var screenWidth = $(window).width();
+            var screenHeight = $(window).height();
+        
+            // Calculate a reasonable diagram size based on screen dimensions
+            var diagramWidth = Math.min(screenWidth - 50); // Adjust the 100 as needed
+            var diagramHeight = Math.min(screenHeight + 100); // Adjust the 100 as needed
+        
+            // Update the diagram's dimensions
+            this.wrapper.width(diagramWidth);
+            this.wrapper.height(diagramHeight);
+            this.resize();
+          }
+          
+
         });
 
         // Get the button element and attach the click event listener

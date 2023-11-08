@@ -79,10 +79,16 @@ export class TemplateClass {
  
   public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
 
-    (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.RiskData.InherentRiskRating;
-    (contentDetails.RiskData.AppetiteRating == ""|| contentDetails.RiskData.AppetiteRating == undefined) ? "N/A" : contentDetails.RiskData.AppetiteRating;
-    (contentDetails.RiskData.ResidualRiskRating  == "" || contentDetails.RiskData.ResidualRiskRating  == undefined) ? "N/A" : contentDetails.RiskData.ResidualRiskRating;
-    (contentDetails.RiskData.TargetRiskRating  == "" || contentDetails.RiskData.TargetRiskRating  == undefined) ? "N/A" : contentDetails.RiskData.TargetRiskRating;
+    contentDetails.RiskData.InherentRiskRatingImg = (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.RiskData.AppetiteRatingImg = (contentDetails.RiskData.AppetiteRating == "" || contentDetails.RiskData.AppetiteRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.RiskData.ResidualRiskRatingImg = (contentDetails.RiskData.ResidualRiskRating == "" || contentDetails.RiskData.ResidualRiskRating === undefined) ?"assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.RiskData.TargetRiskRatingImg = (contentDetails.RiskData.TargetRiskRating == "" || contentDetails.RiskData.TargetRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
+   
+    contentDetails.RiskData.InherentRiskRating = (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating === undefined) ? "N/A" : contentDetails.RiskData.InherentRiskRating;
+    contentDetails.RiskData.AppetiteRating = (contentDetails.RiskData.AppetiteRating == "" || contentDetails.RiskData.AppetiteRating === undefined) ? "N/A" : contentDetails.RiskData.AppetiteRating;
+    contentDetails.RiskData.ResidualRiskRating = (contentDetails.RiskData.ResidualRiskRating == "" || contentDetails.RiskData.ResidualRiskRating === undefined) ? "N/A" : contentDetails.RiskData.ResidualRiskRating;
+    contentDetails.RiskData.TargetRiskRating = (contentDetails.RiskData.TargetRiskRating == "" || contentDetails.RiskData.TargetRiskRating === undefined) ? "N/A" : contentDetails.RiskData.TargetRiskRating;
+    
    
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
@@ -106,7 +112,7 @@ export class TemplateClass {
                 "<p class ='ratings'> Inherent Rating </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                           "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.RiskData.InherentRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.InherentRiskRating+
                   "</span>" +
@@ -116,7 +122,7 @@ export class TemplateClass {
                 "<p class ='ratings'> Revised Rating  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                          "src='"+ contentDetails.RiskData.ResidualRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.ResidualRiskRating+
                   "</span>" +
@@ -128,7 +134,7 @@ export class TemplateClass {
                 "<p class ='ratings'>Future Rating</p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                          "src='"+ contentDetails.RiskData.TargetRiskRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                    contentDetails.RiskData.TargetRiskRating+
                   "</span>" +
@@ -138,7 +144,7 @@ export class TemplateClass {
                 "<p class ='ratings'> Risk Appetite  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                       "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                          "src='"+ contentDetails.RiskData.AppetiteRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.AppetiteRating+
                   "</span>" +
@@ -252,11 +258,16 @@ export class TemplateClass {
   }
 
   public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
-    (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.LinkedRiskData.InherentRiskRating;
-    (contentDetails.LinkedRiskData.AppetiteRating == ""|| contentDetails.LinkedRiskData.AppetiteRating == undefined) ? "N/A" : contentDetails.LinkedRiskData.AppetiteRating;
-    (contentDetails.LinkedRiskData.ResidualRiskRating  == "" || contentDetails.LinkedRiskData.ResidualRiskRating  == undefined) ? "N/A" : contentDetails.LinkedRiskData.ResidualRiskRating;
-    (contentDetails.LinkedRiskData.TargetRiskRating  == "" || contentDetails.LinkedRiskData.TargetRiskRating  == undefined) ? "N/A" : contentDetails.LinkedRiskData.TargetRiskRating;
-     
+    contentDetails.LinkedRiskData.InherentRiskRatingImg = (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.LinkedRiskData.AppetiteRatingImg = (contentDetails.LinkedRiskData.AppetiteRating == "" || contentDetails.LinkedRiskData.AppetiteRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.LinkedRiskData.ResidualRiskRatingImg = (contentDetails.LinkedRiskData.ResidualRiskRating == "" || contentDetails.LinkedRiskData.ResidualRiskRating === undefined) ?"assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.LinkedRiskData.TargetRiskRatingImg = (contentDetails.LinkedRiskData.TargetRiskRating == "" || contentDetails.LinkedRiskData.TargetRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
+   
+    contentDetails.LinkedRiskData.InherentRiskRating = (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.InherentRiskRating;
+    contentDetails.LinkedRiskData.AppetiteRating = (contentDetails.LinkedRiskData.AppetiteRating == "" || contentDetails.LinkedRiskData.AppetiteRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.AppetiteRating;
+    contentDetails.LinkedRiskData.ResidualRiskRating = (contentDetails.LinkedRiskData.ResidualRiskRating == "" || contentDetails.LinkedRiskData.ResidualRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.ResidualRiskRating;
+    contentDetails.LinkedRiskData.TargetRiskRating = (contentDetails.LinkedRiskData.TargetRiskRating == "" || contentDetails.LinkedRiskData.TargetRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.TargetRiskRating;
+    
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
@@ -279,7 +290,7 @@ export class TemplateClass {
                 "<p class='ratings'> Inherent Rating  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.InherentRiskRating+
                   "</span>" +
@@ -289,7 +300,7 @@ export class TemplateClass {
                 "<p class='ratings'> Revised Rating  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.ResidualRiskRating+
                   "</span>" +
@@ -301,7 +312,7 @@ export class TemplateClass {
                 "<p class='ratings'> Future Rating  </p>" +
                 "<p  class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                   contentDetails.LinkedRiskData.TargetRiskRating+
                   "</span>" +
@@ -311,7 +322,7 @@ export class TemplateClass {
                 "<p class='ratings'> Risk Appetite  </p>" +
                 "<p class='bow-tie-risk-rating-details'>" +
                   "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity +"'"+
+                            "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.LinkedRiskData.AppetiteRating+
                   "</span>" +
@@ -332,7 +343,7 @@ export class TemplateClass {
           "<p class='ratings'> Responsible Manager  </p>" +
           "<p class='bow-tie-risk-rating-details'>" +
             "<img class='bow-tie-risk-rating-details-image'"+
-                        "src='"+ contentDetails.LinkedRiskData.profileImageUrl.changingThisBreaksApplicationSecurity +"'"+
+                        "src='"+ contentDetails.LinkedRiskData.profileImageUrl +"'"+
             "<span class='bow-tie-risk-rating-details-text'>"+
             contentDetails.LinkedRiskData.ResponsibleManager+
             "</span>" +
