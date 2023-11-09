@@ -484,52 +484,94 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         //creating connection lines
         var dataConnections = [];
+       
+        
+      //   function connectionLineColor() {
+      //     const colors = [];
+      //     let color;
+      //     for (let i = 1; i < originalData.length; i++) {
+             
+      
+      //         if (originalData[i].Title == "Other Node") {
+      //             color = '#faab2c';
+      //             console.log("coloro",color);
+      //         } else if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
+      //             color = '#40b86e';
+      //             console.log("colorcc",color);
+      //         } else if (originalData[i].Title == "Control Node") {
+      //             color = '#e54257';
+      //             console.log("colorc",color);
+      //         } else {
+      //             // Default color if no conditions are met
+      //             color = '#000000';
+      //             console.log("colord",color);
+      //         }
+      
+             
+      //     }
+      //     console.log("colorall",color);
+      //     return (color);
+      // }
+      
+      
+         
+      
+
 
         for (let i = 1; i < originalData.length; i++) {
+
           if (originalData[i].Title == "Other Node") {
+          
             var conObj = {
-              Id: originalData[i].Type === 4 ? 0 : i,
+              Id: originalData[i].Type === i,
               FromShapeId: originalData[i].ParentNodeId,
               ToShapeId: originalData[i].Id,
               Text: null,
-
+              color: "1"
+              
             };
             dataConnections.push(conObj);
           }
 
           if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
-            || originalData[i].ParentNodeId != 0) {
+          && originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-              var conObj = {
+              var conObj1 = {
                 Id: j,
                 FromShapeId: originalData[i].LinkedControlIds[j],
                 ToShapeId: originalData[i].Id,
-                Text: null
+                Text: null,
+                color: "2"
+               
               };
-              dataConnections.push(conObj);
+              dataConnections.push(conObj1);
             }
           }
 
           if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
-            || originalData[i].ParentNodeId == 0) {
+            && originalData[i].ParentNodeId == 0) {
 
-            var conObj1 = {
+            var conObj2 = {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
-              Text: null
+              Text: null,
+              color: "3"
+              
             };
-            dataConnections.push(conObj1);
+            dataConnections.push(conObj2);
           }
 
           if (originalData[i].Title == "Control Node") {
-            var conObj1 = {
+            var conObj3 = {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
-              Text: null
+              Text: null,
+              color: "4"
+             
             };
-            dataConnections.push(conObj1);
+            dataConnections.push(conObj3);
           }
         }
 
@@ -600,15 +642,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   
       var currentZoom = 0.3; // Initialize the current zoom level
 
-      $("#zoomIn").click(function () {
-        currentZoom += 0.2; 
-        diagram.zoom(currentZoom); 
-      });
-      
-      $("#zoomOut").click(function () {
-        currentZoom -= 0.2; 
-        diagram.zoom(currentZoom); 
-      });
       
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
@@ -659,6 +692,34 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           },
+          change: function (e) {
+            var connColor;
+            for (var idx = 0; idx < e.added.length; idx++) {
+              if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
+                switch (e.added[idx].dataItem.color) {
+                  case "1":
+                    connColor = "#000000"; // Red
+                    break;
+                  case "2":
+                    connColor = "#00ff00"; // Green
+                    break;
+                  case "3":
+                    connColor = "#009dd0"; // lightBlue
+                    break;
+                  case "4":
+                    connColor = "#0050a0"; // darkBlue
+                  break;
+                  default:
+                    connColor = "#000000"; // Default color
+                }
+                e.added[idx].redraw({
+                  stroke: {
+                    color: connColor
+                  }
+                });
+              }
+            }
+          },
           
           shapeDefaults: {
             stroke: {
@@ -672,7 +733,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           connectionDefaults: {
             stroke: {
               color: '#979797',
-              width: 2,
+              width: 3,
             },
             select: function (e) {
               e.preventDefault(); // Prevent line selection
@@ -681,13 +742,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.4,
+          zoom: 0.3,
           zoomRate: 0.02,
           cancel: onCancel,
 
           layout: false,
           click: onNodeClick,
-          editable: false, 
+          editable: true, 
           dataBound: function () {
           var bbox = this.boundingBox();
           this.wrapper.width(bbox.width - 1490);
