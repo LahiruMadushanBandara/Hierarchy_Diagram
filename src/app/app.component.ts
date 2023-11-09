@@ -836,12 +836,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
             const Riskbutton = document.getElementById('btRiskView');
             Riskbutton.classList.toggle('active', isRiskView);
-
+           
 
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
 
             if (isRiskView) {
+
+              const Kpidbutton = document.getElementById('btKpikView');
+              Kpidbutton.style.opacity = '0.5'; 
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -863,6 +866,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
+              const Kpidbutton = document.getElementById('btKpikView');
+              Kpidbutton.style.opacity = '1'; 
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
@@ -883,6 +888,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             var connectionsDataSource = diagram.connectionsDataSource;
 
             if (isKpIview) {
+              const Riskbutton = document.getElementById('btRiskView');
+              Riskbutton.style.opacity = '0.5';
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -906,6 +913,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
+              const Riskbutton = document.getElementById('btRiskView');
+              Riskbutton.style.opacity = '1';
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
