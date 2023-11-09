@@ -156,52 +156,63 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var dataConnections = [];
 
         for (let i = 1; i < originalData.length; i++) {
+
           if (originalData[i].Title == "Other Node") {
+          
             var conObj = {
-              Id: originalData[i].Type === 4 ? 0 : i,
+              Id: originalData[i].Type === i,
               FromShapeId: originalData[i].ParentNodeId,
               ToShapeId: originalData[i].Id,
               Text: null,
-
+              color: "1"
+              
             };
             dataConnections.push(conObj);
           }
 
           if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
-            || originalData[i].ParentNodeId != 0) {
+          && originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-              var conObj = {
+              var conObj1 = {
                 Id: j,
                 FromShapeId: originalData[i].LinkedControlIds[j],
                 ToShapeId: originalData[i].Id,
-                Text: null
+                Text: null,
+                color: "2"
+               
               };
-              dataConnections.push(conObj);
+              dataConnections.push(conObj1);
             }
           }
 
           if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
-            || originalData[i].ParentNodeId == 0) {
+            && originalData[i].ParentNodeId == 0) {
 
-            var conObj1 = {
+            var conObj2 = {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
-              Text: null
+              Text: null,
+              color: "3"
+              
             };
-            dataConnections.push(conObj1);
+            dataConnections.push(conObj2);
           }
 
           if (originalData[i].Title == "Control Node") {
-            var conObj1 = {
+            var conObj3 = {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
-              Text: null
+              Text: null,
+              color: "4"
+             
             };
-            dataConnections.push(conObj1);
+            dataConnections.push(conObj3);
           }
         }
+
+
 
      $("#toolbar").kendoToolBar({
           items: [
@@ -313,6 +324,34 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           },
+          change: function (e) {
+            var connColor;
+            for (var idx = 0; idx < e.added.length; idx++) {
+              if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
+                switch (e.added[idx].dataItem.color) {
+                  case "1":
+                    connColor = "#979797"; // Red
+                    break;
+                  case "2":
+                    connColor = "#00ff00"; // Green
+                    break;
+                  case "3":
+                    connColor = "#009dd0"; // lightBlue
+                    break;
+                  case "4":
+                    connColor = "#0050a0"; // darkBlue
+                  break;
+                  default:
+                    connColor = "#979797"; // Default color
+                }
+                e.added[idx].redraw({
+                  stroke: {
+                    color: connColor
+                  }
+                });
+              }
+            }
+          },
           
           shapeDefaults: {
             stroke: {
@@ -326,7 +365,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           connectionDefaults: {
             stroke: {
               color: '#979797',
-              width: 2,
+              width: 3,
             },
             select: function (e) {
               e.preventDefault(); // Prevent line selection
@@ -429,6 +468,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             var connectionsDataSource = diagram.connectionsDataSource;
 
             if (isRiskView) {
+
+              const Kpidbutton = document.getElementById('btKpikView');
+              Kpidbutton.style.opacity = '0.5'; 
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -450,6 +492,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
+              const Kpidbutton = document.getElementById('btKpikView');
+              Kpidbutton.style.opacity = '1'; 
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
@@ -470,6 +514,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             var connectionsDataSource = diagram.connectionsDataSource;
 
             if (isKpIview) {
+              const Riskbutton = document.getElementById('btRiskView');
+              Riskbutton.style.opacity = '0.5';
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -493,6 +539,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
+              const Riskbutton = document.getElementById('btRiskView');
+              Riskbutton.style.opacity = '1';
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }

@@ -343,7 +343,7 @@ export class TemplateClass {
           "<p class='ratings'> Responsible Manager  </p>" +
           "<p class='bow-tie-risk-rating-details'>" +
             "<img class='bow-tie-risk-rating-details-image'"+
-                        "src='"+ contentDetails.LinkedRiskData.profileImageUrl +"'"+
+                        "src='"+ contentDetails.LinkedRiskData.profileImageUrl.changingThisBreaksApplicationSecurity +"'"+
             "<span class='bow-tie-risk-rating-details-text'>"+
             contentDetails.LinkedRiskData.ResponsibleManager+
             "</span>" +
