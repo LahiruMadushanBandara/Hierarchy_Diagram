@@ -170,7 +170,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             dataConnections.push(conObj);
           }
 
-          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
           && originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
               var conObj1 = {
@@ -185,7 +185,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             }
           }
 
-          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
             && originalData[i].ParentNodeId == 0) {
 
             var conObj2 = {
