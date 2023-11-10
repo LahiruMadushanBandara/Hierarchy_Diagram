@@ -755,30 +755,14 @@ margin-left: 40px;
 /*css for header tool bar  */
 
 
-#toolbar {
+#toolbar{
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 999999;
+  z-index: 99;
  
+  min-height: 55px;
 }
-
-.top-bar {
-
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  background-color: white;
-  width: 100% ;
-  min-height: 40px;
-  
-}
- 
-/* 
-.bt-analsys-header-txt {
-  font-size: 20px;
-  padding: 10px;
-} */
 
 /* Style of buttons */
 
@@ -786,125 +770,104 @@ margin-left: 40px;
   position: absolute;
   top: 20%;
   left: 6%;
-  transform: translate(-50%, -50%); /* Center horizontally and vertically */
-  font-size: 20px; 
+  transform: translate(-50%, -50%); 
+  font-family: "Graphik Regular Desktop", Sans-serif;
+  font-size: 20px;
+  margin-bottom: 0;
+  color: #323250;
 }
 
 .bt-Reload{
-  
-  padding: 10px;
-  margin: 10px;
-  
+  padding: 10px;  
 }
 
-.Export {
+.button-flex{
   position: absolute;
-  top: 50%;
-  right: -1%;
-  transform: translate(-50%, -50%); 
-  padding: 10px;
- 
-}
-
-.button-flex {
-  position: absolute;
-  top: 50%; /* Adjust vertically as needed for centering */
-  right: 0%; /* Adjust horizontally as needed for centering */
-  transform: translate(-7%, -50%); /* Center horizontally and vertically */
+  top: 50%; 
+  right: 0px; 
+  transform: translate(-7%, -50%);
   padding: 1px;
+  
 
 }
 
 .slider{
-  border-left: 1px solid #1274AC;
-  border-right: 1px solid #1274AC;
-  height: 32px;
+  /* // border-left: 2px solid #0050a0;
+  // border-right: 2px solid #0050a0; */
+  height: 25px;
   width: 100px;
   padding-left: 10px;
   padding-right: 10px;
   
 }
 
-
 /* Style for the "zoom" container */
 .zoom {
-
- 
-  border: 1px solid #1274AC;
+  border: 2px solid #0050a0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 25px;
-  height: 32px;
+  height: 30px;
+  padding: 10px 10px 10px 10px;
 }
 
 /* Style for the clickable icons */
 .zoomIcon {
   cursor: pointer;
   padding-top: 8px;
-  
+ 
 }
 
 /* Style for the zoom out icon */
 .zoomOutIcon::before {
-  content:  url('src/assets/bow-tie/icon/Zoom-Out.png') !important;
-  padding: 10px 10px 0px 10px;
-  /* border: 1px solid #ccc;
-  border-radius: 25px 0px 0px 25px; */
+  content:  url("/assets/bow-tie/icon/Zoom-Out.png") !important;
+  padding: 10px 10px 10px 8px;
+  
 }
 
 /* Style for the zoom in icon */
 .zoomInIcon::before {
-  content: url('src/assets/bow-tie/icon/Zoom-In.png') !important;
-  padding: 10px 10px 0px 10px;
-  /* border: 1px solid #ccc;
-  border-radius: 0px 25px 25px 0px; */
+  content: url("/assets/bow-tie/icon/Zoom-In.png") !important;
+  padding: 10px 8px 10px 10px;
+  
 }
 
-@media screen and (max-width: 500px) {
+.k-slider .k-button {
+  flex: none;
+  display: none;
+}
 
- 
+.expand-icon {
+  content: url("/assets/bow-tie/icon/expand-icon.png") !important;
+  padding: 10px 5px 8px 0px;
+}
 
-  .top-bar {
-      flex-direction: column;
-      align-items: flex-start;
-      display: block;
-      float: left;
-      width: 100%;
-      height: auto;
-     
-  }
 
+/* Media query for smaller screens (e.g., max-width: 768px) */
+@media (max-width: 760px) {
+  
   .bt-analsys-header-txt {
-      margin-bottom: 0;
-      flex-direction: column;
-      align-items: flex-start;
-      display: block;
-      float: left;
-      width: 100%;
-      font-size:10px;
-
+    text-align: left; 
+    flex-direction: column; /* Display buttons in a column for smaller screens */
+    align-items: flex-start;/* Align text to the left for smaller screens */
   }
 
-
-
-  .flex {
-      flex-direction: column;
-      align-items: flex-start;
-      display: block;
-      float: left;
-      width: 100%;
+  .button-flex {
+    flex-direction: column; /* Display buttons in a column for smaller screens */
+    align-items: flex-start; /* Align buttons to the left for smaller screens */
   }
 
-  .Export {
-      flex-direction: column;
-      align-items: flex-start;
-      float: left;
-      display: block;
+  .bt-Reload,
+  .bt-Risk,
+  .bt-Kpi,
+  .bt-Performance,
+  .bt-Expand,
+  .btn-Export {
+    width: 100%; /* Make buttons full-width for smaller screens */
+    margin-bottom: 10px; /* Add some spacing between buttons */
   }
-} 
-
-
+}
 
 
 
