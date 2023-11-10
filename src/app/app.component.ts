@@ -394,8 +394,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     var draw = kendo.drawing;
 
     function visualTemplate(options: any) {
-
-
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
@@ -411,7 +409,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         bottomTemplate: "",
         linkRiskTemplate: "",
         riskActionTemplateExpand: "",
-        complianceTemplateExpnad: ""
+        complianceTemplateExpnad: "",
+        authorityDocumentTemplateExpnad: "",
+        auditTemplateExpnad: ""
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
@@ -439,10 +439,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       var visual = new kendo.dataviz.diagram.Group();
       visual.drawingElement.append(output);
 
-
       return visual;
-
-
     }
 
     var diagramHelper = new BowTieDiagramHelper();
@@ -467,7 +464,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         e.preventDefault();
         e.container.closest('.k-popup-edit-form').data('kendoWindow').close();
       }
-
+    
       function createDiagram(originalData: any[], isExpanded: boolean) {
 
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
@@ -533,7 +530,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             dataConnections.push(conObj);
           }
 
-          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
           && originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
               var conObj1 = {
@@ -548,7 +545,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             }
           }
 
-          if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node"
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
             && originalData[i].ParentNodeId == 0) {
 
             var conObj2 = {
@@ -576,32 +573,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
 
-        // <div id="zoomSlider" class= "slider"></div>
-     
-    
-        $("#toolbar").kendoToolBar({
+
+     $("#toolbar").kendoToolBar({
           items: [
             {
               template: `
 
-              <div class="k-actions btn-row-bottom k-actions-end align-items-start top-bar top">
+              <div>
                 <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
 
-               
-              
                 <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
 
-                    <div class="zoom">
-                        <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
-                        <div id="zoom-slider" class='slider'>
-                        </div>
-                        <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
+                    <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
+                      <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
+                      <div  class='slider'></div>
+                      <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
                     </div>
 
                     <div kendoTooltip position="bottom" [title]="'Back'">
-                        <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
-                          <span>Back</span>
-                        </button>
+                    <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+                      <span>Back</span>
+                    </button>
                     </div>
 
                     <div kendoTooltip position="bottom" [title]="'Risk View'">
@@ -623,8 +615,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                     </div>
 
                     <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView" >
-                        <span>Expand</span>
+                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
+                        
+                        <span>Expand</span>                      
                       </button>
                     </div>
 
@@ -634,14 +627,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                           <span>Export</span>
                       </button>
                     </div>
-                </div>                            
+                </div>                  
             </div>        
                 `
           },
       ]})
   
-      var currentZoom = 0.3; // Initialize the current zoom level
-
+    
       
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
@@ -698,7 +690,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
                 switch (e.added[idx].dataItem.color) {
                   case "1":
-                    connColor = "#000000"; // Red
+                    connColor = "#979797"; // Red
                     break;
                   case "2":
                     connColor = "#00ff00"; // Green
@@ -710,7 +702,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                     connColor = "#0050a0"; // darkBlue
                   break;
                   default:
-                    connColor = "#000000"; // Default color
+                    connColor = "#979797"; // Default color
                 }
                 e.added[idx].redraw({
                   stroke: {
@@ -748,37 +740,50 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           layout: false,
           click: onNodeClick,
-          editable: true, 
+          editable: true,
           dataBound: function () {
-          var bbox = this.boundingBox();
-          this.wrapper.width(bbox.width - 1490);
-          this.wrapper.height(bbox.height - 1000);
-          this.resize();
-        }
+            // Calculate the available screen width and height
+            var screenWidth = $(window).width();
+            var screenHeight = $(window).height();
+        
+            // Calculate a reasonable diagram size based on screen dimensions
+            var diagramWidth = Math.min(screenWidth ); // Adjust the 100 as needed
+            var diagramHeight = Math.min(screenHeight + 100); // Adjust the 100 as needed
+        
+            // Update the diagram's dimensions
+            this.wrapper.width(diagramWidth);
+            this.wrapper.height(diagramHeight);
+            this.resize();
+          }
+          
+
         });
 
         // Get the button element and attach the click event listener
 
+       
+
+        $(".zoomInIcon").click(function () {
+          var currentZoom = diagram.zoom();
+          currentZoom += 0.02; 
+          diagram.zoom(currentZoom); 
+        });
         
-        $(".btn-Export").click(function() {
-          currentZoom += 0.2; 
+        $(".zoomOutIcon").click(function () {
+          var currentZoom = diagram.zoom();
+          currentZoom -= 0.02; 
           diagram.zoom(currentZoom); 
         });
+        
 
-        $(".btn-Export").click(function() {
-          currentZoom -= 0.2; 
-          diagram.zoom(currentZoom); 
-        });
-
-        $("#zoom-slider").kendoSlider({
+        $(".slider").kendoSlider({
           min: 0.02, // Minimum zoom level
           max: 2,   // Maximum zoom level
           smallStep: 0.01, // Small zoom increment
           largeStep: 0.02, // Large zoom increment
-          value: 0.4,  // Initial zoom level
+          value: 0.5,  // Initial zoom level
           tooltip: {
-                enabled: false,
-                
+                enabled: true,                
               }, 
           slide: function(e) {
             var zoomLevel = e.value;
@@ -786,25 +791,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             diagram.zoom(zoomLevel);
         }
         });
-
-       
-        // $("#zoomSlider").kendoSlider({
-        //   min: 0.02, // Minimum zoom level
-        //   max: 2, // Maximum zoom level
-        //   smallStep: 0.01, // Small step for slider movement
-        //   largeStep: 0.02, // Large step for slider movement
-        //   value: 0.4, // Initial zoom level
-        //   tickPlacement: "both", // Show tick marks on both sides of the slider
-        //   tooltip: {
-        //     enabled: true,
-        //     format: "{0}" // Format the tooltip to display the zoom percentage
-        //   }, 
-        //   change: function(e) {
-        //     var zoomLevel = e.value;
-        //     var diagram = $("#diagram").getKendoDiagram();
-        //     diagram.zoom(zoomLevel);
-        //   }
-        // });
 
 
         $(".btn-Export").click(function() {
@@ -836,7 +822,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
             const Riskbutton = document.getElementById('btRiskView');
             Riskbutton.classList.toggle('active', isRiskView);
-           
+
 
             var diagram = kendoDiagram.getKendoDiagram();
             var connectionsDataSource = diagram.connectionsDataSource;
@@ -936,10 +922,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           diagram.refresh();
         });
 
-        $(".bt-Reload").click(function() {
-          
-          location.reload();
-
+        $(".bt-Reload").click(function(e) {
+          var diagram = $('#diagram').getKendoDiagram();
+          e.sender.setDataSource(dataShapes);
+          e.sender.setConnectionsDataSource(dataConnections);
+          diagram.refresh();
         });
 
         
@@ -1092,8 +1079,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       return linkedNodesToClickedNode;
     }
 
-
   }
+  
+  // ngOnInit(): void {
+
+  // }
+
 
    
 
