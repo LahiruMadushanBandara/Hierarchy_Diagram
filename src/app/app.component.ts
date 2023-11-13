@@ -741,6 +741,22 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           layout: false,
           click: onNodeClick,
           editable: true,
+          pannable: {
+            key: "none", // Use the Ctrl key for panning
+            start: function (e) {
+                // Record the starting mouse position for panning
+                this.panStart = { x: e.origin.x, y: e.origin.y };
+            },
+            pan: function (e) {
+                // Calculate the difference in mouse position and pan the diagram
+                var panX = e.origin.x - this.panStart.x;
+                var panY = e.origin.y - this.panStart.y;
+                this.pan(panX, panY);
+    
+                // Update the starting mouse position for the next pan event
+                this.panStart = { x: e.origin.x, y: e.origin.y };
+            }
+        },
           dataBound: function () {
             // Calculate the available screen width and height
             var screenWidth = $(window).width();
@@ -922,11 +938,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           diagram.refresh();
         });
 
-        $(".bt-Reload").click(function(e) {
-          var diagram = $('#diagram').getKendoDiagram();
-          e.sender.setDataSource(dataShapes);
-          e.sender.setConnectionsDataSource(dataConnections);
-          diagram.refresh();
+        $(".bt-Reload").click(function() {
+          location.reload();
         });
 
         
@@ -951,14 +964,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
     
- 
-    
+   
  
     var dataArrayoriginal = this.originalData;
 
 
 
     function onNodeClick(e) {
+     
 
       if (e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Compliance" || e.item.dataItem.Header == "Authority Document") {
         var clickedNodeId = e.item.dataItem.id;
