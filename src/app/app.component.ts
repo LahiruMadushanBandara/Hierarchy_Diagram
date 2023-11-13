@@ -333,13 +333,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                     connColor = "#979797"; // Red
                     break;
                   case "2":
-                    connColor = "#00ff00"; // Green
+                    connColor = "#979797"; // Green
                     break;
                   case "3":
-                    connColor = "#009dd0"; // lightBlue
+                    connColor = "#979797"; // lightBlue
                     break;
                   case "4":
-                    connColor = "#0050a0"; // darkBlue
+                    connColor = "#979797"; // darkBlue
                   break;
                   default:
                     connColor = "#979797"; // Default color
@@ -381,6 +381,22 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           layout: false,
           click: onNodeClick,
           editable: false,
+          pannable: {
+            key: "none", // Use the Ctrl key for panning
+            start: function (e) {
+                // Record the starting mouse position for panning
+                this.panStart = { x: e.origin.x, y: e.origin.y };
+            },
+            pan: function (e) {
+                // Calculate the difference in mouse position and pan the diagram
+                var panX = e.origin.x - this.panStart.x;
+                var panY = e.origin.y - this.panStart.y;
+                this.pan(panX, panY);
+    
+                // Update the starting mouse position for the next pan event
+                this.panStart = { x: e.origin.x, y: e.origin.y };
+            }
+          },
           dataBound: function () {
             // Calculate the available screen width and height
             var screenWidth = $(window).width();
