@@ -324,6 +324,7 @@
   border: 2px solid grey;
   display: grid;
   width: 400px;
+  height: 450px;
   border-radius: 10px;
   font-size: 18px;
 }

@@ -9,7 +9,7 @@ export class TemplateClass {
   public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
-    
+
     return (
       "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
         "<div class='bow-tie-control-card-header' "+ styles +">" +
@@ -45,11 +45,11 @@ export class TemplateClass {
   }
 
   // Function to escape HTML entities
-public htmlEntityDecode(input) {
-  const textarea = document.createElement('textarea');
-  textarea.innerHTML = input;
-  return textarea.value;
-}
+  public htmlEntityDecode(input) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = input;
+    return textarea.value;
+  }
   public GetConsequencesTemplateGlobal(contentDetails: DiagramNodeData) {
 
      // Extract the content within the <dev> tags
@@ -191,6 +191,14 @@ public htmlEntityDecode(input) {
 
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
+    // Set the maximum number of characters before truncating
+    const maxCharacters = 100;
+
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
    
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
@@ -202,7 +210,7 @@ public htmlEntityDecode(input) {
         "<div class='bow-tie-extra-card-body' "+ styles +">" +
           "<p>" +
             "<b>" +
-              contentDetails.htmlTemplate +
+            truncatedHtmlTemplate +
   
             "</b>" +
           "</p>" +

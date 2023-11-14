@@ -79,7 +79,7 @@ export class BowTieDiagramHelper {
       if(!isExpand)
       {
       
-       verticalSpacing = 400;
+       verticalSpacing = 500;
       
        
       }
