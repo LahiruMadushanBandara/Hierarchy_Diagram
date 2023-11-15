@@ -181,6 +181,13 @@ export class TemplateClass {
 
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
    
     return (
       "<div class='bow-tie-extra-card-content rounded'"+ styles +" >" +
@@ -191,14 +198,14 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +            
-             contentDetails.htmlTemplate.replace(/#/g, '\\#') +    
+          truncatedHtmlTemplate +    
           "</p>" +
           "<p class='bow-tie-control-type-details'>" +
             "<span class='bow-tie-control-type' "+ styles +">" +
               "Control Type" +
             "</span>" +
             "<p class='bow-tie-control-type-text' "+ styles +">" +
-            "Preventive " +
+              contentDetails.ControlData.ControlType +
             "</p>" +
           "</p>" +
           "<p class='bow-tie-control-owner' "+ styles +">Control Owner</p>" +
@@ -225,6 +232,13 @@ export class TemplateClass {
 }
 
   public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded''>" +
         "<div class='bow-tie-extra-card-header''>" +
@@ -234,7 +248,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-              contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+          truncatedHtmlTemplate+
           "</p>" +
           "<p class='bow-tie-details-name'>" +
           "<span class='bow-tie-control-type''>" +
@@ -268,6 +282,13 @@ export class TemplateClass {
     contentDetails.LinkedRiskData.ResidualRiskRating = (contentDetails.LinkedRiskData.ResidualRiskRating == "" || contentDetails.LinkedRiskData.ResidualRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.ResidualRiskRating;
     contentDetails.LinkedRiskData.TargetRiskRating = (contentDetails.LinkedRiskData.TargetRiskRating == "" || contentDetails.LinkedRiskData.TargetRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.TargetRiskRating;
     
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
@@ -281,7 +302,7 @@ export class TemplateClass {
            "<p class='bow-tie-risk-card-header-text-expand'>\\"+
               contentDetails.LinkedRiskData.RiskCode+ 
               "-"+
-               contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+              truncatedHtmlTemplate +
             "   </p> " +
         "</div>" +
           "<div class='bow-tie-risk-card-body-expand'>" +
@@ -355,6 +376,13 @@ export class TemplateClass {
   }
 
   public GetIncidentExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -364,7 +392,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+            truncatedHtmlTemplate+
           "<p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
           "<p class='bow-tie-responsible-officer'>" +
@@ -401,6 +429,13 @@ export class TemplateClass {
   }
 
   public GetComplianceObligationExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
@@ -410,7 +445,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>'\\" +
-             contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+             truncatedHtmlTemplate +
           "<p>" +
           "<p class='bow-tie-incident-expand-reportedby' >Responsible Officer</p>" +
           "<p class='bow-tie-responsible-officer'>" +
@@ -435,7 +470,7 @@ export class TemplateClass {
     );
   }
 
-  public GetKPIExpand(contentDetails: DiagramNodeData) {
+  public GetKPIExpand(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
    
     contentDetails.KpiData.Actual != null  ? contentDetails.KpiData.Actual : 0  ;
     contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
@@ -458,6 +493,13 @@ export class TemplateClass {
       currentIndicator = 'na-badge';
     }
 
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -467,7 +509,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-              contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+            truncatedHtmlTemplate +
           " </p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
@@ -510,6 +552,13 @@ export class TemplateClass {
   }
 
   public GetAuditExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -519,7 +568,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-              contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+            truncatedHtmlTemplate +
           "</p>" +
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
           'Reported Date/Time' +
@@ -535,6 +584,13 @@ export class TemplateClass {
   }
 
   public GetHierarchyExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -544,7 +600,7 @@ export class TemplateClass {
       "</div>" +
       "<div class='bow-tie-extra-card-body' >" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-        contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+      truncatedHtmlTemplate +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
       "<span style='margin-right: 10px;'>" +
@@ -561,6 +617,13 @@ export class TemplateClass {
 
   public GetAuthorityDocumentExpand(contentDetails: DiagramNodeData) {
     
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
@@ -570,7 +633,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
-            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+          truncatedHtmlTemplate +
           "<p>" +
           "<p class='bow-tie-authority-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
@@ -588,6 +651,13 @@ export class TemplateClass {
   }
 
   public GetPolicyExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
@@ -597,7 +667,7 @@ export class TemplateClass {
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-         contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+        truncatedHtmlTemplate +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
       "<span style='margin-right: 10px;'>" +
@@ -613,6 +683,13 @@ export class TemplateClass {
   }
 
   public GetAuditRecommendationsExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
@@ -622,7 +699,7 @@ export class TemplateClass {
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-        contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+        truncatedHtmlTemplate +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
       "<span style='margin-right: 10px;'>" +
@@ -635,6 +712,13 @@ export class TemplateClass {
   }
 
   public GetAuditFindingExpand(contentDetails: DiagramNodeData) {
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
@@ -644,7 +728,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
           "<p class='bow-tie-'htmlTemplate'>\\" +
-            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+            truncatedHtmlTemplate +
           "</p>" +
           "<p class='bow-tie-incident-expand-reported-date-time'>" +
           "Audit Date" +
@@ -688,7 +772,7 @@ export class TemplateClass {
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       case "KPI":
-        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
+        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
         templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
         sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
@@ -874,7 +958,7 @@ export class TemplateClass {
         break;
 
       case "KPI":
-        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
+        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
         templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
         sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);

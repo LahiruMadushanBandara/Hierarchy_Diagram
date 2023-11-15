@@ -71,7 +71,7 @@ export class BowTieDiagramHelper {
     //if risk node exist only the other nodes beging to arrange
 
     if (riskNode) {
-      const horizontalSpacing = 520;
+      const horizontalSpacing = 500;
       let verticalSpacing = 520;
       let verticalSpacingFour = 520;
       const maxNodesPerRow = 5;
@@ -90,7 +90,7 @@ export class BowTieDiagramHelper {
       if(!isExpand)
       {
       
-       verticalSpacing = 400;
+       verticalSpacing = 420;
       
        
       }
@@ -104,7 +104,7 @@ export class BowTieDiagramHelper {
         // assign the horizontal space for first node in type two side
         controlHorizontalSpacing = horizontalSpacing;
         if (rowNodeCount == 0) {
-          controlHorizontalSpacing = 600;
+          controlHorizontalSpacing = 500;
         }
 
     // arrange type two control nodes
@@ -156,7 +156,7 @@ export class BowTieDiagramHelper {
         // assign the horizontal space for first node in type two side
         controlHorizontalSpacing = horizontalSpacing;
         if (rowNodeCount == 0) {
-          controlHorizontalSpacing = 600;
+          controlHorizontalSpacing = 500;
         }
         // arrange type three control nodes
        if (typeThreeNodes[i].Title == 'Control Node') {
@@ -273,11 +273,16 @@ export class BowTieDiagramHelper {
     }
 
      
-
+    let typeFourNodeCount
 
       // Arrange type 4 nodes (below type 2 and type 3)
-     
-      let typeFourNodeCount = (typeFourNodes.length / 2);
+     if(typeFourNodes.length < 12){
+       typeFourNodeCount = (typeFourNodes.length / 2);
+     }
+     else{
+       typeFourNodeCount = (typeFourNodes.length / 3);
+     }
+      
       let rowNumbertypeFour = 2;
       let rowNumbertypeFourWhenOnlyBottomNodes = 1.5;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
@@ -301,7 +306,7 @@ export class BowTieDiagramHelper {
         else{
         
         const x = riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;    
-        const y = riskNode.y + rowNumbertypeFour  * verticalSpacing;
+        const y = riskNode.y + rowNumbertypeFour  * verticalSpacingFour;
 
         node.x = x;
         node.y = y;

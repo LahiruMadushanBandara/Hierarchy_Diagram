@@ -40,9 +40,11 @@ interface ControlData {
   ControlAuthorizer: string;
   ControlAuthorizerRating: string;
   Active: boolean;
+  ControlOwnerRatingTypeId:number;
   ControlOwnerRatingImage:any;
   IsLinkedToCauseOrConsequence: boolean;
   ControlOwnerImageUrl: any;
+  ControlType?:string;
 }
 
 interface IncidentData {
