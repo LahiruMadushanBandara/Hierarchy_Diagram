@@ -27,6 +27,20 @@ export class TemplateClass {
   }
 
   public GetOtherTemplateGlobal(contentDetails: DiagramNodeData) {
+    // var styles:string;
+
+    //  if(contentDetails.KpiData.Performance === 'On Track'){
+      
+    //   styles = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'";
+    // }
+    // else if(contentDetails.KpiData.Performance === 'Off Track'){
+      
+    //   styles = "style='background-color: rgb(255,219,46); color: white;  border: none;'";
+    // }
+    // else if(contentDetails.KpiData.Performance === 'Monitor'){
+      
+    //   styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ";
+    // }
     return (
       "<div class='Bow-tie-Other-card-content rounded'>" +
         "<div class='Bow-tie-Other-card-header'>" +
@@ -476,18 +490,23 @@ export class TemplateClass {
     contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
     
     var currentIndicator:string;
+    var styles:string;
 
     if(contentDetails.KpiData.Performance === 'N/A'){
       currentIndicator = 'na-badge';
+      
     }
     else if(contentDetails.KpiData.Performance === 'On Track'){
       currentIndicator = 'onTrack-badge';
+      enablePerformanceview? styles = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'":"";
     }
     else if(contentDetails.KpiData.Performance === 'Off Track'){
       currentIndicator = 'offTrack-badge';
+      enablePerformanceview? styles = "style='background-color: rgb(255,219,46); color: white;  border: none;'":"";
     }
     else if(contentDetails.KpiData.Performance === 'Monitor'){
       currentIndicator = 'monitor-badge';
+      enablePerformanceview? styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ":"";
     }
     else{
       currentIndicator = 'na-badge';
@@ -501,19 +520,19 @@ export class TemplateClass {
             ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
             : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-        "<div class='bow-tie-extra-card-header' >" +
+      "<div class='bow-tie-extra-card-content rounded' "+ styles +">" +
+        "<div class='bow-tie-extra-card-header' "+ styles +">" +
         "<span>"+
           (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
         "</span>"+ 
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
-          "<p class='bow-tie-htmlTemplate'>\\" +
+          "<p class='bow-tie-htmlTemplate' "+ styles +">\\" +
             truncatedHtmlTemplate +
           " </p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
-              "<span class='bow-tie-unit-text'>" +
+              "<span class='bow-tie-unit-text'"+ styles +">" +
                 " Unit  " +
               "</span>" +
               "<span class='bow-tie-unit-symbol'>\\"+
@@ -525,7 +544,7 @@ export class TemplateClass {
           "</div>" +
           "<div class='bow-tie-unit-details' >" +
             "<div class='bow-tie-actual-flex'>" +
-              "<span class='bow-tie-actual-text'>" +
+              "<span class='bow-tie-actual-text'"+ styles +">" +
                 " Actual  " +
               "</span>" +
               "<span class='bow-tie-actual-value'>"+ 
@@ -533,7 +552,7 @@ export class TemplateClass {
               "</span>" +
             "</div>" +
               "<div class='bow-tie-target-flex'>" +
-                "<span class='bow-tie-target-text'>" +
+                "<span class='bow-tie-target-text'"+ styles +">" +
                   " Target  " +
                 "</span>" +
                 "<span class='bow-tie-target-value'>"+                
