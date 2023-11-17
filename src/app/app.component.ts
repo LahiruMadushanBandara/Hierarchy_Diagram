@@ -351,7 +351,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "Target":20,
                 "PerformanceImg":"Monitor",
                 "TrendImg":"Not Applicable",
-                "Performance":""
+                "Performance":"Monitor"
               }
             },
             {
@@ -373,7 +373,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "Target":20,
                 "PerformanceImg":"Monitor",
                 "TrendImg":"Not Applicable",
-                "Performance":""
+                "Performance":"On Track"
               }
             },
            
