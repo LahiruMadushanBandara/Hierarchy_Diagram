@@ -6,7 +6,7 @@ export class PerformanceView {
 
   public PerformanceviewDetails(contentDetails: DiagramNodeData , enablePerformanceview: boolean){
 
-    enum PerfoemanceViewStyle {
+    enum PerformanceViewStyle {
 
       strong = "style='background-color: rgb(242,130,48); color: black;' ",
       Moderate = "style='background-color: rgb(255,219,46); color: black;'",
@@ -16,7 +16,12 @@ export class PerformanceView {
       PartiallyEffective = "style='background-color: rgb(242,130,48); color: black;' ",
       SubstantiallyEffective = "style='background-color: rgb(255,219,46); color: black;'",
       FullyEffective = "style='background-color:rgb(0, 185, 85); color: black;'",
+      // OnTrack = "style='background-color: rgb(242,130,48); color: white;  border: none;' ",
+      // OffTrack = "style='background-color: rgb(255,219,46); color: white;  border: none;'",
+      // Monitor = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'",
     } 
+
+   
 
     enum controlOwnerRating {
 
@@ -36,21 +41,32 @@ export class PerformanceView {
     if(enablePerformanceview==true){
       
       var ControlOwnerRating = contentDetails.ControlData.ControlOwnerRating  ;
-  
+      // var KPIratings = contentDetails.KPIData.Performance ;
 
       if(ControlOwnerRating == controlOwnerRating.strong || ControlOwnerRating == controlOwnerRating.PartiallyEffective){
-        var styles = PerfoemanceViewStyle.strong;
+        var styles = PerformanceViewStyle.strong;
       }
       else if(ControlOwnerRating == controlOwnerRating.Moderate || ControlOwnerRating == controlOwnerRating.SubstantiallyEffective){
-        var styles = PerfoemanceViewStyle.Moderate;
+        var styles = PerformanceViewStyle.Moderate;
       }
       else if(ControlOwnerRating == controlOwnerRating.Weak || ControlOwnerRating == controlOwnerRating.FullyEffective){
-        var styles = PerfoemanceViewStyle.Weak;
+        var styles = PerformanceViewStyle.Weak;
       }
       else if(ControlOwnerRating == controlOwnerRating.Strongest || ControlOwnerRating == controlOwnerRating.LargelyIneffective){
-        var styles = PerfoemanceViewStyle.Strongest;
+        var styles = PerformanceViewStyle.Strongest;
       }
-      
+      // if(KPIratings == kpiRating.OnTrack )
+      // {
+      //   var styles = PerformanceViewStyle.OnTrack;
+      // }
+      // else  if(KPIratings == kpiRating.OffTrack )
+      // {
+      //   var styles = PerformanceViewStyle.OffTrack;
+      // }
+      // else  if(KPIratings == kpiRating.Monitor )
+      // {
+      //   var styles = PerformanceViewStyle.Monitor;
+      // }
      
       }
     else{
@@ -60,6 +76,101 @@ export class PerformanceView {
     
       return styles;
      
-  }                                                                                                                                                                                                                                                           
+  }   
+  
+  // public PerformanceviewDetailsKpi(contentDetails: DiagramNodeData , enablePerformanceview: boolean){
 
+  //   enum PerformanceViewStyle {
+
+  //     OnTrack = "style='background-color: rgb(242,130,48); color: white;  border: none;' ",
+  //     OffTrack = "style='background-color: rgb(255,219,46); color: white;  border: none;'",
+  //     Monitor = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'",
+  //   } 
+
+  //   enum kpiRating{
+  //     OnTrack = 'On Track',
+  //     OffTrack = 'Off Track',
+  //     Monitor = 'Monitor'
+  //   }
+
+
+    
+  //   if(enablePerformanceview==true){
+      
+  //     var KPIratings = contentDetails.KPIData.Performance ;
+
+  //     if(KPIratings == kpiRating.OnTrack )
+  //     {
+  //       var styles = PerformanceViewStyle.OnTrack;
+  //     }
+  //     else  if(KPIratings == kpiRating.OffTrack )
+  //     {
+  //       var styles = PerformanceViewStyle.OffTrack;
+  //     }
+  //     else  if(KPIratings == kpiRating.Monitor )
+  //     {
+  //       var styles = PerformanceViewStyle.Monitor;
+  //     }
+     
+  //     }
+      
+      
+  //   else{
+     
+  //     }
+
+  //     return styles;
+  // }
+}
+
+
+export class PerformanceViewKpi {
+   
+  constructor() {}
+
+ 
+  
+  public PerformanceviewDetailsKpi(contentDetails: DiagramNodeData , enablePerformanceview: boolean){
+
+    enum PerformanceViewStyle {
+
+      OnTrack = "style='background-color: rgb(242,130,48); color: white;  border: none;' ",
+      OffTrack = "style='background-color: rgb(255,219,46); color: white;  border: none;'",
+      Monitor = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'",
+    } 
+
+    enum kpiRating{
+      OnTrack = 'On Track',
+      OffTrack = 'Off Track',
+      Monitor = 'Monitor'
+    }
+
+
+    
+    if(enablePerformanceview==true){
+      
+      var KPIratings = contentDetails.KPIData.Performance ;
+
+      if(KPIratings == kpiRating.OnTrack )
+      {
+        var styles = PerformanceViewStyle.OnTrack;
+      }
+      else  if(KPIratings == kpiRating.OffTrack )
+      {
+        var styles = PerformanceViewStyle.OffTrack;
+      }
+      else  if(KPIratings == kpiRating.Monitor )
+      {
+        var styles = PerformanceViewStyle.Monitor;
+      }
+     
+      }
+      
+      
+    else{
+     
+      }
+
+      return styles;
+  }
 }

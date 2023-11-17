@@ -1,5 +1,5 @@
 import { DiagramNodeData } from 'src/app/models/data.model';
-import { PerformanceView } from './PerformanceViewComponent ';
+import { PerformanceView , PerformanceViewKpi } from './PerformanceViewComponent ';
 
 export class TemplateClass {
   constructor() {}
@@ -27,7 +27,26 @@ export class TemplateClass {
   }
   
 
-  public GetOtherTemplateGlobal(contentDetails: DiagramNodeData) {
+  public GetOtherTemplateGlobal(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
+    // var styles:string;
+    // console.log("contentDetails",contentDetails)
+
+    //  if(contentDetails.KPIData.Performance === 'On Track'){
+      
+    //   styles = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'";
+    // }
+    // else if(contentDetails.KPIData.Performance === 'Off Track'){
+      
+    //   styles = "style='background-color: rgb(255,219,46); color: white;  border: none;'";
+    // }
+    // else if(contentDetails.KPIData.Performance === 'Monitor'){
+      
+    //   styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ";
+    // }
+
+
+    // const performanceViewKpi = new PerformanceViewKpi();
+    // var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
     return (
       "<div class='Bow-tie-Other-card-content rounded'>" +
         "<div class='Bow-tie-Other-card-header'>" +
@@ -443,46 +462,62 @@ export class TemplateClass {
 
 
 
-  public GetKPIExpand(contentDetails: DiagramNodeData) {
+  public GetKPIExpand(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
 
     // contentDetails.htmlTemplate = this.escapeHtml(contentDetails.htmlTemplate);
-   
+    const performanceViewKpi = new PerformanceViewKpi();
+    var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
+
     contentDetails.KPIData.Actual != null  ? contentDetails.KPIData.Actual : 0  ;
     contentDetails.KPIData.Target != null  ? contentDetails.KPIData.Target : 0  ;
     
     var currentIndicator:string;
+    // var styles:string;
 
     if(contentDetails.KPIData.Performance === 'N/A'){
       currentIndicator = 'na-badge';
+      
     }
     else if(contentDetails.KPIData.Performance === 'On Track'){
       currentIndicator = 'onTrack-badge';
+      // enablePerformanceview? styles = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'":"";
     }
     else if(contentDetails.KPIData.Performance === 'Off Track'){
       currentIndicator = 'offTrack-badge';
+      // enablePerformanceview? styles = "style='background-color: rgb(255,219,46); color: white;  border: none;'":"";
     }
     else if(contentDetails.KPIData.Performance === 'Monitor'){
       currentIndicator = 'monitor-badge';
+      // enablePerformanceview? styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ":"";
     }
     else{
       currentIndicator = 'na-badge';
     }
+    
+
+    const maxCharacters = 70;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+        contentDetails.htmlTemplate.length > maxCharacters
+            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+            : contentDetails.htmlTemplate;
 
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-        "<div class='bow-tie-extra-card-header' >" +
-          "<h4>" +
-              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+      "<div class='bow-tie-extra-card-content rounded'"+ styles +" >" +
+        "<div class='bow-tie-extra-card-header' "+ styles +">" +
+        "<span>"+
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+ 
         "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
-        "<p class='bow-tie-htmlTemplate'> \\" +  
-              contentDetails.htmlTemplate +
-          "</p>" +
+        "<div class='bow-tie-extra-card-body' >" +
+          "<p class='bow-tie-htmlTemplate'>\\" +
+            truncatedHtmlTemplate +
+          " </p>" +
           "<div class='bow-tie-kpi'>" +
             "<div class='bow-tie-unit-flex'>" +
               "<span class='bow-tie-unit-text'>" +
-                "<b>Unit</b>" +
+                " Unit  " +
               "</span>" +
               "<span class='bow-tie-unit-symbol'>\\"+
              
@@ -494,7 +529,7 @@ export class TemplateClass {
           "<div class='bow-tie-unit-details' >" +
             "<div class='bow-tie-actual-flex'>" +
               "<span class='bow-tie-actual-text'>" +
-                "<b>Actual</b>" +
+                " Actual  " +
               "</span>" +
               "<span class='bow-tie-actual-value'>"+ 
                 contentDetails.KPIData.Actual +
@@ -502,7 +537,7 @@ export class TemplateClass {
             "</div>" +
               "<div class='bow-tie-target-flex'>" +
                 "<span class='bow-tie-target-text'>" +
-                  "<b>Target</b>" +
+                  " Target  " +
                 "</span>" +
                 "<span class='bow-tie-target-value'>"+                
                    contentDetails.KPIData.Target  +
@@ -687,20 +722,20 @@ export class TemplateClass {
         break;
       case "Incident":
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       case "KPI":
-        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate );
         break;
 
       case "LinkedRisk":
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
@@ -709,7 +744,7 @@ export class TemplateClass {
 
     //get templates from template class
 
-    templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+    templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
 
     templatesObj.riskActionTemplateExpand =
       this.GetRiskActionTreatmentExpand(dataItem);
@@ -850,20 +885,20 @@ export class TemplateClass {
         break;
       case "Incident":
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       case "KPI":
-        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "LinkedRisk":
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
