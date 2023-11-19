@@ -44,17 +44,18 @@ export class TemplateClass {
     //   styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ";
     // }
 
+    if(contentDetails.KPIData && contentDetails.KPIData.Performance != undefined){
 
-    // const performanceViewKpi = new PerformanceViewKpi();
-    // var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
+    const performanceViewKpi = new PerformanceViewKpi();
+    var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );}
     return (
-      "<div class='Bow-tie-Other-card-content rounded'>" +
-        "<div class='Bow-tie-Other-card-header'>" +
+      "<div class='Bow-tie-Other-card-content rounded' "+ styles +">" +
+        "<div class='Bow-tie-Other-card-header'"+ styles +">" +
           "<h4>" +
              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</h4>" +
         "</div>" +
-        "<div class='Bow-tie-Other-card-body'>" +
+        "<div class='Bow-tie-Other-card-body'"+ styles +">" +
           "<p>\\" +
              contentDetails.htmlTemplate +
           "</p>" +
