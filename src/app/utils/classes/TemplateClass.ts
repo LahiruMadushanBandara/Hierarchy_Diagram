@@ -1,5 +1,5 @@
 import { DiagramNodeData } from 'src/app/models/data.model';
-import { PerformanceView } from './PerformanceViewComponent ';
+import { PerformanceView , PerformanceViewKpi} from './PerformanceViewComponent ';
 
 export class TemplateClass {
   constructor() {}
@@ -26,7 +26,7 @@ export class TemplateClass {
     );
   }
 
-  public GetOtherTemplateGlobal(contentDetails: DiagramNodeData) {
+  public GetOtherTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
     // var styles:string;
 
     //  if(contentDetails.KpiData.Performance === 'On Track'){
@@ -41,15 +41,22 @@ export class TemplateClass {
       
     //   styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ";
     // }
+
+    if(contentDetails.KpiData && contentDetails.KpiData.Performance != undefined){
+
+      const performanceViewKpi = new PerformanceViewKpi();
+      var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
+    }
+
     return (
-      "<div class='Bow-tie-Other-card-content rounded'>" +
-        "<div class='Bow-tie-Other-card-header'>" +
+      "<div class='Bow-tie-Other-card-content rounded'"+ styles +">" +
+        "<div class='Bow-tie-Other-card-header'"+ styles +">" +
         "<span>"+
              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
         "</span>"+
         "</div>" +
-        "<div class='Bow-tie-Other-card-body'>" +
-        "<p class='bow-tie-htmlTemplate'>\\" +  
+        "<div class='Bow-tie-Other-card-body'"+ styles +">" +
+        "<p class='bow-tie-htmlTemplate'"+ styles +">\\" +  
         contentDetails.htmlTemplate.replace(/#/g, '\\#') +
         "</p>" +
         "</div>" +
@@ -485,12 +492,16 @@ export class TemplateClass {
   }
 
   public GetKPIExpand(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
-   
+
+    const performanceViewKpi = new PerformanceViewKpi();
+    var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
+
     contentDetails.KpiData.Actual != null  ? contentDetails.KpiData.Actual : 0  ;
     contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
     
     var currentIndicator:string;
-    var styles:string;
+   
+    
 
     if(contentDetails.KpiData.Performance === 'N/A'){
       currentIndicator = 'na-badge';
@@ -498,15 +509,15 @@ export class TemplateClass {
     }
     else if(contentDetails.KpiData.Performance === 'On Track'){
       currentIndicator = 'onTrack-badge';
-      enablePerformanceview? styles = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'":"";
+      
     }
     else if(contentDetails.KpiData.Performance === 'Off Track'){
       currentIndicator = 'offTrack-badge';
-      enablePerformanceview? styles = "style='background-color: rgb(255,219,46); color: white;  border: none;'":"";
+      
     }
     else if(contentDetails.KpiData.Performance === 'Monitor'){
       currentIndicator = 'monitor-badge';
-      enablePerformanceview? styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ":"";
+      
     }
     else{
       currentIndicator = 'na-badge';
@@ -786,48 +797,48 @@ export class TemplateClass {
         break;
       case "Incident":
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       case "KPI":
         templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "LinkedRisk":
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "Treatment":
         templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Treatment', templatesObj.riskActionTemplateExpand);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "Compliance":
         templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Compliance', templatesObj.complianceTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "Authority Document":
         templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "Audit":
         templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
@@ -971,42 +982,42 @@ export class TemplateClass {
 
       case "Incident":
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "KPI":
         templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "LinkedRisk":
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "Compliance":
         templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Compliance', templatesObj.complianceTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
 
       case "Authority Document":
         templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       
       case "Audit":
         templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
