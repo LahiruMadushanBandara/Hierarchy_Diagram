@@ -3,7 +3,6 @@ import {
   ElementRef,
   OnInit,
   ViewChild,
-  AfterViewInit,
   Input,
   OnChanges,
   Output,
@@ -22,7 +21,7 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, AfterViewInit, OnChanges {
+export class AppComponent implements OnInit, OnChanges {
   @Output() expandChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
@@ -39,14 +38,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   
   constructor(private eleRef:ElementRef) {}
 
-  ngAfterViewInit(): void {}
-
   ngOnChanges(change: SimpleChanges): void {
 
     let elrf = this.eleRef.nativeElement
     sessionStorage.clear();
-
- 
 
     // !change?.['getfilterCriteriaEvent']?.currentValue !==
     // !change?.['getfilterCriteriaEvent']?.previousValue
@@ -91,11 +86,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       if (clicked) {
         Templates.RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement);
-
       }
       else {
         Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
       }
+
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
       var height = renderElement.height();
@@ -108,10 +103,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         renderElement.remove();
       });
 
-
       var visual = new kendo.dataviz.diagram.Group();
       visual.drawingElement.append(output);
-
       return visual;
     }
 
@@ -214,67 +207,70 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-     $("#toolbar").kendoToolBar({
-          items: [
-            {
-              template: `
+      // $("#toolbar").kendoToolBar(
+      //     alert("toolbar called"),
+      //     console.log("toolbar"),
+      //     {
 
-              <div>
-                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+      //       items: [
+      //         {
+      //           template: `
 
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
+      //         <div>
+      //           <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
 
-                    <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
-                      <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
-                      <div  class='slider'></div>
-                      <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
-                    </div>
+      //           <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
 
-                    <div kendoTooltip position="bottom" [title]="'Back'">
-                    <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
-                      <span>Back</span>
-                    </button>
-                    </div>
+      //               <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
+      //                 <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
+      //                 <div  class='slider'></div>
+      //                 <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
+      //               </div>
 
-                    <div kendoTooltip position="bottom" [title]="'Risk View'">
-                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
-                          <span>Risk View</span>
-                        </button>
-                    </div>
+      //               <div kendoTooltip position="bottom" [title]="'Back'">
+      //               <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+      //                 <span>Back</span>
+      //               </button>
+      //               </div>
 
-                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
-                            <span>Kpi View</span>
-                        </button>
-                    </div>
+      //               <div kendoTooltip position="bottom" [title]="'Risk View'">
+      //                   <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
+      //                     <span>Risk View</span>
+      //                   </button>
+      //               </div>
 
-                    <div kendoTooltip position="bottom" [title]="'Performance View'">
-                      <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
-                          <span>Performance View</span>
-                      </button>
-                    </div>
+      //               <div kendoTooltip position="bottom" [title]="'Kpi View'">
+      //                   <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
+      //                       <span>Kpi View</span>
+      //                   </button>
+      //               </div>
 
-                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
-                        <span class="expand-icon"></span>
-                        <span>Expand</span>                      
-                      </button>
-                    </div>
+      //               <div kendoTooltip position="bottom" [title]="'Performance View'">
+      //                 <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
+      //                     <span>Performance View</span>
+      //                 </button>
+      //               </div>
 
-                    <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-                      <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
-                          <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                          <span>Export</span>
-                      </button>
-                    </div>
-                </div>                  
-            </div>        
-                `
-          },
-      ]})
+      //               <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+      //                 <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
+      //                   <span class="expand-icon"></span>
+      //                   <span>Expand</span>                      
+      //                 </button>
+      //               </div>
+
+      //               <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+      //                 <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+      //                     <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+      //                     <span>Export</span>
+      //                 </button>
+      //               </div>
+      //           </div>                  
+      //       </div>        
+      //           `
+      //         }
+      //       ]
+      //   });
   
-    
-      
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -380,7 +376,65 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           layout: false,
           click: onNodeClick,
-          editable: false,
+          editable: {
+            tools: [
+              {
+              template:`
+
+              <div>
+                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+
+                <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
+
+                    <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
+                      <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
+                      <div  class='slider'></div>
+                      <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
+                    </div>
+
+                    <div kendoTooltip position="bottom" [title]="'Back'">
+                    <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+                      <span>Back</span>
+                    </button>
+                    </div>
+
+                    <div kendoTooltip position="bottom" [title]="'Risk View'">
+                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
+                          <span>Risk View</span>
+                        </button>
+                    </div>
+
+                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
+                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
+                            <span>Kpi View</span>
+                        </button>
+                    </div>
+
+                    <div kendoTooltip position="bottom" [title]="'Performance View'">
+                      <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
+                          <span>Performance View</span>
+                      </button>
+                    </div>
+
+                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
+                        <span class="expand-icon"></span>
+                        <span>Expand</span>                      
+                      </button>
+                    </div>
+
+                    <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+                      <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                          <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                          <span>Export</span>
+                      </button>
+                    </div>
+                </div>                  
+            </div>        
+                `
+            }
+          ]
+          },
           pannable: {
             key: "none", // Use the Ctrl key for panning
             start: function (e) {
