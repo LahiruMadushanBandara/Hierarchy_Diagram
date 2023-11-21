@@ -135,6 +135,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ControlOwnerRatingImage":""
               }
         },
+       
+       {
+        "Id": 16,
+        "Type": 2,
+        "ParentNodeId": 19,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev>22InsufficientITsecuritymanagement</dev>",
+        "LinkedControlIds":[22,28]
+
+      },
         
         {
           "Id": 28,
@@ -143,7 +155,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "Title": "Control Node",
           "Header": "Control",
           "Rating": "",
-          "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+          "htmlTemplate": "<dev>22Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
           "ControlData": {
   
             "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -152,24 +164,51 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             "ControlAuthorizer": "",
             "ControlAuthorizerRating": "",
             "Active": true,
-            "IsLinkedToCauseOrConsequence": true,
+            "IsLinkedToCauseOrConsequence": false,
             "ControlOwnerRatingImage":""
           }
     },
      
-  
-      
-       {
-              "Id": 16,
-              "Type": 2,
-              "ParentNodeId": 19,
-              "Title": "Cause Node",
-              "Header": "Cause",
-              "Rating": "",
-              "htmlTemplate": "<dev>InsufficientITsecuritymanagement</dev>",
-              "LinkedControlIds":[22,28]
-      
-            },
+    {
+      "Id": 29,
+      "Type": 2,
+      "ParentNodeId": 0,
+      "Title": "Control Node",
+      "Header": "Control",
+      "Rating": "",
+      "htmlTemplate": "<dev>222Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+      "ControlData": {
+
+        "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+        "ControlOwner": "Joe Smith",
+        "ControlOwnerRating":"Largely Ineffective",
+        "ControlAuthorizer": "",
+        "ControlAuthorizerRating": "",
+        "Active": true,
+        "IsLinkedToCauseOrConsequence": false,
+        "ControlOwnerRatingImage":""
+      }
+},
+{
+  "Id": 30,
+  "Type": 2,
+  "ParentNodeId": 0,
+  "Title": "Control Node",
+  "Header": "Control",
+  "Rating": "",
+  "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+  "ControlData": {
+
+    "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+    "ControlOwner": "Joe Smith",
+    "ControlOwnerRating":"Largely Ineffective",
+    "ControlAuthorizer": "",
+    "ControlAuthorizerRating": "",
+    "Active": true,
+    "IsLinkedToCauseOrConsequence": false,
+    "ControlOwnerRatingImage":""
+  }
+},
 
       
             
@@ -191,13 +230,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ControlAuthorizer": "",
                 "ControlAuthorizerRating": "",
                 "Active": true,
-                "IsLinkedToCauseOrConsequence": false,
+                "IsLinkedToCauseOrConsequence": true,
                 "ControlOwnerRatingImage":""
                 
               }
         },
 
-        {
+      
+     {
           "Id": 33,
           "Type": 3,
           "ParentNodeId": 3,
@@ -243,7 +283,113 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "LinkedControlIds":[]
 
         },
+        {
+          "Id": 6,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+          "ControlData": {
         
+            "ControlTitle": "Prioritize critical business functions",
+            "ControlOwner": "Madeline Jones",
+            "ControlOwnerRating":"Partially Effective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": false,
+            "ControlOwnerRatingImage":""
+            
+          }
+        },
+        {
+          "Id": 7,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+          "ControlData": {
+        
+            "ControlTitle": "Prioritize critical business functions",
+            "ControlOwner": "Madeline Jones",
+            "ControlOwnerRating":"Partially Effective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": false,
+            "ControlOwnerRatingImage":""
+            
+          }
+        },
+        {
+          "Id": 8,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+          "ControlData": {
+        
+            "ControlTitle": "Prioritize critical business functions",
+            "ControlOwner": "Madeline Jones",
+            "ControlOwnerRating":"Partially Effective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": false,
+            "ControlOwnerRatingImage":""
+            
+          }
+        }, 
+        {
+          "Id": 5,
+          "Type": 3,
+          "ParentNodeId": 0,
+          "Title": "Control Node",
+          "Header": "Control",
+          "Rating": "",
+          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+          "ControlData": {
+    
+            "ControlTitle": "Prioritize critical business functions",
+            "ControlOwner": "Madeline Jones",
+            "ControlOwnerRating":"Partially Effective",
+            "ControlAuthorizer": "",
+            "ControlAuthorizerRating": "",
+            "Active": true,
+            "IsLinkedToCauseOrConsequence": false,
+            "ControlOwnerRatingImage":""
+            
+          }
+    },
+    
+    {
+      "Id": 9,
+      "Type": 3,
+      "ParentNodeId": 0,
+      "Title": "Control Node",
+      "Header": "Control",
+      "Rating": "",
+      "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+      "ControlData": {
+    
+        "ControlTitle": "Prioritize critical business functions",
+        "ControlOwner": "Madeline Jones",
+        "ControlOwnerRating":"Partially Effective",
+        "ControlAuthorizer": "",
+        "ControlAuthorizerRating": "",
+        "Active": true,
+        "IsLinkedToCauseOrConsequence": false,
+        "ControlOwnerRatingImage":""
+        
+      }
+    },
+         
           
          
         {
@@ -331,7 +477,328 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ResponsibleManagerProfilePic":""
               }
             },
-            
+            {
+              "Id": 205,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 206,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 207,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 208,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 209,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 210,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 211,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 212,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 213,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 214,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 215,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 216,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+            {
+              "Id": 217,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 218,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+            {
+              "Id": 219,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Incident",
+              "Rating": "",
+              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
+              "IncidentData": {
+                "LinkageId": 1217,
+                "IncidentId": 201,
+                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+                "IncidentCode": "IMS - 1",
+                "IncidentType": "IT Incident",
+                "ReportedDate": "Jul 14 2022  2:49PM",
+                "ResponsiblePerson": "Madeline Jones",
+                "ImageType": "",
+                "ByteImage":"",
+                "ResponsibleManagerProfilePic":""
+              }
+            },
+
+          
        {
               "Id": 182,
               "Type": 4,
@@ -376,6 +843,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "Performance":"On Track"
               }
             },
+           
            
     ]
     
@@ -490,11 +958,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
              
       
       //         if (originalData[i].Title == "Other Node") {
-      //             color = '#faab2c';
-      //             console.log("coloro",color);
+      //             // color = '#faab2c';
+      //             // console.log("coloro",color);
       //         } else if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
-      //             color = '#40b86e';
-      //             console.log("colorcc",color);
+      //             // color = '#40b86e';
+      //             // console.log("colorcc",color);
       //         } else if (originalData[i].Title == "Control Node") {
       //             color = '#e54257';
       //             console.log("colorc",color);
@@ -508,70 +976,139 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       //     }
       //     console.log("colorall",color);
       //     return (color);
+      // } 
+
+
+      //        Define a function to get the connector type based on the node type
+    
+      // function getConnectorType(nodeType) {
+      //   switch (nodeType) {
+      //     case "Cause Node":
+      //       return "top";
+      //     case "Consequences Node":
+      //       return "top";
+      //     case "Control Node":
+      //       return "auto";
+      //     case "Risk Node":
+      //       return "bottomRight";
+      //     case "Other Node":
+      //       return "bottom";
+      //     default:
+      //       return "auto"; // Default to top connector for Other Node
+      //   }
       // }
-      
-      
-         
-      
 
+// Iterate through originalData and create connection objects
+    for (let i = 1; i < originalData.length; i++) {
 
-        for (let i = 1; i < originalData.length; i++) {
-
-          if (originalData[i].Title == "Other Node") {
+      if (originalData[i].Title == "Other Node") {
+        // Get connector type for the current node
+        // const fromConnector = getConnectorType(originalData[i].Title);
+        // Create connection object
+        var conObj = {
+          Id: originalData[i].Type === i,
+          FromShapeId: originalData[i].ParentNodeId,
+          ToShapeId: originalData[i].Id,
+          Text: null,
+          color: "1",
+          fromConnector: "bottom",
+          toConnector:"top",
+          // toConnector:"auto",
           
-            var conObj = {
-              Id: originalData[i].Type === i,
-              FromShapeId: originalData[i].ParentNodeId,
-              ToShapeId: originalData[i].Id,
-              Text: null,
-              color: "1"
-              
-            };
-            dataConnections.push(conObj);
-          }
+        };
 
-          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-          && originalData[i].ParentNodeId != 0) {
-            for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-              var conObj1 = {
-                Id: j,
-                FromShapeId: originalData[i].LinkedControlIds[j],
-                ToShapeId: originalData[i].Id,
-                Text: null,
-                color: "2"
-               
-              };
-              dataConnections.push(conObj1);
-            }
-          }
+        // Add the connection object to dataConnections array
+        dataConnections.push(conObj);
+      }
 
-          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-            && originalData[i].ParentNodeId == 0) {
+      if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
+        && originalData[i].ParentNodeId != 0) {
+        for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
+          // Get connector type for the current node
+          // const fromConnector = getConnectorType(originalData[i].Title);
 
-            var conObj2 = {
-              Id: i,
-              FromShapeId: 0,
-              ToShapeId: originalData[i].Id,
-              Text: null,
-              color: "3"
-              
-            };
-            dataConnections.push(conObj2);
-          }
+          // Create connection object
+          var conObj1 = {
+            Id: j,
+            FromShapeId: originalData[i].LinkedControlIds[j],
+            ToShapeId: originalData[i].Id,
+            Text: null,
+            color: "2",
+            fromConnector: "top",
+            
+           
+          };
 
-          if (originalData[i].Title == "Control Node") {
+          // Add the connection object to dataConnections array
+          dataConnections.push(conObj1);
+        }
+      }
+
+      if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
+        && originalData[i].ParentNodeId == 0) {
+        // Get connector type for the current node
+        // const fromConnector = getConnectorType(originalData[i].Title);
+
+        // Create connection object
+        var conObj2 = {
+          Id: i,
+          FromShapeId: 0,
+          ToShapeId: originalData[i].Id,
+          Text: null,
+          color: "3",
+          fromConnector: "auto",
+          toConnector:"top"
+         
+        };
+
+        // Add the connection object to dataConnections array
+        dataConnections.push(conObj2);
+      }
+
+      if (originalData[i].Title == "Control Node") {
+        // Get connector type for the current node
+        // const fromConnector = getConnectorType(originalData[i].Title);
+        // let controlNodeNotIncluded = true;
+        // // Create connection object
+        
+         
+          if (originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+            console.log(originalData[i].Id)
+            // Create connection object
             var conObj3 = {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "4"
+              color: "4",
+              fromConnector: "auto",
+              toConnector: "auto"
+            };
+    
+            dataConnections.push(conObj3);
              
+          }
+          else   {
+            var conObj3 = {
+              Id: i,
+              FromShapeId: 0,
+              ToShapeId: originalData[i].Id,
+              Text: null,
+              color: "4",
+              fromConnector: "auto",
+              toConnector: "bottom"
             };
             dataConnections.push(conObj3);
           }
-        }
+        
+      
 
+        
+       
+      
+    }
+
+  }
 
 
      $("#toolbar").kendoToolBar({

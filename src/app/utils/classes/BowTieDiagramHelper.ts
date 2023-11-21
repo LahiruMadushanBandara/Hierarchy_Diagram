@@ -202,11 +202,17 @@ export class BowTieDiagramHelper {
 
      
 
-
+    let typeFourNodeCount
       // Arrange type 4 nodes (below type 2 and type 3)
       const typeFourNodes = originalData.filter((node) => node.Type === 4);
-      let typeFourNodeCount = (typeFourNodes.length / 2);
-      let rowNumbertypeFour = 2;
+      if(typeFourNodes.length < 11){
+       typeFourNodeCount = (typeFourNodes.length / 2);}
+      else{
+        typeFourNodeCount = Math.ceil(typeFourNodes.length / typeFourNodes.length ) * 6;
+      }
+
+     
+      let rowNumbertypeFour = 3;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
      
       typeFourNodes.forEach((node, index) => {
