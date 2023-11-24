@@ -323,13 +323,8 @@ export class BowTieDiagramHelper {
           rowNumbertypeFourWhenOnlyBottomNodes++;
           rowNodeCount = 0;
           columnNumber = rowNodeCount; 
-         
         }
-       
       });
-    
-     
-
     }
     return arrangedNodes;
   }
