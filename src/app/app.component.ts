@@ -297,59 +297,7 @@ export class AppComponent implements OnChanges {
             drag: false,
             tools: [
               {
-              template:`
-
-              <div>
-                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
-
-                    <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
-                      <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
-                      <div  class='slider'></div>
-                      <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Back'">
-                    <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
-                      <span>Back</span>
-                    </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Risk View'">
-                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
-                          <span>Risk View</span>
-                        </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
-                            <span>Kpi View</span>
-                        </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Performance View'">
-                      <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
-                          <span>Performance View</span>
-                      </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
-                        <span class="expand-icon"></span>
-                        <span>Expand</span>                      
-                      </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-                      <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
-                          <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                          <span>Export</span>
-                      </button>
-                    </div>
-                </div>                  
-            </div>        
-                `
+              template: Templates.GetToolbarTemplate() 
             }
           ]
           },
@@ -437,7 +385,6 @@ export class AppComponent implements OnChanges {
 
         });
 
-
         $(".bt-Risk").click(function() {
          
           if (isKpIview == false) {
@@ -452,8 +399,7 @@ export class AppComponent implements OnChanges {
 
             if (isRiskView) {
 
-              const Kpidbutton = document.getElementById('btKpikView');
-              Kpidbutton.style.opacity = '0.5'; 
+              $('#btKpikView').prop("disabled",true); 
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -475,8 +421,7 @@ export class AppComponent implements OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
-              const Kpidbutton = document.getElementById('btKpikView');
-              Kpidbutton.style.opacity = '1'; 
+              $('#btKpikView').prop("disabled",false); 
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
@@ -497,8 +442,7 @@ export class AppComponent implements OnChanges {
             var connectionsDataSource = diagram.connectionsDataSource;
 
             if (isKpIview) {
-              const Riskbutton = document.getElementById('btRiskView');
-              Riskbutton.style.opacity = '0.5';
+              $('#btRiskView').prop("disabled",true); 
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -522,8 +466,7 @@ export class AppComponent implements OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
-              const Riskbutton = document.getElementById('btRiskView');
-              Riskbutton.style.opacity = '1';
+              $('#btRiskView').prop("disabled",false);
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
@@ -604,6 +547,9 @@ export class AppComponent implements OnChanges {
               linkedNodesToClickedNode.push(node);
             }
           }
+
+          $('#btRiskView').prop("disabled",true);
+          $('#btKpikView').prop("disabled",true);
         }
 
         //update node placing
