@@ -301,6 +301,7 @@ export class AppComponent implements OnChanges {
             }
           ]
           },
+          selectable:false,
           pannable: {
             key: "none", // Use the Ctrl key for panning
             start: function (e) {
