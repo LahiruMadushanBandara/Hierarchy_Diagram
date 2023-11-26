@@ -8,14 +8,14 @@ export class PerformanceView {
 
     enum PerformanceViewStyle {
 
-      strong = "style='background-color: rgb(242,130,48); color: white;' ",
-      Moderate = "style='background-color: rgb(255,219,46); color: white;'",
-      Weak = "style='background-color:rgb(0, 185, 85); color: white;'",
-      Strongest = "style='background-color: rgb(215,43,63); color: white;'",
-      LargelyIneffective= "style='background-color: rgb(215,43,63); color: white;'",
-      PartiallyEffective = "style='background-color: rgb(242,130,48); color: white;' ",
-      SubstantiallyEffective = "style='background-color: rgb(255,219,46); color: white;'",
-      FullyEffective = "style='background-color:rgb(0, 185, 85); color: white;'",
+      strong = "style='background-color: rgb(242,130,48); ' ",
+      Moderate = "style='background-color: rgb(255,219,46); '",
+      Weak = "style='background-color:rgb(0, 185, 85); '",
+      Strongest = "style='background-color: rgb(215,43,63); '",
+      LargelyIneffective= "style='background-color: rgb(215,43,63); '",
+      PartiallyEffective = "style='background-color: rgb(242,130,48); ' ",
+      SubstantiallyEffective = "style='background-color: rgb(255,219,46);'",
+      FullyEffective = "style='background-color:rgb(0, 185, 85); '",
      
     } 
 
@@ -78,9 +78,9 @@ export class PerformanceViewKpi {
 
     enum PerformanceViewStyle {
 
-      OnTrack = "style='background-color: rgb(242,130,48); color: white;  border: none;' ",
-      OffTrack = "style='background-color: rgb(255,219,46); color: white;  border: none;'",
-      Monitor = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'",
+      OnTrack = "style='background-color: rgb(242,130,48);' ",
+      OffTrack = "style='background-color: rgb(255,219,46);'",
+      Monitor = "style='background-color:rgb(0, 185, 85);'",
     } 
 
     enum kpiRating{
