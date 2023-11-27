@@ -17,7 +17,7 @@ export class TemplateClass {
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</span>"+
         "</div>" +
-        "<div class='bow-tie-control-card-body' >" +
+        "<div class='bow-tie-control-card-body' "+ styles +" >" +
         "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +
            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
         "</p>" +
@@ -217,7 +217,7 @@ export class TemplateClass {
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
         "</span>"+ 
         "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
+        "<div class='bow-tie-extra-card-body' "+ styles +">" +
           "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +            
           truncatedHtmlTemplate +    
           "</p>" +
@@ -250,7 +250,7 @@ export class TemplateClass {
       "</div>"
     );
   
-}
+  }
 
   public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     const maxCharacters = 70;
@@ -537,7 +537,7 @@ export class TemplateClass {
           (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
         "</span>"+ 
         "</div>" +
-        "<div class='bow-tie-extra-card-body' >" +
+        "<div class='bow-tie-extra-card-body'"+ styles +" >" +
           "<p class='bow-tie-htmlTemplate' "+ styles +">\\" +
             truncatedHtmlTemplate +
           " </p>" +

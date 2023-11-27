@@ -8,14 +8,14 @@ export class PerformanceView {
 
     enum PerformanceViewStyle {
 
-      strong = "style='background-color: rgb(242,130,48); ' ",
-      Moderate = "style='background-color: rgb(255,219,46); '",
-      Weak = "style='background-color:rgb(0, 185, 85); '",
-      Strongest = "style='background-color: rgb(215,43,63); '",
-      LargelyIneffective= "style='background-color: rgb(215,43,63); '",
-      PartiallyEffective = "style='background-color: rgb(242,130,48); ' ",
-      SubstantiallyEffective = "style='background-color: rgb(255,219,46);'",
-      FullyEffective = "style='background-color:rgb(0, 185, 85); '",
+      strong = "style='background-color: rgb(242,130,48); border-right: none !important; border-bottom: none !important;border-left: none !important;' ",
+      Moderate = "style='background-color: rgb(255,219,46);border-right: none !important; border-bottom: none !important;border-left: none !important; '",
+      Weak = "style='background-color:rgb(0, 185, 85);border-right: none !important; border-bottom: none !important;border-left: none !important;'",
+      Strongest = "style='background-color: rgb(215,43,63); border-right: none !important; border-bottom: none !important;border-left: none !important;'",
+      LargelyIneffective= "style='background-color: rgb(215,43,63); border-right: none !important; border-bottom: none !important;border-left: none !important;'",
+      PartiallyEffective = "style='background-color: rgb(242,130,48);border-right: none !important; border-bottom: none !important;border-left: none !important; ' ",
+      SubstantiallyEffective = "style='background-color: rgb(255,219,46);border-right: none !important; border-bottom: none !important;border-left: none !important;'",
+      FullyEffective = "style='background-color:rgb(0, 185, 85);border-right: none !important; border-bottom: none !important;border-left: none !important; '",
      
     } 
 
@@ -78,9 +78,9 @@ export class PerformanceViewKpi {
 
     enum PerformanceViewStyle {
 
-      OnTrack = "style='background-color: rgb(242,130,48);' ",
-      OffTrack = "style='background-color: rgb(255,219,46);'",
-      Monitor = "style='background-color:rgb(0, 185, 85);'",
+      OnTrack = "style='background-color: rgb(242,130,48);border-right: none !important; border-bottom: none !important;border-left: none !important;' ",
+      OffTrack = "style='background-color: rgb(255,219,46);border-right: none !important; border-bottom: none !important;border-left: none !important;'",
+      Monitor = "style='background-color:rgb(0, 185, 85);border-right: none !important; border-bottom: none !important;border-left: none !important;'",
     } 
 
     enum kpiRating{
