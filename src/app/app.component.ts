@@ -139,7 +139,9 @@ export class AppComponent implements OnChanges {
               FromShapeId: originalData[i].ParentNodeId,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "1"
+              color: "1",
+              fromConnector: "bottom",
+              toConnector:"top"
               
             };
             dataConnections.push(conObj);
