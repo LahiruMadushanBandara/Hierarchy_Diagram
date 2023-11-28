@@ -8,14 +8,14 @@ export class PerformanceView {
 
     enum PerformanceViewStyle {
 
-      strong = "style='background-color: rgb(242,130,48); border-right: none !important; border-bottom: none !important;border-left: none !important;' ",
-      Moderate = "style='background-color: rgb(255,219,46);border-right: none !important; border-bottom: none !important;border-left: none !important; '",
-      Weak = "style='background-color:rgb(0, 185, 85);border-right: none !important; border-bottom: none !important;border-left: none !important;'",
-      Strongest = "style='background-color: rgb(215,43,63); border-right: none !important; border-bottom: none !important;border-left: none !important;'",
-      LargelyIneffective= "style='background-color: rgb(215,43,63); border-right: none !important; border-bottom: none !important;border-left: none !important;'",
-      PartiallyEffective = "style='background-color: rgb(242,130,48);border-right: none !important; border-bottom: none !important;border-left: none !important; ' ",
-      SubstantiallyEffective = "style='background-color: rgb(255,219,46);border-right: none !important; border-bottom: none !important;border-left: none !important;'",
-      FullyEffective = "style='background-color:rgb(0, 185, 85);border-right: none !important; border-bottom: none !important;border-left: none !important; '",
+      strong = "style='background-color: rgb(242,130,48); border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;' ",
+      Moderate = "style='background-color: rgb(255,219,46);border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;'",
+      Weak = "style='background-color:rgb(0, 185, 85);border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;'",
+      Strongest = "style='background-color: rgb(215,43,63); border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;'",
+      LargelyIneffective= "style='background-color: rgb(215,43,63); border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;'",
+      PartiallyEffective = "style='background-color: rgb(242,130,48);border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;' ",
+      SubstantiallyEffective = "style='background-color: rgb(255,219,46);border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;'",
+      FullyEffective = "style='background-color:rgb(0, 185, 85);border-right: none !important; border-bottom: none !important;border-left: none !important; color: black;'",
      
     } 
 

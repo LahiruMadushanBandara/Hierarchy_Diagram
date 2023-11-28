@@ -6,899 +6,1086 @@ export class TemplateClass {
 
 
 
-  public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
-    const performanceView = new PerformanceView();
-    var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
+    public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
+      const performanceView = new PerformanceView();
+      var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
+      
+      return (
+        "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
+          "<div class='bow-tie-control-card-header' "+ styles +">" +
+            "<span>"+
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+            "</span>"+
+          "</div>" +
+          "<div class='bow-tie-control-card-body' "+ styles +" >" +
+          "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +
+            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+          "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+    public GetOtherTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
+
+      if(contentDetails.KpiData && contentDetails.KpiData.Performance != undefined){
+
+        const performanceViewKpi = new PerformanceViewKpi();
+        var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
+      }
+
+      return (
+        "<div class='Bow-tie-Other-card-content rounded'"+ styles +">" +
+          "<div class='Bow-tie-Other-card-header'"+ styles +">" +
+          "<span>"+
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+
+          "</div>" +
+          "<div class='Bow-tie-Other-card-body'"+ styles +">" +
+          "<p class='bow-tie-htmlTemplate'"+ styles +">\\" +  
+          contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+          "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+    public GetConsequencesTemplateGlobal(contentDetails: DiagramNodeData) {
+      return (
+        "<div class='bow-tie-cause-card-content rounded'>" +
+          "<div class='bow-tie-cause-card-header'>" +
+          "<span>"+
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+
+          "</div>" +
+          "<div class='bow-tie-cause-card-body'>\\" +
+            "<p>" +
+              contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+    public GetCauseTemplateGlobal(contentDetails: DiagramNodeData) {
+      return (
+        "<div class='bow-tie-cause-card-content rounded'>" +
+          "<div class='bow-tie-cause-card-header'>" +
+          "<span>"+
+                (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+ 
+          "</div>" +
+          "<div class='bow-tie-cause-card-body' >\\" +
+            "<p>" +
+            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+  
+    public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
+
+      contentDetails.RiskData.InherentRiskRatingImg = (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
+      contentDetails.RiskData.AppetiteRatingImg = (contentDetails.RiskData.AppetiteRating == "" || contentDetails.RiskData.AppetiteRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
+      contentDetails.RiskData.ResidualRiskRatingImg = (contentDetails.RiskData.ResidualRiskRating == "" || contentDetails.RiskData.ResidualRiskRating === undefined) ?"assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
+      contentDetails.RiskData.TargetRiskRatingImg = (contentDetails.RiskData.TargetRiskRating == "" || contentDetails.RiskData.TargetRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
     
-    return (
-      "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
-        "<div class='bow-tie-control-card-header' "+ styles +">" +
+      contentDetails.RiskData.InherentRiskRating = (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating === undefined) ? "N/A" : contentDetails.RiskData.InherentRiskRating;
+      contentDetails.RiskData.AppetiteRating = (contentDetails.RiskData.AppetiteRating == "" || contentDetails.RiskData.AppetiteRating === undefined) ? "N/A" : contentDetails.RiskData.AppetiteRating;
+      contentDetails.RiskData.ResidualRiskRating = (contentDetails.RiskData.ResidualRiskRating == "" || contentDetails.RiskData.ResidualRiskRating === undefined) ? "N/A" : contentDetails.RiskData.ResidualRiskRating;
+      contentDetails.RiskData.TargetRiskRating = (contentDetails.RiskData.TargetRiskRating == "" || contentDetails.RiskData.TargetRiskRating === undefined) ? "N/A" : contentDetails.RiskData.TargetRiskRating;
+      
+    
+      return (
+        "<div class='bow-tie-risk-card-content rounded'>" +
+            "<div class='bow-tie-risk-card-header-top' >" +
+              "<p class='bow-tie-risk-card-header-top-text'>" +
+              "<span>"+
+                  (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+              "</span>"+
+              "</p>" +
+            "</div>" +
+            "<div class='bow-tie-risk-card-header'>" +
+              "<p class='bow-tie-risk-card-header-text'>\\"+
+                contentDetails.RiskData.RiskCode+ 
+                "-"+
+                  contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+              "</p>" +
+            "</div>" +
+            "<div class='bow-tie-risk-card-body'>" +
+              "<div class='row'>" +
+                "<div class='column'>" +
+                  "<p class ='ratings'> Inherent Rating </p>" +
+                  "<p class='bow-tie-risk-rating-details'>" +
+                            "<img class='bow-tie-risk-rating-details-image'"+
+                              "src='"+ contentDetails.RiskData.InherentRiskRatingImg+"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                      contentDetails.RiskData.InherentRiskRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+                "<div class='column'>" +
+                  "<p class ='ratings'> Revised Rating  </p>" +
+                  "<p class='bow-tie-risk-rating-details'>" +
+                        "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.RiskData.ResidualRiskRatingImg+"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                      contentDetails.RiskData.ResidualRiskRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+              "</div>" +
+              "<div class='row'>" +
+                "<div class='column'>" +
+                  "<p class ='ratings'>Future Rating</p>" +
+                  "<p  class='bow-tie-risk-rating-details'>" +
+                        "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.RiskData.TargetRiskRatingImg +"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                    contentDetails.RiskData.TargetRiskRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+                "<div class='column'>" +
+                  "<p class ='ratings'> Risk Appetite  </p>" +
+                  "<p class='bow-tie-risk-rating-details'>" +
+                        "<img class='bow-tie-risk-rating-details-image'"+
+                            "src='"+ contentDetails.RiskData.AppetiteRatingImg +"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                      contentDetails.RiskData.AppetiteRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+            "</div>" +
+          
+            "<div class='bow-tie-risk-card-footer'>" +
+              "<div class='row'>" +
+                "<div class='bow-tie-risk-footer-details'>" +
+                  "<p class ='ratings'>Risk Category</p>"+
+                  "<p class= 'bow-tie-risk-category'>"+
+                  contentDetails.RiskData.Category+
+                  "</p>" +
+                "</div>" +
+              "<div class='bow-tie-risk-footer-details-responsible'>" +
+                "<p class='bow-tie-risk-responsible-manager'> Responsible Manager  </p>" +
+                "<p class='bow-tie-risk-rating-details'>" +
+                  "<img class='bow-tie-risk-rating-details-image'"+
+                              "src='"+ contentDetails.RiskData.profileImageUrl.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity +"'"+
+                  "<span class='bow-tie-risk-rating-details-text'>"+
+                  contentDetails.RiskData.ResponsibleManager+
+                  "</span>" +
+                "</p>" +
+              "</div>" +
+            "</div>" +
+        "</div>"
+      );
+    }
+
+  
+
+    public GetControlNodeTemplateGlobalExpand(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
+
+      const performanceView = new PerformanceView();
+      var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+    
+      return (
+        "<div class='bow-tie-extra-card-content rounded'"+ styles +" >" +
+          "<div class='bow-tie-control-card-header' "+ styles +" >" +
+          "<span>"+
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+ 
+          "</div>" +
+          "<div class='bow-tie-extra-card-body' "+ styles +">" +
+            "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +            
+            truncatedHtmlTemplate +    
+            "</p>" +
+            "<p class='bow-tie-control-type-details'>" +
+              "<span class='bow-tie-control-type' "+ styles +">" +
+                "Control Type" +
+              "</span>" +
+              "<p class='bow-tie-control-type-text' "+ styles +">" +
+                contentDetails.ControlData.ControlType +
+              "</p>" +
+            "</p>" +
+            "<p class='bow-tie-control-owner' "+ styles +">Control Owner</p>" +
+            "<p class='bow-tie-control-owner-details' "+ styles +">" +
+              "<img class ='bow-tie-control-owner-image'"+
+                "src='"+ contentDetails.ControlData.ControlOwnerImageUrl.changingThisBreaksApplicationSecurity +"'"+
+              "<span class='bow-tie-control-owner-name'>"+
+                contentDetails.ControlData.ControlOwner +
+              "</span>" +
+            "</p>" +
+            "<p class='bow-tie-control-owner-rating' "+ styles +">" +
+            "Control Owner Rating" +
+            "<p class='bow-tie-control-owner-rating-details' "+ styles +">" +
+              "<img class='bow-tie-control-owner-rating-icon'"+
+                              "src='"+ contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity +"'"+
+              "<span class='bow-tie-control-owner-rating-name'>"+
+                contentDetails.ControlData.ControlOwnerRating+
+              "</span>" +
+            "</p>"+
+          "</div>" +
+        "</div>"
+      );
+    
+    }
+
+    public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded''>" +
+          "<div class='bow-tie-extra-card-header''>" +
+          "<span>"+
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+
+          "</div>" +
+          "<div class='bow-tie-extra-card-body'>" +
+            "<p class='bow-tie-htmlTemplate'>\\" +
+            truncatedHtmlTemplate+
+            "</p>" +
+            "<p class='bow-tie-details-name'>" +
+            "<span class='bow-tie-control-type''>" +
+                'Due Date' +
+              "</span>" +
+              "<p class='bow-tie-date'>" +
+                " 11March,2020  " +
+              "</p>" +
+            "</p>" +
+            "<p class='bow-tie-treatment-expand-owner' >Owner</p>" +
+            "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+              "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
+              "<span class='bow-tie-incident-expand-responsible-officer-name'> Talia Gisbon  </span>" +
+            "</p>" +
+            "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
+              'Complete' +
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+    public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
+      contentDetails.LinkedRiskData.InherentRiskRatingImg = (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
+      contentDetails.LinkedRiskData.AppetiteRatingImg = (contentDetails.LinkedRiskData.AppetiteRating == "" || contentDetails.LinkedRiskData.AppetiteRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
+      contentDetails.LinkedRiskData.ResidualRiskRatingImg = (contentDetails.LinkedRiskData.ResidualRiskRating == "" || contentDetails.LinkedRiskData.ResidualRiskRating === undefined) ?"assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
+      contentDetails.LinkedRiskData.TargetRiskRatingImg = (contentDetails.LinkedRiskData.TargetRiskRating == "" || contentDetails.LinkedRiskData.TargetRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
+    
+      contentDetails.LinkedRiskData.InherentRiskRating = (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.InherentRiskRating;
+      contentDetails.LinkedRiskData.AppetiteRating = (contentDetails.LinkedRiskData.AppetiteRating == "" || contentDetails.LinkedRiskData.AppetiteRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.AppetiteRating;
+      contentDetails.LinkedRiskData.ResidualRiskRating = (contentDetails.LinkedRiskData.ResidualRiskRating == "" || contentDetails.LinkedRiskData.ResidualRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.ResidualRiskRating;
+      contentDetails.LinkedRiskData.TargetRiskRating = (contentDetails.LinkedRiskData.TargetRiskRating == "" || contentDetails.LinkedRiskData.TargetRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.TargetRiskRating;
+      
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-risk-card-content-expand rounded' >" +
+          "<div class='bow-tie-risk-card-header-top-expand' >" +
+          "<p class='bow-tie-risk-card-header-top-text'>" +
+          
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          
+            "</p>" +
+          "</div>" +
+          "<div class='bow-tie-risk-card-header-expand'>" +
+            "<p class='bow-tie-risk-card-header-text-expand'>\\"+
+                contentDetails.LinkedRiskData.RiskCode+ 
+                "-"+
+                truncatedHtmlTemplate +
+              "   </p> " +
+          "</div>" +
+            "<div class='bow-tie-risk-card-body-expand'>" +
+              "<div class='row'>" +
+                "<div class='column'>" +
+                  "<p class='ratings'> Inherent Rating  </p>" +
+                  "<p class='bow-tie-risk-rating-details'>" +
+                    "<img class='bow-tie-risk-rating-details-image'"+
+                              "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg +"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                      contentDetails.LinkedRiskData.InherentRiskRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+                "<div class='column'>" +
+                  "<p class='ratings'> Revised Rating  </p>" +
+                  "<p class='bow-tie-risk-rating-details'>" +
+                    "<img class='bow-tie-risk-rating-details-image'"+
+                              "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg +"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                      contentDetails.LinkedRiskData.ResidualRiskRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+              "</div>" +
+              "<div class='row'>" +
+                "<div class='column'>" +
+                  "<p class='ratings'> Future Rating  </p>" +
+                  "<p  class='bow-tie-risk-rating-details'>" +
+                    "<img class='bow-tie-risk-rating-details-image'"+
+                              "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg +"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                    contentDetails.LinkedRiskData.TargetRiskRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+                "<div class='column'>" +
+                  "<p class='ratings'> Risk Appetite  </p>" +
+                  "<p class='bow-tie-risk-rating-details'>" +
+                    "<img class='bow-tie-risk-rating-details-image'"+
+                              "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg +"'"+
+                    "<span class='bow-tie-risk-rating-details-text'>"+
+                      contentDetails.LinkedRiskData.AppetiteRating+
+                    "</span>" +
+                  "</p>" +
+                "</div>" +
+              "</div>" +
+            "</div>" +
+          
+          "<div class='bow-tie-risk-card-footer-expand'>" +
+            "<div class='row'>" +
+            "<div class='bow-tie-risk-footer-details'>" +
+              "<p class='ratings'> Risk Category  </p>"+
+              "<p class= 'bow-tie-risk-category'>"+
+              contentDetails.LinkedRiskData.Category+
+              "</p>" +
+            "</div>" +
+            "<div class='bow-tie-risk-footer-details-responsible'>" +
+            "<p class='ratings'> Responsible Manager  </p>" +
+            "<p class='bow-tie-risk-rating-details'>" +
+              "<img class='bow-tie-risk-rating-details-image'"+
+                          "src='"+ contentDetails.LinkedRiskData.profileImageUrl.changingThisBreaksApplicationSecurity +"'"+
+              "<span class='bow-tie-risk-rating-details-text'>"+
+              contentDetails.LinkedRiskData.ResponsibleManager+
+              "</span>" +
+            "</p>" +
+        "</div>" +
+      "</div>" +
+  "</div>"
+      );
+    }
+
+    public GetIncidentExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' >" +
+          "<div class='bow-tie-extra-card-header' >" +
           "<span>"+
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           "</span>"+
-        "</div>" +
-        "<div class='bow-tie-control-card-body' "+ styles +" >" +
-        "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +
-           contentDetails.htmlTemplate.replace(/#/g, '\\#') +
-        "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
+          "</div>" +
+          "<div class='bow-tie-extra-card-body'>" +
+            "<p class='bow-tie-htmlTemplate'>\\" +
+              truncatedHtmlTemplate+
+            "<p>" +
+            "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
+            "<p class='bow-tie-responsible-officer'>" +
+              "<img class='bow-tie-control-owner-image'"+
+              "src='"+ contentDetails.IncidentData.ReportedOfficerImageUrl.changingThisBreaksApplicationSecurity+"'"+
+              "<span class='bow-tie-control-owner-name'>"+
+                
+                  contentDetails.IncidentData.ReportedOfficerName+
+              
+              "</span>" +
+              
+            "</p>" +
+            "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
+            "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+                "<img class='bow-tie-incident-expand-responsible-officer-image'"+
+                "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity+"'"+
+              "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
+              
+                  contentDetails.IncidentData.ResponsiblePerson+
+              
+              "</span>" +
+            "</p>" +
+            "<p class='bow-tie-incident-expand-reported-date-time'>" +
+              'Reported Date/Time' +
+              "<p class='bow-tie-incident-expand-reported-date'>" +
+              
+                  contentDetails.IncidentData.ReportedDate+
+              
+              "</p>" +
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
 
-  public GetOtherTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
-    // var styles:string;
+    public GetComplianceObligationExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' >" +
+          "<div class='bow-tie-extra-card-header'>" +
+          "<span>"+
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+
+          "</div>" +
+          "<div class='bow-tie-extra-card-body'>" +
+            "<p class='bow-tie-htmlTemplate'>'\\" +
+              truncatedHtmlTemplate +
+            "<p>" +
+            "<p class='bow-tie-incident-expand-reportedby' >Responsible Officer</p>" +
+            "<p class='bow-tie-responsible-officer'>" +
+              "<img class='bow-tie-control-owner-image'"+
+                "src='"+ contentDetails.ComplianceData.ROImage.changingThisBreaksApplicationSecurity+"'"+
+                "<span class='bow-tie-control-owner-name'>"+
+                
+                  contentDetails.ComplianceData.ResponsibleOfficer+
+                "  "+
+              "</span>" +
+            "</p>" +
+            "<p class='bow-tie-compliance-status'>" +
+              'Compliance Status' +
+              "<p class='bow-tie-incident-expand-reported-date'>" +
+                
+                  contentDetails.ComplianceData?.ReviewStatus+
+                "  "+
+              "</p>" +
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
 
-    //  if(contentDetails.KpiData.Performance === 'On Track'){
-      
-    //   styles = "style='background-color:rgb(0, 185, 85); color: white;  border: none;'";
-    // }
-    // else if(contentDetails.KpiData.Performance === 'Off Track'){
-      
-    //   styles = "style='background-color: rgb(255,219,46); color: white;  border: none;'";
-    // }
-    // else if(contentDetails.KpiData.Performance === 'Monitor'){
-      
-    //   styles = "style='background-color: rgb(242,130,48); color: white;  border: none;' ";
-    // }
-
-    if(contentDetails.KpiData && contentDetails.KpiData.Performance != undefined){
+    public GetKPIExpand(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
 
       const performanceViewKpi = new PerformanceViewKpi();
       var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
+
+      contentDetails.KpiData.Actual != null  ? contentDetails.KpiData.Actual : 0  ;
+      contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
+      
+      var currentIndicator:string;
+    
+      
+
+      if(contentDetails.KpiData.Performance === 'N/A'){
+        currentIndicator = 'na-badge';
+        
+      }
+      else if(contentDetails.KpiData.Performance === 'On Track'){
+        currentIndicator = 'onTrack-badge';
+        
+      }
+      else if(contentDetails.KpiData.Performance === 'Off Track'){
+        currentIndicator = 'offTrack-badge';
+        
+      }
+      else if(contentDetails.KpiData.Performance === 'Monitor'){
+        currentIndicator = 'monitor-badge';
+        
+      }
+      else{
+        currentIndicator = 'na-badge';
+      }
+
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' "+ styles +">" +
+          "<div class='bow-tie-extra-card-header' "+ styles +">" +
+          "<span>"+
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+ 
+          "</div>" +
+          "<div class='bow-tie-extra-card-body'"+ styles +" >" +
+            "<p class='bow-tie-htmlTemplate' "+ styles +">\\" +
+              truncatedHtmlTemplate +
+            " </p>" +
+            "<div class='bow-tie-kpi'>" +
+              "<div class='bow-tie-unit-flex'>" +
+                "<span class='bow-tie-unit-text'"+ styles +">" +
+                  " Unit  " +
+                "</span>" +
+                "<span class='bow-tie-unit-symbol'>\\"+
+              
+                  contentDetails.KpiData.Unit +
+                
+                "</span>"+
+              "</div>" +
+            "</div>" +
+            "<div class='bow-tie-unit-details' >" +
+              "<div class='bow-tie-actual-flex'>" +
+                "<span class='bow-tie-actual-text'"+ styles +">" +
+                  " Actual  " +
+                "</span>" +
+                "<span class='bow-tie-actual-value'>"+ 
+                  contentDetails.KpiData.Actual +
+                "</span>" +
+              "</div>" +
+                "<div class='bow-tie-target-flex'>" +
+                  "<span class='bow-tie-target-text'"+ styles +">" +
+                    " Target  " +
+                  "</span>" +
+                  "<span class='bow-tie-target-value'>"+                
+                    contentDetails.KpiData.Target  +
+                  "</span>" +
+                "</div>" +
+            "</div>" +
+            "<div class='bow-tie-performance-flex'>" +
+              "<span class='bow-tie-performance-text' >Performance</span>" +
+              `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'></span>`+
+              `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'}</span>`+
+            "</div>" +
+          "</div>" +
+        "</div>"
+      );
     }
 
-    return (
-      "<div class='Bow-tie-Other-card-content rounded'"+ styles +">" +
-        "<div class='Bow-tie-Other-card-header'"+ styles +">" +
-        "<span>"+
-             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+
-        "</div>" +
-        "<div class='Bow-tie-Other-card-body'"+ styles +">" +
-        "<p class='bow-tie-htmlTemplate'"+ styles +">\\" +  
-        contentDetails.htmlTemplate.replace(/#/g, '\\#') +
-        "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetConsequencesTemplateGlobal(contentDetails: DiagramNodeData) {
-    return (
-      "<div class='bow-tie-cause-card-content rounded'>" +
-        "<div class='bow-tie-cause-card-header'>" +
-        "<span>"+
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+
-        "</div>" +
-        "<div class='bow-tie-cause-card-body'>\\" +
-          "<p>" +
-            contentDetails.htmlTemplate.replace(/#/g, '\\#') +
-          "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetCauseTemplateGlobal(contentDetails: DiagramNodeData) {
-    return (
-      "<div class='bow-tie-cause-card-content rounded'>" +
-        "<div class='bow-tie-cause-card-header'>" +
-        "<span>"+
-              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+ 
-        "</div>" +
-        "<div class='bow-tie-cause-card-body' >\\" +
-          "<p>" +
-           contentDetails.htmlTemplate.replace(/#/g, '\\#') +
-          "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
- 
-  public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
-
-    contentDetails.RiskData.InherentRiskRatingImg = (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.RiskData.AppetiteRatingImg = (contentDetails.RiskData.AppetiteRating == "" || contentDetails.RiskData.AppetiteRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.RiskData.ResidualRiskRatingImg = (contentDetails.RiskData.ResidualRiskRating == "" || contentDetails.RiskData.ResidualRiskRating === undefined) ?"assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.RiskData.TargetRiskRatingImg = (contentDetails.RiskData.TargetRiskRating == "" || contentDetails.RiskData.TargetRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
-   
-    contentDetails.RiskData.InherentRiskRating = (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating === undefined) ? "N/A" : contentDetails.RiskData.InherentRiskRating;
-    contentDetails.RiskData.AppetiteRating = (contentDetails.RiskData.AppetiteRating == "" || contentDetails.RiskData.AppetiteRating === undefined) ? "N/A" : contentDetails.RiskData.AppetiteRating;
-    contentDetails.RiskData.ResidualRiskRating = (contentDetails.RiskData.ResidualRiskRating == "" || contentDetails.RiskData.ResidualRiskRating === undefined) ? "N/A" : contentDetails.RiskData.ResidualRiskRating;
-    contentDetails.RiskData.TargetRiskRating = (contentDetails.RiskData.TargetRiskRating == "" || contentDetails.RiskData.TargetRiskRating === undefined) ? "N/A" : contentDetails.RiskData.TargetRiskRating;
-    
-   
-    return (
-      "<div class='bow-tie-risk-card-content rounded'>" +
-          "<div class='bow-tie-risk-card-header-top' >" +
-            "<p class='bow-tie-risk-card-header-top-text'>" +
-            "<span>"+
-                (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-            "</span>"+
-            "</p>" +
-          "</div>" +
-          "<div class='bow-tie-risk-card-header'>" +
-            "<p class='bow-tie-risk-card-header-text'>\\"+
-              contentDetails.RiskData.RiskCode+ 
-              "-"+
-                contentDetails.htmlTemplate.replace(/#/g, '\\#') +
-            "</p>" +
-          "</div>" +
-          "<div class='bow-tie-risk-card-body'>" +
-            "<div class='row'>" +
-              "<div class='column'>" +
-                "<p class ='ratings'> Inherent Rating </p>" +
-                "<p class='bow-tie-risk-rating-details'>" +
-                          "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.RiskData.InherentRiskRatingImg+"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                    contentDetails.RiskData.InherentRiskRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-              "<div class='column'>" +
-                "<p class ='ratings'> Revised Rating  </p>" +
-                "<p class='bow-tie-risk-rating-details'>" +
-                      "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.ResidualRiskRatingImg+"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                    contentDetails.RiskData.ResidualRiskRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-            "</div>" +
-            "<div class='row'>" +
-              "<div class='column'>" +
-                "<p class ='ratings'>Future Rating</p>" +
-                "<p  class='bow-tie-risk-rating-details'>" +
-                      "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.TargetRiskRatingImg +"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                   contentDetails.RiskData.TargetRiskRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-              "<div class='column'>" +
-                "<p class ='ratings'> Risk Appetite  </p>" +
-                "<p class='bow-tie-risk-rating-details'>" +
-                      "<img class='bow-tie-risk-rating-details-image'"+
-                          "src='"+ contentDetails.RiskData.AppetiteRatingImg +"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                    contentDetails.RiskData.AppetiteRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-          "</div>" +
-        
-          "<div class='bow-tie-risk-card-footer'>" +
-            "<div class='row'>" +
-              "<div class='bow-tie-risk-footer-details'>" +
-                "<p class ='ratings'>Risk Category</p>"+
-                "<p class= 'bow-tie-risk-category'>"+
-                 contentDetails.RiskData.Category+
-                "</p>" +
-              "</div>" +
-            "<div class='bow-tie-risk-footer-details-responsible'>" +
-              "<p class='bow-tie-risk-responsible-manager'> Responsible Manager  </p>" +
-              "<p class='bow-tie-risk-rating-details'>" +
-                "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.RiskData.profileImageUrl.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity +"'"+
-                "<span class='bow-tie-risk-rating-details-text'>"+
-                contentDetails.RiskData.ResponsibleManager+
-                "</span>" +
-              "</p>" +
-            "</div>" +
-          "</div>" +
-      "</div>"
-    );
-  }
-
- 
-
-  public GetControlNodeTemplateGlobalExpand(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
-
-    const performanceView = new PerformanceView();
-    var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-   
-    return (
-      "<div class='bow-tie-extra-card-content rounded'"+ styles +" >" +
-        "<div class='bow-tie-control-card-header' "+ styles +" >" +
-        "<span>"+
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+ 
-        "</div>" +
-        "<div class='bow-tie-extra-card-body' "+ styles +">" +
-          "<p class='bow-tie-htmlTemplate'  "+ styles +">\\" +            
-          truncatedHtmlTemplate +    
-          "</p>" +
-          "<p class='bow-tie-control-type-details'>" +
-            "<span class='bow-tie-control-type' "+ styles +">" +
-              "Control Type" +
-            "</span>" +
-            "<p class='bow-tie-control-type-text' "+ styles +">" +
-              contentDetails.ControlData.ControlType +
-            "</p>" +
-          "</p>" +
-          "<p class='bow-tie-control-owner' "+ styles +">Control Owner</p>" +
-          "<p class='bow-tie-control-owner-details' "+ styles +">" +
-            "<img class ='bow-tie-control-owner-image'"+
-               "src='"+ contentDetails.ControlData.ControlOwnerImageUrl.changingThisBreaksApplicationSecurity +"'"+
-            "<span class='bow-tie-control-owner-name'>"+
-              contentDetails.ControlData.ControlOwner +
-            "</span>" +
-          "</p>" +
-          "<p class='bow-tie-control-owner-rating' "+ styles +">" +
-          "Control Owner Rating" +
-          "<p class='bow-tie-control-owner-rating-details' "+ styles +">" +
-            "<img class='bow-tie-control-owner-rating-icon'"+
-                            "src='"+ contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity +"'"+
-            "<span class='bow-tie-control-owner-rating-name'>"+
-              contentDetails.ControlData.ControlOwnerRating+
-            "</span>" +
-          "</p>"+
-        "</div>" +
-      "</div>"
-    );
-  
-  }
-
-  public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded''>" +
-        "<div class='bow-tie-extra-card-header''>" +
-        "<span>"+
-        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+
-        "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
-          "<p class='bow-tie-htmlTemplate'>\\" +
-          truncatedHtmlTemplate+
-          "</p>" +
-          "<p class='bow-tie-details-name'>" +
-          "<span class='bow-tie-control-type''>" +
-              'Due Date' +
-            "</span>" +
-            "<p class='bow-tie-date'>" +
-              " 11March,2020  " +
-            "</p>" +
-          "</p>" +
-          "<p class='bow-tie-treatment-expand-owner' >Owner</p>" +
-          "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-            "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
-            "<span class='bow-tie-incident-expand-responsible-officer-name'> Talia Gisbon  </span>" +
-          "</p>" +
-          "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
-            'Complete' +
-          "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
-    contentDetails.LinkedRiskData.InherentRiskRatingImg = (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.AppetiteRatingImg = (contentDetails.LinkedRiskData.AppetiteRating == "" || contentDetails.LinkedRiskData.AppetiteRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.ResidualRiskRatingImg = (contentDetails.LinkedRiskData.ResidualRiskRating == "" || contentDetails.LinkedRiskData.ResidualRiskRating === undefined) ?"assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.TargetRiskRatingImg = (contentDetails.LinkedRiskData.TargetRiskRating == "" || contentDetails.LinkedRiskData.TargetRiskRating === undefined) ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;" : contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
-   
-    contentDetails.LinkedRiskData.InherentRiskRating = (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.InherentRiskRating;
-    contentDetails.LinkedRiskData.AppetiteRating = (contentDetails.LinkedRiskData.AppetiteRating == "" || contentDetails.LinkedRiskData.AppetiteRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.AppetiteRating;
-    contentDetails.LinkedRiskData.ResidualRiskRating = (contentDetails.LinkedRiskData.ResidualRiskRating == "" || contentDetails.LinkedRiskData.ResidualRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.ResidualRiskRating;
-    contentDetails.LinkedRiskData.TargetRiskRating = (contentDetails.LinkedRiskData.TargetRiskRating == "" || contentDetails.LinkedRiskData.TargetRiskRating === undefined) ? "N/A" : contentDetails.LinkedRiskData.TargetRiskRating;
-    
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-risk-card-content-expand rounded' >" +
-        "<div class='bow-tie-risk-card-header-top-expand' >" +
-        "<p class='bow-tie-risk-card-header-top-text'>" +
-         
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-         
-          "</p>" +
-        "</div>" +
-        "<div class='bow-tie-risk-card-header-expand'>" +
-           "<p class='bow-tie-risk-card-header-text-expand'>\\"+
-              contentDetails.LinkedRiskData.RiskCode+ 
-              "-"+
-              truncatedHtmlTemplate +
-            "   </p> " +
-        "</div>" +
-          "<div class='bow-tie-risk-card-body-expand'>" +
-            "<div class='row'>" +
-              "<div class='column'>" +
-                "<p class='ratings'> Inherent Rating  </p>" +
-                "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.InherentRiskRatingImg +"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                    contentDetails.LinkedRiskData.InherentRiskRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-              "<div class='column'>" +
-                "<p class='ratings'> Revised Rating  </p>" +
-                "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.ResidualRiskRatingImg +"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                    contentDetails.LinkedRiskData.ResidualRiskRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-            "</div>" +
-            "<div class='row'>" +
-              "<div class='column'>" +
-                "<p class='ratings'> Future Rating  </p>" +
-                "<p  class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.TargetRiskRatingImg +"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                  contentDetails.LinkedRiskData.TargetRiskRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-              "<div class='column'>" +
-                "<p class='ratings'> Risk Appetite  </p>" +
-                "<p class='bow-tie-risk-rating-details'>" +
-                  "<img class='bow-tie-risk-rating-details-image'"+
-                            "src='"+ contentDetails.LinkedRiskData.AppetiteRatingImg +"'"+
-                  "<span class='bow-tie-risk-rating-details-text'>"+
-                    contentDetails.LinkedRiskData.AppetiteRating+
-                  "</span>" +
-                "</p>" +
-              "</div>" +
-            "</div>" +
-          "</div>" +
-        
-        "<div class='bow-tie-risk-card-footer-expand'>" +
-          "<div class='row'>" +
-          "<div class='bow-tie-risk-footer-details'>" +
-            "<p class='ratings'> Risk Category  </p>"+
-            "<p class= 'bow-tie-risk-category'>"+
-            contentDetails.LinkedRiskData.Category+
-            "</p>" +
-          "</div>" +
-          "<div class='bow-tie-risk-footer-details-responsible'>" +
-          "<p class='ratings'> Responsible Manager  </p>" +
-          "<p class='bow-tie-risk-rating-details'>" +
-            "<img class='bow-tie-risk-rating-details-image'"+
-                        "src='"+ contentDetails.LinkedRiskData.profileImageUrl.changingThisBreaksApplicationSecurity +"'"+
-            "<span class='bow-tie-risk-rating-details-text'>"+
-            contentDetails.LinkedRiskData.ResponsibleManager+
-            "</span>" +
-          "</p>" +
-      "</div>" +
-    "</div>" +
-"</div>"
-    );
-  }
-
-  public GetIncidentExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-        "<div class='bow-tie-extra-card-header' >" +
-        "<span>"+
+    public GetAuditExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' >" +
+          "<div class='bow-tie-extra-card-header' >" +
+          "<span>"+
           (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+
-        "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
-          "<p class='bow-tie-htmlTemplate'>\\" +
-            truncatedHtmlTemplate+
-          "<p>" +
-          "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
-          "<p class='bow-tie-responsible-officer'>" +
-            "<img class='bow-tie-control-owner-image'"+
-            "src='"+ contentDetails.IncidentData.ReportedOfficerImageUrl.changingThisBreaksApplicationSecurity+"'"+
-            "<span class='bow-tie-control-owner-name'>"+
-              
-                contentDetails.IncidentData.ReportedOfficerName+
-            
-            "</span>" +
-            
-          "</p>" +
-          "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
-          "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-              "<img class='bow-tie-incident-expand-responsible-officer-image'"+
-              "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity+"'"+
-            "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
-             
-                contentDetails.IncidentData.ResponsiblePerson+
-             
-            "</span>" +
-          "</p>" +
-          "<p class='bow-tie-incident-expand-reported-date-time'>" +
+          "</span>"+
+          "</div>" +
+          "<div class='bow-tie-extra-card-body'>" +
+            "<p class='bow-tie-htmlTemplate'>\\" +
+              truncatedHtmlTemplate +
+            "</p>" +
+            "<p class='bow-tie-incident-expand-reported-date-time'>" +
             'Reported Date/Time' +
             "<p class='bow-tie-incident-expand-reported-date'>" +
-            
-                contentDetails.IncidentData.ReportedDate+
-             
+              
+                contentDetails.AuditData.AuditDate+
+              "  " +
             "</p>" +
-          "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
 
-  public GetComplianceObligationExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
+    public GetHierarchyExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded'>" +
         "<div class='bow-tie-extra-card-header'>" +
         "<span>"+
-          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+
-        "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
-          "<p class='bow-tie-htmlTemplate'>'\\" +
-             truncatedHtmlTemplate +
-          "<p>" +
-          "<p class='bow-tie-incident-expand-reportedby' >Responsible Officer</p>" +
-          "<p class='bow-tie-responsible-officer'>" +
-            "<img class='bow-tie-control-owner-image'"+
-              "src='"+ contentDetails.ComplianceData.ROImage.changingThisBreaksApplicationSecurity+"'"+
-              "<span class='bow-tie-control-owner-name'>"+
-              
-                contentDetails.ComplianceData.ResponsibleOfficer+
-              "  "+
-            "</span>" +
-          "</p>" +
-          "<p class='bow-tie-compliance-status'>" +
-            'Compliance Status' +
-            "<p class='bow-tie-incident-expand-reported-date'>" +
-              
-                contentDetails.ComplianceData?.ReviewStatus+
-              "  "+
-            "</p>" +
-          "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetKPIExpand(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
-
-    const performanceViewKpi = new PerformanceViewKpi();
-    var styles = performanceViewKpi.PerformanceviewDetailsKpi(contentDetails , enablePerformanceview );
-
-    contentDetails.KpiData.Actual != null  ? contentDetails.KpiData.Actual : 0  ;
-    contentDetails.KpiData.Target != null  ? contentDetails.KpiData.Target : 0  ;
-    
-    var currentIndicator:string;
-   
-    
-
-    if(contentDetails.KpiData.Performance === 'N/A'){
-      currentIndicator = 'na-badge';
-      
-    }
-    else if(contentDetails.KpiData.Performance === 'On Track'){
-      currentIndicator = 'onTrack-badge';
-      
-    }
-    else if(contentDetails.KpiData.Performance === 'Off Track'){
-      currentIndicator = 'offTrack-badge';
-      
-    }
-    else if(contentDetails.KpiData.Performance === 'Monitor'){
-      currentIndicator = 'monitor-badge';
-      
-    }
-    else{
-      currentIndicator = 'na-badge';
-    }
-
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' "+ styles +">" +
-        "<div class='bow-tie-extra-card-header' "+ styles +">" +
-        "<span>"+
-          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+ 
-        "</div>" +
-        "<div class='bow-tie-extra-card-body'"+ styles +" >" +
-          "<p class='bow-tie-htmlTemplate' "+ styles +">\\" +
-            truncatedHtmlTemplate +
-          " </p>" +
-          "<div class='bow-tie-kpi'>" +
-            "<div class='bow-tie-unit-flex'>" +
-              "<span class='bow-tie-unit-text'"+ styles +">" +
-                " Unit  " +
-              "</span>" +
-              "<span class='bow-tie-unit-symbol'>\\"+
-             
-                contentDetails.KpiData.Unit +
-              
-              "</span>"+
-            "</div>" +
-          "</div>" +
-          "<div class='bow-tie-unit-details' >" +
-            "<div class='bow-tie-actual-flex'>" +
-              "<span class='bow-tie-actual-text'"+ styles +">" +
-                " Actual  " +
-              "</span>" +
-              "<span class='bow-tie-actual-value'>"+ 
-                contentDetails.KpiData.Actual +
-              "</span>" +
-            "</div>" +
-              "<div class='bow-tie-target-flex'>" +
-                "<span class='bow-tie-target-text'"+ styles +">" +
-                  " Target  " +
-                "</span>" +
-                "<span class='bow-tie-target-value'>"+                
-                   contentDetails.KpiData.Target  +
-                "</span>" +
-              "</div>" +
-          "</div>" +
-          "<div class='bow-tie-performance-flex'>" +
-            "<span class='bow-tie-performance-text' >Performance</span>" +
-            `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'></span>`+
-            `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'}</span>`+
-          "</div>" +
-        "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetAuditExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-        "<div class='bow-tie-extra-card-header' >" +
-        "<span>"+
-        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+
-        "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
-          "<p class='bow-tie-htmlTemplate'>\\" +
-            truncatedHtmlTemplate +
-          "</p>" +
-          "<p class='bow-tie-incident-expand-reported-date-time'>" +
-          'Reported Date/Time' +
-          "<p class='bow-tie-incident-expand-reported-date'>" +
-            
-              contentDetails.AuditData.AuditDate+
-            "  " +
-          "</p>" +
-           "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetHierarchyExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded'>" +
-      "<div class='bow-tie-extra-card-header'>" +
-      "<span>"+
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</span>"+
-      "</div>" +
-      "<div class='bow-tie-extra-card-body' >" +
-      "<p class='bow-tie-htmlTemplate'>\\" +
-      truncatedHtmlTemplate +
-      "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Hierarchy Name:' +
-      "</span>" +
-      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      " path:  " +
-      "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetAuthorityDocumentExpand(contentDetails: DiagramNodeData) {
-    
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-        "<div class='bow-tie-extra-card-header'>" +
-        "<span>"+
-        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-        "</span>"+
-        "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
-          "<p class='bow-tie-htmlTemplate'>\\" +
-          truncatedHtmlTemplate +
-          "<p>" +
-          "<p class='bow-tie-authority-expand-responsible-officer'>Responsible Officer</p>" +
-          "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-              "<img class='bow-tie-incident-expand-responsible-officer-image'"+
-              "src='"+ contentDetails.AuthorityDocumentData.ROImage.changingThisBreaksApplicationSecurity+"'"+
-            "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
-              
-                contentDetails.AuthorityDocumentData.ResponsibleOfficer+
-              "  "+
-            "</span>" +
-          "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetPolicyExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header' >" +
-      "<span>"+
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</span>"+
-      "</div>" +
-      "<div class='bow-tie-extra-card-body'>" +
-      "<p class='bow-tie-htmlTemplate'>\\" +
-        truncatedHtmlTemplate +
-      "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Type:' +
-      "</span>" +
-      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      " Responsible Ofiicer:  " +
-      "</p>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetAuditRecommendationsExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header'>" +
-      "<span>"+
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</span>"+
-      "</div>" +
-      "<div class='bow-tie-extra-card-body'>" +
-      "<p class='bow-tie-htmlTemplate'>\\" +
-        truncatedHtmlTemplate +
-      "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Name of the audit recommendation:' +
-      "</span>" +
-      "</p>" +
-      "</div>" +
-      "</div>"
-    );
-  }
-
-  public GetAuditFindingExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 70;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-        contentDetails.htmlTemplate.length > maxCharacters
-            ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
-            : contentDetails.htmlTemplate;
-    return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-        "<div class='bow-tie-extra-card-header' >" +
-        "<span>"+
-        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
         "</span>"+
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
-          "<p class='bow-tie-'htmlTemplate'>\\" +
-            truncatedHtmlTemplate +
-          "</p>" +
-          "<p class='bow-tie-incident-expand-reported-date-time'>" +
-          "Audit Date" +
-          "<p class='bow-tie-incident-expand-reported-date'>" +
-            
-              contentDetails.AuditData.AuditDate+
-            
-           "</p>" +
-          "</p>" +
+        "<p class='bow-tie-htmlTemplate'>\\" +
+        truncatedHtmlTemplate +
+        "</p>" +
+        "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
+        "<span style='margin-right: 10px;'>" +
+        'Hierarchy Name:' +
+        "</span>" +
+        "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+        " path:  " +
+        "</p>" +
+        "</p>" +
         "</div>" +
-      "</div>"
-    );
-  }
-
-  public AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement) {
-
-
-    switch (dataItem.Header) {
-      case "Risk":
-        templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
-        sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
-        break;
-      case "Control":
-        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
-        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
-        sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
-        sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
-        break;
-      case "Cause":
-        templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
-        sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
-        break;
-      case "Consequence":
-        templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
-        sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
-        break;
-      case "Incident":
-        templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-      case "KPI":
-        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "LinkedRisk":
-        templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "Treatment":
-        templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Treatment', templatesObj.riskActionTemplateExpand);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "Compliance":
-        templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Compliance', templatesObj.complianceTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "Authority Document":
-        templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "Audit":
-        templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-  
-      default:
+        "</div>"
+      );
     }
 
+    public GetAuthorityDocumentExpand(contentDetails: DiagramNodeData) {
+      
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' >" +
+          "<div class='bow-tie-extra-card-header'>" +
+          "<span>"+
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+
+          "</div>" +
+          "<div class='bow-tie-extra-card-body'>" +
+            "<p class='bow-tie-htmlTemplate'>\\" +
+            truncatedHtmlTemplate +
+            "<p>" +
+            "<p class='bow-tie-authority-expand-responsible-officer'>Responsible Officer</p>" +
+            "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+                "<img class='bow-tie-incident-expand-responsible-officer-image'"+
+                "src='"+ contentDetails.AuthorityDocumentData.ROImage.changingThisBreaksApplicationSecurity+"'"+
+              "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
+                
+                  contentDetails.AuthorityDocumentData.ResponsibleOfficer+
+                "  "+
+              "</span>" +
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+    public GetPolicyExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' >" +
+        "<div class='bow-tie-extra-card-header' >" +
+        "<span>"+
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
+        "</div>" +
+        "<div class='bow-tie-extra-card-body'>" +
+        "<p class='bow-tie-htmlTemplate'>\\" +
+          truncatedHtmlTemplate +
+        "</p>" +
+        "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
+        "<span style='margin-right: 10px;'>" +
+        'Type:' +
+        "</span>" +
+        "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
+        " Responsible Ofiicer:  " +
+        "</p>" +
+        "</p>" +
+        "</div>" +
+        "</div>"
+      );
+    }
+
+    public GetAuditRecommendationsExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' >" +
+        "<div class='bow-tie-extra-card-header'>" +
+        "<span>"+
+              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        "</span>"+
+        "</div>" +
+        "<div class='bow-tie-extra-card-body'>" +
+        "<p class='bow-tie-htmlTemplate'>\\" +
+          truncatedHtmlTemplate +
+        "</p>" +
+        "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
+        "<span style='margin-right: 10px;'>" +
+        'Name of the audit recommendation:' +
+        "</span>" +
+        "</p>" +
+        "</div>" +
+        "</div>"
+      );
+    }
+
+    public GetAuditFindingExpand(contentDetails: DiagramNodeData) {
+      const maxCharacters = 80;
+      contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g, '\\#');
+      // Truncate the htmlTemplate if it exceeds the maximum number of characters
+      const truncatedHtmlTemplate =
+          contentDetails.htmlTemplate.length > maxCharacters
+              ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+              : contentDetails.htmlTemplate;
+      return (
+        "<div class='bow-tie-extra-card-content rounded' >" +
+          "<div class='bow-tie-extra-card-header' >" +
+          "<span>"+
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</span>"+
+          "</div>" +
+          "<div class='bow-tie-extra-card-body' >" +
+            "<p class='bow-tie-'htmlTemplate'>\\" +
+              truncatedHtmlTemplate +
+            "</p>" +
+            "<p class='bow-tie-incident-expand-reported-date-time'>" +
+            "Audit Date" +
+            "<p class='bow-tie-incident-expand-reported-date'>" +
+              
+                contentDetails.AuditData.AuditDate+
+              
+            "</p>" +
+            "</p>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+    public AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement) {
 
 
-    if (isRiskView) {
-      isKpIview = false;
-      if (isExpand) {
+      switch (dataItem.Header) {
+        case "Risk":
+          templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
+          sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
+          break;
+        case "Control":
+          templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
+          templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
+          sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
+          sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
+          break;
+        case "Cause":
+          templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
+          sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
+          break;
+        case "Consequence":
+          templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
+          sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
+          break;
+        case "Incident":
+          templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+        case "KPI":
+          templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
 
-        if (dataItem.Header === 'LinkedRisk') {
-          var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
-          renderElement.html(linkRiskBottomTemp(dataItem));
-        }
-      } else {
-        if (dataItem.Header === 'LinkedRisk') {
-          var otherTemp = kendo.template(templatesObj.bottomTemplate);
-          renderElement.html(otherTemp(dataItem));
-        }
+        case "LinkedRisk":
+          templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "Treatment":
+          templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Treatment', templatesObj.riskActionTemplateExpand);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "Compliance":
+          templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Compliance', templatesObj.complianceTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "Authority Document":
+          templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "Audit":
+          templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+    
+        default:
       }
 
-      if (dataItem.Title === 'Risk Node') {
-        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-        renderElement.html(riskNodeTemp(dataItem));
-      }
-    } else if (isKpIview) {
-      isRiskView = false;
-      if (isExpand) {
 
-        if (dataItem.Header === 'KPI') {
-          var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
-          renderElement.html(KPIExpandTemp(dataItem));
-        }
-      } else {
-        if (dataItem.Header === 'KPI') {
-          var otherTemp = kendo.template(templatesObj.bottomTemplate);
-          renderElement.html(otherTemp(dataItem));
-        }
-      }
 
-      if (dataItem.Title === 'Risk Node') {
-        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-        renderElement.html(riskNodeTemp(dataItem));
-      }
-    } else {
-      if (isExpand) {
+      if (isRiskView) {
+        isKpIview = false;
+        if (isExpand) {
+
+          if (dataItem.Header === 'LinkedRisk') {
+            var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
+            renderElement.html(linkRiskBottomTemp(dataItem));
+          }
+        } else {
+          if (dataItem.Header === 'LinkedRisk') {
+            var otherTemp = kendo.template(templatesObj.bottomTemplate);
+            renderElement.html(otherTemp(dataItem));
+          }
+        }
 
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Control Node') {
+        }
+      } else if (isKpIview) {
+        isRiskView = false;
+        if (isExpand) {
+
+          if (dataItem.Header === 'KPI') {
+            var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
+            renderElement.html(KPIExpandTemp(dataItem));
+          }
+        } else {
+          if (dataItem.Header === 'KPI') {
+            var otherTemp = kendo.template(templatesObj.bottomTemplate);
+            renderElement.html(otherTemp(dataItem));
+          }
+        }
+
+        if (dataItem.Title === 'Risk Node') {
+          var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+          renderElement.html(riskNodeTemp(dataItem));
+        }
+      } else {
+        if (isExpand) {
+
+          if (dataItem.Title === 'Risk Node') {
+            var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+            renderElement.html(riskNodeTemp(dataItem));
+          } else if (dataItem.Title === 'Control Node') {
+            var controlNodeExpandTemp = kendo.template(templatesObj.controlTemplateExpand);
+            renderElement.html(controlNodeExpandTemp(dataItem));
+          } else if (dataItem.Title === 'Consequences Node') {
+            var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
+            renderElement.html(consequencesTemp(dataItem));
+          } else if (dataItem.Title === 'Cause Node') {
+            var causeTemp = kendo.template(templatesObj.causeTemplate);
+            renderElement.html(causeTemp(dataItem));
+          } else {
+
+            if (dataItem.Header === 'LinkedRisk') {
+              var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
+              renderElement.html(linkRiskBottomTemp(dataItem));
+            } else if (dataItem.Header === 'riskActionExpand') {
+              var riskActionExpandTemp = kendo.template(
+                templatesObj.riskActionTemplateExpand
+              );
+              renderElement.html(riskActionExpandTemp(dataItem));
+            } else if (dataItem.Header === 'Incident') {
+              var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
+              renderElement.html(incidentExpandTemp(dataItem));
+            } else if (dataItem.Header === 'KPI') {
+              var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
+              renderElement.html(KPIExpandTemp(dataItem));
+            } else if (dataItem.Header === 'Compliance') {
+              var complianceExpandTemp = kendo.template(templatesObj.complianceTemplateExpnad);
+              renderElement.html(complianceExpandTemp(dataItem));
+            } else if (dataItem.Header === 'Authority Document') {
+              var authorityDocumentExpandTemp = kendo.template(templatesObj.authorityDocumentTemplateExpnad);
+              renderElement.html(authorityDocumentExpandTemp(dataItem));
+            }else if (dataItem.Header === 'Audit') {
+              var auditDocumentExpandTemp = kendo.template(templatesObj.auditTemplateExpnad);
+              renderElement.html(auditDocumentExpandTemp(dataItem));
+            }
+          }
+        } else {
+
+
+          if (dataItem.Title === 'Risk Node') {
+            var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+            renderElement.html(riskNodeTemp(dataItem));
+          } else if (dataItem.Title === 'Control Node') {
+            var controlNodeTemp = kendo.template(templatesObj.controlTemplate);
+            renderElement.html(controlNodeTemp(dataItem));
+          } else if (dataItem.Title === 'Consequences Node') {
+            var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
+            renderElement.html(consequencesTemp(dataItem));
+          } else if (dataItem.Title === 'Cause Node') {
+            var causeTemp = kendo.template(templatesObj.causeTemplate);
+            renderElement.html(causeTemp(dataItem));
+          } else {
+            var otherTemp = kendo.template(templatesObj.bottomTemplate);
+            renderElement.html(otherTemp(dataItem));
+          }
+
+
+
+
+        }
+      }
+    }
+
+    public GetToolbarTemplate()
+    {
+      return `
+
+      <div>
+        <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
+
+        <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
+
+            <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
+              <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
+              <div  class='slider'></div>
+              <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
+            </div>
+
+            <div kendoTooltip position="bottom" [title]="'Back'">
+            <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+              <span>Back</span>
+            </button>
+            </div>
+
+            <div kendoTooltip position="bottom" [title]="'Risk View'">
+                <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
+                  <span>Risk View</span>
+                </button>
+            </div>
+
+            <div kendoTooltip position="bottom" [title]="'Kpi View'">
+                <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
+                    <span>Kpi View</span>
+                </button>
+            </div>
+
+            <div kendoTooltip position="bottom" [title]="'Performance View'">
+              <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
+                  <span>Performance View</span>
+              </button>
+            </div>
+
+            <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
+              <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
+                <span class="expand-icon"></span>
+                <span>Expand</span>                      
+              </button>
+            </div>
+
+            <div kendoTooltip position="bottom" [title]="'Export Diagram'">
+              <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
+                  <i class="cam-icon cam-i-export" aria-hidden="true"></i>
+                  <span>Export</span>
+              </button>
+            </div>
+        </div>                  
+    </div>        
+        `;
+    }
+
+    
+
+    public RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement) {
+
+      switch (dataItem.Header) {
+
+        case "Risk":
+          templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
+          sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
+          break;
+
+        case "Control":
+          templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
+          templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
+          sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
+          sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
+          break;
+        case "Cause":
+          templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
+          sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
+          break;
+
+        case "Consequence":
+          templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
+          sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
+          break;
+
+        case "Incident":
+          templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "KPI":
+          templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "LinkedRisk":
+          templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "Compliance":
+          templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Compliance', templatesObj.complianceTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+
+        case "Authority Document":
+          templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+        
+        case "Audit":
+          templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
+          templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+          sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
+          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          break;
+      
+        default:
+      }
+
+
+
+
+
+
+      if (isExpand) {
+        if (dataItem.Header === 'Risk') {
+          var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
+          renderElement.html(riskNodeTemp(dataItem));
+        } else if (dataItem.Header === 'Control') {
           var controlNodeExpandTemp = kendo.template(templatesObj.controlTemplateExpand);
           renderElement.html(controlNodeExpandTemp(dataItem));
-        } else if (dataItem.Title === 'Consequences Node') {
+        } else if (dataItem.Header === 'Consequence') {
           var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
           renderElement.html(consequencesTemp(dataItem));
-        } else if (dataItem.Title === 'Cause Node') {
+        } else if (dataItem.Header === 'Cause') {
           var causeTemp = kendo.template(templatesObj.causeTemplate);
           renderElement.html(causeTemp(dataItem));
         } else {
@@ -907,9 +1094,7 @@ export class TemplateClass {
             var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
             renderElement.html(linkRiskBottomTemp(dataItem));
           } else if (dataItem.Header === 'riskActionExpand') {
-            var riskActionExpandTemp = kendo.template(
-              templatesObj.riskActionTemplateExpand
-            );
+            var riskActionExpandTemp = kendo.template(templatesObj.riskActionTemplateExpand);
             renderElement.html(riskActionExpandTemp(dataItem));
           } else if (dataItem.Header === 'Incident') {
             var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
@@ -928,19 +1113,19 @@ export class TemplateClass {
             renderElement.html(auditDocumentExpandTemp(dataItem));
           }
         }
-      } else {
+      }
+      else {
 
-
-        if (dataItem.Title === 'Risk Node') {
+        if (dataItem.Header === 'Risk') {
           var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
           renderElement.html(riskNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Control Node') {
+        } else if (dataItem.Header === 'Control') {
           var controlNodeTemp = kendo.template(templatesObj.controlTemplate);
           renderElement.html(controlNodeTemp(dataItem));
-        } else if (dataItem.Title === 'Consequences Node') {
+        } else if (dataItem.Header === 'Consequence') {
           var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
           renderElement.html(consequencesTemp(dataItem));
-        } else if (dataItem.Title === 'Cause Node') {
+        } else if (dataItem.Header === 'Cause') {
           var causeTemp = kendo.template(templatesObj.causeTemplate);
           renderElement.html(causeTemp(dataItem));
         } else {
@@ -948,208 +1133,9 @@ export class TemplateClass {
           renderElement.html(otherTemp(dataItem));
         }
 
-
-
-
-      }
-    }
-  }
-
-  public GetToolbarTemplate()
-  {
-    return `
-
-    <div>
-      <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-
-      <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
-
-          <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
-            <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
-            <div  class='slider'></div>
-            <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
-          </div>
-
-          <div kendoTooltip position="bottom" [title]="'Back'">
-          <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
-            <span>Back</span>
-          </button>
-          </div>
-
-          <div kendoTooltip position="bottom" [title]="'Risk View'">
-              <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
-                <span>Risk View</span>
-              </button>
-          </div>
-
-          <div kendoTooltip position="bottom" [title]="'Kpi View'">
-              <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
-                  <span>Kpi View</span>
-              </button>
-          </div>
-
-          <div kendoTooltip position="bottom" [title]="'Performance View'">
-            <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
-                <span>Performance View</span>
-            </button>
-          </div>
-
-          <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-            <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
-              <span class="expand-icon"></span>
-              <span>Expand</span>                      
-            </button>
-          </div>
-
-          <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-            <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
-                <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                <span>Export</span>
-            </button>
-          </div>
-      </div>                  
-  </div>        
-      `;
-  }
-
-  
-
-  public RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement) {
-
-    switch (dataItem.Header) {
-
-      case "Risk":
-        templatesObj.riskTemplate = this.GetRiskNodeTemplateGlobal(dataItem);
-        sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
-        break;
-
-      case "Control":
-        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
-        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
-        sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
-        sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
-        break;
-      case "Cause":
-        templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
-        sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
-        break;
-
-      case "Consequence":
-        templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
-        sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
-        break;
-
-      case "Incident":
-        templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "KPI":
-        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "LinkedRisk":
-        templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "Compliance":
-        templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Compliance', templatesObj.complianceTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-
-      case "Authority Document":
-        templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-      
-      case "Audit":
-        templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
-        break;
-    
-      default:
-    }
-
-
-
-
-
-
-    if (isExpand) {
-      if (dataItem.Header === 'Risk') {
-        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-        renderElement.html(riskNodeTemp(dataItem));
-      } else if (dataItem.Header === 'Control') {
-        var controlNodeExpandTemp = kendo.template(templatesObj.controlTemplateExpand);
-        renderElement.html(controlNodeExpandTemp(dataItem));
-      } else if (dataItem.Header === 'Consequence') {
-        var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
-        renderElement.html(consequencesTemp(dataItem));
-      } else if (dataItem.Header === 'Cause') {
-        var causeTemp = kendo.template(templatesObj.causeTemplate);
-        renderElement.html(causeTemp(dataItem));
-      } else {
-
-        if (dataItem.Header === 'LinkedRisk') {
-          var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
-          renderElement.html(linkRiskBottomTemp(dataItem));
-        } else if (dataItem.Header === 'riskActionExpand') {
-          var riskActionExpandTemp = kendo.template(templatesObj.riskActionTemplateExpand);
-          renderElement.html(riskActionExpandTemp(dataItem));
-        } else if (dataItem.Header === 'Incident') {
-          var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
-          renderElement.html(incidentExpandTemp(dataItem));
-        } else if (dataItem.Header === 'KPI') {
-          var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
-          renderElement.html(KPIExpandTemp(dataItem));
-        } else if (dataItem.Header === 'Compliance') {
-          var complianceExpandTemp = kendo.template(templatesObj.complianceTemplateExpnad);
-          renderElement.html(complianceExpandTemp(dataItem));
-        } else if (dataItem.Header === 'Authority Document') {
-          var authorityDocumentExpandTemp = kendo.template(templatesObj.authorityDocumentTemplateExpnad);
-          renderElement.html(authorityDocumentExpandTemp(dataItem));
-        }else if (dataItem.Header === 'Audit') {
-          var auditDocumentExpandTemp = kendo.template(templatesObj.auditTemplateExpnad);
-          renderElement.html(auditDocumentExpandTemp(dataItem));
-        }
-      }
-    }
-    else {
-
-      if (dataItem.Header === 'Risk') {
-        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-        renderElement.html(riskNodeTemp(dataItem));
-      } else if (dataItem.Header === 'Control') {
-        var controlNodeTemp = kendo.template(templatesObj.controlTemplate);
-        renderElement.html(controlNodeTemp(dataItem));
-      } else if (dataItem.Header === 'Consequence') {
-        var consequencesTemp = kendo.template(templatesObj.consequencesTemplate);
-        renderElement.html(consequencesTemp(dataItem));
-      } else if (dataItem.Header === 'Cause') {
-        var causeTemp = kendo.template(templatesObj.causeTemplate);
-        renderElement.html(causeTemp(dataItem));
-      } else {
-        var otherTemp = kendo.template(templatesObj.bottomTemplate);
-        renderElement.html(otherTemp(dataItem));
       }
 
     }
-
-  }
 
 
 
