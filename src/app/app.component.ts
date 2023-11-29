@@ -456,347 +456,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "ResponsibleManagerProfilePic":""
               }
             },
-            {
-              "Id": 204,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 205,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 206,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 207,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 208,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 209,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 210,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 211,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 212,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 213,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 214,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 215,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 216,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-
-            {
-              "Id": 217,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 6</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 218,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 4</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 219,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 5</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
+           
 
           
        {
@@ -843,6 +503,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 "Performance":"On Track"
               }
             },
+
+            {
+              "Id": 185,
+              "Type": 4,
+              "ParentNodeId": 0,
+              "Title": "Other Node",
+              "Header": "Treatment",
+              "Rating": "",
+              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+              "TreatmentData":{
+                "DueDate": "17octomber2023",
+                "Owner": "Madeline Jones",
+                "CompleteValue": 55,
+              }
+            },
            
            
     ]
@@ -876,10 +551,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         kpiTemplateExpnad: "",
         bottomTemplate: "",
         linkRiskTemplate: "",
-        riskActionTemplateExpand: "",
         complianceTemplateExpnad: "",
         authorityDocumentTemplateExpnad: "",
-        auditTemplateExpnad: ""
+        auditTemplateExpnad: "",
+        treatmentTemplate:""
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');

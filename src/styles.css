@@ -938,3 +938,74 @@ margin-left: 40px;
   flex: none;
   display: none;
 }
+
+
+.progress {
+  height: 18px;
+  width: 50%;
+  background-color: #e9f0f7;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: #00b955;
+  
+}
+
+
+/* .progress-container {
+  height: 20px;
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Style for the progress bar */
+/* #progressBar {
+  height: 100%;
+  width: 0;
+  background-color: green;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  font-weight: bold;
+}  */
+
+
+.bow-tie-incident-expand-reported-date-time {
+
+  margin-top: 2px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  
+  
+}
+
+.bow-tie-incident-expand-reported-date {
+  margin-top: 2px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  
+}
+
+.bow-tie-treatment-complete{
+
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+.bow-tie-treatment-complete-value{
+  margin-left: 15px;
+}
+
+.bow-tie-text-values{
+  margin-top: 2px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}

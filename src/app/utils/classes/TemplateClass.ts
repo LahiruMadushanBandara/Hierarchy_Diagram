@@ -264,38 +264,44 @@ export class TemplateClass {
   
 }
 
-  public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
-    return (
-      "<div class='bow-tie-extra-card-content rounded''>" +
-        "<div class='bow-tie-extra-card-header''>" +
-          "<h4>" +
-              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
-        "</div>" +
-        "<div class='bow-tie-extra-card-body'>" +
-          "<p>" +
-              contentDetails.htmlTemplate +
+public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
+  // Calculate the percentage completion
+  const completePercentage = Math.min(100, contentDetails.TreatmentData.CompleteValue);
+
+  return (
+    "<div class='bow-tie-extra-card-content rounded'>" +
+      "<div class='bow-tie-extra-card-header'>" +
+        "<h4>" + (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) + "</h4>" +
+      "</div>" +
+      "<div class='bow-tie-extra-card-body'>" +
+        "<p>" + contentDetails.htmlTemplate + "</p>" +
+        "<p class='bow-tie-incident-expand-reported-date-time'>" +
+          "Due Date" +
+          "<p class='bow-tie-incident-expand-reported-date'>" +
+            "<b>" + contentDetails.TreatmentData.DueDate + "</b>" +
           "</p>" +
-          "<p style='display: flex; align-items: left; line-height: 1;'>" +
-            "<span style='margin-right: 10px;'>" +
-              'Due Date' +
-            "</span>" +
-            "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-              "<b>11March,2020</b>" +
-            "</p>" +
-          "</p>" +
-          "<p style='margin-top: -10px;' >Owner</p>" +
-          "<p style='display: flex; align-items: center; line-height: 1; margin-bottom: 30px; '>" +
-            "<img src='theavo_risk/assets/bow-tie/icon/image.png' style='width: 30px; height: 30px; margin-top: -10px; '>" +
-            "<span style='position: relative; top: -2px; margin-left: 5px;'><b>Talia Gisbon</b></span>" +
-          "</p>" +
-          "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
-            'Complete' +
-          "</p>" +
-        "</div>" +
-      "</div>"
-    );
-  }
+        "</p>" +
+        "<p class='bow-tie-incident-expand-responsible-officer'>Owner</p>" +
+        "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+          "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png'>" +
+          "<span class='bow-tie-incident-expand-responsible-officer-name'>" +
+            "<b>" + contentDetails.TreatmentData.Owner + "</b>" +
+          "</span>" +
+        "</p>" +
+        "<p class='bow-tie-text-values'>" +
+          "Complete" +
+          "<div class='bow-tie-treatment-complete'>" +
+            `<span class='progress' style='display: inline-block; padding-right: 10px'>` +
+              `<div class='progress-bar' role='progressbar' style='width: ${completePercentage}%;' aria-valuenow='${completePercentage}'></div>` +
+            `</span>` +
+              "<span class = 'bow-tie-treatment-complete-value'>"+`${completePercentage}%` +"</span>"+            
+          "</div>" +
+        "</p>" +
+      "</div>" +
+    "</div>"
+  );
+}
+
 
   public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
     (contentDetails.LinkedRiskData.InherentRiskRating == "" || contentDetails.LinkedRiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.LinkedRiskData.InherentRiskRating;
@@ -406,7 +412,7 @@ export class TemplateClass {
           "</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
           "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-          "<img class='bow-tie-incident-expand-responsible-officer-image'"+
+            "<img class='bow-tie-incident-expand-responsible-officer-image'"+
               "src='"+ contentDetails.IncidentData.ResponsibleManagerProfilePic  +"'"+
             "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
               "<b>"+
@@ -740,22 +746,25 @@ export class TemplateClass {
         sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
+      case "Treatment":
+        templatesObj.treatmentTemplate = this.GetRiskActionTreatmentExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+        sessionStorage.setItem('Treatment', templatesObj.treatmentTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
       default:
     }
 
     //get templates from template class
 
-    templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
-
-    templatesObj.riskActionTemplateExpand =
-      this.GetRiskActionTreatmentExpand(dataItem);
+    
     var complianceTemplateExpnad =
       this.GetComplianceObligationExpand(dataItem);
 
 
     // templates are assigned to corresponding variables
 
-    sessionStorage.setItem('riskActionExpand', templatesObj.riskActionTemplateExpand);
+   
     sessionStorage.setItem('complianceExpand', templatesObj.complianceTemplateExpnad);
 
 
@@ -818,12 +827,7 @@ export class TemplateClass {
           if (dataItem.Header === 'LinkedRisk') {
             var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
             renderElement.html(linkRiskBottomTemp(dataItem));
-          } else if (dataItem.Header === 'riskActionExpand') {
-            var riskActionExpandTemp = kendo.template(
-              templatesObj.riskActionTemplateExpand
-            );
-            renderElement.html(riskActionExpandTemp(dataItem));
-          } else if (dataItem.Header === 'Incident') {
+          }  else if (dataItem.Header === 'Incident') {
             var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
             renderElement.html(incidentExpandTemp(dataItem));
           } else if (dataItem.Header === 'Compliance') {
@@ -834,6 +838,9 @@ export class TemplateClass {
           } else if (dataItem.Header === 'KPI') {
             var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
             renderElement.html(KPIExpandTemp(dataItem));
+          } else if (dataItem.Header === 'Treatment') {
+            var TreatmentExpandTemp = kendo.template(templatesObj.treatmentTemplate);
+            renderElement.html(TreatmentExpandTemp(dataItem));
           }
         }
       } else {
@@ -903,6 +910,12 @@ export class TemplateClass {
         sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
+      case "Treatment":
+        templatesObj.treatmentTemplate = this.GetRiskActionTreatmentExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+        sessionStorage.setItem('Treatment', templatesObj.treatmentTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
       default:
     }
 
@@ -928,18 +941,17 @@ export class TemplateClass {
         if (dataItem.Header === 'LinkedRisk') {
           var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
           renderElement.html(linkRiskBottomTemp(dataItem));
-        } else if (dataItem.Header === 'riskActionExpand') {
-          var riskActionExpandTemp = kendo.template(
-            templatesObj.riskActionTemplateExpand
-          );
-          renderElement.html(riskActionExpandTemp(dataItem));
-        } else if (dataItem.Header === 'Incident') {
+        }  else if (dataItem.Header === 'Incident') {
           var incidentExpandTemp = kendo.template(templatesObj.incidentTemplateExpnad);
           renderElement.html(incidentExpandTemp(dataItem));
         }
         else if (dataItem.Header === 'KPI') {
           var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
           renderElement.html(KPIExpandTemp(dataItem));
+        }
+        else if (dataItem.Header === 'Treatment') {
+          var TreatmentExpandTemp = kendo.template(templatesObj.treatmentTemplate);
+          renderElement.html(TreatmentExpandTemp(dataItem));
         }
       }
     }

@@ -13,6 +13,7 @@ export interface DiagramNodeData {
   IncidentData?: IncidentData;
   KPIData?: KPIData;
   LinkedRiskData?: LinkedRiskData;
+  TreatmentData?: TreatmentData;
 }
 
 interface RiskData {
@@ -80,4 +81,10 @@ interface LinkedRiskData {
   ResidualRiskRatingImg:any;
   TargetRiskRatingImg:any;
   AppetiteRatingImg:any;
+}
+
+interface TreatmentData {
+  DueDate:string;
+  Owner:string;
+  CompleteValue:number;
 }
