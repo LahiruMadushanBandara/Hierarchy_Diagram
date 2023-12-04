@@ -189,6 +189,11 @@ export class AppComponent implements OnChanges {
           }
         }
 
+        
+        var initialStateOfDataAndConnections= {
+          data: dataShapes.slice(),
+          connections: dataConnections
+        };
 
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
@@ -491,11 +496,34 @@ export class AppComponent implements OnChanges {
           diagram.refresh();
         });
 
-        $(".bt-Reload").click(function () {
-
-          location.reload();
-
-        });
+        $(".bt-BackFromCentralizedView").click(function () {
+          // Reset both data source and connections data source
+          diagram.setDataSource(initialStateOfDataAndConnections.data);
+      
+          // Re-add the initial connections using a deep copy
+          diagram.setConnectionsDataSource({
+              data: JSON.parse(JSON.stringify(initialStateOfDataAndConnections.connections)),
+              schema: {
+                  model: {
+                      id: 'id',
+                      fields: {
+                          id: { from: 'Id', type: 'number', editable: false },
+                          from: { from: 'FromShapeId', type: 'number' },
+                          to: { from: 'ToShapeId', type: 'number' },
+                          fromX: { from: 'FromPointX', type: 'number' },
+                          fromY: { from: 'FromPointY', type: 'number' },
+                          toX: { from: 'ToPointX', type: 'number' },
+                          toY: { from: 'ToPointY', type: 'number' },
+                      },
+                  },
+              },
+          });
+      
+          // Hide the back button
+          var reloadButton = document.getElementById("btReload");
+          reloadButton.style.display = "none";
+      });
+      
 
 
 
@@ -519,6 +547,9 @@ export class AppComponent implements OnChanges {
 
 
     var dataArrayoriginal = this.originalData;
+
+    //..................centralized view function...........................
+
     function onNodeClick(e) {
 
       if (e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Compliance" || e.item.dataItem.Header == "Authority Document") {

@@ -1249,7 +1249,7 @@ export class TemplateClass {
           </div>
 
           <div kendoTooltip position="bottom" [title]="'Back'">
-          <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+          <button type="button" class="bt-BackFromCentralizedView btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
             <span>Back</span>
           </button>
           </div>
