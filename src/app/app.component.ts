@@ -56,87 +56,210 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     // var tem = new TemplateClass();
     // this.originalData = tem.NodeSampleData;
 
-    this.originalData = [ 
+    this.originalData = [
       {
-              "Id": 0,
-              "Type": 1,
-              "ParentNodeId": 0,
-              "Title": "Risk Node",
-              "Header": "Risk",
-              "Rating": "",
-              "htmlTemplate":"<dev>Failure to appropriately implement business continuity program/policy</dev>",
-              "RiskData": {
-                "RiskCode":"OR24",
-                "ResponsibleManager": "Elizabeth McMahon",
-                "Category": "Architecture",
-                "ResidualRiskRating":"Moderate",
-                "TargetRiskRating": "Moderate",
-                "InherentRiskRating": "High",
-                "AppetiteRating": "Within Appetite",
-                "InherentRiskRatingImg":"",
-                "ResidualRiskRatingImg":"",
-                "TargetRiskRatingImg":"",
-                "AppetiteRatingImg":"",
-                "profileImageUrl":""
-              }
-            },
-      
-      
-     
-            {
-              "Id": 19,
-              "Type": 2,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
-              "Rating": "",
-              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-              "ControlData": {
-      
-                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-                "ControlOwner": "Joe Smith",
-                "ControlOwnerRating":"Largely Ineffective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": true,
-                "ControlOwnerRatingImage":""
-              }
-        },
-      
-       {
-              "Id": 23,
-              "Type": 2,
-              "ParentNodeId": 19,
-              "Title": "Cause Node",
-              "Header": "Cause",
-              "Rating": "",
-              "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-              "LinkedControlIds":[19,22]
-      
-            },
-            {
-              "Id": 22,
-              "Type": 2,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
-              "Rating": "",
-              "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-              "ControlData": {
-      
-                "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-                "ControlOwner": "Joe Smith",
-                "ControlOwnerRating":"Largely Ineffective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": true,
-                "ControlOwnerRatingImage":""
-              }
-        },
-       
-       {
+        "Id": 0,
+        "Type": 1,
+        "ParentNodeId": 0,
+        "Title": "Risk Node",
+        "Header": "Risk",
+        "Rating": "",
+        "htmlTemplate": "<dev>Failure to appropriately implement business continuity program/policy</dev>",
+        "RiskData": {
+          "RiskCode": "OR24",
+          "ResponsibleManager": "Elizabeth McMahon",
+          "Category": "Architecture",
+          "ResidualRiskRating": "Moderate",
+          "TargetRiskRating": "Moderate",
+          "InherentRiskRating": "High",
+          "AppetiteRating": "Within Appetite",
+          "InherentRiskRatingImg": "",
+          "ResidualRiskRatingImg": "",
+          "TargetRiskRatingImg": "",
+          "AppetiteRatingImg": "",
+          "profileImageUrl": ""
+        }
+      },
+
+
+
+      {
+        "Id": 19,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 129,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+      {
+        "Id": 130,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 131,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+      {
+        "Id": 23,
+        "Type": 2,
+        "ParentNodeId": 19,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+        "LinkedControlIds": [19, 22, 129, 130, 131]
+
+      },
+      {
+        "Id": 22,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 26,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 24,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 25,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+
+
+      {
         "Id": 16,
         "Type": 2,
         "ParentNodeId": 19,
@@ -144,384 +267,503 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Cause",
         "Rating": "",
         "htmlTemplate": "<dev>22InsufficientITsecuritymanagement</dev>",
-        "LinkedControlIds":[22,28]
+        "LinkedControlIds": [22, 24, 25, 26]
 
       },
-        
-        {
-          "Id": 28,
-          "Type": 2,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>22Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-          "ControlData": {
-  
-            "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-            "ControlOwner": "Joe Smith",
-            "ControlOwnerRating":"Largely Ineffective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": false,
-            "ControlOwnerRatingImage":""
-          }
-    },
-     
-    {
-      "Id": 29,
-      "Type": 2,
-      "ParentNodeId": 0,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>222Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-      "ControlData": {
 
-        "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-        "ControlOwner": "Joe Smith",
-        "ControlOwnerRating":"Largely Ineffective",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": false,
-        "ControlOwnerRatingImage":""
-      }
-},
-{
-  "Id": 30,
-  "Type": 2,
-  "ParentNodeId": 0,
-  "Title": "Control Node",
-  "Header": "Control",
-  "Rating": "",
-  "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-  "ControlData": {
-
-    "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-    "ControlOwner": "Joe Smith",
-    "ControlOwnerRating":"Largely Ineffective",
-    "ControlAuthorizer": "",
-    "ControlAuthorizerRating": "",
-    "Active": true,
-    "IsLinkedToCauseOrConsequence": false,
-    "ControlOwnerRatingImage":""
-  }
-},
-
-      
-            
-      
-      
-        {
-              "Id": 3,
-              "Type": 3,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
-              "Rating": "",
-              "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
-              "ControlData": {
-      
-                "ControlTitle": "Prioritize critical business functions",
-                "ControlOwner": "Madeline Jones",
-                "ControlOwnerRating":"Partially Effective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": true,
-                "ControlOwnerRatingImage":""
-                
-              }
-        },
-
-      
-     {
-          "Id": 33,
-          "Type": 3,
-          "ParentNodeId": 3,
-          "Title": "Consequences Node",
-          "Header": "Consequence",
-          "Rating": "",
-          "htmlTemplate": "Reduced enter#prise IT support#",
-          "LinkedControlIds":[3]
-
-        },
-      
       {
-              "Id": 500,
-              "Type": 3,
-              "ParentNodeId": 0,
-              "Title": "Control Node",
-              "Header": "Control",
-              "Rating": "",
-              "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
-              "ControlData": {
-      
-                "ControlTitle":"Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
-                "ControlOwner":"Andrew James",
-                "ControlOwnerRating":"Substantially Effective",
-                "ControlAuthorizer": "",
-                "ControlAuthorizerRating": "",
-                "Active": true,
-                "IsLinkedToCauseOrConsequence": false,
-                "ControlOwnerRatingImage":""
-              }
-     },
-      
-       
-       
-        {
-          "Id": 81,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Consequences Node",
-          "Header": "Consequence",
-          "Rating": "",
-          "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-          "LinkedControlIds":[]
+        "Id": 28,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>22Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
 
-        },
-        {
-          "Id": 6,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
-          "ControlData": {
-        
-            "ControlTitle": "Prioritize critical business functions",
-            "ControlOwner": "Madeline Jones",
-            "ControlOwnerRating":"Partially Effective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": false,
-            "ControlOwnerRatingImage":""
-            
-          }
-        },
-        {
-          "Id": 7,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
-          "ControlData": {
-        
-            "ControlTitle": "Prioritize critical business functions",
-            "ControlOwner": "Madeline Jones",
-            "ControlOwnerRating":"Partially Effective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": false,
-            "ControlOwnerRatingImage":""
-            
-          }
-        },
-        {
-          "Id": 8,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
-          "ControlData": {
-        
-            "ControlTitle": "Prioritize critical business functions",
-            "ControlOwner": "Madeline Jones",
-            "ControlOwnerRating":"Partially Effective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": false,
-            "ControlOwnerRatingImage":""
-            
-          }
-        }, 
-        {
-          "Id": 5,
-          "Type": 3,
-          "ParentNodeId": 0,
-          "Title": "Control Node",
-          "Header": "Control",
-          "Rating": "",
-          "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
-          "ControlData": {
-    
-            "ControlTitle": "Prioritize critical business functions",
-            "ControlOwner": "Madeline Jones",
-            "ControlOwnerRating":"Partially Effective",
-            "ControlAuthorizer": "",
-            "ControlAuthorizerRating": "",
-            "Active": true,
-            "IsLinkedToCauseOrConsequence": false,
-            "ControlOwnerRatingImage":""
-            
-          }
-    },
-    
-    {
-      "Id": 9,
-      "Type": 3,
-      "ParentNodeId": 0,
-      "Title": "Control Node",
-      "Header": "Control",
-      "Rating": "",
-      "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
-      "ControlData": {
-    
-        "ControlTitle": "Prioritize critical business functions",
-        "ControlOwner": "Madeline Jones",
-        "ControlOwnerRating":"Partially Effective",
-        "ControlAuthorizer": "",
-        "ControlAuthorizerRating": "",
-        "Active": true,
-        "IsLinkedToCauseOrConsequence": false,
-        "ControlOwnerRatingImage":""
-        
-      }
-    },
-         
-          
-         
-        {
-              "Id": 201,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-            {
-              "Id": 202,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
 
-            {
-              "Id": 203,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Incident",
-              "Rating": "",
-              "htmlTemplate":"<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
-              "IncidentData": {
-                "LinkageId": 1217,
-                "IncidentId": 201,
-                "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-                "IncidentCode": "IMS - 1",
-                "IncidentType": "IT Incident",
-                "ReportedDate": "Jul 14 2022  2:49PM",
-                "ResponsiblePerson": "Madeline Jones",
-                "ImageType": "",
-                "ByteImage":"",
-                "ResponsibleManagerProfilePic":""
-              }
-            },
-           
+      {
+        "Id": 29,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>222Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
 
-          
-       {
-              "Id": 182,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "KPI",
-              "Rating": "",
-              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
-              "KPIData":{
-                "RiskLinkId":2078,
-                "KpiIntId":12,
-                "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
-                "KPITitle":"% reduction in non-clinically indicated surgery",
-                "Unit":"#",
-                "ReportingPeriod":"Month",
-                "Actual":21,
-                "Target":20,
-                "PerformanceImg":"Monitor",
-                "TrendImg":"Not Applicable",
-                "Performance":"Monitor"
-              }
-            },
-            {
-              "Id": 183,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "KPI",
-              "Rating": "",
-              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
-              "KPIData":{
-                "RiskLinkId":2078,
-                "KpiIntId":12,
-                "KpiGuidId":"543baf2f-14ea-478e-966a-fb16c4c574a1",
-                "KPITitle":"% reduction in non-clinically indicated surgery",
-                "Unit":"%",
-                "ReportingPeriod":"Month",
-                "Actual":21,
-                "Target":20,
-                "PerformanceImg":"Monitor",
-                "TrendImg":"Not Applicable",
-                "Performance":"On Track"
-              }
-            },
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 30,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
 
-            {
-              "Id": 185,
-              "Type": 4,
-              "ParentNodeId": 0,
-              "Title": "Other Node",
-              "Header": "Treatment",
-              "Rating": "",
-              "htmlTemplate": "<dev>Number of ISP outages.</dev>",
-              "TreatmentData":{
-                "DueDate": "17octomber2023",
-                "Owner": "Madeline Jones",
-                "CompleteValue": 55,
-              }
-            },
-           
-           
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 330,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 331,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 332,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 333,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 334,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 335,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+
+
+
+      {
+        "Id": 3,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Prioritize critical business functions",
+          "ControlOwner": "Madeline Jones",
+          "ControlOwnerRating": "Partially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+
+        }
+      },
+
+
+      {
+        "Id": 33,
+        "Type": 3,
+        "ParentNodeId": 3,
+        "Title": "Consequences Node",
+        "Header": "Consequence",
+        "Rating": "",
+        "htmlTemplate": "Reduced enter#prise IT support#",
+        "LinkedControlIds": [3]
+
+      },
+
+      {
+        "Id": 500,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
+          "ControlOwner": "Andrew James",
+          "ControlOwnerRating": "Substantially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+
+
+      {
+        "Id": 81,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Consequences Node",
+        "Header": "Consequence",
+        "Rating": "",
+        "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
+        "LinkedControlIds": []
+
+      },
+      {
+        "Id": 6,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Prioritize critical business functions",
+          "ControlOwner": "Madeline Jones",
+          "ControlOwnerRating": "Partially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+
+        }
+      },
+      {
+        "Id": 7,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Prioritize critical business functions",
+          "ControlOwner": "Madeline Jones",
+          "ControlOwnerRating": "Partially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+
+        }
+      },
+      {
+        "Id": 8,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Prioritize critical business functions",
+          "ControlOwner": "Madeline Jones",
+          "ControlOwnerRating": "Partially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+
+        }
+      },
+      {
+        "Id": 5,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Prioritize critical business functions",
+          "ControlOwner": "Madeline Jones",
+          "ControlOwnerRating": "Partially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+
+        }
+      },
+
+      {
+        "Id": 9,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Prioritize critical business functions",
+          "ControlOwner": "Madeline Jones",
+          "ControlOwnerRating": "Partially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+
+        }
+      },
+
+
+
+      {
+        "Id": 201,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Incident",
+        "Rating": "",
+        "htmlTemplate": "<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
+        "IncidentData": {
+          "LinkageId": 1217,
+          "IncidentId": 201,
+          "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+          "IncidentCode": "IMS - 1",
+          "IncidentType": "IT Incident",
+          "ReportedDate": "Jul 14 2022  2:49PM",
+          "ResponsiblePerson": "Madeline Jones",
+          "ImageType": "",
+          "ByteImage": "",
+          "ResponsibleManagerProfilePic": ""
+        }
+      },
+      {
+        "Id": 202,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Incident",
+        "Rating": "",
+        "htmlTemplate": "<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
+        "IncidentData": {
+          "LinkageId": 1217,
+          "IncidentId": 201,
+          "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+          "IncidentCode": "IMS - 1",
+          "IncidentType": "IT Incident",
+          "ReportedDate": "Jul 14 2022  2:49PM",
+          "ResponsiblePerson": "Madeline Jones",
+          "ImageType": "",
+          "ByteImage": "",
+          "ResponsibleManagerProfilePic": ""
+        }
+      },
+
+      {
+        "Id": 203,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Incident",
+        "Rating": "",
+        "htmlTemplate": "<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 3</dev>",
+        "IncidentData": {
+          "LinkageId": 1217,
+          "IncidentId": 201,
+          "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
+          "IncidentCode": "IMS - 1",
+          "IncidentType": "IT Incident",
+          "ReportedDate": "Jul 14 2022  2:49PM",
+          "ResponsiblePerson": "Madeline Jones",
+          "ImageType": "",
+          "ByteImage": "",
+          "ResponsibleManagerProfilePic": ""
+        }
+      },
+
+
+
+      {
+        "Id": 182,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "KPI",
+        "Rating": "",
+        "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+        "KPIData": {
+          "RiskLinkId": 2078,
+          "KpiIntId": 12,
+          "KpiGuidId": "543baf2f-14ea-478e-966a-fb16c4c574a1",
+          "KPITitle": "% reduction in non-clinically indicated surgery",
+          "Unit": "#",
+          "ReportingPeriod": "Month",
+          "Actual": 21,
+          "Target": 20,
+          "PerformanceImg": "Monitor",
+          "TrendImg": "Not Applicable",
+          "Performance": "Monitor"
+        }
+      },
+      {
+        "Id": 183,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "KPI",
+        "Rating": "",
+        "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+        "KPIData": {
+          "RiskLinkId": 2078,
+          "KpiIntId": 12,
+          "KpiGuidId": "543baf2f-14ea-478e-966a-fb16c4c574a1",
+          "KPITitle": "% reduction in non-clinically indicated surgery",
+          "Unit": "%",
+          "ReportingPeriod": "Month",
+          "Actual": 21,
+          "Target": 20,
+          "PerformanceImg": "Monitor",
+          "TrendImg": "Not Applicable",
+          "Performance": "On Track"
+        }
+      },
+
+      {
+        "Id": 185,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Treatment",
+        "Rating": "",
+        "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+        "TreatmentData": {
+          "DueDate": "17octomber2023",
+          "Owner": "Madeline Jones",
+          "CompleteValue": 55,
+        }
+      },
+
+
     ]
-    
+
     var tempTitleDetail = '';
     let isRiskView = false;
     let isKpIview = false;
@@ -554,7 +796,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         complianceTemplateExpnad: "",
         authorityDocumentTemplateExpnad: "",
         auditTemplateExpnad: "",
-        treatmentTemplate:""
+        treatmentTemplate: ""
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
@@ -590,6 +832,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
 
+
+
     $(() => {
       $(document).ready(() => {
         createDiagram(this.originalData, this.IsExpanded);
@@ -607,7 +851,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         e.preventDefault();
         e.container.closest('.k-popup-edit-form').data('kendoWindow').close();
       }
-    
+
       function createDiagram(originalData: any[], isExpanded: boolean) {
 
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
@@ -624,169 +868,175 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         //creating connection lines
         var dataConnections = [];
-       
-        
-      //   function connectionLineColor() {
-      //     const colors = [];
-      //     let color;
-      //     for (let i = 1; i < originalData.length; i++) {
-             
-      
-      //         if (originalData[i].Title == "Other Node") {
-      //             // color = '#faab2c';
-      //             // console.log("coloro",color);
-      //         } else if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
-      //             // color = '#40b86e';
-      //             // console.log("colorcc",color);
-      //         } else if (originalData[i].Title == "Control Node") {
-      //             color = '#e54257';
-      //             console.log("colorc",color);
-      //         } else {
-      //             // Default color if no conditions are met
-      //             color = '#000000';
-      //             console.log("colord",color);
-      //         }
-      
-             
-      //     }
-      //     console.log("colorall",color);
-      //     return (color);
-      // } 
 
 
-      //        Define a function to get the connector type based on the node type
-    
-      // function getConnectorType(nodeType) {
-      //   switch (nodeType) {
-      //     case "Cause Node":
-      //       return "top";
-      //     case "Consequences Node":
-      //       return "top";
-      //     case "Control Node":
-      //       return "auto";
-      //     case "Risk Node":
-      //       return "bottomRight";
-      //     case "Other Node":
-      //       return "bottom";
-      //     default:
-      //       return "auto"; // Default to top connector for Other Node
-      //   }
-      // }
+        //   function connectionLineColor() {
+        //     const colors = [];
+        //     let color;
+        //     for (let i = 1; i < originalData.length; i++) {
 
-// Iterate through originalData and create connection objects
-    for (let i = 1; i < originalData.length; i++) {
 
-      if (originalData[i].Title == "Other Node") {
-        // Get connector type for the current node
-        // const fromConnector = getConnectorType(originalData[i].Title);
-        // Create connection object
-        var conObj = {
-          Id: originalData[i].Type === i,
-          FromShapeId: originalData[i].ParentNodeId,
-          ToShapeId: originalData[i].Id,
-          Text: null,
-          color: "1",
-          fromConnector: "bottom",
-          toConnector:"top",
-          // toConnector:"auto",
-          
-        };
+        //         if (originalData[i].Title == "Other Node") {
+        //             // color = '#faab2c';
+        //             // console.log("coloro",color);
+        //         } else if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
+        //             // color = '#40b86e';
+        //             // console.log("colorcc",color);
+        //         } else if (originalData[i].Title == "Control Node") {
+        //             color = '#e54257';
+        //             console.log("colorc",color);
+        //         } else {
+        //             // Default color if no conditions are met
+        //             color = '#000000';
+        //             console.log("colord",color);
+        //         }
 
-        // Add the connection object to dataConnections array
-        dataConnections.push(conObj);
-      }
 
-      if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-        && originalData[i].ParentNodeId != 0) {
-        for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-          // Get connector type for the current node
-          // const fromConnector = getConnectorType(originalData[i].Title);
+        //     }
+        //     console.log("colorall",color);
+        //     return (color);
+        // } 
 
-          // Create connection object
-          var conObj1 = {
-            Id: j,
-            FromShapeId: originalData[i].LinkedControlIds[j],
-            ToShapeId: originalData[i].Id,
-            Text: null,
-            color: "2",
-            fromConnector: "top",
-            
-           
-          };
 
-          // Add the connection object to dataConnections array
-          dataConnections.push(conObj1);
-        }
-      }
+        //        Define a function to get the connector type based on the node type
 
-      if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-        && originalData[i].ParentNodeId == 0) {
-        // Get connector type for the current node
-        // const fromConnector = getConnectorType(originalData[i].Title);
+        // function getConnectorType(nodeType) {
+        //   switch (nodeType) {
+        //     case "Cause Node":
+        //       return "top";
+        //     case "Consequences Node":
+        //       return "top";
+        //     case "Control Node":
+        //       return "auto";
+        //     case "Risk Node":
+        //       return "bottomRight";
+        //     case "Other Node":
+        //       return "bottom";
+        //     default:
+        //       return "auto"; // Default to top connector for Other Node
+        //   }
+        // }
 
-        // Create connection object
-        var conObj2 = {
-          Id: i,
-          FromShapeId: 0,
-          ToShapeId: originalData[i].Id,
-          Text: null,
-          color: "3",
-          fromConnector: "auto",
-          toConnector:"top"
-         
-        };
+        // Iterate through originalData and create connection objects
+        for (let i = 1; i < originalData.length; i++) {
 
-        // Add the connection object to dataConnections array
-        dataConnections.push(conObj2);
-      }
-
-      if (originalData[i].Title == "Control Node") {
-        // Get connector type for the current node
-        // const fromConnector = getConnectorType(originalData[i].Title);
-        // let controlNodeNotIncluded = true;
-        // // Create connection object
-        
-         
-          if (originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-            console.log(originalData[i].Id)
+          if (originalData[i].Title == "Other Node") {
+            // Get connector type for the current node
+            // const fromConnector = getConnectorType(originalData[i].Title);
             // Create connection object
-            var conObj3 = {
+            var conObj = {
+              Id: i,
+              FromShapeId: originalData[i].ParentNodeId,
+              ToShapeId: originalData[i].Id,
+              Text: null,
+              color: "1",
+
+              // toConnector:"auto",
+
+            };
+
+            // Add the connection object to dataConnections array
+            dataConnections.push(conObj);
+          }
+
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
+            && originalData[i].ParentNodeId != 0) {
+            for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
+              // Get connector type for the current node
+              // const fromConnector = getConnectorType(originalData[i].Title);
+
+              // Create connection object
+              var conObj1 = {
+                Id: j,
+                FromShapeId: originalData[i].LinkedControlIds[j],
+                ToShapeId: originalData[i].Id,
+                Text: null,
+                color: "2",
+                fromConnector: "auto",
+
+
+              };
+
+              // Add the connection object to dataConnections array
+              dataConnections.push(conObj1);
+            }
+          }
+
+          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
+            && originalData[i].ParentNodeId == 0) {
+            // Get connector type for the current node
+            // const fromConnector = getConnectorType(originalData[i].Title);
+
+            // Create connection object
+            var conObj2 = {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "4",
+              color: "3",
               fromConnector: "auto",
-              toConnector: "auto"
+              toConnector: "top"
+
             };
-    
-            dataConnections.push(conObj3);
-             
+
+            // Add the connection object to dataConnections array
+            dataConnections.push(conObj2);
           }
-          else   {
-            var conObj3 = {
-              Id: i,
-              FromShapeId: 0,
-              ToShapeId: originalData[i].Id,
-              Text: null,
-              color: "4",
-              fromConnector: "auto",
-              toConnector: "bottom"
-            };
-            dataConnections.push(conObj3);
+
+          if (originalData[i].Title == "Control Node") {
+            // Get connector type for the current node
+            // const fromConnector = getConnectorType(originalData[i].Title);
+            // let controlNodeNotIncluded = true;
+            // // Create connection object
+
+
+            if (originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+              console.log(originalData[i].Id)
+              // Create connection object
+              var conObj3 = {
+                Id: i,
+                FromShapeId: 0,
+                ToShapeId: originalData[i].Id,
+                Text: null,
+                color: "4",
+                fromConnector: "auto",
+                toConnector: "auto"
+              };
+
+              dataConnections.push(conObj3);
+
+            }
+            else {
+              var conObj3 = {
+                Id: i,
+                FromShapeId: 0,
+                ToShapeId: originalData[i].Id,
+                Text: null,
+                color: "4",
+                fromConnector: "auto",
+                toConnector: "bottom"
+              };
+              dataConnections.push(conObj3);
+            }
+
+
+
+
+
+
           }
-        
+
+        }
+
+        var initialState = {
+          data: dataShapes.slice(),
+          connections: dataConnections
+        };
+
       
 
-        
-       
-      
-    }
 
-  }
-
-
-     $("#toolbar").kendoToolBar({
+        $("#toolbar").kendoToolBar({
           items: [
             {
               template: `
@@ -842,11 +1092,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 </div>                  
             </div>        
                 `
-          },
-      ]})
-  
-    
-      
+            },
+          ]
+        })
+
+
+
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -858,7 +1109,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   Type: { type: 'number' },
                   Color: { type: 'string' },
                 },
-                isExpanded:isExpanded
+                isExpanded: isExpanded
               },
             },
             change: function (ev) {
@@ -912,7 +1163,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                     break;
                   case "4":
                     connColor = "#0050a0"; // darkBlue
-                  break;
+                    break;
                   default:
                     connColor = "#979797"; // Default color
                 }
@@ -924,13 +1175,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               }
             }
           },
-          
+
           shapeDefaults: {
             stroke: {
               color: '#979797',
               width: 10,
             },
-            visual: function(options){
+            visual: function (options) {
               return visualTemplate(options)
             },
           },
@@ -956,53 +1207,49 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           pannable: {
             key: "none", // Use the Ctrl key for panning
             start: function (e) {
-                // Record the starting mouse position for panning
-                this.panStart = { x: e.origin.x, y: e.origin.y };
+              // Record the starting mouse position for panning
+              this.panStart = { x: e.origin.x, y: e.origin.y };
             },
             pan: function (e) {
-                // Calculate the difference in mouse position and pan the diagram
-                var panX = e.origin.x - this.panStart.x;
-                var panY = e.origin.y - this.panStart.y;
-                this.pan(panX, panY);
-    
-                // Update the starting mouse position for the next pan event
-                this.panStart = { x: e.origin.x, y: e.origin.y };
+              // Calculate the difference in mouse position and pan the diagram
+              var panX = e.origin.x - this.panStart.x;
+              var panY = e.origin.y - this.panStart.y;
+              this.pan(panX, panY);
+
+              // Update the starting mouse position for the next pan event
+              this.panStart = { x: e.origin.x, y: e.origin.y };
             }
-        },
+          },
           dataBound: function () {
             // Calculate the available screen width and height
             var screenWidth = $(window).width();
             var screenHeight = $(window).height();
-        
+
             // Calculate a reasonable diagram size based on screen dimensions
-            var diagramWidth = Math.min(screenWidth ); // Adjust the 100 as needed
+            var diagramWidth = Math.min(screenWidth); // Adjust the 100 as needed
             var diagramHeight = Math.min(screenHeight + 100); // Adjust the 100 as needed
-        
+
             // Update the diagram's dimensions
             this.wrapper.width(diagramWidth);
             this.wrapper.height(diagramHeight);
             this.resize();
           }
-          
 
         });
-
-        // Get the button element and attach the click event listener
-
        
 
         $(".zoomInIcon").click(function () {
           var currentZoom = diagram.zoom();
-          currentZoom += 0.02; 
-          diagram.zoom(currentZoom); 
+          currentZoom += 0.02;
+          diagram.zoom(currentZoom);
         });
-        
+
         $(".zoomOutIcon").click(function () {
           var currentZoom = diagram.zoom();
-          currentZoom -= 0.02; 
-          diagram.zoom(currentZoom); 
+          currentZoom -= 0.02;
+          diagram.zoom(currentZoom);
         });
-        
+
 
         $(".slider").kendoSlider({
           min: 0.02, // Minimum zoom level
@@ -1011,40 +1258,40 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           largeStep: 0.02, // Large zoom increment
           value: 0.5,  // Initial zoom level
           tooltip: {
-                enabled: true,                
-              }, 
-          slide: function(e) {
+            enabled: true,
+          },
+          slide: function (e) {
             var zoomLevel = e.value;
             var diagram = $("#diagram").getKendoDiagram();
             diagram.zoom(zoomLevel);
-        }
+          }
         });
 
 
-        $(".btn-Export").click(function() {
+        $(".btn-Export").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
-          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function(data) {
-              kendo.saveAs({
-                  dataURI: data,
-                  fileName: "bow-tie-analysis.pdf"
-              });
+          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
+            kendo.saveAs({
+              dataURI: data,
+              fileName: "bow-tie-analysis.pdf"
+            });
           });
         });
 
-        $(".bt-Expand").click(function() {
-         ;
+        $(".bt-Expand").click(function () {
+          ;
           var diagram = $("#diagram").getKendoDiagram();
           isExpand = !isExpand;
 
           const Expandbutton = document.getElementById('btExpandView');
-          Expandbutton.classList.toggle('active', isExpand);         
+          Expandbutton.classList.toggle('active', isExpand);
           diagram.refresh();
 
         });
 
 
-        $(".bt-Risk").click(function() {
-         
+        $(".bt-Risk").click(function () {
+
           if (isKpIview == false) {
             isRiskView = !isRiskView;
 
@@ -1058,7 +1305,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             if (isRiskView) {
 
               const Kpidbutton = document.getElementById('btKpikView');
-              Kpidbutton.style.opacity = '0.5'; 
+              Kpidbutton.style.opacity = '0.5';
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -1081,7 +1328,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               connectionsDataSource.data(visibleConnections);
             } else {
               const Kpidbutton = document.getElementById('btKpikView');
-              Kpidbutton.style.opacity = '1'; 
+              Kpidbutton.style.opacity = '1';
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
@@ -1091,7 +1338,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
 
-        $(".bt-Kpi").click(function() {
+        $(".bt-Kpi").click(function () {
           if (isRiskView == false) {
             isKpIview = !isKpIview;
 
@@ -1139,22 +1386,46 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         });
 
-        $(".bt-Performance").click(function() {
+        $(".bt-Performance").click(function () {
           isPerformanceView = !isPerformanceView;
 
           const Performancebutton = document.getElementById('btPerformanceView');
           Performancebutton.classList.toggle('active', isPerformanceView);
 
           var diagram = kendoDiagram.getKendoDiagram();
-        
+
           diagram.refresh();
         });
 
-        $(".bt-Reload").click(function() {
-          location.reload();
-        });
+        $(".bt-Reload").click(function () {
+          // Reset both data source and connections data source
+          diagram.setDataSource(initialState.data);
+      
+          // Re-add the initial connections using a deep copy
+          diagram.setConnectionsDataSource({
+              data: JSON.parse(JSON.stringify(initialState.connections)),
+              schema: {
+                  model: {
+                      id: 'id',
+                      fields: {
+                          id: { from: 'Id', type: 'number', editable: false },
+                          from: { from: 'FromShapeId', type: 'number' },
+                          to: { from: 'ToShapeId', type: 'number' },
+                          fromX: { from: 'FromPointX', type: 'number' },
+                          fromY: { from: 'FromPointY', type: 'number' },
+                          toX: { from: 'ToPointX', type: 'number' },
+                          toY: { from: 'ToPointY', type: 'number' },
+                      },
+                  },
+              },
+          });
+      
+          // Hide the back button
+          var reloadButton = document.getElementById("btReload");
+          reloadButton.style.display = "none";
+      });
+      
 
-        
 
 
         var diagram = $('#diagram').getKendoDiagram();
@@ -1175,16 +1446,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     });
 
 
-    
-   
- 
+
+
+
     var dataArrayoriginal = this.originalData;
 
 
 
     function onNodeClick(e) {
-     
 
+     
       if (e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Compliance" || e.item.dataItem.Header == "Authority Document") {
         var clickedNodeId = e.item.dataItem.id;
         clicked = true;
@@ -1221,16 +1492,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         const originY = 0;
         const horizontalSpacing = 720;
         let riskRowNumber = 0;
-        let riskColumnNumber = 1;      
-        let causeConsequenceColumnNumber = 0;       
+        let riskColumnNumber = 1;
+        let causeConsequenceColumnNumber = 0;
         let otherNodesColumnNumber = 0;
         let verticalSpacing = 520;
         var centralizedRiskNodes = []
         e.item.dataItem.x = 0;
         e.item.dataItem.y = 0;
         for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
-          
-         
+
+
           if (linkedNodesToClickedNode[i].Header == "Risk") {
             linkedNodesToClickedNode[i].x = originX + riskColumnNumber * horizontalSpacing;
             linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
@@ -1239,19 +1510,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             console.log(centralizedRiskNodes);
             var riskArrayLength = centralizedRiskNodes.length - 1;
           }
-          
+
           //causes and consequences placed left bottom to the clicked node
           else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
             let causeConsequenceRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
-         
-          //risk place left to clicked node
+
+            //risk place left to clicked node
             linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
             linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
             causeConsequenceColumnNumber++;
             if (causeConsequenceColumnNumber > 4) {
               causeConsequenceRowNumber++;
             }
-           
+
             console.log(causeConsequenceRowNumber);
 
           }
@@ -1270,8 +1541,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           if (riskColumnNumber > 4) {
             riskRowNumber++;
           }
-          
-         
+
+
 
         }
         console.log(linkedNodesToClickedNode);
@@ -1301,25 +1572,25 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         diagram.refresh();
 
       }
+      
       return linkedNodesToClickedNode;
     }
 
   }
-  
+
   // ngOnInit(): void {
 
   // }
 
 
-   
+
 
 }
 
-   
-   
 
-  
 
-  
 
-   
+
+
+
+
