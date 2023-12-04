@@ -13,8 +13,8 @@ export interface DiagramNodeData {
   IncidentData?: IncidentData;
   KpiData?: KPIData;
   LinkedRiskData?: LinkedRiskData;
-  AuthorityDocumentData?:AuthorityDocument;
-  ComplianceData?:Compliance;
+  AuthorityDocumentData?: AuthorityDocument;
+  ComplianceData?: Compliance;
   AuditData?: Audit;
 }
 
@@ -26,11 +26,11 @@ interface RiskData {
   ResidualRiskRating: string;
   TargetRiskRating: string;
   AppetiteRating: string;
-  InherentRiskRatingImg:any;
-  ResidualRiskRatingImg:any;
-  TargetRiskRatingImg:any;
-  AppetiteRatingImg:any;
-  profileImageUrl:any;
+  InherentRiskRatingImg: any;
+  ResidualRiskRatingImg: any;
+  TargetRiskRatingImg: any;
+  AppetiteRatingImg: any;
+  profileImageUrl: any;
 }
 
 interface ControlData {
@@ -40,11 +40,11 @@ interface ControlData {
   ControlAuthorizer: string;
   ControlAuthorizerRating: string;
   Active: boolean;
-  ControlOwnerRatingTypeId:number;
-  ControlOwnerRatingImage:any;
+  ControlOwnerRatingTypeId: number;
+  ControlOwnerRatingImage: any;
   IsLinkedToCauseOrConsequence: boolean;
   ControlOwnerImageUrl: any;
-  ControlType?:string;
+  ControlType?: string;
 }
 
 interface IncidentData {
@@ -55,11 +55,11 @@ interface IncidentData {
   ReportedDate: string;
   IncidentType: string;
   ResponsiblePerson: string;
-  ByteImage:string;
+  ByteImage: string;
   ImageType: string;
-  ResponsibleManagerProfilePic:any;
+  ResponsibleManagerProfilePic: any;
   ReportedOfficerImageUrl: any;
-  ReportedOfficerName:string;
+  ReportedOfficerName: string;
 }
 
 interface KPIData {
@@ -83,16 +83,16 @@ interface LinkedRiskData {
   ResidualRiskRating: string;
   TargetRiskRating: string;
   AppetiteRating: string;
-  InherentRiskRatingImg:any;
-  ResidualRiskRatingImg:any;
-  TargetRiskRatingImg:any;
-  AppetiteRatingImg:any;
-  profileImageUrl:any;
+  InherentRiskRatingImg: any;
+  ResidualRiskRatingImg: any;
+  TargetRiskRatingImg: any;
+  AppetiteRatingImg: any;
+  profileImageUrl: any;
 }
 interface AuthorityDocument {
   AuthorityDocumentId: number;
-  Title : string;
-  Code : string;
+  Title: string;
+  Code: string;
   ResponsibleOfficer: string;
   IsActive: boolean;
   ROImage: any;
@@ -100,14 +100,14 @@ interface AuthorityDocument {
 
 interface Compliance {
   ComplianceId: number;
-  Title : string;
-  Code : string;
+  Title: string;
+  Code: string;
   ResponsibleOfficer: string;
   ROImage: any;
   ReviewStatus?: string;
 }
 interface Audit {
   AuditId: number;
-  AuditTitle : string;
-  AuditDate : string;
+  AuditTitle: string;
+  AuditDate: string;
 }

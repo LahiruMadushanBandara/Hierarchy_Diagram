@@ -30,17 +30,17 @@ export class AppComponent implements OnChanges {
   causeTemplate: string = '';
   consequencesTemplate: string = '';
   otherTemplate: string = '';
-  originalData:DiagramNodeData[] =[];
+  originalData: DiagramNodeData[] = [];
 
-  @Input() IsExpanded:boolean = false;
-  
-  constructor() {}
+  @Input() IsExpanded: boolean = false;
+
+  constructor() { }
 
   ngOnChanges(): void {
 
     sessionStorage.clear();
     this.originalData = this.bowTieNodeDetails;
-    
+
     var tempTitleDetail = '';
     let isRiskView = false;
     let isKpIview = false;
@@ -112,7 +112,7 @@ export class AppComponent implements OnChanges {
         e.preventDefault();
         e.container.closest('.k-popup-edit-form').data('kendoWindow').close();
       }
-    
+
       function createDiagram(originalData: any[], isExpanded: boolean) {
 
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
@@ -133,7 +133,7 @@ export class AppComponent implements OnChanges {
         for (let i = 1; i < originalData.length; i++) {
 
           if (originalData[i].Title == "Other Node") {
-          
+
             var conObj = {
               Id: originalData[i].Type === i,
               FromShapeId: originalData[i].ParentNodeId,
@@ -141,14 +141,14 @@ export class AppComponent implements OnChanges {
               Text: null,
               color: "1",
               fromConnector: "bottom",
-              toConnector:"top"
-              
+              toConnector: "top"
+
             };
             dataConnections.push(conObj);
           }
 
           if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-          && originalData[i].ParentNodeId != 0) {
+            && originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
               var conObj1 = {
                 Id: j,
@@ -156,7 +156,7 @@ export class AppComponent implements OnChanges {
                 ToShapeId: originalData[i].Id,
                 Text: null,
                 color: "2"
-               
+
               };
               dataConnections.push(conObj1);
             }
@@ -171,7 +171,7 @@ export class AppComponent implements OnChanges {
               ToShapeId: originalData[i].Id,
               Text: null,
               color: "3"
-              
+
             };
             dataConnections.push(conObj2);
           }
@@ -183,13 +183,13 @@ export class AppComponent implements OnChanges {
               ToShapeId: originalData[i].Id,
               Text: null,
               color: "4"
-             
+
             };
             dataConnections.push(conObj3);
           }
         }
 
-  
+
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -201,7 +201,7 @@ export class AppComponent implements OnChanges {
                   Type: { type: 'number' },
                   Color: { type: 'string' },
                 },
-                isExpanded:isExpanded
+                isExpanded: isExpanded
               },
             },
             change: function (ev) {
@@ -255,7 +255,7 @@ export class AppComponent implements OnChanges {
                     break;
                   case "4":
                     connColor = "#979797"; // darkBlue
-                  break;
+                    break;
                   default:
                     connColor = "#979797"; // Default color
                 }
@@ -267,13 +267,13 @@ export class AppComponent implements OnChanges {
               }
             }
           },
-          
+
           shapeDefaults: {
             stroke: {
               color: '#979797',
               width: 10,
             },
-            visual: function(options){
+            visual: function (options) {
               return visualTemplate(options)
             },
           },
@@ -299,36 +299,36 @@ export class AppComponent implements OnChanges {
             drag: false,
             tools: [
               {
-              template: Templates.GetToolbarTemplate() 
-            }
-          ]
+                template: Templates.GetToolbarTemplate()
+              }
+            ]
           },
-          selectable:false,
+          selectable: false,
           pannable: {
             key: "none", // Use the Ctrl key for panning
             start: function (e) {
-                // Record the starting mouse position for panning
-                this.panStart = { x: e.origin.x, y: e.origin.y };
+              // Record the starting mouse position for panning
+              this.panStart = { x: e.origin.x, y: e.origin.y };
             },
             pan: function (e) {
-                // Calculate the difference in mouse position and pan the diagram
-                var panX = e.origin.x - this.panStart.x;
-                var panY = e.origin.y - this.panStart.y;
-                this.pan(panX, panY);
-    
-                // Update the starting mouse position for the next pan event
-                this.panStart = { x: e.origin.x, y: e.origin.y };
+              // Calculate the difference in mouse position and pan the diagram
+              var panX = e.origin.x - this.panStart.x;
+              var panY = e.origin.y - this.panStart.y;
+              this.pan(panX, panY);
+
+              // Update the starting mouse position for the next pan event
+              this.panStart = { x: e.origin.x, y: e.origin.y };
             }
           },
           dataBound: function () {
             // Calculate the available screen width and height
             var screenWidth = $(window).width();
             var screenHeight = $(window).height();
-        
+
             // Calculate a reasonable diagram size based on screen dimensions
             var diagramWidth = Math.min(screenWidth - 50); // Adjust the 100 as needed
             var diagramHeight = Math.min(screenHeight + 100); // Adjust the 100 as needed
-        
+
             // Update the diagram's dimensions
             this.wrapper.width(diagramWidth);
             this.wrapper.height(diagramHeight);
@@ -336,19 +336,19 @@ export class AppComponent implements OnChanges {
           }
         });
 
-        
+
         $(".zoomInIcon").click(function () {
           var currentZoom = diagram.zoom();
-          currentZoom += 0.02; 
-          diagram.zoom(currentZoom); 
+          currentZoom += 0.02;
+          diagram.zoom(currentZoom);
         });
-        
+
         $(".zoomOutIcon").click(function () {
           var currentZoom = diagram.zoom();
-          currentZoom -= 0.02; 
-          diagram.zoom(currentZoom); 
+          currentZoom -= 0.02;
+          diagram.zoom(currentZoom);
         });
-        
+
 
         $(".slider").kendoSlider({
           min: 0.02, // Minimum zoom level
@@ -357,39 +357,39 @@ export class AppComponent implements OnChanges {
           largeStep: 0.02, // Large zoom increment
           value: 0.5,  // Initial zoom level
           tooltip: {
-                enabled: true,                
-              }, 
-          slide: function(e) {
+            enabled: true,
+          },
+          slide: function (e) {
             var zoomLevel = e.value;
             var diagram = $("#diagram").getKendoDiagram();
             diagram.zoom(zoomLevel);
-        }
+          }
         });
 
 
-        $(".btn-Export").click(function() {
+        $(".btn-Export").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
-          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function(data) {
-              kendo.saveAs({
-                  dataURI: data,
-                  fileName: "bow-tie-analysis.pdf"
-              });
+          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
+            kendo.saveAs({
+              dataURI: data,
+              fileName: "bow-tie-analysis.pdf"
+            });
           });
         });
 
-        $(".bt-Expand").click(function() {
-         ;
+        $(".bt-Expand").click(function () {
+          ;
           var diagram = $("#diagram").getKendoDiagram();
           isExpand = !isExpand;
 
           const Expandbutton = document.getElementById('btExpandView');
-          Expandbutton.classList.toggle('active', isExpand);         
+          Expandbutton.classList.toggle('active', isExpand);
           diagram.refresh();
 
         });
 
-        $(".bt-Risk").click(function() {
-         
+        $(".bt-Risk").click(function () {
+
           if (isKpIview == false) {
             isRiskView = !isRiskView;
 
@@ -402,7 +402,7 @@ export class AppComponent implements OnChanges {
 
             if (isRiskView) {
 
-              $('#btKpikView').prop("disabled",true); 
+              $('#btKpikView').prop("disabled", true);
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -424,7 +424,7 @@ export class AppComponent implements OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
-              $('#btKpikView').prop("disabled",false); 
+              $('#btKpikView').prop("disabled", false);
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
@@ -434,7 +434,7 @@ export class AppComponent implements OnChanges {
         });
 
 
-        $(".bt-Kpi").click(function() {
+        $(".bt-Kpi").click(function () {
           if (isRiskView == false) {
             isKpIview = !isKpIview;
 
@@ -445,7 +445,7 @@ export class AppComponent implements OnChanges {
             var connectionsDataSource = diagram.connectionsDataSource;
 
             if (isKpIview) {
-              $('#btRiskView').prop("disabled",true); 
+              $('#btRiskView').prop("disabled", true);
               // Clear connections that are not linked to nodes with header = riskExpand
               var visibleConnections = diagram.connectionsDataSource
                 .data()
@@ -469,7 +469,7 @@ export class AppComponent implements OnChanges {
               // Re-add visible connections
               connectionsDataSource.data(visibleConnections);
             } else {
-              $('#btRiskView').prop("disabled",false);
+              $('#btRiskView').prop("disabled", false);
               // Re-establish all the original connections
               connectionsDataSource.data(originalConnections);
             }
@@ -480,24 +480,24 @@ export class AppComponent implements OnChanges {
 
         });
 
-        $(".bt-Performance").click(function() {
+        $(".bt-Performance").click(function () {
           isPerformanceView = !isPerformanceView;
 
           const Performancebutton = document.getElementById('btPerformanceView');
           Performancebutton.classList.toggle('active', isPerformanceView);
 
           var diagram = kendoDiagram.getKendoDiagram();
-        
+
           diagram.refresh();
         });
 
-        $(".bt-Reload").click(function() {
-          
+        $(".bt-Reload").click(function () {
+
           location.reload();
 
         });
 
-      
+
 
 
         var diagram = $('#diagram').getKendoDiagram();
@@ -551,8 +551,8 @@ export class AppComponent implements OnChanges {
             }
           }
 
-          $('#btRiskView').prop("disabled",true);
-          $('#btKpikView').prop("disabled",true);
+          $('#btRiskView').prop("disabled", true);
+          $('#btKpikView').prop("disabled", true);
         }
 
         //update node placing
@@ -560,16 +560,16 @@ export class AppComponent implements OnChanges {
         const originY = 0;
         const horizontalSpacing = 720;
         let riskRowNumber = 0;
-        let riskColumnNumber = 1;      
-        let causeConsequenceColumnNumber = 0;       
+        let riskColumnNumber = 1;
+        let causeConsequenceColumnNumber = 0;
         let otherNodesColumnNumber = 0;
         let verticalSpacing = 520;
         var centralizedRiskNodes = []
         e.item.dataItem.x = 0;
         e.item.dataItem.y = 0;
         for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
-          
-         
+
+
           if (linkedNodesToClickedNode[i].Header == "Risk") {
             linkedNodesToClickedNode[i].x = originX + riskColumnNumber * horizontalSpacing;
             linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
@@ -577,12 +577,12 @@ export class AppComponent implements OnChanges {
             centralizedRiskNodes.push(linkedNodesToClickedNode[i]);
             var riskArrayLength = centralizedRiskNodes.length - 1;
           }
-          
+
           //causes and consequences placed left bottom to the clicked node
           else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
             let causeConsequenceRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
-         
-          //risk place left to clicked node
+
+            //risk place left to clicked node
             linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
             linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
             causeConsequenceColumnNumber++;

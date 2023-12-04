@@ -53,7 +53,7 @@ export class TemplateClass {
     );
   }
 
-  public GetOtherTemplateGlobal(
+  public GetBottomCollapesTemplateGlobal(
     contentDetails: DiagramNodeData,
     enablePerformanceview: boolean
   ) {
@@ -79,17 +79,17 @@ export class TemplateClass {
     }
 
     return (
-      "<div class='Bow-tie-Other-card-content rounded'" +
+      "<div class='Bow-tie-BottomCollapes-card-content rounded'" +
       perfomanceViewKPIBodyStyle +
       '>' +
-      "<div class='Bow-tie-Other-card-header'" +
+      "<div class='Bow-tie-BottomCollapes-card-header'" +
       perfomanceViewKPIHeaderStyle +
       '>' +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='Bow-tie-Other-card-body'" +
+      "<div class='Bow-tie-BottomCollapes-card-body'" +
       perfomanceViewKPIBodyStyle +
       '>' +
       "<p class='bow-tie-htmlTemplate'" +
@@ -310,7 +310,7 @@ export class TemplateClass {
         : contentDetails.htmlTemplate;
 
     return (
-      "<div class='bow-tie-extra-card-content rounded'" +
+      "<div class='bow-tie-expand-card-content rounded'" +
       perfomanceViewGeneralBodyStyle +
       ' >' +
       "<div class='bow-tie-control-card-header' " +
@@ -320,7 +320,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body' " +
+      "<div class='bow-tie-expand-card-body' " +
       perfomanceViewGeneralBodyStyle +
       '>' +
       "<p class='bow-tie-htmlTemplate'  " +
@@ -329,7 +329,7 @@ export class TemplateClass {
       truncatedHtmlTemplate +
       '</p>' +
       "<p class='bow-tie-control-type-details'>" +
-      "<span class='bow-tie-control-type' " +
+      "<span class='bow-tie-type-name' " +
       perfomanceViewGeneralBodyStyle +
       '>' +
       'Control Type' +
@@ -346,12 +346,12 @@ export class TemplateClass {
       "<p class='bow-tie-control-owner-details' " +
       perfomanceViewGeneralBodyStyle +
       '>' +
-      "<img class ='bow-tie-control-owner-image'" +
+      "<img class ='bow-tie-owner-image'" +
       "src='" +
       contentDetails.ControlData.ControlOwnerImageUrl
         .changingThisBreaksApplicationSecurity +
       "'" +
-      "<span class='bow-tie-control-owner-name'>" +
+      "<span class='bow-tie-owner-name'>" +
       contentDetails.ControlData.ControlOwner +
       '</span>' +
       '</p>' +
@@ -388,18 +388,18 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded''>" +
-      "<div class='bow-tie-extra-card-header''>" +
+      "<div class='bow-tie-expand-card-content rounded''>" +
+      "<div class='bow-tie-expand-card-header''>" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'>" +
+      "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
       "<p class='bow-tie-details-name'>" +
-      "<span class='bow-tie-control-type''>" +
+      "<span class='bow-tie-type-name''>" +
       'Due Date' +
       '</span>' +
       "<p class='bow-tie-date'>" +
@@ -407,9 +407,9 @@ export class TemplateClass {
       '</p>' +
       '</p>' +
       "<p class='bow-tie-treatment-expand-owner' >Owner</p>" +
-      "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-      "<img class='bow-tie-incident-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
-      "<span class='bow-tie-incident-expand-responsible-officer-name'> Talia Gisbon  </span>" +
+      "<p class='bow-tie-expand-responsible-officer-details'>" +
+      "<img class='bow-tie-expand-responsible-officer-image' src='theavo_risk/assets/bow-tie/icon/image.png' >" +
+      "<span class='bow-tie-expand-responsible-officer-name'> Talia Gisbon  </span>" +
       '</p>' +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: -10px;'>" +
       'Complete' +
@@ -582,42 +582,42 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header' >" +
+      "<div class='bow-tie-expand-card-content rounded' >" +
+      "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'>" +
+      "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '<p>' +
-      "<p class='bow-tie-incident-expand-reportedby' >Reported By</p>" +
+      "<p class='bow-tie-expand-reportedby' >Reported By</p>" +
       "<p class='bow-tie-responsible-officer'>" +
-      "<img class='bow-tie-control-owner-image'" +
+      "<img class='bow-tie-owner-image'" +
       "src='" +
       contentDetails.IncidentData.ReportedOfficerImageUrl
         .changingThisBreaksApplicationSecurity +
       "'" +
-      "<span class='bow-tie-control-owner-name'>" +
+      "<span class='bow-tie-owner-name'>" +
       contentDetails.IncidentData.ReportedOfficerName +
       '</span>' +
       '</p>' +
-      "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
-      "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-      "<img class='bow-tie-incident-expand-responsible-officer-image'" +
+      "<p class='bow-tie-expand-responsible-officer'>Responsible Officer</p>" +
+      "<p class='bow-tie-expand-responsible-officer-details'>" +
+      "<img class='bow-tie-expand-responsible-officer-image'" +
       "src='" +
       contentDetails.IncidentData.ResponsibleManagerProfilePic
         .changingThisBreaksApplicationSecurity
         .changingThisBreaksApplicationSecurity +
       "'" +
-      "<span class='bow-tie-incident-expand-responsible-officer-name'>" +
+      "<span class='bow-tie-expand-responsible-officer-name'>" +
       contentDetails.IncidentData.ResponsiblePerson +
       '</span>' +
       '</p>' +
-      "<p class='bow-tie-incident-expand-reported-date-time'>" +
+      "<p class='bow-tie-expand-reported-date-time'>" +
       'Reported Date/Time' +
-      "<p class='bow-tie-incident-expand-reported-date'>" +
+      "<p class='bow-tie-expand-reported-date'>" +
       contentDetails.IncidentData.ReportedDate +
       '</p>' +
       '</p>' +
@@ -638,31 +638,31 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header'>" +
+      "<div class='bow-tie-expand-card-content rounded' >" +
+      "<div class='bow-tie-expand-card-header'>" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'>" +
+      "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>'\\" +
       truncatedHtmlTemplate +
       '<p>' +
-      "<p class='bow-tie-incident-expand-reportedby' >Responsible Officer</p>" +
+      "<p class='bow-tie-expand-reportedby' >Responsible Officer</p>" +
       "<p class='bow-tie-responsible-officer'>" +
-      "<img class='bow-tie-control-owner-image'" +
+      "<img class='bow-tie-owner-image'" +
       "src='" +
       contentDetails.ComplianceData.ROImage
         .changingThisBreaksApplicationSecurity +
       "'" +
-      "<span class='bow-tie-control-owner-name'>" +
+      "<span class='bow-tie-owner-name'>" +
       contentDetails.ComplianceData.ResponsibleOfficer +
       '  ' +
       '</span>' +
       '</p>' +
       "<p class='bow-tie-compliance-status'>" +
       'Compliance Status' +
-      "<p class='bow-tie-incident-expand-reported-date'>" +
+      "<p class='bow-tie-expand-reported-date'>" +
       contentDetails.ComplianceData?.ReviewStatus +
       '  ' +
       '</p>' +
@@ -720,17 +720,17 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' " +
+      "<div class='bow-tie-expand-card-content rounded' " +
       perfomanceViewKPIBodyStyle +
       '>' +
-      "<div class='bow-tie-extra-card-header' " +
+      "<div class='bow-tie-expand-card-header' " +
       perfomanceViewKPIHeaderStyle +
       '>' +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'" +
+      "<div class='bow-tie-expand-card-body'" +
       perfomanceViewKPIBodyStyle +
       ' >' +
       "<p class='bow-tie-htmlTemplate' " +
@@ -796,19 +796,19 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header' >" +
+      "<div class='bow-tie-expand-card-content rounded' >" +
+      "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'>" +
+      "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
-      "<p class='bow-tie-incident-expand-reported-date-time'>" +
+      "<p class='bow-tie-expand-reported-date-time'>" +
       'Reported Date/Time' +
-      "<p class='bow-tie-incident-expand-reported-date'>" +
+      "<p class='bow-tie-expand-reported-date'>" +
       contentDetails.AuditData.AuditDate +
       '  ' +
       '</p>' +
@@ -830,13 +830,13 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded'>" +
-      "<div class='bow-tie-extra-card-header'>" +
+      "<div class='bow-tie-expand-card-content rounded'>" +
+      "<div class='bow-tie-expand-card-header'>" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body' >" +
+      "<div class='bow-tie-expand-card-body' >" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
@@ -865,24 +865,24 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header'>" +
+      "<div class='bow-tie-expand-card-content rounded' >" +
+      "<div class='bow-tie-expand-card-header'>" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'>" +
+      "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '<p>' +
       "<p class='bow-tie-authority-expand-responsible-officer'>Responsible Officer</p>" +
-      "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
-      "<img class='bow-tie-incident-expand-responsible-officer-image'" +
+      "<p class='bow-tie-expand-responsible-officer-details'>" +
+      "<img class='bow-tie-expand-responsible-officer-image'" +
       "src='" +
       contentDetails.AuthorityDocumentData.ROImage
         .changingThisBreaksApplicationSecurity +
       "'" +
-      "<span class='bow-tie-incident-expand-responsible-officer-name'>" +
+      "<span class='bow-tie-expand-responsible-officer-name'>" +
       contentDetails.AuthorityDocumentData.ResponsibleOfficer +
       '  ' +
       '</span>' +
@@ -904,13 +904,13 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header' >" +
+      "<div class='bow-tie-expand-card-content rounded' >" +
+      "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'>" +
+      "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
@@ -939,13 +939,13 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header'>" +
+      "<div class='bow-tie-expand-card-content rounded' >" +
+      "<div class='bow-tie-expand-card-header'>" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body'>" +
+      "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
@@ -971,19 +971,19 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
     return (
-      "<div class='bow-tie-extra-card-content rounded' >" +
-      "<div class='bow-tie-extra-card-header' >" +
+      "<div class='bow-tie-expand-card-content rounded' >" +
+      "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-extra-card-body' >" +
+      "<div class='bow-tie-expand-card-body' >" +
       "<p class='bow-tie-'htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
-      "<p class='bow-tie-incident-expand-reported-date-time'>" +
+      "<p class='bow-tie-expand-reported-date-time'>" +
       'Audit Date' +
-      "<p class='bow-tie-incident-expand-reported-date'>" +
+      "<p class='bow-tie-expand-reported-date'>" +
       contentDetails.AuditData.AuditDate +
       '</p>' +
       '</p>' +
@@ -1033,7 +1033,7 @@ export class TemplateClass {
         break;
       case 'Incident':
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1045,7 +1045,7 @@ export class TemplateClass {
           dataItem,
           isPerformanceView
         );
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1056,7 +1056,7 @@ export class TemplateClass {
       case 'LinkedRisk':
         templatesObj.linkRiskTemplate =
           this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1067,7 +1067,7 @@ export class TemplateClass {
       case 'Treatment':
         templatesObj.riskActionTemplateExpand =
           this.GetRiskActionTreatmentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1081,7 +1081,7 @@ export class TemplateClass {
       case 'Compliance':
         templatesObj.complianceTemplateExpnad =
           this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1095,7 +1095,7 @@ export class TemplateClass {
       case 'Authority Document':
         templatesObj.authorityDocumentTemplateExpnad =
           this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1108,7 +1108,7 @@ export class TemplateClass {
 
       case 'Audit':
         templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1332,7 +1332,7 @@ export class TemplateClass {
 
       case 'Incident':
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1345,7 +1345,7 @@ export class TemplateClass {
           dataItem,
           isPerformanceView
         );
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1356,7 +1356,7 @@ export class TemplateClass {
       case 'LinkedRisk':
         templatesObj.linkRiskTemplate =
           this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1367,7 +1367,7 @@ export class TemplateClass {
       case 'Compliance':
         templatesObj.complianceTemplateExpnad =
           this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1381,7 +1381,7 @@ export class TemplateClass {
       case 'Authority Document':
         templatesObj.authorityDocumentTemplateExpnad =
           this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );
@@ -1394,7 +1394,7 @@ export class TemplateClass {
 
       case 'Audit':
         templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(
           dataItem,
           isPerformanceView
         );

@@ -15,7 +15,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
   causeTemplate: string = '';
   consequencesTemplate: string = '';
 
-  constructor(private templateService: TemplateService) {}
+  constructor(private templateService: TemplateService) { }
 
   ngOnInit(): void {
     var tempTitleDetail = '';
@@ -680,7 +680,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
               },
             },
           },
-          
+
           shapeDefaults: {
             stroke: {
               color: '#979797',
@@ -790,5 +790,5 @@ export class FocusComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 }

@@ -1,5 +1,5 @@
 export class BowTieDiagramHelper {
-  constructor() {}
+  constructor() { }
 
   ArrangeNodes(originalData, isExpand: boolean) {
     const arrangedNodes = [];

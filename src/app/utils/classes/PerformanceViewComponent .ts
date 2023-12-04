@@ -5,7 +5,7 @@ import {
 import { DiagramNodeData } from 'src/app/models/data.model';
 
 export class PerformanceView {
-  constructor() {}
+  constructor() { }
 
   public PerformanceviewDetails(
     contentDetails: DiagramNodeData,
@@ -89,7 +89,7 @@ export class PerformanceView {
 }
 
 export class PerformanceViewKpi {
-  constructor() {}
+  constructor() { }
 
   public PerformanceviewDetailsKpi(
     contentDetails: DiagramNodeData,
