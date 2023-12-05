@@ -801,13 +801,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-      if (clicked) {
-        Templates.RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement);
-
-      }
-      else {
+     
         Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
-      }
+      
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
       var height = renderElement.height();
