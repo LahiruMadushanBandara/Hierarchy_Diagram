@@ -835,13 +835,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         createDiagram(this.originalData, this.IsExpanded);
       });
 
-      var detailTemp =
-        '<div>' +
-        "<h3 class='centre'>Selected Node Details</h3>" +
-        "<div class='k-edit-label'>" +
-        '<p> Details of the selected node can show here...... </p>' +
-        '</div>' +
-        '</div> ';
+      
 
       function onCancel(e) {
         e.preventDefault();
@@ -1234,33 +1228,49 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
        
 
+        var diagram = $("#diagram").getKendoDiagram();
+
+        var slider = $(".slider").kendoSlider({
+            min: 0.02,
+            max: 2,
+            smallStep: 0.01,
+            largeStep: 0.02,
+            value: 0.3,
+            tooltip: {
+                enabled: true,
+            },
+            slide: function (e) {
+                var zoomLevel = e.value;
+                diagram.zoom(zoomLevel);
+            }
+        }).data("kendoSlider");
+    
+        diagram.wrapper.on("wheel", function (e) {
+          e.preventDefault();
+      
+          var delta = e.originalEvent.deltaY;
+          var zoomChange = delta > 0 ? -0.02 : 0.02;
+      
+          // Change the zoom level by the default zoomChange value
+          diagram.zoom(diagram.zoom() + zoomChange);
+      
+          // Update the zoom slider with the new zoom level
+          slider.value(diagram.zoom());
+      });
+
+
         $(".zoomInIcon").click(function () {
-          var currentZoom = diagram.zoom();
-          currentZoom += 0.02;
-          diagram.zoom(currentZoom);
+            var currentZoom = diagram.zoom();
+            currentZoom += 0.02;
+            diagram.zoom(currentZoom);
+            slider.value(currentZoom);
         });
-
+    
         $(".zoomOutIcon").click(function () {
-          var currentZoom = diagram.zoom();
-          currentZoom -= 0.02;
-          diagram.zoom(currentZoom);
-        });
-
-
-        $(".slider").kendoSlider({
-          min: 0.02, // Minimum zoom level
-          max: 2,   // Maximum zoom level
-          smallStep: 0.01, // Small zoom increment
-          largeStep: 0.02, // Large zoom increment
-          value: 0.5,  // Initial zoom level
-          tooltip: {
-            enabled: true,
-          },
-          slide: function (e) {
-            var zoomLevel = e.value;
-            var diagram = $("#diagram").getKendoDiagram();
-            diagram.zoom(zoomLevel);
-          }
+            var currentZoom = diagram.zoom();
+            currentZoom -= 0.02;
+            diagram.zoom(currentZoom);
+            slider.value(currentZoom);
         });
 
 
