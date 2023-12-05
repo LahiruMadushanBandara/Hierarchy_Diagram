@@ -189,7 +189,7 @@ export class AppComponent implements OnChanges {
           }
         }
 
-        
+
         var initialStateOfDataAndConnections= {
           data: dataShapes.slice(),
           connections: dataConnections
@@ -451,7 +451,7 @@ export class AppComponent implements OnChanges {
 
             if (isKpIview) {
               $('#btRiskView').prop("disabled", true);
-              // Clear connections that are not linked to nodes with header = riskExpand
+              // Clear connections that are not linked to nodes with header = KPI
               var visibleConnections = diagram.connectionsDataSource
                 .data()
                 .filter(function (connection) {
@@ -519,7 +519,10 @@ export class AppComponent implements OnChanges {
               },
           });
       
-          // Hide the back button
+           // Enable the buttons
+            // $('#btRiskView').prop("disabled", false);
+            // $('#btKpikView').prop("disabled", false);
+
           var reloadButton = document.getElementById("btReload");
           reloadButton.style.display = "none";
       });
@@ -582,8 +585,8 @@ export class AppComponent implements OnChanges {
             }
           }
 
-          $('#btRiskView').prop("disabled", true);
-          $('#btKpikView').prop("disabled", true);
+          // $('#btRiskView').prop("disabled", true);
+          // $('#btKpikView').prop("disabled", true);
         }
 
         //update node placing
