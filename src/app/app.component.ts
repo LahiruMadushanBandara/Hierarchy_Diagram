@@ -74,13 +74,8 @@ export class AppComponent implements OnChanges {
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-      if (clicked) {
-        Templates.RecreateNodesToCentralizedNode(dataItem, templatesObj, isExpand, isPerformanceView, renderElement);
-      }
-      else {
         Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
-      }
-
+      
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
       var height = renderElement.height();
@@ -498,7 +493,7 @@ export class AppComponent implements OnChanges {
 
         $(".bt-BackFromCentralizedView").click(function () {
           // Reset both data source and connections data source
-          diagram.setDataSource(initialStateOfDataAndConnections.data);
+          diagram.setDataSource(dataShapes);
       
           // Re-add the initial connections using a deep copy
           diagram.setConnectionsDataSource({
@@ -519,9 +514,9 @@ export class AppComponent implements OnChanges {
               },
           });
       
-           // Enable the buttons
-            // $('#btRiskView').prop("disabled", false);
-            // $('#btKpikView').prop("disabled", false);
+          //  Enable the buttons
+            $('#btRiskView').prop("disabled", false);
+            $('#btKpikView').prop("disabled", false);
 
           var reloadButton = document.getElementById("btReload");
           reloadButton.style.display = "none";
@@ -585,8 +580,8 @@ export class AppComponent implements OnChanges {
             }
           }
 
-          // $('#btRiskView').prop("disabled", true);
-          // $('#btKpikView').prop("disabled", true);
+          $('#btRiskView').prop("disabled", true);
+          $('#btKpikView').prop("disabled", true);
         }
 
         //update node placing
