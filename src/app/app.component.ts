@@ -336,8 +336,13 @@ export class AppComponent implements OnChanges {
           }
         });
 
-        var diagram = $('#diagram').getKendoDiagram();
-        var slider = $(".slider").kendoSlider({
+
+
+
+      var diagram = $('#diagram').getKendoDiagram();
+
+
+      var slider = $(".slider").kendoSlider({
           min: 0.02,
           max: 2,
           smallStep: 0.01,
@@ -350,8 +355,7 @@ export class AppComponent implements OnChanges {
               var zoomLevel = e.value;
               diagram.zoom(zoomLevel);
           }
-      }).data("kendoSlider");
-      
+      }).data("kendoSlider"); 
       
       diagram.wrapper.on("wheel", function (e) {
         e.preventDefault();
@@ -364,8 +368,7 @@ export class AppComponent implements OnChanges {
     
         // Update the zoom slider with the new zoom level
         slider.value(diagram.zoom());
-    });
-
+      });
 
       $(".zoomInIcon").click(function () {
           var currentZoom = diagram.zoom();
@@ -381,8 +384,125 @@ export class AppComponent implements OnChanges {
           slider.value(currentZoom);
       });
 
+      $(".bt-Risk").click(function () {
 
-        $(".btn-Export").click(function () {
+        if (isKpIview == false) {
+          isRiskView = !isRiskView;
+
+          const Riskbutton = document.getElementById('btRiskView');
+          Riskbutton.classList.toggle('active', isRiskView);
+
+
+          var diagram = kendoDiagram.getKendoDiagram();
+          var connectionsDataSource = diagram.connectionsDataSource;
+
+          if (isRiskView) {
+
+            $('#btKpikView').prop("disabled", true);
+            // Clear connections that are not linked to nodes with header = riskExpand
+            var visibleConnections = diagram.connectionsDataSource
+              .data()
+              .filter(function (connection) {
+                var fromNode = diagram.dataSource.get(connection.from);
+                var toNode = diagram.dataSource.get(connection.to);
+                return (
+                  (fromNode && fromNode.Header === 'LinkedRisk') ||
+                  (toNode && toNode.Header === 'LinkedRisk')
+                );
+              });
+
+            // Store the original connections before clearing them
+            originalConnections = diagram.connectionsDataSource.data().slice();
+
+            // Clear all connections
+            connectionsDataSource.data([]);
+
+            // Re-add visible connections
+            connectionsDataSource.data(visibleConnections);
+          } else {
+            $('#btKpikView').prop("disabled", false);
+            // Re-establish all the original connections
+            connectionsDataSource.data(originalConnections);
+          }
+          diagram.bringIntoView(diagram.shapes);
+          diagram.refresh();
+        }
+      });
+
+      $(".bt-Kpi").click(function () {
+        if (isRiskView == false) {
+          isKpIview = !isKpIview;
+
+          const Kpidbutton = document.getElementById('btKpikView');
+          Kpidbutton.classList.toggle('active', isKpIview);
+
+          var diagram = kendoDiagram.getKendoDiagram();
+          var connectionsDataSource = diagram.connectionsDataSource;
+
+          if (isKpIview) {
+            $('#btRiskView').prop("disabled", true);
+            // Clear connections that are not linked to nodes with header = KPI
+            var visibleConnections = diagram.connectionsDataSource
+              .data()
+              .filter(function (connection) {
+                var fromNode = diagram.dataSource.get(connection.from);
+                var toNode = diagram.dataSource.get(connection.to);
+                return (
+                  (fromNode && fromNode.Header === 'KPI') ||
+                  (toNode && toNode.Header === 'KPI')
+                );
+              });
+
+            // Store the original connections before clearing them
+            originalConnections = diagram.connectionsDataSource
+              .data()
+              .slice();
+
+            // Clear all connections
+            connectionsDataSource.data([]);
+
+            // Re-add visible connections
+            connectionsDataSource.data(visibleConnections);
+          } else {
+            $('#btRiskView').prop("disabled", false);
+            // Re-establish all the original connections
+            connectionsDataSource.data(originalConnections);
+          }
+
+          diagram.bringIntoView(diagram.shapes);
+          diagram.refresh();
+        }
+
+      });
+
+      $(".bt-Performance").click(function () {
+        isPerformanceView = !isPerformanceView;
+
+        const Performancebutton = document.getElementById('btPerformanceView');
+        Performancebutton.classList.toggle('active', isPerformanceView);
+
+        var diagram = kendoDiagram.getKendoDiagram();
+
+        diagram.refresh();
+      });
+
+      $(".bt-Expand").click(function () {
+        var diagram = $("#diagram").getKendoDiagram();
+        isExpand = !isExpand;
+    
+        const expandButton = document.getElementById('btExpandView');
+        expandButton.classList.toggle('active', isExpand);
+    
+        // Update the text based on the isExpand state
+        const buttonText = isExpand ? "Collapse" : "Expand";
+        // Find the span element with the text and update its content
+        const buttonTextElement = expandButton.querySelector('span:not(.expand-icon)') as HTMLElement;
+        buttonTextElement.innerText = buttonText;
+    
+        diagram.refresh();
+    });
+
+      $(".btn-Export").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
           diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
             kendo.saveAs({
@@ -390,153 +510,43 @@ export class AppComponent implements OnChanges {
               fileName: "bow-tie-analysis.pdf"
             });
           });
-        });
-
-        $(".bt-Expand").click(function () {
-          ;
-          var diagram = $("#diagram").getKendoDiagram();
-          isExpand = !isExpand;
-
-          const Expandbutton = document.getElementById('btExpandView');
-          Expandbutton.classList.toggle('active', isExpand);
-          diagram.refresh();
-
-        });
-
-        $(".bt-Risk").click(function () {
-
-          if (isKpIview == false) {
-            isRiskView = !isRiskView;
-
-            const Riskbutton = document.getElementById('btRiskView');
-            Riskbutton.classList.toggle('active', isRiskView);
-
-
-            var diagram = kendoDiagram.getKendoDiagram();
-            var connectionsDataSource = diagram.connectionsDataSource;
-
-            if (isRiskView) {
-
-              $('#btKpikView').prop("disabled", true);
-              // Clear connections that are not linked to nodes with header = riskExpand
-              var visibleConnections = diagram.connectionsDataSource
-                .data()
-                .filter(function (connection) {
-                  var fromNode = diagram.dataSource.get(connection.from);
-                  var toNode = diagram.dataSource.get(connection.to);
-                  return (
-                    (fromNode && fromNode.Header === 'LinkedRisk') ||
-                    (toNode && toNode.Header === 'LinkedRisk')
-                  );
-                });
-
-              // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource.data().slice();
-
-              // Clear all connections
-              connectionsDataSource.data([]);
-
-              // Re-add visible connections
-              connectionsDataSource.data(visibleConnections);
-            } else {
-              $('#btKpikView').prop("disabled", false);
-              // Re-establish all the original connections
-              connectionsDataSource.data(originalConnections);
-            }
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          }
-        });
-
-
-        $(".bt-Kpi").click(function () {
-          if (isRiskView == false) {
-            isKpIview = !isKpIview;
-
-            const Kpidbutton = document.getElementById('btKpikView');
-            Kpidbutton.classList.toggle('active', isKpIview);
-
-            var diagram = kendoDiagram.getKendoDiagram();
-            var connectionsDataSource = diagram.connectionsDataSource;
-
-            if (isKpIview) {
-              $('#btRiskView').prop("disabled", true);
-              // Clear connections that are not linked to nodes with header = KPI
-              var visibleConnections = diagram.connectionsDataSource
-                .data()
-                .filter(function (connection) {
-                  var fromNode = diagram.dataSource.get(connection.from);
-                  var toNode = diagram.dataSource.get(connection.to);
-                  return (
-                    (fromNode && fromNode.Header === 'KPI') ||
-                    (toNode && toNode.Header === 'KPI')
-                  );
-                });
-
-              // Store the original connections before clearing them
-              originalConnections = diagram.connectionsDataSource
-                .data()
-                .slice();
-
-              // Clear all connections
-              connectionsDataSource.data([]);
-
-              // Re-add visible connections
-              connectionsDataSource.data(visibleConnections);
-            } else {
-              $('#btRiskView').prop("disabled", false);
-              // Re-establish all the original connections
-              connectionsDataSource.data(originalConnections);
-            }
-
-            diagram.bringIntoView(diagram.shapes);
-            diagram.refresh();
-          }
-
-        });
-
-        $(".bt-Performance").click(function () {
-          isPerformanceView = !isPerformanceView;
-
-          const Performancebutton = document.getElementById('btPerformanceView');
-          Performancebutton.classList.toggle('active', isPerformanceView);
-
-          var diagram = kendoDiagram.getKendoDiagram();
-
-          diagram.refresh();
-        });
-
-        $(".bt-BackFromCentralizedView").click(function () {
-          // Reset both data source and connections data source
-          diagram.setDataSource(dataShapes);
-      
-          // Re-add the initial connections using a deep copy
-          diagram.setConnectionsDataSource({
-              data: JSON.parse(JSON.stringify(initialStateOfDataAndConnections.connections)),
-              schema: {
-                  model: {
-                      id: 'id',
-                      fields: {
-                          id: { from: 'Id', type: 'number', editable: false },
-                          from: { from: 'FromShapeId', type: 'number' },
-                          to: { from: 'ToShapeId', type: 'number' },
-                          fromX: { from: 'FromPointX', type: 'number' },
-                          fromY: { from: 'FromPointY', type: 'number' },
-                          toX: { from: 'ToPointX', type: 'number' },
-                          toY: { from: 'ToPointY', type: 'number' },
-                      },
-                  },
-              },
-          });
-      
-          //  Enable the buttons
-            $('#btRiskView').prop("disabled", false);
-            $('#btKpikView').prop("disabled", false);
-
-          var reloadButton = document.getElementById("btReload");
-          reloadButton.style.display = "none";
       });
-      
+
+      $(".bt-BackFromCentralizedView").click(function () {
+        // Reset both data source and connections data source
+        diagram.setDataSource(dataShapes);
+    
+        // Re-add the initial connections using a deep copy
+        diagram.setConnectionsDataSource({
+            data: JSON.parse(JSON.stringify(initialStateOfDataAndConnections.connections)),
+            schema: {
+                model: {
+                    id: 'id',
+                    fields: {
+                        id: { from: 'Id', type: 'number', editable: false },
+                        from: { from: 'FromShapeId', type: 'number' },
+                        to: { from: 'ToShapeId', type: 'number' },
+                        fromX: { from: 'FromPointX', type: 'number' },
+                        fromY: { from: 'FromPointY', type: 'number' },
+                        toX: { from: 'ToPointX', type: 'number' },
+                        toY: { from: 'ToPointY', type: 'number' },
+                    },
+                },
+            },
+        });
+    
+        //  Enable the buttons
+          $('#btRiskView').prop("disabled", false);
+          $('#btKpikView').prop("disabled", false);
+
+        var reloadButton = document.getElementById("btReload");
+        reloadButton.style.display = "none";
+      });
+       
+      $(".btn-Return").click(function () {
+        // Navigate to the specified URL
+        window.location.href = "/cammsrisk/register/1";
+      });
 
 
 

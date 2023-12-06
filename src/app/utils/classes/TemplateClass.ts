@@ -1285,10 +1285,21 @@ export class TemplateClass {
                 <span>Export</span>
             </button>
           </div>
+
+          <div kendoTooltip position="bottom" [title]="'Return Diagram'">
+            <button  type="button" class="btn-Return btn bow-tie-btn-outline-primary"id="btReturn" >
+                      <i class="cam-icon cam-i-a0001-nav-back" aria-hidden="true"></i>
+                      <span>Return</span>   
+            </button>          
+          </div>                            
+              
       </div>                  
   </div>        
       `;
   }
+
+
+
 
   
 }
