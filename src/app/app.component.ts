@@ -1188,48 +1188,60 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
        
 
         var diagram = $("#diagram").getKendoDiagram();
-
+        
         var slider = $(".slider").kendoSlider({
-            min: 0.02,
-            max: 2,
-            smallStep: 0.01,
-            largeStep: 0.02,
-            value: 0.3,
-            tooltip: {
-                enabled: true,
-            },
-            slide: function (e) {
-                var zoomLevel = e.value;
-                diagram.zoom(zoomLevel);
-            }
+          min: 0.02,
+          max: 2,
+          smallStep: 0.01,
+          largeStep: 0.02,
+          value: 0.3,
+          tooltip: {
+            enabled: true,
+          },
+          slide: function (e) {
+            diagram.zoom(e.value);
+          },
+          change: function (e) {
+            diagram.zoom(e.value);
+          }
         }).data("kendoSlider");
-    
+
+
+        var sliderHandle = slider.wrapper.find('.k-draghandle');
+        sliderHandle.kendoTooltip({
+          content: function (e) {
+            return slider.value();
+          },
+          position: 'top',
+          animation: false // You can enable animation if needed
+        });
+
         diagram.wrapper.on("wheel", function (e) {
           e.preventDefault();
-      
+
           var delta = e.originalEvent.deltaY;
           var zoomChange = delta > 0 ? -0.02 : 0.02;
-      
+
           // Change the zoom level by the default zoomChange value
           diagram.zoom(diagram.zoom() + zoomChange);
-      
+
           // Update the zoom slider with the new zoom level
           slider.value(diagram.zoom());
-      });
+        });
 
 
         $(".zoomInIcon").click(function () {
-            var currentZoom = diagram.zoom();
-            currentZoom += 0.02;
-            diagram.zoom(currentZoom);
-            slider.value(currentZoom);
+          var currentZoom = diagram.zoom();
+          currentZoom += 0.02;
+          diagram.zoom(currentZoom);
+          slider.value(currentZoom);
         });
-    
+
         $(".zoomOutIcon").click(function () {
-            var currentZoom = diagram.zoom();
-            currentZoom -= 0.02;
-            diagram.zoom(currentZoom);
-            slider.value(currentZoom);
+          var currentZoom = diagram.zoom();
+          currentZoom -= 0.02;
+          diagram.zoom(currentZoom);
+          slider.value(currentZoom);
         });
 
 
@@ -1365,30 +1377,30 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         $(".bt-Reload").click(function () {
           // Reset both data source and connections data source
           diagram.setDataSource(initialState.data);
-      
+
           // Re-add the initial connections using a deep copy
           diagram.setConnectionsDataSource({
-              data: JSON.parse(JSON.stringify(initialState.connections)),
-              schema: {
-                  model: {
-                      id: 'id',
-                      fields: {
-                          id: { from: 'Id', type: 'number', editable: false },
-                          from: { from: 'FromShapeId', type: 'number' },
-                          to: { from: 'ToShapeId', type: 'number' },
-                          fromX: { from: 'FromPointX', type: 'number' },
-                          fromY: { from: 'FromPointY', type: 'number' },
-                          toX: { from: 'ToPointX', type: 'number' },
-                          toY: { from: 'ToPointY', type: 'number' },
-                      },
-                  },
+            data: JSON.parse(JSON.stringify(initialState.connections)),
+            schema: {
+              model: {
+                id: 'id',
+                fields: {
+                  id: { from: 'Id', type: 'number', editable: false },
+                  from: { from: 'FromShapeId', type: 'number' },
+                  to: { from: 'ToShapeId', type: 'number' },
+                  fromX: { from: 'FromPointX', type: 'number' },
+                  fromY: { from: 'FromPointY', type: 'number' },
+                  toX: { from: 'ToPointX', type: 'number' },
+                  toY: { from: 'ToPointY', type: 'number' },
+                },
               },
+            },
           });
-      
+
           // Hide the back button
           var reloadButton = document.getElementById("btReload");
           reloadButton.style.display = "none";
-      });
+        });
       
 
 
