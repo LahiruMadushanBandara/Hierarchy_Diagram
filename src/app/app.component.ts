@@ -306,19 +306,32 @@ export class AppComponent implements OnChanges {
 
 
       var slider = $(".slider").kendoSlider({
-          min: 0.02,
-          max: 2,
-          smallStep: 0.01,
-          largeStep: 0.02,
-          value: 0.3,
-          tooltip: {
-              enabled: true,
-          },
-          slide: function (e) {
-              var zoomLevel = e.value;
-              diagram.zoom(zoomLevel);
-          }
-      }).data("kendoSlider"); 
+        min: 0.02,
+        max: 2,
+        smallStep: 0.01,
+        largeStep: 0.02,
+        value: 0.3,
+        tooltip: {
+          enabled: true,
+        },
+        slide: function (e) {
+          diagram.zoom(e.value);
+        },
+        change: function (e) {
+          diagram.zoom(e.value);
+        }
+      }).data("kendoSlider");
+
+
+      var sliderHandle = slider.wrapper.find('.k-draghandle');
+      sliderHandle.kendoTooltip({
+        content: function (e) {
+          return slider.value();
+        },
+        position: 'top',
+        animation: false // You can enable animation if needed
+      });
+
       
       diagram.wrapper.on("wheel", function (e) {
         e.preventDefault();
