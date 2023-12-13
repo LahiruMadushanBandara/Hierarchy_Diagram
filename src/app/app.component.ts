@@ -334,17 +334,16 @@ export class AppComponent implements OnChanges {
 
       
       diagram.wrapper.on("wheel", function (e) {
-        e.preventDefault();
-    
-        var delta = e.originalEvent.deltaY;
-        var zoomChange = delta > 0 ? -0.02 : 0.02;
-    
-        // Change the zoom level by the default zoomChange value
-        diagram.zoom(diagram.zoom() + zoomChange);
-    
-        // Update the zoom slider with the new zoom level
-        slider.value(diagram.zoom());
+        e.preventDefault();    
+        //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
+        var delta = e.originalEvent.deltaY;        
+        if (delta > 0) {
+          $(".zoomOutIcon").trigger("click")    
+        } else {
+          $(".zoomInIcon").trigger("click")
+        }       
       });
+    
 
       $(".zoomInIcon").click(function () {
           var currentZoom = diagram.zoom();
@@ -517,6 +516,8 @@ export class AppComponent implements OnChanges {
 
         var reloadButton = document.getElementById("btReload");
         reloadButton.style.display = "none";
+        
+  
       });
        
       $(".btn-Return").click(function () {
