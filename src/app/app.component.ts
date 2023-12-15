@@ -1070,11 +1070,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                     </div>
 
                     <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                      <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
-                        
-                        <span>Expand</span>                      
-                      </button>
+                        <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
+                            <span class="expand-icon"></span>
+                            <span class="collapse-icon hide-icon"></span>
+                            <span class="text">Expand</span>                      
+                        </button>
                     </div>
+                    
 
                     <div kendoTooltip position="bottom" [title]="'Export Diagram'">
                       <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
@@ -1256,15 +1258,29 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         $(".bt-Expand").click(function () {
-          ;
           var diagram = $("#diagram").getKendoDiagram();
           isExpand = !isExpand;
-
-          const Expandbutton = document.getElementById('btExpandView');
-          Expandbutton.classList.toggle('active', isExpand);
+      
+          const expandButton = document.getElementById('btExpandView');
+          expandButton.classList.toggle('active', isExpand);
+      
+          // Toggle between expand and collapse icons
+          const expandIcon = expandButton.querySelector('.expand-icon') as HTMLElement;
+          const collapseIcon = expandButton.querySelector('.collapse-icon') as HTMLElement;
+      
+          // Toggle between expand and collapse text
+          const buttonText = isExpand ? 'Collapse' : 'Expand';
+          const textElement = expandButton.querySelector('.text') as HTMLElement;
+          if (textElement) {
+              textElement.innerText = buttonText;
+          }
+      
+          // Toggle between hiding and showing icons
+          expandIcon.classList.toggle('hide-icon', isExpand);
+          collapseIcon.classList.toggle('hide-icon', !isExpand);
+      
           diagram.refresh();
-
-        });
+      });
 
 
         $(".bt-Risk").click(function () {

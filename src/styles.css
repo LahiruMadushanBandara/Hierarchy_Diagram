@@ -876,10 +876,10 @@ margin-left: 40px;
 
 
 
-.bt-Expand.active {
+/* .bt-Expand.active {
   background-color: #0050a0 !important;
   color: #fff !important;
-}
+} */
 
 .bt-Risk.active {
   background-color: #0050a0 !important;
@@ -1008,4 +1008,20 @@ margin-left: 40px;
   margin-top: 2px;
   margin-bottom: 5px;
   font-size: 14px;
+}
+
+
+/* Add this class for hiding one of the icons initially */
+.hide-icon {
+  display: none;
+}
+
+.expand-icon {
+  content: url("^assets/bow-tie/icon/expand-icon.png") !important;
+  padding: 10px 5px 8px 0px;
+}
+
+.collapse-icon {
+  content: url("^assets/bow-tie/icon/collapse-icon.png") !important;
+  padding: 10px 5px 8px 0px;
 }
