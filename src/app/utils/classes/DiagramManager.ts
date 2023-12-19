@@ -234,10 +234,12 @@ export class DiagramManager {
 
           <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
             <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
-              <span class="expand-icon"></span>
-              <span>Expand</span>                      
+                <span class="expand-icon"></span>
+                <span class="collapse-icon hide-icon"></span>
+                <span class="text">Expand</span>                      
             </button>
           </div>
+
 
           <div kendoTooltip position="bottom" [title]="'Export Diagram'">
             <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >

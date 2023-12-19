@@ -461,6 +461,7 @@ export class AppComponent implements OnChanges {
         diagram.refresh();
       });
 
+      
       $(".bt-Expand").click(function () {
         var diagram = $("#diagram").getKendoDiagram();
         isExpand = !isExpand;
@@ -468,14 +469,24 @@ export class AppComponent implements OnChanges {
         const expandButton = document.getElementById('btExpandView');
         expandButton.classList.toggle('active', isExpand);
     
-        // Update the text based on the isExpand state
-        const buttonText = isExpand ? "Collapse" : "Expand";
-        // Find the span element with the text and update its content
-        const buttonTextElement = expandButton.querySelector('span:not(.expand-icon)') as HTMLElement;
-        buttonTextElement.innerText = buttonText;
+        // Toggle between expand and collapse icons
+        const expandIcon = expandButton.querySelector('.expand-icon') as HTMLElement;
+        const collapseIcon = expandButton.querySelector('.collapse-icon') as HTMLElement;
+    
+        // Toggle between expand and collapse text
+        const buttonText = isExpand ? 'Collapse' : 'Expand';
+        const textElement = expandButton.querySelector('.text') as HTMLElement;
+        if (textElement) {
+            textElement.innerText = buttonText;
+        }
+    
+        // Toggle between hiding and showing icons
+        expandIcon.classList.toggle('hide-icon', isExpand);
+        collapseIcon.classList.toggle('hide-icon', !isExpand);
     
         diagram.refresh();
     });
+    
 
       $(".btn-Export").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
