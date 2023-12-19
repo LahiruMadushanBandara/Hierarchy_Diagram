@@ -6,16 +6,18 @@
   height: 100% !important;
 } */
 
-.k-actions, .k-edit-buttons, .k-action-buttons, .k-columnmenu-actions {
+.k-actions,
+.k-edit-buttons,
+.k-action-buttons,
+.k-columnmenu-actions {
   padding: 7px 7px 0px 30px;
 }
 
-.k-animation-container
-{
+.k-animation-container {
   display: none !important;
 }
 
-.k-animation-container-shown{
+.k-animation-container-shown {
   display: none !important;
 
 }
@@ -123,10 +125,12 @@
   width: 100px;
   min-height: 100px;
 }
+
 .ab {
   background-color: rgb(2, 74, 2);
   width: 50%;
 }
+
 .shape {
   width: 100px;
   border: 2px solid red;
@@ -160,6 +164,7 @@
   color: white;
   height: auto;
 }
+
 .bow-tie-risk-card-header-top {
   background-color: #323250;
   color: white;
@@ -171,7 +176,8 @@
 .bow-tie-risk-card-header-top-text {
   padding: 15px;
 
-  } 
+}
+
 .bow-tie-risk-card-header-text {
   margin-left: 15px;
   margin-right: 15px;
@@ -197,23 +203,27 @@
   width: 50%;
   padding-left: 15px;
 }
+
 .bow-tie-risk-rating-details {
   display: flex;
   align-items: center;
   line-height: 1;
   margin-top: 5px;
 }
+
 .bow-tie-risk-rating-details-image {
   width: 50px;
   height: 50px;
   margin: 5px 5px 5px 5px;
   border-radius: 25px;
 }
+
 .bow-tie-risk-rating-details-text {
   position: relative;
   top: -5px;
   margin-left: 5px;
 }
+
 /* .bow-tie-risk-rating-details-text {
   margin-top: -10px;
   margin-bottom: 30px;
@@ -233,14 +243,14 @@
   display: grid;
   width: 400px;
   font-size: 18px;
- 
+
   font-family: "Graphik";
 }
 
 .bow-tie-control-card-body {
   min-height: 75px;
   padding: 10px;
- 
+
 }
 
 .bow-tie-control-card-header {
@@ -251,7 +261,7 @@
   display: grid;
   padding: 10px;
   border-radius: 8px 8px 0px 0px;
-  
+
 }
 
 .bow-tie-control-type-details {
@@ -260,50 +270,58 @@
   line-height: 1;
   margin-bottom: 1px;
   margin-top: 10px;
- 
+
 }
+
 .bow-tie-control-type {
   margin-right: 10px;
 }
+
 .bow-tie-control-type-text {
   width: 50px;
   min-height: 50px;
   margin-top: 2px;
 }
- 
+
 
 
 .bow-tie-control-owner {
   margin-top: -20px;
 }
+
 .bow-tie-control-owner-details {
   display: flex;
   align-items: center;
   line-height: 1;
   margin-bottom: 10px;
 }
+
 .bow-tie-control-owner-image {
   width: 30px;
   height: 30px;
   margin: 5px 5px 5px 5px;
-  
+
 }
+
 .bow-tie-control-owner-name {
   position: relative;
   top: -2px;
   margin-left: 5px;
 }
+
 .bow-tie-control-owner-rating {
   display: flex;
   align-items: left;
   line-height: 1;
   margin-top: 10px;
 }
+
 .bow-tie-control-owner-rating-details {
   display: flex;
   align-items: center;
   line-height: 1;
 }
+
 .bow-tie-control-owner-rating-icon {
   width: 30px;
   height: 30px;
@@ -314,7 +332,7 @@
 
 .k-diagram {
   height: 1000px;
- 
+
 }
 
 /* Extra Card */
@@ -324,7 +342,7 @@
   border: 2px solid grey;
   display: grid;
   width: 400px;
-  
+
   border-radius: 10px;
   font-size: 18px;
 }
@@ -347,7 +365,7 @@
 
 /* Cause Card */
 .bow-tie-cause-card-content {
- 
+
   transition: 0.3s;
   border: 2px solid grey;
   display: grid;
@@ -425,7 +443,7 @@
   background-color: #f8f9fa;
   color: #000000;
   text-align: center;
- 
+
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
 }
@@ -436,7 +454,7 @@
   text-align: center;
   min-height: 70px;
   border-radius: 0px 0px 10px 10px;
- 
+
   padding: 10px;
   border-radius: 10px 10px 10px 10px;
 }
@@ -448,7 +466,7 @@
   border: 2px solid grey;
   border-radius: 10px;
   font-size: 18px;
-  
+
 }
 
 .bow-tie-risk-card-body-expand {
@@ -460,10 +478,12 @@
 }
 
 .bow-tie-risk-card-header-expand {
-  background-color:  #f8f9fa;;
+  background-color: #f8f9fa;
+  ;
   color: #000000;
   height: auto;
 }
+
 .bow-tie-risk-card-header-top-expand {
   background-color: #f8f9fa;
   color: #000000;
@@ -473,7 +493,7 @@
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
   font-weight: bold;
- 
+
 }
 
 
@@ -485,7 +505,8 @@
   margin-right: 15px;
   margin-top: 10px;
   text-align: left;
-  padding: 10px;;
+  padding: 10px;
+  ;
 }
 
 .bow-tie-risk-card-footer-expand {
@@ -494,7 +515,7 @@
   height: auto;
   border-radius: 0 0 10px 10px;
   padding: 10px;
-  
+
 }
 
 .rating-icon {
@@ -510,6 +531,25 @@
 
 
 /*add css to incident-card-expand */
+
+
+.bow-tie-incident-expand-reported-date-time {
+
+  margin-top: 2px;
+  margin-bottom: 5px;
+  font-size: 14px;
+
+
+}
+
+.bow-tie-incident-expand-reported-date {
+  margin-top: 2px;
+  margin-bottom: 30px;
+  font-size: 14px;
+
+}
+
+
 .bow-tie-incident-expand-reportedby {
   margin-top: 30px;
 }
@@ -524,33 +564,74 @@
   line-height: 1;
   margin-bottom: 20px;
 }
+
 .bow-tie-incident-expand-responsible-officer-image {
   width: 30px;
   height: 30px;
   margin: 5px 5px 5px 5px;
   border-radius: 25px;
 }
+
 .bow-tie-incident-expand-responsible-officer-name {
   position: relative;
   top: -2px;
   margin-left: 5px;
 }
+
 .bow-tie-incident-expand-reported-details {
   display: flex;
   align-items: left;
   margin-right: 10px;
 }
+
 .bow-tie-incident-expand-reported-date {
   margin-top: 2px;
   margin-bottom: 30px;
 }
 
+/*add css to treatment-card-expand */
+
+
+.progress {
+  height: 18px;
+  width: 50%;
+  background-color: #e9f0f7;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: #00b955;
+
+}
+
+
+.bow-tie-treatment-complete {
+
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+.bow-tie-treatment-complete-value {
+  margin-left: 15px;
+}
+
+.bow-tie-text-values {
+  margin-top: 2px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
 
 /*add css to KPI-card-expand */
 
- 
 
-.bow-tie-kpi{
+
+.bow-tie-kpi {
 
   display: flex;
 
@@ -568,7 +649,7 @@
 
 
 
-.bow-tie-unit-flex{
+.bow-tie-unit-flex {
 
   display: flex;
 
@@ -578,7 +659,7 @@
 
   justify-content: center;
 
-  margin: 20px 5px 5px 5px ;
+  margin: 20px 5px 5px 5px;
 
 
 
@@ -586,19 +667,19 @@
 
 
 
-.bow-tie-unit-text{
+.bow-tie-unit-text {
 
   font-size: 18px;
 
   color: black;
 
- 
+
 
 }
 
 
 
-.bow-tie-unit-symbol{
+.bow-tie-unit-symbol {
 
   font-size: 30px;
 
@@ -614,35 +695,35 @@
 
 
 
-.bow-tie-unit-details{
+.bow-tie-unit-details {
 
-display: flex;
+  display: flex;
 
-align-items: center;
+  align-items: center;
 
-justify-content: space-around ;
-
-}
-
-
-
-.bow-tie-actual-flex{
-
-display: flex;
-
-flex-direction: column;
-
-align-items: flex-start;
-
-margin-bottom: 20px;
-
-margin-left: 40px;
+  justify-content: space-around;
 
 }
 
 
 
-.bow-tie-actual-text{
+.bow-tie-actual-flex {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  margin-bottom: 20px;
+
+  margin-left: 40px;
+
+}
+
+
+
+.bow-tie-actual-text {
 
   margin-right: 10px;
 
@@ -656,7 +737,7 @@ margin-left: 40px;
 
 
 
-.bow-tie-actual-value{
+.bow-tie-actual-value {
 
   margin-right: 15px;
 
@@ -674,7 +755,7 @@ margin-left: 40px;
 
 
 
-.bow-tie-target-flex{
+.bow-tie-target-flex {
 
   display: flex;
 
@@ -688,7 +769,7 @@ margin-left: 40px;
 
 }
 
-.bow-tie-target-text{
+.bow-tie-target-text {
 
   margin-right: 10px;
 
@@ -700,7 +781,7 @@ margin-left: 40px;
 
 }
 
-.bow-tie-target-value{
+.bow-tie-target-value {
 
   margin-right: 10px;
 
@@ -718,15 +799,15 @@ margin-left: 40px;
 
 
 
-.bow-tie-performance-flex{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+.bow-tie-performance-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 
 }
 
-.bow-tie-performance-text{
+.bow-tie-performance-text {
   position: relative;
   margin-right: 30px;
   font-size: 15px;
@@ -735,20 +816,19 @@ margin-left: 40px;
 
 
 
-.bow-tie-performance-icon{
+.bow-tie-performance-icon {
   width: 20px;
   height: 20px;
 }
 
-.performanceIndicator-badge{
-  margin-right:10px;
+.performanceIndicator-badge {
+  margin-right: 10px;
 }
 
-.bow-tie-performance-rating
-{
-    position: relative;
-    margin-left: 2px;
-    font-size: 15px;
+.bow-tie-performance-rating {
+  position: relative;
+  margin-left: 2px;
+  font-size: 15px;
 }
 
 
@@ -756,12 +836,12 @@ margin-left: 40px;
 /*css for header tool bar  */
 
 
-#toolbar{
+#toolbar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 99;
- 
+
   min-height: 55px;
 }
 
@@ -771,35 +851,35 @@ margin-left: 40px;
   position: absolute;
   top: 20%;
   left: 6%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   font-family: "Graphik Regular Desktop", Sans-serif;
   font-size: 20px;
   margin-bottom: 0;
   color: #323250;
 }
 
-.bt-Reload{
-  padding: 10px;  
+.bt-Reload {
+  padding: 10px;
 }
 
-.button-flex{
+.button-flex {
   position: absolute;
-  top: 50%; 
-  right: 0px; 
+  top: 50%;
+  right: 0px;
   transform: translate(-7%, -50%);
   padding: 1px;
-  
+
 
 }
 
-.slider{
+.slider {
   /* // border-left: 2px solid #0050a0;
   // border-right: 2px solid #0050a0; */
   height: 25px;
   width: 100px;
   padding-left: 10px;
   padding-right: 10px;
-  
+
 }
 
 /* Style for the "zoom" container */
@@ -817,21 +897,21 @@ margin-left: 40px;
 .zoomIcon {
   cursor: pointer;
   padding-top: 8px;
- 
+
 }
 
 /* Style for the zoom out icon */
 .zoomOutIcon::before {
-  content:  url("/assets/bow-tie/icon/Zoom-Out.png") !important;
+  content: url("/assets/bow-tie/icon/Zoom-Out.png") !important;
   padding: 10px 10px 10px 8px;
-  
+
 }
 
 /* Style for the zoom in icon */
 .zoomInIcon::before {
   content: url("/assets/bow-tie/icon/Zoom-In.png") !important;
   padding: 10px 8px 10px 10px;
-  
+
 }
 
 .k-slider .k-button {
@@ -847,16 +927,20 @@ margin-left: 40px;
 
 /* Media query for smaller screens (e.g., max-width: 768px) */
 @media (max-width: 760px) {
-  
+
   .bt-analsys-header-txt {
-    text-align: left; 
-    flex-direction: column; /* Display buttons in a column for smaller screens */
-    align-items: flex-start;/* Align text to the left for smaller screens */
+    text-align: left;
+    flex-direction: column;
+    /* Display buttons in a column for smaller screens */
+    align-items: flex-start;
+    /* Align text to the left for smaller screens */
   }
 
   .button-flex {
-    flex-direction: column; /* Display buttons in a column for smaller screens */
-    align-items: flex-start; /* Align buttons to the left for smaller screens */
+    flex-direction: column;
+    /* Display buttons in a column for smaller screens */
+    align-items: flex-start;
+    /* Align buttons to the left for smaller screens */
   }
 
   .bt-Reload,
@@ -865,8 +949,10 @@ margin-left: 40px;
   .bt-Performance,
   .bt-Expand,
   .btn-Export {
-    width: 100%; /* Make buttons full-width for smaller screens */
-    margin-bottom: 10px; /* Add some spacing between buttons */
+    width: 100%;
+    /* Make buttons full-width for smaller screens */
+    margin-bottom: 10px;
+    /* Add some spacing between buttons */
   }
 }
 
@@ -913,10 +999,12 @@ margin-left: 40px;
   width: 10px;
   height: 10px;
 }
+
 .performanceIndicator-text {
   white-space: nowrap;
   padding-left: 4px;
 }
+
 .na-badge {
   background-color: #cccccc;
 }
@@ -940,20 +1028,7 @@ margin-left: 40px;
 }
 
 
-.progress {
-  height: 18px;
-  width: 50%;
-  background-color: #e9f0f7;
-  border-radius: 5px;
-  overflow: hidden;
-}
 
-.progress-bar {
-  height: 100%;
-  width: 0;
-  background-color: #00b955;
-  
-}
 
 
 /* .progress-container {
@@ -974,41 +1049,6 @@ margin-left: 40px;
   color: white;
   font-weight: bold;
 }  */
-
-
-.bow-tie-incident-expand-reported-date-time {
-
-  margin-top: 2px;
-  margin-bottom: 5px;
-  font-size: 14px;
-  
-  
-}
-
-.bow-tie-incident-expand-reported-date {
-  margin-top: 2px;
-  margin-bottom: 30px;
-  font-size: 14px;
-  
-}
-
-.bow-tie-treatment-complete{
-
-  display: flex;
-  align-items: left;
-  justify-content: left;
-  margin-top: 20px;
-}
-
-.bow-tie-treatment-complete-value{
-  margin-left: 15px;
-}
-
-.bow-tie-text-values{
-  margin-top: 2px;
-  margin-bottom: 5px;
-  font-size: 14px;
-}
 
 
 /* Add this class for hiding one of the icons initially */
