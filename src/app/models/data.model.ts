@@ -16,6 +16,7 @@ export interface DiagramNodeData {
   AuthorityDocumentData?: AuthorityDocument;
   ComplianceData?: Compliance;
   AuditData?: Audit;
+  TreatmentData?:Treatment;
 }
 
 interface RiskData {
@@ -96,6 +97,7 @@ interface AuthorityDocument {
   ResponsibleOfficer: string;
   IsActive: boolean;
   ROImage: any;
+  AuthorityDocumentType: string;
 }
 
 interface Compliance {
@@ -110,4 +112,12 @@ interface Audit {
   AuditId: number;
   AuditTitle: string;
   AuditDate: string;
+}
+
+interface Treatment{
+  TreatmentId:number;
+  TreatmentEndDate:string;
+  TreatmentResponsibleOfficer:string;
+  TreatmentPercentageComplete:number;
+  TreatmentResponsibleOfficerProfilePic:any;
 }
