@@ -1584,3 +1584,54 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
 //   LinkedRiskTemplate: string;
 //   RiskActionTemplateExpand:string;
 // }
+
+
+
+
+//..............................connection line colors....................
+//   function connectionLineColor() {
+        //     const colors = [];
+        //     let color;
+        //     for (let i = 1; i < originalData.length; i++) {
+
+
+        //         if (originalData[i].Title == "Other Node") {
+        //             // color = '#faab2c';
+        //             // console.log("coloro",color);
+        //         } else if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
+        //             // color = '#40b86e';
+        //             // console.log("colorcc",color);
+        //         } else if (originalData[i].Title == "Control Node") {
+        //             color = '#e54257';
+        //             console.log("colorc",color);
+        //         } else {
+        //             // Default color if no conditions are met
+        //             color = '#000000';
+        //             console.log("colord",color);
+        //         }
+
+
+        //     }
+        //     console.log("colorall",color);
+        //     return (color);
+        // } 
+
+
+        //        Define a function to get the connector type based on the node type
+
+        // function getConnectorType(nodeType) {
+        //   switch (nodeType) {
+        //     case "Cause Node":
+        //       return "top";
+        //     case "Consequences Node":
+        //       return "top";
+        //     case "Control Node":
+        //       return "auto";
+        //     case "Risk Node":
+        //       return "bottomRight";
+        //     case "Other Node":
+        //       return "bottom";
+        //     default:
+        //       return "auto"; // Default to top connector for Other Node
+        //   }
+        // }

@@ -863,53 +863,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var dataConnections = [];
 
 
-        //   function connectionLineColor() {
-        //     const colors = [];
-        //     let color;
-        //     for (let i = 1; i < originalData.length; i++) {
-
-
-        //         if (originalData[i].Title == "Other Node") {
-        //             // color = '#faab2c';
-        //             // console.log("coloro",color);
-        //         } else if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
-        //             // color = '#40b86e';
-        //             // console.log("colorcc",color);
-        //         } else if (originalData[i].Title == "Control Node") {
-        //             color = '#e54257';
-        //             console.log("colorc",color);
-        //         } else {
-        //             // Default color if no conditions are met
-        //             color = '#000000';
-        //             console.log("colord",color);
-        //         }
-
-
-        //     }
-        //     console.log("colorall",color);
-        //     return (color);
-        // } 
-
-
-        //        Define a function to get the connector type based on the node type
-
-        // function getConnectorType(nodeType) {
-        //   switch (nodeType) {
-        //     case "Cause Node":
-        //       return "top";
-        //     case "Consequences Node":
-        //       return "top";
-        //     case "Control Node":
-        //       return "auto";
-        //     case "Risk Node":
-        //       return "bottomRight";
-        //     case "Other Node":
-        //       return "bottom";
-        //     default:
-        //       return "auto"; // Default to top connector for Other Node
-        //   }
-        // }
-
+        
         // Iterate through originalData and create connection objects
         for (let i = 1; i < originalData.length; i++) {
 
@@ -1190,6 +1144,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
        
 
         var diagram = $("#diagram").getKendoDiagram();
+
+        if (kendoDiagram.shapes && Array.isArray(kendoDiagram.shapes)) {
+          kendoDiagram.shapes.forEach(function (shape) {
+              if (shape) {
+                  shape.toFront();
+              }
+          });
+      }
+      
+      if (kendoDiagram.connections && Array.isArray(kendoDiagram.connections)) {
+          kendoDiagram.connections.forEach(function (connection) {
+              if (connection) {
+                  connection.toBack();
+              }
+          });
+      }
+      
         
         var slider = $(".slider").kendoSlider({
           min: 0.02,
