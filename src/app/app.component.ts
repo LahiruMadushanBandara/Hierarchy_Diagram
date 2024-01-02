@@ -381,8 +381,8 @@ export class AppComponent implements OnChanges {
                 var fromNode = diagram.dataSource.get(connection.from);
                 var toNode = diagram.dataSource.get(connection.to);
                 return (
-                  (fromNode && fromNode.Header === 'LinkedRisk') ||
-                  (toNode && toNode.Header === 'LinkedRisk')
+                  (fromNode && fromNode.Header === 'Linked Risk') ||
+                  (toNode && toNode.Header === 'Linked Risk')
                 );
               });
 

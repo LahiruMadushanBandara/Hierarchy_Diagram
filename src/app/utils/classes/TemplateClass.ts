@@ -137,12 +137,8 @@ export class TemplateClass {
   }
 
   public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
-    contentDetails.RiskData.InherentRiskRatingImg =
-      contentDetails.RiskData.InherentRiskRating == '' ||
-        contentDetails.RiskData.InherentRiskRating === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-        : contentDetails.RiskData.InherentRiskRatingImg
-          .changingThisBreaksApplicationSecurity;
+    contentDetails.RiskData.InherentRiskRatingImg = contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;": contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
     contentDetails.RiskData.AppetiteRatingImg =
       contentDetails.RiskData.AppetiteRating == '' ||
         contentDetails.RiskData.AppetiteRating === undefined
@@ -283,6 +279,13 @@ export class TemplateClass {
     contentDetails: DiagramNodeData,
     enablePerformanceview: boolean
   ) {
+
+    contentDetails.ControlData.ControlOwnerRatingImage = contentDetails.ControlData.ControlOwnerRatingImage == '' 
+    || contentDetails.ControlData.ControlOwnerRatingImage === undefined
+    ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;":
+     contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity;
+
+     
     var stylesForPerformanceView: PerformanceStyleGeneral;
 
     var perfomanceViewGeneralBodyStyle = null;
@@ -329,16 +332,16 @@ export class TemplateClass {
       truncatedHtmlTemplate +
       '</p>' +
       "<p class='bow-tie-control-type-details'>" +
-      "<span class='bow-tie-type-name' " +
-      perfomanceViewGeneralBodyStyle +
-      '>' +
-      'Control Type' +
-      '</span>' +
-      "<p class='bow-tie-type-text' " +
-      perfomanceViewGeneralBodyStyle +
-      '>' +
-      contentDetails.ControlData.ControlType +
-      '</p>' +
+        "<span class='bow-tie-type-name' " +
+        perfomanceViewGeneralBodyStyle +
+        '>' +
+          'Control Type' +
+        '</span>' +
+        "<p class='bow-tie-type-text' " +
+          perfomanceViewGeneralBodyStyle +
+          '>' +
+          contentDetails.ControlData.ControlType +
+        '</p>' +
       '</p>' +
       "<p class='bow-tie-control-owner' " +
       perfomanceViewGeneralBodyStyle +
@@ -364,8 +367,7 @@ export class TemplateClass {
       '>' +
       "<img class='bow-tie-control-owner-rating-icon'" +
       "src='" +
-      contentDetails.ControlData.ControlOwnerRatingImage
-        .changingThisBreaksApplicationSecurity +
+      contentDetails.ControlData.ControlOwnerRatingImage +
       "'" +
       "<span class='bow-tie-control-owner-rating-name'>" +
       contentDetails.ControlData.ControlOwnerRating +
@@ -794,38 +796,38 @@ export class TemplateClass {
       truncatedHtmlTemplate +
       ' </p>' +
       "<div class='bow-tie-kpi'>" +
-      "<div class='bow-tie-unit-flex'>" +
-      "<span class='bow-tie-unit-text'" +
-      perfomanceViewKPIBodyStyle +
-      '>' +
-      ' Unit  ' +
-      '</span>' +
-      "<span class='bow-tie-unit-symbol'>\\" +
-      contentDetails.KpiData.Unit +
-      '</span>' +
-      '</div>' +
-      '</div>' +
-      "<div class='bow-tie-unit-details' >" +
-      "<div class='bow-tie-actual-flex'>" +
-      "<span class='bow-tie-actual-text'" +
-      perfomanceViewKPIBodyStyle +
-      '>' +
-      ' Actual  ' +
-      '</span>' +
-      "<span class='bow-tie-actual-value'>" +
-      contentDetails.KpiData.Actual +
-      '</span>' +
-      '</div>' +
-      "<div class='bow-tie-target-flex'>" +
-      "<span class='bow-tie-target-text'" +
-      perfomanceViewKPIBodyStyle +
-      '>' +
-      ' Target  ' +
-      '</span>' +
-      "<span class='bow-tie-target-value'>" +
-      contentDetails.KpiData.Target +
-      '</span>' +
-      '</div>' +
+          "<div class='bow-tie-unit-flex'>" +
+            "<span class='bow-tie-unit-text'" +
+              perfomanceViewKPIBodyStyle +
+              '>' +
+              ' Unit  ' +
+            '</span>' +
+            "<span class='bow-tie-unit-symbol'>\\" +
+            contentDetails.KpiData.Unit +
+            '</span>' +
+          '</div>' +
+        '</div>' +
+        "<div class='bow-tie-unit-details' >" +
+          "<div class='bow-tie-actual-flex'>" +
+            "<span class='bow-tie-actual-text'" +
+              perfomanceViewKPIBodyStyle +
+            '>' +
+            ' Actual  ' +
+            '</span>' +
+            "<span class='bow-tie-actual-value'>" +
+            contentDetails.KpiData.Actual +
+            '</span>' +
+          '</div>' +
+          "<div class='bow-tie-target-flex'>" +
+            "<span class='bow-tie-target-text'" +
+              perfomanceViewKPIBodyStyle +
+            '>' +
+            ' Target  ' +
+            '</span>' +
+            "<span class='bow-tie-target-value'>" +
+              contentDetails.KpiData.Target +
+            '</span>' +
+          '</div>' +
       '</div>' +
       "<div class='bow-tie-performance-flex'>" +
       "<span class='bow-tie-performance-text' >Performance</span>" +
@@ -1087,10 +1089,10 @@ export class TemplateClass {
         sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
-      case 'LinkedRisk':
+      case 'Linked Risk':
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
         templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('LinkedRisk', templatesObj.linkRiskTemplate);
+        sessionStorage.setItem('Linked Risk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       case 'Treatment':
@@ -1123,12 +1125,12 @@ export class TemplateClass {
     if (isRiskView) {
       isKpIview = false;
       if (isExpand) {
-        if (dataItem.Header === 'LinkedRisk') {
+        if (dataItem.Header === 'Linked Risk') {
           var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
           renderElement.html(linkRiskBottomTemp(dataItem));
         }
       } else {
-        if (dataItem.Header === 'LinkedRisk') {
+        if (dataItem.Header === 'Linked Risk') {
           var otherTemp = kendo.template(templatesObj.bottomTemplate);
           renderElement.html(otherTemp(dataItem));
         }
@@ -1173,7 +1175,7 @@ export class TemplateClass {
           renderElement.html(causeTemp(dataItem));
 
         } else {
-          if (dataItem.Header === 'LinkedRisk') {
+          if (dataItem.Header === 'Linked Risk') {
             var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
             renderElement.html(linkRiskBottomTemp(dataItem));
           } else if (dataItem.Header === 'Treatment') {
