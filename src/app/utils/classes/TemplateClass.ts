@@ -705,7 +705,7 @@ export class TemplateClass {
       "<p class='bow-tie-htmlTemplate'>'\\" +
       truncatedHtmlTemplate +
       '<p>' +
-      "<p class='bow-tie-expand-reportedby' >Responsible Officer</p>" +
+      "<p class='bow-tie-expand-reportedby' >Obligation Owner</p>" +
       "<p class='bow-tie-responsible-officer'>" +
       "<img class='bow-tie-owner-image'" +
       "src='" +
@@ -795,6 +795,11 @@ export class TemplateClass {
       '>\\' +
       truncatedHtmlTemplate +
       ' </p>' +
+      "<div class='bow-tie-performance-flex'>" +        
+        `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'></span>` +
+        `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'
+        }</span>` +
+      '</div>' +
       "<div class='bow-tie-kpi'>" +
           "<div class='bow-tie-unit-flex'>" +
             "<span class='bow-tie-unit-text'" +
@@ -828,12 +833,6 @@ export class TemplateClass {
               contentDetails.KpiData.Target +
             '</span>' +
           '</div>' +
-      '</div>' +
-      "<div class='bow-tie-performance-flex'>" +
-      "<span class='bow-tie-performance-text' >Performance</span>" +
-      `<span id='performanceIndicator' class='performanceIndicator-badge ${currentIndicator}'></span>` +
-      `<span class="bow-tie-performance-rating">${contentDetails.KpiData.Performance ?? 'NotAvailable'
-      }</span>` +
       '</div>' +
       '</div>' +
       '</div>'
@@ -1056,6 +1055,9 @@ export class TemplateClass {
     );
   }
 
+
+
+
   public AddTemplatesToNode(dataItem,templatesObj,isExpand,isPerformanceView,isKpIview,isRiskView,renderElement) 
   {
     switch (dataItem.Header) {
@@ -1101,10 +1103,10 @@ export class TemplateClass {
         sessionStorage.setItem('Treatment', templatesObj.riskActionTemplateExpand);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
-      case 'Compliance':
+      case 'Obligation':
         templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
         templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Compliance', templatesObj.complianceTemplateExpnad);
+        sessionStorage.setItem('Obligation', templatesObj.complianceTemplateExpnad);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       case 'Authority Document':
@@ -1187,7 +1189,7 @@ export class TemplateClass {
           } else if (dataItem.Header === 'KPI') {
             var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
             renderElement.html(KPIExpandTemp(dataItem));
-          } else if (dataItem.Header === 'Compliance') {
+          } else if (dataItem.Header === 'Obligation') {
             var complianceExpandTemp = kendo.template(templatesObj.complianceTemplateExpnad);
             renderElement.html(complianceExpandTemp(dataItem));
           } else if (dataItem.Header === 'Authority Document') {
