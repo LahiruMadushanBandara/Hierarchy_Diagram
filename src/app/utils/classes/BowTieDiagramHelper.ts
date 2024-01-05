@@ -67,6 +67,7 @@ export class BowTieDiagramHelper {
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
+      let rowNodeCountControl = 0;
 
       const originX = 0;
       const originY = 0;
@@ -79,7 +80,7 @@ export class BowTieDiagramHelper {
       if(!isExpand)
       {
       
-       verticalSpacing = 500;
+       verticalSpacing = 600;
       
        
       }
@@ -107,6 +108,7 @@ export class BowTieDiagramHelper {
 
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
+          
 
             if (rowNodeCount === maxNodesPerRow) {
               rowNumbertypetwo++;
@@ -115,7 +117,7 @@ export class BowTieDiagramHelper {
           
             columnNumber = rowNodeCount;
 
-          } else if (  typeTwoNodes[i].Title == 'Cause Node') {
+         } else if (  typeTwoNodes[i].Title == 'Cause Node') {
 
             const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumbertypetwo * verticalSpacing;

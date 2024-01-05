@@ -86,362 +86,363 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
       {
+        "Id": 1,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 1 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 2,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev>2 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+      {
+        "Id": 3,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 3 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 4,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 4 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+    
+
+      {
+        "Id": 5,
+        "Type": 2,
+        "ParentNodeId": 19,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev> 1 ReducedenterpriseITsupport</dev>",
+        "LinkedControlIds": [1,2,3,4]
+
+      },
+      {
+        "Id": 6,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 5 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 7,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 6 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 8,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 7 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 9,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 8 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+
+
+      {
+        "Id": 10,
+        "Type": 2,
+        "ParentNodeId": 19,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev> 3 22InsufficientITsecuritymanagement</dev>",
+        "LinkedControlIds": [6,7,8,9]
+
+      },
+
+      {
+        "Id": 11,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 9 22Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+      {
+        "Id": 12,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 10 222Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 13,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 11 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 14,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 12 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 15,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 13 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 16,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 14 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 17,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 15 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 18,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 16 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
         "Id": 19,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 129,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-
-      {
-        "Id": 130,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 131,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-
-      {
-        "Id": 23,
-        "Type": 2,
-        "ParentNodeId": 19,
-        "Title": "Cause Node",
-        "Header": "Cause",
-        "Rating": "",
-        "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": [19, 22, 129, 130, 131]
-
-      },
-      {
-        "Id": 22,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 26,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 24,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 25,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-
-
-
-      {
-        "Id": 16,
-        "Type": 2,
-        "ParentNodeId": 19,
-        "Title": "Cause Node",
-        "Header": "Cause",
-        "Rating": "",
-        "htmlTemplate": "<dev>22InsufficientITsecuritymanagement</dev>",
-        "LinkedControlIds": [22, 24, 25, 26]
-
-      },
-
-      {
-        "Id": 28,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>22Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-
-      {
-        "Id": 29,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>222Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 30,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 330,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 331,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 332,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 333,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 334,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 335,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev>Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 17 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -459,13 +460,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
       {
-        "Id": 3,
+        "Id": 20,
         "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 18 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -482,25 +483,25 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
       {
-        "Id": 33,
+        "Id": 21,
         "Type": 3,
         "ParentNodeId": 3,
         "Title": "Consequences Node",
         "Header": "Consequence",
         "Rating": "",
-        "htmlTemplate": "Reduced enter#prise IT support#",
-        "LinkedControlIds": [3]
+        "htmlTemplate": " 1 Reduced enter#prise IT support#",
+        "LinkedControlIds": [20]
 
       },
 
       {
-        "Id": 500,
+        "Id": 22,
         "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+        "htmlTemplate": "<dev> 19 Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
         "ControlData": {
 
           "ControlTitle": "Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
@@ -509,7 +510,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
         }
       },
@@ -517,24 +518,24 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
       {
-        "Id": 81,
+        "Id": 23,
         "Type": 3,
-        "ParentNodeId": 0,
+        "ParentNodeId": 3,
         "Title": "Consequences Node",
         "Header": "Consequence",
         "Rating": "",
-        "htmlTemplate": "<dev>ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": []
+        "htmlTemplate": "<dev> 2 ReducedenterpriseITsupport</dev>",
+        "LinkedControlIds": [22]
 
       },
       {
-        "Id": 6,
+        "Id": 24,
         "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 20 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -549,13 +550,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 7,
+        "Id": 25,
         "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 21 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -570,13 +571,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 8,
+        "Id": 26,
         "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 22 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -591,13 +592,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 5,
+        "Id": 27,
         "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 23  Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -613,13 +614,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       },
 
       {
-        "Id": 9,
+        "Id": 28,
         "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev>Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 24 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -637,7 +638,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
       {
-        "Id": 201,
+        "Id": 29,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -658,7 +659,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 202,
+        "Id": 30,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -680,7 +681,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       },
 
       {
-        "Id": 203,
+        "Id": 31,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -704,7 +705,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
       {
-        "Id": 182,
+        "Id": 32,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -726,7 +727,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 183,
+        "Id": 33,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -749,7 +750,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       },
 
       {
-        "Id": 185,
+        "Id": 34,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -765,7 +766,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
     ]
-
+    console.log("data array" , this.originalData);
     var tempTitleDetail = '';
     let isRiskView = false;
     let isKpIview = false;
@@ -859,121 +860,72 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
 
-        //creating connection lines
-        var dataConnections = [];
-
+        
 
         
-        // Iterate through originalData and create connection objects
-        for (let i = 1; i < originalData.length; i++) {
+        var dataConnections = [];
 
-          if (originalData[i].Title == "Other Node") {
-            // Get connector type for the current node
-            // const fromConnector = getConnectorType(originalData[i].Title);
-            // Create connection object
-            var conObj = {
-              Id: i,
+        for (let i = 1; i < originalData.length; i++) {
+          if (originalData[i].Title === "Other Node") {
+            dataConnections.push({
+              Id: originalData[i].Type === i,
               FromShapeId: originalData[i].ParentNodeId,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "1",
-
-              // toConnector:"auto",
-
-            };
-
-            // Add the connection object to dataConnections array
-            dataConnections.push(conObj);
+              color: "3",
+              fromConnector: "bottom",
+              toConnector: "top"
+            });
           }
 
-          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-            && originalData[i].ParentNodeId != 0) {
-            for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-              // Get connector type for the current node
-              // const fromConnector = getConnectorType(originalData[i].Title);
-
-              // Create connection object
-              var conObj1 = {
-                Id: j,
-                FromShapeId: originalData[i].LinkedControlIds[j],
-                ToShapeId: originalData[i].Id,
-                Text: null,
-                color: "2",
-                fromConnector: "auto",
-
-
-              };
-
-              // Add the connection object to dataConnections array
-              dataConnections.push(conObj1);
+          if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
+            for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
+              if (originalData[i].LinkedControlIds.length === 1) {
+                dataConnections.push({
+                  Id: j,
+                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
+                  ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
+                  Text: null,
+                  color: (j === 0) ? "2" : "4"
+                });
+              } else {
+                dataConnections.push({
+                  Id: j,
+                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  Text: null,
+                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1"
+                });
+              }
             }
           }
 
-          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-            && originalData[i].ParentNodeId == 0) {
-            // Get connector type for the current node
-            // const fromConnector = getConnectorType(originalData[i].Title);
-
-            // Create connection object
-            var conObj2 = {
+          if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId === 0) {
+            dataConnections.push({
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "3",
-              fromConnector: "auto",
-              toConnector: "top"
-
-            };
-
-            // Add the connection object to dataConnections array
-            dataConnections.push(conObj2);
+              color: "3"
+            });
           }
 
-          if (originalData[i].Title == "Control Node") {
-            // Get connector type for the current node
-            // const fromConnector = getConnectorType(originalData[i].Title);
-            // let controlNodeNotIncluded = true;
-            // // Create connection object
-
-
-            if (originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-              console.log(originalData[i].Id)
-              // Create connection object
-              var conObj3 = {
-                Id: i,
-                FromShapeId: 0,
-                ToShapeId: originalData[i].Id,
-                Text: null,
-                color: "4",
-                fromConnector: "auto",
-                toConnector: "auto"
-              };
-
-              dataConnections.push(conObj3);
-
-            }
-            else {
-              var conObj3 = {
-                Id: i,
-                FromShapeId: 0,
-                ToShapeId: originalData[i].Id,
-                Text: null,
-                color: "4",
-                fromConnector: "auto",
-                toConnector: "bottom"
-              };
-              dataConnections.push(conObj3);
-            }
-
-
-
-
-
-
+          if (originalData[i].Title === "Control Node" && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+            dataConnections.push({
+              Id: i,
+              FromShapeId: 0,
+              ToShapeId: originalData[i].Id,
+              Text: null,
+              toConnector: "auto",
+              color: "2"
+            });
           }
-
         }
+
+
+        console.log("connection data set",dataConnections)
+       
+
 
         var initialState = {
           data: dataShapes.slice(),

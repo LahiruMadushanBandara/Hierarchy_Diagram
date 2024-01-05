@@ -8,10 +8,10 @@ public updateConnectionColors(connections) {
     var connColor;
       
   enum ConnectionColor {
-    Red = "#ee4015",
+    Red = "red",
     Green = "green",
-    LightBlue = "#979797",
-    DarkBlue = "#979797",
+    LightBlue = "yellow",
+    DarkBlue = "orange",
     Default = "#979797"
 }
     for (var idx = 0; idx < connections.length; idx++) {
@@ -126,7 +126,7 @@ public onNodeClick(e , clicked:boolean , diagram , dataArrayoriginal ) {
         linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
         riskColumnNumber++;
         centralizedRiskNodes.push(linkedNodesToClickedNode[i]);
-        console.log(centralizedRiskNodes);
+        // console.log(centralizedRiskNodes);
         var riskArrayLength = centralizedRiskNodes.length - 1;
       }
 
@@ -142,7 +142,7 @@ public onNodeClick(e , clicked:boolean , diagram , dataArrayoriginal ) {
           causeConsequenceRowNumber++;
         }
 
-        console.log(causeConsequenceRowNumber);
+        // console.log(causeConsequenceRowNumber);
 
       }
       //all other nodes that linked to control placed right bottom of the clicked node
@@ -164,7 +164,7 @@ public onNodeClick(e , clicked:boolean , diagram , dataArrayoriginal ) {
 
 
     }
-    console.log(linkedNodesToClickedNode);
+    // console.log(linkedNodesToClickedNode);
 
     //rectreate the connection source
     var connectionsDataSource = {
