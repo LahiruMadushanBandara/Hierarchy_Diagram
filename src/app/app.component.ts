@@ -886,7 +886,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
                   Text: null,
-                  color: (j === 0) ? "2" : "4"
+                  color: (j === 0) ? "2" : "4",
+                  fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" : 
+                  (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
               } else {
                 dataConnections.push({
@@ -894,7 +896,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
                   ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
                   Text: null,
-                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1"
+                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1",
+                  fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                 });
               }
             }
@@ -906,7 +909,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "3"
+              color: "3",
+              fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
             });
           }
 
@@ -917,7 +921,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               ToShapeId: originalData[i].Id,
               Text: null,
               toConnector: "auto",
-              color: "2"
+              color: "2",
+              fromConnector: (originalData[i].Type === 2) ? "left" : "right",
             });
           }
         }
@@ -1088,14 +1093,34 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 diagramManager.handlePan(e, this);
             }
         },
-        dataBound: function () {
-          // Call the function to update diagram dimensions
-          diagramManager.updateDiagramDimensions(this);
-      }
+      //   dataBound: function () {
+      //     // Call the function to update diagram dimensions
+      //     diagramManager.updateDiagramDimensions(this);
+      // }
         });
        
 
+        $(".eqSlider").kendoSlider({
+          orientation: "vertical",
+          min: 1, 
+          max: 20,
+          change: function(e){
+            console.log(e.value)
+            $("#diagram").data("kendoDiagram").zoom(e.value/10)
+          }
+        });
+
+        // kendo.ui.icon($('.k-button[title="Increase"] .k-svg-icon'), { icon: 'zoom-in' });
+        // kendo.ui.icon($('.k-button[title="Decrease"] .k-svg-icon'), { icon: 'zoom-out' });
+
+
+
+
+
+
+
         var diagram = $("#diagram").getKendoDiagram();
+        //create connection lines back from shape
 
         if (kendoDiagram.shapes && Array.isArray(kendoDiagram.shapes)) {
           kendoDiagram.shapes.forEach(function (shape) {
@@ -1115,6 +1140,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       
         
         var slider = $(".slider").kendoSlider({
+          // orientation: "vertical",
           min: 0.02,
           max: 2,
           smallStep: 0.01,
