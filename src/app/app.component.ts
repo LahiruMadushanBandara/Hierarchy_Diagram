@@ -847,7 +847,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
 
       function createDiagram(originalData: any[], isExpanded: boolean) {
-
+        var commonPoint = new kendo.dataviz.diagram.Point(0, 0);
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         var isExpanded = isExpanded;
 

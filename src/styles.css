@@ -1068,14 +1068,34 @@
 }
 
 
-/* 
+
 .zoomControls { 
   position: absolute;
-  margin-left: 1450px;
-  padding-top: 50px;  
+  
+  /* margin-left: 91rem;
+  padding-top: 4rem;   
+  float: right; */
+  top: 3rem;
+  left: 95vw;
   z-index: 10;
-} */
+  width: 30px;
+  
+}
 
 /* #diagram{
   margin-top: -70px;
 } */
+
+.content{
+  position: relative;
+}
+
+.diagramClass{
+  width: 98vw;
+  height: 97vh;
+}
+
+.k-widget .k-slider .k-slider-vertical .eqSlider{
+
+  height: 10vw !important;
+}
