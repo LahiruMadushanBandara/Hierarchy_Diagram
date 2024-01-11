@@ -920,9 +920,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              toConnector: "auto",
               color: "2",
-              fromConnector: (originalData[i].Type === 2) ? "left" : "right",
+              fromConnector: (originalData[i].Type === 2 ) ? "left" : "right"
+
             });
           }
         }
@@ -1043,8 +1043,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 id: 'id',
                 fields: {
                   id: { from: 'Id', type: 'number', editable: false },
-                  from: { from: 'FromShapeId', type: 'number' },
-                  to: { from: 'ToShapeId', type: 'number' },
+                  from: { from: 'FromShapeId', type: 'any' },
+                  to: { from: 'ToShapeId', type: 'any' },
                   fromX: { from: 'FromPointX', type: 'number' },
                   fromY: { from: 'FromPointY', type: 'number' },
                   toX: { from: 'ToPointX', type: 'number' },
@@ -1100,6 +1100,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
        
 
+
+
+
+
+
+
+
+        
         $(".eqSlider").kendoSlider({
           orientation: "vertical",
           min: 1, 

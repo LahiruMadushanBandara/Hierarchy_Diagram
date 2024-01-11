@@ -4,7 +4,7 @@ export class BowTieDiagramHelper {
   constructor(
   ) {}
   
-  ArrangeNodes(originalData, isExpand:boolean) {
+  ArrangeNodes(originalData, isExpanded:boolean) {
 
     // console.log(originalData);
     const arrangedNodes = [];
@@ -77,13 +77,14 @@ export class BowTieDiagramHelper {
       let rowNodeCount = 0;
       let controlHorizontalSpacing = 0;
 
-      if(!isExpand)
+      if(!isExpanded)
       {
       
-       verticalSpacing = 600;
+       verticalSpacing = 520;
       
        
       }
+     
       
 
       
@@ -93,7 +94,7 @@ export class BowTieDiagramHelper {
 
         controlHorizontalSpacing = horizontalSpacing;
         if (rowNodeCount == 0) {
-          controlHorizontalSpacing = 600;
+          controlHorizontalSpacing = 520;
         }
 
        
@@ -144,7 +145,7 @@ export class BowTieDiagramHelper {
 
         controlHorizontalSpacing = horizontalSpacing;
         if (rowNodeCount == 0) {
-          controlHorizontalSpacing = 600;
+          controlHorizontalSpacing = 520;
         }
 
        if (typeThreeNodes[i].Title == 'Control Node') {
