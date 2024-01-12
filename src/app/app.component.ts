@@ -1108,15 +1108,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
         
-        $(".eqSlider").kendoSlider({
+        var slider = $(".eqSlider").kendoSlider({
           orientation: "vertical",
-          min: 1, 
-          max: 20,
-          change: function(e){
-            console.log(e.value)
-            $("#diagram").data("kendoDiagram").zoom(e.value/10)
+          min: 0.02,
+          max: 2,
+          smallStep: 0.01,
+          largeStep: 0.02,
+          value: 0.3,
+          tooltip: {
+            enabled: true,
+          },
+          slide: function (e) {
+            diagram.zoom(e.value);
+          },
+          change: function (e) {
+            diagram.zoom(e.value);
           }
-        });
+        }).data("kendoSlider");
 
         // kendo.ui.icon($('.k-button[title="Increase"] .k-svg-icon'), { icon: 'zoom-in' });
         // kendo.ui.icon($('.k-button[title="Decrease"] .k-svg-icon'), { icon: 'zoom-out' });
@@ -1147,7 +1155,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
       
         
-        var slider = $(".slider").kendoSlider({
+        var sliders = $(".slider").kendoSlider({
           // orientation: "vertical",
           min: 0.02,
           max: 2,

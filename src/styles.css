@@ -833,6 +833,40 @@
 
 
 
+
+
+.performanceIndicator-badge {
+  border-radius: 25px;
+  padding: 10px;
+  width: 10px;
+  height: 10px;
+}
+
+.performanceIndicator-text {
+  white-space: nowrap;
+  padding-left: 4px;
+}
+
+.na-badge {
+  background-color: #cccccc;
+}
+
+.onTrack-badge {
+  background-color: #40b86e;
+}
+
+.offTrack-badge {
+  background-color: #e54257;
+}
+
+.monitor-badge {
+  background-color: #faab2c;
+}
+
+
+
+
+
 /*css for header tool bar  */
 
 
@@ -844,6 +878,7 @@
 
   min-height: 55px;
 }
+
 
 /* Style of buttons */
 
@@ -898,20 +933,20 @@
 .zoomIcon {
   cursor: pointer;
   padding-top: 8px;
-
 }
 
 /* Style for the zoom out icon */
 .zoomOutIcon::before {
   content: url("/assets/bow-tie/icon/Zoom-Out.png") !important;
-  padding: 10px 10px 10px 8px;
+  padding: 10px 10px 0px 1px;
+ margin: 10px 0px 0px 0px;
 
 }
 
 /* Style for the zoom in icon */
 .zoomInIcon::before {
   content: url("/assets/bow-tie/icon/Zoom-In.png") !important;
-  padding: 10px 8px 10px 10px;
+  padding: 10px 1px 1px 1px;
 
 }
 
@@ -922,155 +957,26 @@
 
 .expand-icon {
   content: url("/assets/bow-tie/icon/expand-icon.png") !important;
-  padding: 10px 5px 8px 0px;
+  padding: 10px 7px 8px 0px;
+  
 }
-
-
-/* Media query for smaller screens (e.g., max-width: 768px) */
-@media (max-width: 760px) {
-
-  .bt-analsys-header-txt {
-    text-align: left;
-    flex-direction: column;
-    /* Display buttons in a column for smaller screens */
-    align-items: flex-start;
-    /* Align text to the left for smaller screens */
-  }
-
-  .button-flex {
-    flex-direction: column;
-    /* Display buttons in a column for smaller screens */
-    align-items: flex-start;
-    /* Align buttons to the left for smaller screens */
-  }
-
-  .bt-Reload,
-  .bt-Risk,
-  .bt-Kpi,
-  .bt-Performance,
-  .bt-Expand,
-  .btn-Export {
-    width: 100%;
-    /* Make buttons full-width for smaller screens */
-    margin-bottom: 10px;
-    /* Add some spacing between buttons */
-  }
-}
-
-
-
-
-
-
-
-/* .bt-Expand.active {
-  background-color: #0050a0 !important;
-  color: #fff !important;
-} */
-
-.bt-Risk.active {
-  background-color: #0050a0 !important;
-  color: #fff !important;
-}
-
-.bt-Kpi.active {
-  background-color: #0050a0 !important;
-  color: #fff !important;
-}
-
-.bt-Performance.active {
-  background-color: #0050a0 !important;
-  color: #fff !important;
-}
-
-.btActive {
-  background-color: #0050a0 !important;
-  color: #fff !important;
-}
-
-
-
-
-
-
-
-.performanceIndicator-badge {
-  border-radius: 25px;
-  padding: 10px;
-  width: 10px;
-  height: 10px;
-}
-
-.performanceIndicator-text {
-  white-space: nowrap;
-  padding-left: 4px;
-}
-
-.na-badge {
-  background-color: #cccccc;
-}
-
-.onTrack-badge {
-  background-color: #40b86e;
-}
-
-.offTrack-badge {
-  background-color: #e54257;
-}
-
-.monitor-badge {
-  background-color: #faab2c;
-}
-
 
 .k-slider .k-button {
   flex: none;
   display: none;
 }
-
-
-
-
-
-/* .progress-container {
-  height: 20px;
-  width: 100%;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-/* Style for the progress bar */
-/* #progressBar {
-  height: 100%;
-  width: 0;
-  background-color: green;
-  text-align: center;
-  line-height: 20px;
-  color: white;
-  font-weight: bold;
-}  */
-
-
 /* Add this class for hiding one of the icons initially */
 .hide-icon {
   display: none;
 }
 
-.expand-icon {
-  content: url("^assets/bow-tie/icon/expand-icon.png") !important;
-  padding: 10px 5px 8px 0px;
-}
-
-.collapse-icon {
-  content: url("^assets/bow-tie/icon/collapse-icon.png") !important;
-  padding: 10px 5px 8px 0px;
-}
-
 
 
 .zoomControls { 
+  border:  2px solid grey;
+  border-radius: 25px;
   position: absolute;
+  padding: 5px 5px 5px 1px;
   
   /* margin-left: 91rem;
   padding-top: 4rem;   
@@ -1078,13 +984,22 @@
   top: 3rem;
   left: 95vw;
   z-index: 10;
-  width: 30px;
-  
+  width: 20px;
+ 
 }
 
 /* #diagram{
   margin-top: -70px;
 } */
+
+.eqSlider {
+   border-top: 2px solid gray;
+   border-bottom: 2px solid gray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 12vh;
+  margin-bottom: 5px;
+}
 
 .content{
   position: relative;
@@ -1099,3 +1014,26 @@
 
   height: 10vw !important;
 }
+.k-slider .k-slider-track-wrap .k-slider-items{
+  display: none !important;
+}
+
+.k-slider .k-draghandle{
+    border-radius: 5px 5px 5px 5px !important;
+    height: 6px !important;
+    width: 18px !important;
+    background-color: white !important;;
+    border-color: black !important;
+}
+.k-slider .k-slider-selection {
+  background-color: black;
+}
+
+.k-slider .k-slider-track{
+  background-color: black;
+}
+
+
+
+
+

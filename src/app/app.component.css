@@ -1,0 +1,89 @@
+/* Media query for smaller screens (e.g., max-width: 768px) */
+@media (max-width: 760px) {
+
+  .bt-analsys-header-txt {
+    text-align: left;
+    flex-direction: column;
+    /* Display buttons in a column for smaller screens */
+    align-items: flex-start;
+    /* Align text to the left for smaller screens */
+  }
+
+  .button-flex {
+    flex-direction: column;
+    /* Display buttons in a column for smaller screens */
+    align-items: flex-start;
+    /* Align buttons to the left for smaller screens */
+  }
+
+  .bt-Reload,
+  .bt-Risk,
+  .bt-Kpi,
+  .bt-Performance,
+  .bt-Expand,
+  .btn-Export {
+    width: 100%;
+    /* Make buttons full-width for smaller screens */
+    margin-bottom: 10px;
+    /* Add some spacing between buttons */
+  }
+}
+/* .progress-container {
+  height: 20px;
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Style for the progress bar */
+/* #progressBar {
+  height: 100%;
+  width: 0;
+  background-color: green;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  font-weight: bold;
+}  */
+
+
+
+
+
+
+/* .bt-Expand.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
+} */
+.bt-Risk.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
+}
+
+.bt-Kpi.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
+}
+
+.bt-Performance.active {
+  background-color: #0050a0 !important;
+  color: #fff !important;
+}
+
+.btActive {
+  background-color: #0050a0 !important;
+  color: #fff !important;
+}
+
+
+
+.expand-icon {
+  content: url("^assets/bow-tie/icon/expand-icon.png") !important;
+  padding: 10px 5px 8px 0px;
+}
+
+.collapse-icon {
+  content: url("^assets/bow-tie/icon/collapse-icon.png") !important;
+  padding: 10px 5px 8px 0px;
+}
