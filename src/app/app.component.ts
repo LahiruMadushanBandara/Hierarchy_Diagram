@@ -305,8 +305,26 @@ export class AppComponent implements OnChanges {
 
       var diagram = $('#diagram').getKendoDiagram();
 
+      var slider = $(".eqSlider").kendoSlider({
+        orientation: "vertical",
+        min: 0.02,
+        max: 2,
+        smallStep: 0.01,
+        largeStep: 0.02,
+        value: 0.3,
+        tooltip: {
+          enabled: true,
+        },
+        slide: function (e) {
+          diagram.zoom(e.value);
+        },
+        change: function (e) {
+          diagram.zoom(e.value);
+        }
+      }).data("kendoSlider");
 
-      var slider = $(".slider").kendoSlider({
+
+      var sliders = $(".slider").kendoSlider({
         min: 0.02,
         max: 2,
         smallStep: 0.01,
