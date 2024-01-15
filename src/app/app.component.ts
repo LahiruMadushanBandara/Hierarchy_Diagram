@@ -764,6 +764,80 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
 
+      {
+        "Id": 35,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Audit",
+        "Rating": "",
+        "htmlTemplate": "Birthday attacks against TLS ciphers with 64bit block size vulnerability",
+        "AuditData": {
+          "AuditDate": "17octomber2023",
+          "AuditTitle": "Madeline Jones",
+          "AuditId": 55,
+        }
+      },
+
+      {
+        "Id": 36,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Hierarchy",
+        "Rating": "",
+        "htmlTemplate": "Madeline Jones > Birthday",
+        "HierarchyData": {
+          "isPermitted": true,
+          "nodeId": "34",
+          "collapseHierarchyView": "Madeline Jones > Birthday",
+          "expandHierarchyView": "Madeline Jones > Birthday > attacks against > TLS ciphers > with 64bit > block size > vulnerability",
+        }
+      },
+
+      {
+        "Id": 37,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "AuditRecommendation",
+        "Rating": "",
+        "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+        "AuditRecommendationData": {
+         
+        }
+      },
+
+      {
+        "Id": 38,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "AuditFinding",
+        "Rating": "",
+        "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+        "AuditRecommendationData": {
+         
+        }
+      },
+
+      
+      {
+        "Id": 39,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Policy",
+        "Rating": "",
+        "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+        "PolicyData": {
+          "IncidentTypeName":"compliance",
+          "ResponsiblePerson":"Andrew James",
+          "PolicyResponsibleOfficerProfilePic":""
+        }
+      },
+
+
 
     ]
     console.log("data array" , this.originalData);
@@ -800,9 +874,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         complianceTemplateExpnad: "",
         authorityDocumentTemplateExpnad: "",
         auditTemplateExpnad: "",
-        treatmentTemplate: ""
+        treatmentTemplate: "",
+        hierarchyTemplate:"",
+        auditRecommendationTemplate:"",
+        auditFindingTemplate:"",
+        PolicyTemplate:"",
       }
-
+      
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
      

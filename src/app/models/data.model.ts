@@ -14,6 +14,11 @@ export interface DiagramNodeData {
   KPIData?: KPIData;
   LinkedRiskData?: LinkedRiskData;
   TreatmentData?: TreatmentData;
+  AuditData?: Audit;
+  HierarchyData?: Hierarchy;
+  AuditRecommendationData?: AuditRecommendation;
+  AuditFindingData?: AuditFinding;
+  PolicyData?: Policy;
 }
 
 interface RiskData {
@@ -24,11 +29,11 @@ interface RiskData {
   ResidualRiskRating: string;
   TargetRiskRating: string;
   AppetiteRating: string;
-  InherentRiskRatingImg:any;
-  ResidualRiskRatingImg:any;
-  TargetRiskRatingImg:any;
-  AppetiteRatingImg:any;
-  profileImageUrl:any;
+  InherentRiskRatingImg: any;
+  ResidualRiskRatingImg: any;
+  TargetRiskRatingImg: any;
+  AppetiteRatingImg: any;
+  profileImageUrl: any;
 }
 
 interface ControlData {
@@ -38,7 +43,7 @@ interface ControlData {
   ControlAuthorizer: string;
   ControlAuthorizerRating: string;
   Active: boolean;
-  ControlOwnerRatingImage:any;
+  ControlOwnerRatingImage: any;
   IsLinkedToCauseOrConsequence: boolean;
 }
 
@@ -50,9 +55,9 @@ interface IncidentData {
   ReportedDate: string;
   IncidentType: string;
   ResponsiblePerson: string;
-  ByteImage:string;
+  ByteImage: string;
   ImageType: string;
-  ResponsibleManagerProfilePic:any;
+  ResponsibleManagerProfilePic: any;
 }
 
 interface KPIData {
@@ -77,14 +82,61 @@ interface LinkedRiskData {
   ResidualRiskRating: string;
   TargetRiskRating: string;
   AppetiteRating: string;
-  InherentRiskRatingImg:any;
-  ResidualRiskRatingImg:any;
-  TargetRiskRatingImg:any;
-  AppetiteRatingImg:any;
+  InherentRiskRatingImg: any;
+  ResidualRiskRatingImg: any;
+  TargetRiskRatingImg: any;
+  AppetiteRatingImg: any;
 }
 
 interface TreatmentData {
-  DueDate:string;
-  Owner:string;
-  CompleteValue:number;
+  DueDate: string;
+  Owner: string;
+  CompleteValue: number;
+}
+
+interface Audit {
+  AuditId: number;
+  AuditTitle: string;
+  AuditDate: string;
+}
+
+interface Hierarchy {
+  isPermitted: boolean;
+  nodeId: string;
+  expandHierarchyView: string;
+  collapseHierarchyView: string;
+}
+
+interface AuditRecommendation {
+  AuditNo?: string;
+  AuditFindingNo?: string;
+  AuditRecommendationCode?: string;
+  AuditRecommendationTitle?: string
+  RecommendationId?: string;
+  AuditRiskRatingDescription?: string;
+  ResponsiblePerson?: string;
+}
+
+
+interface AuditFinding {
+  AuditFindingId?: string;
+  AuditFindingNo?: string;
+  FindingBackground?: string;
+  AuditNo?: string;
+  AuditTitle?: string;
+  AuditYear?: string;
+  AuditRiskRatingDescription?: string;
+  Active?: boolean;
+}
+
+interface Policy {
+  LinkageId?: number;
+  PolicyId?: number;
+  Title?: string;
+  Code?: string;
+  IncidentTypeName: string;
+  ResponsiblePerson: string;
+  IsActive?: boolean;
+  PolicyResponsibleOfficerProfilePic: any;
+
 }

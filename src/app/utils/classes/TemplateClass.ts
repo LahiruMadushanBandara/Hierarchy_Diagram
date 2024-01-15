@@ -578,7 +578,7 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
       'Audit Date' +
       "</span>" +
       "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>22  October,2021</b>" +
+      contentDetails.AuditData.AuditDate +
       "</p>" +
       "</p>" +
       "</div>" +
@@ -589,24 +589,16 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
   public GetHierarchyExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
-      "<div class='bow-tie-extra-card-header'>" +
-      "<h4>" +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
-      "</div>" +
-      "<div class='bow-tie-extra-card-body' >" +
-      "<p>" +
-      contentDetails.htmlTemplate +
-      "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Hierarchy Name:' +
-      "</span>" +
-      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>path:</b>" +
-      "</p>" +
-      "</p>" +
-      "</div>" +
+        "<div class='bow-tie-extra-card-header'>" +
+          "<h4>" +
+           (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          "</h4>" +
+        "</div>" +
+        "<div class='bow-tie-extra-card-body' >" +
+          "<p>" +
+           contentDetails.HierarchyData.expandHierarchyView +
+          "</p>" +
+        "</div>" +
       "</div>"
     );
   }
@@ -651,11 +643,20 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
       "<span style='margin-right: 10px;'>" +
       'Type:' +
+      "<p>" +
+      contentDetails.PolicyData.IncidentTypeName +
+      "</p>" +
       "</span>" +
-      "<p style='margin-top: -10px; margin-bottom: 30px;'>" +
-      "<b>Responsible Ofiicer:</b>" +
-      "</p>" +
-      "</p>" +
+      "<p class='bow-tie-incident-expand-responsible-officer'>Responsible Officer</p>" +
+          "<p class='bow-tie-incident-expand-responsible-officer-details'>" +
+            "<img class='bow-tie-incident-expand-responsible-officer-image'"+
+              "src='"+ contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic +"'"+
+            "<span class='bow-tie-incident-expand-responsible-officer-name'>"+
+              "<b>"+
+                contentDetails.PolicyData.ResponsiblePerson+
+              "</b>"+
+            "</span>" +
+          "</p>" +
       "</div>" +
       "</div>"
     );
@@ -673,11 +674,6 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
       "<p>" +
       contentDetails.htmlTemplate +
       "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Name of the audit recommendation:' +
-      "</span>" +
-      "</p>" +
       "</div>" +
       "</div>"
     );
@@ -694,11 +690,6 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
       "<div class='bow-tie-extra-card-body' >" +
       "<p>" +
       contentDetails.htmlTemplate +
-      "</p>" +
-      "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
-      "<span style='margin-right: 10px;'>" +
-      'Name of the audit finding:' +
-      "</span>" +
       "</p>" +
       "</div>" +
       "</div>"
@@ -750,6 +741,36 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
         templatesObj.treatmentTemplate = this.GetRiskActionTreatmentExpand(dataItem);
         templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Treatment', templatesObj.treatmentTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      case "Audit":
+        templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+        sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      case "Hierarchy":
+        templatesObj.hierarchyTemplate = this.GetHierarchyExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+        sessionStorage.setItem('Hierarchy', templatesObj.hierarchyTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      case "AuditRecommendation":
+        templatesObj.auditRecommendationTemplate = this.GetAuditRecommendationsExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+        sessionStorage.setItem('AuditRecommendation', templatesObj.auditRecommendationTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      case "AuditFinding":
+        templatesObj.auditFindingTemplate = this.GetAuditFindingExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+        sessionStorage.setItem('AuditFinding', templatesObj.auditFindingTemplate);
+        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        break;
+      case "Policy":
+        templatesObj.PolicyTemplate = this.GetPolicyExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetOtherTemplateGlobal(dataItem, isPerformanceView);
+        sessionStorage.setItem('Policy', templatesObj.PolicyTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
       default:
@@ -841,6 +862,21 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
           } else if (dataItem.Header === 'Treatment') {
             var TreatmentExpandTemp = kendo.template(templatesObj.treatmentTemplate);
             renderElement.html(TreatmentExpandTemp(dataItem));
+          }else if (dataItem.Header === 'Audit') {
+            var AuditExpandTemp = kendo.template(templatesObj.auditTemplateExpnad);
+            renderElement.html(AuditExpandTemp(dataItem));
+          }else if (dataItem.Header === 'Hierarchy') {
+            var HierarchyExpandTemp = kendo.template(templatesObj.hierarchyTemplate);
+            renderElement.html(HierarchyExpandTemp(dataItem));
+          }else if (dataItem.Header === 'AuditRecommendation') {
+            var AuditRecommendationExpandTemp = kendo.template(templatesObj.auditRecommendationTemplate);
+            renderElement.html(AuditRecommendationExpandTemp(dataItem));
+          }else if (dataItem.Header === 'AuditFinding') {
+            var AuditFindingExpandTemp = kendo.template(templatesObj.auditFindingTemplate);
+            renderElement.html(AuditFindingExpandTemp(dataItem));
+          }else if (dataItem.Header === 'Policy') {
+            var PolicyyExpandTemp = kendo.template(templatesObj.PolicyTemplate);
+            renderElement.html(PolicyyExpandTemp(dataItem));
           }
         }
       } else {

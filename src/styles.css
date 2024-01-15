@@ -342,14 +342,14 @@
   border: 2px solid grey;
   display: grid;
   width: 400px;
-
   border-radius: 10px;
   font-size: 18px;
 }
 
 .bow-tie-extra-card-body {
-  min-height: 300px;
+  height: auto;
   padding: 20px;
+  text-align: left;
 }
 
 .bow-tie-extra-card-header {
@@ -451,7 +451,7 @@
 .Bow-tie-Other-card-body {
   background-color: rgb(255, 255, 255);
   color: #000000;
-  text-align: center;
+  text-align: left;
   min-height: 70px;
   border-radius: 0px 0px 10px 10px;
 
