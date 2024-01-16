@@ -34,6 +34,7 @@ interface RiskData {
   TargetRiskRatingImg: any;
   AppetiteRatingImg: any;
   profileImageUrl: any;
+  IsEnableRiskAppetite: boolean;
 }
 
 interface ControlData {

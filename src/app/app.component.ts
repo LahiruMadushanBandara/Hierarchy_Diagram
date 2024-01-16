@@ -79,7 +79,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ResidualRiskRatingImg": "",
           "TargetRiskRatingImg": "",
           "AppetiteRatingImg": "",
-          "profileImageUrl": ""
+          "profileImageUrl": "",
+          "IsEnableRiskAppetite": false
         }
       },
 

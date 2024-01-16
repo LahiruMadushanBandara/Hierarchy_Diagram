@@ -114,6 +114,14 @@ export class TemplateClass {
   }
  
   public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
+    if(contentDetails.RiskData.IsEnableRiskAppetite == true){
+     var AppetiteRating = contentDetails.RiskData.AppetiteRating
+      contentDetails.RiskData.AppetiteRatingImg == contentDetails.RiskData.AppetiteRatingImg
+    }
+    else{
+      AppetiteRating = ""
+    }
+    
 
     (contentDetails.RiskData.InherentRiskRating == "" || contentDetails.RiskData.InherentRiskRating == undefined) ? "N/A" : contentDetails.RiskData.InherentRiskRating;
     (contentDetails.RiskData.AppetiteRating == ""|| contentDetails.RiskData.AppetiteRating == undefined) ? "N/A" : contentDetails.RiskData.AppetiteRating;
@@ -176,7 +184,7 @@ export class TemplateClass {
                       "<img class='bow-tie-risk-rating-details-image'"+
                           "src='"+ contentDetails.RiskData.AppetiteRatingImg +"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
-                    contentDetails.RiskData.AppetiteRating+
+                  AppetiteRating+
                   "</span>" +
                 "</p>" +
               "</div>" +
