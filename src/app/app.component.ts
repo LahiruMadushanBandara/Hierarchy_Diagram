@@ -75,7 +75,11 @@ export class AppComponent implements OnChanges {
         riskActionTemplateExpand: "",
         complianceTemplateExpnad: "",
         authorityDocumentTemplateExpnad: "",
-        auditTemplateExpnad: ""
+        auditTemplateExpnad: "",
+        hierarchyTemplate:"",
+        auditRecommendationTemplate:"",
+        auditFindingTemplate:"",
+        PolicyTemplate:"",
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
