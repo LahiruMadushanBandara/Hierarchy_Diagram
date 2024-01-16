@@ -53,17 +53,27 @@ export class TemplateClass {
     );
   }
 
-  public GetBottomCollapesTemplateGlobal(
-    contentDetails: DiagramNodeData,
-    enablePerformanceview: boolean
-  ) {
+  public GetBottomCollapesTemplateGlobal(contentDetails: DiagramNodeData,enablePerformanceview: boolean) {
+
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
+      /#/g,
+      '\\#'
+    );
+    let truncatedHtmlTemplate
+     if(contentDetails.Header == "Audit Recommendation" || contentDetails.Header == "Audit Finding" ){
+      const maxCharacters = 100;      
+       // Truncate the htmlTemplate if it exceeds the maximum number of characters
+     truncatedHtmlTemplate = contentDetails.htmlTemplate.length > maxCharacters
+      ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+      : contentDetails.htmlTemplate;
+     }
+     else{
+      truncatedHtmlTemplate = contentDetails.htmlTemplate
+     }
     enablePerformanceview;
     var perfomanceViewKPIBodyStyle = null;
     var perfomanceViewKPIHeaderStyle = null;
-    if (
-      contentDetails.KpiData &&
-      contentDetails.KpiData.Performance != undefined
-    ) {
+    if (contentDetails.KpiData && contentDetails.KpiData.Performance != undefined) {
       var stylesForPerformanceViewKPI: PerformanceStyleKPI;
       if (enablePerformanceview) {
         const performanceViewKpi = new PerformanceViewKpi();
@@ -96,7 +106,7 @@ export class TemplateClass {
       "<p class='bow-tie-htmlTemplate'" +
       perfomanceViewKPIBodyStyle +
       '>\\' +
-      contentDetails.htmlTemplate +
+      truncatedHtmlTemplate +
       '</p>' +
       '</div>' +
       '</div>'
@@ -833,8 +843,7 @@ export class TemplateClass {
     );
   }
 
-  public GetHierarchyExpand(contentDetails: DiagramNodeData) {
-    contentDetails.htmlTemplate = contentDetails.HierarchyData.expandHierarchyView;
+  public GetHierarchyExpand(contentDetails: DiagramNodeData) {   
     return (
       "<div class='bow-tie-expand-card-content rounded'>" +
         "<div class='bow-tie-expand-card-header'>" +
@@ -844,7 +853,7 @@ export class TemplateClass {
         '</div>' +
         "<div class='bow-tie-expand-card-body' >" +
           "<p class='bow-tie-htmlTemplate'>" +
-            contentDetails.htmlTemplate+
+            contentDetails.HierarchyData.expandedString +
           '</p>' +
         '</div>' +
       '</div>'
@@ -952,11 +961,7 @@ export class TemplateClass {
       /#/g,
       '\\#'
     );
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-      contentDetails.htmlTemplate.length > maxCharacters
-        ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
-        : contentDetails.htmlTemplate;
+   
     return (
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header'>" +
@@ -966,7 +971,7 @@ export class TemplateClass {
       '</div>' +
       "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-      truncatedHtmlTemplate +
+      contentDetails.htmlTemplate +
       '</p>' +
       '</div>' +
       '</div>'
@@ -979,11 +984,7 @@ export class TemplateClass {
       /#/g,
       '\\#'
     );
-    // Truncate the htmlTemplate if it exceeds the maximum number of characters
-    const truncatedHtmlTemplate =
-      contentDetails.htmlTemplate.length > maxCharacters
-        ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
-        : contentDetails.htmlTemplate;
+    
     return (
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header' >" +
@@ -993,7 +994,7 @@ export class TemplateClass {
       '</div>' +
       "<div class='bow-tie-expand-card-body' >" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-      truncatedHtmlTemplate +
+      contentDetails.htmlTemplate  +
       '</p>' +
       '</div>' +
       '</div>'
@@ -1072,16 +1073,16 @@ export class TemplateClass {
           sessionStorage.setItem('Hierarchy', templatesObj.hierarchyTemplate);
           sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
           break;
-        case "AuditRecommendation":
+        case "Audit Recommendation":
           templatesObj.auditRecommendationTemplate = this.GetAuditRecommendationsExpand(dataItem);
           templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-          sessionStorage.setItem('AuditRecommendation', templatesObj.auditRecommendationTemplate);
+          sessionStorage.setItem('Audit Recommendation', templatesObj.auditRecommendationTemplate);
           sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
           break;
-        case "AuditFinding":
+        case "Audit Finding":
           templatesObj.auditFindingTemplate = this.GetAuditFindingExpand(dataItem);
           templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-          sessionStorage.setItem('AuditFinding', templatesObj.auditFindingTemplate);
+          sessionStorage.setItem('Audit Finding', templatesObj.auditFindingTemplate);
           sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
           break;
         case "Policy":
@@ -1170,10 +1171,10 @@ export class TemplateClass {
           }else if (dataItem.Header === 'Hierarchy') {
             var HierarchyExpandTemp = kendo.template(templatesObj.hierarchyTemplate);
             renderElement.html(HierarchyExpandTemp(dataItem));
-          }else if (dataItem.Header === 'AuditRecommendation') {
+          }else if (dataItem.Header === 'Audit Recommendation') {
             var AuditRecommendationExpandTemp = kendo.template(templatesObj.auditRecommendationTemplate);
             renderElement.html(AuditRecommendationExpandTemp(dataItem));
-          }else if (dataItem.Header === 'AuditFinding') {
+          }else if (dataItem.Header === 'Audit Finding') {
             var AuditFindingExpandTemp = kendo.template(templatesObj.auditFindingTemplate);
             renderElement.html(AuditFindingExpandTemp(dataItem));
           }else if (dataItem.Header === 'Policy') {

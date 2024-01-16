@@ -130,7 +130,7 @@ interface Treatment{
 interface Hierarchy {
   isPermitted: boolean;
   nodeId: string;
-  expandHierarchyView: string;
+  expandedString: string;
   collapseHierarchyView: string;
 }
 

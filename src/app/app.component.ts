@@ -134,7 +134,6 @@ export class AppComponent implements OnChanges {
 
         //creating connection lines
         
-        
         var dataConnections = [];
 
         for (let i = 1; i < originalData.length; i++) {
@@ -158,7 +157,9 @@ export class AppComponent implements OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
                   Text: null,
-                  color: (j === 0) ? "2" : "4"
+                  color: (j === 0) ? "2" : "4",
+                  fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" : 
+                  (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
               } else {
                 dataConnections.push({
@@ -166,7 +167,8 @@ export class AppComponent implements OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
                   ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
                   Text: null,
-                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1"
+                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1",
+                  fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                 });
               }
             }
@@ -178,7 +180,8 @@ export class AppComponent implements OnChanges {
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "3"
+              color: "3",
+              fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
             });
           }
 
@@ -189,7 +192,8 @@ export class AppComponent implements OnChanges {
               ToShapeId: originalData[i].Id,
               Text: null,
               toConnector: "auto",
-              color: "2"
+              color: "2",
+              fromConnector: (originalData[i].Type === 2) ? "left" : "right",
             });
           }
         }
@@ -309,6 +313,24 @@ export class AppComponent implements OnChanges {
 
       var diagram = $('#diagram').getKendoDiagram();
 
+      // var sliders = $(".slider").kendoSlider({
+      //   min: 0.02,
+      //   max: 2,
+      //   smallStep: 0.01,
+      //   largeStep: 0.02,
+      //   value: 0.3,
+      //   tooltip: {
+      //     enabled: true,
+      //   },
+      //   slide: function (e) {
+      //     diagram.zoom(e.value);
+      //   },
+      //   change: function (e) {
+      //     diagram.zoom(e.value);
+      //   }
+      // }).data("kendoSlider");
+
+
       var slider = $(".eqSlider").kendoSlider({
         orientation: "vertical",
         min: 0.02,
@@ -326,35 +348,7 @@ export class AppComponent implements OnChanges {
           diagram.zoom(e.value);
         }
       }).data("kendoSlider");
-
-
-      var sliders = $(".slider").kendoSlider({
-        min: 0.02,
-        max: 2,
-        smallStep: 0.01,
-        largeStep: 0.02,
-        value: 0.3,
-        tooltip: {
-          enabled: true,
-        },
-        slide: function (e) {
-          diagram.zoom(e.value);
-        },
-        change: function (e) {
-          diagram.zoom(e.value);
-        }
-      }).data("kendoSlider");
-
-
-      var sliderHandle = slider.wrapper.find('.k-draghandle');
-      sliderHandle.kendoTooltip({
-        content: function (e) {
-          return slider.value();
-        },
-        position: 'top',
-        animation: false // You can enable animation if needed
-      });
-
+     
       
       diagram.wrapper.on("wheel", function (e) {
         e.preventDefault();    
@@ -381,6 +375,18 @@ export class AppComponent implements OnChanges {
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
       });
+
+
+
+      var sliderHandle = slider.wrapper.find('.k-draghandle');
+      sliderHandle.kendoTooltip({
+        content: function (e) {
+          return slider.value();
+        },
+        position: 'top',
+        animation: false // You can enable animation if needed
+      });
+
 
       $(".bt-Risk").click(function () {
 
