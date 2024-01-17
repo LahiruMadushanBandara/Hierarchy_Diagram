@@ -75,7 +75,11 @@ export class AppComponent implements OnChanges {
         riskActionTemplateExpand: "",
         complianceTemplateExpnad: "",
         authorityDocumentTemplateExpnad: "",
-        auditTemplateExpnad: ""
+        auditTemplateExpnad: "",
+        hierarchyTemplate:"",
+        auditRecommendationTemplate:"",
+        auditFindingTemplate:"",
+        PolicyTemplate:"",
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
@@ -129,66 +133,71 @@ export class AppComponent implements OnChanges {
 
 
         //creating connection lines
+        
         var dataConnections = [];
 
         for (let i = 1; i < originalData.length; i++) {
-
-          if (originalData[i].Title == "Other Node") {
-
-            var conObj = {
+          if (originalData[i].Title === "Other Node") {
+            dataConnections.push({
               Id: originalData[i].Type === i,
               FromShapeId: originalData[i].ParentNodeId,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "1",
+              color: "3",
               fromConnector: "bottom",
               toConnector: "top"
-
-            };
-            dataConnections.push(conObj);
+            });
           }
 
-          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-            && originalData[i].ParentNodeId != 0) {
-            for (let j = 0; j < originalData[i].LinkedControlIds.length; j++) {
-              var conObj1 = {
-                Id: j,
-                FromShapeId: originalData[i].LinkedControlIds[j],
-                ToShapeId: originalData[i].Id,
-                Text: null,
-                color: "2"
-
-              };
-              dataConnections.push(conObj1);
+          if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
+            for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
+              if (originalData[i].LinkedControlIds.length === 1) {
+                dataConnections.push({
+                  Id: j,
+                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
+                  ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
+                  Text: null,
+                  color: (j === 0) ? "2" : "4",
+                  fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" : 
+                  (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
+                });
+              } else {
+                dataConnections.push({
+                  Id: j,
+                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  Text: null,
+                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1",
+                  fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                });
+              }
             }
           }
 
-          if ((originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node")
-            && originalData[i].ParentNodeId == 0) {
-
-            var conObj2 = {
+          if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId === 0) {
+            dataConnections.push({
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "3"
-
-            };
-            dataConnections.push(conObj2);
+              color: "3",
+              fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+            });
           }
 
-          if (originalData[i].Title == "Control Node") {
-            var conObj3 = {
+          if (originalData[i].Title === "Control Node" && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+            dataConnections.push({
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "4"
-
-            };
-            dataConnections.push(conObj3);
+              toConnector: "auto",
+              color: "2",
+              fromConnector: (originalData[i].Type === 2) ? "left" : "right",
+            });
           }
         }
+
 
 
         var initialStateOfDataAndConnections= {
@@ -304,8 +313,26 @@ export class AppComponent implements OnChanges {
 
       var diagram = $('#diagram').getKendoDiagram();
 
+      // var sliders = $(".slider").kendoSlider({
+      //   min: 0.02,
+      //   max: 2,
+      //   smallStep: 0.01,
+      //   largeStep: 0.02,
+      //   value: 0.3,
+      //   tooltip: {
+      //     enabled: true,
+      //   },
+      //   slide: function (e) {
+      //     diagram.zoom(e.value);
+      //   },
+      //   change: function (e) {
+      //     diagram.zoom(e.value);
+      //   }
+      // }).data("kendoSlider");
 
-      var slider = $(".slider").kendoSlider({
+
+      var slider = $(".eqSlider").kendoSlider({
+        orientation: "vertical",
         min: 0.02,
         max: 2,
         smallStep: 0.01,
@@ -321,17 +348,7 @@ export class AppComponent implements OnChanges {
           diagram.zoom(e.value);
         }
       }).data("kendoSlider");
-
-
-      var sliderHandle = slider.wrapper.find('.k-draghandle');
-      sliderHandle.kendoTooltip({
-        content: function (e) {
-          return slider.value();
-        },
-        position: 'top',
-        animation: false // You can enable animation if needed
-      });
-
+     
       
       diagram.wrapper.on("wheel", function (e) {
         e.preventDefault();    
@@ -358,6 +375,18 @@ export class AppComponent implements OnChanges {
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
       });
+
+
+
+      var sliderHandle = slider.wrapper.find('.k-draghandle');
+      sliderHandle.kendoTooltip({
+        content: function (e) {
+          return slider.value();
+        },
+        position: 'top',
+        animation: false // You can enable animation if needed
+      });
+
 
       $(".bt-Risk").click(function () {
 

@@ -17,6 +17,11 @@ export interface DiagramNodeData {
   ComplianceData?: Compliance;
   AuditData?: Audit;
   TreatmentData?:Treatment;
+  HierarchyData?: Hierarchy;
+  AuditRecommendationData?: AuditRecommendation;
+  AuditFindingData?: AuditFinding;
+  RiskAppetiteStatusData?: RiskAppetiteStatus;
+  PolicyData?: Policy;
 }
 
 interface RiskData {
@@ -120,4 +125,57 @@ interface Treatment{
   TreatmentResponsibleOfficer:string;
   TreatmentPercentageComplete:number;
   TreatmentResponsibleOfficerProfilePic:any;
+}
+
+interface Hierarchy {
+  isPermitted: boolean;
+  nodeId: string;
+  expandedString: string;
+  collapseHierarchyView: string;
+}
+
+
+interface AuditRecommendation {
+  AuditNo: string;
+  AuditFindingNo: string;
+  AuditRecommendationCode: string;
+  AuditRecommendationTitle: string
+  RecommendationId: string;
+  AuditRiskRatingDescription: string;
+  ResponsiblePerson: string;
+}
+
+
+interface AuditFinding {
+  AuditFindingId: string;
+  AuditFindingNo: string;
+  FindingBackground: string;
+  AuditNo: string;
+  AuditTitle: string;
+  AuditYear: string;
+  AuditRiskRatingDescription: string;
+  Active: boolean;
+}
+
+interface RiskAppetiteStatus {
+  RiskAppetiteIsEnable: boolean;
+}
+
+interface Policy {
+  LinkageId: number;
+  PolicyId: number;
+  Title: string;
+  Code: string;
+  IncidentTypeName: string;
+  ResponsiblePerson: string;
+  IsActive: boolean;
+  PolicyResponsibleOfficerProfilePic: any;
+
+}
+export interface HierarchyString {
+  nodeId: string;
+  nodeName: string;
+  nodeParentData: any;
+  expandedString: string;
+  collapsString: string;
 }

@@ -73,7 +73,7 @@ export class BowTieDiagramHelper {
       let controlHorizontalSpacing = 0;
 
       if (!isExpand) {
-        verticalSpacing = 420;
+        verticalSpacing = 520;
       }
 
       // arrange type 2 nodes (left of type 1)
@@ -173,7 +173,7 @@ export class BowTieDiagramHelper {
         if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
           riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
         } else if (typeTwoNodes.length >= 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y;
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 200;
         }
       }
 
@@ -185,7 +185,7 @@ export class BowTieDiagramHelper {
         if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
           riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
         } else if (typeThreeNodes.length >= 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y;
+          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 200;
         }
       }
 
@@ -224,20 +224,21 @@ export class BowTieDiagramHelper {
       }
 
       let typeFourNodeCount;
+      rowNodeCount = 0;
 
       // Arrange type 4 nodes (below type 2 and type 3)
       if (typeFourNodes.length < 12) {
         typeFourNodeCount = typeFourNodes.length / 2;
       } else {
-        typeFourNodeCount = typeFourNodes.length / 3;
+        typeFourNodeCount = 5;
       }
 
-      let rowNumbertypeFour = 2;
+      let rowNumbertypeFour = 3;
       let rowNumbertypeFourWhenOnlyBottomNodes = 1.5;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
 
       typeFourNodes.forEach((node, index) => {
-        // Adjusting the starting point for type 4 nodes when there are np type two or three nodes
+        // Adjusting the starting point for type 4 nodes when there are no type two or three nodes
 
         if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
           const x =

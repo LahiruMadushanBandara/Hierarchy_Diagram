@@ -202,11 +202,7 @@ export class DiagramManager {
 
       <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
 
-          <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
-            <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
-            <div  class='slider'></div>
-            <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
-          </div>
+          
 
           <div kendoTooltip position="bottom" [title]="'Back'">
           <button type="button" class="bt-BackFromCentralizedView btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
