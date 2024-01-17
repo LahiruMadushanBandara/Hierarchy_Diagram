@@ -331,7 +331,7 @@ export class AppComponent implements OnChanges {
       // }).data("kendoSlider");
 
 
-      var slider = $(".eqSlider").kendoSlider({
+      var slider = $(".eqSliderfordiagram").kendoSlider({
         orientation: "vertical",
         min: 0.02,
         max: 2,
@@ -355,21 +355,21 @@ export class AppComponent implements OnChanges {
         //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
         var delta = e.originalEvent.deltaY;        
         if (delta > 0) {
-          $(".zoomOutIcon").trigger("click")    
+          $(".zoomOutIconfordiagram").trigger("click")    
         } else {
-          $(".zoomInIcon").trigger("click")
+          $(".zoomInIconfordiagram").trigger("click")
         }       
       });
     
 
-      $(".zoomInIcon").click(function () {
+      $(".zoomInIconfordiagram").click(function () {
           var currentZoom = diagram.zoom();
           currentZoom += 0.02;
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
       });
   
-      $(".zoomOutIcon").click(function () {
+      $(".zoomOutIconfordiagram").click(function () {
           var currentZoom = diagram.zoom();
           currentZoom -= 0.02;
           diagram.zoom(currentZoom);
