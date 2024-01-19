@@ -232,7 +232,7 @@ export class DiagramManager {
             <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
                 <span class="expand-icon"></span>
                 <span class="collapse-icon hide-icon"></span>
-                <span class="text">Expand</span>                      
+                <span class="text">Expand Panel</span>                      
             </button>
           </div>
 

@@ -1035,7 +1035,7 @@ export class TemplateClass {
         sessionStorage.setItem('Linked Risk', templatesObj.linkRiskTemplate);
         sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
         break;
-      case 'Treatment':
+      case 'Action':
         templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
         templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
         sessionStorage.setItem('Treatment', templatesObj.riskActionTemplateExpand);
@@ -1142,7 +1142,7 @@ export class TemplateClass {
           if (dataItem.Header === 'Linked Risk') {
             var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
             renderElement.html(linkRiskBottomTemp(dataItem));
-          } else if (dataItem.Header === 'Treatment') {
+          } else if (dataItem.Header === 'Action') {
             var riskActionExpandTemp = kendo.template(templatesObj.riskActionTemplateExpand);
             renderElement.html(riskActionExpandTemp(dataItem));
           } else if (dataItem.Header === 'Incident') {

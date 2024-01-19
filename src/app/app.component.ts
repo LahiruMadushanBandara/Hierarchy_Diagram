@@ -143,7 +143,6 @@ export class AppComponent implements OnChanges {
               FromShapeId: originalData[i].ParentNodeId,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "3",
               fromConnector: "bottom",
               toConnector: "top"
             });
@@ -156,8 +155,7 @@ export class AppComponent implements OnChanges {
                   Id: j,
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
-                  Text: null,
-                  color: (j === 0) ? "2" : "4",
+                  Text: null,                  
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" : 
                   (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
@@ -167,7 +165,7 @@ export class AppComponent implements OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
                   ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
                   Text: null,
-                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1",
+                 
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                 });
               }
@@ -179,8 +177,7 @@ export class AppComponent implements OnChanges {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
-              Text: null,
-              color: "3",
+              Text: null,             
               fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
             });
           }
@@ -191,8 +188,7 @@ export class AppComponent implements OnChanges {
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              toConnector: "auto",
-              color: "2",
+              toConnector: "auto",              
               fromConnector: (originalData[i].Type === 2) ? "left" : "right",
             });
           }
@@ -271,7 +267,7 @@ export class AppComponent implements OnChanges {
           },
           connectionDefaults: {
             stroke: {
-              color: '#979797',
+              color: '#000000',
               width: 3,
             },
             select: function (e) {
@@ -503,7 +499,7 @@ export class AppComponent implements OnChanges {
         const collapseIcon = expandButton.querySelector('.collapse-icon') as HTMLElement;
     
         // Toggle between expand and collapse text
-        const buttonText = isExpand ? 'Collapse' : 'Expand';
+        const buttonText = isExpand ? 'Collapse Panel' : 'Expand Panel';
         const textElement = expandButton.querySelector('.text') as HTMLElement;
         if (textElement) {
             textElement.innerText = buttonText;
