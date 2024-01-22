@@ -73,7 +73,7 @@ export class BowTieDiagramHelper {
       let controlHorizontalSpacing = 0;
 
       if (!isExpand) {
-        verticalSpacing = 520;
+        verticalSpacing = 500;
       }
 
       // arrange type 2 nodes (left of type 1)
@@ -173,7 +173,7 @@ export class BowTieDiagramHelper {
         if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
           riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
         } else if (typeTwoNodes.length >= 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 200;
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 100;
         }
       }
 
@@ -185,7 +185,7 @@ export class BowTieDiagramHelper {
         if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
           riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
         } else if (typeThreeNodes.length >= 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 200;
+          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 100;
         }
       }
 
