@@ -552,6 +552,7 @@ export class AppComponent implements OnChanges {
 
         var reloadButton = document.getElementById("btReload");
         reloadButton.style.display = "none";
+        diagram.bringIntoView(diagram.shapes);
         
   
       });

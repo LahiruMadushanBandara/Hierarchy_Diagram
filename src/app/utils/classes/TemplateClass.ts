@@ -1006,82 +1006,56 @@ export class TemplateClass {
       case 'Control':
         templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
         templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
-        sessionStorage.setItem('controlTemplate', templatesObj.controlTemplate);
-        sessionStorage.setItem('controlExpandTemplate', templatesObj.controlTemplateExpand);
         break;
       case 'Cause':
-        templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);
-        sessionStorage.setItem('causeTemplate', templatesObj.causeTemplate);
+        templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);        
         break;
       case 'Consequence':
-        templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);
-        sessionStorage.setItem('consequencesTemplate', templatesObj.consequencesTemplate);
+        templatesObj.consequencesTemplate = this.GetConsequencesTemplateGlobal(dataItem);        
         break;
       case 'Incident':
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Incident', templatesObj.incidentTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
         break;
       case 'KPI':
         templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('KPI', templatesObj.kpiTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
         break;
       case 'Linked Risk':
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Linked Risk', templatesObj.linkRiskTemplate);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
         break;
       case 'Action':
         templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Treatment', templatesObj.riskActionTemplateExpand);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
         break;
       case 'Obligation':
         templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Obligation', templatesObj.complianceTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
         break;
       case 'Authority Document':
         templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Authority Document', templatesObj.authorityDocumentTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
         break;
       case 'Audit':
         templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-        sessionStorage.setItem('Audit', templatesObj.auditTemplateExpnad);
-        sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
         break;
         case "Hierarchy Linkages":
           templatesObj.hierarchyTemplate = this.GetHierarchyExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-          sessionStorage.setItem('Hierarchy Linkages', templatesObj.hierarchyTemplate);
-          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
           break;
         case "Audit Recommendation":
           templatesObj.auditRecommendationTemplate = this.GetAuditRecommendationsExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-          sessionStorage.setItem('Audit Recommendation', templatesObj.auditRecommendationTemplate);
-          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
           break;
         case "Audit Finding":
           templatesObj.auditFindingTemplate = this.GetAuditFindingExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-          sessionStorage.setItem('Audit Finding', templatesObj.auditFindingTemplate);
-          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
           break;
         case "Policy":
           templatesObj.PolicyTemplate = this.GetPolicyExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);
-          sessionStorage.setItem('Policy', templatesObj.PolicyTemplate);
-          sessionStorage.setItem('otherTemplate', templatesObj.bottomTemplate);
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
           break;
       default:
     }

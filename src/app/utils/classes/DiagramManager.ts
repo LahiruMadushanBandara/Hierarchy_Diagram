@@ -74,7 +74,7 @@ export class DiagramManager {
   public onNodeClick(e , clicked:boolean , diagram , dataArrayoriginal ) {
 
       
-    if (e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Compliance" || e.item.dataItem.Header == "Authority Document") {
+    if (e.item.dataItem.Header == "Control") {
       var clickedNodeId = e.item.dataItem.id;
       clicked = true;
       
@@ -186,7 +186,7 @@ export class DiagramManager {
       e.sender.setDataSource(linkedNodesToClickedNode);
       e.sender.setConnectionsDataSource(connectionsDataSource);
 
-
+      diagram.bringIntoView(diagram.shapes);
       diagram.refresh();
 
     }
