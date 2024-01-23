@@ -20,24 +20,28 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent implements OnChanges {
+ 
   @Output() expandChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
   @Input() bowTieNodeDetails: DiagramNodeData[] = [];
-
+ 
   riskTemplate: string = '';
   controlTemplate: string = '';
   causeTemplate: string = '';
   consequencesTemplate: string = '';
   otherTemplate: string = '';
   originalData: DiagramNodeData[] = [];
+  dataAvailability:boolean = false;
 
   @Input() IsExpanded: boolean = false;
 
   constructor() { }
 
   ngOnChanges(): void {
+    this.dataAvailability = this.bowTieNodeDetails.length > 0 ? true : false;
 
     sessionStorage.clear();
     this.originalData = this.bowTieNodeDetails;
