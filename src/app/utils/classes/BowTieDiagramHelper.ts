@@ -181,10 +181,10 @@ export class BowTieDiagramHelper {
       //Arrange Risk node (in the middle)
       
       if(typeTwoNodes.length!= 0  && typeTwoNodes.length >= typeThreeNodes.length){
-         riskYCodinate = (typeTwoNodes[typeTwoNodes.length - 1].y) - 250 ;
+         riskYCodinate = (typeTwoNodes[typeTwoNodes.length - 1].y) - 100 ;
       }
       else if(typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length){
-         riskYCodinate = (typeThreeNodes[typeThreeNodes.length - 2].y) - 200;
+         riskYCodinate = (typeThreeNodes[typeThreeNodes.length - 2].y) - 100;
       }
 
       if(typeTwoNodes.length == 0 && typeThreeNodes.length == 0){
