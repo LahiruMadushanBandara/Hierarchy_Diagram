@@ -149,12 +149,11 @@ export class TemplateClass {
 
   public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
 
-    console.log("risk data",contentDetails.RiskData)
-    console.log(contentDetails.RiskData.IsEnableRiskAppetite,contentDetails.RiskData.AppetiteRating);
+  
     contentDetails.RiskData.AppetiteRating = contentDetails.RiskData.IsEnableRiskAppetite == "true"
     ? contentDetails.RiskData.AppetiteRating
     : '';
-    console.log("before",contentDetails.RiskData.AppetiteRating);
+    
   
     contentDetails.RiskData.InherentRiskRatingImg = contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined
       ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
@@ -183,7 +182,7 @@ export class TemplateClass {
 
     contentDetails.RiskData.TargetRiskRating = contentDetails.RiskData.TargetRiskRating == '' || contentDetails.RiskData.TargetRiskRating === undefined
       ? 'N/A' : contentDetails.RiskData.TargetRiskRating;
-      console.log("after",contentDetails.RiskData.AppetiteRating);
+    
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
       "<div class='bow-tie-risk-card-header-top' >" +
