@@ -173,7 +173,7 @@ export class BowTieDiagramHelper {
         if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
           riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
         } else if (typeTwoNodes.length >= 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 100;
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 50;
         }
       }
 
@@ -185,7 +185,7 @@ export class BowTieDiagramHelper {
         if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
           riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
         } else if (typeThreeNodes.length >= 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 100;
+          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 50;
         }
       }
 

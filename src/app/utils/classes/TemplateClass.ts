@@ -147,14 +147,8 @@ export class TemplateClass {
     );
   }
 
-  public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
+  public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) { 
 
-  
-    contentDetails.RiskData.AppetiteRating = contentDetails.RiskData.IsEnableRiskAppetite == "true"
-    ? contentDetails.RiskData.AppetiteRating
-    : '';
-    
-  
     contentDetails.RiskData.InherentRiskRatingImg = contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined
       ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
       : contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
@@ -182,6 +176,25 @@ export class TemplateClass {
 
     contentDetails.RiskData.TargetRiskRating = contentDetails.RiskData.TargetRiskRating == '' || contentDetails.RiskData.TargetRiskRating === undefined
       ? 'N/A' : contentDetails.RiskData.TargetRiskRating;
+
+
+    var riskAppetite =
+      "<div class='column'>" +
+      "<p class ='ratings'> Risk Appetite  </p>" +
+      "<p class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-risk-rating-details-image'" +
+      "src='" +
+      contentDetails.RiskData.AppetiteRatingImg +
+      "'" +
+      "<span class='bow-tie-risk-rating-details-text'>" +
+      contentDetails.RiskData.AppetiteRating +
+      '</span>' +
+      '</p>' +
+      '</div>';
+
+    riskAppetite = contentDetails.RiskData.IsEnableRiskAppetite == "true"
+      ? riskAppetite
+      : "";
     
     return (
       "<div class='bow-tie-risk-card-content rounded'>" +
@@ -239,18 +252,7 @@ export class TemplateClass {
       '</span>' +
       '</p>' +
       '</div>' +
-      "<div class='column'>" +
-      "<p class ='ratings'> Risk Appetite  </p>" +
-      "<p class='bow-tie-risk-rating-details'>" +
-      "<img class='bow-tie-risk-rating-details-image'" +
-      "src='" +
-      contentDetails.RiskData.AppetiteRatingImg +
-      "'" +
-      "<span class='bow-tie-risk-rating-details-text'>" +
-      contentDetails.RiskData.AppetiteRating +
-      '</span>' +
-      '</p>' +
-      '</div>' +
+      riskAppetite +
       '</div>' +
       "<div class='bow-tie-risk-card-footer'>" +
       "<div class='row'>" +
