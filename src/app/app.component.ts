@@ -512,8 +512,9 @@ export class AppComponent implements OnChanges {
         // Toggle between hiding and showing icons
         expandIcon.classList.toggle('hide-icon', isExpand);
         collapseIcon.classList.toggle('hide-icon', !isExpand);
-    
-        diagram.refresh();
+
+
+       
     });
     
 
@@ -560,14 +561,26 @@ export class AppComponent implements OnChanges {
         
   
       });
-       
-      $(".btn-Return").click(function () {
-        // Navigate to the specified URL
-        window.location.href = "/cammsrisk/register/1";
-      });
 
+        $(".btn-Return").click(function () {
+          // Get the current URL
+          var currentUrl = window.location.href;
 
+          // Extract the base path up to '/cammsrisk'
+          var basePath = currentUrl.match(/^(.*\/cammsrisk)/);
 
+          if (basePath && basePath[1]) {
+
+            // Append '/register/1' to the base path
+            var regiterPageUrl = basePath[1] + '/register/1';
+
+            // Navigate to the new URL
+            window.location.href = regiterPageUrl;
+          }
+        
+        });
+
+    
 
        
         diagram.bringIntoView(diagram.shapes);

@@ -385,62 +385,59 @@ export class TemplateClass {
   }
 
   public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
-    contentDetails.LinkedRiskData.InherentRiskRatingImg =
-      contentDetails.LinkedRiskData.InherentRiskRating == '' ||
-        contentDetails.LinkedRiskData.InherentRiskRating === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-        : contentDetails.LinkedRiskData.InherentRiskRatingImg
-          .changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.AppetiteRatingImg =
-      contentDetails.LinkedRiskData.AppetiteRating == '' ||
-        contentDetails.LinkedRiskData.AppetiteRating === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-        : contentDetails.LinkedRiskData.AppetiteRatingImg
-          .changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.ResidualRiskRatingImg =
-      contentDetails.LinkedRiskData.ResidualRiskRating == '' ||
-        contentDetails.LinkedRiskData.ResidualRiskRating === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-        : contentDetails.LinkedRiskData.ResidualRiskRatingImg
-          .changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.TargetRiskRatingImg =
-      contentDetails.LinkedRiskData.TargetRiskRating == '' ||
-        contentDetails.LinkedRiskData.TargetRiskRating === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-        : contentDetails.LinkedRiskData.TargetRiskRatingImg
-          .changingThisBreaksApplicationSecurity;
 
-    contentDetails.LinkedRiskData.InherentRiskRating =
-      contentDetails.LinkedRiskData.InherentRiskRating == '' ||
-        contentDetails.LinkedRiskData.InherentRiskRating === undefined
-        ? 'N/A'
-        : contentDetails.LinkedRiskData.InherentRiskRating;
-    contentDetails.LinkedRiskData.AppetiteRating =
-      contentDetails.LinkedRiskData.AppetiteRating == '' ||
-        contentDetails.LinkedRiskData.AppetiteRating === undefined
-        ? 'N/A'
-        : contentDetails.LinkedRiskData.AppetiteRating;
-    contentDetails.LinkedRiskData.ResidualRiskRating =
-      contentDetails.LinkedRiskData.ResidualRiskRating == '' ||
-        contentDetails.LinkedRiskData.ResidualRiskRating === undefined
-        ? 'N/A'
-        : contentDetails.LinkedRiskData.ResidualRiskRating;
-    contentDetails.LinkedRiskData.TargetRiskRating =
-      contentDetails.LinkedRiskData.TargetRiskRating == '' ||
-        contentDetails.LinkedRiskData.TargetRiskRating === undefined
-        ? 'N/A'
-        : contentDetails.LinkedRiskData.TargetRiskRating;
+    contentDetails.LinkedRiskData.InherentRiskRatingImg = contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      : contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.LinkedRiskData.AppetiteRatingImg = contentDetails.LinkedRiskData.AppetiteRating == '' || contentDetails.LinkedRiskData.AppetiteRating === undefined
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      : contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.LinkedRiskData.ResidualRiskRatingImg = contentDetails.LinkedRiskData.ResidualRiskRating == '' || contentDetails.LinkedRiskData.ResidualRiskRating === undefined
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      : contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.LinkedRiskData.TargetRiskRatingImg = contentDetails.LinkedRiskData.TargetRiskRating == '' || contentDetails.LinkedRiskData.TargetRiskRating === undefined
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      : contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
+
+    contentDetails.LinkedRiskData.InherentRiskRating = contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined
+      ? 'N/A' : contentDetails.LinkedRiskData.InherentRiskRating;
+    contentDetails.LinkedRiskData.AppetiteRating = contentDetails.LinkedRiskData.AppetiteRating == '' || contentDetails.LinkedRiskData.AppetiteRating === undefined
+      ? 'N/A' : contentDetails.LinkedRiskData.AppetiteRating;
+    contentDetails.LinkedRiskData.ResidualRiskRating = contentDetails.LinkedRiskData.ResidualRiskRating == '' || contentDetails.LinkedRiskData.ResidualRiskRating === undefined
+      ? 'N/A' : contentDetails.LinkedRiskData.ResidualRiskRating;
+    contentDetails.LinkedRiskData.TargetRiskRating = contentDetails.LinkedRiskData.TargetRiskRating == '' || contentDetails.LinkedRiskData.TargetRiskRating === undefined
+      ? 'N/A' : contentDetails.LinkedRiskData.TargetRiskRating;
 
     const maxCharacters = 80;
-    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
-      /#/g,
-      '\\#'
-    );
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g,'\\#');
+
     // Truncate the htmlTemplate if it exceeds the maximum number of characters
     const truncatedHtmlTemplate =
       contentDetails.htmlTemplate.length > maxCharacters
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
+
+
+
+    var riskAppetite =
+      "<div class='column'>" +
+      "<p class ='ratings'> Risk Appetite  </p>" +
+      "<p class='bow-tie-risk-rating-details'>" +
+      "<img class='bow-tie-risk-rating-details-image'" +
+      "src='" +
+      contentDetails.LinkedRiskData.AppetiteRatingImg +
+      "'" +
+      "<span class='bow-tie-risk-rating-details-text'>" +
+      contentDetails.LinkedRiskData.AppetiteRating +
+      '</span>' +
+      '</p>' +
+      '</div>';
+
+    riskAppetite = contentDetails.LinkedRiskData.IsEnableRiskAppetite == "true"
+      ? riskAppetite
+      : "";
+
+
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
       "<div class='bow-tie-risk-card-header-top-expand' >" +
@@ -495,18 +492,7 @@ export class TemplateClass {
       '</span>' +
       '</p>' +
       '</div>' +
-      "<div class='column'>" +
-      "<p class='ratings'> Risk Appetite  </p>" +
-      "<p class='bow-tie-risk-rating-details'>" +
-      "<img class='bow-tie-risk-rating-details-image'" +
-      "src='" +
-      contentDetails.LinkedRiskData.AppetiteRatingImg +
-      "'" +
-      "<span class='bow-tie-risk-rating-details-text'>" +
-      contentDetails.LinkedRiskData.AppetiteRating +
-      '</span>' +
-      '</p>' +
-      '</div>' +
+        riskAppetite +
       '</div>' +
       '</div>' +
       "<div class='bow-tie-risk-card-footer-expand'>" +

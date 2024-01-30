@@ -95,6 +95,7 @@ interface LinkedRiskData {
   TargetRiskRatingImg: any;
   AppetiteRatingImg: any;
   profileImageUrl: any;
+  IsEnableRiskAppetite: string;
 }
 interface AuthorityDocument {
   AuthorityDocumentId: number;
