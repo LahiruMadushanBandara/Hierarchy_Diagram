@@ -313,22 +313,6 @@ export class AppComponent implements OnChanges {
 
       var diagram = $('#diagram').getKendoDiagram();
 
-      // var sliders = $(".slider").kendoSlider({
-      //   min: 0.02,
-      //   max: 2,
-      //   smallStep: 0.01,
-      //   largeStep: 0.02,
-      //   value: 0.3,
-      //   tooltip: {
-      //     enabled: true,
-      //   },
-      //   slide: function (e) {
-      //     diagram.zoom(e.value);
-      //   },
-      //   change: function (e) {
-      //     diagram.zoom(e.value);
-      //   }
-      // }).data("kendoSlider");
 
 
       var slider = $(".eqSlider").kendoSlider({
@@ -513,6 +497,7 @@ export class AppComponent implements OnChanges {
         expandIcon.classList.toggle('hide-icon', isExpand);
         collapseIcon.classList.toggle('hide-icon', !isExpand);
 
+        diagram.refresh();
 
        
     });
@@ -565,15 +550,15 @@ export class AppComponent implements OnChanges {
         $(".btn-Return").click(function () {
           // Get the current URL
           var currentUrl = window.location.href;
-
+          var RiskRegisterID = localStorage.getItem("RiskRegisterID")
+          console.log("riskregisteris stand alone app",RiskRegisterID);
           // Extract the base path up to '/cammsrisk'
           var basePath = currentUrl.match(/^(.*\/cammsrisk)/);
-
+           RiskRegisterID = RiskRegisterID == null ? "/register/1" : `/register/${RiskRegisterID}` ;
           if (basePath && basePath[1]) {
 
             // Append '/register/1' to the base path
-            var regiterPageUrl = basePath[1] + '/register/1';
-
+            var regiterPageUrl = basePath[1] + RiskRegisterID ;
             // Navigate to the new URL
             window.location.href = regiterPageUrl;
           }

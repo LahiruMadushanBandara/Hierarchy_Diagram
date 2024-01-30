@@ -149,19 +149,27 @@ export class TemplateClass {
 
   public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) { 
 
-    contentDetails.RiskData.InherentRiskRatingImg = contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined
+    contentDetails.RiskData.InherentRiskRatingImg =
+      contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined ||
+      contentDetails.RiskData.InherentRiskRatingImg == '' || contentDetails.RiskData.InherentRiskRatingImg === undefined
       ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
       : contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
 
-    contentDetails.RiskData.AppetiteRatingImg = contentDetails.RiskData.AppetiteRating == '' || contentDetails.RiskData.AppetiteRating === undefined
+    contentDetails.RiskData.AppetiteRatingImg =
+      contentDetails.RiskData.AppetiteRating == '' || contentDetails.RiskData.AppetiteRating === undefined ||
+      contentDetails.RiskData.AppetiteRatingImg == '' || contentDetails.RiskData.AppetiteRatingImg === undefined
       ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
       : contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
 
-    contentDetails.RiskData.ResidualRiskRatingImg = contentDetails.RiskData.ResidualRiskRating == '' || contentDetails.RiskData.ResidualRiskRating === undefined
+    contentDetails.RiskData.ResidualRiskRatingImg =
+      contentDetails.RiskData.ResidualRiskRating == '' || contentDetails.RiskData.ResidualRiskRating === undefined ||
+      contentDetails.RiskData.ResidualRiskRatingImg == '' || contentDetails.RiskData.ResidualRiskRatingImg === undefined
       ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
       : contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
 
-    contentDetails.RiskData.TargetRiskRatingImg = contentDetails.RiskData.TargetRiskRating == '' || contentDetails.RiskData.TargetRiskRating === undefined
+    contentDetails.RiskData.TargetRiskRatingImg =
+      contentDetails.RiskData.TargetRiskRating == '' || contentDetails.RiskData.TargetRiskRating === undefined ||
+      contentDetails.RiskData.TargetRiskRatingImg == '' || contentDetails.RiskData.TargetRiskRatingImg === undefined
       ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
       : contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
 
@@ -286,12 +294,27 @@ export class TemplateClass {
     enablePerformanceview: boolean
   ) {
 
-    contentDetails.ControlData.ControlOwnerRatingImage = contentDetails.ControlData.ControlOwnerRatingImage == '' 
-    || contentDetails.ControlData.ControlOwnerRatingImage === undefined
-    ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;":
-     contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity;
+    contentDetails.ControlData.ControlOwnerRatingImage = 
+      contentDetails.ControlData.ControlOwnerRatingImage == '' || contentDetails.ControlData.ControlOwnerRatingImage === undefined ||
+      contentDetails.ControlData.ControlOwnerRating == '' || contentDetails.ControlData.ControlOwnerRating === undefined
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;":
+      contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity;
 
-     
+    contentDetails.ControlData.ControlOwnerRating = contentDetails.ControlData.ControlOwnerRating == '' || contentDetails.ControlData.ControlOwnerRating === undefined
+      ? 'N/A' : contentDetails.ControlData.ControlOwnerRating;
+
+    contentDetails.ControlData.ControlOwnerImageUrl = 
+      contentDetails.ControlData.ControlOwnerImageUrl == '' || contentDetails.ControlData.ControlOwnerImageUrl === undefined ||
+      contentDetails.ControlData.ControlOwner == '' || contentDetails.ControlData.ControlOwner === undefined
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;":
+      contentDetails.ControlData.ControlOwnerImageUrl.changingThisBreaksApplicationSecurity;
+
+    contentDetails.ControlData.ControlOwner = contentDetails.ControlData.ControlOwner == '' || contentDetails.ControlData.ControlOwner === undefined
+      ? 'N/A' : contentDetails.ControlData.ControlOwner;
+
+      
+
+
     var stylesForPerformanceView: PerformanceStyleGeneral;
 
     var perfomanceViewGeneralBodyStyle = null;
@@ -357,8 +380,7 @@ export class TemplateClass {
       '>' +
       "<img class ='bow-tie-owner-image'" +
       "src='" +
-      contentDetails.ControlData.ControlOwnerImageUrl
-        .changingThisBreaksApplicationSecurity +
+      contentDetails.ControlData.ControlOwnerImageUrl +        
       "'" +
       "<span class='bow-tie-owner-name'>" +
       contentDetails.ControlData.ControlOwner +
@@ -386,18 +408,29 @@ export class TemplateClass {
 
   public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
 
-    contentDetails.LinkedRiskData.InherentRiskRatingImg = contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-      : contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.AppetiteRatingImg = contentDetails.LinkedRiskData.AppetiteRating == '' || contentDetails.LinkedRiskData.AppetiteRating === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-      : contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.ResidualRiskRatingImg = contentDetails.LinkedRiskData.ResidualRiskRating == '' || contentDetails.LinkedRiskData.ResidualRiskRating === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-      : contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
-    contentDetails.LinkedRiskData.TargetRiskRatingImg = contentDetails.LinkedRiskData.TargetRiskRating == '' || contentDetails.LinkedRiskData.TargetRiskRating === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
-      : contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
+    contentDetails.LinkedRiskData.InherentRiskRatingImg = 
+      contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined ||
+      contentDetails.LinkedRiskData.InherentRiskRatingImg == '' || contentDetails.LinkedRiskData.InherentRiskRatingImg === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
+
+    contentDetails.LinkedRiskData.AppetiteRatingImg = 
+      contentDetails.LinkedRiskData.AppetiteRating == '' || contentDetails.LinkedRiskData.AppetiteRating === undefined ||
+      contentDetails.LinkedRiskData.AppetiteRatingImg == '' || contentDetails.LinkedRiskData.AppetiteRatingImg === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
+        
+    contentDetails.LinkedRiskData.ResidualRiskRatingImg = 
+      contentDetails.LinkedRiskData.ResidualRiskRating == '' || contentDetails.LinkedRiskData.ResidualRiskRating === undefined ||
+      contentDetails.LinkedRiskData.ResidualRiskRatingImg == '' || contentDetails.LinkedRiskData.ResidualRiskRatingImg === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
+
+    contentDetails.LinkedRiskData.TargetRiskRatingImg = 
+      contentDetails.LinkedRiskData.TargetRiskRating == '' || contentDetails.LinkedRiskData.TargetRiskRating === undefined ||
+      contentDetails.LinkedRiskData.TargetRiskRatingImg == '' || contentDetails.LinkedRiskData.TargetRiskRatingImg === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.LinkedRiskData.InherentRiskRating = contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined
       ? 'N/A' : contentDetails.LinkedRiskData.InherentRiskRating;
@@ -522,16 +555,29 @@ export class TemplateClass {
   }
 
   public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
+
+    contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic =
+      contentDetails.TreatmentData.TreatmentResponsibleOfficer == '' || contentDetails.TreatmentData.TreatmentResponsibleOfficer === undefined ||
+      contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic == '' || contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity;
+
+    contentDetails.TreatmentData.TreatmentResponsibleOfficer = contentDetails.TreatmentData.TreatmentResponsibleOfficer == '' || contentDetails.TreatmentData.TreatmentResponsibleOfficer === undefined
+      ? 'N/A' : contentDetails.TreatmentData.TreatmentResponsibleOfficer;
+
+    
     const maxCharacters = 80;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
     );
+
     // Truncate the htmlTemplate if it exceeds the maximum number of characters
     const truncatedHtmlTemplate =
       contentDetails.htmlTemplate.length > maxCharacters
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
+
     // Calculate the percentage completion
     const completePercentage = contentDetails.TreatmentData.TreatmentPercentageComplete;
 
@@ -556,7 +602,7 @@ export class TemplateClass {
       "<p class='bow-tie-expand-responsible-officer-details'>" +
       "<img class='bow-tie-expand-responsible-officer-image'" +
       "src='" +
-      contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity +
+      contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic+
       "'" +
       "<span class='bow-tie-expand-responsible-officer-name'>" +
       contentDetails.TreatmentData.TreatmentResponsibleOfficer +
@@ -577,6 +623,25 @@ export class TemplateClass {
   }
 
   public GetIncidentExpand(contentDetails: DiagramNodeData) {
+
+    contentDetails.IncidentData.ReportedOfficerImageUrl =
+      contentDetails.IncidentData.ReportedOfficerName == '' || contentDetails.IncidentData.ReportedOfficerName === undefined ||
+      contentDetails.IncidentData.ReportedOfficerImageUrl == '' || contentDetails.IncidentData.ReportedOfficerImageUrl === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.IncidentData.ReportedOfficerImageUrl.changingThisBreaksApplicationSecurity;
+
+    contentDetails.IncidentData.ReportedOfficerName = contentDetails.IncidentData.ReportedOfficerName == '' || contentDetails.IncidentData.ReportedOfficerName === undefined
+      ? 'N/A' : contentDetails.IncidentData.ReportedOfficerName;
+
+    contentDetails.IncidentData.ResponsibleManagerProfilePic =
+      contentDetails.IncidentData.ResponsiblePerson == '' || contentDetails.IncidentData.ResponsiblePerson === undefined ||
+      contentDetails.IncidentData.ResponsibleManagerProfilePic == '' || contentDetails.IncidentData.ResponsibleManagerProfilePic === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity;
+
+    contentDetails.IncidentData.ResponsiblePerson = contentDetails.IncidentData.ResponsiblePerson == '' || contentDetails.IncidentData.ResponsiblePerson === undefined
+      ? 'N/A' : contentDetails.IncidentData.ResponsiblePerson;
+
     const maxCharacters = 80;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
@@ -602,8 +667,7 @@ export class TemplateClass {
       "<p class='bow-tie-responsible-officer'>" +
       "<img class='bow-tie-owner-image'" +
       "src='" +
-      contentDetails.IncidentData.ReportedOfficerImageUrl
-        .changingThisBreaksApplicationSecurity +
+      contentDetails.IncidentData.ReportedOfficerImageUrl +        
       "'" +
       "<span class='bow-tie-owner-name'>" +
       contentDetails.IncidentData.ReportedOfficerName +
@@ -613,9 +677,7 @@ export class TemplateClass {
       "<p class='bow-tie-expand-responsible-officer-details'>" +
       "<img class='bow-tie-expand-responsible-officer-image'" +
       "src='" +
-      contentDetails.IncidentData.ResponsibleManagerProfilePic
-        .changingThisBreaksApplicationSecurity
-        .changingThisBreaksApplicationSecurity +
+      contentDetails.IncidentData.ResponsibleManagerProfilePic +
       "'" +
       "<span class='bow-tie-expand-responsible-officer-name'>" +
       contentDetails.IncidentData.ResponsiblePerson +
@@ -633,6 +695,16 @@ export class TemplateClass {
   }
 
   public GetComplianceObligationExpand(contentDetails: DiagramNodeData) {
+
+    contentDetails.ComplianceData.ROImage =
+      contentDetails.ComplianceData.ResponsibleOfficer == '' || contentDetails.ComplianceData.ResponsibleOfficer === undefined ||
+      contentDetails.ComplianceData.ROImage == '' || contentDetails.ComplianceData.ROImage === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.ComplianceData.ROImage.changingThisBreaksApplicationSecurity;
+
+    contentDetails.ComplianceData.ResponsibleOfficer = contentDetails.ComplianceData.ResponsibleOfficer == '' || contentDetails.ComplianceData.ResponsibleOfficer === undefined
+      ? 'N/A' : contentDetails.ComplianceData.ResponsibleOfficer;
+
     const maxCharacters = 80;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
@@ -658,8 +730,7 @@ export class TemplateClass {
       "<p class='bow-tie-responsible-officer'>" +
       "<img class='bow-tie-owner-image'" +
       "src='" +
-      contentDetails.ComplianceData.ROImage
-        .changingThisBreaksApplicationSecurity +
+      contentDetails.ComplianceData.ROImage+
       "'" +
       "<span class='bow-tie-owner-name'>" +
       contentDetails.ComplianceData.ResponsibleOfficer +
@@ -840,6 +911,16 @@ export class TemplateClass {
   }
 
   public GetAuthorityDocumentExpand(contentDetails: DiagramNodeData) {
+
+    contentDetails.AuthorityDocumentData.ROImage =
+      contentDetails.AuthorityDocumentData.ResponsibleOfficer == '' || contentDetails.AuthorityDocumentData.ResponsibleOfficer === undefined ||
+      contentDetails.AuthorityDocumentData.ROImage == '' || contentDetails.AuthorityDocumentData.ROImage === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.AuthorityDocumentData.ROImage.changingThisBreaksApplicationSecurity;
+
+    contentDetails.AuthorityDocumentData.ResponsibleOfficer = contentDetails.AuthorityDocumentData.ResponsibleOfficer == '' || contentDetails.AuthorityDocumentData.ResponsibleOfficer === undefined
+      ? 'N/A' : contentDetails.AuthorityDocumentData.ResponsibleOfficer;
+
     const maxCharacters = 80;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
@@ -873,8 +954,7 @@ export class TemplateClass {
           "<p class='bow-tie-expand-responsible-officer-details'>" +
             "<img class='bow-tie-expand-responsible-officer-image'" +
             "src='" +
-            contentDetails.AuthorityDocumentData.ROImage
-              .changingThisBreaksApplicationSecurity +
+            contentDetails.AuthorityDocumentData.ROImage+
             "'" +
             "<span class='bow-tie-expand-responsible-officer-name'>" +
              contentDetails.AuthorityDocumentData.ResponsibleOfficer +
@@ -887,6 +967,16 @@ export class TemplateClass {
   }
 
   public GetPolicyExpand(contentDetails: DiagramNodeData) {
+
+    contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic =
+      contentDetails.PolicyData.ResponsiblePerson == '' || contentDetails.PolicyData.ResponsiblePerson === undefined ||
+      contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic == '' || contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic === undefined
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        : contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity;
+
+      contentDetails.PolicyData.ResponsiblePerson = contentDetails.PolicyData.ResponsiblePerson == '' || contentDetails.PolicyData.ResponsiblePerson === undefined
+      ? 'N/A' : contentDetails.PolicyData.ResponsiblePerson;
+
     const maxCharacters = 80;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
@@ -921,8 +1011,7 @@ export class TemplateClass {
         "<p class='bow-tie-expand-responsible-officer-details'>" +
           "<img class='bow-tie-expand-responsible-officer-image'" +
           "src='" +
-          contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic
-            .changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity +
+          contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic+
           "'" +
           "<span class='bow-tie-expand-responsible-officer-name'>" +
             contentDetails.PolicyData.ResponsiblePerson+
