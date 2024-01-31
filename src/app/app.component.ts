@@ -22,19 +22,19 @@ declare var $: any;
 })
 
 export class AppComponent implements OnChanges {
- 
+
   @Output() expandChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
   @Input() bowTieNodeDetails: DiagramNodeData[] = [];
- 
+
   riskTemplate: string = '';
   controlTemplate: string = '';
   causeTemplate: string = '';
   consequencesTemplate: string = '';
   otherTemplate: string = '';
   originalData: DiagramNodeData[] = [];
-  dataAvailability:boolean = false;
+  dataAvailability: boolean = false;
 
   @Input() IsExpanded: boolean = false;
 
@@ -80,16 +80,16 @@ export class AppComponent implements OnChanges {
         complianceTemplateExpnad: "",
         authorityDocumentTemplateExpnad: "",
         auditTemplateExpnad: "",
-        hierarchyTemplate:"",
-        auditRecommendationTemplate:"",
-        auditFindingTemplate:"",
-        PolicyTemplate:"",
+        hierarchyTemplate: "",
+        auditRecommendationTemplate: "",
+        auditFindingTemplate: "",
+        PolicyTemplate: "",
       }
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-        Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
-      
+      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
+
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
       var height = renderElement.height();
@@ -137,7 +137,7 @@ export class AppComponent implements OnChanges {
 
 
         //creating connection lines
-        
+
         var dataConnections = [];
 
         for (let i = 1; i < originalData.length; i++) {
@@ -159,9 +159,9 @@ export class AppComponent implements OnChanges {
                   Id: j,
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
-                  Text: null,                  
-                  fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" : 
-                  (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
+                  Text: null,
+                  fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
+                    (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
               } else {
                 dataConnections.push({
@@ -169,7 +169,7 @@ export class AppComponent implements OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
                   ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
                   Text: null,
-                 
+
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                 });
               }
@@ -181,7 +181,7 @@ export class AppComponent implements OnChanges {
               Id: i,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
-              Text: null,             
+              Text: null,
               fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
             });
           }
@@ -192,7 +192,7 @@ export class AppComponent implements OnChanges {
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              toConnector: "auto",              
+              toConnector: "auto",
               fromConnector: (originalData[i].Type === 2) ? "left" : "right",
             });
           }
@@ -200,13 +200,13 @@ export class AppComponent implements OnChanges {
 
 
 
-        var initialStateOfDataAndConnections= {
+        var initialStateOfDataAndConnections = {
           data: dataShapes.slice(),
           connections: dataConnections
         };
 
 
-        var kendoDiagram = $('#diagram').kendoDiagram({
+        $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
             schema: {
@@ -284,7 +284,7 @@ export class AppComponent implements OnChanges {
           zoom: 0.3,
           zoomRate: 0.02,
           cancel: onCancel,
-          
+
           layout: false,
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
           editable: {
@@ -308,202 +308,100 @@ export class AppComponent implements OnChanges {
             diagramManager.updateDiagramDimensions(this);
           }
         });
-       
-
-
-      var diagram = $('#diagram').getKendoDiagram();
 
 
 
-      var slider = $(".eqSlider").kendoSlider({
-        orientation: "vertical",
-        min: 0.02,
-        max: 2,
-        smallStep: 0.01,
-        largeStep: 0.02,
-        value: 0.3,
-        tooltip: {
-          enabled: true,
-        },
-        slide: function (e) {
-          diagram.zoom(e.value);
-        },
-        change: function (e) {
-          diagram.zoom(e.value);
-        }
-      }).data("kendoSlider");
-     
-      
-      diagram.wrapper.on("wheel", function (e) {
-        e.preventDefault();    
-        //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
-        var delta = e.originalEvent.deltaY;        
-        if (delta > 0) {
-          $(".zoomOutIcon").trigger("click")    
-        } else {
-          $(".zoomInIcon").trigger("click")
-        }       
-      });
-    
+        var diagram = $('#diagram').getKendoDiagram();
 
-      $(".zoomInIcon").click(function () {
+
+
+        var slider = $(".eqSlider").kendoSlider({
+          orientation: "vertical",
+          min: 0.02,
+          max: 2,
+          smallStep: 0.01,
+          largeStep: 0.02,
+          value: 0.3,
+          tooltip: {
+            enabled: true,
+          },
+          slide: function (e) {
+            diagram.zoom(e.value);
+          },
+          change: function (e) {
+            diagram.zoom(e.value);
+          }
+        }).data("kendoSlider");
+
+
+        diagram.wrapper.on("wheel", function (e) {
+          e.preventDefault();
+          //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
+          var delta = e.originalEvent.deltaY;
+          if (delta > 0) {
+            $(".zoomOutIcon").trigger("click")
+          } else {
+            $(".zoomInIcon").trigger("click")
+          }
+        });
+
+
+        $(".zoomInIcon").click(function () {
           var currentZoom = diagram.zoom();
           currentZoom += 0.02;
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
-      });
-  
-      $(".zoomOutIcon").click(function () {
+        });
+
+        $(".zoomOutIcon").click(function () {
           var currentZoom = diagram.zoom();
           currentZoom -= 0.02;
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
-      });
+        });
 
 
 
-      var sliderHandle = slider.wrapper.find('.k-draghandle');
-      sliderHandle.kendoTooltip({
-        content: function (e) {
-          return slider.value();
-        },
-        position: 'top',
-        animation: false // You can enable animation if needed
-      });
+        var sliderHandle = slider.wrapper.find('.k-draghandle');
+        sliderHandle.kendoTooltip({
+          content: function (e) {
+            return slider.value();
+          },
+          position: 'top',
+          animation: false // You can enable animation if needed
+        });
 
 
-      $(".bt-Risk").click(function () {
 
-        if (isKpIview == false) {
-          isRiskView = !isRiskView;
+        $(".bt-Expand").click(function () {
+          var diagram = $("#diagram").getKendoDiagram();
+          isExpand = !isExpand;
 
-          const Riskbutton = document.getElementById('btRiskView');
-          Riskbutton.classList.toggle('active', isRiskView);
+          const expandButton = document.getElementById('btExpandView');
+          expandButton.classList.toggle('active', isExpand);
 
+          // Toggle between expand and collapse icons
+          const expandIcon = expandButton.querySelector('.expand-icon') as HTMLElement;
+          const collapseIcon = expandButton.querySelector('.collapse-icon') as HTMLElement;
 
-          var diagram = kendoDiagram.getKendoDiagram();
-          var connectionsDataSource = diagram.connectionsDataSource;
-
-          if (isRiskView) {
-
-            $('#btKpikView').prop("disabled", true);
-            // Clear connections that are not linked to nodes with header = riskExpand
-            var visibleConnections = diagram.connectionsDataSource
-              .data()
-              .filter(function (connection) {
-                var fromNode = diagram.dataSource.get(connection.from);
-                var toNode = diagram.dataSource.get(connection.to);
-                return (
-                  (fromNode && fromNode.Header === 'Linked Risk') ||
-                  (toNode && toNode.Header === 'Linked Risk')
-                );
-              });
-
-            // Store the original connections before clearing them
-            originalConnections = diagram.connectionsDataSource.data().slice();
-
-            // Clear all connections
-            connectionsDataSource.data([]);
-
-            // Re-add visible connections
-            connectionsDataSource.data(visibleConnections);
-          } else {
-            $('#btKpikView').prop("disabled", false);
-            // Re-establish all the original connections
-            connectionsDataSource.data(originalConnections);
-          }
-          diagram.bringIntoView(diagram.shapes);
-          diagram.refresh();
-        }
-      });
-
-      $(".bt-Kpi").click(function () {
-        if (isRiskView == false) {
-          isKpIview = !isKpIview;
-
-          const Kpidbutton = document.getElementById('btKpikView');
-          Kpidbutton.classList.toggle('active', isKpIview);
-
-          var diagram = kendoDiagram.getKendoDiagram();
-          var connectionsDataSource = diagram.connectionsDataSource;
-
-          if (isKpIview) {
-            $('#btRiskView').prop("disabled", true);
-            // Clear connections that are not linked to nodes with header = KPI
-            var visibleConnections = diagram.connectionsDataSource
-              .data()
-              .filter(function (connection) {
-                var fromNode = diagram.dataSource.get(connection.from);
-                var toNode = diagram.dataSource.get(connection.to);
-                return (
-                  (fromNode && fromNode.Header === 'KPI') ||
-                  (toNode && toNode.Header === 'KPI')
-                );
-              });
-
-            // Store the original connections before clearing them
-            originalConnections = diagram.connectionsDataSource
-              .data()
-              .slice();
-
-            // Clear all connections
-            connectionsDataSource.data([]);
-
-            // Re-add visible connections
-            connectionsDataSource.data(visibleConnections);
-          } else {
-            $('#btRiskView').prop("disabled", false);
-            // Re-establish all the original connections
-            connectionsDataSource.data(originalConnections);
-          }
-
-          diagram.bringIntoView(diagram.shapes);
-          diagram.refresh();
-        }
-
-      });
-
-      $(".bt-Performance").click(function () {
-        isPerformanceView = !isPerformanceView;
-
-        const Performancebutton = document.getElementById('btPerformanceView');
-        Performancebutton.classList.toggle('active', isPerformanceView);
-
-        var diagram = kendoDiagram.getKendoDiagram();
-
-        diagram.refresh();
-      });
-
-      
-      $(".bt-Expand").click(function () {
-        var diagram = $("#diagram").getKendoDiagram();
-        isExpand = !isExpand;
-    
-        const expandButton = document.getElementById('btExpandView');
-        expandButton.classList.toggle('active', isExpand);
-    
-        // Toggle between expand and collapse icons
-        const expandIcon = expandButton.querySelector('.expand-icon') as HTMLElement;
-        const collapseIcon = expandButton.querySelector('.collapse-icon') as HTMLElement;
-    
-        // Toggle between expand and collapse text
-        const buttonText = isExpand ? 'Collapse Panel' : 'Expand Panel';
-        const textElement = expandButton.querySelector('.text') as HTMLElement;
-        if (textElement) {
+          // Toggle between expand and collapse text
+          const buttonText = isExpand ? 'Collapse Panel' : 'Expand Panel';
+          const textElement = expandButton.querySelector('.text') as HTMLElement;
+          if (textElement) {
             textElement.innerText = buttonText;
-        }
-    
-        // Toggle between hiding and showing icons
-        expandIcon.classList.toggle('hide-icon', isExpand);
-        collapseIcon.classList.toggle('hide-icon', !isExpand);
+          }
 
-        diagram.refresh();
+          // Toggle between hiding and showing icons
+          expandIcon.classList.toggle('hide-icon', isExpand);
+          collapseIcon.classList.toggle('hide-icon', !isExpand);
 
-       
-    });
-    
+          diagram.refresh();
 
-      $(".btn-Export").click(function () {
+
+        });
+
+
+        $(".btn-Export").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
           diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
             kendo.saveAs({
@@ -511,63 +409,63 @@ export class AppComponent implements OnChanges {
               fileName: "bow-tie-analysis.pdf"
             });
           });
-      });
+        });
 
-      $(".bt-BackFromCentralizedView").click(function () {
-        // Reset both data source and connections data source
-        diagram.setDataSource(dataShapes);
-    
-        // Re-add the initial connections using a deep copy
-        diagram.setConnectionsDataSource({
+        $(".bt-BackFromCentralizedView").click(function () {
+          // Reset both data source and connections data source
+          diagram.setDataSource(dataShapes);
+
+          // Re-add the initial connections using a deep copy
+          diagram.setConnectionsDataSource({
             data: JSON.parse(JSON.stringify(initialStateOfDataAndConnections.connections)),
             schema: {
-                model: {
-                    id: 'id',
-                    fields: {
-                        id: { from: 'Id', type: 'number', editable: false },
-                        from: { from: 'FromShapeId', type: 'number' },
-                        to: { from: 'ToShapeId', type: 'number' },
-                        fromX: { from: 'FromPointX', type: 'number' },
-                        fromY: { from: 'FromPointY', type: 'number' },
-                        toX: { from: 'ToPointX', type: 'number' },
-                        toY: { from: 'ToPointY', type: 'number' },
-                    },
+              model: {
+                id: 'id',
+                fields: {
+                  id: { from: 'Id', type: 'number', editable: false },
+                  from: { from: 'FromShapeId', type: 'number' },
+                  to: { from: 'ToShapeId', type: 'number' },
+                  fromX: { from: 'FromPointX', type: 'number' },
+                  fromY: { from: 'FromPointY', type: 'number' },
+                  toX: { from: 'ToPointX', type: 'number' },
+                  toY: { from: 'ToPointY', type: 'number' },
                 },
+              },
             },
-        });
-    
-        //  Enable the buttons
+          });
+
+          //  Enable the buttons
           $('#btRiskView').prop("disabled", false);
           $('#btKpikView').prop("disabled", false);
 
-        var reloadButton = document.getElementById("btReload");
-        reloadButton.style.display = "none";
-        diagram.bringIntoView(diagram.shapes);
-        
-  
-      });
+          var reloadButton = document.getElementById("btReload");
+          reloadButton.style.display = "none";
+          diagram.bringIntoView(diagram.shapes);
+
+
+        });
 
         $(".btn-Return").click(function () {
           // Get the current URL
           var currentUrl = window.location.href;
           var RiskRegisterID = localStorage.getItem("RiskRegisterID")
-          console.log("riskregisteris stand alone app",RiskRegisterID);
+          console.log("riskregisteris stand alone app", RiskRegisterID);
           // Extract the base path up to '/cammsrisk'
           var basePath = currentUrl.match(/^(.*\/cammsrisk)/);
-           RiskRegisterID = RiskRegisterID == null ? "/register/1" : `/register/${RiskRegisterID}` ;
+          RiskRegisterID = RiskRegisterID == null ? "/register/1" : `/register/${RiskRegisterID}`;
           if (basePath && basePath[1]) {
 
             // Append '/register/1' to the base path
-            var regiterPageUrl = basePath[1] + RiskRegisterID ;
+            var regiterPageUrl = basePath[1] + RiskRegisterID;
             // Navigate to the new URL
             window.location.href = regiterPageUrl;
           }
-        
+
         });
 
-    
 
-       
+
+
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
@@ -589,6 +487,6 @@ export class AppComponent implements OnChanges {
 
     //..................centralized view function...........................
 
-  
+
   }
 }
