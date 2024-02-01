@@ -57,20 +57,20 @@ public handlePan(e, diagram) {
 }
 
 
-// public updateDiagramDimensions(diagram) {
-//   // Calculate the available screen width and height
-//   var screenWidth = $(window).width();
-//   var screenHeight = $(window).height();
+public updateDiagramDimensions(diagram) {
+  // Calculate the available screen width and height
+  var screenWidth = $(window).width();
+  var screenHeight = $(window).height();
 
-//   // Calculate a reasonable diagram size based on screen dimensions
-//   var diagramWidth = Math.min(screenWidth); // Adjust the 100 as needed
-//   var diagramHeight = Math.min(screenHeight + 100); // Adjust the 100 as needed
+  // Calculate a reasonable diagram size based on screen dimensions
+  var diagramWidth = Math.min(screenWidth); // Adjust the 100 as needed
+  var diagramHeight = Math.min(screenHeight + 100); // Adjust the 100 as needed
 
-//   // Update the diagram's dimensions
-//   diagram.wrapper.width(diagramWidth);
-//   diagram.wrapper.height(diagramHeight);
-//   diagram.resize();
-// }
+  // Update the diagram's dimensions
+  diagram.wrapper.width(diagramWidth);
+  diagram.wrapper.height(diagramHeight);
+  diagram.resize();
+}
 
 public onNodeClick(e , clicked:boolean , diagram , dataArrayoriginal ) {
 

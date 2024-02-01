@@ -167,7 +167,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRatingImage": ""
         }
       },
-    
+
 
       {
         "Id": 5,
@@ -177,7 +177,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Cause",
         "Rating": "",
         "htmlTemplate": "<dev> 1 ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": [1,2,3,4]
+        "LinkedControlIds": [1, 2, 3, 4]
 
       },
       {
@@ -271,7 +271,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Cause",
         "Rating": "",
         "htmlTemplate": "<dev> 3 22InsufficientITsecuritymanagement</dev>",
-        "LinkedControlIds": [6,7,8,9]
+        "LinkedControlIds": [6, 7, 8, 9]
 
       },
 
@@ -805,7 +805,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Rating": "",
         "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
         "AuditRecommendationData": {
-         
+
         }
       },
 
@@ -818,11 +818,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Rating": "",
         "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
         "AuditRecommendationData": {
-         
+
         }
       },
 
-      
+
       {
         "Id": 39,
         "Type": 4,
@@ -832,16 +832,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Rating": "",
         "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
         "PolicyData": {
-          "IncidentTypeName":"compliance",
-          "ResponsiblePerson":"Andrew James",
-          "PolicyResponsibleOfficerProfilePic":""
+          "IncidentTypeName": "compliance",
+          "ResponsiblePerson": "Andrew James",
+          "PolicyResponsibleOfficerProfilePic": ""
         }
       },
 
 
 
     ]
-    console.log("data array" , this.originalData);
+
+
+    console.log("data array", this.originalData);
     var tempTitleDetail = '';
     let isRiskView = false;
     let isKpIview = false;
@@ -876,17 +878,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         authorityDocumentTemplateExpnad: "",
         auditTemplateExpnad: "",
         treatmentTemplate: "",
-        hierarchyTemplate:"",
-        auditRecommendationTemplate:"",
-        auditFindingTemplate:"",
-        PolicyTemplate:"",
+        hierarchyTemplate: "",
+        auditRecommendationTemplate: "",
+        auditFindingTemplate: "",
+        PolicyTemplate: "",
       }
-      
+
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-     
-        Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
-      
+
+      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
+
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
       var height = renderElement.height();
@@ -918,7 +920,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         createDiagram(this.originalData, this.IsExpanded);
       });
 
-      
+
 
       function onCancel(e) {
         e.preventDefault();
@@ -939,9 +941,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
 
-        
 
-        
+
+
         var dataConnections = [];
 
         for (let i = 1; i < originalData.length; i++) {
@@ -966,8 +968,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
                   Text: null,
                   color: (j === 0) ? "2" : "4",
-                  fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" : 
-                  (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
+                  fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
+                    (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
               } else {
                 dataConnections.push({
@@ -1000,15 +1002,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               ToShapeId: originalData[i].Id,
               Text: null,
               color: "2",
-              fromConnector: (originalData[i].Type === 2 ) ? "left" : "right"
+              fromConnector: (originalData[i].Type === 2) ? "left" : "right"
 
             });
           }
         }
 
 
-        console.log("connection data set",dataConnections)
-       
+        console.log("connection data set", dataConnections)
+
 
 
         var initialState = {
@@ -1016,7 +1018,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           connections: dataConnections
         };
 
-      
+
 
 
         $("#toolbar").kendoToolBar({
@@ -1132,10 +1134,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           },
-          change: function (e) {    
+          change: function (e) {
             // Call the function to update connection colors
             diagramManager.updateConnectionColors(e.added);
-        },
+          },
 
           shapeDefaults: {
             stroke: {
@@ -1163,21 +1165,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           cancel: onCancel,
 
           layout: false,
-          click: (e) => diagramManager.onNodeClick(e , clicked , diagram , dataArrayoriginal),
+          click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
           editable: true,
           pannable: {
             key: "none", // Use the Ctrl key for panning
             pan: function (e) {
-                // Call the function to handle panning
-                diagramManager.handlePan(e, this);
+              // Call the function to handle panning
+              diagramManager.handlePan(e, this);
             }
-        },
-      //   dataBound: function () {
-      //     // Call the function to update diagram dimensions
-      //     diagramManager.updateDiagramDimensions(this);
-      // }
+          },
+          //   dataBound: function () {
+          //     // Call the function to update diagram dimensions
+          //     diagramManager.updateDiagramDimensions(this);
+          // }
         });
-       
 
 
 
@@ -1186,7 +1187,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-        
+
+
         var slider = $(".eqSlider").kendoSlider({
           orientation: "vertical",
           min: 0.02,
@@ -1205,35 +1207,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           }
         }).data("kendoSlider");
 
-        // kendo.ui.icon($('.k-button[title="Increase"] .k-svg-icon'), { icon: 'zoom-in' });
-        // kendo.ui.icon($('.k-button[title="Decrease"] .k-svg-icon'), { icon: 'zoom-out' });
-
-
-
-
-
-
 
         var diagram = $("#diagram").getKendoDiagram();
         //create connection lines back from shape
 
         if (kendoDiagram.shapes && Array.isArray(kendoDiagram.shapes)) {
           kendoDiagram.shapes.forEach(function (shape) {
-              if (shape) {
-                  shape.toFront();
-              }
+            if (shape) {
+              shape.toFront();
+            }
           });
-      }
-      
-      if (kendoDiagram.connections && Array.isArray(kendoDiagram.connections)) {
+        }
+
+        if (kendoDiagram.connections && Array.isArray(kendoDiagram.connections)) {
           kendoDiagram.connections.forEach(function (connection) {
-              if (connection) {
-                  connection.toBack();
-              }
+            if (connection) {
+              connection.toBack();
+            }
           });
-      }
-      
-        
+        }
+
+
         var sliders = $(".slider").kendoSlider({
           // orientation: "vertical",
           min: 0.02,
@@ -1304,27 +1298,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         $(".bt-Expand").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
           isExpand = !isExpand;
-      
+
           const expandButton = document.getElementById('btExpandView');
           expandButton.classList.toggle('active', isExpand);
-      
+
           // Toggle between expand and collapse icons
           const expandIcon = expandButton.querySelector('.expand-icon') as HTMLElement;
           const collapseIcon = expandButton.querySelector('.collapse-icon') as HTMLElement;
-      
+
           // Toggle between expand and collapse text
           const buttonText = isExpand ? 'Collapse' : 'Expand';
           const textElement = expandButton.querySelector('.text') as HTMLElement;
           if (textElement) {
-              textElement.innerText = buttonText;
+            textElement.innerText = buttonText;
           }
-      
+
           // Toggle between hiding and showing icons
           expandIcon.classList.toggle('hide-icon', isExpand);
           collapseIcon.classList.toggle('hide-icon', !isExpand);
-      
+
           diagram.refresh();
-      });
+        });
 
 
         $(".bt-Risk").click(function () {
@@ -1461,7 +1455,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           var reloadButton = document.getElementById("btReload");
           reloadButton.style.display = "none";
         });
-      
+
 
 
 
@@ -1490,7 +1484,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-   
+
   }
 
   // ngOnInit(): void {
