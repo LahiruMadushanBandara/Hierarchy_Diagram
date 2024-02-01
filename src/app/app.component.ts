@@ -1021,68 +1021,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-        $("#toolbar").kendoToolBar({
-          items: [
-            {
-              template: `
-
-              <div>
-                <h3  class="bt-analsys-header-txt">Bow Tie Analysis</h3>
-
-                <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">  
-
-                    <div kendoTooltip position="bottom" [title]="'zoom'" class="zoom">
-                      <span class="zoomIcon zoomOutIcon" id="zoomOut"></span>
-                      <div  class='slider'></div>
-                      <span class="zoomIcon zoomInIcon" id="zoomIn"></span>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Back'">
-                    <button type="button" class="bt-Reload btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
-                      <span>Back</span>
-                    </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Risk View'">
-                        <button type="button" class="bt-Risk btn bow-tie-btn-outline-primary" id="btRiskView" >
-                          <span>Risk View</span>
-                        </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Kpi View'">
-                        <button type="button" class="bt-Kpi btn bow-tie-btn-outline-primary" id="btKpikView" >
-                            <span>Kpi View</span>
-                        </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Performance View'">
-                      <button type="button" class="bt-Performance btn bow-tie-btn-outline-primary" id="btPerformanceView" >
-                          <span>Performance View</span>
-                      </button>
-                    </div>
-
-                    <div kendoTooltip position="bottom" [title]="'Expand Nodes'">
-                        <button type="button" class="bt-Expand btn bow-tie-btn-outline-primary" id="btExpandView">
-                            <span class="expand-icon"></span>
-                            <span class="collapse-icon hide-icon"></span>
-                            <span class="text">Expand</span>                      
-                        </button>
-                    </div>
-                    
-
-                    <div kendoTooltip position="bottom" [title]="'Export Diagram'">
-                      <button type="button" class="btn-Export btn bow-tie-btn-outline-primary" id="btExport" >
-                          <i class="cam-icon cam-i-export" aria-hidden="true"></i>
-                          <span>Export</span>
-                      </button>
-                    </div>
-                </div>                  
-            </div>        
-                `
-            },
-          ]
-        })
-
 
 
         var kendoDiagram = $('#diagram').kendoDiagram({
@@ -1166,7 +1104,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           layout: false,
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
-          editable: true,
+          editable: {
+            drag: false,
+            tools: [
+              {
+                template: diagramManager.GetToolbarTemplate()
+              }
+            ]
+          },
           pannable: {
             key: "none", // Use the Ctrl key for panning
             pan: function (e) {
@@ -1183,7 +1128,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-
+        var diagram = $("#diagram").getKendoDiagram();
 
 
 
@@ -1206,46 +1151,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             diagram.zoom(e.value);
           }
         }).data("kendoSlider");
-
-
-        var diagram = $("#diagram").getKendoDiagram();
-        //create connection lines back from shape
-
-        if (kendoDiagram.shapes && Array.isArray(kendoDiagram.shapes)) {
-          kendoDiagram.shapes.forEach(function (shape) {
-            if (shape) {
-              shape.toFront();
-            }
-          });
-        }
-
-        if (kendoDiagram.connections && Array.isArray(kendoDiagram.connections)) {
-          kendoDiagram.connections.forEach(function (connection) {
-            if (connection) {
-              connection.toBack();
-            }
-          });
-        }
-
-
-        var sliders = $(".slider").kendoSlider({
-          // orientation: "vertical",
-          min: 0.02,
-          max: 2,
-          smallStep: 0.01,
-          largeStep: 0.02,
-          value: 0.3,
-          tooltip: {
-            enabled: true,
-          },
-          slide: function (e) {
-            diagram.zoom(e.value);
-          },
-          change: function (e) {
-            diagram.zoom(e.value);
-          }
-        }).data("kendoSlider");
-
 
         var sliderHandle = slider.wrapper.find('.k-draghandle');
         sliderHandle.kendoTooltip({
