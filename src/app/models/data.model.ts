@@ -16,7 +16,7 @@ export interface DiagramNodeData {
   AuthorityDocumentData?: AuthorityDocument;
   ComplianceData?: Compliance;
   AuditData?: Audit;
-  TreatmentData?:Treatment;
+  TreatmentData?: Treatment;
   HierarchyData?: Hierarchy;
   AuditRecommendationData?: AuditRecommendation;
   AuditFindingData?: AuditFinding;
@@ -121,12 +121,12 @@ interface Audit {
   AuditDate: string;
 }
 
-interface Treatment{
-  TreatmentId:number;
-  TreatmentEndDate:string;
-  TreatmentResponsibleOfficer:string;
-  TreatmentPercentageComplete:number;
-  TreatmentResponsibleOfficerProfilePic:any;
+interface Treatment {
+  TreatmentId: number;
+  TreatmentEndDate: string;
+  TreatmentResponsibleOfficer: string;
+  TreatmentPercentageComplete: number;
+  TreatmentResponsibleOfficerProfilePic: any;
 }
 
 interface Hierarchy {

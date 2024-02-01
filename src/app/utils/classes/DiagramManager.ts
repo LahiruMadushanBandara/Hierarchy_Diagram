@@ -60,10 +60,10 @@ export class DiagramManager {
     // Calculate the available screen width and height
     var screenWidth = $(window).width();
     var screenHeight = $(window).height();
-
+   
     // Calculate a reasonable diagram size based on screen dimensions
-    var diagramWidth = Math.min(screenWidth - 50); // Adjust the 100 as needed
-    var diagramHeight = Math.min(screenHeight + 100); // Adjust the 100 as needed
+    var diagramWidth = Math.min(screenWidth - 50);
+    var diagramHeight = Math.min(screenHeight + 100); 
 
     // Update the diagram's dimensions
     diagram.wrapper.width(diagramWidth);
@@ -125,7 +125,7 @@ export class DiagramManager {
           linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
           riskColumnNumber++;
           centralizedRiskNodes.push(linkedNodesToClickedNode[i]);
-          console.log(centralizedRiskNodes);
+      
           var riskArrayLength = centralizedRiskNodes.length - 1;
         }
 
@@ -141,7 +141,7 @@ export class DiagramManager {
             causeConsequenceRowNumber++;
           }
 
-          console.log(causeConsequenceRowNumber);
+          
 
         }
         //all other nodes that linked to control placed right bottom of the clicked node
@@ -163,7 +163,7 @@ export class DiagramManager {
 
 
       }
-      console.log(linkedNodesToClickedNode);
+  
 
       //rectreate the connection source
       var connectionsDataSource = {

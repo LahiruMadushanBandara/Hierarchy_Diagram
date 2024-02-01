@@ -242,7 +242,7 @@ export class BowTieDiagramHelper {
 
         if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
           const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing ;
           const y =
             originY +
             rowNumbertypeFourWhenOnlyBottomNodes * verticalSpacingFour;
@@ -254,7 +254,7 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
         } else {
           const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing ;
           const y = riskNode.y + rowNumbertypeFour * verticalSpacingFour;
 
           node.x = x;

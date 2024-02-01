@@ -281,7 +281,7 @@ export class AppComponent implements OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.3,
+          zoom: 0.4,
           zoomRate: 0.02,
           cancel: onCancel,
 
@@ -314,14 +314,14 @@ export class AppComponent implements OnChanges {
         var diagram = $('#diagram').getKendoDiagram();
 
 
-
+        
         var slider = $(".eqSlider").kendoSlider({
           orientation: "vertical",
           min: 0.02,
           max: 2,
           smallStep: 0.01,
           largeStep: 0.02,
-          value: 0.3,
+          value: 0.4,
           tooltip: {
             enabled: true,
           },
@@ -331,6 +331,7 @@ export class AppComponent implements OnChanges {
           change: function (e) {
             diagram.zoom(e.value);
           }
+          
         }).data("kendoSlider");
 
 
@@ -449,7 +450,7 @@ export class AppComponent implements OnChanges {
           // Get the current URL
           var currentUrl = window.location.href;
           var RiskRegisterID = localStorage.getItem("RiskRegisterID")
-          console.log("riskregisteris stand alone app", RiskRegisterID);
+       
           // Extract the base path up to '/cammsrisk'
           var basePath = currentUrl.match(/^(.*\/cammsrisk)/);
           RiskRegisterID = RiskRegisterID == null ? "/register/1" : `/register/${RiskRegisterID}`;
