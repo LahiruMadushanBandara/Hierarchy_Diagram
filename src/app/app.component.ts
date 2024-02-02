@@ -636,6 +636,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
 
+      {
+        "Id": 289,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 24 Prioritize critical business functions</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Prioritize critical business functions",
+          "ControlOwner": "Madeline Jones",
+          "ControlOwnerRating": "Partially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+
+        }
+      },
 
 
       {
@@ -949,11 +970,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         for (let i = 1; i < originalData.length; i++) {
           if (originalData[i].Title === "Other Node") {
             dataConnections.push({
-              Id: originalData[i].Type === i,
+              Id: originalData[i].Id,
               FromShapeId: originalData[i].ParentNodeId,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "3",
               fromConnector: "bottom",
               toConnector: "top"
             });
@@ -967,7 +987,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
                   Text: null,
-                  color: (j === 0) ? "2" : "4",
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
@@ -977,7 +996,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
                   ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
                   Text: null,
-                  color: (j === 0) ? "2" : (j === originalData[i].LinkedControlIds.length) ? "4" : "1",
+
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                 });
               }
@@ -986,27 +1005,53 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId === 0) {
             dataConnections.push({
-              Id: i,
+              Id: originalData[i].Id,
               FromShapeId: 0,
               ToShapeId: originalData[i].Id,
               Text: null,
-              color: "3",
               fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
             });
           }
+          var notLinkedControlsTypeTwo: any[] = [];
+          var notLinkedControlsTypeThree: any[] = [];
 
-          if (originalData[i].Title === "Control Node" && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-            dataConnections.push({
-              Id: i,
-              FromShapeId: 0,
-              ToShapeId: originalData[i].Id,
-              Text: null,
-              color: "2",
-              fromConnector: (originalData[i].Type === 2) ? "left" : "right"
-
-            });
+          // Collect all "Control Node" type 2 and 3 elements with IsLinkedToCauseOrConsequence set to false
+          for (let i = 0; i < originalData.length; i++) {
+              if (originalData[i].Title === "Control Node" && originalData[i].Type === 2 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+                  notLinkedControlsTypeTwo.push(originalData[i]);
+              }
+              
+              if (originalData[i].Title === "Control Node" && originalData[i].Type === 3 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+                notLinkedControlsTypeThree.push(originalData[i]);
+              }
           }
+          
+          // Generate connection lines based on notLinkedControls
+          for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
+              dataConnections.push({
+                  Id:  notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
+                  FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
+                  ToShapeId: notLinkedControlsTypeTwo[j].Id,
+                  Text: null,
+                  toConnector: "right",
+                  fromConnector: "left", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+              });
+          }
+        
+        // Generate connection lines based on notLinkedControls
+          for (let j = 0; j < notLinkedControlsTypeThree.length; j++) {
+            dataConnections.push({
+                Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
+                FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
+                ToShapeId: notLinkedControlsTypeThree[j].Id,
+                Text: null,
+                toConnector: "left",
+                fromConnector: "right", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+            });
         }
+          
+        }
+
 
 
         console.log("connection data set", dataConnections)
