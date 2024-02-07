@@ -516,6 +516,28 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
 
+      {
+        "Id": 221,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 19 Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
+          "ControlOwner": "Andrew James",
+          "ControlOwnerRating": "Substantially Effective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
+
 
 
       {
@@ -526,7 +548,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Consequence",
         "Rating": "",
         "htmlTemplate": "<dev> 2 ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": [22]
+        "LinkedControlIds": [22,221]
 
       },
       {
@@ -930,10 +952,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     var diagramHelper = new BowTieDiagramHelper();
+   
     const arrangedData = diagramHelper.ArrangeNodes(this.originalData, isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
-
-
+   
+   
 
 
     $(() => {
@@ -1143,14 +1166,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.3,
+          zoom: 0.5,
           zoomRate: 0.02,
           cancel: onCancel,
 
           layout: false,
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
           editable: {
-            drag: false,
+            drag: true,
             tools: [
               {
                 template: diagramManager.GetToolbarTemplate()

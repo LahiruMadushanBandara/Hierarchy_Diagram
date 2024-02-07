@@ -4,7 +4,9 @@ export class BowTieDiagramHelper {
   constructor(
   ) {}
   
-  ArrangeNodes(originalData, isExpanded:boolean) {
+  ArrangeNodes(originalData , isExpand:boolean) {
+
+
 
     // console.log(originalData);
     const arrangedNodes = [];
@@ -77,6 +79,7 @@ export class BowTieDiagramHelper {
       let columnNumber = 0;
       let rowNodeCount = 0;
       let controlHorizontalSpacing = 0;
+      let controlNodesPerRow = 0;
 
       
      
@@ -97,13 +100,14 @@ export class BowTieDiagramHelper {
         if (typeTwoNodes[i].Title == 'Control Node') {
 
 
-            const x = originX - (columnNumber + 1) * controlHorizontalSpacing;
+            const x = originX - (columnNumber + 1) * horizontalSpacing;
             const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
 
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
+            controlNodesPerRow++
           
 
             if (rowNodeCount === maxNodesPerRow) {
@@ -121,7 +125,7 @@ export class BowTieDiagramHelper {
             typeTwoNodes[i].y = y;
             arrangedNodes.push(typeTwoNodes[i]);
             rowNodeCount++;
-            rowNumbertypetwo++;
+            rowNumbertypetwo++
             rowNodeCount = 0;
             columnNumber = rowNodeCount;
 
@@ -145,7 +149,7 @@ export class BowTieDiagramHelper {
 
        if (typeThreeNodes[i].Title == 'Control Node') {
 
-          const x = originX + (columnNumber + 1) * controlHorizontalSpacing;
+          const x = originX + (columnNumber + 1) * horizontalSpacing;
           const y = originY + rowNumbertypethree * verticalSpacing;
           typeThreeNodes[i].x = x;
           typeThreeNodes[i].y = y;
@@ -240,8 +244,26 @@ export class BowTieDiagramHelper {
         }
        
       });
-    
-      // Arrange control nodes that are not link to cause or consequence nodes (below type 2 and type 3)
+ 
+
+    }
+    return arrangedNodes;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ // Arrange control nodes that are not link to cause or consequence nodes (below type 2 and type 3)
 
       // if (originalData.ControlData?.IsLinkedToCauseOrConsequence == false) {
       //   const notLinkedNodes = originalData.filter((node) => node?.IsLinkedToCauseOrConsequence === false);
@@ -276,9 +298,3 @@ export class BowTieDiagramHelper {
       //     isTypeTwo = !isTypeTwo;
       //   }
       // }
-
-    }
-    return arrangedNodes;
-  }
-
-}
