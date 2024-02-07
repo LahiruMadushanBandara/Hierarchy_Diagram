@@ -348,7 +348,7 @@ export class AppComponent implements OnChanges {
           max: 2,
           smallStep: 0.01,
           largeStep: 0.02,
-          value: 0.4,
+          value: diagram.zoom(),
           tooltip: {
             enabled: true,
           },
@@ -399,7 +399,32 @@ export class AppComponent implements OnChanges {
           animation: false // You can enable animation if needed
         });
 
+        function switchView(isExpand) {
+           diagramHelper.ArrangeNodes(originalData, isExpand);
+                 
+          // Reset both data source and connections data source
+          diagram.setDataSource(dataShapes);
 
+          // Re-add the initial connections using a deep copy
+          diagram.setConnectionsDataSource({
+            data: JSON.parse(JSON.stringify(initialStateOfDataAndConnections.connections)),
+            schema: {
+              model: {
+                id: 'id',
+                fields: {
+                  id: { from: 'Id', type: 'number', editable: false },
+                  from: { from: 'FromShapeId', type: 'number' },
+                  to: { from: 'ToShapeId', type: 'number' },
+                  fromX: { from: 'FromPointX', type: 'number' },
+                  fromY: { from: 'FromPointY', type: 'number' },
+                  toX: { from: 'ToPointX', type: 'number' },
+                  toY: { from: 'ToPointY', type: 'number' },
+                },
+              },
+            },
+          });
+
+        }
 
         $(".bt-Expand").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
@@ -422,6 +447,8 @@ export class AppComponent implements OnChanges {
           // Toggle between hiding and showing icons
           expandIcon.classList.toggle('hide-icon', isExpand);
           collapseIcon.classList.toggle('hide-icon', !isExpand);
+
+          switchView(isExpand);
 
           diagram.refresh();
 

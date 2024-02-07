@@ -58,8 +58,9 @@ export class BowTieDiagramHelper {
 
     if (riskNode) {
       const horizontalSpacing = 500;
-      let verticalSpacing = 520;
-      let verticalSpacingFour = 520;
+      const verticalSpacing = isExpand ? 520 : 300;
+      console.log("verticalSpacing",verticalSpacing);
+      let verticalSpacingFour =  isExpand ? 520 : 300;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -72,9 +73,11 @@ export class BowTieDiagramHelper {
       let rowNodeCount = 0;
       let controlHorizontalSpacing = 0;
 
-      if (!isExpand) {
-        verticalSpacing = 500;
-      }
+      
+     
+      
+
+      
 
       // arrange type 2 nodes (left of type 1)
       for (let i = 0; i < typeTwoNodes.length; i++) {
@@ -228,7 +231,7 @@ export class BowTieDiagramHelper {
 
       // Arrange type 4 nodes (below type 2 and type 3)
       if (typeFourNodes.length < 12) {
-        typeFourNodeCount = typeFourNodes.length / 2;
+        typeFourNodeCount = typeFourNodes.length % 2;
       } else {
         typeFourNodeCount = 5;
       }
