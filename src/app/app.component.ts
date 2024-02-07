@@ -1245,6 +1245,38 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           });
         });
 
+        function switchView(isExpand) {
+           diagramHelper.ArrangeNodes(originalData, isExpand);
+           console.log("hello view")
+          // // Clear existing diagram
+          // diagram.destroy();
+      
+          // Reset both data source and connections data source
+          diagram.setDataSource(initialState.data);
+
+          // Re-add the initial connections using a deep copy
+          diagram.setConnectionsDataSource({
+            data: JSON.parse(JSON.stringify(initialState.connections)),
+            schema: {
+              model: {
+                id: 'id',
+                fields: {
+                  id: { from: 'Id', type: 'number', editable: false },
+                  from: { from: 'FromShapeId', type: 'number' },
+                  to: { from: 'ToShapeId', type: 'number' },
+                  fromX: { from: 'FromPointX', type: 'number' },
+                  fromY: { from: 'FromPointY', type: 'number' },
+                  toX: { from: 'ToPointX', type: 'number' },
+                  toY: { from: 'ToPointY', type: 'number' },
+                },
+              },
+            },
+          });
+
+            // // Redraw the diagram
+            // diagram.redraw();
+      }
+
         $(".bt-Expand").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
           isExpand = !isExpand;
@@ -1266,6 +1298,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           // Toggle between hiding and showing icons
           expandIcon.classList.toggle('hide-icon', isExpand);
           collapseIcon.classList.toggle('hide-icon', !isExpand);
+
+          switchView(isExpand);
 
           diagram.refresh();
         });

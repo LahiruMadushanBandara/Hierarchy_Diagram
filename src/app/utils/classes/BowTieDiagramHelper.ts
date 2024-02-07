@@ -62,8 +62,9 @@ export class BowTieDiagramHelper {
 
     if (riskNode) {
       const horizontalSpacing = 520;
-      let verticalSpacing = 520;
-      let verticalSpacingFour = 520;
+      const verticalSpacing = isExpand ? 520 : 300;
+      console.log("verticalSpacing",verticalSpacing);
+      let verticalSpacingFour =  isExpand ? 520 : 300;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -77,13 +78,7 @@ export class BowTieDiagramHelper {
       let rowNodeCount = 0;
       let controlHorizontalSpacing = 0;
 
-      if(!isExpanded)
-      {
       
-       verticalSpacing = 520;
-      
-       
-      }
      
       
 
