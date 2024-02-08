@@ -58,8 +58,9 @@ export class BowTieDiagramHelper {
 
     if (riskNode) {
       const horizontalSpacing = 500;
-      let verticalSpacing = 520;
-      let verticalSpacingFour = 520;
+      const verticalSpacing = isExpand ? 520 : 300;
+      console.log("verticalSpacing",verticalSpacing);
+      let verticalSpacingFour =  isExpand ? 520 : 300;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -72,9 +73,11 @@ export class BowTieDiagramHelper {
       let rowNodeCount = 0;
       let controlHorizontalSpacing = 0;
 
-      if (!isExpand) {
-        verticalSpacing = 520;
-      }
+      
+     
+      
+
+      
 
       // arrange type 2 nodes (left of type 1)
       for (let i = 0; i < typeTwoNodes.length; i++) {
@@ -173,7 +176,7 @@ export class BowTieDiagramHelper {
         if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
           riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
         } else if (typeTwoNodes.length >= 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 200;
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 50;
         }
       }
 
@@ -185,7 +188,7 @@ export class BowTieDiagramHelper {
         if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
           riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
         } else if (typeThreeNodes.length >= 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 200;
+          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 50;
         }
       }
 
@@ -234,7 +237,7 @@ export class BowTieDiagramHelper {
       }
 
       let rowNumbertypeFour = 3;
-      let rowNumbertypeFourWhenOnlyBottomNodes = 1.5;
+      let rowNumbertypeFourWhenOnlyBottomNodes = 2;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
 
       typeFourNodes.forEach((node, index) => {
@@ -242,7 +245,7 @@ export class BowTieDiagramHelper {
 
         if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
           const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing ;
           const y =
             originY +
             rowNumbertypeFourWhenOnlyBottomNodes * verticalSpacingFour;
@@ -254,7 +257,7 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
         } else {
           const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing ;
           const y = riskNode.y + rowNumbertypeFour * verticalSpacingFour;
 
           node.x = x;

@@ -16,7 +16,7 @@ export interface DiagramNodeData {
   AuthorityDocumentData?: AuthorityDocument;
   ComplianceData?: Compliance;
   AuditData?: Audit;
-  TreatmentData?:Treatment;
+  TreatmentData?: Treatment;
   HierarchyData?: Hierarchy;
   AuditRecommendationData?: AuditRecommendation;
   AuditFindingData?: AuditFinding;
@@ -37,6 +37,7 @@ interface RiskData {
   TargetRiskRatingImg: any;
   AppetiteRatingImg: any;
   profileImageUrl: any;
+  IsEnableRiskAppetite: string;
 }
 
 interface ControlData {
@@ -94,6 +95,7 @@ interface LinkedRiskData {
   TargetRiskRatingImg: any;
   AppetiteRatingImg: any;
   profileImageUrl: any;
+  IsEnableRiskAppetite: string;
 }
 interface AuthorityDocument {
   AuthorityDocumentId: number;
@@ -119,12 +121,12 @@ interface Audit {
   AuditDate: string;
 }
 
-interface Treatment{
-  TreatmentId:number;
-  TreatmentEndDate:string;
-  TreatmentResponsibleOfficer:string;
-  TreatmentPercentageComplete:number;
-  TreatmentResponsibleOfficerProfilePic:any;
+interface Treatment {
+  TreatmentId: number;
+  TreatmentEndDate: string;
+  TreatmentResponsibleOfficer: string;
+  TreatmentPercentageComplete: number;
+  TreatmentResponsibleOfficerProfilePic: any;
 }
 
 interface Hierarchy {
