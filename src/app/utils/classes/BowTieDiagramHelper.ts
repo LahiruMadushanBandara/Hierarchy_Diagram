@@ -231,13 +231,13 @@ export class BowTieDiagramHelper {
 
       // Arrange type 4 nodes (below type 2 and type 3)
       if (typeFourNodes.length < 12) {
-        typeFourNodeCount = typeFourNodes.length % 2;
+        typeFourNodeCount = typeFourNodes.length / 2;
       } else {
         typeFourNodeCount = 5;
       }
 
       let rowNumbertypeFour = 3;
-      let rowNumbertypeFourWhenOnlyBottomNodes = 1.5;
+      let rowNumbertypeFourWhenOnlyBottomNodes = 2;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
 
       typeFourNodes.forEach((node, index) => {

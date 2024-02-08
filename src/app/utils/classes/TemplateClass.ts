@@ -29,6 +29,16 @@ export class TemplateClass {
       perfomanceViewGeneralHeaderStyle = stylesForPerformanceView.headerStyle;
     }
 
+    const maxCharacters = 100;
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
+      /#/g,
+      '\\#'
+    );
+    // Truncate the htmlTemplate if it exceeds the maximum number of characters
+    const truncatedHtmlTemplate =
+      contentDetails.htmlTemplate.length > maxCharacters
+        ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+        : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-control-card-content rounded' " +
       perfomanceViewGeneralBodyStyle +
@@ -46,7 +56,7 @@ export class TemplateClass {
       "<p class='bow-tie-htmlTemplate'  " +
       perfomanceViewGeneralBodyStyle +
       '>\\' +
-      contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+      truncatedHtmlTemplate+
       '</p>' +
       '</div>' +
       '</div>'
@@ -536,8 +546,8 @@ export class TemplateClass {
       contentDetails.LinkedRiskData.Category +
       '</p>' +
       '</div>' +
-      "<div class='bow-tie-risk-footer-details-responsible'>" +
-      "<p class='ratings'> Responsible Manager  </p>" +
+      "<div class='bow-tie-risk-Expand-footer-details-responsible'>" +
+      "<p class='bow-tie-risk-responsible-manager'> Responsible Manager  </p>" +
       "<p class='bow-tie-risk-rating-details'>" +
       "<img class='bow-tie-risk-rating-details-image'" +
       "src='" +
