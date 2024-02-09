@@ -169,25 +169,31 @@ export class BowTieDiagramHelper {
 
       //if type two nodes are more than type three and less than 6 then place risk at the end else place risk second last row
 
-      if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) {
-        if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
+      if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) 
+      {
+        if (rowNumbertypetwo === 1 ) {
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y ;
+        }
+        else if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
           riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y - riskCordinateIncrementValue;
         } else if (typeTwoNodes.length >= 6 && typeTwoNodes.length != 0) {
           riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - riskCordinateIncrementValue;
         }
+        
       }
 
       //if type three nodes are more than type two and less than 6 then place risk at the end else place risk second last row
-      else if (
-        typeThreeNodes.length != 0 &&
-        typeTwoNodes.length < typeThreeNodes.length
-      ) {
-        if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
+      else if (typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length) 
+      {
+        if (rowNumbertypethree === 1 ) {
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
+        }
+        else if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
           riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y - riskCordinateIncrementValue;
         } else if (typeThreeNodes.length >= 6 && typeThreeNodes.length != 0) {
-          if (isExpand)
-            riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - riskCordinateIncrementValue;
+          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - riskCordinateIncrementValue;
         }
+        
       }
 
       //if there are no type two and three nodes then place the risk in the middle(0,0)
@@ -216,28 +222,34 @@ export class BowTieDiagramHelper {
           riskNode.y = originY + riskYCodinate - verticalSpacing / 2;
           arrangedNodes.push(riskNode);
         }
-      } else {
+       
+      } 
+      else {
         let riskNodeX = originX;
         let riskNodeY = originY + riskYCodinate - verticalSpacing / 2;
         riskNode.x = riskNodeX;
         riskNode.y = riskNodeY;
         arrangedNodes.push(riskNode);
+        
       }
 
       let typeFourNodeCount;
+      let typeFourNodePlacingValue;
       rowNodeCount = 0;
-      console.log(typeFourNodes.length,typeFourNodeCount)
+    
+      
       // Arrange type 4 nodes (below type 2 and type 3)
       if (typeFourNodes.length < 12) {      
           typeFourNodeCount = Math.floor(typeFourNodes.length / 2);       
       } else {
         typeFourNodeCount = 5;
       }
-
+      if (typeFourNodes.length % 2 === 0) {typeFourNodePlacingValue = 250}
+      else{typeFourNodePlacingValue = 0}
       let rowNumbertypeFour = 3;
       let rowNumbertypeFourWhenOnlyBottomNodes = 2;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
-
+      
       typeFourNodes.forEach((node, index) => {
         // Adjusting the starting point for type 4 nodes when there are no type two or three nodes
 
@@ -255,7 +267,7 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
         } else {
           const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+            riskNode.x + typeFourNodePlacingValue + (columnNumber - typeFourNodeCount) * horizontalSpacing;
           const y = riskNode.y + rowNumbertypeFour * verticalSpacingFour + 100;
 
           node.x = x;

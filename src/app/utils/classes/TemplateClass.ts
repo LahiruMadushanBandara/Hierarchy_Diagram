@@ -226,7 +226,7 @@ export class TemplateClass {
       "<div class='bow-tie-risk-card-header'>" +
       "<p class='bow-tie-risk-card-header-text'>\\" +
       contentDetails.RiskData.RiskCode +
-      '-' +
+      ' ' +
       contentDetails.htmlTemplate.replace(/#/g, '\\#') +
       '</p>' +
       '</div>' +

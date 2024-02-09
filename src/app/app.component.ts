@@ -282,11 +282,7 @@ export class AppComponent implements OnChanges {
               },
             },
           },
-          change: function (e) {
-            // Call the function to update connection colors
-            diagramManager.updateConnectionColors(e.added);
-          },
-
+         
           shapeDefaults: {
             stroke: {
               color: '#979797',
