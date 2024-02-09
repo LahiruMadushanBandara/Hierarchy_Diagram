@@ -8,11 +8,11 @@ export class DiagramManager {
     var connColor;
 
     enum ConnectionColor {
-      Red = "#979797",
-      Green = "#979797",
-      LightBlue = "#979797",
-      DarkBlue = "#979797",
-      Default = "#979797"
+      Red = "#323250",
+      Green = "#323250",
+      LightBlue = "#323250",
+      DarkBlue = "#323250",
+      Default = "#323250"
     }
     for (var idx = 0; idx < connections.length; idx++) {
       if (connections[idx] instanceof kendo.dataviz.diagram.Connection) {

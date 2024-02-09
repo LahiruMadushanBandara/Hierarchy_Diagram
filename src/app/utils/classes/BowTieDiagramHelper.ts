@@ -59,8 +59,8 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 500;
       const verticalSpacing = isExpand ? 520 : 300;
-      console.log("verticalSpacing",verticalSpacing);
-      let verticalSpacingFour =  isExpand ? 520 : 300;
+      let verticalSpacingFour = isExpand ? 520 : 300;
+      let riskCordinateIncrementValue = isExpand ? 50 : 150;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -169,14 +169,11 @@ export class BowTieDiagramHelper {
 
       //if type two nodes are more than type three and less than 6 then place risk at the end else place risk second last row
 
-      if (
-        typeTwoNodes.length != 0 &&
-        typeTwoNodes.length >= typeThreeNodes.length
-      ) {
+      if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) {
         if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y - riskCordinateIncrementValue;
         } else if (typeTwoNodes.length >= 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - 50;
+          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - riskCordinateIncrementValue;
         }
       }
 
@@ -186,9 +183,10 @@ export class BowTieDiagramHelper {
         typeTwoNodes.length < typeThreeNodes.length
       ) {
         if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y;
+          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y - riskCordinateIncrementValue;
         } else if (typeThreeNodes.length >= 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - 50;
+          if (isExpand)
+            riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - riskCordinateIncrementValue;
         }
       }
 
@@ -228,10 +226,10 @@ export class BowTieDiagramHelper {
 
       let typeFourNodeCount;
       rowNodeCount = 0;
-
+      console.log(typeFourNodes.length,typeFourNodeCount)
       // Arrange type 4 nodes (below type 2 and type 3)
-      if (typeFourNodes.length < 12) {
-        typeFourNodeCount = typeFourNodes.length / 2;
+      if (typeFourNodes.length < 12) {      
+          typeFourNodeCount = Math.floor(typeFourNodes.length / 2);       
       } else {
         typeFourNodeCount = 5;
       }
@@ -245,7 +243,7 @@ export class BowTieDiagramHelper {
 
         if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
           const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing ;
+            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
           const y =
             originY +
             rowNumbertypeFourWhenOnlyBottomNodes * verticalSpacingFour;
@@ -257,8 +255,8 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
         } else {
           const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing ;
-          const y = riskNode.y + rowNumbertypeFour * verticalSpacingFour;
+            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+          const y = riskNode.y + rowNumbertypeFour * verticalSpacingFour + 100;
 
           node.x = x;
           node.y = y;

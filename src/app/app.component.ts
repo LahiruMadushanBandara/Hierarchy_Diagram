@@ -298,8 +298,8 @@ export class AppComponent implements OnChanges {
           },
           connectionDefaults: {
             stroke: {
-              color: '#000000',
-              width: 3,
+              color: '#323250',
+              width: 1.5,
             },
             select: function (e) {
               e.preventDefault(); // Prevent line selection
