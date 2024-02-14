@@ -972,7 +972,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
 
       function createDiagram(originalData: any[], isExpanded: boolean) {
-        var commonPoint = new kendo.dataviz.diagram.Point(0, 0);
+       
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         var isExpanded = isExpanded;
 
@@ -984,17 +984,29 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         }
 
+        var commonPoint = new kendo.dataviz.diagram.Point(50,-50);
 
-
-
-
+  
         var dataConnections = [];
-
-        for (let i = 1; i < originalData.length; i++) {
+       
+        for (let i = 0; i < originalData.length; i++) {
+        
+          if (originalData[i].Title === "Risk Node") {
+            dataConnections.push({
+              Id:0,
+              FromShapeId: commonPoint,
+              ToShapeId: originalData[i].Id,
+              Text: null,
+              fromConnector:"top",
+              toConnector:"bottom"
+              
+            });
+            console.log("commonPoint",commonPoint.x,commonPoint.y)
+          }
           if (originalData[i].Title === "Other Node") {
             dataConnections.push({
               Id: originalData[i].Id,
-              FromShapeId: originalData[i].ParentNodeId,
+              FromShapeId: commonPoint,
               ToShapeId: originalData[i].Id,
               Text: null,
               fromConnector: "bottom",
@@ -1073,9 +1085,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             });
         }
           
+        
         }
 
-
+        
 
         console.log("connection data set", dataConnections)
 
@@ -1086,8 +1099,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           connections: dataConnections
         };
 
-
-
+   
 
 
 
@@ -1132,10 +1144,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   id: { from: 'Id', type: 'number', editable: false },
                   from: { from: 'FromShapeId', type: 'any' },
                   to: { from: 'ToShapeId', type: 'any' },
-                  fromX: { from: 'FromPointX', type: 'number' },
-                  fromY: { from: 'FromPointY', type: 'number' },
-                  toX: { from: 'ToPointX', type: 'number' },
-                  toY: { from: 'ToPointY', type: 'number' },
+                  fromX: { from: 'FromPointX', type: 'any' },
+                  fromY: { from: 'FromPointY', type: 'any' },
+                  toX: { from: 'ToPointX', type: 'any' },
+                  toY: { from: 'ToPointY', type: 'any' },
                 },
               },
             },
@@ -1150,6 +1162,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               color: '#979797',
               width: 10,
             },
+            connectors: [
+              {
+                name: "top",
+                width: 0,
+                height: 0   
+              },
+              {
+                name: "bottom",
+                width: 0,
+                height: 0, 
+              }],
             visual: function (options) {
               return visualTemplate(options)
             },
@@ -1195,11 +1218,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
+        
+        
+        
 
         var diagram = $("#diagram").getKendoDiagram();
-
-
-
+      
+       
 
 
         var slider = $(".eqSlider").kendoSlider({
