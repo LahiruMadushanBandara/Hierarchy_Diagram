@@ -162,6 +162,7 @@ export class AppComponent implements OnChanges {
                   Text: null,
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
+                  toConnector: "auto"
                 });
               } else {
                 dataConnections.push({
@@ -171,6 +172,7 @@ export class AppComponent implements OnChanges {
                   Text: null,
 
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                  toConnector: "auto"
                 });
               }
             }
@@ -183,6 +185,7 @@ export class AppComponent implements OnChanges {
               ToShapeId: originalData[i].Id,
               Text: null,
               fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+              toConnector: "auto"
             });
           }
           var notLinkedControlsTypeTwo: any[] = [];
@@ -288,9 +291,36 @@ export class AppComponent implements OnChanges {
               color: '#979797',
               width: 10,
             },
+            connectors: [
+              {
+                name: "auto",
+                width: 0,
+                height: 0   
+              },
+              {
+                name: "top",
+                width: 0,
+                height: 0   
+              },
+              {
+                name: "bottom",
+                width: 0,
+                height: 0, 
+              },
+              {
+                name: "left",
+                width: 0,
+                height: 0   
+              },
+              {
+                name: "right",
+                width: 0,
+                height: 0, 
+              }],
             visual: function (options) {
               return visualTemplate(options)
             },
+           
           },
           connectionDefaults: {
             stroke: {
