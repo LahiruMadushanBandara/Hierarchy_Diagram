@@ -11,9 +11,8 @@ export class BowTieDiagramHelper {
     // console.log(originalData);
     const arrangedNodes = [];
     // Find the risk node (type 1 with ParentNodeId 0)
-    const riskNode = originalData.find(
-      (node) => node.Type === 1 && node.ParentNodeId === 0
-    );
+    const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
+    const CommonPoint = originalData.find((node) => node.Title == 'Common-point');
 
     const causeNodes = originalData.filter((node) => node.Title == 'Cause Node');
     let maxCauseNodeLength = 0;
@@ -66,7 +65,8 @@ export class BowTieDiagramHelper {
       const horizontalSpacing = 520;
       const verticalSpacing = isExpand ? 520 : 300;
       console.log("verticalSpacing",verticalSpacing);
-      let verticalSpacingFour =  isExpand ? 520 : 300;
+      let verticalSpacingFour =  isExpand ? 350 : 200;
+      let CommonPointYValue = isExpand ? 2200 : 1300;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -80,10 +80,9 @@ export class BowTieDiagramHelper {
       let rowNodeCount = 0;
       let controlHorizontalSpacing = 0;
       let controlNodesPerRow = 0;
-
+    
       
-     
-      
+   
 
       
 
@@ -180,10 +179,10 @@ export class BowTieDiagramHelper {
       //Arrange Risk node (in the middle)
       
       if(typeTwoNodes.length!= 0  && typeTwoNodes.length >= typeThreeNodes.length){
-         riskYCodinate = (typeTwoNodes[typeTwoNodes.length - 1].y) - 100 ;
+         riskYCodinate = (typeTwoNodes[1].y) + 220 ;
       }
       else if(typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length){
-         riskYCodinate = (typeThreeNodes[typeThreeNodes.length - 2].y) - 100;
+         riskYCodinate = (typeThreeNodes[2].y) + 100;
       }
 
       if(typeTwoNodes.length == 0 && typeThreeNodes.length == 0){
@@ -202,7 +201,12 @@ export class BowTieDiagramHelper {
       arrangedNodes.push(riskNode);
     }
 
-     
+    if(CommonPoint.Title == 'Common-point'){
+      CommonPoint.x = 190;
+      CommonPoint.y = CommonPointYValue;
+      arrangedNodes.push(CommonPoint);
+     }
+      
 
     let typeFourNodeCount
       // Arrange type 4 nodes (below type 2 and type 3)
@@ -214,7 +218,7 @@ export class BowTieDiagramHelper {
       }
 
      
-      let rowNumbertypeFour = 3;
+      let rowNumbertypeFour = 7;
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
      
       typeFourNodes.forEach((node, index) => {

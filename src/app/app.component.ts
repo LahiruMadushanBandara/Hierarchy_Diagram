@@ -60,6 +60,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.originalData = [
       {
+        "Id": 1500,
+        "Type": 0,
+        "Title": "Common-point",    
+        "ParentNodeId": 0,       
+        "Header": "Common-point",
+        "Rating": "",
+        "htmlTemplate": "",     
+      },
+      {
         "Id": 0,
         "Type": 1,
         "ParentNodeId": 0,
@@ -680,28 +689,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
 
-
-      {
-        "Id": 29,
-        "Type": 4,
-        "ParentNodeId": 0,
-        "Title": "Other Node",
-        "Header": "Incident",
-        "Rating": "",
-        "htmlTemplate": "<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 1</dev>",
-        "IncidentData": {
-          "LinkageId": 1217,
-          "IncidentId": 201,
-          "IncidentTitle": "Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32)",
-          "IncidentCode": "IMS - 1",
-          "IncidentType": "IT Incident",
-          "ReportedDate": "Jul 14 2022  2:49PM",
-          "ResponsiblePerson": "Madeline Jones",
-          "ImageType": "",
-          "ByteImage": "",
-          "ResponsibleManagerProfilePic": ""
-        }
-      },
       {
         "Id": 30,
         "Type": 4,
@@ -880,7 +867,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "PolicyResponsibleOfficerProfilePic": ""
         }
       },
-
+     
 
 
     ]
@@ -984,32 +971,46 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         }
 
-        var commonPoint = new kendo.dataviz.diagram.Point(50,-50);
-
+        // var commonPoint = new kendo.dataviz.diagram.Point(50,-50);
+        // var newShape = {
+        //   id: "point1_3",
+        //   Type: 0, // Assuming 0 is the type for this shape, adjust if needed
+        //   Color: "black",
+        //   x: // Set the x-coordinate for the new shape,
+        //   y: // Set the y-coordinate for the new shape,
+        //   Title: "Title for the new shape",
+        //   width: 1,
+        //   height: 1,
+        //   fill: "transparent",
+        //   connectors: [{ name: "center" }]
+        // };
+        
+        // // Add the new shape to dataShapes
+        // dataShapes.push(newShape);
   
         var dataConnections = [];
        
-        for (let i = 0; i < originalData.length; i++) {
+        for (let i = 1; i < originalData.length; i++) {
         
           if (originalData[i].Title === "Risk Node") {
             dataConnections.push({
               Id:0,
-              FromShapeId: commonPoint,
+              FromShapeId: originalData[0].Id,
               ToShapeId: originalData[i].Id,
               Text: null,
-              fromConnector:"top",
+              fromConnector:"center",
               toConnector:"bottom"
               
             });
-            console.log("commonPoint",commonPoint.x,commonPoint.y)
+           
           }
           if (originalData[i].Title === "Other Node") {
             dataConnections.push({
               Id: originalData[i].Id,
-              FromShapeId: commonPoint,
+              FromShapeId: originalData[0].Id,
               ToShapeId: originalData[i].Id,
               Text: null,
-              fromConnector: "bottom",
+              fromConnector: "center",
               toConnector: "top"
             });
           }
@@ -1164,12 +1165,33 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             },
             connectors: [
               {
+                name: "auto",
+                width: 0,
+                height: 0   
+              },
+              {
+                name: "center",
+                width: 0,
+                height: 0   
+              },
+            
+              {
                 name: "top",
                 width: 0,
                 height: 0   
               },
               {
                 name: "bottom",
+                width: 0,
+                height: 0, 
+              },
+              {
+                name: "left",
+                width: 0,
+                height: 0   
+              },
+              {
+                name: "right",
                 width: 0,
                 height: 0, 
               }],
