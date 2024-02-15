@@ -69,17 +69,13 @@ export class TemplateClass {
       /#/g,
       '\\#'
     );
-    let truncatedHtmlTemplate
-     if(contentDetails.Header == "Audit Recommendation" || contentDetails.Header == "Audit Finding" ){
-      const maxCharacters = 100;      
-       // Truncate the htmlTemplate if it exceeds the maximum number of characters
-     truncatedHtmlTemplate = contentDetails.htmlTemplate.length > maxCharacters
-      ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
-      : contentDetails.htmlTemplate;
-     }
-     else{
-      truncatedHtmlTemplate = contentDetails.htmlTemplate
-     }
+    const maxCharacters = 100;  
+    const truncatedHtmlTemplate =
+      contentDetails.htmlTemplate.length > maxCharacters
+        ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+        : contentDetails.htmlTemplate;
+
+
     enablePerformanceview;
     var perfomanceViewKPIBodyStyle = null;
     var perfomanceViewKPIHeaderStyle = null;
@@ -124,6 +120,16 @@ export class TemplateClass {
   }
 
   public GetConsequencesTemplateGlobal(contentDetails: DiagramNodeData) {
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
+      /#/g,
+      '\\#'
+    );
+    const maxCharacters = 100;  
+    const truncatedHtmlTemplate =
+    contentDetails.htmlTemplate.length > maxCharacters
+      ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+      : contentDetails.htmlTemplate;
+
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
       "<div class='bow-tie-cause-card-header'>" +
@@ -133,7 +139,7 @@ export class TemplateClass {
       '</div>' +
       "<div class='bow-tie-cause-card-body'>\\" +
       '<p>' +
-      contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+      truncatedHtmlTemplate +
       '</p>' +
       '</div>' +
       '</div>'
@@ -141,6 +147,15 @@ export class TemplateClass {
   }
 
   public GetCauseTemplateGlobal(contentDetails: DiagramNodeData) {
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
+      /#/g,
+      '\\#'
+    );
+    const maxCharacters = 100;  
+    const truncatedHtmlTemplate =
+    contentDetails.htmlTemplate.length > maxCharacters
+      ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+      : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
       "<div class='bow-tie-cause-card-header'>" +
@@ -150,7 +165,7 @@ export class TemplateClass {
       '</div>' +
       "<div class='bow-tie-cause-card-body' >\\" +
       '<p>' +
-      contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+      truncatedHtmlTemplate +
       '</p>' +
       '</div>' +
       '</div>'
@@ -158,6 +173,15 @@ export class TemplateClass {
   }
 
   public GetRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) { 
+    contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
+      /#/g,
+      '\\#'
+    );
+    const maxCharacters = 100;  
+    const truncatedHtmlTemplate =
+    contentDetails.htmlTemplate.length > maxCharacters
+      ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+      : contentDetails.htmlTemplate;
 
     contentDetails.RiskData.InherentRiskRatingImg =
       contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined ||
@@ -227,7 +251,7 @@ export class TemplateClass {
       "<p class='bow-tie-risk-card-header-text'>\\" +
       contentDetails.RiskData.RiskCode +
       ' ' +
-      contentDetails.htmlTemplate.replace(/#/g, '\\#') +
+      truncatedHtmlTemplate +
       '</p>' +
       '</div>' +
       "<div class='bow-tie-risk-card-body'>" +
@@ -340,7 +364,7 @@ export class TemplateClass {
       perfomanceViewGeneralHeaderStyle = stylesForPerformanceView.headerStyle;
     }
 
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -355,69 +379,68 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded'" +
       perfomanceViewGeneralBodyStyle +
       ' >' +
-      "<div class='bow-tie-control-card-header' " +
-      perfomanceViewGeneralHeaderStyle +
-      ' >' +
-      '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      '</span>' +
-      '</div>' +
-      "<div class='bow-tie-expand-card-body' " +
-      perfomanceViewGeneralBodyStyle +
-      '>' +
-      "<p class='bow-tie-htmlTemplate'  " +
-      perfomanceViewGeneralBodyStyle +
-      '>\\' +
-      truncatedHtmlTemplate +
-      '</p>' +
-      "<p class='bow-tie-control-type-details'>" +
-        "<span class='bow-tie-type-name' " +
-        perfomanceViewGeneralBodyStyle +
-        '>' +
-          'Control Type' +
-        '</span>' +
-        "<p class='bow-tie-type-text' " +
+        "<div class='bow-tie-control-card-header' " +
+          perfomanceViewGeneralHeaderStyle +
+          ' >' +
+          '<span>' +
+          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          '</span>' +
+        '</div>' +
+        "<div class='bow-tie-control-expand-card-body' " +
           perfomanceViewGeneralBodyStyle +
           '>' +
-          contentDetails.ControlData.ControlType +
-        '</p>' +
-      '</p>' +
-      "<p class='bow-tie-control-owner' " +
-      perfomanceViewGeneralBodyStyle +
-      '>Control Owner</p>' +
-      "<p class='bow-tie-control-owner-details' " +
-      perfomanceViewGeneralBodyStyle +
-      '>' +
-      "<img class ='bow-tie-owner-image'" +
-      "src='" +
-      contentDetails.ControlData.ControlOwnerImageUrl +        
-      "'" +
-      "<span class='bow-tie-owner-name'>" +
-      contentDetails.ControlData.ControlOwner +
-      '</span>' +
-      '</p>' +
-      "<p class='bow-tie-control-owner-rating' " +
-      perfomanceViewGeneralBodyStyle +
-      '>' +
-      'Control Owner Rating' +
-      "<p class='bow-tie-control-owner-rating-details' " +
-      perfomanceViewGeneralBodyStyle +
-      '>' +
-      "<img class='bow-tie-control-owner-rating-icon'" +
-      "src='" +
-      contentDetails.ControlData.ControlOwnerRatingImage +
-      "'" +
-      "<span class='bow-tie-control-owner-rating-name'>" +
-      contentDetails.ControlData.ControlOwnerRating +
-      '</span>' +
-      '</p>' +
-      '</div>' +
+          "<p class='bow-tie-htmlTemplate'  " +
+            perfomanceViewGeneralBodyStyle +
+            '>\\' +
+            truncatedHtmlTemplate +
+          '</p>' +
+          "<p class='bow-tie-control-type-details'>" +
+            "<span class='bow-tie-type-name' " +
+            perfomanceViewGeneralBodyStyle +
+            '>' +
+              'Control Type' +
+            '</span>' +
+            "<p class='bow-tie-type-text' " +
+              perfomanceViewGeneralBodyStyle +
+              '>' +
+              contentDetails.ControlData.ControlType +
+            '</p>' +
+          '</p>' +
+          "<p class='bow-tie-control-owner' " +
+          perfomanceViewGeneralBodyStyle +
+          '>Control Owner</p>' +
+          "<p class='bow-tie-control-owner-details' " +
+          perfomanceViewGeneralBodyStyle +
+          '>' +
+          "<img class ='bow-tie-owner-image'" +
+          "src='" +
+          contentDetails.ControlData.ControlOwnerImageUrl +        
+          "'" +
+          "<span class='bow-tie-owner-name'>" +
+          contentDetails.ControlData.ControlOwner +
+          '</span>' +
+          '</p>' +
+          "<p class='bow-tie-control-owner-rating' " +
+          perfomanceViewGeneralBodyStyle +
+          '>' +
+          'Control Owner Rating' +
+          "<p class='bow-tie-control-owner-rating-details' " +
+          perfomanceViewGeneralBodyStyle +
+          '>' +
+          "<img class='bow-tie-control-owner-rating-icon'" +
+          "src='" +
+          contentDetails.ControlData.ControlOwnerRatingImage +
+          "'" +
+          "<span class='bow-tie-control-owner-rating-name'>" +
+          contentDetails.ControlData.ControlOwnerRating +
+          '</span>' +
+          '</p>' +
+        '</div>' +
       '</div>'
     );
   }
 
   public GetLinkRiskNodeTemplateGlobal(contentDetails: DiagramNodeData) {
-
     contentDetails.LinkedRiskData.InherentRiskRatingImg = 
       contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined ||
       contentDetails.LinkedRiskData.InherentRiskRatingImg == '' || contentDetails.LinkedRiskData.InherentRiskRatingImg === undefined
@@ -451,7 +474,7 @@ export class TemplateClass {
     contentDetails.LinkedRiskData.TargetRiskRating = contentDetails.LinkedRiskData.TargetRiskRating == '' || contentDetails.LinkedRiskData.TargetRiskRating === undefined
       ? 'N/A' : contentDetails.LinkedRiskData.TargetRiskRating;
 
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(/#/g,'\\#');
 
     // Truncate the htmlTemplate if it exceeds the maximum number of characters
@@ -576,7 +599,7 @@ export class TemplateClass {
       ? 'N/A' : contentDetails.TreatmentData.TreatmentResponsibleOfficer;
 
     
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -652,7 +675,7 @@ export class TemplateClass {
     contentDetails.IncidentData.ResponsiblePerson = contentDetails.IncidentData.ResponsiblePerson == '' || contentDetails.IncidentData.ResponsiblePerson === undefined
       ? 'N/A' : contentDetails.IncidentData.ResponsiblePerson;
 
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -715,7 +738,7 @@ export class TemplateClass {
     contentDetails.ComplianceData.ResponsibleOfficer = contentDetails.ComplianceData.ResponsibleOfficer == '' || contentDetails.ComplianceData.ResponsibleOfficer === undefined
       ? 'N/A' : contentDetails.ComplianceData.ResponsibleOfficer;
 
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -796,7 +819,7 @@ export class TemplateClass {
       currentIndicator = 'na-badge';
     }
 
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -870,7 +893,7 @@ export class TemplateClass {
   }
 
   public GetAuditExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -931,7 +954,7 @@ export class TemplateClass {
     contentDetails.AuthorityDocumentData.ResponsibleOfficer = contentDetails.AuthorityDocumentData.ResponsibleOfficer == '' || contentDetails.AuthorityDocumentData.ResponsibleOfficer === undefined
       ? 'N/A' : contentDetails.AuthorityDocumentData.ResponsibleOfficer;
 
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -987,7 +1010,7 @@ export class TemplateClass {
       contentDetails.PolicyData.ResponsiblePerson = contentDetails.PolicyData.ResponsiblePerson == '' || contentDetails.PolicyData.ResponsiblePerson === undefined
       ? 'N/A' : contentDetails.PolicyData.ResponsiblePerson;
 
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
@@ -1034,12 +1057,15 @@ export class TemplateClass {
   }
 
   public GetAuditRecommendationsExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
     );
-   
+    const truncatedHtmlTemplate =
+      contentDetails.htmlTemplate.length > maxCharacters
+        ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+        : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header'>" +
@@ -1049,7 +1075,7 @@ export class TemplateClass {
       '</div>' +
       "<div class='bow-tie-expand-card-body'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-      contentDetails.htmlTemplate +
+      truncatedHtmlTemplate +
       '</p>' +
       '</div>' +
       '</div>'
@@ -1057,12 +1083,15 @@ export class TemplateClass {
   }
 
   public GetAuditFindingExpand(contentDetails: DiagramNodeData) {
-    const maxCharacters = 80;
+    const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
       '\\#'
     );
-    
+    const truncatedHtmlTemplate =
+    contentDetails.htmlTemplate.length > maxCharacters
+      ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
+      : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header' >" +
@@ -1072,7 +1101,7 @@ export class TemplateClass {
       '</div>' +
       "<div class='bow-tie-expand-card-body' >" +
       "<p class='bow-tie-htmlTemplate'>\\" +
-      contentDetails.htmlTemplate  +
+      truncatedHtmlTemplate  +
       '</p>' +
       '</div>' +
       '</div>'

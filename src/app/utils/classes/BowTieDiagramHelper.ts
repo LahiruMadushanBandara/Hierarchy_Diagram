@@ -5,10 +5,8 @@ export class BowTieDiagramHelper {
     const arrangedNodes = [];
 
     // Find the risk node (type 1 with ParentNodeId 0)
-    const riskNode = originalData.find(
-      (node) => node.Type === 1 && node.ParentNodeId === 0
-    );
-
+    const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
+    const CommonPoint = originalData.find((node) => node.Title == 'Common-point');
     //filter all causes
     const causeNodes = originalData.filter(
       (node) => node.Title == 'Cause Node'
@@ -59,8 +57,10 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 500;
       const verticalSpacing = isExpand ? 520 : 300;
-      let verticalSpacingFour = isExpand ? 520 : 300;
-      let riskCordinateIncrementValue = isExpand ? 50 : 150;
+      let verticalSpacingFour = isExpand ? 50 : 50;
+      let riskCordinateIncrementValue = isExpand ? 150 : 10;
+      let CommonPointYValueIncrement = isExpand ? 500 : 300;
+      let CommonPointYValue;
       const maxNodesPerRow = 5;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -167,121 +167,70 @@ export class BowTieDiagramHelper {
 
       //Arrange Risk node (in the middle)
 
-      //if type two nodes are more than type three and less than 6 then place risk at the end else place risk second last row
+      let riskNodeX = originX;
+      let riskNodeY = originY + riskCordinateIncrementValue;
+      riskNode.x = riskNodeX;
+      riskNode.y = riskNodeY;
+      arrangedNodes.push(riskNode);
 
-      if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) 
-      {
-        if (rowNumbertypetwo === 1 ) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y ;
-        }
-        else if (typeTwoNodes.length < 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y - riskCordinateIncrementValue;
-        } else if (typeTwoNodes.length >= 6 && typeTwoNodes.length != 0) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 2].y - riskCordinateIncrementValue;
-        }
-        
+
+      if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)) {
+        CommonPointYValue = riskNode.y + 500
+      }
+      else if (rowNumbertypetwo >= rowNumbertypethree) {
+        CommonPointYValue = typeTwoNodes[typeTwoNodes.length - 1].y  + CommonPointYValueIncrement;
+      } else {
+        CommonPointYValue = typeThreeNodes[typeThreeNodes.length - 1].y  + CommonPointYValueIncrement;
       }
 
-      //if type three nodes are more than type two and less than 6 then place risk at the end else place risk second last row
-      else if (typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length) 
-      {
-        if (rowNumbertypethree === 1 ) {
-          riskYCodinate = typeTwoNodes[typeTwoNodes.length - 1].y;
-        }
-        else if (typeThreeNodes.length < 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 1].y - riskCordinateIncrementValue;
-        } else if (typeThreeNodes.length >= 6 && typeThreeNodes.length != 0) {
-          riskYCodinate = typeThreeNodes[typeThreeNodes.length - 2].y - riskCordinateIncrementValue;
-        }
-        
-      }
 
-      //if there are no type two and three nodes then place the risk in the middle(0,0)
-
-      if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
-        let riskNodeX = originX;
-        let riskNodeY = originY;
-        riskNode.x = riskNodeX;
-        riskNode.y = riskNodeY;
-        arrangedNodes.push(riskNode);
-      }
-      //when there are no bottom nodes then risk place the middle of the most nodes available side
-      else if (typeFourNodes.length == 0) {
-        if (typeTwoNodes.length >= typeThreeNodes.length) {
-          let middleNodeTypeTwo = Math.floor(typeTwoNodes.length / 2);
-          let riskNodeX = originX;
-          riskYCodinate = typeTwoNodes[middleNodeTypeTwo].y;
-          riskNode.x = riskNodeX;
-          riskNode.y = originY + riskYCodinate - verticalSpacing / 2;
-          arrangedNodes.push(riskNode);
-        } else {
-          let middleNodeTypeThree = Math.floor(typeThreeNodes.length / 2);
-          let riskNodeX = originX;
-          riskYCodinate = typeThreeNodes[middleNodeTypeThree].y;
-          riskNode.x = riskNodeX;
-          riskNode.y = originY + riskYCodinate - verticalSpacing / 2;
-          arrangedNodes.push(riskNode);
-        }
-       
-      } 
-      else {
-        let riskNodeX = originX;
-        let riskNodeY = originY + riskYCodinate - verticalSpacing / 2;
-        riskNode.x = riskNodeX;
-        riskNode.y = riskNodeY;
-        arrangedNodes.push(riskNode);
-        
-      }
-
-      let typeFourNodeCount;
-      let typeFourNodePlacingValue;
-      rowNodeCount = 0;
-    
       
+      if (CommonPoint.Title == 'Common-point') {
+        CommonPoint.x = 190;
+        CommonPoint.y = CommonPointYValue;
+        arrangedNodes.push(CommonPoint);
+      }
+    
+
       // Arrange type 4 nodes (below type 2 and type 3)
-      if (typeFourNodes.length < 12) {      
-          typeFourNodeCount = Math.floor(typeFourNodes.length / 2);       
+
+      rowNodeCount = 0;
+      let typeFourNodeCount;  
+      let typeFourNodePlacingValue;
+      let rowNumbertypeFour = 3;
+      
+
+
+      if (typeFourNodes.length < 12) {
+        typeFourNodeCount = typeFourNodes.length / 2;
       } else {
         typeFourNodeCount = 5;
       }
-      if (typeFourNodes.length % 2 === 0) {typeFourNodePlacingValue = 250}
-      else{typeFourNodePlacingValue = 0}
-      let rowNumbertypeFour = 3;
-      let rowNumbertypeFourWhenOnlyBottomNodes = 2;
+
+      if (typeFourNodes.length % 2 === 0) {typeFourNodePlacingValue = 50}
+      else{typeFourNodePlacingValue = 60}
+
+
+     
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
-      
+     
+
       typeFourNodes.forEach((node, index) => {
         // Adjusting the starting point for type 4 nodes when there are no type two or three nodes
+        const x = CommonPoint.x  + typeFourNodePlacingValue + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+        const y = CommonPoint.y + rowNumbertypeFour * verticalSpacingFour;
 
-        if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
-          const x =
-            riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;
-          const y =
-            originY +
-            rowNumbertypeFourWhenOnlyBottomNodes * verticalSpacingFour;
-          node.x = x;
-          node.y = y;
-          arrangedNodes.push(node);
-          typeFourIndex++;
-          columnNumber++;
-          rowNodeCount++;
-        } else {
-          const x =
-            riskNode.x + typeFourNodePlacingValue + (columnNumber - typeFourNodeCount) * horizontalSpacing;
-          const y = riskNode.y + rowNumbertypeFour * verticalSpacingFour + 100;
+        node.x = x;
+        node.y = y;
+        arrangedNodes.push(node);
 
-          node.x = x;
-          node.y = y;
-          arrangedNodes.push(node);
+        typeFourIndex++;
+        columnNumber++;
+        rowNodeCount++;
 
-          typeFourIndex++;
-          columnNumber++;
-          rowNodeCount++;
-        }
         //move to next row when nodes per row = 12
         if (rowNodeCount === maxNodesPerRowFour) {
           rowNumbertypeFour++;
-          rowNumbertypeFourWhenOnlyBottomNodes++;
           rowNodeCount = 0;
           columnNumber = rowNodeCount;
         }

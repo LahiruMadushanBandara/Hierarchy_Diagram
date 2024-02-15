@@ -136,22 +136,43 @@ export class AppComponent implements OnChanges {
         }
 
 
-        //creating connection lines
-        
+       
+
+        // Function to check if there are nodes with Type === 4
+        let hasType4Nodes = false;
+        for (let k = 0; k < originalData.length; k++) {
+          if (originalData[k].Type === 4) {
+            hasType4Nodes = true;
+            break;
+          }
+        }
+         //creating connection lines
         var dataConnections = [];
 
         for (let i = 1; i < originalData.length; i++) {
+
+          if (originalData[i].Title === "Risk Node" && hasType4Nodes) {
+            dataConnections.push({
+              Id: 0,
+              FromShapeId: originalData[0].Id,
+              ToShapeId: originalData[i].Id,
+              Text: null,
+              fromConnector: "center",
+              toConnector: "bottom"
+            });
+          }
+          
+         
           if (originalData[i].Title === "Other Node") {
             dataConnections.push({
               Id: originalData[i].Id,
-              FromShapeId: originalData[i].ParentNodeId,
+              FromShapeId: originalData[0].Id,
               ToShapeId: originalData[i].Id,
               Text: null,
-              fromConnector: "bottom",
+              fromConnector: "center",
               toConnector: "top"
             });
           }
-
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
               if (originalData[i].LinkedControlIds.length === 1) {
@@ -298,6 +319,11 @@ export class AppComponent implements OnChanges {
                 height: 0   
               },
               {
+                name: "center",
+                width: 0,
+                height: 0   
+              },
+              {
                 name: "top",
                 width: 0,
                 height: 0   
@@ -334,7 +360,7 @@ export class AppComponent implements OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.4,
+          zoom: 0.6,
           zoomRate: 0.02,
           cancel: onCancel,
 
