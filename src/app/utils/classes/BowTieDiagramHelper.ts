@@ -73,11 +73,11 @@ export class BowTieDiagramHelper {
       let rowNodeCount = 0;
       let controlHorizontalSpacing = 0;
 
-      
-     
-      
 
-      
+
+
+
+
 
       // arrange type 2 nodes (left of type 1)
       for (let i = 0; i < typeTwoNodes.length; i++) {
@@ -178,27 +178,27 @@ export class BowTieDiagramHelper {
         CommonPointYValue = riskNode.y + 500
       }
       else if (rowNumbertypetwo >= rowNumbertypethree) {
-        CommonPointYValue = typeTwoNodes[typeTwoNodes.length - 1].y  + CommonPointYValueIncrement;
+        CommonPointYValue = typeTwoNodes[typeTwoNodes.length - 1].y + CommonPointYValueIncrement;
       } else {
-        CommonPointYValue = typeThreeNodes[typeThreeNodes.length - 1].y  + CommonPointYValueIncrement;
+        CommonPointYValue = typeThreeNodes[typeThreeNodes.length - 1].y + CommonPointYValueIncrement;
       }
 
 
-      
+
       if (CommonPoint.Title == 'Common-point') {
         CommonPoint.x = 190;
         CommonPoint.y = CommonPointYValue;
         arrangedNodes.push(CommonPoint);
       }
-    
+
 
       // Arrange type 4 nodes (below type 2 and type 3)
 
       rowNodeCount = 0;
-      let typeFourNodeCount;  
+      let typeFourNodeCount;
       let typeFourNodePlacingValue;
       let rowNumbertypeFour = 3;
-      
+
 
 
       if (typeFourNodes.length < 12) {
@@ -207,17 +207,17 @@ export class BowTieDiagramHelper {
         typeFourNodeCount = 5;
       }
 
-      if (typeFourNodes.length % 2 === 0) {typeFourNodePlacingValue = 50}
-      else{typeFourNodePlacingValue = 60}
+      if (typeFourNodes.length % 2 === 0) { typeFourNodePlacingValue = 50 }
+      else { typeFourNodePlacingValue = 60 }
 
 
-     
+
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
-     
+
 
       typeFourNodes.forEach((node, index) => {
         // Adjusting the starting point for type 4 nodes when there are no type two or three nodes
-        const x = CommonPoint.x  + typeFourNodePlacingValue + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+        const x = CommonPoint.x + typeFourNodePlacingValue + (columnNumber - typeFourNodeCount) * horizontalSpacing;
         const y = CommonPoint.y + rowNumbertypeFour * verticalSpacingFour;
 
         node.x = x;
