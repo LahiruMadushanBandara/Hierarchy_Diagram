@@ -173,8 +173,10 @@ export class BowTieDiagramHelper {
       riskNode.y = riskNodeY;
       arrangedNodes.push(riskNode);
 
+      console.log("rowNumbertypetwo",rowNumbertypetwo);
+      console.log("rowNumbertypethree",rowNumbertypethree);
 
-      if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)) {
+      if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)|| (rowNumbertypetwo == 1 && rowNumbertypethree == 1)) {
         CommonPointYValue = riskNode.y + 500
       }
       else if (rowNumbertypetwo >= rowNumbertypethree) {
