@@ -254,6 +254,124 @@ export class BowTieDiagramHelper {
     return arrangedNodes;
   }
 
+  ArrangeNodesTesting(originalData, isExpand: boolean) {
+
+    const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
+    const CommonPoint = originalData.find((node) => node.Title == 'Common-point');
+    const linkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId != 0);
+    const notLinkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId == 0);
+    const linkedConsequenceNodes = originalData.filter((node) => node.Title == 'Consequences Node' && node.ParentNodeId != 0);
+    const notLinkedConsequenceNodes = originalData.filter((node) => node.Title == 'Consequences Node' && node.ParentNodeId == 0);    
+    const notLinkedControlNodes = originalData.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
+    const linkedBottomNodes = originalData.filter((node) => node.Type === 4);  
+      
+    let RearrangedDataset = [];
+
+    console.log("linkedCauseNodes", linkedCauseNodes);
+    console.log("notLinkedCauseNodes", notLinkedCauseNodes);
+    console.log("linkedConsequenceNodes", linkedConsequenceNodes);
+    console.log("notLinkedConsequenceNodes", notLinkedConsequenceNodes);    
+    console.log("notLinkedControlNodes", notLinkedControlNodes);
+    console.log("RearrangedDataset", RearrangedDataset);
+
+    RearrangedDataset.push(CommonPoint);
+    RearrangedDataset.push(riskNode);
+
+    for (let i = 0; i < linkedCauseNodes.length; i++) {
+
+      if (linkedCauseNodes[i].LinkedControlIds.length > 4) {
+        const controlsToAddIds = linkedCauseNodes[i].LinkedControlIds.slice(0, 4); // Get the first 4 control IDs
+
+
+        // Find the controls nodes in originalData and push them to RearrangedDataset
+        for (const controlId of controlsToAddIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode) {
+            RearrangedDataset.push(controlNode);
+          }
+        }
+
+        // Find the relevant cause node in originalData and push it after the 4th element
+
+        RearrangedDataset.push(linkedCauseNodes[i]);
+
+
+        // Find and push the remaining control nodes (if any) after the relevant cause
+        for (const controlId of linkedCauseNodes[i].LinkedControlIds.slice(4)) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode) {
+            RearrangedDataset.push(controlNode);
+          }
+        }
+      }
+      else {
+
+        for (const controlId of linkedCauseNodes[i].LinkedControlIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode) {
+            RearrangedDataset.push(controlNode);
+          }
+        }
+        RearrangedDataset.push(linkedCauseNodes[i]);
+
+
+      }
+
+    }
+
+    for (let i = 0; i < linkedConsequenceNodes.length; i++) {
+
+      if (linkedConsequenceNodes[i].LinkedControlIds.length > 4) {
+        const controlsToAddIds = linkedConsequenceNodes[i].LinkedControlIds.slice(0, 4); // Get the first 4 control IDs
+
+
+        // Find the controls nodes in originalData and push them to RearrangedDataset
+        for (const controlId of controlsToAddIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode) {
+            RearrangedDataset.push(controlNode);
+          }
+        }
+
+        // Find the relevant cause node in originalData and push it after the 4th element
+
+        RearrangedDataset.push(linkedConsequenceNodes[i]);
+
+
+        // Find and push the remaining control nodes (if any) after the relevant cause
+        for (const controlId of linkedConsequenceNodes[i].LinkedControlIds.slice(4)) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode) {
+            RearrangedDataset.push(controlNode);
+          }
+        }
+      }
+      else {
+
+        for (const controlId of linkedConsequenceNodes[i].LinkedControlIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode) {
+            RearrangedDataset.push(controlNode);
+          }
+        }
+        RearrangedDataset.push(linkedConsequenceNodes[i]);
+      }
+
+    }
+    for (let i = 0; i < notLinkedCauseNodes.length; i++) {
+      RearrangedDataset.push(notLinkedCauseNodes[i]);
+    }
+    for (let i = 0; i < notLinkedConsequenceNodes.length; i++) {
+      RearrangedDataset.push(notLinkedConsequenceNodes[i]);
+    }
+    for (let i = 0; i < notLinkedControlNodes.length; i++) {
+      RearrangedDataset.push(notLinkedControlNodes[i]);
+    }
+    for (let i = 0; i < linkedBottomNodes.length; i++) {
+      RearrangedDataset.push(linkedBottomNodes[i]);
+    }
+  }
+  
 }
 
 

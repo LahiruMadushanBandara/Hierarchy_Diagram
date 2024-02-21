@@ -186,9 +186,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Cause",
         "Rating": "",
         "htmlTemplate": "<dev> 1 ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": [1, 2, 3, 4]
+        "LinkedControlIds": [1, 2, 3, 4 , 6]
 
       },
+    
       {
         "Id": 6,
         "Type": 2,
@@ -280,7 +281,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Cause",
         "Rating": "",
         "htmlTemplate": "<dev> 3 22InsufficientITsecuritymanagement</dev>",
-        "LinkedControlIds": [6, 7, 8, 9]
+        "LinkedControlIds": [ 7, 8, 9]
 
       },
 
@@ -943,7 +944,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     const arrangedData = diagramHelper.ArrangeNodes(this.originalData, isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
    
-   
+    const arrangedDatattest = diagramHelper.ArrangeNodesTesting(this.originalData, isExpand);
 
 
     $(() => {
@@ -1048,47 +1049,47 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
             });
           }
-          var notLinkedControlsTypeTwo: any[] = [];
-          var notLinkedControlsTypeThree: any[] = [];
+        
+        
+        }
 
-          // Collect all "Control Node" type 2 and 3 elements with IsLinkedToCauseOrConsequence set to false
-          for (let i = 0; i < originalData.length; i++) {
-              if (originalData[i].Title === "Control Node" && originalData[i].Type === 2 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-                  notLinkedControlsTypeTwo.push(originalData[i]);
-              }
-              
-              if (originalData[i].Title === "Control Node" && originalData[i].Type === 3 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-                notLinkedControlsTypeThree.push(originalData[i]);
-              }
-          }
-          
-          // Generate connection lines based on notLinkedControls
-          for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
-              dataConnections.push({
-                  Id:  notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
-                  FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
-                  ToShapeId: notLinkedControlsTypeTwo[j].Id,
-                  Text: null,
-                  toConnector: "right",
-                  fromConnector: "left", // Adjusted to use notLinkedControls[j] instead of originalData[i]
-              });
-          }
+        var notLinkedControlsTypeTwo: any[] = [];
+        var notLinkedControlsTypeThree: any[] = [];
+
+        // Collect all "Control Node" type 2 and 3 elements with IsLinkedToCauseOrConsequence set to false
+        for (let i = 0; i < originalData.length; i++) {
+            if (originalData[i].Title === "Control Node" && originalData[i].Type === 2 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+                notLinkedControlsTypeTwo.push(originalData[i]);
+            }
+            
+            if (originalData[i].Title === "Control Node" && originalData[i].Type === 3 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+              notLinkedControlsTypeThree.push(originalData[i]);
+            }
+        }
         
         // Generate connection lines based on notLinkedControls
-          for (let j = 0; j < notLinkedControlsTypeThree.length; j++) {
+        for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
             dataConnections.push({
-                Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
-                FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
-                ToShapeId: notLinkedControlsTypeThree[j].Id,
+                Id:  notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
+                FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
+                ToShapeId: notLinkedControlsTypeTwo[j].Id,
                 Text: null,
-                toConnector: "left",
-                fromConnector: "right", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+                toConnector: "right",
+                fromConnector: "left", // Adjusted to use notLinkedControls[j] instead of originalData[i]
             });
         }
-          
-        
-        }
-
+      
+      // Generate connection lines based on notLinkedControls
+        for (let j = 0; j < notLinkedControlsTypeThree.length; j++) {
+          dataConnections.push({
+              Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
+              FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
+              ToShapeId: notLinkedControlsTypeThree[j].Id,
+              Text: null,
+              toConnector: "left",
+              fromConnector: "right", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+          });
+      }
         
 
         console.log("connection data set", dataConnections)
