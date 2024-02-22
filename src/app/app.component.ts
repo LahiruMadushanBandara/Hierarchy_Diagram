@@ -1058,7 +1058,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     var diagramHelper = new BowTieDiagramHelper();
-    const arrangedDatattest = diagramHelper.ArrangeNodesTesting(this.originalData);
+    diagramHelper.ArrangeNodesTesting(this.originalData);
     const arrangedData = diagramHelper.ArrangeNodes( isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
    
@@ -1148,19 +1148,24 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               } 
               else if (originalData[i].LinkedControlIds.length > 4){
                 if((j + 1) % 4 == 0 ){
-
-                }
-                else{
                   dataConnections.push({
                     Id: j,
-                    FromShapeId: (j % 4 == 0) ? 0 : ((j + 1) % 4 == 0 )?originalData[i].LinkedControlIds[j]: originalData[i].LinkedControlIds[j - 1],
-                    ToShapeId: (j === originalData[i].LinkedControlIds.length || (j + 1) % 4 == 0) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                    FromShapeId:originalData[i].LinkedControlIds[j],
+                    ToShapeId: originalData[i].Id,
+                    Text: null,
+                    fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                  });
+                }
+                
+                  dataConnections.push({
+                    Id: j,
+                    FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+                    ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
                     Text: null,
                     fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                   });
                   console.log(j ,originalData[i].LinkedControlIds[j]);
-                }
-               
+                              
               }
               else {
                 dataConnections.push({

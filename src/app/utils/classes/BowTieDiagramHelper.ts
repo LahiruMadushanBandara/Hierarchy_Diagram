@@ -16,16 +16,6 @@ export class BowTieDiagramHelper {
     const notLinkedControlNodes = originalData.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
     const linkedBottomNodes = originalData.filter((node) => node.Type === 4);
 
-   
-
-    // console.log("linkedCauseNodes", linkedCauseNodes);
-    // console.log("notLinkedCauseNodes", notLinkedCauseNodes);
-    // console.log("linkedConsequenceNodes", linkedConsequenceNodes);
-    // console.log("notLinkedConsequenceNodes", notLinkedConsequenceNodes);
-    // console.log("notLinkedControlNodes", notLinkedControlNodes);
-    // console.log("RearrangedDataset", this.RearrangedDataset);
-
-
     this.RearrangedDataset.push(CommonPoint);
     this.RearrangedDataset.push(riskNode);
 
