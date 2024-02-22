@@ -93,7 +93,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
 
-
+     
 
       {
         "Id": 1,
@@ -176,28 +176,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRatingImage": ""
         }
       },
-
-
       {
-        "Id": 5,
-        "Type": 2,
-        "ParentNodeId": 19,
-        "Title": "Cause Node",
-        "Header": "Cause",
-        "Rating": "",
-        "htmlTemplate": "<dev> 1 ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": [1, 2, 3, 4 , 6]
-
-      },
-    
-      {
-        "Id": 6,
+        "Id": 111,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 5 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -211,7 +197,119 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 7,
+        "Id": 1111,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 1111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 222,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 2222,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 1111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 333,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 3333,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 1111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 5,
+        "Type": 2,
+        "ParentNodeId": 19,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev> 1 ReducedenterpriseITsupport</dev>",
+        "LinkedControlIds": [1, 2, 3, 4,111,1111,222,2222,333,3333]
+
+      },
+    
+      {
+        "Id": 6,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
@@ -231,7 +329,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 8,
+        "Id": 7,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
@@ -251,13 +349,33 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 9,
+        "Id": 8,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
         "htmlTemplate": "<dev> 8 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 9,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 9 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -281,7 +399,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Cause",
         "Rating": "",
         "htmlTemplate": "<dev> 3 22InsufficientITsecuritymanagement</dev>",
-        "LinkedControlIds": [ 7, 8, 9]
+        "LinkedControlIds": [6 , 7, 8, 9]
 
       },
 
@@ -940,11 +1058,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     var diagramHelper = new BowTieDiagramHelper();
-   
-    const arrangedData = diagramHelper.ArrangeNodes(this.originalData, isExpand);
+    const arrangedDatattest = diagramHelper.ArrangeNodesTesting(this.originalData);
+    const arrangedData = diagramHelper.ArrangeNodes( isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
    
-    const arrangedDatattest = diagramHelper.ArrangeNodesTesting(this.originalData, isExpand);
+    
 
 
     $(() => {
@@ -992,7 +1110,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var dataConnections = [];
        
         for (let i = 1; i < originalData.length; i++) {
-        
+        let count = 0;
           if (originalData[i].Title === "Risk Node") {
             dataConnections.push({
               Id:0,
@@ -1021,21 +1139,38 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               if (originalData[i].LinkedControlIds.length === 1) {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
+                  FromShapeId: (j === 0 ) ? 0 : originalData[i].LinkedControlIds[0],
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
                   Text: null,
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
-              } else {
+              } 
+              else if (originalData[i].LinkedControlIds.length > 4){
+                if((j + 1) % 4 == 0 ){
+
+                }
+                else{
+                  dataConnections.push({
+                    Id: j,
+                    FromShapeId: (j % 4 == 0) ? 0 : ((j + 1) % 4 == 0 )?originalData[i].LinkedControlIds[j]: originalData[i].LinkedControlIds[j - 1],
+                    ToShapeId: (j === originalData[i].LinkedControlIds.length || (j + 1) % 4 == 0) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                    Text: null,
+                    fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                  });
+                  console.log(j ,originalData[i].LinkedControlIds[j]);
+                }
+               
+              }
+              else {
                 dataConnections.push({
                   Id: j,
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
                   ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
                   Text: null,
-
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                 });
+                
               }
             }
           }
@@ -1071,7 +1206,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
             dataConnections.push({
                 Id:  notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
-                FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
+                FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
                 ToShapeId: notLinkedControlsTypeTwo[j].Id,
                 Text: null,
                 toConnector: "right",
@@ -1083,7 +1218,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         for (let j = 0; j < notLinkedControlsTypeThree.length; j++) {
           dataConnections.push({
               Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
-              FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
+              FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
               ToShapeId: notLinkedControlsTypeThree[j].Id,
               Text: null,
               toConnector: "left",
@@ -1317,8 +1452,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         function switchView(isExpand) {
-           diagramHelper.ArrangeNodes(originalData, isExpand);
-           console.log("hello view")
+           diagramHelper.ArrangeNodes(isExpand);
+         
           // // Clear existing diagram
           // diagram.destroy();
       
