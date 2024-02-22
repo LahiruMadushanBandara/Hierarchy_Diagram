@@ -178,6 +178,7 @@ export class BowTieDiagramHelper {
       const verticalSpacing = isExpand ? 520 : 300;
       let verticalSpacingFour =  isExpand ? 400 : 270;
       let CommonPointYValue = isExpand ? 2600 : 1800;
+      let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let maxNodesPerRow;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -328,55 +329,65 @@ export class BowTieDiagramHelper {
       arrangedNodes.push(riskNode);
     }
 
-    if(CommonPoint.Title == 'Common-point'){
+    
+    if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)|| (rowNumbertypetwo == 1 && rowNumbertypethree == 1)) {
+      CommonPointYValue = riskNode.y + 500
+    }
+    else if (rowNumbertypetwo >= rowNumbertypethree) {
+      CommonPointYValue = typeTwoNodes[typeTwoNodes.length - 1].y + CommonPointYValueIncrement;
+    } else {
+      CommonPointYValue = typeThreeNodes[typeThreeNodes.length - 1].y + CommonPointYValueIncrement;
+    }
+
+    if (CommonPoint.Title == 'Common-point') {
       CommonPoint.x = 190;
       CommonPoint.y = CommonPointYValue;
       arrangedNodes.push(CommonPoint);
-     }
+    }
       
+ // Arrange type 4 nodes (below type 2 and type 3)
+    
+    rowNodeCount = 0;
+    let typeFourNodeCount;
+    let typeFourNodePlacingValue;
+    let rowNumbertypeFour = 3;
 
-    let typeFourNodeCount
-      // Arrange type 4 nodes (below type 2 and type 3)
+     
       const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
-      if(typeFourNodes.length < 11){
+      if(typeFourNodes.length < 12){
        typeFourNodeCount = (typeFourNodes.length / 2);}
       else{
-        typeFourNodeCount = Math.ceil(typeFourNodes.length / typeFourNodes.length ) * 6;
+        typeFourNodeCount = 5;
       }
 
-     
-      let rowNumbertypeFour = 7;
+      if (typeFourNodes.length % 2 === 0) { typeFourNodePlacingValue = 50 }
+      else { typeFourNodePlacingValue = 60 }
+
+
+
       columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
-     
+
+
       typeFourNodes.forEach((node, index) => {
-        
-
-      
-
-        // Adjusting the starting point for type 4 nodes
-        
-        const x = riskNode.x + (columnNumber - typeFourNodeCount) * horizontalSpacing;    
-        const y = riskNode.y + rowNumbertypeFour  * verticalSpacingFour;
+        // Adjusting the starting point for type 4 nodes when there are no type two or three nodes
+        const x = CommonPoint.x + typeFourNodePlacingValue + (columnNumber - typeFourNodeCount) * horizontalSpacing;
+        const y = CommonPoint.y + rowNumbertypeFour * verticalSpacingFour;
 
         node.x = x;
         node.y = y;
         arrangedNodes.push(node);
-      
+
         typeFourIndex++;
         columnNumber++;
         rowNodeCount++;
 
+        //move to next row when nodes per row = 12
         if (rowNodeCount === maxNodesPerRowFour) {
-          
           rowNumbertypeFour++;
           rowNodeCount = 0;
-          columnNumber = rowNodeCount; 
-         
+          columnNumber = rowNodeCount;
         }
-       
       });
- 
-
     }
     return arrangedNodes;
   }
