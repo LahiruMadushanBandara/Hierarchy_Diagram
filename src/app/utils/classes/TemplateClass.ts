@@ -228,9 +228,9 @@ export class TemplateClass {
       "src='" +
       contentDetails.RiskData.AppetiteRatingImg +
       "'" +
-      "<span class='bow-tie-risk-rating-details-text'>" +
+      "<p class='bow-tie-risk-rating-details-text' >" +
       contentDetails.RiskData.AppetiteRating +
-      '</span>' +
+      '</p>' +
       '</p>' +
       '</div>';
 
@@ -259,13 +259,13 @@ export class TemplateClass {
             "<div class='column'>" +
               "<p class ='ratings'> Inherent Rating </p>" +
               "<p class='bow-tie-risk-rating-details'>" +
-              "<img class='bow-tie-risk-rating-details-image'" +
-              "src='" +
-              contentDetails.RiskData.InherentRiskRatingImg +
-              "'" +
-              "<span class='bow-tie-risk-rating-details-text'>" +
-              contentDetails.RiskData.InherentRiskRating +
-              '</span>' +
+                "<img class='bow-tie-risk-rating-details-image'" +
+                "src='" +
+                contentDetails.RiskData.InherentRiskRatingImg +
+                "'" +
+                "<p class='bow-tie-risk-rating-details-text'>" +
+                contentDetails.RiskData.InherentRiskRating +
+                '</p>' +
               '</p>' +
             '</div>' +
             "<div class='column'>" +
@@ -275,9 +275,9 @@ export class TemplateClass {
               "src='" +
               contentDetails.RiskData.ResidualRiskRatingImg +
               "'" +
-              "<span class='bow-tie-risk-rating-details-text'>" +
+              "<p class='bow-tie-risk-rating-details-text'>" +
               contentDetails.RiskData.ResidualRiskRating +
-              '</span>' +
+              '</p>' +
               '</p>' +
               '</div>' +
           '</div>' +
@@ -289,9 +289,9 @@ export class TemplateClass {
               "src='" +
               contentDetails.RiskData.TargetRiskRatingImg +
               "'" +
-              "<span class='bow-tie-risk-rating-details-text'>" +
+              "<p class='bow-tie-risk-rating-details-text'>" +
               contentDetails.RiskData.TargetRiskRating +
-              '</span>' +
+              '</p>' +
               '</p>' +
             '</div>' +
               riskAppetite +
@@ -314,9 +314,9 @@ export class TemplateClass {
                   .changingThisBreaksApplicationSecurity
                   .changingThisBreaksApplicationSecurity +
                 "'" +
-                "<span class='bow-tie-risk-rating-details-text'>" +
+                "<p class='bow-tie-risk-rating-details-text'>" +
                   contentDetails.RiskData.ResponsibleManager +
-                '</span>' +
+                '</p>' +
                 '</p>' +
             '</div>' +
           '</div>' +

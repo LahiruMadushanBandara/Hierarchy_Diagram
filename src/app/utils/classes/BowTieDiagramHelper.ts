@@ -1,18 +1,134 @@
 export class BowTieDiagramHelper {
   constructor() { }
 
-  ArrangeNodes(originalData, isExpand: boolean) {
-    const arrangedNodes = [];
+  public RearrangedDataset = [];
 
-    // Find the risk node (type 1 with ParentNodeId 0)
+  ArrangeData(originalData) {
+
     const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
     const CommonPoint = originalData.find((node) => node.Title == 'Common-point');
-    //filter all causes
-    const causeNodes = originalData.filter(
-      (node) => node.Title == 'Cause Node'
-    );
+    const linkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId != 0);
+    const notLinkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId == 0);
+    const linkedConsequenceNodes = originalData.filter((node) => node.Title == 'Consequences Node' && node.ParentNodeId != 0);
+    const notLinkedConsequenceNodes = originalData.filter((node) => node.Title == 'Consequences Node' && node.ParentNodeId == 0);
+    const notLinkedControlNodes = originalData.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
+    const linkedBottomNodes = originalData.filter((node) => node.Type === 4);
+
+    this.RearrangedDataset.push(CommonPoint);
+    this.RearrangedDataset.push(riskNode);
+
+    for (let i = 0; i < linkedCauseNodes.length; i++) {
+
+      if (linkedCauseNodes[i].LinkedControlIds.length > 4) {
+
+        const controlsToAddIds = linkedCauseNodes[i].LinkedControlIds.slice(0, 4); // Get the first 4 control IDs
+
+
+        // Find the controls nodes in originalData and push them to RearrangedDataset
+        for (const controlId of controlsToAddIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)) {
+            this.RearrangedDataset.push(controlNode);
+          }
+        }
+
+        // Find the relevant cause node in originalData and push it after the 4th element
+
+        this.RearrangedDataset.push(linkedCauseNodes[i]);
+
+
+        // Find and push the remaining control nodes (if any) after the relevant cause
+        for (const controlId of linkedCauseNodes[i].LinkedControlIds.slice(4)) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)) {
+            this.RearrangedDataset.push(controlNode);
+          }
+        }
+      }
+      else {
+
+        for (const controlId of linkedCauseNodes[i].LinkedControlIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)) {
+            this.RearrangedDataset.push(controlNode);
+          }
+        }
+        this.RearrangedDataset.push(linkedCauseNodes[i]);
+
+
+      }
+
+    }
+
+    for (let i = 0; i < linkedConsequenceNodes.length; i++) {
+
+      if (linkedConsequenceNodes[i].LinkedControlIds.length > 4) {
+        const controlsToAddIds = linkedConsequenceNodes[i].LinkedControlIds.slice(0, 4); // Get the first 4 control IDs
+
+
+        // Find the controls nodes in originalData and push them to RearrangedDataset
+        for (const controlId of controlsToAddIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)) {
+            this.RearrangedDataset.push(controlNode);
+          }
+        }
+
+        // Find the relevant cause node in originalData and push it after the 4th element
+
+        this.RearrangedDataset.push(linkedConsequenceNodes[i]);
+
+
+        // Find and push the remaining control nodes (if any) after the relevant cause
+        for (const controlId of linkedConsequenceNodes[i].LinkedControlIds.slice(4)) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)) {
+            this.RearrangedDataset.push(controlNode);
+          }
+        }
+      }
+      else {
+
+        for (const controlId of linkedConsequenceNodes[i].LinkedControlIds) {
+          const controlNode = originalData.find(node => node.Id === controlId);
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)) {
+            this.RearrangedDataset.push(controlNode);
+          }
+        }
+        this.RearrangedDataset.push(linkedConsequenceNodes[i]);
+      }
+
+    }
+    for (let i = 0; i < notLinkedCauseNodes.length; i++) {
+      this.RearrangedDataset.push(notLinkedCauseNodes[i]);
+    }
+    for (let i = 0; i < notLinkedConsequenceNodes.length; i++) {
+      this.RearrangedDataset.push(notLinkedConsequenceNodes[i]);
+    }
+    for (let i = 0; i < notLinkedControlNodes.length; i++) {
+      this.RearrangedDataset.push(notLinkedControlNodes[i]);
+    }
+    for (let i = 0; i < linkedBottomNodes.length; i++) {
+      this.RearrangedDataset.push(linkedBottomNodes[i]);
+    }
+    return this.RearrangedDataset;
+  }
+
+  ArrangeNodes(isExpand: boolean) {
+
+    const arrangedNodes = [];
     let maxCauseNodeLength = 0;
     let causeNodeLength = 0;
+
+    // Find the risk node (type 1 with ParentNodeId 0)
+    const riskNode = this.RearrangedDataset.find((node) => node.Type === 1 && node.ParentNodeId === 0);
+    const CommonPoint = this.RearrangedDataset.find((node) => node.Title == 'Common-point');
+
+    //filter all causes
+    const causeNodes = this.RearrangedDataset.filter(
+      (node) => node.Title == 'Cause Node'
+    );
+
 
     /*find the cause that have maximum linked controls in the LinkedControlIds array to place the cause after the last column of maximum 
     linked control row and all other causes place the same column  */
@@ -31,7 +147,7 @@ export class BowTieDiagramHelper {
 
     //filter all Consequences
 
-    const consequenceNodes = originalData.filter(
+    const consequenceNodes = this.RearrangedDataset.filter(
       (node) => node.Title == 'Consequences Node'
     );
     let maxConsequenceNodeLength = 0;
@@ -61,18 +177,18 @@ export class BowTieDiagramHelper {
       let riskCordinateIncrementValue = isExpand ? 150 : 10;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let CommonPointYValue;
-      const maxNodesPerRow = 5;
+      let maxNodesPerRow;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
-
       const originX = 0;
       const originY = 0;
-      const typeTwoNodes = originalData.filter((node) => node.Type === 2); //filter type two nodes
       let rowNumbertypetwo = 0;
       let columnNumber = 0;
       let rowNodeCount = 0;
-      let controlHorizontalSpacing = 0;
+      let lastLinkedControlId;
 
+      const typeTwoNodes = this.RearrangedDataset.filter((node) => node.Type === 2); //filter type two nodes
+      const typeThreeNodes = this.RearrangedDataset.filter((node) => node.Type === 3);
 
 
 
@@ -81,16 +197,19 @@ export class BowTieDiagramHelper {
 
       // arrange type 2 nodes (left of type 1)
       for (let i = 0; i < typeTwoNodes.length; i++) {
-        // assign the horizontal space for first node in type two side
-        controlHorizontalSpacing = horizontalSpacing;
-        if (rowNodeCount == 0) {
-          controlHorizontalSpacing = 500;
+
+        if ((i < typeTwoNodes.length - 1 && typeTwoNodes[i + 1].Title === 'Cause Node'))
+        // (i < typeThreeNodes.length - 1 && typeThreeNodes[i + 1].Title === 'Consequences Node'))
+        {
+          maxNodesPerRow = 5;
+        } else {
+          maxNodesPerRow = 4;
         }
 
         // arrange type two control nodes
 
         if (typeTwoNodes[i].Title == 'Control Node') {
-          const x = originX - (columnNumber + 1) * controlHorizontalSpacing;
+          const x = originX - (columnNumber + 1) * horizontalSpacing;
           const y = originY + rowNumbertypetwo * verticalSpacing;
           typeTwoNodes[i].x = x;
           typeTwoNodes[i].y = y;
@@ -98,7 +217,8 @@ export class BowTieDiagramHelper {
           arrangedNodes.push(typeTwoNodes[i]);
           rowNodeCount++;
           //move to next row when nodes per row = 5
-          if (rowNodeCount === maxNodesPerRow) {
+          if (rowNodeCount === maxNodesPerRow ||
+            (typeTwoNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined)) {
             rowNumbertypetwo++;
             rowNodeCount = 0;
           }
@@ -107,6 +227,13 @@ export class BowTieDiagramHelper {
         }
         //arrange type two cause nodes
         else if (typeTwoNodes[i].Title == 'Cause Node') {
+
+          if (typeTwoNodes[i].ParentNodeId != 0 && typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length > 4) {
+            lastLinkedControlId = typeTwoNodes[i].LinkedControlIds[typeTwoNodes[i].LinkedControlIds.length - 1];
+
+          }
+
+
           const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
           const y = originY + rowNumbertypetwo * verticalSpacing;
           typeTwoNodes[i].x = x;
@@ -123,24 +250,30 @@ export class BowTieDiagramHelper {
       rowNodeCount = 0;
       columnNumber = 0;
       let rowNumbertypethree = 0;
-      const typeThreeNodes = originalData.filter((node) => node.Type === 3);
+
 
       for (let i = 0; i < typeThreeNodes.length; i++) {
-        // assign the horizontal space for first node in type two side
-        controlHorizontalSpacing = horizontalSpacing;
-        if (rowNodeCount == 0) {
-          controlHorizontalSpacing = 500;
+
+        if ((i < typeThreeNodes.length - 1 && typeThreeNodes[i + 1].Title === 'Consequences Node')) {
+          maxNodesPerRow = 5;
+        } else {
+          maxNodesPerRow = 4;
         }
+
+
+
+
         // arrange type three control nodes
         if (typeThreeNodes[i].Title == 'Control Node') {
-          const x = originX + (columnNumber + 1) * controlHorizontalSpacing;
+          const x = originX + (columnNumber + 1) * horizontalSpacing;
           const y = originY + rowNumbertypethree * verticalSpacing;
           typeThreeNodes[i].x = x;
           typeThreeNodes[i].y = y;
           arrangedNodes.push(typeThreeNodes[i]);
           rowNodeCount++;
           //move to next row when nodes per row = 5
-          if (rowNodeCount === maxNodesPerRow) {
+          if (rowNodeCount === maxNodesPerRow ||
+            (typeThreeNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined)) {
             rowNumbertypethree++;
             rowNodeCount = 0;
           }
@@ -148,6 +281,13 @@ export class BowTieDiagramHelper {
         }
         //arrange type two Consequences nodes
         else if (typeThreeNodes[i].Title == 'Consequences Node') {
+
+          if (typeThreeNodes[i].ParentNodeId != 0 && typeThreeNodes[i].Title == 'Consequences Node' && typeThreeNodes[i].LinkedControlIds.length > 4) {
+            lastLinkedControlId = typeThreeNodes[i].LinkedControlIds[typeThreeNodes[i].LinkedControlIds.length - 1];
+
+          }
+
+
           const x = originX + maxConsequenceNodeLength * horizontalSpacing; // Fifth place from the left
           const y = originY + rowNumbertypethree * verticalSpacing;
           typeThreeNodes[i].x = x;
@@ -159,11 +299,11 @@ export class BowTieDiagramHelper {
           columnNumber = rowNodeCount;
         }
       }
-      let riskYCodinate = 0;
+
 
       //filter type four nodes
 
-      const typeFourNodes = originalData.filter((node) => node.Type === 4);
+      const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
 
       //Arrange Risk node (in the middle)
 
@@ -173,10 +313,12 @@ export class BowTieDiagramHelper {
       riskNode.y = riskNodeY;
       arrangedNodes.push(riskNode);
 
-     
 
-      if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)|| (rowNumbertypetwo == 1 && rowNumbertypethree == 1)) {
-        CommonPointYValue = riskNode.y + 500
+
+      if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)
+        || (rowNumbertypetwo == 1 && rowNumbertypethree == 1) || (rowNumbertypetwo == 0 && rowNumbertypethree == 1)
+        || (rowNumbertypetwo == 1 && rowNumbertypethree == 0)) {
+        CommonPointYValue = isExpand ? riskNode.y + 800 : riskNode.y + 500;
       }
       else if (rowNumbertypetwo >= rowNumbertypethree) {
         CommonPointYValue = typeTwoNodes[typeTwoNodes.length - 1].y + CommonPointYValueIncrement;
@@ -239,4 +381,5 @@ export class BowTieDiagramHelper {
     }
     return arrangedNodes;
   }
+
 }

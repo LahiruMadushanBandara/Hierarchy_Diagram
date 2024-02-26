@@ -108,7 +108,8 @@ export class AppComponent implements OnChanges {
     }
 
     var diagramHelper = new BowTieDiagramHelper();
-    const arrangedData = diagramHelper.ArrangeNodes(this.originalData, isExpand);
+    diagramHelper.ArrangeData(this.originalData);
+    const arrangedData = diagramHelper.ArrangeNodes(isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
 
@@ -148,7 +149,6 @@ export class AppComponent implements OnChanges {
         }
          //creating connection lines
         var dataConnections = [];
-
         for (let i = 1; i < originalData.length; i++) {
 
           if (originalData[i].Title === "Risk Node" && hasType4Nodes) {
@@ -187,7 +187,29 @@ export class AppComponent implements OnChanges {
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                   toConnector: "auto"
                 });
-              } else {
+              } else if (originalData[i].LinkedControlIds.length > 4){
+                if((j + 1) % 4 == 0 ){
+                  dataConnections.push({
+                    Id: j,
+                    FromShapeId:originalData[i].LinkedControlIds[j],
+                    ToShapeId: originalData[i].Id,
+                    Text: null,
+                    fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                    toConnector: "auto"
+                  });
+                }
+                
+                  dataConnections.push({
+                    Id: j,
+                    FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+                    ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                    Text: null,
+                    fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                  });
+                 
+                              
+              }
+              else {
                 dataConnections.push({
                   Id: j,
                   FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
@@ -232,7 +254,7 @@ export class AppComponent implements OnChanges {
         for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
             dataConnections.push({
                 Id:  notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
-                FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
+                FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
                 ToShapeId: notLinkedControlsTypeTwo[j].Id,
                 Text: null,
                 toConnector: "right",
@@ -244,7 +266,7 @@ export class AppComponent implements OnChanges {
         for (let j = 0; j < notLinkedControlsTypeThree.length; j++) {
           dataConnections.push({
               Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
-              FromShapeId: (j == 0 || j % 5 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
+              FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
               ToShapeId: notLinkedControlsTypeThree[j].Id,
               Text: null,
               toConnector: "left",
@@ -457,7 +479,8 @@ export class AppComponent implements OnChanges {
         });
 
         function switchView(isExpand) {
-           diagramHelper.ArrangeNodes(originalData, isExpand);
+
+           diagramHelper.ArrangeNodes(isExpand);
                  
           // Reset both data source and connections data source
           diagram.setDataSource(dataShapes);
