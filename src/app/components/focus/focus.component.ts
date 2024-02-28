@@ -221,7 +221,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
     function onEdit(e) {
       /* The result can be observed in the DevTools(F12) console of the browser. */
       //e.container.find(".k-edit-buttons").remove();
-      // console.log('Editing shape with model id: ' + e.shape.id);
+     
     }
 
     function arrangeNodes(originalData) {
@@ -563,9 +563,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
 
     const arrangedData = arrangeNodes(originalData);
 
-    // console.log(
-    //   arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }))
-    // );
+    
 
     $(function () {
       $(document).ready(function () {
@@ -660,7 +658,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
                 });
               }
               localStorage.setItem('shapes', JSON.stringify(newData));
-              // console.log('saved');
+             
             },
           },
           connectionsDataSource: {
@@ -726,7 +724,7 @@ export class FocusComponent implements OnInit, AfterViewInit {
 
       diagram.refresh();
       ReLoadDiagramWithSelectedNode(node);
-      // console.log(this.dataSource);
+      
       // Do something when the node is clicked.
     }
 

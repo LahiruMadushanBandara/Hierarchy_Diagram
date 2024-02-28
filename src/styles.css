@@ -5,23 +5,23 @@
   overflow: scroll !important;
   height: 100% !important;
 } */
-
+/* 
 .k-actions,
 .k-edit-buttons,
 .k-action-buttons,
 .k-columnmenu-actions {
   padding: 7px 7px 0px 30px;
-}
+} */
 /* 
 .k-animation-container {
-  display: none !important;
-}
+  visible: true,
+} */
 
-.k-animation-container-shown {
-  display: none !important;
+/* .k-animation-container-shown {
+ 
+  z-index:100000 !important;
+} */
 
-}
- */
 
 
 /* .bow-tie-btn-outline-primary {
@@ -479,7 +479,7 @@
 
 .bow-tie-risk-card-header-expand {
   background-color: #f8f9fa;
-  ;
+  
   color: #000000;
   height: auto;
 }
@@ -959,10 +959,7 @@
 
 }
 
-.k-slider .k-button {
-  flex: none;
-  display: none;
-}
+
 
 .expand-icon {
   content: url("/assets/bow-tie/icon/expand-icon.png") !important;
@@ -1043,6 +1040,13 @@
 }
 
 
-
+/* Example CSS - Adjust as needed */
+.k-tooltip {
+  font-size: 14px !important;
+  color: #fffdfd !important;
+  background-color: #000000 !important;
+  z-index: 1000 !important;
+  visibility: visible;
+}
 
 

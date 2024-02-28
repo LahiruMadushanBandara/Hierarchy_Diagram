@@ -29,7 +29,7 @@ export class TemplateClass {
 
   public GetOtherTemplateGlobal(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
     // var styles:string;
-    // console.log("contentDetails",contentDetails)
+    
 
     //  if(contentDetails.KPIData.Performance === 'On Track'){
       
@@ -1641,22 +1641,22 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
 
         //         if (originalData[i].Title == "Other Node") {
         //             // color = '#faab2c';
-        //             // console.log("coloro",color);
+        //            
         //         } else if (originalData[i].Title == "Cause Node" || originalData[i].Title == "Consequences Node") {
         //             // color = '#40b86e';
-        //             // console.log("colorcc",color);
+        //             
         //         } else if (originalData[i].Title == "Control Node") {
         //             color = '#e54257';
-        //             console.log("colorc",color);
+        //            
         //         } else {
         //             // Default color if no conditions are met
         //             color = '#000000';
-        //             console.log("colord",color);
+        //           
         //         }
 
 
         //     }
-        //     console.log("colorall",color);
+        //     
         //     return (color);
         // } 
 

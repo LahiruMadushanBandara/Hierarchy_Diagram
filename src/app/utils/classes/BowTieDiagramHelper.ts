@@ -176,7 +176,7 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 520;
       const verticalSpacing = isExpand ? 520 : 300;
-      let verticalSpacingFour =  isExpand ? 400 : 270;
+      let verticalSpacingFour =  isExpand ? 50 : 50;
       let CommonPointYValue = isExpand ? 2600 : 1800;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let maxNodesPerRow;
@@ -242,7 +242,7 @@ export class BowTieDiagramHelper {
 
           if(typeTwoNodes[i].ParentNodeId != 0 && typeTwoNodes[i].Title == 'Cause Node')
           {lastLinkedControlId = typeTwoNodes[i].LinkedControlIds[typeTwoNodes[i].LinkedControlIds.length - 1];
-          console.log("lastLinkedControlId",lastLinkedControlId)}
+         }
           
 
             const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
@@ -255,7 +255,7 @@ export class BowTieDiagramHelper {
             rowNodeCount = 0;
             columnNumber = rowNodeCount;
 
-            // console.log(typeTwoNodes);
+          
           }
 
       }
@@ -394,7 +394,7 @@ export class BowTieDiagramHelper {
 
   ArrangeConnectionLines(){
     var dataConnections = [];
-    console.log
+
        
         for (let i = 1; i < this.RearrangedDataset.length; i++) {
         
@@ -422,7 +422,7 @@ export class BowTieDiagramHelper {
           }
 
           if ((this.RearrangedDataset[i].Title === "Cause Node" || this.RearrangedDataset[i].Title === "Consequences Node") && this.RearrangedDataset[i].ParentNodeId != 0) {
-            console.log(this.RearrangedDataset[i].LinkedControlIds);
+         
             for (let j = 0; j < this.RearrangedDataset[i].LinkedControlIds.length + 1; j++) {
               if (this.RearrangedDataset[i].LinkedControlIds.length === 1) {
                 dataConnections.push({
