@@ -75,7 +75,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Risk Node",
         "Header": "Risk",
         "Rating": "",
-        "htmlTemplate": "<dev>Failure to appropriately implement business continuity program/policy</dev>",
+        "htmlTemplate": "Failure to appropriately implement business continuity program/policy.",
         "RiskData": {
           "RiskCode": "OR24",
           "ResponsibleManager": "Elizabeth McMahon",
@@ -1009,9 +1009,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     var draw = kendo.drawing;
 
     function visualTemplate(options: any) {
+      var visual = new kendo.dataviz.diagram.Group();
       var dataItem = options.dataItem;
-      tempTitleDetail = dataItem.Title;
 
+     
+
+      // visual.drawingElement.options.tooltip = {
+      //   content: dataItem.htmlTemplate,       
+      //   position: "bottom",
+      //   width: 400, // Adjust the width as needed
+      //   height: "auto",
+      //   showOn: "mouseenter"        
+      // };
+      
+     
       var templatesObj =
       {
         riskTemplate: "",
@@ -1051,7 +1062,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       });
 
 
-      var visual = new kendo.dataviz.diagram.Group();
+     
       visual.drawingElement.append(output);
 
       return visual;
@@ -1110,7 +1121,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         var dataConnections = [];
        
         for (let i = 1; i < originalData.length; i++) {
-        let count = 0;
+      
           if (originalData[i].Title === "Risk Node") {
             dataConnections.push({
               Id:0,
@@ -1396,7 +1407,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           max: 2,
           smallStep: 0.01,
           largeStep: 0.02,
-          value: 0.3,
+          value: 0.5,
           tooltip: {
             enabled: true,
           },
@@ -1417,30 +1428,39 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           animation: false // You can enable animation if needed
         });
 
+        const Riskx = originalData[1].x;
+        const Risky = originalData[1].y;
+
         diagram.wrapper.on("wheel", function (e) {
           e.preventDefault();
-
+          var currentZoom = diagram.zoom();
           var delta = e.originalEvent.deltaY;
           var zoomChange = delta > 0 ? -0.02 : 0.02;
-
+          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + zoomChange,
+            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
           // Change the zoom level by the default zoomChange value
-          diagram.zoom(diagram.zoom() + zoomChange);
+          diagram.zoom(currentZoom);
 
           // Update the zoom slider with the new zoom level
           slider.value(diagram.zoom());
         });
 
 
+
         $(".zoomInIcon").click(function () {
+
           var currentZoom = diagram.zoom();
-          currentZoom += 0.02;
+          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
+            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
+
         });
 
         $(".zoomOutIcon").click(function () {
           var currentZoom = diagram.zoom();
-          currentZoom -= 0.02;
+          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
+            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
         });

@@ -153,6 +153,8 @@ export class TemplateClass {
                             "src='"+ contentDetails.RiskData.InherentRiskRatingImg+"'"+
                   "<span class='bow-tie-risk-rating-details-text'>"+
                     contentDetails.RiskData.InherentRiskRating+
+                  //  " <br>"+
+                  //   contentDetails.RiskData.RiskCode+"</br>"+
                   "</span>" +
                 "</p>" +
               "</div>" +

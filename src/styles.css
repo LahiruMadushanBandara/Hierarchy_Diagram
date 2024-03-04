@@ -207,7 +207,7 @@
 .bow-tie-risk-rating-details {
   display: flex;
   align-items: center;
-  line-height: 1;
+  line-height: 2;
   margin-top: 5px;
 }
 
@@ -1039,14 +1039,10 @@
   background-color: black;
 }
 
-
+.k-layer{
+  padding: 20px;
+ }
 /* Example CSS - Adjust as needed */
-.k-tooltip {
-  font-size: 14px !important;
-  color: #fffdfd !important;
-  background-color: #000000 !important;
-  z-index: 1000 !important;
-  visibility: visible;
-}
+
 
 
