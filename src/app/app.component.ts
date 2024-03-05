@@ -453,21 +453,43 @@ export class AppComponent implements OnChanges {
         });
 
 
+        // $(".zoomInIcon").click(function () {
+        //   var currentZoom = diagram.zoom();
+        //   currentZoom += 0.02;
+        //   diagram.zoom(currentZoom);
+        //   slider.value(currentZoom);
+        // });
+
+        // $(".zoomOutIcon").click(function () {
+        //   var currentZoom = diagram.zoom();
+        //   currentZoom -= 0.02;
+        //   diagram.zoom(currentZoom);
+        //   slider.value(currentZoom);
+        // });
+
+        const Riskx = originalData[1].x + 190;
+        const Risky = originalData[1].y;
+
+        
+
+
         $(".zoomInIcon").click(function () {
+
           var currentZoom = diagram.zoom();
-          currentZoom += 0.02;
+          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
+            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
+
         });
 
         $(".zoomOutIcon").click(function () {
           var currentZoom = diagram.zoom();
-          currentZoom -= 0.02;
+          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
+            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
         });
-
-
 
         var sliderHandle = slider.wrapper.find('.k-draghandle');
         sliderHandle.kendoTooltip({
