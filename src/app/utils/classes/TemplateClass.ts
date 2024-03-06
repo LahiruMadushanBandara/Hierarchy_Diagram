@@ -509,83 +509,83 @@ export class TemplateClass {
 
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
-      "<div class='bow-tie-risk-card-header-top-expand' >" +
-      "<p class='bow-tie-risk-card-header-top-text'>" +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      '</p>' +
-      '</div>' +
-      "<div class='bow-tie-risk-card-header-expand'>" +
-      "<p class='bow-tie-risk-card-header-text-expand'>\\" +
-      contentDetails.LinkedRiskData.RiskCode +
-      '-' +
-      truncatedHtmlTemplate +
-      '   </p> ' +
-      '</div>' +
-      "<div class='bow-tie-risk-card-body-expand'>" +
-      "<div class='row'>" +
-      "<div class='column'>" +
-      "<p class='ratings'> Inherent Rating  </p>" +
-      "<p class='bow-tie-risk-rating-details'>" +
-      "<img class='bow-tie-risk-rating-details-image'" +
-      "src='" +
-      contentDetails.LinkedRiskData.InherentRiskRatingImg +
-      "'" +
-      "<span class='bow-tie-risk-rating-details-text'>" +
-      contentDetails.LinkedRiskData.InherentRiskRating +
-      '</span>' +
-      '</p>' +
-      '</div>' +
-      "<div class='column'>" +
-      "<p class='ratings'> Revised Rating  </p>" +
-      "<p class='bow-tie-risk-rating-details'>" +
-      "<img class='bow-tie-risk-rating-details-image'" +
-      "src='" +
-      contentDetails.LinkedRiskData.ResidualRiskRatingImg +
-      "'" +
-      "<span class='bow-tie-risk-rating-details-text'>" +
-      contentDetails.LinkedRiskData.ResidualRiskRating +
-      '</span>' +
-      '</p>' +
-      '</div>' +
-      '</div>' +
-      "<div class='row'>" +
-      "<div class='column'>" +
-      "<p class='ratings'> Future Rating  </p>" +
-      "<p  class='bow-tie-risk-rating-details'>" +
-      "<img class='bow-tie-risk-rating-details-image'" +
-      "src='" +
-      contentDetails.LinkedRiskData.TargetRiskRatingImg +
-      "'" +
-      "<span class='bow-tie-risk-rating-details-text'>" +
-      contentDetails.LinkedRiskData.TargetRiskRating +
-      '</span>' +
-      '</p>' +
-      '</div>' +
-        riskAppetite +
-      '</div>' +
-      '</div>' +
-      "<div class='bow-tie-risk-card-footer-expand'>" +
-      "<div class='row'>" +
-      "<div class='bow-tie-risk-footer-details'>" +
-      "<p class='ratings'> Risk Category  </p>" +
-      "<p class= 'bow-tie-risk-category'>" +
-      contentDetails.LinkedRiskData.Category +
-      '</p>' +
-      '</div>' +
-      "<div class='bow-tie-risk-Expand-footer-details-responsible'>" +
-      "<p class='bow-tie-risk-responsible-manager'> Responsible Manager  </p>" +
-      "<p class='bow-tie-risk-rating-details'>" +
-      "<img class='bow-tie-risk-rating-details-image'" +
-      "src='" +
-      contentDetails.LinkedRiskData.profileImageUrl
-        .changingThisBreaksApplicationSecurity +
-      "'" +
-      "<span class='bow-tie-risk-rating-details-text'>" +
-      contentDetails.LinkedRiskData.ResponsibleManager +
-      '</span>' +
-      '</p>' +
-      '</div>' +
-      '</div>' +
+        "<div class='bow-tie-risk-card-header-top-expand' >" +
+          "<p class='bow-tie-risk-card-header-top-text'>" +
+            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          '</p>' +
+        '</div>' +
+        "<div class='bow-tie-risk-card-header-expand'>" +
+          "<p class='bow-tie-risk-card-header-text-expand'>\\" +
+            contentDetails.LinkedRiskData.RiskCode +
+            '-' +
+            truncatedHtmlTemplate +
+          '   </p> ' +
+        '</div>' +
+        "<div class='bow-tie-risk-card-body-expand'>" +
+          "<div class='row-expand'>" +
+            "<div class='column'>" +
+              "<p class='ratings'> Inherent Rating  </p>" +
+              "<p class='bow-tie-risk-rating-details'>" +
+              "<img class='bow-tie-risk-rating-details-image'" +
+              "src='" +
+              contentDetails.LinkedRiskData.InherentRiskRatingImg +
+              "'" +
+              "<span class='bow-tie-risk-rating-details-text'>" +
+              contentDetails.LinkedRiskData.InherentRiskRating +
+              '</span>' +
+              '</p>' +
+            '</div>' +
+            "<div class='column'>" +
+              "<p class='ratings'> Revised Rating  </p>" +
+              "<p class='bow-tie-risk-rating-details'>" +
+              "<img class='bow-tie-risk-rating-details-image'" +
+              "src='" +
+              contentDetails.LinkedRiskData.ResidualRiskRatingImg +
+              "'" +
+              "<span class='bow-tie-risk-rating-details-text'>" +
+              contentDetails.LinkedRiskData.ResidualRiskRating +
+              '</span>' +
+              '</p>' +
+            '</div>' +
+          '</div>' +
+          "<div class='row-expand'>" +
+            "<div class='column'>" +
+              "<p class='ratings'> Future Rating  </p>" +
+              "<p  class='bow-tie-risk-rating-details'>" +
+              "<img class='bow-tie-risk-rating-details-image'" +
+              "src='" +
+              contentDetails.LinkedRiskData.TargetRiskRatingImg +
+              "'" +
+              "<span class='bow-tie-risk-rating-details-text'>" +
+              contentDetails.LinkedRiskData.TargetRiskRating +
+              '</span>' +
+              '</p>' +
+            '</div>' +
+              riskAppetite +
+          '</div>' +
+        '</div>' +
+        "<div class='bow-tie-risk-card-footer-expand'>" +
+          "<div class='row'>" +
+          "<div class='bow-tie-risk-footer-details'>" +
+            "<p class='ratings'> Risk Category  </p>" +
+            "<p class= 'bow-tie-risk-category'>" +
+            contentDetails.LinkedRiskData.Category +
+            '</p>' +
+          '</div>' +
+          "<div class='bow-tie-risk-Expand-footer-details-responsible'>" +
+            "<p class='bow-tie-risk-responsible-manager'> Responsible Manager  </p>" +
+            "<p class='bow-tie-risk-rating-details'>" +
+            "<img class='bow-tie-risk-rating-details-image'" +
+            "src='" +
+            contentDetails.LinkedRiskData.profileImageUrl
+              .changingThisBreaksApplicationSecurity +
+            "'" +
+            "<span class='bow-tie-risk-rating-details-text'>" +
+            contentDetails.LinkedRiskData.ResponsibleManager +
+            '</span>' +
+            '</p>' +
+          '</div>' +
+        '</div>' +
       '</div>'
     );
   }
