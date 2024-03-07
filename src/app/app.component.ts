@@ -1445,7 +1445,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           slider.value(diagram.zoom());
         });
 
-
+        // Bind the double-click event to the diagram element
+        $('#diagram').on('dblclick', function (e) {
+          e.preventDefault(); // Prevent the default zoom behavior on double-click
+          slider.value(diagram.zoom());          
+         
+        });
 
         $(".zoomInIcon").click(function () {
 
