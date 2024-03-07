@@ -453,20 +453,14 @@ export class AppComponent implements OnChanges {
         });
 
 
-        // $(".zoomInIcon").click(function () {
-        //   var currentZoom = diagram.zoom();
-        //   currentZoom += 0.02;
-        //   diagram.zoom(currentZoom);
-        //   slider.value(currentZoom);
-        // });
+         // Bind the double-click event to the diagram element
+         $('#diagram').on('dblclick', function (e) {
+          e.preventDefault(); // Prevent the default zoom behavior on double-click
+          slider.value(diagram.zoom());          
+         
+        });
 
-        // $(".zoomOutIcon").click(function () {
-        //   var currentZoom = diagram.zoom();
-        //   currentZoom -= 0.02;
-        //   diagram.zoom(currentZoom);
-        //   slider.value(currentZoom);
-        // });
-
+     
         const Riskx = originalData[1].x + 190;
         const Risky = originalData[1].y;
 
