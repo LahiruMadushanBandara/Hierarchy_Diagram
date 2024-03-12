@@ -1044,5 +1044,7 @@
  }
 /* Example CSS - Adjust as needed */
 
-
+g>path {
+  shape-rendering: optimizeSpeed;
+}
 

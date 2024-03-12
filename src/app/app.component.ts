@@ -1307,12 +1307,24 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           },
           change: function (e) {
             // Call the function to update connection colors
-            diagramManager.updateConnectionColors(e.added);
+            // diagramManager.updateConnectionColors(e.added);
+
+            for (var idx = 0; idx < e.added.length; idx++) {
+              if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
+
+                e.added[idx].redraw({
+                  stroke: {
+                    color: "#00000",
+                    "shape-rendering": "crispEdges"
+                  }
+                })
+              }
+            }
           },
 
           shapeDefaults: {
             stroke: {
-              color: '#979797',
+              color: '#00000',
               width: 10,
             },
             connectors: [
@@ -1368,6 +1380,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           cancel: onCancel,
 
           layout: false,
+          
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
           editable: {
             drag: true,
@@ -1384,6 +1397,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               diagramManager.handlePan(e, this);
             }
           },
+       
           //   dataBound: function () {
           //     // Call the function to update diagram dimensions
           //     diagramManager.updateDiagramDimensions(this);
@@ -1420,13 +1434,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }).data("kendoSlider");
 
         var sliderHandle = slider.wrapper.find('.k-draghandle');
-        sliderHandle.kendoTooltip({
-          content: function (e) {
-            return slider.value();
-          },
-          position: 'top',
-          animation: false // You can enable animation if needed
-        });
+        // sliderHandle.kendoTooltip({
+        //   content: function (e) {
+        //     return slider.value();
+        //   },
+         
+        //   animation: false // You can enable animation if needed
+        // });
 
         const Riskx = originalData[1].x;
         const Risky = originalData[1].y;
