@@ -99,15 +99,17 @@ export class BowTieDiagramHelper {
       }
 
     }
+
+    for (let i = 0; i < notLinkedControlNodes.length; i++) {
+      this.RearrangedDataset.push(notLinkedControlNodes[i]);
+    }
     for (let i = 0; i < notLinkedCauseNodes.length; i++) {
       this.RearrangedDataset.push(notLinkedCauseNodes[i]);
     }
     for (let i = 0; i < notLinkedConsequenceNodes.length; i++) {
       this.RearrangedDataset.push(notLinkedConsequenceNodes[i]);
     }
-    for (let i = 0; i < notLinkedControlNodes.length; i++) {
-      this.RearrangedDataset.push(notLinkedControlNodes[i]);
-    }
+   
     for (let i = 0; i < linkedBottomNodes.length; i++) {
       this.RearrangedDataset.push(linkedBottomNodes[i]);
     }
@@ -218,7 +220,8 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
           //move to next row when nodes per row = 5
           if (rowNodeCount === maxNodesPerRow ||
-            (typeTwoNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined)) {
+            (typeTwoNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined) ||
+            (typeTwoNodes.length > i + 1 && typeTwoNodes[i + 1].Title == 'Cause Node' && typeTwoNodes[i + 1].LinkedControlIds.length == 0)) {
             rowNumbertypetwo++;
             rowNodeCount = 0;
           }
@@ -232,7 +235,6 @@ export class BowTieDiagramHelper {
             lastLinkedControlId = typeTwoNodes[i].LinkedControlIds[typeTwoNodes[i].LinkedControlIds.length - 1];
 
           }
-
 
           const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
           const y = originY + rowNumbertypetwo * verticalSpacing;
@@ -273,7 +275,8 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
           //move to next row when nodes per row = 5
           if (rowNodeCount === maxNodesPerRow ||
-            (typeThreeNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined)) {
+            (typeThreeNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined) ||
+            (typeThreeNodes.length > i + 1 && typeThreeNodes[i + 1].Title == 'Consequences Node' && typeThreeNodes[i + 1].LinkedControlIds.length == 0)) {
             rowNumbertypethree++;
             rowNodeCount = 0;
           }

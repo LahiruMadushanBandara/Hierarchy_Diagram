@@ -461,8 +461,10 @@ export class AppComponent implements OnChanges {
         });
 
      
-        const Riskx = originalData[1].x + 190;
-        const Risky = originalData[1].y;
+        //set the cordinates for zoom.diagramm zoom from this x and y point
+
+        const zoomPointX = originalData[1].x + 190;
+        const zoomPointY = originalData[1].y;
 
         
 
@@ -471,7 +473,7 @@ export class AppComponent implements OnChanges {
 
           var currentZoom = diagram.zoom();
           currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
-            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
+            { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
 
@@ -480,7 +482,7 @@ export class AppComponent implements OnChanges {
         $(".zoomOutIcon").click(function () {
           var currentZoom = diagram.zoom();
           currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
-            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
+            { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
         });
