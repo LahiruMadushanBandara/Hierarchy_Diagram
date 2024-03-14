@@ -1383,7 +1383,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
           editable: {
-            drag: true,
+            drag: false,
             tools: [
               {
                 template: diagramManager.GetToolbarTemplate()
