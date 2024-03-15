@@ -186,25 +186,25 @@ export class TemplateClass {
     contentDetails.RiskData.InherentRiskRatingImg =
       contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined ||
       contentDetails.RiskData.InherentRiskRatingImg == '' || contentDetails.RiskData.InherentRiskRatingImg === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
       : contentDetails.RiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.RiskData.AppetiteRatingImg =
       contentDetails.RiskData.AppetiteRating == '' || contentDetails.RiskData.AppetiteRating === undefined ||
       contentDetails.RiskData.AppetiteRatingImg == '' || contentDetails.RiskData.AppetiteRatingImg === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
       : contentDetails.RiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.RiskData.ResidualRiskRatingImg =
       contentDetails.RiskData.ResidualRiskRating == '' || contentDetails.RiskData.ResidualRiskRating === undefined ||
       contentDetails.RiskData.ResidualRiskRatingImg == '' || contentDetails.RiskData.ResidualRiskRatingImg === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
       : contentDetails.RiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.RiskData.TargetRiskRatingImg =
       contentDetails.RiskData.TargetRiskRating == '' || contentDetails.RiskData.TargetRiskRating === undefined ||
       contentDetails.RiskData.TargetRiskRatingImg == '' || contentDetails.RiskData.TargetRiskRatingImg === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
       : contentDetails.RiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.RiskData.InherentRiskRating = contentDetails.RiskData.InherentRiskRating == '' || contentDetails.RiskData.InherentRiskRating === undefined
@@ -334,7 +334,7 @@ export class TemplateClass {
     contentDetails.ControlData.ControlOwnerRatingImage = 
       contentDetails.ControlData.ControlOwnerRatingImage == '' || contentDetails.ControlData.ControlOwnerRatingImage === undefined ||
       contentDetails.ControlData.ControlOwnerRating == '' || contentDetails.ControlData.ControlOwnerRating === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;":
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;":
       contentDetails.ControlData.ControlOwnerRatingImage.changingThisBreaksApplicationSecurity;
 
     contentDetails.ControlData.ControlOwnerRating = contentDetails.ControlData.ControlOwnerRating == '' || contentDetails.ControlData.ControlOwnerRating === undefined
@@ -343,7 +343,7 @@ export class TemplateClass {
     contentDetails.ControlData.ControlOwnerImageUrl = 
       contentDetails.ControlData.ControlOwnerImageUrl == '' || contentDetails.ControlData.ControlOwnerImageUrl === undefined ||
       contentDetails.ControlData.ControlOwner == '' || contentDetails.ControlData.ControlOwner === undefined
-      ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;":
+      ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;":
       contentDetails.ControlData.ControlOwnerImageUrl.changingThisBreaksApplicationSecurity;
 
     contentDetails.ControlData.ControlOwner = contentDetails.ControlData.ControlOwner == '' || contentDetails.ControlData.ControlOwner === undefined
@@ -447,25 +447,25 @@ export class TemplateClass {
     contentDetails.LinkedRiskData.InherentRiskRatingImg = 
       contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined ||
       contentDetails.LinkedRiskData.InherentRiskRatingImg == '' || contentDetails.LinkedRiskData.InherentRiskRatingImg === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.LinkedRiskData.InherentRiskRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.LinkedRiskData.AppetiteRatingImg = 
       contentDetails.LinkedRiskData.AppetiteRating == '' || contentDetails.LinkedRiskData.AppetiteRating === undefined ||
       contentDetails.LinkedRiskData.AppetiteRatingImg == '' || contentDetails.LinkedRiskData.AppetiteRatingImg === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.LinkedRiskData.AppetiteRatingImg.changingThisBreaksApplicationSecurity;
         
     contentDetails.LinkedRiskData.ResidualRiskRatingImg = 
       contentDetails.LinkedRiskData.ResidualRiskRating == '' || contentDetails.LinkedRiskData.ResidualRiskRating === undefined ||
       contentDetails.LinkedRiskData.ResidualRiskRatingImg == '' || contentDetails.LinkedRiskData.ResidualRiskRatingImg === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.LinkedRiskData.ResidualRiskRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.LinkedRiskData.TargetRiskRatingImg = 
       contentDetails.LinkedRiskData.TargetRiskRating == '' || contentDetails.LinkedRiskData.TargetRiskRating === undefined ||
       contentDetails.LinkedRiskData.TargetRiskRatingImg == '' || contentDetails.LinkedRiskData.TargetRiskRatingImg === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.LinkedRiskData.TargetRiskRatingImg.changingThisBreaksApplicationSecurity;
 
     contentDetails.LinkedRiskData.InherentRiskRating = contentDetails.LinkedRiskData.InherentRiskRating == '' || contentDetails.LinkedRiskData.InherentRiskRating === undefined
@@ -595,7 +595,7 @@ export class TemplateClass {
     contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic =
       contentDetails.TreatmentData.TreatmentResponsibleOfficer == '' || contentDetails.TreatmentData.TreatmentResponsibleOfficer === undefined ||
       contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic == '' || contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.TreatmentData.TreatmentResponsibleOfficerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity;
 
     contentDetails.TreatmentData.TreatmentResponsibleOfficer = contentDetails.TreatmentData.TreatmentResponsibleOfficer == '' || contentDetails.TreatmentData.TreatmentResponsibleOfficer === undefined
@@ -663,7 +663,7 @@ export class TemplateClass {
     contentDetails.IncidentData.ReportedOfficerImageUrl =
       contentDetails.IncidentData.ReportedOfficerName == '' || contentDetails.IncidentData.ReportedOfficerName === undefined ||
       contentDetails.IncidentData.ReportedOfficerImageUrl == '' || contentDetails.IncidentData.ReportedOfficerImageUrl === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.IncidentData.ReportedOfficerImageUrl.changingThisBreaksApplicationSecurity;
 
     contentDetails.IncidentData.ReportedOfficerName = contentDetails.IncidentData.ReportedOfficerName == '' || contentDetails.IncidentData.ReportedOfficerName === undefined
@@ -672,7 +672,7 @@ export class TemplateClass {
     contentDetails.IncidentData.ResponsibleManagerProfilePic =
       contentDetails.IncidentData.ResponsiblePerson == '' || contentDetails.IncidentData.ResponsiblePerson === undefined ||
       contentDetails.IncidentData.ResponsibleManagerProfilePic == '' || contentDetails.IncidentData.ResponsibleManagerProfilePic === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.IncidentData.ResponsibleManagerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity;
 
     contentDetails.IncidentData.ResponsiblePerson = contentDetails.IncidentData.ResponsiblePerson == '' || contentDetails.IncidentData.ResponsiblePerson === undefined
@@ -735,7 +735,7 @@ export class TemplateClass {
     contentDetails.ComplianceData.ROImage =
       contentDetails.ComplianceData.ResponsibleOfficer == '' || contentDetails.ComplianceData.ResponsibleOfficer === undefined ||
       contentDetails.ComplianceData.ROImage == '' || contentDetails.ComplianceData.ROImage === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.ComplianceData.ROImage.changingThisBreaksApplicationSecurity;
 
     contentDetails.ComplianceData.ResponsibleOfficer = contentDetails.ComplianceData.ResponsibleOfficer == '' || contentDetails.ComplianceData.ResponsibleOfficer === undefined
@@ -951,7 +951,7 @@ export class TemplateClass {
     contentDetails.AuthorityDocumentData.ROImage =
       contentDetails.AuthorityDocumentData.ResponsibleOfficer == '' || contentDetails.AuthorityDocumentData.ResponsibleOfficer === undefined ||
       contentDetails.AuthorityDocumentData.ROImage == '' || contentDetails.AuthorityDocumentData.ROImage === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.AuthorityDocumentData.ROImage.changingThisBreaksApplicationSecurity;
 
     contentDetails.AuthorityDocumentData.ResponsibleOfficer = contentDetails.AuthorityDocumentData.ResponsibleOfficer == '' || contentDetails.AuthorityDocumentData.ResponsibleOfficer === undefined
@@ -1007,7 +1007,7 @@ export class TemplateClass {
     contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic =
       contentDetails.PolicyData.ResponsiblePerson == '' || contentDetails.PolicyData.ResponsiblePerson === undefined ||
       contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic == '' || contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic === undefined
-        ? "assets/images/noimage.png' style='border-radius: 0px; width: 50px; height: 50px;"
+        ? "assets/images/noimage.png' style='border-radius: 0px; width: 35px; height: 35px;"
         : contentDetails.PolicyData.PolicyResponsibleOfficerProfilePic.changingThisBreaksApplicationSecurity.changingThisBreaksApplicationSecurity;
 
       contentDetails.PolicyData.ResponsiblePerson = contentDetails.PolicyData.ResponsiblePerson == '' || contentDetails.PolicyData.ResponsiblePerson === undefined
