@@ -174,9 +174,9 @@ export class BowTieDiagramHelper {
 
     if (riskNode) {
       const horizontalSpacing = 500;
-      const verticalSpacing = isExpand ? 520 : 300;
+      const verticalSpacing = isExpand ? 470 : 250;
       let verticalSpacingFour = isExpand ? 50 : 50;
-      let riskCordinateIncrementValue = isExpand ? 150 : 10;
+      let riskCordinateIncrementValue = isExpand ? 160 : 10;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let CommonPointYValue;
       let maxNodesPerRow;
