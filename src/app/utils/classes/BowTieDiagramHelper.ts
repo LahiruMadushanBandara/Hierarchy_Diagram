@@ -109,7 +109,7 @@ export class BowTieDiagramHelper {
     for (let i = 0; i < notLinkedConsequenceNodes.length; i++) {
       this.RearrangedDataset.push(notLinkedConsequenceNodes[i]);
     }
-   
+
     for (let i = 0; i < linkedBottomNodes.length; i++) {
       this.RearrangedDataset.push(linkedBottomNodes[i]);
     }
@@ -176,7 +176,7 @@ export class BowTieDiagramHelper {
       const horizontalSpacing = 500;
       const verticalSpacing = isExpand ? 470 : 250;
       let verticalSpacingFour = isExpand ? 50 : 50;
-      let riskCordinateIncrementValue = isExpand ? 160 : 10;
+      let riskCordinateIncrementValue = 10;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let CommonPointYValue;
       let maxNodesPerRow;
@@ -304,19 +304,37 @@ export class BowTieDiagramHelper {
       }
 
 
-      //filter type four nodes
-
-      const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
-
-      //Arrange Risk node (in the middle)
-
-      let riskNodeX = originX;
-      let riskNodeY = originY + riskCordinateIncrementValue;
-      riskNode.x = riskNodeX;
-      riskNode.y = riskNodeY;
-      arrangedNodes.push(riskNode);
 
 
+      //.................................Arrange Risk node (in the middle).........................................
+      let riskYCodinate = 0;
+      if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) {
+        riskYCodinate = (typeThreeNodes[1].y + typeThreeNodes[typeThreeNodes.length - 1].y) / 2 - 100;
+      }
+      else if (typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length) {
+        riskYCodinate = (typeTwoNodes[1].y + typeTwoNodes[typeTwoNodes.length - 1].y) / 2;
+      }
+
+      if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)
+        || (rowNumbertypetwo == 1 && rowNumbertypethree == 1) || (rowNumbertypetwo == 0 && rowNumbertypethree == 1)
+        || (rowNumbertypetwo == 1 && rowNumbertypethree == 0)) {
+        let riskNodeX = originX;
+        let riskNodeY = originY + riskCordinateIncrementValue;
+        riskNode.x = riskNodeX;
+        riskNode.y = riskNodeY;
+        arrangedNodes.push(riskNode);
+      }
+      else {
+
+        let riskNodeX = originX;
+        let riskNodeY = originY + riskYCodinate - verticalSpacing / 2;
+        riskNode.x = riskNodeX;
+        riskNode.y = riskNodeY;
+        arrangedNodes.push(riskNode);
+      }
+
+
+      //...............................Arrange common point...........................................
 
       if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)
         || (rowNumbertypetwo == 1 && rowNumbertypethree == 1) || (rowNumbertypetwo == 0 && rowNumbertypethree == 1)
@@ -338,8 +356,11 @@ export class BowTieDiagramHelper {
       }
 
 
-      // Arrange type 4 nodes (below type 2 and type 3)
+      //..............................Arrange type 4 nodes (below type 2 and type 3)....................................
 
+      //filter type four nodes
+
+      const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
       rowNodeCount = 0;
       let typeFourNodeCount;
       let typeFourNodePlacingValue;
