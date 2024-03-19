@@ -1314,7 +1314,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
                 e.added[idx].redraw({
                   stroke: {
-                    color: "#00000",
+                    color: "#323250",
                     "shape-rendering": "crispEdges"
                   }
                 })
@@ -1434,13 +1434,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }).data("kendoSlider");
 
         var sliderHandle = slider.wrapper.find('.k-draghandle');
-        // sliderHandle.kendoTooltip({
-        //   content: function (e) {
-        //     return slider.value();
-        //   },
+        sliderHandle.kendoTooltip({
+          content: function (e) {
+            return slider.value();
+          },
          
-        //   animation: false // You can enable animation if needed
-        // });
+          animation: false // You can enable animation if needed
+        });
 
         const Riskx = originalData[1].x;
         const Risky = originalData[1].y;

@@ -250,8 +250,8 @@
 }
 
 .bow-tie-risk-rating-details-image {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin: 5px 5px 5px 5px;
   border-radius: 25px;
 }
@@ -1093,3 +1093,11 @@ g>path {
   shape-rendering: optimizeSpeed;
 }
 
+/* Example CSS - Adjust as needed */
+.k-tooltip {
+  font-size: 14px !important;
+  color: #fffdfd !important;
+  background-color: #000000 !important;
+  z-index: 1000 !important;
+  visibility: visible;
+}
