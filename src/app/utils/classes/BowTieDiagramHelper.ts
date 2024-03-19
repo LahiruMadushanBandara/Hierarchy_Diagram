@@ -310,10 +310,10 @@ export class BowTieDiagramHelper {
       //Arrange Risk node (in the middle)
 
       if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) {
-        riskYCodinate = (typeTwoNodes[1].y) + 220;
+        riskYCodinate = (typeThreeNodes[1].y + typeThreeNodes[typeThreeNodes.length - 1].y ) / 2 - 100 ;
       }
       else if (typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length) {
-        riskYCodinate = (typeThreeNodes[2].y) + 100;
+        riskYCodinate = (typeTwoNodes[1].y + typeTwoNodes[typeTwoNodes.length - 1].y ) / 2 ;
       }
 
       if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
@@ -331,6 +331,14 @@ export class BowTieDiagramHelper {
         riskNode.y = riskNodeY;
         arrangedNodes.push(riskNode);
       }
+
+
+
+
+
+      //....................common point placemens.......................................
+
+
 
 
       if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0) || (rowNumbertypetwo == 1 && rowNumbertypethree == 1)) {
