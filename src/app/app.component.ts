@@ -915,7 +915,36 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       },
 
       {
+        "Id": 40,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Treatment",
+        "Rating": "",
+        "htmlTemplate": "<dev>Number of ISP outages.</dev>",
+        "TreatmentData": {
+          "DueDate": "17octomber2023",
+          "Owner": "Madeline Jones",
+          "CompleteValue": 55,
+        }
+      },
+
+      {
         "Id": 35,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Audit",
+        "Rating": "",
+        "htmlTemplate": "Birthday attacks against TLS ciphers with 64bit block size vulnerability",
+        "AuditData": {
+          "AuditDate": "17octomber2023",
+          "AuditTitle": "Madeline Jones",
+          "AuditId": 55,
+        }
+      },
+      {
+        "Id": 41,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -944,6 +973,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "expandHierarchyView": "Madeline Jones > Birthday > attacks against > TLS ciphers > with 64bit > block size > vulnerability",
         }
       },
+      {
+        "Id": 42,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Hierarchy",
+        "Rating": "",
+        "htmlTemplate": "Madeline Jones > Birthday",
+        "HierarchyData": {
+          "isPermitted": true,
+          "nodeId": "34",
+          "collapseHierarchyView": "Madeline Jones > Birthday",
+          "expandHierarchyView": "Madeline Jones > Birthday > attacks against > TLS ciphers > with 64bit > block size > vulnerability",
+        }
+      },
 
       {
         "Id": 37,
@@ -957,9 +1001,33 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         }
       },
+      {
+        "Id": 43,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "AuditRecommendation",
+        "Rating": "",
+        "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+        "AuditRecommendationData": {
+
+        }
+      },
 
       {
         "Id": 38,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "AuditFinding",
+        "Rating": "",
+        "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+        "AuditRecommendationData": {
+
+        }
+      },
+      {
+        "Id": 44,
         "Type": 4,
         "ParentNodeId": 0,
         "Title": "Other Node",
@@ -987,7 +1055,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
      
-
+      {
+        "Id": 45,
+        "Type": 4,
+        "ParentNodeId": 0,
+        "Title": "Other Node",
+        "Header": "Policy",
+        "Rating": "",
+        "htmlTemplate": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+        "PolicyData": {
+          "IncidentTypeName": "compliance",
+          "ResponsiblePerson": "Andrew James",
+          "PolicyResponsibleOfficerProfilePic": ""
+        }
+      },
 
     ]
 
@@ -1117,66 +1198,67 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         
         // // Add the new shape to dataShapes
         // dataShapes.push(newShape);
-  
+
         var dataConnections = [];
-       
+
+        let IncidentNodes = originalData.filter((node) => node.Header == 'Incident');
+        let KPINodes = originalData.filter((node) => node.Header == 'KPI');
+        let TreatmentNodes = originalData.filter((node) => node.Header == 'Treatment');
+        let AuditNodes = originalData.filter((node) => node.Header == 'Audit');
+        let HierarchyNodes = originalData.filter((node) => node.Header == 'Hierarchy');
+        let AuditRecommendationNodes = originalData.filter((node) => node.Header == 'AuditRecommendation');
+        let AuditFindingNodes = originalData.filter((node) => node.Header == 'AuditFinding');
+        let PolicyNodes = originalData.filter((node) => node.Header == 'Policy');
+        var notLinkedControlsTypeTwo: any[] = [];
+        var notLinkedControlsTypeThree: any[] = [];
+
+
         for (let i = 1; i < originalData.length; i++) {
-      
+
           if (originalData[i].Title === "Risk Node") {
             dataConnections.push({
-              Id:0,
-              FromShapeId: originalData[0].Id,
-              ToShapeId: originalData[i].Id,
-              Text: null,
-              fromConnector:"center",
-              toConnector:"bottom"
-              
-            });
-           
-          }
-          if (originalData[i].Title === "Other Node") {
-            dataConnections.push({
-              Id: originalData[i].Id,
+              Id: 0,
               FromShapeId: originalData[0].Id,
               ToShapeId: originalData[i].Id,
               Text: null,
               fromConnector: "center",
-              toConnector: "top"
-            });
-          }
+              toConnector: "bottom"
 
+            });
+
+          }    
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
             for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
               if (originalData[i].LinkedControlIds.length === 1) {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j === 0 ) ? 0 : originalData[i].LinkedControlIds[0],
+                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
                   ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
                   Text: null,
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                 });
-              } 
-              else if (originalData[i].LinkedControlIds.length > 4){
-                if((j + 1) % 4 == 0 ){
+              }
+              else if (originalData[i].LinkedControlIds.length > 4) {
+                if ((j + 1) % 4 == 0) {
                   dataConnections.push({
                     Id: j,
-                    FromShapeId:originalData[i].LinkedControlIds[j],
+                    FromShapeId: originalData[i].LinkedControlIds[j],
                     ToShapeId: originalData[i].Id,
                     Text: null,
                     fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                   });
                 }
-                
-                  dataConnections.push({
-                    Id: j,
-                    FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
-                    ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
-                    Text: null,
-                    fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
-                  });
-                  console.log(j ,originalData[i].LinkedControlIds[j]);
-                              
+
+                dataConnections.push({
+                  Id: j,
+                  FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  Text: null,
+                  fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                });
+
+
               }
               else {
                 dataConnections.push({
@@ -1186,11 +1268,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                   Text: null,
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                 });
-                
+
               }
             }
+            
           }
-
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId === 0) {
             dataConnections.push({
               Id: originalData[i].Id,
@@ -1200,48 +1282,121 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
             });
           }
-        
-        
-        }
+          // Collect all "Control Node" type 2 and 3 elements with IsLinkedToCauseOrConsequence = false
+          if (originalData[i].Title === "Control Node" && originalData[i].Type === 2 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+            notLinkedControlsTypeTwo.push(originalData[i]);
+          }
 
-        var notLinkedControlsTypeTwo: any[] = [];
-        var notLinkedControlsTypeThree: any[] = [];
-
-        // Collect all "Control Node" type 2 and 3 elements with IsLinkedToCauseOrConsequence set to false
-        for (let i = 0; i < originalData.length; i++) {
-            if (originalData[i].Title === "Control Node" && originalData[i].Type === 2 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-                notLinkedControlsTypeTwo.push(originalData[i]);
-            }
-            
-            if (originalData[i].Title === "Control Node" && originalData[i].Type === 3 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-              notLinkedControlsTypeThree.push(originalData[i]);
-            }
+          if (originalData[i].Title === "Control Node" && originalData[i].Type === 3 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+            notLinkedControlsTypeThree.push(originalData[i]);
+          }
         }
         
-        // Generate connection lines based on notLinkedControls
-        for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
-            dataConnections.push({
-                Id:  notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
-                FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
-                ToShapeId: notLinkedControlsTypeTwo[j].Id,
-                Text: null,
-                toConnector: "right",
-                fromConnector: "left", // Adjusted to use notLinkedControls[j] instead of originalData[i]
-            });
-        }
       
-      // Generate connection lines based on notLinkedControls
+        // Generate connection lines based on notLinkedControls - type two
+        for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
+          dataConnections.push({
+            Id: notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
+            FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
+            ToShapeId: notLinkedControlsTypeTwo[j].Id,
+            Text: null,
+            toConnector: "right",
+            fromConnector: "left", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+          });
+        }
+        // Generate connection lines based on notLinkedControls - type three
         for (let j = 0; j < notLinkedControlsTypeThree.length; j++) {
           dataConnections.push({
-              Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
-              FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
-              ToShapeId: notLinkedControlsTypeThree[j].Id,
-              Text: null,
-              toConnector: "left",
-              fromConnector: "right", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+            Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
+            FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
+            ToShapeId: notLinkedControlsTypeThree[j].Id,
+            Text: null,
+            toConnector: "left",
+            fromConnector: "right", // Adjusted to use notLinkedControls[j] instead of originalData[i]
           });
-      }
-        
+        }
+        //generate connection lines for bottom nodes 
+        for (let j = 0; j < IncidentNodes.length; j++) {
+          dataConnections.push({
+            Id: IncidentNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : IncidentNodes[j - 1].Id,
+            ToShapeId: IncidentNodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < KPINodes.length; j++) {
+          dataConnections.push({
+            Id: KPINodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : KPINodes[j - 1].Id,
+            ToShapeId: KPINodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < TreatmentNodes.length; j++) {
+          dataConnections.push({
+            Id: TreatmentNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : TreatmentNodes[j - 1].Id,
+            ToShapeId: TreatmentNodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < AuditNodes.length; j++) {
+          dataConnections.push({
+            Id: AuditNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : AuditNodes[j - 1].Id,
+            ToShapeId: AuditNodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < HierarchyNodes.length; j++) {
+          dataConnections.push({
+            Id: HierarchyNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : HierarchyNodes[j - 1].Id,
+            ToShapeId: HierarchyNodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < AuditRecommendationNodes.length; j++) {
+          dataConnections.push({
+            Id: AuditRecommendationNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : AuditRecommendationNodes[j - 1].Id,
+            ToShapeId: AuditRecommendationNodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < AuditFindingNodes.length; j++) {
+          dataConnections.push({
+            Id: AuditFindingNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : AuditFindingNodes[j - 1].Id,
+            ToShapeId: AuditFindingNodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < PolicyNodes.length; j++) {
+          dataConnections.push({
+            Id: PolicyNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : PolicyNodes[j - 1].Id,
+            ToShapeId: PolicyNodes[j].Id,
+            Text: null,
+            fromConnector: "bottom",
+            toConnector: "top"
+          });
+        }
+
 
         console.log("connection data set", dataConnections)
 
@@ -1383,7 +1538,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
           editable: {
-            drag: false,
+            drag: true,
             tools: [
               {
                 template: diagramManager.GetToolbarTemplate()

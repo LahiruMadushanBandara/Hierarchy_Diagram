@@ -179,7 +179,7 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 520;
       const verticalSpacing = isExpand ? 520 : 300;
-      let verticalSpacingFour = isExpand ? 600 : 400;
+      let verticalSpacingFour = isExpand ? 600 : 250;
       let CommonPointYValue = isExpand ? 2600 : 1800;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let maxNodesPerRow;
@@ -310,10 +310,10 @@ export class BowTieDiagramHelper {
       //Arrange Risk node (in the middle)
 
       if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) {
-        riskYCodinate = (typeThreeNodes[1].y + typeThreeNodes[typeThreeNodes.length - 1].y ) / 2 - 100 ;
+        riskYCodinate = (typeThreeNodes[1].y + typeThreeNodes[typeThreeNodes.length - 1].y) / 2 - 100;
       }
       else if (typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length) {
-        riskYCodinate = (typeTwoNodes[1].y + typeTwoNodes[typeTwoNodes.length - 1].y ) / 2 ;
+        riskYCodinate = (typeTwoNodes[1].y + typeTwoNodes[typeTwoNodes.length - 1].y) / 2;
       }
 
       if (typeTwoNodes.length == 0 && typeThreeNodes.length == 0) {
@@ -356,12 +356,12 @@ export class BowTieDiagramHelper {
         arrangedNodes.push(CommonPoint);
       }
 
-      // Arrange type 4 nodes (below type 2 and type 3)
 
-      
-     
+
+      //................................Arrange type 4 nodes (below type 2 and type 3).....................................
+
+
       let typeFourNodePlacingValue;
-    
 
       // Filter nodes based on their header types
       const IncidentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Incident');
@@ -373,25 +373,23 @@ export class BowTieDiagramHelper {
       const AuditFindingNodes = this.RearrangedDataset.filter((node) => node.Header == 'AuditFinding');
       const PolicyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Policy');
 
-
       const nonEmptyHeaders = [
-        IncidentNodes,
-        KPINodes,
+        IncidentNodes,        
         TreatmentNodes,
-        AuditNodes,
-        HierarchyNodes,
+        PolicyNodes,
+        KPINodes,
+        AuditNodes,       
         AuditRecommendationNodes,
         AuditFindingNodes,
-        PolicyNodes
+        HierarchyNodes
+       
       ].filter(nodes => nodes.length > 0);
-
+      console.log("nonEmptyHeaders", nonEmptyHeaders)
       // Total number of columns
       const totalColumns = nonEmptyHeaders.length;
-      console.log("totalColumns", totalColumns)
 
       // Function to arrange nodes in a column based on their header
       const arrangeNodesInColumn = (nodes, columnOffset, totalColumns) => {
-
         if (totalColumns % 2 === 0) { typeFourNodePlacingValue = 200 }
         else { typeFourNodePlacingValue = 190 }
 
@@ -410,18 +408,10 @@ export class BowTieDiagramHelper {
         }
       };
 
-
-
-
       // Arrange nodes for each header type in columns
-      arrangeNodesInColumn(IncidentNodes, 0, totalColumns);
-      arrangeNodesInColumn(KPINodes, 1, totalColumns);
-      arrangeNodesInColumn(TreatmentNodes, 2, totalColumns);
-      arrangeNodesInColumn(AuditNodes, 3, totalColumns);
-      arrangeNodesInColumn(HierarchyNodes, 4, totalColumns);
-      arrangeNodesInColumn(AuditRecommendationNodes, 5, totalColumns);
-      arrangeNodesInColumn(AuditFindingNodes, 6, totalColumns);
-      arrangeNodesInColumn(PolicyNodes, 7, totalColumns);
+      nonEmptyHeaders.forEach((nodes, index) => {
+        arrangeNodesInColumn(nodes, index, totalColumns);
+      });
 
 
 

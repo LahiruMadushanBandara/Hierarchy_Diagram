@@ -204,3 +204,15 @@ $("#toolbar").kendoToolBar({
     },
   ]
 }) */
+
+
+/* ............................generate connection lines for bottom nodes..................... // if (originalData[i].Title === "Other Node") {
+  //   dataConnections.push({
+  //     Id: originalData[i].Id,
+  //     FromShapeId: originalData[0].Id,
+  //     ToShapeId: originalData[i].Id,
+  //     Text: null,
+  //     fromConnector: "center",
+  //     toConnector: "top"
+  //   });
+  // } */
