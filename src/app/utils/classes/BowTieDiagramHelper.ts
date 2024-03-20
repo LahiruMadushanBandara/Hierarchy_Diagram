@@ -179,7 +179,6 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 520;
       const verticalSpacing = isExpand ? 520 : 300;
-      let verticalSpacingFour = isExpand ? 600 : 250;
       let CommonPointYValue = isExpand ? 2600 : 1800;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let maxNodesPerRow;
@@ -363,6 +362,8 @@ export class BowTieDiagramHelper {
 
       let typeFourNodePlacingValue;
 
+     
+
       // Filter nodes based on their header types
       const IncidentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Incident');
       const KPINodes = this.RearrangedDataset.filter((node) => node.Header == 'KPI');
@@ -372,48 +373,46 @@ export class BowTieDiagramHelper {
       const AuditRecommendationNodes = this.RearrangedDataset.filter((node) => node.Header == 'AuditRecommendation');
       const AuditFindingNodes = this.RearrangedDataset.filter((node) => node.Header == 'AuditFinding');
       const PolicyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Policy');
-
+      
       const nonEmptyHeaders = [
-        IncidentNodes,        
-        TreatmentNodes,
-        PolicyNodes,
-        KPINodes,
-        AuditNodes,       
-        AuditRecommendationNodes,
-        AuditFindingNodes,
-        HierarchyNodes
-       
-      ].filter(nodes => nodes.length > 0);
-      console.log("nonEmptyHeaders", nonEmptyHeaders)
+          { nodes: IncidentNodes, verticalSpacingFour: isExpand ? 500 : 250 },
+          { nodes: KPINodes, verticalSpacingFour: isExpand ? 400 : 250 },
+          { nodes: TreatmentNodes, verticalSpacingFour: isExpand ? 420 : 250 },
+          { nodes: AuditNodes, verticalSpacingFour: isExpand ? 300 : 250 },
+          { nodes: HierarchyNodes, verticalSpacingFour: isExpand ? 220 : 250 },
+          { nodes: AuditRecommendationNodes, verticalSpacingFour: isExpand ? 250 : 250 },
+          { nodes: AuditFindingNodes, verticalSpacingFour: isExpand ? 250 : 250 },
+          { nodes: PolicyNodes, verticalSpacingFour: isExpand ? 450 : 250 }
+      ].filter(({ nodes }) => nodes.length > 0);
+      
       // Total number of columns
       const totalColumns = nonEmptyHeaders.length;
-
+      
       // Function to arrange nodes in a column based on their header
-      const arrangeNodesInColumn = (nodes, columnOffset, totalColumns) => {
-        if (totalColumns % 2 === 0) { typeFourNodePlacingValue = 200 }
-        else { typeFourNodePlacingValue = 190 }
-
-        let currentY = CommonPoint.y + 100;
-
-        const distanceFromMiddle = columnOffset - (totalColumns - 1) / 2; // Calculate the distance from the middle column
-
-        let nodeCount = 0;
-        for (const node of nodes) {
-          const xBaseOffset = distanceFromMiddle * horizontalSpacing; // Calculate x-coordinate offset from the middle
-          node.x = CommonPoint.x - typeFourNodePlacingValue + xBaseOffset;
-          node.y = currentY;
-          arrangedNodes.push(node);
-          currentY += verticalSpacingFour;
-          nodeCount++;
-        }
+      const arrangeNodesInColumn = (nodes, columnOffset, totalColumns, verticalSpacingFour) => {
+          if (totalColumns % 2 === 0) { typeFourNodePlacingValue = 200 }
+          else { typeFourNodePlacingValue = 190 }
+      
+          let currentY = CommonPoint.y + 100;
+      
+          const distanceFromMiddle = columnOffset - (totalColumns - 1) / 2; // Calculate the distance from the middle column
+      
+          let nodeCount = 0;
+          for (const node of nodes) {
+              const xBaseOffset = distanceFromMiddle * horizontalSpacing; // Calculate x-coordinate offset from the middle
+              node.x = CommonPoint.x - typeFourNodePlacingValue + xBaseOffset;
+              node.y = currentY;
+              arrangedNodes.push(node);
+              currentY += verticalSpacingFour;
+              nodeCount++;
+          }
       };
-
+      
       // Arrange nodes for each header type in columns
-      nonEmptyHeaders.forEach((nodes, index) => {
-        arrangeNodesInColumn(nodes, index, totalColumns);
+      nonEmptyHeaders.forEach(({ nodes, verticalSpacingFour }, index) => {
+          arrangeNodesInColumn(nodes, index, totalColumns, verticalSpacingFour);
       });
-
-
+      
 
     }
     return arrangedNodes;

@@ -13,9 +13,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
         "<div class='bow-tie-control-card-header' "+ styles +">" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-control-card-body' >" +
           "<p>" +
@@ -51,9 +51,9 @@ export class TemplateClass {
     return (
       "<div class='Bow-tie-Other-card-content rounded' "+ styles +">" +
         "<div class='Bow-tie-Other-card-header'"+ styles +">" +
-          "<h4>" +
+         
              (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='Bow-tie-Other-card-body'"+ styles +">" +
           "<p>\\" +
@@ -83,9 +83,9 @@ export class TemplateClass {
  
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-cause-card-body'>" +
           "<p>" +
@@ -100,9 +100,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
         "<div class='bow-tie-cause-card-header'>" +
-          "<h4>" +
+         
               (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-cause-card-body' >" +
           "<p>" +
@@ -132,9 +132,9 @@ export class TemplateClass {
       "<div class='bow-tie-risk-card-content rounded'>" +
           "<div class='bow-tie-risk-card-header-top' >" +
             "<p class='bow-tie-risk-card-header-top-text'>" +
-            "<h4>" +
+           
                 (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-            "</h4>" +
+           
             "</p>" +
           "</div>" +
           "<div class='bow-tie-risk-card-header'>" +
@@ -233,9 +233,9 @@ export class TemplateClass {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-control-card-header' "+ styles +">" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body' "+ styles +">" +
           "<p>" +
@@ -281,7 +281,7 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
   return (
     "<div class='bow-tie-extra-card-content rounded'>" +
       "<div class='bow-tie-extra-card-header'>" +
-        "<h4>" + (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) + "</h4>" +
+        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
         "<p>" + contentDetails.htmlTemplate + "</p>" +
@@ -322,9 +322,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div style='background-color:white;' class='bow-tie-risk-card-header-expand'>" +
            "<p class='bow-tie-risk-card-header-text-expand'> <b>"+
@@ -407,9 +407,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header' >" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p> <b>" +
@@ -447,9 +447,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
         "<div class='bow-tie-extra-card-header'>" +
-          "<h4>" +
+         
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body'>" +
           "<p>" +
@@ -575,9 +575,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
@@ -600,9 +600,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded'>" +
         "<div class='bow-tie-extra-card-header'>" +
-          "<h4>" +
+         
            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-          "</h4>" +
+         
         "</div>" +
         "<div class='bow-tie-extra-card-body' >" +
           "<p>" +
@@ -617,9 +617,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
@@ -642,12 +642,12 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
-      "<p>" +
+      "<p >" +
       contentDetails.htmlTemplate +
       "</p>" +
       "<p style='display: flex; align-items: left; line-height: 1; margin-top: 35px;'>" +
@@ -676,9 +676,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header'>" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body'>" +
       "<p>" +
@@ -693,9 +693,9 @@ public GetRiskActionTreatmentExpand(contentDetails: DiagramNodeData) {
     return (
       "<div class='bow-tie-extra-card-content rounded' >" +
       "<div class='bow-tie-extra-card-header' >" +
-      "<h4>" +
+     
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
-      "</h4>" +
+     
       "</div>" +
       "<div class='bow-tie-extra-card-body' >" +
       "<p>" +
