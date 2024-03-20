@@ -464,7 +464,7 @@ export class AppComponent implements OnChanges {
         //set the cordinates for zoom.diagramm zoom from this x and y point
 
         const zoomPointX = originalData[1].x + 190;
-        const zoomPointY = originalData[1].y;
+        const zoomPointY = originalData[1].y + 190;
 
         
 
