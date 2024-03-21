@@ -181,6 +181,8 @@ export class BowTieDiagramHelper {
       const verticalSpacing = isExpand ? 520 : 300;
       let CommonPointYValue = isExpand ? 2600 : 1800;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
+      let verticalSpacingFour = isExpand ? 600 : 250;
+
       let maxNodesPerRow;
       const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
       let typeFourIndex = 0;
@@ -364,6 +366,7 @@ export class BowTieDiagramHelper {
 
      
 
+
       // Filter nodes based on their header types
       const IncidentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Incident');
       const KPINodes = this.RearrangedDataset.filter((node) => node.Header == 'KPI');
@@ -375,21 +378,21 @@ export class BowTieDiagramHelper {
       const PolicyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Policy');
       
       const nonEmptyHeaders = [
-          { nodes: IncidentNodes, verticalSpacingFour: isExpand ? 500 : 250 },
-          { nodes: KPINodes, verticalSpacingFour: isExpand ? 400 : 250 },
-          { nodes: TreatmentNodes, verticalSpacingFour: isExpand ? 420 : 250 },
-          { nodes: AuditNodes, verticalSpacingFour: isExpand ? 300 : 250 },
-          { nodes: HierarchyNodes, verticalSpacingFour: isExpand ? 220 : 250 },
-          { nodes: AuditRecommendationNodes, verticalSpacingFour: isExpand ? 250 : 250 },
-          { nodes: AuditFindingNodes, verticalSpacingFour: isExpand ? 250 : 250 },
-          { nodes: PolicyNodes, verticalSpacingFour: isExpand ? 450 : 250 }
-      ].filter(({ nodes }) => nodes.length > 0);
+          IncidentNodes,
+          KPINodes,
+          TreatmentNodes,
+          AuditNodes,
+          HierarchyNodes,
+          AuditRecommendationNodes,
+          AuditFindingNodes,
+          PolicyNodes
+      ].filter(nodes => nodes.length > 0);
       
       // Total number of columns
       const totalColumns = nonEmptyHeaders.length;
       
       // Function to arrange nodes in a column based on their header
-      const arrangeNodesInColumn = (nodes, columnOffset, totalColumns, verticalSpacingFour) => {
+      const arrangeNodesInColumn = (nodes, columnOffset, totalColumns) => {
           if (totalColumns % 2 === 0) { typeFourNodePlacingValue = 200 }
           else { typeFourNodePlacingValue = 190 }
       
@@ -409,9 +412,10 @@ export class BowTieDiagramHelper {
       };
       
       // Arrange nodes for each header type in columns
-      nonEmptyHeaders.forEach(({ nodes, verticalSpacingFour }, index) => {
-          arrangeNodesInColumn(nodes, index, totalColumns, verticalSpacingFour);
+      nonEmptyHeaders.forEach((nodes, index) => {
+          arrangeNodesInColumn(nodes, index, totalColumns);
       });
+      
       
 
     }

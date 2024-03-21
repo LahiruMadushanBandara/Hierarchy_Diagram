@@ -1209,6 +1209,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         let AuditRecommendationNodes = originalData.filter((node) => node.Header == 'AuditRecommendation');
         let AuditFindingNodes = originalData.filter((node) => node.Header == 'AuditFinding');
         let PolicyNodes = originalData.filter((node) => node.Header == 'Policy');
+
+        
         var notLinkedControlsTypeTwo: any[] = [];
         var notLinkedControlsTypeThree: any[] = [];
 
@@ -1597,8 +1599,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           animation: false // You can enable animation if needed
         });
 
-        const Riskx = originalData[1].x;
-        const Risky = originalData[1].y;
+        const Riskx = originalData[1].x + 190;
+        const Risky = originalData[1].y + 190;
 
         diagram.wrapper.on("wheel", function (e) {
           e.preventDefault();
