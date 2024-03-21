@@ -366,7 +366,6 @@ export class BowTieDiagramHelper {
 
      
 
-
       // Filter nodes based on their header types
       const IncidentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Incident');
       const KPINodes = this.RearrangedDataset.filter((node) => node.Header == 'KPI');
@@ -378,21 +377,21 @@ export class BowTieDiagramHelper {
       const PolicyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Policy');
       
       const nonEmptyHeaders = [
-          IncidentNodes,
-          KPINodes,
-          TreatmentNodes,
-          AuditNodes,
-          HierarchyNodes,
-          AuditRecommendationNodes,
-          AuditFindingNodes,
-          PolicyNodes
-      ].filter(nodes => nodes.length > 0);
+          { nodes: IncidentNodes, verticalSpacingFour: isExpand ? 500 : 250 },
+          { nodes: KPINodes, verticalSpacingFour: isExpand ? 400 : 250 },
+          { nodes: TreatmentNodes, verticalSpacingFour: isExpand ? 420 : 250 },
+          { nodes: AuditNodes, verticalSpacingFour: isExpand ? 300 : 250 },
+          { nodes: HierarchyNodes, verticalSpacingFour: isExpand ? 220 : 250 },
+          { nodes: AuditRecommendationNodes, verticalSpacingFour: isExpand ? 250 : 250 },
+          { nodes: AuditFindingNodes, verticalSpacingFour: isExpand ? 250 : 250 },
+          { nodes: PolicyNodes, verticalSpacingFour: isExpand ? 450 : 250 }
+      ].filter(({ nodes }) => nodes.length > 0);
       
       // Total number of columns
       const totalColumns = nonEmptyHeaders.length;
       
       // Function to arrange nodes in a column based on their header
-      const arrangeNodesInColumn = (nodes, columnOffset, totalColumns) => {
+      const arrangeNodesInColumn = (nodes, columnOffset, totalColumns, verticalSpacingFour) => {
           if (totalColumns % 2 === 0) { typeFourNodePlacingValue = 200 }
           else { typeFourNodePlacingValue = 190 }
       
@@ -412,10 +411,9 @@ export class BowTieDiagramHelper {
       };
       
       // Arrange nodes for each header type in columns
-      nonEmptyHeaders.forEach((nodes, index) => {
-          arrangeNodesInColumn(nodes, index, totalColumns);
+      nonEmptyHeaders.forEach(({ nodes, verticalSpacingFour }, index) => {
+          arrangeNodesInColumn(nodes, index, totalColumns, verticalSpacingFour);
       });
-      
       
 
     }
