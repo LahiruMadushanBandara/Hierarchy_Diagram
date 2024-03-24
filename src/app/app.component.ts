@@ -137,7 +137,20 @@ export class AppComponent implements OnChanges {
         }
 
 
-       
+        var dataConnections = [];
+        var notLinkedControlsTypeTwo: any[] = [];
+        var notLinkedControlsTypeThree: any[] = [];
+        let IncidentNodes = originalData.filter((node) => node.Header == 'Incident');
+        let KPINodes = originalData.filter((node) => node.Header == 'KPI');
+        let TreatmentNodes = originalData.filter((node) => node.Header == 'Action');
+        let AuditNodes = originalData.filter((node) => node.Header == 'Audit');
+        let HierarchyNodes = originalData.filter((node) => node.Header == 'Hierarchy Linkages');
+        let AuditRecommendationNodes = originalData.filter((node) => node.Header == 'Audit Recommendation');
+        let AuditFindingNodes = originalData.filter((node) => node.Header == 'Audit Finding');
+        let PolicyNodes = originalData.filter((node) => node.Header == 'Policy');
+        let linkRiskNodes = originalData.filter((node) => node.Header == 'Linked Risk');
+        let ObligationNodes = originalData.filter((node) => node.Header == 'Obligation');
+        let AuthorityDocumentNodes = originalData.filter((node) => node.Header == 'Authority Document');
 
         // Function to check if there are nodes with Type === 4
         let hasType4Nodes = false;
@@ -147,8 +160,7 @@ export class AppComponent implements OnChanges {
             break;
           }
         }
-         //creating connection lines
-        var dataConnections = [];
+        //creating connection lines       
         for (let i = 1; i < originalData.length; i++) {
 
           if (originalData[i].Title === "Risk Node" && hasType4Nodes) {
@@ -160,19 +172,6 @@ export class AppComponent implements OnChanges {
               color: '#323250',
               fromConnector: "center",
               toConnector: "bottom"
-            });
-          }
-          
-         
-          if (originalData[i].Title === "Other Node") {
-            dataConnections.push({
-              Id: originalData[i].Id,
-              FromShapeId: originalData[0].Id,
-              ToShapeId: originalData[i].Id,
-              Text: null,
-              color: '#323250',
-              fromConnector: "center",
-              toConnector: "top"
             });
           }
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
@@ -187,27 +186,27 @@ export class AppComponent implements OnChanges {
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
                   toConnector: "auto"
                 });
-              } else if (originalData[i].LinkedControlIds.length > 4){
-                if((j + 1) % 4 == 0 ){
+              } else if (originalData[i].LinkedControlIds.length > 4) {
+                if ((j + 1) % 4 == 0) {
                   dataConnections.push({
                     Id: j,
-                    FromShapeId:originalData[i].LinkedControlIds[j],
+                    FromShapeId: originalData[i].LinkedControlIds[j],
                     ToShapeId: originalData[i].Id,
                     Text: null,
                     fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                     toConnector: "auto"
                   });
                 }
-                
-                  dataConnections.push({
-                    Id: j,
-                    FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
-                    ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
-                    Text: null,
-                    fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
-                  });
-                 
-                              
+
+                dataConnections.push({
+                  Id: j,
+                  FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  Text: null,
+                  fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                });
+
+
               }
               else {
                 dataConnections.push({
@@ -233,46 +232,158 @@ export class AppComponent implements OnChanges {
               toConnector: "auto"
             });
           }
-         
-          
-        }
-        var notLinkedControlsTypeTwo: any[] = [];
-        var notLinkedControlsTypeThree: any[] = [];
 
+
+
+        }
         // Collect all "Control Node" type 2 and 3 elements with IsLinkedToCauseOrConsequence set to false
         for (let i = 0; i < originalData.length; i++) {
-            if (originalData[i].Title === "Control Node" && originalData[i].Type === 2 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-                notLinkedControlsTypeTwo.push(originalData[i]);
-            }
-            
-            if (originalData[i].Title === "Control Node" && originalData[i].Type === 3 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
-              notLinkedControlsTypeThree.push(originalData[i]);
-            }
+          if (originalData[i].Title === "Control Node" && originalData[i].Type === 2 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+            notLinkedControlsTypeTwo.push(originalData[i]);
+          }
+
+          if (originalData[i].Title === "Control Node" && originalData[i].Type === 3 && !originalData[i].ControlData.IsLinkedToCauseOrConsequence) {
+            notLinkedControlsTypeThree.push(originalData[i]);
+          }
         }
-        
-        // Generate connection lines based on notLinkedControls
+        // Generate connection lines based on notLinkedControls - type two
         for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
-            dataConnections.push({
-                Id:  notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
-                FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
-                ToShapeId: notLinkedControlsTypeTwo[j].Id,
-                Text: null,
-                toConnector: "right",
-                fromConnector: "left", // Adjusted to use notLinkedControls[j] instead of originalData[i]
-            });
+          dataConnections.push({
+            Id: notLinkedControlsTypeTwo[j].Id, // Assuming you have the correct index or unique identifier for Id
+            FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeTwo[j - 1].Id,
+            ToShapeId: notLinkedControlsTypeTwo[j].Id,
+            Text: null,
+            toConnector: "right",
+            fromConnector: "left", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+          });
         }
-      
-      // Generate connection lines based on notLinkedControls
+        // Generate connection lines based on notLinkedControls -type three
         for (let j = 0; j < notLinkedControlsTypeThree.length; j++) {
           dataConnections.push({
-              Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
-              FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
-              ToShapeId: notLinkedControlsTypeThree[j].Id,
-              Text: null,
-              toConnector: "left",
-              fromConnector: "right", // Adjusted to use notLinkedControls[j] instead of originalData[i]
+            Id: notLinkedControlsTypeThree[j].Id, // Assuming you have the correct index or unique identifier for Id
+            FromShapeId: (j == 0 || j % 4 == 0) ? 0 : notLinkedControlsTypeThree[j - 1].Id,
+            ToShapeId: notLinkedControlsTypeThree[j].Id,
+            Text: null,
+            toConnector: "left",
+            fromConnector: "right", // Adjusted to use notLinkedControls[j] instead of originalData[i]
           });
-      }
+        }
+        //generate connection lines for bottom nodes 
+        for (let j = 0; j < IncidentNodes.length; j++) {
+          dataConnections.push({
+            Id: IncidentNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : IncidentNodes[j - 1].Id,
+            ToShapeId: IncidentNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < KPINodes.length; j++) {
+          dataConnections.push({
+            Id: KPINodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : KPINodes[j - 1].Id,
+            ToShapeId: KPINodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < TreatmentNodes.length; j++) {
+          dataConnections.push({
+            Id: TreatmentNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : TreatmentNodes[j - 1].Id,
+            ToShapeId: TreatmentNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < AuditNodes.length; j++) {
+          dataConnections.push({
+            Id: AuditNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : AuditNodes[j - 1].Id,
+            ToShapeId: AuditNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < HierarchyNodes.length; j++) {
+          dataConnections.push({
+            Id: HierarchyNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : HierarchyNodes[j - 1].Id,
+            ToShapeId: HierarchyNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < AuditRecommendationNodes.length; j++) {
+          dataConnections.push({
+            Id: AuditRecommendationNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : AuditRecommendationNodes[j - 1].Id,
+            ToShapeId: AuditRecommendationNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < AuditFindingNodes.length; j++) {
+          dataConnections.push({
+            Id: AuditFindingNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : AuditFindingNodes[j - 1].Id,
+            ToShapeId: AuditFindingNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < PolicyNodes.length; j++) {
+          dataConnections.push({
+            Id: PolicyNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : PolicyNodes[j - 1].Id,
+            ToShapeId: PolicyNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < linkRiskNodes.length; j++) {
+          dataConnections.push({
+            Id: linkRiskNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : linkRiskNodes[j - 1].Id,
+            ToShapeId: linkRiskNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < ObligationNodes.length; j++) {
+          dataConnections.push({
+            Id: ObligationNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : ObligationNodes[j - 1].Id,
+            ToShapeId: ObligationNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+        for (let j = 0; j < AuthorityDocumentNodes.length; j++) {
+          dataConnections.push({
+            Id: AuthorityDocumentNodes[j].Id,
+            FromShapeId: (j == 0) ? originalData[0].Id : AuthorityDocumentNodes[j - 1].Id,
+            ToShapeId: AuthorityDocumentNodes[j].Id,
+            Text: null,
+            fromConnector: (j == 0) ? "center" : "bottom",
+            toConnector: "top"
+          });
+        }
+
+
+
+
+
 
 
         var initialStateOfDataAndConnections = {

@@ -624,7 +624,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body'>" +
+      "<div class='bow-tie-expand-card-body-Action'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '<p>' +
@@ -695,7 +695,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body'>" +
+      "<div class='bow-tie-expand-card-body-Incident'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '<p>' +
@@ -758,7 +758,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body'>" +
+      "<div class='bow-tie-expand-card-body-Obligation'>" +
       "<p class='bow-tie-htmlTemplate'>'\\" +
       truncatedHtmlTemplate +
       '<p>' +
@@ -843,7 +843,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body'" +
+      "<div class='bow-tie-expand-card-body-KPI'" +
       perfomanceViewKPIBodyStyle +
       ' >' +
       "<p class='bow-tie-htmlTemplate' " +
@@ -913,7 +913,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body'>" +
+      "<div class='bow-tie-expand-card-body-Audit'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
@@ -929,7 +929,12 @@ export class TemplateClass {
     );
   }
 
-  public GetHierarchyExpand(contentDetails: DiagramNodeData) {   
+  public GetHierarchyExpand(contentDetails: DiagramNodeData) {  
+    const maxCharacters = 150;
+    const truncatedHierarchyData =
+    contentDetails.HierarchyData.expandedString.length > maxCharacters
+      ? contentDetails.HierarchyData.expandedString.substring(0, maxCharacters) + '...'
+      : contentDetails.HierarchyData.expandedString;
     return (
       "<div class='bow-tie-expand-card-content rounded'>" +
         "<div class='bow-tie-expand-card-header'>" +
@@ -937,9 +942,9 @@ export class TemplateClass {
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           '</span>' +
         '</div>' +
-        "<div class='bow-tie-expand-card-body' >" +
+        "<div class='bow-tie-expand-card-body-Hierarchy' >" +
           "<p class='bow-tie-htmlTemplate'>" +
-            contentDetails.HierarchyData.expandedString +
+          truncatedHierarchyData+
           '</p>' +
         '</div>' +
       '</div>'
@@ -974,7 +979,7 @@ export class TemplateClass {
             (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           '</span>' +
         '</div>' +
-        "<div class='bow-tie-expand-card-body'>" +
+        "<div class='bow-tie-expand-card-body-AuthorityDocument'>" +
           "<p class='bow-tie-htmlTemplate'>\\" +
             truncatedHtmlTemplate +
           '<p>' +
@@ -1030,7 +1035,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body'>" +
+      "<div class='bow-tie-expand-card-body-Policy'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
@@ -1076,7 +1081,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body'>" +
+      "<div class='bow-tie-expand-card-body-AuditRecommendations'>" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '</p>' +
@@ -1102,7 +1107,7 @@ export class TemplateClass {
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
-      "<div class='bow-tie-expand-card-body' >" +
+      "<div class='bow-tie-expand-card-body-AuditFinding' >" +
       "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate  +
       '</p>' +

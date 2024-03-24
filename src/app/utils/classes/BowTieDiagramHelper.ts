@@ -235,16 +235,29 @@ export class BowTieDiagramHelper {
             lastLinkedControlId = typeTwoNodes[i].LinkedControlIds[typeTwoNodes[i].LinkedControlIds.length - 1];
 
           }
+          if (typeTwoNodes[i].LinkedControlIds.length == 0) {
+            const x = originX -  horizontalSpacing; // Fifth place from the left
+            const y = originY + rowNumbertypetwo * verticalSpacing;
+            typeTwoNodes[i].x = x;
+            typeTwoNodes[i].y = y;
+            arrangedNodes.push(typeTwoNodes[i]);
+            rowNodeCount++;
+            rowNumbertypetwo++;
+            rowNodeCount = 0;
+            columnNumber = rowNodeCount;
+          }
+          else {
+            const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
+            const y = originY + rowNumbertypetwo * verticalSpacing;
+            typeTwoNodes[i].x = x;
+            typeTwoNodes[i].y = y;
+            arrangedNodes.push(typeTwoNodes[i]);
+            rowNodeCount++;
+            rowNumbertypetwo++;
+            rowNodeCount = 0;
+            columnNumber = rowNodeCount;
+          }
 
-          const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
-          const y = originY + rowNumbertypetwo * verticalSpacing;
-          typeTwoNodes[i].x = x;
-          typeTwoNodes[i].y = y;
-          arrangedNodes.push(typeTwoNodes[i]);
-          rowNodeCount++;
-          rowNumbertypetwo++;
-          rowNodeCount = 0;
-          columnNumber = rowNodeCount;
         }
       }
 
@@ -290,16 +303,29 @@ export class BowTieDiagramHelper {
 
           }
 
+          if (typeThreeNodes[i].LinkedControlIds.length == 0) {
+            const x = originX + horizontalSpacing; // Fifth place from the left
+            const y = originY + rowNumbertypethree * verticalSpacing;
+            typeThreeNodes[i].x = x;
+            typeThreeNodes[i].y = y;
+            arrangedNodes.push(typeThreeNodes[i]);
+            rowNodeCount++;
+            rowNumbertypethree++;
+            rowNodeCount = 0;
+            columnNumber = rowNodeCount;
+          }
 
-          const x = originX + maxConsequenceNodeLength * horizontalSpacing; // Fifth place from the left
-          const y = originY + rowNumbertypethree * verticalSpacing;
-          typeThreeNodes[i].x = x;
-          typeThreeNodes[i].y = y;
-          arrangedNodes.push(typeThreeNodes[i]);
-          rowNodeCount++;
-          rowNumbertypethree++;
-          rowNodeCount = 0;
-          columnNumber = rowNodeCount;
+          else {
+            const x = originX + maxConsequenceNodeLength * horizontalSpacing; // Fifth place from the left
+            const y = originY + rowNumbertypethree * verticalSpacing;
+            typeThreeNodes[i].x = x;
+            typeThreeNodes[i].y = y;
+            arrangedNodes.push(typeThreeNodes[i]);
+            rowNodeCount++;
+            rowNumbertypethree++;
+            rowNodeCount = 0;
+            columnNumber = rowNodeCount;
+          }
         }
       }
 
@@ -363,45 +389,74 @@ export class BowTieDiagramHelper {
       const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
       rowNodeCount = 0;
       let typeFourNodeCount;
-      let typeFourNodePlacingValue;
+     
       let rowNumbertypeFour = 3;
 
 
 
-      if (typeFourNodes.length < 12) {
-        typeFourNodeCount = typeFourNodes.length / 2;
-      } else {
-        typeFourNodeCount = 5;
-      }
+      
+      //................................Arrange type 4 nodes (below type 2 and type 3).....................................
 
-      if (typeFourNodes.length % 2 === 0) { typeFourNodePlacingValue = 50 }
-      else { typeFourNodePlacingValue = 60 }
+
+      let typeFourNodePlacingValue;
 
 
 
-      columnNumber = typeFourIndex % maxNodesPerRowFour; // Calculate the column number
+      // Filter nodes based on their header types
+      const IncidentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Incident');
+      const KPINodes = this.RearrangedDataset.filter((node) => node.Header == 'KPI');
+      const TreatmentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Action');
+      const AuditNodes = this.RearrangedDataset.filter((node) => node.Header == 'Audit');
+      const HierarchyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Hierarchy Linkages');
+      const AuditRecommendationNodes = this.RearrangedDataset.filter((node) => node.Header == 'Audit Recommendation');
+      const AuditFindingNodes = this.RearrangedDataset.filter((node) => node.Header == 'Audit Finding');
+      const PolicyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Policy');
+      const linkRiskNodes = this.RearrangedDataset.filter((node) => node.Header == 'Linked Risk');
+      const ObligationNodes = this.RearrangedDataset.filter((node) => node.Header == 'Obligation');
+      const AuthorityDocumentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Authority Document');
 
+      const nonEmptyHeaders = [
+        { nodes: TreatmentNodes, verticalSpacingFour: isExpand ? 400 : 200 },
+        { nodes: KPINodes, verticalSpacingFour: isExpand ? 380 : 200 },
+        { nodes: IncidentNodes, verticalSpacingFour: isExpand ? 430 : 200 },
+        { nodes: AuditNodes, verticalSpacingFour: isExpand ? 250 : 200 },
+        { nodes: linkRiskNodes, verticalSpacingFour: isExpand ? 480 : 200 },
+        { nodes: ObligationNodes, verticalSpacingFour: isExpand ? 330 : 200 },
+        { nodes: HierarchyNodes, verticalSpacingFour: isExpand ? 250 : 200 },
+        { nodes: AuthorityDocumentNodes, verticalSpacingFour: isExpand ? 320 : 200 },
+        { nodes: PolicyNodes, verticalSpacingFour: isExpand ? 320 : 200 },
+        { nodes: AuditRecommendationNodes, verticalSpacingFour: isExpand ? 200 : 200 },
+        { nodes: AuditFindingNodes, verticalSpacingFour: isExpand ? 200 : 200 },
+      ].filter(({ nodes }) => nodes.length > 0);
 
-      typeFourNodes.forEach((node, index) => {
-        // Adjusting the starting point for type 4 nodes when there are no type two or three nodes
-        const x = CommonPoint.x + typeFourNodePlacingValue + (columnNumber - typeFourNodeCount) * horizontalSpacing;
-        const y = CommonPoint.y + rowNumbertypeFour * verticalSpacingFour;
+      // Total number of columns
+      const totalColumns = nonEmptyHeaders.length;
 
-        node.x = x;
-        node.y = y;
-        arrangedNodes.push(node);
+      // Function to arrange nodes in a column based on their header
+      const arrangeNodesInColumn = (nodes, columnOffset, totalColumns, verticalSpacingFour) => {
+        if (totalColumns % 2 === 0) { typeFourNodePlacingValue = 200 }
+        else { typeFourNodePlacingValue = 190 }
 
-        typeFourIndex++;
-        columnNumber++;
-        rowNodeCount++;
+        let currentY = CommonPoint.y + 100;
 
-        //move to next row when nodes per row = 12
-        if (rowNodeCount === maxNodesPerRowFour) {
-          rowNumbertypeFour++;
-          rowNodeCount = 0;
-          columnNumber = rowNodeCount;
+        const distanceFromMiddle = columnOffset - (totalColumns - 1) / 2; // Calculate the distance from the middle column
+
+        let nodeCount = 0;
+        for (const node of nodes) {
+          const xBaseOffset = distanceFromMiddle * horizontalSpacing; // Calculate x-coordinate offset from the middle
+          node.x = CommonPoint.x - typeFourNodePlacingValue + xBaseOffset;
+          node.y = currentY;
+          arrangedNodes.push(node);
+          currentY += verticalSpacingFour;
+          nodeCount++;
         }
+      };
+
+      // Arrange nodes for each header type in columns
+      nonEmptyHeaders.forEach(({ nodes, verticalSpacingFour }, index) => {
+        arrangeNodesInColumn(nodes, index, totalColumns, verticalSpacingFour);
       });
+
     }
     return arrangedNodes;
   }
