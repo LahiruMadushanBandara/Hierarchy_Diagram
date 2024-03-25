@@ -1095,15 +1095,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
      
 
-      // visual.drawingElement.options.tooltip = {
-      //   content: dataItem.htmlTemplate,       
-      //   position: "bottom",
-      //   width: 400, // Adjust the width as needed
-      //   height: "auto",
-      //   showOn: "mouseenter"        
-      // };
+      visual.drawingElement.options.tooltip = {
+        content: "dataItem.htmlTemplate",       
+        position: "bottom",
+        width: 400, // Adjust the width as needed
+        height: "auto",
+        showOn: "mouseenter",
+             
+      };
       
-     
+      console.log("tooltip",  visual.drawingElement.options.tooltip)
+
+
       var templatesObj =
       {
         riskTemplate: "",
@@ -1127,7 +1130,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-
+     
       Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
 
       var output = new kendo.drawing.Group();
@@ -1410,9 +1413,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         };
 
    
-
-
-
+        
         var kendoDiagram = $('#diagram').kendoDiagram({
           dataSource: {
             data: dataShapes,
@@ -1427,6 +1428,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
                 isExpanded: isExpanded
               },
             },
+            
             change: function (ev) {
               var newData = [];
               var dataSourceData = ev.sender.view().toJSON();
@@ -1595,7 +1597,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           content: function (e) {
             return slider.value();
           },
-         
+          position: 'top',
           animation: false // You can enable animation if needed
         });
 
