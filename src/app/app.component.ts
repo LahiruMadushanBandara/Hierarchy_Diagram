@@ -276,26 +276,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlOwnerRatingImage": ""
         }
       },
-      {
-        "Id": 3333,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev> 1111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": true,
-          "ControlOwnerRatingImage": ""
-        }
-      },
+     
       {
         "Id": 5,
         "Type": 2,
@@ -399,7 +380,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Header": "Cause",
         "Rating": "",
         "htmlTemplate": "<dev> 3 22InsufficientITsecuritymanagement</dev>",
-        "LinkedControlIds": [6 , 7, 8, 9]
+        "LinkedControlIds": [6 , 7, 8, 9 ,19]
 
       },
 
@@ -580,7 +561,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
         }
       },
@@ -807,6 +788,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
         }
       },
+    
 
       {
         "Id": 30,
@@ -1070,6 +1052,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
 
+      {
+        "Id": 3333,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 3333 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": true,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+
     ]
 
 
@@ -1096,17 +1099,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
      
 
       visual.drawingElement.options.tooltip = {
-        content: "dataItem.htmlTemplate",       
+        content: dataItem.htmlTemplate,       
         position: "bottom",
         width: 400, // Adjust the width as needed
         height: "auto",
-        showOn: "mouseenter",
-             
+        showOn: "mouseenter"        
       };
       
-      console.log("tooltip",  visual.drawingElement.options.tooltip)
-
-
+     
       var templatesObj =
       {
         riskTemplate: "",
@@ -1130,7 +1130,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-     
+
       Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
 
       var output = new kendo.drawing.Group();
@@ -1534,7 +1534,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               visible: false, // Hide connection content
             },
           },
-          zoom: 0.5,
+          zoom: 0.6,
           zoomRate: 0.02,
           cancel: onCancel,
 

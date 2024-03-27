@@ -98,14 +98,16 @@
   padding: 7px 7px 0px 30px;
 }
 
-.k-animation-container {
-  display: none !important;
-}
+/* ...............................................after apply below css the tooltip didnt display........................... */
 
-.k-animation-container-shown {
+/* .k-animation-container {
+  display: none !important;
+} */
+
+/* .k-animation-container-shown {
   display: none !important;
 
-}
+} */
 .milky-backgrounds {
   position: absolute;
   top: 0;
@@ -1088,10 +1090,10 @@
   padding: 20px;
  }
 /* Example CSS - Adjust as needed */
-/* 
+
 g>path {
   shape-rendering: optimizeSpeed;
-} */
+}
 
 /* Example CSS - Adjust as needed */
 .k-tooltip {
