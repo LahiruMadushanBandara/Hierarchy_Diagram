@@ -117,7 +117,7 @@ export class BowTieDiagramHelper {
   }
 
   ArrangeNodes(isExpand: boolean) {
-
+  
     const arrangedNodes = [];
     let maxCauseNodeLength = 0;
     let causeNodeLength = 0;
@@ -220,12 +220,13 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
           //move to next row when nodes per row = 5
           if (rowNodeCount === maxNodesPerRow ||
-            (typeTwoNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined) ||
+            (((typeTwoNodes[i].Id == lastLinkedControlId) || (typeTwoNodes[i].id == lastLinkedControlId))  && lastLinkedControlId != undefined) ||
             (typeTwoNodes.length > i + 1 && typeTwoNodes[i + 1].Title == 'Cause Node' && typeTwoNodes[i + 1].LinkedControlIds.length == 0)) {
             rowNumbertypetwo++;
             rowNodeCount = 0;
+           
           }
-
+  
           columnNumber = rowNodeCount;
         }
         //arrange type two cause nodes
@@ -233,7 +234,7 @@ export class BowTieDiagramHelper {
 
           if (typeTwoNodes[i].ParentNodeId != 0 && typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length > 4) {
             lastLinkedControlId = typeTwoNodes[i].LinkedControlIds[typeTwoNodes[i].LinkedControlIds.length - 1];
-
+           
           }
           if (typeTwoNodes[i].LinkedControlIds.length == 0) {
             const x = originX -  horizontalSpacing; // Fifth place from the left
@@ -288,7 +289,7 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
           //move to next row when nodes per row = 5
           if (rowNodeCount === maxNodesPerRow ||
-            (typeThreeNodes[i].Id == lastLinkedControlId && lastLinkedControlId != undefined) ||
+            (((typeThreeNodes[i].Id == lastLinkedControlId) || (typeThreeNodes[i].id == lastLinkedControlId) ) && lastLinkedControlId != undefined) ||
             (typeThreeNodes.length > i + 1 && typeThreeNodes[i + 1].Title == 'Consequences Node' && typeThreeNodes[i + 1].LinkedControlIds.length == 0)) {
             rowNumbertypethree++;
             rowNodeCount = 0;
@@ -334,11 +335,12 @@ export class BowTieDiagramHelper {
 
       //.................................Arrange Risk node (in the middle).........................................
       let riskYCodinate = 0;
+   
       if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) {
-        riskYCodinate = (typeThreeNodes[1].y + typeThreeNodes[typeThreeNodes.length - 1].y) / 2 - 100;
+        riskYCodinate = (typeThreeNodes[0].y + typeThreeNodes[typeThreeNodes.length - 1].y) / 2 - 100;
       }
       else if (typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length) {
-        riskYCodinate = (typeTwoNodes[1].y + typeTwoNodes[typeTwoNodes.length - 1].y) / 2;
+        riskYCodinate = (typeTwoNodes[0].y + typeTwoNodes[typeTwoNodes.length - 1].y) / 2;
       }
 
       if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)
@@ -388,9 +390,7 @@ export class BowTieDiagramHelper {
 
       const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
       rowNodeCount = 0;
-      let typeFourNodeCount;
      
-      let rowNumbertypeFour = 3;
 
 
 
