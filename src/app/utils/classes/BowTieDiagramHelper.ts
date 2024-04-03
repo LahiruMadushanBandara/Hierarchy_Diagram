@@ -335,13 +335,29 @@ export class BowTieDiagramHelper {
 
       //.................................Arrange Risk node (in the middle).........................................
       let riskYCodinate = 0;
-   
-      if (typeTwoNodes.length != 0 && typeTwoNodes.length >= typeThreeNodes.length) {
-        riskYCodinate = (typeThreeNodes[0].y + typeThreeNodes[typeThreeNodes.length - 1].y) / 2 - 100;
+     
+    
+
+      if (typeThreeNodes.length != 0 && rowNumbertypetwo >= rowNumbertypethree) {
+        let getMiddleYValueForRiskTypeThree = typeThreeNodes[0].y + typeThreeNodes[typeThreeNodes.length - 1].y
+
+        riskYCodinate = getMiddleYValueForRiskTypeThree === 0 ? originY : getMiddleYValueForRiskTypeThree / 2;
       }
-      else if (typeThreeNodes.length != 0 && typeTwoNodes.length < typeThreeNodes.length) {
-        riskYCodinate = (typeTwoNodes[0].y + typeTwoNodes[typeTwoNodes.length - 1].y) / 2;
+      else if (typeThreeNodes.length == 0) {
+        let getMiddleYValueForRiskTypeTwo = typeTwoNodes[0].y + typeTwoNodes[typeTwoNodes.length - 1].y
+
+        riskYCodinate = getMiddleYValueForRiskTypeTwo === 0 ? originY : getMiddleYValueForRiskTypeTwo / 2;
       }
+      else if (typeTwoNodes.length != 0 && rowNumbertypetwo < rowNumbertypethree) {
+        let getMiddleYValueForRiskTypeTwo = typeTwoNodes[0].y + typeTwoNodes[typeTwoNodes.length - 1].y
+        riskYCodinate = getMiddleYValueForRiskTypeTwo === 0 ? originY : getMiddleYValueForRiskTypeTwo / 2;
+      }
+      else if (typeTwoNodes.length == 0) {
+        let getMiddleYValueForRiskTypeThree = typeThreeNodes[0].y + typeThreeNodes[typeThreeNodes.length - 1].y
+
+        riskYCodinate = getMiddleYValueForRiskTypeThree === 0 ? originY : getMiddleYValueForRiskTypeThree / 2;
+      }
+      
 
       if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)
         || (rowNumbertypetwo == 1 && rowNumbertypethree == 1) || (rowNumbertypetwo == 0 && rowNumbertypethree == 1)

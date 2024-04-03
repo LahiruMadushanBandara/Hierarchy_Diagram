@@ -230,6 +230,7 @@ export class TemplateClass {
       "'" +
       "<p class='bow-tie-risk-rating-details-text' >" +
       contentDetails.RiskData.AppetiteRating +
+      '<br>' + contentDetails.RiskData.AppetiteRiskRatingScore +
       '</p>' +
       '</p>' +
       '</div>';
@@ -263,22 +264,24 @@ export class TemplateClass {
                 "src='" +
                 contentDetails.RiskData.InherentRiskRatingImg +
                 "'" +
-                "<p class='bow-tie-risk-rating-details-text'>" +
+                "< class='bow-tie-risk-rating-details-text'>" +
                 contentDetails.RiskData.InherentRiskRating +
+                '<br>' + contentDetails.RiskData.InherentRiskRatingScore +
                 '</p>' +
               '</p>' +
             '</div>' +
             "<div class='column'>" +
               "<p class ='ratings'> Revised Rating  </p>" +
               "<p class='bow-tie-risk-rating-details'>" +
-              "<img class='bow-tie-risk-rating-details-image'" +
-              "src='" +
-              contentDetails.RiskData.ResidualRiskRatingImg +
-              "'" +
-              "<p class='bow-tie-risk-rating-details-text'>" +
-              contentDetails.RiskData.ResidualRiskRating +
-              '</p>' +
-              '</p>' +
+                "<img class='bow-tie-risk-rating-details-image'" +
+                "src='" +
+                contentDetails.RiskData.ResidualRiskRatingImg +
+                "'" +
+                "<p class='bow-tie-risk-rating-details-text'>" +
+                contentDetails.RiskData.ResidualRiskRating +
+                '<br>' + contentDetails.RiskData.ResidualRiskRatingScore +
+                '</p>' +
+                '</p>' +
               '</div>' +
           '</div>' +
           "<div class='row'>" +
@@ -291,6 +294,7 @@ export class TemplateClass {
               "'" +
               "<p class='bow-tie-risk-rating-details-text'>" +
               contentDetails.RiskData.TargetRiskRating +
+              '<br>' + contentDetails.RiskData.TargetRiskRatingScore +
               '</p>' +
               '</p>' +
             '</div>' +
@@ -759,7 +763,7 @@ export class TemplateClass {
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-Obligation'>" +
-      "<p class='bow-tie-htmlTemplate'>'\\" +
+      "<p class='bow-tie-htmlTemplate'>\\" +
       truncatedHtmlTemplate +
       '<p>' +
       "<p class='bow-tie-expand-reportedby' >Obligation Owner</p>" +

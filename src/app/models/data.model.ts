@@ -38,6 +38,10 @@ interface RiskData {
   AppetiteRatingImg: any;
   profileImageUrl: any;
   IsEnableRiskAppetite: string;
+  InherentRiskRatingScore: number;
+  ResidualRiskRatingScore: number;
+  TargetRiskRatingScore: number;
+  AppetiteRiskRatingScore: number;
 }
 
 interface ControlData {
