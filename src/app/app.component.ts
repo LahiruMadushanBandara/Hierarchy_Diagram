@@ -21,12 +21,14 @@ declare var $: any;
   styleUrls: ['./app.component.css'],
 })
 
+
 export class AppComponent implements OnChanges {
 
   @Output() expandChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
   @Input() bowTieNodeDetails: DiagramNodeData[] = [];
+ 
 
   riskTemplate: string = '';
   controlTemplate: string = '';
@@ -40,9 +42,8 @@ export class AppComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges(): void {
-    this.dataAvailability = this.bowTieNodeDetails.length > 0 ? true : false;
-
+  ngOnChanges(): void {   
+    this.dataAvailability = this.bowTieNodeDetails.length > 0 ? true : false;   
     sessionStorage.clear();
     this.originalData = this.bowTieNodeDetails;
 
@@ -112,7 +113,7 @@ export class AppComponent implements OnChanges {
     const arrangedData = diagramHelper.ArrangeNodes(isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
-
+    setTimeout(() => {
     $(() => {
       $(document).ready(() => {
         createDiagram(this.originalData, this.IsExpanded);
@@ -522,7 +523,7 @@ export class AppComponent implements OnChanges {
           },
           dataBound: function () {
             // Call the function to update diagram dimensions
-            diagramManager.updateDiagramDimensions(this);
+            diagramManager.updateDiagramDimensions(this , dataArrayoriginal);
           }
         });
 
@@ -746,11 +747,16 @@ export class AppComponent implements OnChanges {
       }
     });
 
-
+  }, 2000);
     
 
     //..................centralized view function...........................
     var dataArrayoriginal = this.originalData;
 
   }
+
+
+
+
+ 
 }

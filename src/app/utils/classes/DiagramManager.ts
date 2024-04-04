@@ -56,7 +56,7 @@ export class DiagramManager {
     diagram.panStart = { x: e.origin.x, y: e.origin.y };
   }
 
-  public updateDiagramDimensions(diagram) {
+  public updateDiagramDimensions(diagram , dataArrayoriginal) {
     // Calculate the available screen width and height
     var screenWidth = $(window).width();
     var screenHeight = $(window).height();
@@ -68,7 +68,18 @@ export class DiagramManager {
     // Update the diagram's dimensions
     diagram.wrapper.width(diagramWidth);
     diagram.wrapper.height(diagramHeight);
-    diagram.resize();
+    // diagram.resize();
+    // var zoomLevel = Math.min(screenWidth / diagramWidth, screenHeight / diagramHeight) * 0.75;
+   
+
+    // const zoomPointX = dataArrayoriginal[1].x + 190;
+    // const zoomPointY = dataArrayoriginal[1].y + 190;
+
+   
+    // diagram.zoom(zoomLevel + 0.02, { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });
+
+    
+    
   }
 
   public onNodeClick(e, clicked: boolean, diagram, dataArrayoriginal) {
