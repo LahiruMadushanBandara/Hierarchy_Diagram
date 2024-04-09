@@ -69,11 +69,11 @@ export class DiagramManager {
     diagram.wrapper.width(diagramWidth);
     diagram.wrapper.height(diagramHeight);
     // diagram.resize();
-    // var zoomLevel = Math.min(screenWidth / diagramWidth, screenHeight / diagramHeight) * 0.75;
+    var zoomLevel = Math.min(screenWidth / diagramWidth, screenHeight / diagramHeight) * 0.75;
    
 
-    // const zoomPointX = dataArrayoriginal[1].x + 190;
-    // const zoomPointY = dataArrayoriginal[1].y + 190;
+    // const zoomPointX = dataArrayoriginal[1].x + 100;
+    // const zoomPointY = dataArrayoriginal[1].y;
 
    
     // diagram.zoom(zoomLevel + 0.02, { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });
