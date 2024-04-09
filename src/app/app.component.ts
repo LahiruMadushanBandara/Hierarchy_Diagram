@@ -113,7 +113,7 @@ export class AppComponent implements OnChanges {
     const arrangedData = diagramHelper.ArrangeNodes(isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
-    setTimeout(() => {
+   
     $(() => {
       $(document).ready(() => {
         createDiagram(this.originalData, this.IsExpanded);
@@ -747,7 +747,7 @@ export class AppComponent implements OnChanges {
       }
     });
 
-  }, 2000);
+  
     
 
     //..................centralized view function...........................
