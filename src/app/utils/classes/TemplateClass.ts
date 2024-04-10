@@ -353,7 +353,9 @@ export class TemplateClass {
     contentDetails.ControlData.ControlOwner = contentDetails.ControlData.ControlOwner == '' || contentDetails.ControlData.ControlOwner === undefined
       ? 'N/A' : contentDetails.ControlData.ControlOwner;
 
-      
+    contentDetails.ControlData.ControlType = contentDetails.ControlData.ControlType == '' || contentDetails.ControlData.ControlType === undefined
+      ? 'N/A' : contentDetails.ControlData.ControlType;
+
 
 
     var stylesForPerformanceView: PerformanceStyleGeneral;
