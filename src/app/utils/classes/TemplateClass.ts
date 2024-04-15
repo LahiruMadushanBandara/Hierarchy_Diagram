@@ -132,13 +132,13 @@ export class TemplateClass {
 
     return (
       "<div class='bow-tie-cause-card-content rounded'>" +
-      "<div class='bow-tie-cause-card-header'>" +
+      "<div class='bow-tie-consequences-card-header'>" +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-cause-card-body'>\\" +
-      '<p>' +
+      "<p class='bow-tie-htmlTemplate'" +
       truncatedHtmlTemplate +
       '</p>' +
       '</div>' +
@@ -164,7 +164,7 @@ export class TemplateClass {
       '</span>' +
       '</div>' +
       "<div class='bow-tie-cause-card-body' >\\" +
-      '<p>' +
+      "<p class='bow-tie-htmlTemplate'" +
       truncatedHtmlTemplate +
       '</p>' +
       '</div>' +

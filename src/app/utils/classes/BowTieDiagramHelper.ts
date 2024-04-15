@@ -175,13 +175,10 @@ export class BowTieDiagramHelper {
     if (riskNode) {
       const horizontalSpacing = 500;
       const verticalSpacing = isExpand ? 470 : 250;
-      let verticalSpacingFour = isExpand ? 50 : 50;
       let riskCordinateIncrementValue = 10;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
       let CommonPointYValue;
       let maxNodesPerRow;
-      const maxNodesPerRowFour = 12; // Updated to 12 nodes per row for type 4
-      let typeFourIndex = 0;
       const originX = 0;
       const originY = 0;
       let rowNumbertypetwo = 0;
