@@ -83,7 +83,8 @@ export class DiagramManager {
   }
 
   public onNodeClick(e, clicked: boolean, diagram, dataArrayoriginal) {
-
+    $('#btExpandView').prop("disabled", true);
+    $('#btExport').prop("disabled", true);
 
     if (e.item.dataItem.Header == "Control") {
       var clickedNodeId = e.item.dataItem.id;
@@ -116,64 +117,64 @@ export class DiagramManager {
         }
       }
 
-      //update node placing
-      const originX = 0;
-      const originY = 0;
-      const horizontalSpacing = 720;
-      let riskRowNumber = 0;
-      let riskColumnNumber = 1;
-      let causeConsequenceColumnNumber = 0;
-      let otherNodesColumnNumber = 0;
-      let verticalSpacing = 520;
-      var centralizedRiskNodes = []
-      e.item.dataItem.x = 0;
-      e.item.dataItem.y = 0;
-      for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+      // //update node placing
+      // const originX = 0;
+      // const originY = 0;
+      // const horizontalSpacing = 720;
+      // let riskRowNumber = 0;
+      // let riskColumnNumber = 1;
+      // let causeConsequenceColumnNumber = 0;
+      // let otherNodesColumnNumber = 0;
+      // let verticalSpacing = 520;
+      // var centralizedRiskNodes = []
+      // e.item.dataItem.x = 0;
+      // e.item.dataItem.y = 0;
+      // for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
 
 
-        if (linkedNodesToClickedNode[i].Header == "Risk") {
-          linkedNodesToClickedNode[i].x = originX + riskColumnNumber * horizontalSpacing;
-          linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
-          riskColumnNumber++;
-          centralizedRiskNodes.push(linkedNodesToClickedNode[i]);
+      //   if (linkedNodesToClickedNode[i].Header == "Risk") {
+      //     linkedNodesToClickedNode[i].x = originX + riskColumnNumber * horizontalSpacing;
+      //     linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
+      //     riskColumnNumber++;
+      //     centralizedRiskNodes.push(linkedNodesToClickedNode[i]);
       
-          var riskArrayLength = centralizedRiskNodes.length - 1;
-        }
+      //     var riskArrayLength = centralizedRiskNodes.length - 1;
+      //   }
 
-        //causes and consequences placed left bottom to the clicked node
-        else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
-          let causeConsequenceRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
+      //   //causes and consequences placed left bottom to the clicked node
+      //   else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
+      //     let causeConsequenceRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
 
-          //risk place left to clicked node
-          linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
-          linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
-          causeConsequenceColumnNumber++;
-          if (causeConsequenceColumnNumber > 4) {
-            causeConsequenceRowNumber++;
-          }
+      //     //risk place left to clicked node
+      //     linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
+      //     linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
+      //     causeConsequenceColumnNumber++;
+      //     if (causeConsequenceColumnNumber > 4) {
+      //       causeConsequenceRowNumber++;
+      //     }
 
           
 
-        }
-        //all other nodes that linked to control placed right bottom of the clicked node
-        else {
-          let otherNodesRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
-          linkedNodesToClickedNode[i].x = originX + otherNodesColumnNumber * horizontalSpacing;
-          linkedNodesToClickedNode[i].y = originY + otherNodesRowNumber * verticalSpacing;
-          otherNodesColumnNumber++;
-          if (otherNodesColumnNumber > 4) {
-            otherNodesRowNumber++;
-          }
+      //   }
+      //   //all other nodes that linked to control placed right bottom of the clicked node
+      //   else {
+      //     let otherNodesRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
+      //     linkedNodesToClickedNode[i].x = originX + otherNodesColumnNumber * horizontalSpacing;
+      //     linkedNodesToClickedNode[i].y = originY + otherNodesRowNumber * verticalSpacing;
+      //     otherNodesColumnNumber++;
+      //     if (otherNodesColumnNumber > 4) {
+      //       otherNodesRowNumber++;
+      //     }
 
-        }
+      //   }
 
-        if (riskColumnNumber > 4) {
-          riskRowNumber++;
-        }
+      //   if (riskColumnNumber > 4) {
+      //     riskRowNumber++;
+      //   }
 
 
 
-      }
+      // }
   
 
       //rectreate the connection source
@@ -198,8 +199,8 @@ export class DiagramManager {
       e.sender.setConnectionsDataSource(connectionsDataSource);
 
       diagram.bringIntoView(diagram.shapes);
-      diagram.refresh();
-
+      // diagram.refresh();
+      clicked = false;
     }
 
     return linkedNodesToClickedNode;

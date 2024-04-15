@@ -637,7 +637,6 @@ export class AppComponent implements OnChanges {
         }
 
         $(".bt-Expand").click(function () {
-          var diagram = $("#diagram").getKendoDiagram();
           isExpand = !isExpand;
 
           const expandButton = document.getElementById('btExpandView');
@@ -660,7 +659,7 @@ export class AppComponent implements OnChanges {
 
           switchView(isExpand);
 
-          diagram.refresh();
+          // diagram.refresh();
 
 
         });
@@ -677,6 +676,10 @@ export class AppComponent implements OnChanges {
         });
 
         $(".bt-BackFromCentralizedView").click(function () {
+
+          $('#btExpandView').prop("disabled", false);
+          $('#btExport').prop("disabled", false);
+          
           // Reset both data source and connections data source
           diagram.setDataSource(dataShapes);
 
