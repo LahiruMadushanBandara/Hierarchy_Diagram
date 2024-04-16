@@ -424,7 +424,7 @@ export class BowTieDiagramHelper {
       const TreatmentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Action');
       const AuditNodes = this.RearrangedDataset.filter((node) => node.Header == 'Audit');
       const HierarchyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Hierarchy Linkages');
-      const AuditRecommendationNodes = this.RearrangedDataset.filter((node) => node.Header == 'Audit Recommendation');
+      const AuditRecommendationNodes = this.RearrangedDataset.filter((node) => node.Header == 'Audit Recommendations');
       const AuditFindingNodes = this.RearrangedDataset.filter((node) => node.Header == 'Audit Finding');
       const PolicyNodes = this.RearrangedDataset.filter((node) => node.Header == 'Policy');
       const linkRiskNodes = this.RearrangedDataset.filter((node) => node.Header == 'Linked Risk');

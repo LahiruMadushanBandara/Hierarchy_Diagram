@@ -1174,7 +1174,7 @@ export class TemplateClass {
           templatesObj.hierarchyTemplate = this.GetHierarchyExpand(dataItem);
           templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
           break;
-        case "Audit Recommendation":
+        case "Audit Recommendations":
           templatesObj.auditRecommendationTemplate = this.GetAuditRecommendationsExpand(dataItem);
           templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
           break;
@@ -1266,7 +1266,7 @@ export class TemplateClass {
           }else if (dataItem.Header === 'Hierarchy Linkages') {
             var HierarchyExpandTemp = kendo.template(templatesObj.hierarchyTemplate);
             renderElement.html(HierarchyExpandTemp(dataItem));
-          }else if (dataItem.Header === 'Audit Recommendation') {
+          }else if (dataItem.Header === 'Audit Recommendations') {
             var AuditRecommendationExpandTemp = kendo.template(templatesObj.auditRecommendationTemplate);
             renderElement.html(AuditRecommendationExpandTemp(dataItem));
           }else if (dataItem.Header === 'Audit Finding') {

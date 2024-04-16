@@ -146,7 +146,7 @@ export class AppComponent implements OnChanges {
         let TreatmentNodes = originalData.filter((node) => node.Header == 'Action');
         let AuditNodes = originalData.filter((node) => node.Header == 'Audit');
         let HierarchyNodes = originalData.filter((node) => node.Header == 'Hierarchy Linkages');
-        let AuditRecommendationNodes = originalData.filter((node) => node.Header == 'Audit Recommendation');
+        let AuditRecommendationNodes = originalData.filter((node) => node.Header == 'Audit Recommendations');
         let AuditFindingNodes = originalData.filter((node) => node.Header == 'Audit Finding');
         let PolicyNodes = originalData.filter((node) => node.Header == 'Policy');
         let linkRiskNodes = originalData.filter((node) => node.Header == 'Linked Risk');
@@ -679,7 +679,7 @@ export class AppComponent implements OnChanges {
 
           $('#btExpandView').prop("disabled", false);
           $('#btExport').prop("disabled", false);
-          
+
           // Reset both data source and connections data source
           diagram.setDataSource(dataShapes);
 

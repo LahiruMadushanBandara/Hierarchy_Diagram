@@ -83,10 +83,11 @@ export class DiagramManager {
   }
 
   public onNodeClick(e, clicked: boolean, diagram, dataArrayoriginal) {
-    $('#btExpandView').prop("disabled", true);
-    $('#btExport').prop("disabled", true);
-
+   
     if (e.item.dataItem.Header == "Control") {
+      $('#btExpandView').prop("disabled", true);
+      $('#btExport').prop("disabled", true);
+  
       var clickedNodeId = e.item.dataItem.id;
       clicked = true;
 
