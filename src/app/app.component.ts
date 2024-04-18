@@ -102,7 +102,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 1 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 1 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches1 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -1096,17 +1096,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       var visual = new kendo.dataviz.diagram.Group();
       var dataItem = options.dataItem;
 
-     
+     if(dataItem.htmlTemplate.length > 165){
 
       visual.drawingElement.options.tooltip = {
         content: dataItem.htmlTemplate,       
         position: "bottom",
-        width: 400, // Adjust the width as needed
+        width: 600, // Adjust the width as needed
         height: "auto",
         showOn: "mouseenter"        
       };
       
-     
+    }
       var templatesObj =
       {
         riskTemplate: "",

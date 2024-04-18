@@ -18,7 +18,7 @@ export class TemplateClass {
          
         "</div>" +
         "<div class='bow-tie-control-card-body' >" +
-          "<p>" +
+          "<p class='bow-tie-htmlTemplate'>" +
               contentDetails.htmlTemplate +
           "</p>" +
         "</div>" +
@@ -217,13 +217,39 @@ export class TemplateClass {
 
  
 
-  public GetControlNodeTemplateGlobalExpand(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
+  public GetControlNodeTemplateGlobalExpand(contentDetails: DiagramNodeData, enablePerformanceview: boolean) {
 
     const performanceView = new PerformanceView();
-    var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
-    // Set the maximum number of characters before truncating
-    const maxCharacters = 100;
+    var styles = performanceView.PerformanceviewDetails(contentDetails, enablePerformanceview);
 
+    const maxCharacters = 160;
+    // // Set the maximum number of characters before truncating
+    // const text = contentDetails.htmlTemplate; // Assuming contentDetails.htmlTemplate contains the SVG text element as a string
+
+    // // Create a temporary SVG element to measure text dimensions
+    // const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    // svg.setAttribute("visibility", "hidden");
+    // document.body.appendChild(svg);
+
+    // // Create a text element and set its attributes
+    // const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    // textElement.textContent = text;
+    // textElement.setAttribute("font-size", "15px"); // Set the font size as needed
+    // svg.appendChild(textElement);
+
+    // // Calculate the number of lines based on the text width and available width
+    // const bbox = textElement.getBBox();
+    // const textWidth = bbox.width;
+    // const fontSize = parseFloat(window.getComputedStyle(textElement).fontSize);
+    // const availableWidth = 375; // Adjust this value based on the width of your SVG container
+    // const maxLines = Math.ceil(textWidth / availableWidth);
+
+   
+
+    // // Clean up: remove the temporary SVG element
+    // document.body.removeChild(svg);
+
+    // console.log("Number of lines:", maxLines);
     // Truncate the htmlTemplate if it exceeds the maximum number of characters
     const truncatedHtmlTemplate =
         contentDetails.htmlTemplate.length > maxCharacters
@@ -238,7 +264,7 @@ export class TemplateClass {
          
         "</div>" +
         "<div class='bow-tie-extra-card-body' "+ styles +">" +
-          "<p>" +
+        "<p class='bow-tie-htmlTemplate'>" +
             "<b>" +
             truncatedHtmlTemplate +
   

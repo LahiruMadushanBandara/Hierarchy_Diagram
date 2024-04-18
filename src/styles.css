@@ -1099,7 +1099,23 @@ g>path {
 .k-tooltip {
   font-size: 14px !important;
   color: #fffdfd !important;
-  background-color: #000000 !important;
+  background-color: #323250 !important;
+  border: 1px solid white;
   z-index: 1000 !important;
   visibility: visible;
 }
+
+
+.bow-tie-htmlTemplate {
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  -webkit-line-box-contain: content!important; */
+  font-size: 15px;
+  /* padding: 0px 20px 0px 0px;
+  color: #323250; */
+ 
+}
+
