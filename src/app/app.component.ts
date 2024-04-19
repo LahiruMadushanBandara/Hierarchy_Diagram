@@ -63,8 +63,21 @@ export class AppComponent implements OnChanges {
     // Import the Drawing API namespaces.
     var draw = kendo.drawing;
     function visualTemplate(options: any) {
+      var visual = new kendo.dataviz.diagram.Group();
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
+
+      if((dataItem.htmlTemplate.length > 100 ) && !isExpand){
+
+        visual.drawingElement.options.tooltip = {
+          content: dataItem.htmlTemplate,       
+          position: "bottom",
+          width: 500, // Adjust the width as needed
+          height: 10,
+          showOn: "mouseenter"        
+        };
+        
+      }
 
       var templatesObj =
       {
@@ -103,7 +116,7 @@ export class AppComponent implements OnChanges {
         renderElement.remove();
       });
 
-      var visual = new kendo.dataviz.diagram.Group();
+     
       visual.drawingElement.append(output);
       return visual;
     }
@@ -541,7 +554,7 @@ export class AppComponent implements OnChanges {
           largeStep: 0.02,
           value: diagram.zoom(),
           tooltip: {
-            enabled: true,
+            enabled: false,
           },
           slide: function (e) {
             diagram.zoom(e.value);
