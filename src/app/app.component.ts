@@ -67,7 +67,7 @@ export class AppComponent implements OnChanges {
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
-      if((dataItem.htmlTemplate.length > 100 ) && !isExpand){
+      if((dataItem.htmlTemplate.length > 100 )){
 
         visual.drawingElement.options.tooltip = {
           content: dataItem.htmlTemplate,       
@@ -455,7 +455,19 @@ export class AppComponent implements OnChanges {
               },
             },
           },
-         
+          // change: function (e) {
+          //   for (var idx = 0; idx < e.added.length; idx++) {
+          //     if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
+
+          //       e.added[idx].redraw({
+          //         stroke: {
+          //           color: "#323250",
+          //           "shape-rendering": "crispEdges"
+          //         }
+          //       })
+          //     }
+          //   }
+          // },
           shapeDefaults: {
             stroke: {
               color: '#979797',
