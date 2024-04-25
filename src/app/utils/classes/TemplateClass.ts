@@ -936,7 +936,7 @@ export class TemplateClass {
   }
 
   public GetHierarchyExpand(contentDetails: DiagramNodeData) {  
-    const maxCharacters = 150;
+    const maxCharacters = 100;
     const truncatedHierarchyData =
     contentDetails.HierarchyData.expandedString.length > maxCharacters
       ? contentDetails.HierarchyData.expandedString.substring(0, maxCharacters) + '...'

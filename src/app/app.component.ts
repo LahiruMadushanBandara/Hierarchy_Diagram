@@ -67,7 +67,7 @@ export class AppComponent implements OnChanges {
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
-      if((dataItem.htmlTemplate.length > 100 )){
+      if((dataItem.htmlTemplate.length > 105 )){
 
         visual.drawingElement.options.tooltip = {
           content: dataItem.htmlTemplate,       
