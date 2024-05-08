@@ -75,7 +75,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Risk Node",
         "Header": "Risk",
         "Rating": "",
-        "htmlTemplate": "Failure to appropriately implement business continuity program/policy.",
+        "htmlTemplate": "0 Failure to appropriately implement business continuity program/policy.",
         "RiskData": {
           "RiskCode": "OR24",
           "ResponsibleManager": "Elizabeth McMahon",
@@ -223,7 +223,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 222 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -243,7 +243,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 1111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 2222 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -263,7 +263,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 111 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 333 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -284,11 +284,89 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Cause Node",
         "Header": "Cause",
         "Rating": "",
-        "htmlTemplate": "<dev> 1 ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": [1, 2, 3, 4,111,1111,222,2222,333,3333]
+        "htmlTemplate": "<dev> 5 ReducedenterpriseITsupport</dev>",
+        "LinkedControlIds": [1, 2, 3, 4,111,1111,222,2222,333,3333,28,12]
 
       },
-    
+      {
+        "Id": 10,
+        "Type": 2,
+        "ParentNodeId": 19,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev> 10 22InsufficientITsecuritymanagement</dev>",
+        "LinkedControlIds": [6 , 7, 8, 9 ,19,1,12]
+
+      },
+     
+      {
+        "Id": 21,
+        "Type": 3,
+        "ParentNodeId": 3,
+        "Title": "Consequences Node",
+        "Header": "Consequence",
+        "Rating": "",
+        "htmlTemplate": " 21 Reduced enter#prise IT support#",
+        "LinkedControlIds": [20,22,11,12,13,14]
+
+      },
+      {
+        "Id": 23,
+        "Type": 3,
+        "ParentNodeId": 3,
+        "Title": "Consequences Node",
+        "Header": "Consequence",
+        "Rating": "",
+        "htmlTemplate": "<dev> 23 ReducedenterpriseITsupport</dev>",
+        "LinkedControlIds": [22,221,25,28,1,2,3]
+
+      },
+
+      {
+        "Id": 1002,
+        "Type": 3,
+        "ParentNodeId": 1,
+        "Title": "Consequences Node",
+        "Header": "Consequence",
+        "Rating": "",
+        "htmlTemplate": "<dev> 10 22InsufficientITsecuritymanagement</dev>",
+        "LinkedControlIds": [1,2]
+
+      },
+      {
+        "Id": 1003,
+        "Type": 3,
+        "ParentNodeId": 0,
+        "Title": "Consequences Node",
+        "Header": "Consequence",
+        "Rating": "",
+        "htmlTemplate": "<dev> 10 22InsufficientITsecuritymanagement</dev>",
+        "LinkedControlIds": []
+
+      },
+      {
+        "Id": 100,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev> 10 22InsufficientITsecuritymanagement</dev>",
+        "LinkedControlIds": []
+
+      },
+      {
+        "Id": 1001,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Cause Node",
+        "Header": "Cause",
+        "Rating": "",
+        "htmlTemplate": "<dev> 10 22InsufficientITsecuritymanagement</dev>",
+        "LinkedControlIds": []
+
+      },
       {
         "Id": 6,
         "Type": 2,
@@ -372,26 +450,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-      {
-        "Id": 10,
-        "Type": 2,
-        "ParentNodeId": 19,
-        "Title": "Cause Node",
-        "Header": "Cause",
-        "Rating": "",
-        "htmlTemplate": "<dev> 3 22InsufficientITsecuritymanagement</dev>",
-        "LinkedControlIds": [6 , 7, 8, 9 ,19]
-
-      },
+    
 
       {
         "Id": 11,
-        "Type": 2,
+        "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 9 22Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 11  logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -400,7 +468,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
         }
       },
@@ -412,7 +480,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 10 222Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "htmlTemplate": "<dev> 12 222Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -421,53 +489,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
         }
       },
       {
         "Id": 13,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev> 11 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 14,
-        "Type": 2,
-        "ParentNodeId": 0,
-        "Title": "Control Node",
-        "Header": "Control",
-        "Rating": "",
-        "htmlTemplate": "<dev> 12 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
-        "ControlData": {
-
-          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
-          "ControlOwner": "Joe Smith",
-          "ControlOwnerRating": "Largely Ineffective",
-          "ControlAuthorizer": "",
-          "ControlAuthorizerRating": "",
-          "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
-          "ControlOwnerRatingImage": ""
-        }
-      },
-      {
-        "Id": 15,
-        "Type": 2,
+        "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
@@ -481,13 +509,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
         }
       },
       {
-        "Id": 16,
-        "Type": 2,
+        "Id": 14,
+        "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
@@ -501,12 +529,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
         }
       },
       {
-        "Id": 17,
+        "Id": 15,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
@@ -526,7 +554,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 18,
+        "Id": 16,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
@@ -546,13 +574,53 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       },
       {
-        "Id": 19,
+        "Id": 17,
         "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
         "htmlTemplate": "<dev> 17 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 18,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 18 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
+        "ControlData": {
+
+          "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
+          "ControlOwner": "Joe Smith",
+          "ControlOwnerRating": "Largely Ineffective",
+          "ControlAuthorizer": "",
+          "ControlAuthorizerRating": "",
+          "Active": true,
+          "IsLinkedToCauseOrConsequence": false,
+          "ControlOwnerRatingImage": ""
+        }
+      },
+      {
+        "Id": 19,
+        "Type": 2,
+        "ParentNodeId": 0,
+        "Title": "Control Node",
+        "Header": "Control",
+        "Rating": "",
+        "htmlTemplate": "<dev> 19 Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.</dev>",
         "ControlData": {
 
           "ControlTitle": "Audit logs to be enabled and reviewed in order to track and monitor system activities, detect anomalies, and identify potential security breaches.",
@@ -576,7 +644,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 18 Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 20 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -592,18 +660,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       },
 
 
-      {
-        "Id": 21,
-        "Type": 3,
-        "ParentNodeId": 3,
-        "Title": "Consequences Node",
-        "Header": "Consequence",
-        "Rating": "",
-        "htmlTemplate": " 1 Reduced enter#prise IT support#",
-        "LinkedControlIds": [20]
-
-      },
-
+     
       {
         "Id": 22,
         "Type": 3,
@@ -611,7 +668,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 19 Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+        "htmlTemplate": "<dev> 22 Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
         "ControlData": {
 
           "ControlTitle": "Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
@@ -628,11 +685,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       {
         "Id": 221,
         "Type": 3,
-        "ParentNodeId": 0,
+        "ParentNodeId": 23,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 19 Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
+        "htmlTemplate": "<dev> 221 Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor</dev>",
         "ControlData": {
 
           "ControlTitle": "Mechanisms exist to develop a security Concept of Operations (CONOPS), or a similarly-defined plan with the vendor",
@@ -649,17 +706,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-      {
-        "Id": 23,
-        "Type": 3,
-        "ParentNodeId": 3,
-        "Title": "Consequences Node",
-        "Header": "Consequence",
-        "Rating": "",
-        "htmlTemplate": "<dev> 2 ReducedenterpriseITsupport</dev>",
-        "LinkedControlIds": [22,221]
-
-      },
+    
       {
         "Id": 24,
         "Type": 3,
@@ -667,7 +714,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 20 Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 24 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -688,7 +735,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 21 Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 25 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -697,7 +744,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
 
         }
@@ -709,7 +756,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 22 Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 26 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -730,7 +777,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 23  Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 27  Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -747,12 +794,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       {
         "Id": 28,
-        "Type": 3,
+        "Type": 2,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 24 Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 28 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -761,7 +808,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           "ControlAuthorizer": "",
           "ControlAuthorizerRating": "",
           "Active": true,
-          "IsLinkedToCauseOrConsequence": false,
+          "IsLinkedToCauseOrConsequence": true,
           "ControlOwnerRatingImage": ""
 
         }
@@ -774,7 +821,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Control Node",
         "Header": "Control",
         "Rating": "",
-        "htmlTemplate": "<dev> 24 Prioritize critical business functions</dev>",
+        "htmlTemplate": "<dev> 289 Prioritize critical business functions</dev>",
         "ControlData": {
 
           "ControlTitle": "Prioritize critical business functions",
@@ -797,7 +844,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         "Title": "Other Node",
         "Header": "Incident",
         "Rating": "",
-        "htmlTemplate": "<dev>Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
+        "htmlTemplate": "<dev> 30 Birthday attacks against TLS ciphers with 64bit block size vulnerability (Sweet32) 2</dev>",
         "IncidentData": {
           "LinkageId": 1217,
           "IncidentId": 201,
@@ -1213,7 +1260,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         let AuditFindingNodes = originalData.filter((node) => node.Header == 'AuditFinding');
         let PolicyNodes = originalData.filter((node) => node.Header == 'Policy');
 
-        
+
         var notLinkedControlsTypeTwo: any[] = [];
         var notLinkedControlsTypeThree: any[] = [];
 
@@ -1231,53 +1278,86 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
             });
 
-          }    
+          }
+          var ControlNodesLinkedToCause = []
+          var primaryLinkedcontrols = []
+          var controlId: number
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
+
             for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
-              if (originalData[i].LinkedControlIds.length === 1) {
+
+              controlId = originalData[i].LinkedControlIds[j];
+              // Find the control node in originalData with the controlId
+              var controlNode = originalData.find(node => node.Id === controlId);
+              if (controlNode) {
+                ControlNodesLinkedToCause.push(controlNode);
+                if (controlNode.LinkedControlIds[0] == originalData[i].Id) {
+                  primaryLinkedcontrols.push(controlId)
+                }
+              }
+            }
+           
+            for (let j = 0; j < primaryLinkedcontrols.length + 1; j++) {
+              if (primaryLinkedcontrols.length === 1) {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
-                  ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
+                  FromShapeId: (j === 0) ? 0 : primaryLinkedcontrols[0],
+                  ToShapeId: (j === 0) ? primaryLinkedcontrols[0] : originalData[i].Id,
                   Text: null,
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
+                    color:"4"
+                    
                 });
               }
-              else if (originalData[i].LinkedControlIds.length > 4) {
-                if ((j + 1) % 4 == 0) {
+              
+              else if (primaryLinkedcontrols.length > 4) {
+                if ((j + 1) % 4 == 0 && j != primaryLinkedcontrols.length) {
                   dataConnections.push({
                     Id: j,
-                    FromShapeId: originalData[i].LinkedControlIds[j],
+                    FromShapeId: primaryLinkedcontrols[j],
                     ToShapeId: originalData[i].Id,
                     Text: null,
                     fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                    color:"1"
                   });
                 }
-
+                if (!(j % 4 === 0 && j === primaryLinkedcontrols.length)) {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
-                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  FromShapeId: (j % 4 == 0) ? 0 : primaryLinkedcontrols[j - 1],
+                  ToShapeId: (j === primaryLinkedcontrols.length ) ? originalData[i].Id : primaryLinkedcontrols[j],
                   Text: null,
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                  color:"2"
                 });
 
-
+                }
               }
               else {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
-                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  FromShapeId: (j === 0) ? 0 : primaryLinkedcontrols[j - 1],
+                  ToShapeId: (j === primaryLinkedcontrols.length) ? originalData[i].Id : primaryLinkedcontrols[j],
                   Text: null,
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                  color:"3"
                 });
 
               }
+
             }
-            
+
+            // console.log("ControlNodesLinkedToCause", ControlNodesLinkedToCause)
+            console.log("primaryLinkedcontrols", primaryLinkedcontrols)
+
+            ControlNodesLinkedToCause = [];
+            primaryLinkedcontrols = []
+
           }
+
+
+          
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId === 0) {
             dataConnections.push({
               Id: originalData[i].Id,
@@ -1296,8 +1376,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             notLinkedControlsTypeThree.push(originalData[i]);
           }
         }
-        
-      
+
+
         // Generate connection lines based on notLinkedControls - type two
         for (let j = 0; j < notLinkedControlsTypeTwo.length; j++) {
           dataConnections.push({
@@ -1466,26 +1546,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           },
           change: function (e) {
             // Call the function to update connection colors
-            // diagramManager.updateConnectionColors(e.added);
+            diagramManager.updateConnectionColors(e.added);
+            e.sender.toBack(e.sender.connections);
+            // for (var idx = 0; idx < e.added.length; idx++) {
+            //   if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
 
-            for (var idx = 0; idx < e.added.length; idx++) {
-              if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
-
-                e.added[idx].redraw({
-                  stroke: {
-                    color: "#323250",
-                    "shape-rendering": "crispEdges"
-                  }
-                })
-              }
-            }
+            //     e.added[idx].redraw({
+            //       stroke: {
+            //         color: "#323250",
+            //         "shape-rendering": "crispEdges"
+            //       },
+            //       zIndex: -1
+            //     })
+            //   }
+            // }
           },
-
+         
           shapeDefaults: {
-            stroke: {
-              color: '#00000',
-              width: 10,
-            },
+            // stroke: {
+            //   color: '#00000',
+            //   width: 10,
+            // },
             connectors: [
               {
                 name: "auto",
@@ -1525,7 +1606,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           connectionDefaults: {
             stroke: {
               color: '#979797',
-              width: 3,
+              width: 6,
             },
             select: function (e) {
               e.preventDefault(); // Prevent line selection
@@ -1561,9 +1642,38 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           //     // Call the function to update diagram dimensions
           //     diagramManager.updateDiagramDimensions(this);
           // }
+
+         
         });
 
 
+
+
+
+        function ClearConnections() {
+          var connections = diagram.connections;
+          for (var i = 0; i < connections.length; i++) {
+            connections[i].redraw({
+              stroke: {
+                color: "black",
+                opacity: 0.1
+              }
+            });
+          }
+        }
+
+        function ClearHighlights() {
+          var shapes = diagram.shapes;
+          for (var i = 0; i < shapes.length; i++) {
+            shapes[i].options.fill.color = "#d9d9d9";
+            shapes[i].redraw({
+              fill: {
+                color: "#8f9779",
+                opacity: 0.1
+              }
+            });
+          }
+        }
 
         
         
@@ -1574,74 +1684,74 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
        
 
 
-        var slider = $(".eqSlider").kendoSlider({
-          orientation: "vertical",
-          min: 0.02,
-          max: 2,
-          smallStep: 0.01,
-          largeStep: 0.02,
-          value: 0.5,
-          tooltip: {
-            enabled: true,
-          },
-          slide: function (e) {
-            diagram.zoom(e.value);
-          },
-          change: function (e) {
-            diagram.zoom(e.value);
-          }
-        }).data("kendoSlider");
+        // var slider = $(".eqSlider").kendoSlider({
+        //   orientation: "vertical",
+        //   min: 0.02,
+        //   max: 2,
+        //   smallStep: 0.01,
+        //   largeStep: 0.02,
+        //   value: 0.5,
+        //   tooltip: {
+        //     enabled: true,
+        //   },
+        //   slide: function (e) {
+        //     diagram.zoom(e.value);
+        //   },
+        //   change: function (e) {
+        //     diagram.zoom(e.value);
+        //   }
+        // }).data("kendoSlider");
 
-        var sliderHandle = slider.wrapper.find('.k-draghandle');
-        sliderHandle.kendoTooltip({
-          content: function (e) {
-            return slider.value();
-          },
-          position: 'top',
-          animation: false // You can enable animation if needed
-        });
+        // var sliderHandle = slider.wrapper.find('.k-draghandle');
+        // sliderHandle.kendoTooltip({
+        //   content: function (e) {
+        //     return slider.value();
+        //   },
+        //   position: 'top',
+        //   animation: false // You can enable animation if needed
+        // });
 
-        const Riskx = originalData[1].x + 190;
-        const Risky = originalData[1].y + 190;
+        // const Riskx = originalData[1].x + 190;
+        // const Risky = originalData[1].y + 190;
 
-        diagram.wrapper.on("wheel", function (e) {
-          e.preventDefault();
-          var currentZoom = diagram.zoom();
-          var delta = e.originalEvent.deltaY;
-          var zoomChange = delta > 0 ? -0.02 : 0.02;
-          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + zoomChange,
-            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
-          // Change the zoom level by the default zoomChange value
-          diagram.zoom(currentZoom);
+        // diagram.wrapper.on("wheel", function (e) {
+        //   e.preventDefault();
+        //   var currentZoom = diagram.zoom();
+        //   var delta = e.originalEvent.deltaY;
+        //   var zoomChange = delta > 0 ? -0.02 : 0.02;
+        //   currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + zoomChange,
+        //     { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
+        //   // Change the zoom level by the default zoomChange value
+        //   diagram.zoom(currentZoom);
 
-          // Update the zoom slider with the new zoom level
-          slider.value(diagram.zoom());
-        });
+        //   // Update the zoom slider with the new zoom level
+        //   slider.value(diagram.zoom());
+        // });
 
-        // Bind the double-click event to the diagram element
-        $('#diagram').on('dblclick', function (e) {
-          e.preventDefault(); // Prevent the default zoom behavior on double-click
-          slider.value(diagram.zoom());          
+        // // Bind the double-click event to the diagram element
+        // $('#diagram').on('dblclick', function (e) {
+        //   e.preventDefault(); // Prevent the default zoom behavior on double-click
+        //   slider.value(diagram.zoom());          
          
-        });
+        // });
 
-        $(".zoomInIcon").click(function () {
+        // $(".zoomInIcon").click(function () {
 
-          var currentZoom = diagram.zoom();
-          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
-            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
-          diagram.zoom(currentZoom);
-          slider.value(currentZoom);
+        //   var currentZoom = diagram.zoom();
+        //   currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
+        //     { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
+        //   diagram.zoom(currentZoom);
+        //   slider.value(currentZoom);
 
-        });
+        // });
 
-        $(".zoomOutIcon").click(function () {
-          var currentZoom = diagram.zoom();
-          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
-            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
-          diagram.zoom(currentZoom);
-          slider.value(currentZoom);
-        });
+        // $(".zoomOutIcon").click(function () {
+        //   var currentZoom = diagram.zoom();
+        //   currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
+        //     { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
+        //   diagram.zoom(currentZoom);
+        //   slider.value(currentZoom);
+        // });
 
 
         $(".btn-Export").click(function () {
@@ -1843,19 +1953,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
               },
             },
           });
-
+          diagram.bringIntoView(diagram.shapes);
           // Hide the back button
           var reloadButton = document.getElementById("btReload");
           reloadButton.style.display = "none";
         });
 
+       
 
-
-
+       
         var diagram = $('#diagram').getKendoDiagram();
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
           diagram.shapes[i].options.stroke.width = 0;
+          // diagram.toFront(diagram.shapes[i]);
+
         }
         diagram.refresh();
 

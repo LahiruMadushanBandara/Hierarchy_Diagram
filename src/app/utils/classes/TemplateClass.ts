@@ -9,6 +9,12 @@ export class TemplateClass {
   public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData , enablePerformanceview: boolean) {
     const performanceView = new PerformanceView();
     var styles = performanceView.PerformanceviewDetails(contentDetails , enablePerformanceview );
+    const maxCharacters = 100;
+    const truncatedHtmlTemplate =
+    contentDetails.htmlTemplate.length > maxCharacters
+        ? contentDetails.htmlTemplate.substring(0, maxCharacters) + "..."
+        : contentDetails.htmlTemplate;
+
 
     return (
       "<div class='bow-tie-control-card-content rounded' "+ styles +">" +
@@ -19,7 +25,7 @@ export class TemplateClass {
         "</div>" +
         "<div class='bow-tie-control-card-body' >" +
           "<p class='bow-tie-htmlTemplate'>" +
-              contentDetails.htmlTemplate +
+          truncatedHtmlTemplate +
           "</p>" +
         "</div>" +
       "</div>"
