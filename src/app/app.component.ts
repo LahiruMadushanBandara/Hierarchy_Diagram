@@ -188,52 +188,129 @@ export class AppComponent implements OnChanges {
               toConnector: "bottom"
             });
           }
+          var ControlNodesLinkedToCause = []
+          var primaryLinkedcontrols = []
+          var controlId: number
+          // if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
+          //   for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
+          //     if (originalData[i].LinkedControlIds.length === 1) {
+          //       dataConnections.push({
+          //         Id: j,
+          //         FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
+          //         ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
+          //         Text: null,
+          //         fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
+          //           (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
+          //         toConnector: "auto"
+          //       });
+          //     } else if (originalData[i].LinkedControlIds.length > 4) {
+          //       if ((j + 1) % 4 == 0) {
+          //         dataConnections.push({
+          //           Id: j,
+          //           FromShapeId: originalData[i].LinkedControlIds[j],
+          //           ToShapeId: originalData[i].Id,
+          //           Text: null,
+          //           fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+          //           toConnector: "auto"
+          //         });
+          //       }
+
+          //       dataConnections.push({
+          //         Id: j,
+          //         FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+          //         ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+          //         Text: null,
+          //         fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+          //       });
+
+
+          //     }
+          //     else {
+          //       dataConnections.push({
+          //         Id: j,
+          //         FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
+          //         ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+          //         Text: null,
+
+          //         fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+          //         toConnector: "auto"
+          //       });
+          //     }
+          //   }
+          // }
+
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
+
             for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
-              if (originalData[i].LinkedControlIds.length === 1) {
+
+              controlId = originalData[i].LinkedControlIds[j];
+              // Find the control node in originalData with the controlId
+              var controlNode = originalData.find(node => node.Id === controlId);
+              if (controlNode) {
+                ControlNodesLinkedToCause.push(controlNode);
+                if (controlNode.LinkedControlIds[0] == originalData[i].Id) {
+                  primaryLinkedcontrols.push(controlId)
+                }
+              }
+            }
+           
+            for (let j = 0; j < primaryLinkedcontrols.length + 1; j++) {
+              if (primaryLinkedcontrols.length === 1) {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[0],
-                  ToShapeId: (j === 0) ? originalData[i].LinkedControlIds[0] : originalData[i].Id,
+                  FromShapeId: (j === 0) ? 0 : primaryLinkedcontrols[0],
+                  ToShapeId: (j === 0) ? primaryLinkedcontrols[0] : originalData[i].Id,
                   Text: null,
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
-                  toConnector: "auto"
+                    toConnector: "auto"
+                    
                 });
-              } else if (originalData[i].LinkedControlIds.length > 4) {
-                if ((j + 1) % 4 == 0) {
+              }
+              
+              else if (primaryLinkedcontrols.length > 4) {
+                if ((j + 1) % 4 == 0 && j != primaryLinkedcontrols.length) {
                   dataConnections.push({
                     Id: j,
-                    FromShapeId: originalData[i].LinkedControlIds[j],
+                    FromShapeId: primaryLinkedcontrols[j],
                     ToShapeId: originalData[i].Id,
                     Text: null,
                     fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                     toConnector: "auto"
                   });
                 }
-
+                if (!(j % 4 === 0 && j === primaryLinkedcontrols.length)) {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j % 4 == 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
-                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  FromShapeId: (j % 4 == 0) ? 0 : primaryLinkedcontrols[j - 1],
+                  ToShapeId: (j === primaryLinkedcontrols.length ) ? originalData[i].Id : primaryLinkedcontrols[j],
                   Text: null,
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+                  
                 });
 
-
+                }
               }
               else {
                 dataConnections.push({
                   Id: j,
-                  FromShapeId: (j === 0) ? 0 : originalData[i].LinkedControlIds[j - 1],
-                  ToShapeId: (j === originalData[i].LinkedControlIds.length) ? originalData[i].Id : originalData[i].LinkedControlIds[j],
+                  FromShapeId: (j === 0) ? 0 : primaryLinkedcontrols[j - 1],
+                  ToShapeId: (j === primaryLinkedcontrols.length) ? originalData[i].Id : primaryLinkedcontrols[j],
                   Text: null,
-
                   fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
                   toConnector: "auto"
                 });
+
               }
+
             }
+
+            // console.log("ControlNodesLinkedToCause", ControlNodesLinkedToCause)
+            console.log("primaryLinkedcontrols", primaryLinkedcontrols)
+
+            ControlNodesLinkedToCause = [];
+            primaryLinkedcontrols = []
+
           }
 
           if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId === 0) {
@@ -246,8 +323,6 @@ export class AppComponent implements OnChanges {
               toConnector: "auto"
             });
           }
-
-
 
         }
         // Collect all "Control Node" type 2 and 3 elements with IsLinkedToCauseOrConsequence set to false
