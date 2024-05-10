@@ -307,7 +307,7 @@ export class AppComponent implements OnChanges {
 
             // console.log("ControlNodesLinkedToCause", ControlNodesLinkedToCause)
             console.log("primaryLinkedcontrols", primaryLinkedcontrols)
-
+            console.log("originalData", originalData)
             ControlNodesLinkedToCause = [];
             primaryLinkedcontrols = []
 
@@ -606,7 +606,7 @@ export class AppComponent implements OnChanges {
           layout: false,
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
           editable: {
-            drag: false,
+            drag: true,
             tools: [
               {
                 template: diagramManager.GetToolbarTemplate()
