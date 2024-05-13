@@ -44,8 +44,7 @@ export class BowTieDiagramHelper {
         }
       }
   
-      console.log(" this.RearrangedDataset", this.RearrangedDataset);
-      console.log(" originalData", originalData);
+    
 
     for (let i = 0; i < linkedCauseNodes.length; i++) {
 
@@ -303,7 +302,7 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
           controlNodesPerRow++
          
-          if (controlNodesPerRow >= 4) {
+          if (controlNodesPerRow == 4) {
             rowNumbertypetwo++;
             rowNodeCount = 0;
             controlNodesPerRow = 0
@@ -343,6 +342,7 @@ export class BowTieDiagramHelper {
       // Arrange type 3 nodes (right of type 1)
       rowNodeCount = 0;
       columnNumber = 0;
+      controlNodesPerRow = 0;
       let rowNumbertypethree = 0;
 
       for (let i = 0; i < typeThreeNodes.length; i++) {
@@ -416,7 +416,7 @@ export class BowTieDiagramHelper {
           rowNodeCount++;
           controlNodesPerRow++
 
-          if (controlNodesPerRow >= 4) {
+          if (controlNodesPerRow == 4) {
             rowNumbertypethree++;
             rowNodeCount = 0;
             controlNodesPerRow = 0
@@ -430,7 +430,7 @@ export class BowTieDiagramHelper {
           const notLinkedControlCount = typeThreeNodes.filter(node => node.Title === 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false).length;
          
           if (notLinkedControlCount % 4 !== 0) {
-            rowNumbertypethree++
+            rowNumbertypethree++;
             const x = originX + 1 * horizontalSpacing; // Fifth place from the left
             const y = originY + rowNumbertypethree * verticalSpacing;
             typeThreeNodes[i].x = x;

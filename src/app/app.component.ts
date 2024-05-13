@@ -305,9 +305,7 @@ export class AppComponent implements OnChanges {
 
             }
 
-            // console.log("ControlNodesLinkedToCause", ControlNodesLinkedToCause)
-            console.log("primaryLinkedcontrols", primaryLinkedcontrols)
-            console.log("originalData", originalData)
+        
             ControlNodesLinkedToCause = [];
             primaryLinkedcontrols = []
 
