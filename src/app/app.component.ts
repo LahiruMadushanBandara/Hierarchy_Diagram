@@ -1684,74 +1684,95 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
        
 
 
-        // var slider = $(".eqSlider").kendoSlider({
-        //   orientation: "vertical",
-        //   min: 0.02,
-        //   max: 2,
-        //   smallStep: 0.01,
-        //   largeStep: 0.02,
-        //   value: 0.5,
-        //   tooltip: {
-        //     enabled: true,
-        //   },
-        //   slide: function (e) {
-        //     diagram.zoom(e.value);
-        //   },
-        //   change: function (e) {
-        //     diagram.zoom(e.value);
-        //   }
-        // }).data("kendoSlider");
+        var slider = $(".eqSlider").kendoSlider({
+          orientation: "vertical",
+          min: 0.02,
+          max: 2,
+          smallStep: 0.01,
+          largeStep: 0.02,
+          value: 0.5,
+          tooltip: {
+            enabled: true,
+          },
+          slide: function (e) {
+            diagram.zoom(e.value);
+          },
+          change: function (e) {
+            diagram.zoom(e.value);
+          }
+        }).data("kendoSlider");
 
-        // var sliderHandle = slider.wrapper.find('.k-draghandle');
-        // sliderHandle.kendoTooltip({
-        //   content: function (e) {
-        //     return slider.value();
-        //   },
-        //   position: 'top',
-        //   animation: false // You can enable animation if needed
-        // });
+        var sliderHandle = slider.wrapper.find('.k-draghandle');
+        sliderHandle.kendoTooltip({
+          content: function (e) {
+            return slider.value();
+          },
+          position: 'top',
+          animation: false // You can enable animation if needed
+        });
 
-        // const Riskx = originalData[1].x + 190;
-        // const Risky = originalData[1].y + 190;
+        const Riskx = originalData[1].x + 190;
+        const Risky = originalData[1].y + 190;
 
-        // diagram.wrapper.on("wheel", function (e) {
-        //   e.preventDefault();
-        //   var currentZoom = diagram.zoom();
-        //   var delta = e.originalEvent.deltaY;
-        //   var zoomChange = delta > 0 ? -0.02 : 0.02;
-        //   currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + zoomChange,
-        //     { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
-        //   // Change the zoom level by the default zoomChange value
-        //   diagram.zoom(currentZoom);
+        diagram.wrapper.on("wheel", function (e) {
+          e.preventDefault();
+      
+          // Get the mouse position relative to the diagram container
+          var mouseX = e.clientX - diagram.wrapper.offset().left;
+          var mouseY = e.clientY - diagram.wrapper.offset().top;
+      
+          var currentZoom = diagram.zoom();
+          var delta = e.originalEvent.deltaY;
+          var zoomChange = delta > 0 ? -0.02 : 0.02;
+      
+          // Get the current diagram dimensions
+          var diagramWidth = diagram.options.width;
+          var diagramHeight = diagram.options.height;
+      
+          // Calculate the new zoom level origin from the mouse pointer's position
+          var newZoomLevel = currentZoom + zoomChange;
+          var zoomFactor = newZoomLevel / currentZoom;
+      
+          // Calculate the new diagram dimensions after zoom
+          var newWidth = diagramWidth * zoomFactor;
+          var newHeight = diagramHeight * zoomFactor;
+      
+          // Calculate the new mouse position relative to the updated diagram dimensions
+          var newMouseX = (mouseX * zoomFactor) - mouseX;
+          var newMouseY = (mouseY * zoomFactor) - mouseY;
+      
+          // Update the diagram with the new zoom level and position
+          diagram.zoom(newZoomLevel, { point: new kendo.dataviz.diagram.Point(newMouseX, newMouseY) });
+      
+          // Update the zoom slider with the new zoom level
+          slider.value(diagram.zoom());
+      });
+      
 
-        //   // Update the zoom slider with the new zoom level
-        //   slider.value(diagram.zoom());
-        // });
-
-        // // Bind the double-click event to the diagram element
-        // $('#diagram').on('dblclick', function (e) {
-        //   e.preventDefault(); // Prevent the default zoom behavior on double-click
-        //   slider.value(diagram.zoom());          
+        // Bind the double-click event to the diagram element
+        $('#diagram').on('dblclick', function (e) {
+          e.preventDefault(); // Prevent the default zoom behavior on double-click
+          slider.value(diagram.zoom());          
          
-        // });
+        });
 
-        // $(".zoomInIcon").click(function () {
+        $(".zoomInIcon").click(function () {
 
-        //   var currentZoom = diagram.zoom();
-        //   currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
-        //     { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
-        //   diagram.zoom(currentZoom);
-        //   slider.value(currentZoom);
+          var currentZoom = diagram.zoom();
+          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
+            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
+          diagram.zoom(currentZoom);
+          slider.value(currentZoom);
 
-        // });
+        });
 
-        // $(".zoomOutIcon").click(function () {
-        //   var currentZoom = diagram.zoom();
-        //   currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
-        //     { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
-        //   diagram.zoom(currentZoom);
-        //   slider.value(currentZoom);
-        // });
+        $(".zoomOutIcon").click(function () {
+          var currentZoom = diagram.zoom();
+          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
+            { point: new kendo.dataviz.diagram.Point(Riskx, Risky) });
+          diagram.zoom(currentZoom);
+          slider.value(currentZoom);
+        });
 
 
         $(".btn-Export").click(function () {
