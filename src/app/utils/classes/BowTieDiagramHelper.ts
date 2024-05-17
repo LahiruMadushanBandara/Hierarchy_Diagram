@@ -4,7 +4,7 @@ export class BowTieDiagramHelper {
   public RearrangedDataset = [];
 
   ArrangeData(originalData) {
-    
+
     const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
     const CommonPoint = originalData.find((node) => node.Title == 'Common-point');
     const linkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId != 0);
@@ -18,33 +18,33 @@ export class BowTieDiagramHelper {
     this.RearrangedDataset.push(CommonPoint);
     this.RearrangedDataset.push(riskNode);
 
-      // Combine cause and consequence nodes
-      const linkedNodes = linkedCauseNodes.concat(linkedConsequenceNodes);
+    // Combine cause and consequence nodes
+    const linkedNodes = linkedCauseNodes.concat(linkedConsequenceNodes);
 
-      // Iterate through each node (both cause and consequence)
-      for (let i = 0; i < linkedNodes.length; i++) {
-        const node = linkedNodes[i];
-        // Iterate through each control ID in the node's LinkedControlIds array
-        for (let j = 0; j < node.LinkedControlIds.length; j++) {
-          const controlId = node.LinkedControlIds[j];
-          // Find the control node in LinkedControlNodes with the current control ID
-          for (let k = 0; k < LinkedControlNodes.length; k++) {
-            const controlNode = LinkedControlNodes[k];
-            // If the control node is found, ensure that its LinkedControlIds array is initialized
-            if (controlNode.Id === controlId || controlNode.id === controlId) {
-              if (!controlNode.LinkedControlIds) {
-                controlNode.LinkedControlIds = []; // Initialize the array if it's undefined
-              }
-              // Push the node's ID to the control node's LinkedControlIds array
-              controlNode.LinkedControlIds.push(node.Id|| node.id );
-              // Break out of the loop once the control node is found
-              break;
+    // Iterate through each node (both cause and consequence)
+    for (let i = 0; i < linkedNodes.length; i++) {
+      const node = linkedNodes[i];
+      // Iterate through each control ID in the node's LinkedControlIds array
+      for (let j = 0; j < node.LinkedControlIds.length; j++) {
+        const controlId = node.LinkedControlIds[j];
+        // Find the control node in LinkedControlNodes with the current control ID
+        for (let k = 0; k < LinkedControlNodes.length; k++) {
+          const controlNode = LinkedControlNodes[k];
+          // If the control node is found, ensure that its LinkedControlIds array is initialized
+          if (controlNode.Id === controlId || controlNode.id === controlId) {
+            if (!controlNode.LinkedControlIds) {
+              controlNode.LinkedControlIds = []; // Initialize the array if it's undefined
             }
+            // Push the node's ID to the control node's LinkedControlIds array
+            controlNode.LinkedControlIds.push(node.Id || node.id);
+            // Break out of the loop once the control node is found
+            break;
           }
         }
       }
-  
-    
+    }
+
+
 
     for (let i = 0; i < linkedCauseNodes.length; i++) {
 
@@ -56,7 +56,7 @@ export class BowTieDiagramHelper {
         // Find the controls nodes in originalData and push them to RearrangedDataset
         for (const controlId of controlsToAddIds) {
           const controlNode = originalData.find(node => node.Id === controlId);
-          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)&& linkedCauseNodes[i].Id == controlNode.LinkedControlIds[0]) {
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId) && linkedCauseNodes[i].Id == controlNode.LinkedControlIds[0]) {
             this.RearrangedDataset.push(controlNode);
           }
         }
@@ -69,7 +69,7 @@ export class BowTieDiagramHelper {
         // Find and push the remaining control nodes (if any) after the relevant cause
         for (const controlId of linkedCauseNodes[i].LinkedControlIds.slice(4)) {
           const controlNode = originalData.find(node => node.Id === controlId);
-          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)&& linkedCauseNodes[i].Id == controlNode.LinkedControlIds[0]) {
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId) && linkedCauseNodes[i].Id == controlNode.LinkedControlIds[0]) {
             this.RearrangedDataset.push(controlNode);
           }
         }
@@ -78,7 +78,7 @@ export class BowTieDiagramHelper {
 
         for (const controlId of linkedCauseNodes[i].LinkedControlIds) {
           const controlNode = originalData.find(node => node.Id === controlId);
-          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)&& linkedCauseNodes[i].Id == controlNode.LinkedControlIds[0]) {
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId) && linkedCauseNodes[i].Id == controlNode.LinkedControlIds[0]) {
             this.RearrangedDataset.push(controlNode);
           }
         }
@@ -98,7 +98,7 @@ export class BowTieDiagramHelper {
         // Find the controls nodes in originalData and push them to RearrangedDataset
         for (const controlId of controlsToAddIds) {
           const controlNode = originalData.find(node => node.Id === controlId);
-          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)&& linkedConsequenceNodes[i].Id == controlNode.LinkedControlIds[0]) {
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId) && linkedConsequenceNodes[i].Id == controlNode.LinkedControlIds[0]) {
             this.RearrangedDataset.push(controlNode);
           }
         }
@@ -111,7 +111,7 @@ export class BowTieDiagramHelper {
         // Find and push the remaining control nodes (if any) after the relevant cause
         for (const controlId of linkedConsequenceNodes[i].LinkedControlIds.slice(4)) {
           const controlNode = originalData.find(node => node.Id === controlId);
-          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId)&& linkedConsequenceNodes[i].Id == controlNode.LinkedControlIds[0]) {
+          if (controlNode && !this.RearrangedDataset.find(node => node.Id === controlId) && linkedConsequenceNodes[i].Id == controlNode.LinkedControlIds[0]) {
             this.RearrangedDataset.push(controlNode);
           }
         }
@@ -146,7 +146,7 @@ export class BowTieDiagramHelper {
   }
 
   ArrangeNodes(isExpand: boolean) {
-  
+   
     const arrangedNodes = [];
     let maxCauseNodeLength = 0;
     let causeNodeLength = 0;
@@ -220,6 +220,8 @@ export class BowTieDiagramHelper {
       let controlNodesPerRow = 0;
       const typeTwoNodes = this.RearrangedDataset.filter((node) => node.Type === 2); //filter type two nodes
       const typeThreeNodes = this.RearrangedDataset.filter((node) => node.Type === 3);
+      const notLinkedControlTypeTwo = typeTwoNodes.filter((node) => node.Title === 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
+      const notLinkedControlTypeThree = typeThreeNodes.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
 
 
 
@@ -228,7 +230,7 @@ export class BowTieDiagramHelper {
 
       // arrange type 2 nodes (left of type 1)
 
-      
+
       for (let i = 0; i < typeTwoNodes.length; i++) {
 
         if (typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length != 0) {
@@ -245,8 +247,8 @@ export class BowTieDiagramHelper {
               }
             }
           }
-           //place the cause node 
-          if (primaryLinkedcontrols.length == 0 &&  typeTwoNodes[i].LinkedControlIds.length != 0) {
+          //place the cause node 
+          if (primaryLinkedcontrols.length == 0 && typeTwoNodes[i].LinkedControlIds.length != 0) {
             //place the cause node 
             rowNodeCount = 0;
             const x = originX - 1 * horizontalSpacing; // Fifth place from the left
@@ -257,15 +259,15 @@ export class BowTieDiagramHelper {
             rowNumbertypetwo++;
             rowNodeCount = 0;
           }
-          else{
-              //place the cause node 
-          const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
-          const y = originY + rowNumbertypetwo * verticalSpacing;
-          typeTwoNodes[i].x = x;
-          typeTwoNodes[i].y = y;
-          arrangedNodes.push(typeTwoNodes[i]);
+          else {
+            //place the cause node 
+            const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
+            const y = originY + rowNumbertypetwo * verticalSpacing;
+            typeTwoNodes[i].x = x;
+            typeTwoNodes[i].y = y;
+            arrangedNodes.push(typeTwoNodes[i]);
           }
-        
+
 
           //place the controls nodes link to the cause
 
@@ -301,8 +303,9 @@ export class BowTieDiagramHelper {
           arrangedNodes.push(typeTwoNodes[i]);
           rowNodeCount++;
           controlNodesPerRow++
-         
-          if (controlNodesPerRow == 4) {
+          
+          if (controlNodesPerRow == 4 ||( notLinkedControlTypeTwo[notLinkedControlTypeTwo.length - 1].Id == typeTwoNodes[i].Id &&  typeTwoNodes[i].Id != undefined) 
+          || ( notLinkedControlTypeTwo[notLinkedControlTypeTwo.length - 1].id == typeTwoNodes[i].id  &&  typeTwoNodes[i].id != undefined)) {
             rowNumbertypetwo++;
             rowNodeCount = 0;
             controlNodesPerRow = 0
@@ -313,28 +316,14 @@ export class BowTieDiagramHelper {
         }
 
         if (typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length == 0) {
-          
-          const notLinkedControlCount = typeTwoNodes.filter(node => node.Title === 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false).length;
-          if (notLinkedControlCount % 4 !== 0) {
-            rowNumbertypetwo++;
-            const x = originX - 1 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumbertypetwo * verticalSpacing;
-            typeTwoNodes[i].x = x;
-            typeTwoNodes[i].y = y;
-            arrangedNodes.push(typeTwoNodes[i]);
-            rowNodeCount = 0;
-          }
-          else {
-            const x = originX - 1 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumbertypetwo * verticalSpacing;
-            typeTwoNodes[i].x = x;
-            typeTwoNodes[i].y = y;
-            arrangedNodes.push(typeTwoNodes[i]);
-            rowNumbertypetwo++
-            rowNodeCount = 0;
-          }
 
-
+          const x = originX - 1 * horizontalSpacing; // Fifth place from the left
+          const y = originY + rowNumbertypetwo * verticalSpacing;
+          typeTwoNodes[i].x = x;
+          typeTwoNodes[i].y = y;
+          arrangedNodes.push(typeTwoNodes[i]);
+          rowNumbertypetwo++
+          rowNodeCount = 0;
         }
       }
 
@@ -344,6 +333,7 @@ export class BowTieDiagramHelper {
       columnNumber = 0;
       controlNodesPerRow = 0;
       let rowNumbertypethree = 0;
+      //const notLinkedControl = typeThreeNodes.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
 
       for (let i = 0; i < typeThreeNodes.length; i++) {
 
@@ -381,7 +371,7 @@ export class BowTieDiagramHelper {
           }
 
           //place the controls nodes link to the cause
-         
+
           for (let i = 0; i < primaryLinkedcontrols.length; i++) {
             const x = originX + (columnNumber + 1) * horizontalSpacing;
             const y = originY + rowNumbertypethree * verticalSpacing;
@@ -411,12 +401,12 @@ export class BowTieDiagramHelper {
           const y = originY + rowNumbertypethree * verticalSpacing;
           typeThreeNodes[i].x = x;
           typeThreeNodes[i].y = y;
-
           arrangedNodes.push(typeThreeNodes[i]);
           rowNodeCount++;
           controlNodesPerRow++
-
-          if (controlNodesPerRow == 4) {
+         
+          if (controlNodesPerRow == 4 || (notLinkedControlTypeThree[notLinkedControlTypeThree.length - 1].Id == typeThreeNodes[i].Id && typeThreeNodes[i].Id != undefined) 
+          || (notLinkedControlTypeThree[notLinkedControlTypeThree.length - 1].id == typeThreeNodes[i].id && typeThreeNodes[i].id != undefined) ) {
             rowNumbertypethree++;
             rowNodeCount = 0;
             controlNodesPerRow = 0
@@ -427,38 +417,23 @@ export class BowTieDiagramHelper {
 
         if (typeThreeNodes[i].Title == 'Consequences Node' && typeThreeNodes[i].LinkedControlIds.length == 0) {
 
-          const notLinkedControlCount = typeThreeNodes.filter(node => node.Title === 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false).length;
-         
-          if (notLinkedControlCount % 4 !== 0) {
-            rowNumbertypethree++;
-            const x = originX + 1 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumbertypethree * verticalSpacing;
-            typeThreeNodes[i].x = x;
-            typeThreeNodes[i].y = y;
-            arrangedNodes.push(typeThreeNodes[i]);
-            rowNodeCount = 0;
-          }
-          else {
-            const x = originX + 1 * horizontalSpacing; // Fifth place from the left
-            const y = originY + rowNumbertypethree * verticalSpacing;
-            typeThreeNodes[i].x = x;
-            typeThreeNodes[i].y = y;
-            arrangedNodes.push(typeThreeNodes[i]);
-            rowNumbertypethree++
-            rowNodeCount = 0;
-          }
-          
-
+          const x = originX + 1 * horizontalSpacing; // Fifth place from the left
+          const y = originY + rowNumbertypethree * verticalSpacing;
+          typeThreeNodes[i].x = x;
+          typeThreeNodes[i].y = y;
+          arrangedNodes.push(typeThreeNodes[i]);
+          rowNumbertypethree++
+          rowNodeCount = 0;
         }
 
       }
 
-     
-     
+
+
       let riskYCodinate = 0;
-     
-      if (typeThreeNodes.length == 0 && typeTwoNodes.length == 0 ) {
-        riskYCodinate = originY; 
+
+      if (typeThreeNodes.length == 0 && typeTwoNodes.length == 0) {
+        riskYCodinate = originY;
       }
 
       else if (typeThreeNodes.length != 0 && rowNumbertypetwo >= rowNumbertypethree) {
@@ -480,8 +455,8 @@ export class BowTieDiagramHelper {
 
         riskYCodinate = getMiddleYValueForRiskTypeThree === 0 ? originY : getMiddleYValueForRiskTypeThree / 2;
       }
-     
-      
+
+
 
       if ((typeTwoNodes.length == 0 && typeThreeNodes.length == 0) || (rowNumbertypetwo == 0 && rowNumbertypethree == 0)
         || (rowNumbertypetwo == 1 && rowNumbertypethree == 1) || (rowNumbertypetwo == 0 && rowNumbertypethree == 1)
@@ -511,8 +486,10 @@ export class BowTieDiagramHelper {
       }
       else if (rowNumbertypetwo >= rowNumbertypethree) {
         CommonPointYValue = typeTwoNodes[typeTwoNodes.length - 1].y + CommonPointYValueIncrement;
+       
       } else {
         CommonPointYValue = typeThreeNodes[typeThreeNodes.length - 1].y + CommonPointYValueIncrement;
+       
       }
 
 
@@ -530,11 +507,11 @@ export class BowTieDiagramHelper {
 
       const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
       rowNodeCount = 0;
-     
 
 
 
-      
+
+
       //................................Arrange type 4 nodes (below type 2 and type 3).....................................
 
 
@@ -600,135 +577,135 @@ export class BowTieDiagramHelper {
     }
     return arrangedNodes;
   }
- // for (let i = 0; i < typeTwoNodes.length; i++) {
+  // for (let i = 0; i < typeTwoNodes.length; i++) {
 
-      //   if ((i < typeTwoNodes.length - 1 && typeTwoNodes[i + 1].Title === 'Cause Node'))
-      //   // (i < typeThreeNodes.length - 1 && typeThreeNodes[i + 1].Title === 'Consequences Node'))
-      //   {
-      //     maxNodesPerRow = 5;
-      //   } else {
-      //     maxNodesPerRow = 4;
-      //   }
+  //   if ((i < typeTwoNodes.length - 1 && typeTwoNodes[i + 1].Title === 'Cause Node'))
+  //   // (i < typeThreeNodes.length - 1 && typeThreeNodes[i + 1].Title === 'Consequences Node'))
+  //   {
+  //     maxNodesPerRow = 5;
+  //   } else {
+  //     maxNodesPerRow = 4;
+  //   }
 
-      //   // arrange type two control nodes
+  //   // arrange type two control nodes
 
-      //   if (typeTwoNodes[i].Title == 'Control Node') {
-      //     const x = originX - (columnNumber + 1) * horizontalSpacing;
-      //     const y = originY + rowNumbertypetwo * verticalSpacing;
-      //     typeTwoNodes[i].x = x;
-      //     typeTwoNodes[i].y = y;
+  //   if (typeTwoNodes[i].Title == 'Control Node') {
+  //     const x = originX - (columnNumber + 1) * horizontalSpacing;
+  //     const y = originY + rowNumbertypetwo * verticalSpacing;
+  //     typeTwoNodes[i].x = x;
+  //     typeTwoNodes[i].y = y;
 
-      //     arrangedNodes.push(typeTwoNodes[i]);
-      //     rowNodeCount++;
-      //     //move to next row when nodes per row = 5
-      //     if (rowNodeCount === maxNodesPerRow ||
-      //       (((typeTwoNodes[i].Id == lastLinkedControlId) || (typeTwoNodes[i].id == lastLinkedControlId))  && lastLinkedControlId != undefined) ||
-      //       (typeTwoNodes.length > i + 1 && typeTwoNodes[i + 1].Title == 'Cause Node' && typeTwoNodes[i + 1].LinkedControlIds.length == 0)) {
-      //       rowNumbertypetwo++;
-      //       rowNodeCount = 0;
-           
-      //     }
-  
-      //     columnNumber = rowNodeCount;
-      //   }
-      //   //arrange type two cause nodes
-      //   else if (typeTwoNodes[i].Title == 'Cause Node') {
+  //     arrangedNodes.push(typeTwoNodes[i]);
+  //     rowNodeCount++;
+  //     //move to next row when nodes per row = 5
+  //     if (rowNodeCount === maxNodesPerRow ||
+  //       (((typeTwoNodes[i].Id == lastLinkedControlId) || (typeTwoNodes[i].id == lastLinkedControlId))  && lastLinkedControlId != undefined) ||
+  //       (typeTwoNodes.length > i + 1 && typeTwoNodes[i + 1].Title == 'Cause Node' && typeTwoNodes[i + 1].LinkedControlIds.length == 0)) {
+  //       rowNumbertypetwo++;
+  //       rowNodeCount = 0;
 
-      //     if (typeTwoNodes[i].ParentNodeId != 0 && typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length > 4) {
-      //       lastLinkedControlId = typeTwoNodes[i].LinkedControlIds[typeTwoNodes[i].LinkedControlIds.length - 1];
-           
-      //     }
-      //     if (typeTwoNodes[i].LinkedControlIds.length == 0) {
-      //       const x = originX -  horizontalSpacing; // Fifth place from the left
-      //       const y = originY + rowNumbertypetwo * verticalSpacing;
-      //       typeTwoNodes[i].x = x;
-      //       typeTwoNodes[i].y = y;
-      //       arrangedNodes.push(typeTwoNodes[i]);
-      //       rowNodeCount++;
-      //       rowNumbertypetwo++;
-      //       rowNodeCount = 0;
-      //       columnNumber = rowNodeCount;
-      //     }
-      //     else {
-      //       const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
-      //       const y = originY + rowNumbertypetwo * verticalSpacing;
-      //       typeTwoNodes[i].x = x;
-      //       typeTwoNodes[i].y = y;
-      //       arrangedNodes.push(typeTwoNodes[i]);
-      //       rowNodeCount++;
-      //       rowNumbertypetwo++;
-      //       rowNodeCount = 0;
-      //       columnNumber = rowNodeCount;
-      //     }
+  //     }
 
-      //   }
-      // }
+  //     columnNumber = rowNodeCount;
+  //   }
+  //   //arrange type two cause nodes
+  //   else if (typeTwoNodes[i].Title == 'Cause Node') {
 
-      // for (let i = 0; i < typeThreeNodes.length; i++) {
+  //     if (typeTwoNodes[i].ParentNodeId != 0 && typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length > 4) {
+  //       lastLinkedControlId = typeTwoNodes[i].LinkedControlIds[typeTwoNodes[i].LinkedControlIds.length - 1];
 
-      //   if ((i < typeThreeNodes.length - 1 && typeThreeNodes[i + 1].Title === 'Consequences Node')) {
-      //     maxNodesPerRow = 5;
-      //   } else {
-      //     maxNodesPerRow = 4;
-      //   }
+  //     }
+  //     if (typeTwoNodes[i].LinkedControlIds.length == 0) {
+  //       const x = originX -  horizontalSpacing; // Fifth place from the left
+  //       const y = originY + rowNumbertypetwo * verticalSpacing;
+  //       typeTwoNodes[i].x = x;
+  //       typeTwoNodes[i].y = y;
+  //       arrangedNodes.push(typeTwoNodes[i]);
+  //       rowNodeCount++;
+  //       rowNumbertypetwo++;
+  //       rowNodeCount = 0;
+  //       columnNumber = rowNodeCount;
+  //     }
+  //     else {
+  //       const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
+  //       const y = originY + rowNumbertypetwo * verticalSpacing;
+  //       typeTwoNodes[i].x = x;
+  //       typeTwoNodes[i].y = y;
+  //       arrangedNodes.push(typeTwoNodes[i]);
+  //       rowNodeCount++;
+  //       rowNumbertypetwo++;
+  //       rowNodeCount = 0;
+  //       columnNumber = rowNodeCount;
+  //     }
 
+  //   }
+  // }
 
+  // for (let i = 0; i < typeThreeNodes.length; i++) {
 
-
-      //   // arrange type three control nodes
-      //   if (typeThreeNodes[i].Title == 'Control Node') {
-      //     const x = originX + (columnNumber + 1) * horizontalSpacing;
-      //     const y = originY + rowNumbertypethree * verticalSpacing;
-      //     typeThreeNodes[i].x = x;
-      //     typeThreeNodes[i].y = y;
-      //     arrangedNodes.push(typeThreeNodes[i]);
-      //     rowNodeCount++;
-      //     //move to next row when nodes per row = 5
-      //     if (rowNodeCount === maxNodesPerRow ||
-      //       (((typeThreeNodes[i].Id == lastLinkedControlId) || (typeThreeNodes[i].id == lastLinkedControlId) ) && lastLinkedControlId != undefined) ||
-      //       (typeThreeNodes.length > i + 1 && typeThreeNodes[i + 1].Title == 'Consequences Node' && typeThreeNodes[i + 1].LinkedControlIds.length == 0)) {
-      //       rowNumbertypethree++;
-      //       rowNodeCount = 0;
-      //     }
-      //     columnNumber = rowNodeCount;
-      //   }
-      //   //arrange type two Consequences nodes
-      //   else if (typeThreeNodes[i].Title == 'Consequences Node') {
-
-      //     if (typeThreeNodes[i].ParentNodeId != 0 && typeThreeNodes[i].Title == 'Consequences Node' && typeThreeNodes[i].LinkedControlIds.length > 4) {
-      //       lastLinkedControlId = typeThreeNodes[i].LinkedControlIds[typeThreeNodes[i].LinkedControlIds.length - 1];
-
-      //     }
-
-      //     if (typeThreeNodes[i].LinkedControlIds.length == 0) {
-      //       const x = originX + horizontalSpacing; // Fifth place from the left
-      //       const y = originY + rowNumbertypethree * verticalSpacing;
-      //       typeThreeNodes[i].x = x;
-      //       typeThreeNodes[i].y = y;
-      //       arrangedNodes.push(typeThreeNodes[i]);
-      //       rowNodeCount++;
-      //       rowNumbertypethree++;
-      //       rowNodeCount = 0;
-      //       columnNumber = rowNodeCount;
-      //     }
-
-      //     else {
-      //       const x = originX + maxConsequenceNodeLength * horizontalSpacing; // Fifth place from the left
-      //       const y = originY + rowNumbertypethree * verticalSpacing;
-      //       typeThreeNodes[i].x = x;
-      //       typeThreeNodes[i].y = y;
-      //       arrangedNodes.push(typeThreeNodes[i]);
-      //       rowNodeCount++;
-      //       rowNumbertypethree++;
-      //       rowNodeCount = 0;
-      //       columnNumber = rowNodeCount;
-      //     }
-      //   }
-      // }
+  //   if ((i < typeThreeNodes.length - 1 && typeThreeNodes[i + 1].Title === 'Consequences Node')) {
+  //     maxNodesPerRow = 5;
+  //   } else {
+  //     maxNodesPerRow = 4;
+  //   }
 
 
 
 
-      //.................................Arrange Risk node (in the middle).........................................
-     
+  //   // arrange type three control nodes
+  //   if (typeThreeNodes[i].Title == 'Control Node') {
+  //     const x = originX + (columnNumber + 1) * horizontalSpacing;
+  //     const y = originY + rowNumbertypethree * verticalSpacing;
+  //     typeThreeNodes[i].x = x;
+  //     typeThreeNodes[i].y = y;
+  //     arrangedNodes.push(typeThreeNodes[i]);
+  //     rowNodeCount++;
+  //     //move to next row when nodes per row = 5
+  //     if (rowNodeCount === maxNodesPerRow ||
+  //       (((typeThreeNodes[i].Id == lastLinkedControlId) || (typeThreeNodes[i].id == lastLinkedControlId) ) && lastLinkedControlId != undefined) ||
+  //       (typeThreeNodes.length > i + 1 && typeThreeNodes[i + 1].Title == 'Consequences Node' && typeThreeNodes[i + 1].LinkedControlIds.length == 0)) {
+  //       rowNumbertypethree++;
+  //       rowNodeCount = 0;
+  //     }
+  //     columnNumber = rowNodeCount;
+  //   }
+  //   //arrange type two Consequences nodes
+  //   else if (typeThreeNodes[i].Title == 'Consequences Node') {
+
+  //     if (typeThreeNodes[i].ParentNodeId != 0 && typeThreeNodes[i].Title == 'Consequences Node' && typeThreeNodes[i].LinkedControlIds.length > 4) {
+  //       lastLinkedControlId = typeThreeNodes[i].LinkedControlIds[typeThreeNodes[i].LinkedControlIds.length - 1];
+
+  //     }
+
+  //     if (typeThreeNodes[i].LinkedControlIds.length == 0) {
+  //       const x = originX + horizontalSpacing; // Fifth place from the left
+  //       const y = originY + rowNumbertypethree * verticalSpacing;
+  //       typeThreeNodes[i].x = x;
+  //       typeThreeNodes[i].y = y;
+  //       arrangedNodes.push(typeThreeNodes[i]);
+  //       rowNodeCount++;
+  //       rowNumbertypethree++;
+  //       rowNodeCount = 0;
+  //       columnNumber = rowNodeCount;
+  //     }
+
+  //     else {
+  //       const x = originX + maxConsequenceNodeLength * horizontalSpacing; // Fifth place from the left
+  //       const y = originY + rowNumbertypethree * verticalSpacing;
+  //       typeThreeNodes[i].x = x;
+  //       typeThreeNodes[i].y = y;
+  //       arrangedNodes.push(typeThreeNodes[i]);
+  //       rowNodeCount++;
+  //       rowNumbertypethree++;
+  //       rowNodeCount = 0;
+  //       columnNumber = rowNodeCount;
+  //     }
+  //   }
+  // }
+
+
+
+
+  //.................................Arrange Risk node (in the middle).........................................
+
 }
