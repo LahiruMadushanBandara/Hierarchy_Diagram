@@ -97,7 +97,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       {
         "Id": 1,
-        "Type": 2,
+        "Type": 3,
         "ParentNodeId": 0,
         "Title": "Control Node",
         "Header": "Control",
