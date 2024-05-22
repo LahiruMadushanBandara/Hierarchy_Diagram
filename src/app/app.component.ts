@@ -651,19 +651,21 @@ export class AppComponent implements OnChanges {
         }).data("kendoSlider");
 
 
-        diagram.wrapper.on("wheel", function (e) {
-          e.preventDefault();
-          //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
-          var delta = e.originalEvent.deltaY;
-          if (delta > 0) {
-            $(".zoomOutIcon").trigger("click")
-          } else {
-            $(".zoomInIcon").trigger("click")
-          }
-        });
+        // diagram.wrapper.on("wheel", function (e) {
+        //   e.preventDefault();
+        //   //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
+        //   var delta = e.originalEvent.deltaY;
+        //   if (delta > 0) {
+        //     $(".zoomOutIcon").trigger("click")
+        //   } else {
+        //     $(".zoomInIcon").trigger("click")
+        //   }
+        // });
 
 
          // Bind the double-click event to the diagram element
+         
+         
          $('#diagram').on('dblclick', function (e) {
           e.preventDefault(); // Prevent the default zoom behavior on double-click
           slider.value(diagram.zoom());          
@@ -807,8 +809,7 @@ export class AppComponent implements OnChanges {
           var reloadButton = document.getElementById("btReload");
           reloadButton.style.display = "none";
           diagram.bringIntoView(diagram.shapes);
-
-
+          diagramManager.updateDiagramDimensions(diagram , dataArrayoriginal);
         });
 
         $(".btn-Return").click(function () {

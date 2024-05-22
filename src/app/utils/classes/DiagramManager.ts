@@ -87,7 +87,7 @@ export class DiagramManager {
     if (e.item.dataItem.Header == "Control") {
       $('#btExpandView').prop("disabled", true);
       $('#btExport').prop("disabled", true);
-  
+     
       var clickedNodeId = e.item.dataItem.id;
       clicked = true;
 
@@ -179,28 +179,110 @@ export class DiagramManager {
   
 
       //rectreate the connection source
+      // var connectionsDataSource = {
+      //   data: []
+      // };
+
+      // for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+      //   var conObj = {
+
+      //     from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+      //     to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+      //   };
+
+      //   connectionsDataSource.data.push(conObj);
+      // }
+
+
+
+      // ReSet the data source and connections data source
+     
+      const CauseNodes = linkedNodesToClickedNode.filter((node) => node.Title == 'Cause Node');
+      let isCausePrimary = false
+      //rectreate the connection source
       var connectionsDataSource = {
         data: []
       };
 
       for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
-        var conObj = {
+        for (let i = 0; i < CauseNodes.length; i++) {
+          debugger
+          if (CauseNodes[i].id == linkedNodesToClickedNode[0].LinkedControlIds[0]) {
+            isCausePrimary = true
+            break
+          }
+        }
+        if (isCausePrimary == true && linkedNodesToClickedNode[i].Title == 'Cause Node') {
+          var conObj = {
 
-          from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
-          to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
-        };
+            from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+          };
+          connectionsDataSource.data.push(conObj);
+        } else if (isCausePrimary == true && linkedNodesToClickedNode[i].Title == 'Consequences Node') {
+          var conObj = {
 
-        connectionsDataSource.data.push(conObj);
+            from: linkedNodesToClickedNode[1].id.toString(), // Convert to string
+            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+          };
+          connectionsDataSource.data.push(conObj);
+        }
+        else if (isCausePrimary == false && linkedNodesToClickedNode[i].Title == 'Cause Node') {
+          var conObj = {
+
+            from: linkedNodesToClickedNode[1].id.toString(), // Convert to string
+            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+          };
+          connectionsDataSource.data.push(conObj);
+        } else if (isCausePrimary == false && linkedNodesToClickedNode[i].Title == 'Consequences Node') {
+          var conObj = {
+
+            from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+          };
+          connectionsDataSource.data.push(conObj);
+        }
+        else {
+          var conObj1 = {
+
+            from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+            to: linkedNodesToClickedNode[1].id.toString(),
+            toConnector: "top"    // Convert to string
+          };
+          connectionsDataSource.data.push(conObj1);
+        }
+
+
       }
 
-
-
-      // ReSet the data source and connections data source
+     
+     
+     
       e.sender.setDataSource(linkedNodesToClickedNode);
       e.sender.setConnectionsDataSource(connectionsDataSource);
 
       diagram.bringIntoView(diagram.shapes);
       // diagram.refresh();
+      // Calculate the available screen width and height
+    // var screenWidth = $(window).width();
+    // var screenHeight = $(window).height();
+   
+    // // Calculate a reasonable diagram size based on screen dimensions
+    // var diagramWidth = Math.min(screenWidth - 50);
+    // var diagramHeight = Math.min(screenHeight + 100); 
+
+    // // Update the diagram's dimensions
+    // diagram.wrapper.width(diagramWidth);
+    // diagram.wrapper.height(diagramHeight);
+    // // diagram.resize();
+    // var zoomLevel = Math.min(screenWidth / diagramWidth, screenHeight / diagramHeight) * 0.75;
+   
+
+    // const zoomPointX = linkedNodesToClickedNode[1].x + 100;
+    // const zoomPointY = linkedNodesToClickedNode[1].y ;
+ 
+    // diagram.zoom(zoomLevel + 0.02, { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });      
+
       clicked = false;
     }
 
