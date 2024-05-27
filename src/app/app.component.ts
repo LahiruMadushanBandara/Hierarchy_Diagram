@@ -1650,30 +1650,30 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-        function ClearConnections() {
-          var connections = diagram.connections;
-          for (var i = 0; i < connections.length; i++) {
-            connections[i].redraw({
-              stroke: {
-                color: "black",
-                opacity: 0.1
-              }
-            });
-          }
-        }
+        // function ClearConnections() {
+        //   var connections = diagram.connections;
+        //   for (var i = 0; i < connections.length; i++) {
+        //     connections[i].redraw({
+        //       stroke: {
+        //         color: "black",
+        //         opacity: 0.1
+        //       }
+        //     });
+        //   }
+        // }
 
-        function ClearHighlights() {
-          var shapes = diagram.shapes;
-          for (var i = 0; i < shapes.length; i++) {
-            shapes[i].options.fill.color = "#d9d9d9";
-            shapes[i].redraw({
-              fill: {
-                color: "#8f9779",
-                opacity: 0.1
-              }
-            });
-          }
-        }
+        // function ClearHighlights() {
+        //   var shapes = diagram.shapes;
+        //   for (var i = 0; i < shapes.length; i++) {
+        //     shapes[i].options.fill.color = "#d9d9d9";
+        //     shapes[i].redraw({
+        //       fill: {
+        //         color: "#8f9779",
+        //         opacity: 0.1
+        //       }
+        //     });
+        //   }
+        // }
 
         
         
@@ -1714,42 +1714,70 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         const Riskx = originalData[1].x + 190;
         const Risky = originalData[1].y + 190;
 
-        diagram.wrapper.on("wheel", function (e) {
-          e.preventDefault();
+      //   diagram.wrapper.on("wheel", function (e) {
+      //     e.preventDefault();
       
-          // Get the mouse position relative to the diagram container
-          var mouseX = e.clientX - diagram.wrapper.offset().left;
-          var mouseY = e.clientY - diagram.wrapper.offset().top;
+      //     // Get the mouse position relative to the diagram container
+      //     var mouseX = e.clientX - diagram.wrapper.offset().left;
+      //     var mouseY = e.clientY - diagram.wrapper.offset().top;
       
-          var currentZoom = diagram.zoom();
-          var delta = e.originalEvent.deltaY;
-          var zoomChange = delta > 0 ? -0.02 : 0.02;
+      //     var currentZoom = diagram.zoom();
+      //     var delta = e.originalEvent.deltaY;
+      //     var zoomChange = delta > 0 ? -0.02 : 0.02;
       
-          // Get the current diagram dimensions
-          var diagramWidth = diagram.options.width;
-          var diagramHeight = diagram.options.height;
+      //     // Get the current diagram dimensions
+      //     var diagramWidth = diagram.options.width;
+      //     var diagramHeight = diagram.options.height;
       
-          // Calculate the new zoom level origin from the mouse pointer's position
-          var newZoomLevel = currentZoom + zoomChange;
-          var zoomFactor = newZoomLevel / currentZoom;
+      //     // Calculate the new zoom level origin from the mouse pointer's position
+      //     var newZoomLevel = currentZoom + zoomChange;
+      //     var zoomFactor = newZoomLevel / currentZoom;
       
-          // Calculate the new diagram dimensions after zoom
-          var newWidth = diagramWidth * zoomFactor;
-          var newHeight = diagramHeight * zoomFactor;
+      //     // Calculate the new diagram dimensions after zoom
+      //     var newWidth = diagramWidth * zoomFactor;
+      //     var newHeight = diagramHeight * zoomFactor;
       
-          // Calculate the new mouse position relative to the updated diagram dimensions
-          var newMouseX = (mouseX * zoomFactor) - mouseX;
-          var newMouseY = (mouseY * zoomFactor) - mouseY;
+      //     // Calculate the new mouse position relative to the updated diagram dimensions
+      //     var newMouseX = (mouseX * zoomFactor) - mouseX;
+      //     var newMouseY = (mouseY * zoomFactor) - mouseY;
       
-          // Update the diagram with the new zoom level and position
-          diagram.zoom(newZoomLevel, { point: new kendo.dataviz.diagram.Point(newMouseX, newMouseY) });
+      //     // Update the diagram with the new zoom level and position
+      //     diagram.zoom(newZoomLevel, { point: new kendo.dataviz.diagram.Point(newMouseX, newMouseY) });
       
-          // Update the zoom slider with the new zoom level
-          slider.value(diagram.zoom());
-      });
+      //     // Update the zoom slider with the new zoom level
+      //     slider.value(diagram.zoom());
+      // });
       
 
         // Bind the double-click event to the diagram element
+       
+        diagram.wrapper.on("wheel", function (e) {
+          e.preventDefault();
+          var delta = e.originalEvent.deltaY;
+      
+          // Get the mouse position relative to the diagram
+          var offset = diagram.wrapper.offset();
+          var zoomPointX = e.pageX - offset.left;
+          var zoomPointY = e.pageY - offset.top;
+      
+          // Convert the mouse position to the diagram's coordinate system
+          var diagramPoint = diagram.documentToModel({ x: zoomPointX, y: zoomPointY });
+      
+          var currentZoom = diagram.zoom();
+          if (delta > 0) {
+              currentZoom = Math.max(slider.options.min, currentZoom - 0.02);
+          } else {
+              currentZoom = Math.min(slider.options.max, currentZoom + 0.02);
+          }
+      
+          diagram.zoom(currentZoom, { point: diagramPoint });
+          slider.value(currentZoom);
+      });
+       
+       
+       
+       
+       
         $('#diagram').on('dblclick', function (e) {
           e.preventDefault(); // Prevent the default zoom behavior on double-click
           slider.value(diagram.zoom());          
