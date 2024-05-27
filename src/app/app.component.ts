@@ -651,6 +651,30 @@ export class AppComponent implements OnChanges {
         }).data("kendoSlider");
 
 
+        diagram.wrapper.on("wheel", function (e) {
+          e.preventDefault();
+          var delta = e.originalEvent.deltaY;
+      
+          // Get the mouse position relative to the diagram
+          var offset = diagram.wrapper.offset();
+          var zoomPointX = e.pageX - offset.left;
+          var zoomPointY = e.pageY - offset.top;
+      
+          // Convert the mouse position to the diagram's coordinate system
+          var diagramPoint = diagram.documentToModel({ x: zoomPointX, y: zoomPointY });
+      
+          var currentZoom = diagram.zoom();
+          if (delta > 0) {
+              currentZoom = Math.max(slider.options.min, currentZoom - 0.02);
+          } else {
+              currentZoom = Math.min(slider.options.max, currentZoom + 0.02);
+          }
+      
+          diagram.zoom(currentZoom, { point: diagramPoint });
+          slider.value(currentZoom);
+      });
+
+
         // diagram.wrapper.on("wheel", function (e) {
         //   e.preventDefault();
         //   //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
