@@ -12,12 +12,12 @@
 .k-columnmenu-actions {
   padding: 7px 7px 0px 30px;
 } */
-/* 
-.k-animation-container {
-  visible: true,
-} */
 
-/* .k-animation-container-shown {
+/* .k-animation-container {
+  visible: true,
+} 
+
+ .k-animation-container-shown {
  
   z-index:100000 !important;
 } */
@@ -1039,7 +1039,7 @@
   /* margin-left: 91rem;
   padding-top: 4rem;   
   float: right; */
-  top: 3rem;
+  top: 4rem;
   left: 95vw;
   z-index: 10;
   width: 20px;
@@ -1101,14 +1101,29 @@ g>path {
 }
 
 /* Example CSS - Adjust as needed */
-.k-tooltip {
+/* .k-tooltip {
   font-size: 14px !important;
   color: #fffdfd !important;
   background-color: #323250 !important;
   border: 1px solid white;
   z-index: 1000 !important;
   visibility: visible;
+} */
+
+
+.k-tooltip {
+  font-size: 12px !important;
+  color: #fffdfd !important;
+  line-height: 20px;
+  background-color: #323250 !important;  
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  z-index: 1000 !important;
+  height: auto !important;
+  width: 500px !important;
+ 
 }
+
 
 
 .bow-tie-htmlTemplate {

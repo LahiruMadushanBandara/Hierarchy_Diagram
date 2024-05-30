@@ -1130,6 +1130,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     let isPerformanceView = false;
     let isExpand = false;
     let clicked = false;
+    let clickednode = false;
     var clickedNodeHeader = "";
 
     var originalConnections; // Variable to store the original connections
@@ -1143,7 +1144,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       var visual = new kendo.dataviz.diagram.Group();
       var dataItem = options.dataItem;
 
-     if(dataItem.htmlTemplate.length > 165){
+     if(dataItem.htmlTemplate.length > 100){
 
       visual.drawingElement.options.tooltip = {
         content: dataItem.htmlTemplate,       
@@ -1348,8 +1349,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
             }
 
-            // console.log("ControlNodesLinkedToCause", ControlNodesLinkedToCause)
-            console.log("primaryLinkedcontrols", primaryLinkedcontrols)
 
             ControlNodesLinkedToCause = [];
             primaryLinkedcontrols = []
@@ -1621,7 +1620,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
           layout: false,
           
-          click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
+          click:  function (e) { if(e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Cause" || e.item.dataItem.Header == "Consequence" )
+          { clickednode = true;
+            diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal);
+            console.log("done")
+          }
+           
+          },
           editable: {
             drag: true,
             tools: [
@@ -1693,64 +1698,31 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           value: 0.5,
           tooltip: {
             enabled: true,
+            showOn: "mouseenter"    
           },
           slide: function (e) {
             diagram.zoom(e.value);
+           
           },
           change: function (e) {
             diagram.zoom(e.value);
+           
           }
         }).data("kendoSlider");
-
-        var sliderHandle = slider.wrapper.find('.k-draghandle');
-        sliderHandle.kendoTooltip({
-          content: function (e) {
-            return slider.value();
-          },
-          position: 'top',
-          animation: false // You can enable animation if needed
-        });
+     
+        // var sliderHandle = slider.wrapper.find('.k-draghandle');
+        // sliderHandle.kendoTooltip({
+        //   content: function (e) {
+        //     return slider.value();
+        //   },
+        //   position: 'top',
+        //   animation: false // You can enable animation if needed
+        // });
 
         const Riskx = originalData[1].x + 190;
         const Risky = originalData[1].y + 190;
 
-      //   diagram.wrapper.on("wheel", function (e) {
-      //     e.preventDefault();
       
-      //     // Get the mouse position relative to the diagram container
-      //     var mouseX = e.clientX - diagram.wrapper.offset().left;
-      //     var mouseY = e.clientY - diagram.wrapper.offset().top;
-      
-      //     var currentZoom = diagram.zoom();
-      //     var delta = e.originalEvent.deltaY;
-      //     var zoomChange = delta > 0 ? -0.02 : 0.02;
-      
-      //     // Get the current diagram dimensions
-      //     var diagramWidth = diagram.options.width;
-      //     var diagramHeight = diagram.options.height;
-      
-      //     // Calculate the new zoom level origin from the mouse pointer's position
-      //     var newZoomLevel = currentZoom + zoomChange;
-      //     var zoomFactor = newZoomLevel / currentZoom;
-      
-      //     // Calculate the new diagram dimensions after zoom
-      //     var newWidth = diagramWidth * zoomFactor;
-      //     var newHeight = diagramHeight * zoomFactor;
-      
-      //     // Calculate the new mouse position relative to the updated diagram dimensions
-      //     var newMouseX = (mouseX * zoomFactor) - mouseX;
-      //     var newMouseY = (mouseY * zoomFactor) - mouseY;
-      
-      //     // Update the diagram with the new zoom level and position
-      //     diagram.zoom(newZoomLevel, { point: new kendo.dataviz.diagram.Point(newMouseX, newMouseY) });
-      
-      //     // Update the zoom slider with the new zoom level
-      //     slider.value(diagram.zoom());
-      // });
-      
-
-        // Bind the double-click event to the diagram element
-       
         diagram.wrapper.on("wheel", function (e) {
           e.preventDefault();
           var delta = e.originalEvent.deltaY;
@@ -1814,12 +1786,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         function switchView(isExpand) {
-           diagramHelper.ArrangeNodes(isExpand);
+          diagramHelper.ArrangeNodes(isExpand);
          
           // // Clear existing diagram
           // diagram.destroy();
-      
-          // Reset both data source and connections data source
+      if (clickednode){
+        
+        diagram.setDataSource(diagramManager.linkedNodesToClickedNode);
+
+        // Re-add the initial connections using a deep copy
+        diagram.setConnectionsDataSource(diagramManager.connectionsDataSource);
+     
+      }
+      else{    
+       
+        // Reset both data source and connections data source
           diagram.setDataSource(initialState.data);
 
           // Re-add the initial connections using a deep copy
@@ -1841,7 +1822,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             },
           });
 
-            // // Redraw the diagram
+           }   // // Redraw the diagram
             // diagram.redraw();
       }
 
@@ -1981,6 +1962,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         $(".bt-Reload").click(function () {
+          clicked = false;
           // Reset both data source and connections data source
           diagram.setDataSource(initialState.data);
 
@@ -2045,7 +2027,43 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   // }
 
+//   diagram.wrapper.on("wheel", function (e) {
+      //     e.preventDefault();
+      
+      //     // Get the mouse position relative to the diagram container
+      //     var mouseX = e.clientX - diagram.wrapper.offset().left;
+      //     var mouseY = e.clientY - diagram.wrapper.offset().top;
+      
+      //     var currentZoom = diagram.zoom();
+      //     var delta = e.originalEvent.deltaY;
+      //     var zoomChange = delta > 0 ? -0.02 : 0.02;
+      
+      //     // Get the current diagram dimensions
+      //     var diagramWidth = diagram.options.width;
+      //     var diagramHeight = diagram.options.height;
+      
+      //     // Calculate the new zoom level origin from the mouse pointer's position
+      //     var newZoomLevel = currentZoom + zoomChange;
+      //     var zoomFactor = newZoomLevel / currentZoom;
+      
+      //     // Calculate the new diagram dimensions after zoom
+      //     var newWidth = diagramWidth * zoomFactor;
+      //     var newHeight = diagramHeight * zoomFactor;
+      
+      //     // Calculate the new mouse position relative to the updated diagram dimensions
+      //     var newMouseX = (mouseX * zoomFactor) - mouseX;
+      //     var newMouseY = (mouseY * zoomFactor) - mouseY;
+      
+      //     // Update the diagram with the new zoom level and position
+      //     diagram.zoom(newZoomLevel, { point: new kendo.dataviz.diagram.Point(newMouseX, newMouseY) });
+      
+      //     // Update the zoom slider with the new zoom level
+      //     slider.value(diagram.zoom());
+      // });
+      
 
+        // Bind the double-click event to the diagram element
+       
 
 
 }

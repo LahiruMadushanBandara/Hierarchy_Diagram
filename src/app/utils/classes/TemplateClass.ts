@@ -255,7 +255,6 @@ export class TemplateClass {
     // // Clean up: remove the temporary SVG element
     // document.body.removeChild(svg);
 
-    // console.log("Number of lines:", maxLines);
     // Truncate the htmlTemplate if it exceeds the maximum number of characters
     const truncatedHtmlTemplate =
         contentDetails.htmlTemplate.length > maxCharacters

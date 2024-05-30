@@ -45,7 +45,6 @@ export class BowTieDiagramHelper {
       }
     }
 
-    console.log("RearrangedDataset", notLinkedCauseNodes)
 
     for (let i = 0; i < linkedCauseNodes.length; i++) {
 
@@ -151,7 +150,7 @@ export class BowTieDiagramHelper {
 
 
 
-  ArrangeNodes(isExpand: boolean) {
+  public ArrangeNodes(isExpand: boolean) {
 
     const arrangedNodes = [];
     // Find the risk node (type 1 with ParentNodeId 0)
@@ -319,7 +318,7 @@ export class BowTieDiagramHelper {
 
         if (typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length == 0) {
           const notLinkedControlCount = typeTwoNodes.filter(node => node.Title === 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false).length;
-          console.log("notLinkedControlCount", notLinkedControlCount)
+         
           if (notLinkedControlCount % 4 !== 0) {
             rowNumbertypetwo++;
             const x = originX - 1 * horizontalSpacing; // Fifth place from the left
@@ -384,7 +383,7 @@ export class BowTieDiagramHelper {
             arrangedNodes.push(typeThreeNodes[i]);
           }
           //place the controls nodes link to the cause
-          console.log("primaryLinkedcontrolsconsequnce", primaryLinkedcontrols)
+
 
           for (let i = 0; i < primaryLinkedcontrols.length; i++) {
             const x = originX + (columnNumber + 1) * horizontalSpacing;
@@ -432,7 +431,7 @@ export class BowTieDiagramHelper {
         }
         if (typeThreeNodes[i].Title == 'Consequences Node' && typeThreeNodes[i].LinkedControlIds.length == 0) {
           let notLinkedControlCount = typeThreeNodes.filter(node => node.Title === 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false).length;
-          console.log("notLinkedControlCount", notLinkedControlCount)
+          
           if (notLinkedControlCount % 4 !== 0) {
             rowNumbertypethree++
             const x = originX + 1 * horizontalSpacing; // Fifth place from the left
@@ -451,7 +450,7 @@ export class BowTieDiagramHelper {
             rowNumbertypethree++
             rowNodeCount = 0;
           }
-          console.log("notLinkedControlCount", notLinkedControlCount)
+      
 
         }
 

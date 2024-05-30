@@ -1,9 +1,10 @@
-
 export class DiagramManager {
   constructor() { }
 
-
-
+  public linkedNodesToClickedNode = [];
+  public  connectionsDataSource = {
+    data: []
+  };
   public updateConnectionColors(connections) {
     var connColor;
 
@@ -73,101 +74,83 @@ export class DiagramManager {
   
 
   public onNodeClick(e, clicked: boolean, diagram, dataArrayoriginal) {
+    this.linkedNodesToClickedNode = [];  //create linkedNodesToClickedNode array to recreate the datasource  
+    this.connectionsDataSource = { data: [] };
+    var clickedNodeId = e.item.dataItem.id;
+    var dataArray = diagram.dataSource.data();
+    var reloadButton = document.getElementById("btReload");
+    reloadButton.style.display = "flex";// Show the button
 
-
-    if (e.item.dataItem.Header == "Control") {
-      var clickedNodeId = e.item.dataItem.id;
+    if (e.item.dataItem.Header == "Control") { 
       clicked = true;
+      //push clicked node to the array 
+      if(clicked){
+      this.linkedNodesToClickedNode.push(e.item.dataItem);
 
-      var dataArray = diagram.dataSource.data();
-      var linkedNodesToClickedNode = [];
+      for (var i = 0; i < dataArray.length; i++) {
+        var node = dataArray[i];
+        var nodes = dataArrayoriginal[i];
 
-
-      var reloadButton = document.getElementById("btReload");
-      if (clicked) {
-        reloadButton.style.display = "flex"; // Show the button
-      } else {
-        reloadButton.style.display = "none"; // Hide the button
-      }
-
-      //create linkedNodesToClickedNode array to recreate the datasource
-      if (clicked) {
-
-        //push clicked node to the array 
-        linkedNodesToClickedNode.push(e.item.dataItem);
-        for (var i = 0; i < dataArray.length; i++) {
-          var node = dataArray[i];
-          var nodes = dataArrayoriginal[i];
-
-          // push nodes that are linked to clicked node
-          if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk") {
-            linkedNodesToClickedNode.push(node);
-          }
+        // push nodes that are linked to clicked node
+        if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk") {
+          this.linkedNodesToClickedNode.push(node);
         }
       }
 
-      console.log("linkedNodesToClickedNode" , linkedNodesToClickedNode)
-
-      const CauseNodes = linkedNodesToClickedNode.filter((node) => node.Title == 'Cause Node');    
-      let isCausePrimary = false
       //rectreate the connection source
-      var connectionsDataSource = {
-        data: []
-      };
+      const CauseNodes = this.linkedNodesToClickedNode.filter((node) => node.Title == 'Cause Node');
+      let isCausePrimary = false
 
-      for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+      for (let i = 1; i < this.linkedNodesToClickedNode.length; i++) {
         for (let i = 0; i < CauseNodes.length; i++) {
-          debugger
-          if (CauseNodes[i].id == linkedNodesToClickedNode[0].LinkedControlIds[0]) {
-            console.log("true")
+
+          if (CauseNodes[i].id == this.linkedNodesToClickedNode[0].LinkedControlIds[0]) {
+
             isCausePrimary = true
             break
           }
         }
-        if (isCausePrimary == true && linkedNodesToClickedNode[i].Title == 'Cause Node') {
+        if (isCausePrimary == true && this.linkedNodesToClickedNode[i].Title == 'Cause Node') {
           var conObj = {
 
-            from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
-            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+            from: this.linkedNodesToClickedNode[0].id.toString(), // Convert to string
+            to: this.linkedNodesToClickedNode[i].id.toString()    // Convert to string
           };
-          connectionsDataSource.data.push(conObj);
-        } else if (isCausePrimary == true && linkedNodesToClickedNode[i].Title == 'Consequences Node') {
+          this.connectionsDataSource.data.push(conObj);
+        } else if (isCausePrimary == true && this.linkedNodesToClickedNode[i].Title == 'Consequences Node') {
           var conObj = {
 
-            from: linkedNodesToClickedNode[1].id.toString(), // Convert to string
-            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+            from: this.linkedNodesToClickedNode[1].id.toString(), // Convert to string
+            to: this.linkedNodesToClickedNode[i].id.toString()    // Convert to string
           };
-          connectionsDataSource.data.push(conObj);
+          this.connectionsDataSource.data.push(conObj);
         }
-        else if (isCausePrimary == false && linkedNodesToClickedNode[i].Title == 'Cause Node') {
+        else if (isCausePrimary == false && this.linkedNodesToClickedNode[i].Title == 'Cause Node') {
           var conObj = {
 
-            from: linkedNodesToClickedNode[1].id.toString(), // Convert to string
-            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+            from: this.linkedNodesToClickedNode[1].id.toString(), // Convert to string
+            to: this.linkedNodesToClickedNode[i].id.toString()    // Convert to string
           };
-          connectionsDataSource.data.push(conObj);
-        } else if (isCausePrimary == false && linkedNodesToClickedNode[i].Title == 'Consequences Node') {
+          this.connectionsDataSource.data.push(conObj);
+        } else if (isCausePrimary == false && this.linkedNodesToClickedNode[i].Title == 'Consequences Node') {
           var conObj = {
 
-            from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
-            to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+            from: this.linkedNodesToClickedNode[0].id.toString(), // Convert to string
+            to: this.linkedNodesToClickedNode[i].id.toString()    // Convert to string
           };
-          connectionsDataSource.data.push(conObj);
+          this.connectionsDataSource.data.push(conObj);
         }
         else {
           var conObj = {
 
-            from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
-            to: linkedNodesToClickedNode[1].id.toString()    // Convert to string
+            from: this.linkedNodesToClickedNode[0].id.toString(), // Convert to string
+            to: this.linkedNodesToClickedNode[1].id.toString()    // Convert to string
           };
-          connectionsDataSource.data.push(conObj);
+          this.connectionsDataSource.data.push(conObj);
         }
 
 
-      }
-
-
-      // for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+      }      // for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
       //   var conObj = {
 
       //     from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
@@ -175,22 +158,48 @@ export class DiagramManager {
       //   };
       //   connectionsDataSource.data.push(conObj);
       // }
-        
-      
+
+
 
 
 
       // ReSet the data source and connections data source
-      
-      e.sender.setDataSource(linkedNodesToClickedNode);
-      e.sender.setConnectionsDataSource(connectionsDataSource);
-
-      diagram.bringIntoView(diagram.shapes);
-      diagram.refresh();
-
+    }
+    
     }
 
-    return linkedNodesToClickedNode;
+     if (e.item.dataItem.Header == "Cause" || e.item.dataItem.Header == "Consequence") {
+      var node = dataArray[i];
+      this.linkedNodesToClickedNode.push(e.item.dataItem);
+      this.linkedNodesToClickedNode.push(dataArray[1]);
+     
+
+
+      for (var i = 0; i < e.item.dataItem.LinkedControlIds.length; i++) {
+         
+        const controlNode = dataArray.find(node => e.item.dataItem.LinkedControlIds[i]  ===  node.id);
+        this.linkedNodesToClickedNode.push(controlNode);
+      }
+
+      for (let i = 1; i < this.linkedNodesToClickedNode.length; i++)
+       {
+        var conObj = {
+
+          from: this.linkedNodesToClickedNode[0].id.toString(), // Convert to string
+          to: this.linkedNodesToClickedNode[i].id.toString()    // Convert to string
+        };
+        this.connectionsDataSource.data.push(conObj);
+       }
+      
+    }
+    
+    e.sender.setDataSource(this.linkedNodesToClickedNode);
+    e.sender.setConnectionsDataSource(this.connectionsDataSource);
+
+    diagram.bringIntoView(diagram.shapes);
+    diagram.refresh();
+    clicked = false;
+    return this.linkedNodesToClickedNode;
   }
 
 
