@@ -1619,14 +1619,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           cancel: onCancel,
 
           layout: false,
-          
-          click:  function (e) { if(e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Cause" || e.item.dataItem.Header == "Consequence" )
-          { clickednode = true;
-            diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal);
-            console.log("done")
-          }
-           
-          },
+          click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
+       
           editable: {
             drag: true,
             tools: [
@@ -1788,18 +1782,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         function switchView(isExpand) {
           diagramHelper.ArrangeNodes(isExpand);
          
-          // // Clear existing diagram
-          // diagram.destroy();
-      if (clickednode){
-        
-        diagram.setDataSource(diagramManager.linkedNodesToClickedNode);
-
-        // Re-add the initial connections using a deep copy
-        diagram.setConnectionsDataSource(diagramManager.connectionsDataSource);
-     
-      }
-      else{    
-       
+         
         // Reset both data source and connections data source
           diagram.setDataSource(initialState.data);
 
@@ -1822,7 +1805,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
             },
           });
 
-           }   // // Redraw the diagram
+          // }   // // Redraw the diagram
             // diagram.redraw();
       }
 
@@ -1962,7 +1945,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         $(".bt-Reload").click(function () {
-          clicked = false;
+          // clicked = false;
           // Reset both data source and connections data source
           diagram.setDataSource(initialState.data);
 

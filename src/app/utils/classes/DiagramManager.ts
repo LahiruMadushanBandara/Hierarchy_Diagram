@@ -82,9 +82,9 @@ export class DiagramManager {
     reloadButton.style.display = "flex";// Show the button
 
     if (e.item.dataItem.Header == "Control") { 
-      clicked = true;
+     
       //push clicked node to the array 
-      if(clicked){
+     
       this.linkedNodesToClickedNode.push(e.item.dataItem);
 
       for (var i = 0; i < dataArray.length; i++) {
@@ -96,7 +96,7 @@ export class DiagramManager {
           this.linkedNodesToClickedNode.push(node);
         }
       }
-
+    
       //rectreate the connection source
       const CauseNodes = this.linkedNodesToClickedNode.filter((node) => node.Title == 'Cause Node');
       let isCausePrimary = false
@@ -149,7 +149,6 @@ export class DiagramManager {
           this.connectionsDataSource.data.push(conObj);
         }
 
-
       }      // for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
       //   var conObj = {
 
@@ -158,13 +157,8 @@ export class DiagramManager {
       //   };
       //   connectionsDataSource.data.push(conObj);
       // }
-
-
-
-
-
       // ReSet the data source and connections data source
-    }
+    
     
     }
 
@@ -202,7 +196,208 @@ export class DiagramManager {
     return this.linkedNodesToClickedNode;
   }
 
+  // public onNodeClick(e, clicked: boolean, diagram, dataArrayoriginal) {
+   
+  //   if (e.item.dataItem.Header == "Control") {
+  //     $('#btExpandView').prop("disabled", true);
+  //     $('#btExport').prop("disabled", true);
+     
+  //     var clickedNodeId = e.item.dataItem.id;
+  //     clicked = true;
 
+  //     var dataArray = diagram.dataSource.data();
+  //     var linkedNodesToClickedNode = [];
+
+
+  //     var reloadButton = document.getElementById("btReload");
+  //     if (clicked) {
+  //       reloadButton.style.display = "flex"; // Show the button
+  //     } else {
+  //       reloadButton.style.display = "none"; // Hide the button
+  //     }
+
+  //     //create linkedNodesToClickedNode array to recreate the datasource
+  //     if (clicked) {
+
+  //       //push clicked node to the array 
+  //       linkedNodesToClickedNode.push(e.item.dataItem);
+  //       for (var i = 0; i < dataArray.length; i++) {
+  //         var node = dataArray[i];
+  //         var nodes = dataArrayoriginal[i];
+
+  //         // push nodes that are linked to clicked node
+  //         if (Array.isArray(nodes.LinkedControlIds) && nodes.LinkedControlIds.includes(clickedNodeId) || nodes.Header == "Risk") {
+  //           linkedNodesToClickedNode.push(node);
+  //         }
+  //       }
+  //     }
+
+  //     // //update node placing
+  //     // const originX = 0;
+  //     // const originY = 0;
+  //     // const horizontalSpacing = 720;
+  //     // let riskRowNumber = 0;
+  //     // let riskColumnNumber = 1;
+  //     // let causeConsequenceColumnNumber = 0;
+  //     // let otherNodesColumnNumber = 0;
+  //     // let verticalSpacing = 520;
+  //     // var centralizedRiskNodes = []
+  //     // e.item.dataItem.x = 0;
+  //     // e.item.dataItem.y = 0;
+  //     // for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+
+
+  //     //   if (linkedNodesToClickedNode[i].Header == "Risk") {
+  //     //     linkedNodesToClickedNode[i].x = originX + riskColumnNumber * horizontalSpacing;
+  //     //     linkedNodesToClickedNode[i].y = originY - riskRowNumber * verticalSpacing;
+  //     //     riskColumnNumber++;
+  //     //     centralizedRiskNodes.push(linkedNodesToClickedNode[i]);
+      
+  //     //     var riskArrayLength = centralizedRiskNodes.length - 1;
+  //     //   }
+
+  //     //   //causes and consequences placed left bottom to the clicked node
+  //     //   else if (linkedNodesToClickedNode[i].Header == "Cause" || linkedNodesToClickedNode[i].Header == "Consequence") {
+  //     //     let causeConsequenceRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
+
+  //     //     //risk place left to clicked node
+  //     //     linkedNodesToClickedNode[i].x = originX - causeConsequenceColumnNumber * horizontalSpacing;
+  //     //     linkedNodesToClickedNode[i].y = originY + causeConsequenceRowNumber * verticalSpacing;
+  //     //     causeConsequenceColumnNumber++;
+  //     //     if (causeConsequenceColumnNumber > 4) {
+  //     //       causeConsequenceRowNumber++;
+  //     //     }
+
+          
+
+  //     //   }
+  //     //   //all other nodes that linked to control placed right bottom of the clicked node
+  //     //   else {
+  //     //     let otherNodesRowNumber = centralizedRiskNodes[riskArrayLength].y + 1;
+  //     //     linkedNodesToClickedNode[i].x = originX + otherNodesColumnNumber * horizontalSpacing;
+  //     //     linkedNodesToClickedNode[i].y = originY + otherNodesRowNumber * verticalSpacing;
+  //     //     otherNodesColumnNumber++;
+  //     //     if (otherNodesColumnNumber > 4) {
+  //     //       otherNodesRowNumber++;
+  //     //     }
+
+  //     //   }
+
+  //     //   if (riskColumnNumber > 4) {
+  //     //     riskRowNumber++;
+  //     //   }
+
+
+
+  //     // }
+  
+
+  //     //rectreate the connection source
+  //     // var connectionsDataSource = {
+  //     //   data: []
+  //     // };
+
+  //     // for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+  //     //   var conObj = {
+
+  //     //     from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+  //     //     to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+  //     //   };
+
+  //     //   connectionsDataSource.data.push(conObj);
+  //     // }
+
+
+
+  //     // ReSet the data source and connections data source
+     
+  //     const CauseNodes = linkedNodesToClickedNode.filter((node) => node.Title == 'Cause Node');
+  //     let isCausePrimary = false
+  //     //rectreate the connection source
+  //     var connectionsDataSource = {
+  //       data: []
+  //     };
+
+  //     for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
+  //       for (let i = 0; i < CauseNodes.length; i++) {
+  //         debugger
+  //         if (CauseNodes[i].id == linkedNodesToClickedNode[0].LinkedControlIds[0]) {
+  //           isCausePrimary = true
+  //           break
+  //         }
+  //       }
+  //       if (isCausePrimary == true && linkedNodesToClickedNode[i].Title == 'Cause Node') {
+  //         var conObj = {
+
+  //           from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+  //           to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+  //         };
+  //         connectionsDataSource.data.push(conObj);
+  //       } else if (isCausePrimary == true && linkedNodesToClickedNode[i].Title == 'Consequences Node') {
+  //         var conObj = {
+
+  //           from: linkedNodesToClickedNode[1].id.toString(), // Convert to string
+  //           to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+  //         };
+  //         connectionsDataSource.data.push(conObj);
+  //       }
+  //       else if (isCausePrimary == false && linkedNodesToClickedNode[i].Title == 'Cause Node') {
+  //         var conObj = {
+
+  //           from: linkedNodesToClickedNode[1].id.toString(), // Convert to string
+  //           to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+  //         };
+  //         connectionsDataSource.data.push(conObj);
+  //       } else if (isCausePrimary == false && linkedNodesToClickedNode[i].Title == 'Consequences Node') {
+  //         var conObj = {
+
+  //           from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+  //           to: linkedNodesToClickedNode[i].id.toString()    // Convert to string
+  //         };
+  //         connectionsDataSource.data.push(conObj);
+  //       }
+  //       else {
+  //         var conObj1 = {
+
+  //           from: linkedNodesToClickedNode[0].id.toString(), // Convert to string
+  //           to: linkedNodesToClickedNode[1].id.toString(),
+  //           toConnector: "top"    // Convert to string
+  //         };
+  //         connectionsDataSource.data.push(conObj1);
+  //       }
+
+
+  //     }       
+  //     e.sender.setDataSource(linkedNodesToClickedNode);
+  //     e.sender.setConnectionsDataSource(connectionsDataSource);
+
+  //     diagram.bringIntoView(diagram.shapes);
+  //     // diagram.refresh();
+  //     // Calculate the available screen width and height
+  //   // var screenWidth = $(window).width();
+  //   // var screenHeight = $(window).height();
+   
+  //   // // Calculate a reasonable diagram size based on screen dimensions
+  //   // var diagramWidth = Math.min(screenWidth - 50);
+  //   // var diagramHeight = Math.min(screenHeight + 100); 
+
+  //   // // Update the diagram's dimensions
+  //   // diagram.wrapper.width(diagramWidth);
+  //   // diagram.wrapper.height(diagramHeight);
+  //   // // diagram.resize();
+  //   // var zoomLevel = Math.min(screenWidth / diagramWidth, screenHeight / diagramHeight) * 0.75;
+   
+
+  //   // const zoomPointX = linkedNodesToClickedNode[1].x + 100;
+  //   // const zoomPointY = linkedNodesToClickedNode[1].y ;
+ 
+  //   // diagram.zoom(zoomLevel + 0.02, { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });      
+
+  //     clicked = false;
+  //   }
+
+  //   return linkedNodesToClickedNode;
+  // }
 
 
   
