@@ -1619,8 +1619,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           cancel: onCancel,
 
           layout: false,
-          click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
-       
+          //click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
+          click:  function (e) { if(e.item.dataItem.Header == "Control" || e.item.dataItem.Header == "Cause" || e.item.dataItem.Header == "Consequence" )
+          { clickednode = true;
+            clicked = true;
+            diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal);
+            console.log("done")
+          }
+           
+           },
           editable: {
             drag: true,
             tools: [
@@ -1782,7 +1789,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         function switchView(isExpand) {
           diagramHelper.ArrangeNodes(isExpand);
          
-         
+          // // Clear existing diagram
+          // diagram.destroy();
+      // if (clickednode){
+        
+      //   diagram.setDataSource(diagramManager.linkedNodesToClickedNode);
+
+      //   // Re-add the initial connections using a deep copy
+      //   diagram.setConnectionsDataSource(diagramManager.connectionsDataSource);
+     
+      // }
+      // else{    
+       
         // Reset both data source and connections data source
           diagram.setDataSource(initialState.data);
 
