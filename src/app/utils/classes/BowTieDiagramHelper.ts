@@ -5,6 +5,7 @@ export class BowTieDiagramHelper {
 
   ArrangeData(originalData) {
 
+    //get the data seperated from the original data array
     const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
     const CommonPoint = originalData.find((node) => node.Title == 'Common-point');
     const linkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId != 0);
@@ -14,14 +15,15 @@ export class BowTieDiagramHelper {
     const notLinkedConsequenceNodes = originalData.filter((node) => node.Title == 'Consequences Node' && node.ParentNodeId == 0);
     const notLinkedControlNodes = originalData.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
     const linkedBottomNodes = originalData.filter((node) => node.Type === 4);
-
+    
+    //push risk node and common point
     this.RearrangedDataset.push(CommonPoint);
     this.RearrangedDataset.push(riskNode);
 
     // Combine cause and consequence nodes
     const linkedNodes = linkedCauseNodes.concat(linkedConsequenceNodes);
 
-    // Iterate through each node (both cause and consequence)
+    // Iterate through each node (both cause and consequence) to push the linked causes and consequnces to the relavant control
     for (let i = 0; i < linkedNodes.length; i++) {
       const node = linkedNodes[i];
       // Iterate through each control ID in the node's LinkedControlIds array
@@ -44,10 +46,9 @@ export class BowTieDiagramHelper {
       }
     }
 
-
-
+    //loop causes and arrage the data set
     for (let i = 0; i < linkedCauseNodes.length; i++) {
-
+      
       if (linkedCauseNodes[i].LinkedControlIds.length > 4) {
 
         const controlsToAddIds = linkedCauseNodes[i].LinkedControlIds.slice(0, 4); // Get the first 4 control IDs
@@ -89,6 +90,7 @@ export class BowTieDiagramHelper {
 
     }
 
+    //loop consequences and arrage the data set
     for (let i = 0; i < linkedConsequenceNodes.length; i++) {
 
       if (linkedConsequenceNodes[i].LinkedControlIds.length > 4) {
@@ -129,6 +131,7 @@ export class BowTieDiagramHelper {
 
     }
 
+    //push all other nodes to the data set
     for (let i = 0; i < notLinkedControlNodes.length; i++) {
       this.RearrangedDataset.push(notLinkedControlNodes[i]);
     }
@@ -138,7 +141,6 @@ export class BowTieDiagramHelper {
     for (let i = 0; i < notLinkedConsequenceNodes.length; i++) {
       this.RearrangedDataset.push(notLinkedConsequenceNodes[i]);
     }
-
     for (let i = 0; i < linkedBottomNodes.length; i++) {
       this.RearrangedDataset.push(linkedBottomNodes[i]);
     }
@@ -146,7 +148,7 @@ export class BowTieDiagramHelper {
   }
 
   ArrangeNodes(isExpand: boolean) {
-   
+
     const arrangedNodes = [];
     let maxCauseNodeLength = 0;
     let causeNodeLength = 0;
@@ -303,9 +305,9 @@ export class BowTieDiagramHelper {
           arrangedNodes.push(typeTwoNodes[i]);
           rowNodeCount++;
           controlNodesPerRow++
-          
-          if (controlNodesPerRow == 4 ||( notLinkedControlTypeTwo[notLinkedControlTypeTwo.length - 1].Id == typeTwoNodes[i].Id &&  typeTwoNodes[i].Id != undefined) 
-          || ( notLinkedControlTypeTwo[notLinkedControlTypeTwo.length - 1].id == typeTwoNodes[i].id  &&  typeTwoNodes[i].id != undefined)) {
+
+          if (controlNodesPerRow == 4 || (notLinkedControlTypeTwo[notLinkedControlTypeTwo.length - 1].Id == typeTwoNodes[i].Id && typeTwoNodes[i].Id != undefined)
+            || (notLinkedControlTypeTwo[notLinkedControlTypeTwo.length - 1].id == typeTwoNodes[i].id && typeTwoNodes[i].id != undefined)) {
             rowNumbertypetwo++;
             rowNodeCount = 0;
             controlNodesPerRow = 0
@@ -404,9 +406,9 @@ export class BowTieDiagramHelper {
           arrangedNodes.push(typeThreeNodes[i]);
           rowNodeCount++;
           controlNodesPerRow++
-         
-          if (controlNodesPerRow == 4 || (notLinkedControlTypeThree[notLinkedControlTypeThree.length - 1].Id == typeThreeNodes[i].Id && typeThreeNodes[i].Id != undefined) 
-          || (notLinkedControlTypeThree[notLinkedControlTypeThree.length - 1].id == typeThreeNodes[i].id && typeThreeNodes[i].id != undefined) ) {
+
+          if (controlNodesPerRow == 4 || (notLinkedControlTypeThree[notLinkedControlTypeThree.length - 1].Id == typeThreeNodes[i].Id && typeThreeNodes[i].Id != undefined)
+            || (notLinkedControlTypeThree[notLinkedControlTypeThree.length - 1].id == typeThreeNodes[i].id && typeThreeNodes[i].id != undefined)) {
             rowNumbertypethree++;
             rowNodeCount = 0;
             controlNodesPerRow = 0
@@ -486,10 +488,10 @@ export class BowTieDiagramHelper {
       }
       else if (rowNumbertypetwo >= rowNumbertypethree) {
         CommonPointYValue = typeTwoNodes[typeTwoNodes.length - 1].y + CommonPointYValueIncrement;
-       
+
       } else {
         CommonPointYValue = typeThreeNodes[typeThreeNodes.length - 1].y + CommonPointYValueIncrement;
-       
+
       }
 
 

@@ -28,7 +28,7 @@ export class AppComponent implements OnChanges {
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
   @Input() bowTieNodeDetails: DiagramNodeData[] = [];
- 
+
 
   riskTemplate: string = '';
   controlTemplate: string = '';
@@ -42,8 +42,8 @@ export class AppComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges(): void {   
-    this.dataAvailability = this.bowTieNodeDetails.length > 0 ? true : false;   
+  ngOnChanges(): void {
+    this.dataAvailability = this.bowTieNodeDetails.length > 0 ? true : false;
     sessionStorage.clear();
     this.originalData = this.bowTieNodeDetails;
 
@@ -67,16 +67,17 @@ export class AppComponent implements OnChanges {
       var dataItem = options.dataItem;
       tempTitleDetail = dataItem.Title;
 
-      if((dataItem.htmlTemplate.length > 105 )){
+      //tooltip
+      if ((dataItem.htmlTemplate.length > 105)) {
 
         visual.drawingElement.options.tooltip = {
-          content: dataItem.htmlTemplate,       
+          content: dataItem.htmlTemplate,
           position: "bottom",
           width: 500, // Adjust the width as needed
           height: 10,
-          showOn: "mouseenter"        
+          showOn: "mouseenter"
         };
-        
+
       }
 
       var templatesObj =
@@ -116,7 +117,7 @@ export class AppComponent implements OnChanges {
         renderElement.remove();
       });
 
-     
+
       visual.drawingElement.append(output);
       return visual;
     }
@@ -126,7 +127,7 @@ export class AppComponent implements OnChanges {
     const arrangedData = diagramHelper.ArrangeNodes(isExpand);
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
 
-   
+
     $(() => {
       $(document).ready(() => {
         createDiagram(this.originalData, this.IsExpanded);
@@ -150,7 +151,7 @@ export class AppComponent implements OnChanges {
           dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         }
 
-
+        //create data connection
         var dataConnections = [];
         var notLinkedControlsTypeTwo: any[] = [];
         var notLinkedControlsTypeThree: any[] = [];
@@ -191,6 +192,7 @@ export class AppComponent implements OnChanges {
           var ControlNodesLinkedToCause = []
           var primaryLinkedcontrols = []
           var controlId: number
+          
           // if ((originalData[i].Title === "Cause Node" || originalData[i].Title === "Consequences Node") && originalData[i].ParentNodeId != 0) {
           //   for (let j = 0; j < originalData[i].LinkedControlIds.length + 1; j++) {
           //     if (originalData[i].LinkedControlIds.length === 1) {
@@ -253,7 +255,7 @@ export class AppComponent implements OnChanges {
                 }
               }
             }
-           
+
             for (let j = 0; j < primaryLinkedcontrols.length + 1; j++) {
               if (primaryLinkedcontrols.length === 1) {
                 dataConnections.push({
@@ -263,11 +265,11 @@ export class AppComponent implements OnChanges {
                   Text: null,
                   fromConnector: (j === 0 && originalData[i].Title === "Cause Node") ? "left" :
                     (j === 0 && originalData[i].Title === "Consequences Node") ? "right" : "auto",
-                    toConnector: "auto"
-                    
+                  toConnector: "auto"
+
                 });
               }
-              
+
               else if (primaryLinkedcontrols.length > 4) {
                 if ((j + 1) % 4 == 0 && j != primaryLinkedcontrols.length) {
                   dataConnections.push({
@@ -280,14 +282,14 @@ export class AppComponent implements OnChanges {
                   });
                 }
                 if (!(j % 4 === 0 && j === primaryLinkedcontrols.length)) {
-                dataConnections.push({
-                  Id: j,
-                  FromShapeId: (j % 4 == 0) ? 0 : primaryLinkedcontrols[j - 1],
-                  ToShapeId: (j === primaryLinkedcontrols.length ) ? originalData[i].Id : primaryLinkedcontrols[j],
-                  Text: null,
-                  fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
-                  
-                });
+                  dataConnections.push({
+                    Id: j,
+                    FromShapeId: (j % 4 == 0) ? 0 : primaryLinkedcontrols[j - 1],
+                    ToShapeId: (j === primaryLinkedcontrols.length) ? originalData[i].Id : primaryLinkedcontrols[j],
+                    Text: null,
+                    fromConnector: (originalData[i].Title === "Cause Node") ? "left" : "right",
+
+                  });
 
                 }
               }
@@ -305,7 +307,7 @@ export class AppComponent implements OnChanges {
 
             }
 
-        
+
             ControlNodesLinkedToCause = [];
             primaryLinkedcontrols = []
 
@@ -467,19 +469,15 @@ export class AppComponent implements OnChanges {
           });
         }
 
-
-
-
-
-
-
+        //create data and connection object
         var initialStateOfDataAndConnections = {
           data: dataShapes.slice(),
           connections: dataConnections
         };
 
-
+        //create diagram 
         $('#diagram').kendoDiagram({
+          //create data Source
           dataSource: {
             data: dataShapes,
             schema: {
@@ -511,6 +509,7 @@ export class AppComponent implements OnChanges {
               sessionStorage.setItem('shapes', JSON.stringify(newData));
             },
           },
+          //create connection source
           connectionsDataSource: {
             data: dataConnections,
             schema: {
@@ -541,6 +540,7 @@ export class AppComponent implements OnChanges {
           //     }
           //   }
           // },
+
           shapeDefaults: {
             stroke: {
               color: '#979797',
@@ -550,37 +550,37 @@ export class AppComponent implements OnChanges {
               {
                 name: "auto",
                 width: 0,
-                height: 0   
+                height: 0
               },
               {
                 name: "center",
                 width: 0,
-                height: 0   
+                height: 0
               },
               {
                 name: "top",
                 width: 0,
-                height: 0   
+                height: 0
               },
               {
                 name: "bottom",
                 width: 0,
-                height: 0, 
+                height: 0,
               },
               {
                 name: "left",
                 width: 0,
-                height: 0   
+                height: 0
               },
               {
                 name: "right",
                 width: 0,
-                height: 0, 
+                height: 0,
               }],
             visual: function (options) {
               return visualTemplate(options)
             },
-           
+
           },
           connectionDefaults: {
             stroke: {
@@ -600,9 +600,11 @@ export class AppComponent implements OnChanges {
           zoom: 0.6,
           zoomRate: 0.02,
           cancel: onCancel,
-
           layout: false,
+          selectable: false,
+          //centralized view click event
           click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
+          //toolbar 
           editable: {
             drag: true,
             tools: [
@@ -611,7 +613,6 @@ export class AppComponent implements OnChanges {
               }
             ]
           },
-          selectable: false,
           pannable: {
             key: "none", // Use the Ctrl key for panning
             pan: function (e) {
@@ -621,7 +622,7 @@ export class AppComponent implements OnChanges {
           },
           dataBound: function () {
             // Call the function to update diagram dimensions
-            diagramManager.updateDiagramDimensions(this , dataArrayoriginal);
+            diagramManager.updateDiagramDimensions(this, dataArrayoriginal);
           }
         });
 
@@ -630,7 +631,7 @@ export class AppComponent implements OnChanges {
         var diagram = $('#diagram').getKendoDiagram();
 
 
-        
+        //zoom by zoom slider  
         var slider = $(".eqSlider").kendoSlider({
           orientation: "vertical",
           min: 0.02,
@@ -647,32 +648,32 @@ export class AppComponent implements OnChanges {
           change: function (e) {
             diagram.zoom(e.value);
           }
-          
+
         }).data("kendoSlider");
 
-
+        //zoom by mouse wheel 
         diagram.wrapper.on("wheel", function (e) {
           e.preventDefault();
           var delta = e.originalEvent.deltaY;
-      
+
           // Get the mouse position relative to the diagram
           var offset = diagram.wrapper.offset();
           var zoomPointX = e.pageX - offset.left;
           var zoomPointY = e.pageY - offset.top;
-      
+
           // Convert the mouse position to the diagram's coordinate system
           var diagramPoint = diagram.documentToModel({ x: zoomPointX, y: zoomPointY });
-      
+
           var currentZoom = diagram.zoom();
           if (delta > 0) {
-              currentZoom = Math.max(slider.options.min, currentZoom - 0.02);
+            currentZoom = Math.max(slider.options.min, currentZoom - 0.02);
           } else {
-              currentZoom = Math.min(slider.options.max, currentZoom + 0.02);
+            currentZoom = Math.min(slider.options.max, currentZoom + 0.02);
           }
-      
+
           diagram.zoom(currentZoom, { point: diagramPoint });
           slider.value(currentZoom);
-      });
+        });
 
 
         // diagram.wrapper.on("wheel", function (e) {
@@ -687,24 +688,26 @@ export class AppComponent implements OnChanges {
         // });
 
 
-         // Bind the double-click event to the diagram element
-         
-         
-         $('#diagram').on('dblclick', function (e) {
+        // Bind the double-click event to the diagram element
+
+
+        //zoom by double click  
+
+        $('#diagram').on('dblclick', function (e) {
           e.preventDefault(); // Prevent the default zoom behavior on double-click
-          slider.value(diagram.zoom());          
-         
+          slider.value(diagram.zoom());
+
         });
 
-     
-        //set the cordinates for zoom.diagramm zoom from this x and y point
+
+        //set the cordinates for originate zoom from the main risk card.added risk cordinates
 
         const zoomPointX = originalData[1].x + 190;
         const zoomPointY = originalData[1].y + 190;
 
-        
 
 
+        //zoom by zoom icons
         $(".zoomInIcon").click(function () {
 
           var currentZoom = diagram.zoom();
@@ -723,6 +726,7 @@ export class AppComponent implements OnChanges {
           slider.value(currentZoom);
         });
 
+        //zoom slider drag handle
         var sliderHandle = slider.wrapper.find('.k-draghandle');
         sliderHandle.kendoTooltip({
           content: function (e) {
@@ -732,10 +736,11 @@ export class AppComponent implements OnChanges {
           animation: false // You can enable animation if needed
         });
 
+        //switch views when expand and collapes
         function switchView(isExpand) {
 
-           diagramHelper.ArrangeNodes(isExpand);
-                 
+          diagramHelper.ArrangeNodes(isExpand);
+
           // Reset both data source and connections data source
           diagram.setDataSource(dataShapes);
 
@@ -760,6 +765,7 @@ export class AppComponent implements OnChanges {
 
         }
 
+        //expand button funtion 
         $(".bt-Expand").click(function () {
           isExpand = !isExpand;
 
@@ -788,7 +794,7 @@ export class AppComponent implements OnChanges {
 
         });
 
-
+        //import button function
         $(".btn-Export").click(function () {
           var diagram = $("#diagram").getKendoDiagram();
           diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
@@ -799,6 +805,7 @@ export class AppComponent implements OnChanges {
           });
         });
 
+        //back button function when back from centralized view
         $(".bt-BackFromCentralizedView").click(function () {
 
           $('#btExpandView').prop("disabled", false);
@@ -833,14 +840,15 @@ export class AppComponent implements OnChanges {
           var reloadButton = document.getElementById("btReload");
           reloadButton.style.display = "none";
           diagram.bringIntoView(diagram.shapes);
-          diagramManager.updateDiagramDimensions(diagram , dataArrayoriginal);
+          diagramManager.updateDiagramDimensions(diagram, dataArrayoriginal);
         });
 
+        //return button function and return to the register page
         $(".btn-Return").click(function () {
           // Get the current URL
           var currentUrl = window.location.href;
           var RiskRegisterID = localStorage.getItem("RiskRegisterID")
-       
+
           // Extract the base path up to '/cammsrisk'
           var basePath = currentUrl.match(/^(.*\/cammsrisk)/);
           RiskRegisterID = RiskRegisterID == null ? "/register/1" : `/register/${RiskRegisterID}`;
@@ -873,8 +881,8 @@ export class AppComponent implements OnChanges {
       }
     });
 
-  
-    
+
+
 
     //..................centralized view function...........................
     var dataArrayoriginal = this.originalData;
@@ -884,5 +892,5 @@ export class AppComponent implements OnChanges {
 
 
 
- 
+
 }
