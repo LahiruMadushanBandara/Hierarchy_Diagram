@@ -1,33 +1,9 @@
 import { DiagramNodeData } from 'src/app/models/data.model';
-import {
-  PerformanceView,
-  PerformanceViewKpi,
-} from './PerformanceViewComponent ';
-import {
-  PerformanceStyleGeneral,
-  PerformanceStyleKPI,
-} from 'src/app/models/PerformanceStyle.model';
 
 export class TemplateClass {
   constructor() { }
 
-  public GetControlNodeTemplateGlobal(
-    contentDetails: DiagramNodeData,
-    enablePerformanceview: boolean
-  ) {
-    var stylesForPerformanceView: PerformanceStyleGeneral;
-    var perfomanceViewGeneralBodyStyle = null;
-    var perfomanceViewGeneralHeaderStyle = null;
-    if (enablePerformanceview) {
-      const performanceView = new PerformanceView();
-      stylesForPerformanceView = performanceView.PerformanceviewDetails(
-        contentDetails,
-        enablePerformanceview
-      );
-
-      perfomanceViewGeneralBodyStyle = stylesForPerformanceView.boadyStyle;
-      perfomanceViewGeneralHeaderStyle = stylesForPerformanceView.headerStyle;
-    }
+  public GetControlNodeTemplateGlobal(contentDetails: DiagramNodeData) {
 
     const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
@@ -41,20 +17,16 @@ export class TemplateClass {
         : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-control-card-content rounded' " +
-      perfomanceViewGeneralBodyStyle +
       '>' +
       "<div class='bow-tie-control-card-header' " +
-      perfomanceViewGeneralHeaderStyle +
       '>' +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-control-card-body' " +
-      perfomanceViewGeneralBodyStyle +
       ' >' +
       "<p class='bow-tie-htmlTemplate'  " +
-      perfomanceViewGeneralBodyStyle +
       '>\\' +
       truncatedHtmlTemplate+
       '</p>' +
@@ -63,7 +35,7 @@ export class TemplateClass {
     );
   }
 
-  public GetBottomCollapesTemplateGlobal(contentDetails: DiagramNodeData,enablePerformanceview: boolean) {
+  public GetBottomCollapesTemplateGlobal(contentDetails: DiagramNodeData) {
 
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
@@ -75,42 +47,18 @@ export class TemplateClass {
         ? contentDetails.htmlTemplate.substring(0, maxCharacters) + '...'
         : contentDetails.htmlTemplate;
 
-
-    enablePerformanceview;
-    var perfomanceViewKPIBodyStyle = null;
-    var perfomanceViewKPIHeaderStyle = null;
-    if (contentDetails.KpiData && contentDetails.KpiData.Performance != undefined) {
-      var stylesForPerformanceViewKPI: PerformanceStyleKPI;
-      if (enablePerformanceview) {
-        const performanceViewKpi = new PerformanceViewKpi();
-        stylesForPerformanceViewKPI =
-          performanceViewKpi.PerformanceviewDetailsKpi(
-            contentDetails,
-            enablePerformanceview
-          );
-
-        perfomanceViewKPIBodyStyle = stylesForPerformanceViewKPI.boadyStyleKPI;
-        perfomanceViewKPIHeaderStyle =
-          stylesForPerformanceViewKPI.headerStyleKPI;
-      }
-    }
-
     return (
       "<div class='Bow-tie-BottomCollapes-card-content rounded'" +
-      perfomanceViewKPIBodyStyle +
       '>' +
       "<div class='Bow-tie-BottomCollapes-card-header'" +
-      perfomanceViewKPIHeaderStyle +
       '>' +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
       "<div class='Bow-tie-BottomCollapes-card-body'" +
-      perfomanceViewKPIBodyStyle +
       '>' +
       "<p class='bow-tie-htmlTemplate'" +
-      perfomanceViewKPIBodyStyle +
       '>\\' +
       truncatedHtmlTemplate +
       '</p>' +
@@ -330,10 +278,7 @@ export class TemplateClass {
     );
   }
 
-  public GetControlNodeTemplateGlobalExpand(
-    contentDetails: DiagramNodeData,
-    enablePerformanceview: boolean
-  ) {
+  public GetControlNodeTemplateGlobalExpand(contentDetails: DiagramNodeData) {
 
     contentDetails.ControlData.ControlOwnerRatingImage = 
       contentDetails.ControlData.ControlOwnerRatingImage == '' || contentDetails.ControlData.ControlOwnerRatingImage === undefined ||
@@ -357,22 +302,6 @@ export class TemplateClass {
       ? 'N/A' : contentDetails.ControlData.ControlType;
 
 
-
-    var stylesForPerformanceView: PerformanceStyleGeneral;
-
-    var perfomanceViewGeneralBodyStyle = null;
-    var perfomanceViewGeneralHeaderStyle = null;
-
-    if (enablePerformanceview) {
-      const performanceView = new PerformanceView();
-      stylesForPerformanceView = performanceView.PerformanceviewDetails(
-        contentDetails,
-        enablePerformanceview
-      );
-      perfomanceViewGeneralBodyStyle = stylesForPerformanceView.boadyStyle;
-      perfomanceViewGeneralHeaderStyle = stylesForPerformanceView.headerStyle;
-    }
-
     const maxCharacters = 100;
     contentDetails.htmlTemplate = contentDetails.htmlTemplate.replace(
       /#/g,
@@ -386,40 +315,32 @@ export class TemplateClass {
 
     return (
       "<div class='bow-tie-expand-card-content rounded'" +
-      perfomanceViewGeneralBodyStyle +
       ' >' +
         "<div class='bow-tie-control-card-header' " +
-          perfomanceViewGeneralHeaderStyle +
           ' >' +
           '<span>' +
           (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
           '</span>' +
         '</div>' +
         "<div class='bow-tie-control-expand-card-body' " +
-          perfomanceViewGeneralBodyStyle +
           '>' +
           "<p class='bow-tie-htmlTemplate'  " +
-            perfomanceViewGeneralBodyStyle +
             '>\\' +
             truncatedHtmlTemplate +
           '</p>' +
           "<p class='bow-tie-control-type-details'>" +
             "<span class='bow-tie-type-name' " +
-            perfomanceViewGeneralBodyStyle +
             '>' +
               'Control Type' +
             '</span>' +
             "<p class='bow-tie-type-text' " +
-              perfomanceViewGeneralBodyStyle +
               '>' +
               contentDetails.ControlData.ControlType +
             '</p>' +
           '</p>' +
           "<p class='bow-tie-control-owner' " +
-          perfomanceViewGeneralBodyStyle +
           '>Control Owner</p>' +
           "<p class='bow-tie-control-owner-details' " +
-          perfomanceViewGeneralBodyStyle +
           '>' +
           "<img class ='bow-tie-owner-image'" +
           "src='" +
@@ -430,11 +351,9 @@ export class TemplateClass {
           '</span>' +
           '</p>' +
           "<p class='bow-tie-control-owner-rating' " +
-          perfomanceViewGeneralBodyStyle +
           '>' +
           'Control Owner Rating' +
           "<p class='bow-tie-control-owner-rating-details' " +
-          perfomanceViewGeneralBodyStyle +
           '>' +
           "<img class='bow-tie-control-owner-rating-icon'" +
           "src='" +
@@ -791,25 +710,8 @@ export class TemplateClass {
     );
   }
 
-  public GetKPIExpand(
-    contentDetails: DiagramNodeData,
-    enablePerformanceview: boolean
-  ) {
-    var stylesForPerformanceView: PerformanceStyleKPI;
-    var perfomanceViewKPIBodyStyle = null;
-    var perfomanceViewKPIHeaderStyle = null;
-
-    if (enablePerformanceview) {
-      const performanceViewKpi = new PerformanceViewKpi();
-      stylesForPerformanceView = performanceViewKpi.PerformanceviewDetailsKpi(
-        contentDetails,
-        enablePerformanceview
-      );
-      perfomanceViewKPIBodyStyle = stylesForPerformanceView.boadyStyleKPI;
-      perfomanceViewKPIHeaderStyle = stylesForPerformanceView.headerStyleKPI;
-
-
-    }
+  public GetKPIExpand(contentDetails: DiagramNodeData ) {
+    
 
     contentDetails.KpiData.Actual != null ? contentDetails.KpiData.Actual : 0;
     contentDetails.KpiData.Target != null ? contentDetails.KpiData.Target : 0;
@@ -840,20 +742,16 @@ export class TemplateClass {
         : contentDetails.htmlTemplate;
     return (
       "<div class='bow-tie-expand-card-content rounded' " +
-      perfomanceViewKPIBodyStyle +
       '>' +
       "<div class='bow-tie-expand-card-header' " +
-      perfomanceViewKPIHeaderStyle +
       '>' +
       '<span>' +
       (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-KPI'" +
-      perfomanceViewKPIBodyStyle +
       ' >' +
       "<p class='bow-tie-htmlTemplate' " +
-      perfomanceViewKPIBodyStyle +
       '>\\' +
       truncatedHtmlTemplate +
       ' </p>' +
@@ -865,7 +763,6 @@ export class TemplateClass {
       "<div class='bow-tie-kpi'>" +
           "<div class='bow-tie-unit-flex'>" +
             "<span class='bow-tie-unit-text'" +
-              perfomanceViewKPIBodyStyle +
               '>' +
               ' Unit  ' +
             '</span>' +
@@ -877,7 +774,6 @@ export class TemplateClass {
         "<div class='bow-tie-unit-details' >" +
           "<div class='bow-tie-actual-flex'>" +
             "<span class='bow-tie-actual-text'" +
-              perfomanceViewKPIBodyStyle +
             '>' +
             ' Actual  ' +
             '</span>' +
@@ -887,7 +783,6 @@ export class TemplateClass {
           '</div>' +
           "<div class='bow-tie-target-flex'>" +
             "<span class='bow-tie-target-text'" +
-              perfomanceViewKPIBodyStyle +
             '>' +
             ' Target  ' +
             '</span>' +
@@ -1125,7 +1020,7 @@ export class TemplateClass {
 
 
 
-  public AddTemplatesToNode(dataItem,templatesObj,isExpand,isPerformanceView,isKpIview,isRiskView,renderElement) 
+  public AddTemplatesToNode(dataItem,templatesObj,isExpand,isKpIview,isRiskView,renderElement) 
   {
     switch (dataItem.Header) {
       case 'Risk':
@@ -1133,8 +1028,8 @@ export class TemplateClass {
         sessionStorage.setItem('riskTemplate', templatesObj.riskTemplate);
         break;
       case 'Control':
-        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem, isPerformanceView);
-        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem, isPerformanceView);
+        templatesObj.controlTemplate = this.GetControlNodeTemplateGlobal(dataItem);
+        templatesObj.controlTemplateExpand = this.GetControlNodeTemplateGlobalExpand(dataItem);
         break;
       case 'Cause':
         templatesObj.causeTemplate = this.GetCauseTemplateGlobal(dataItem);        
@@ -1144,47 +1039,47 @@ export class TemplateClass {
         break;
       case 'Incident':
         templatesObj.incidentTemplateExpnad = this.GetIncidentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);        
         break;
       case 'KPI':
-        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem, isPerformanceView);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
+        templatesObj.kpiTemplateExpnad = this.GetKPIExpand(dataItem);
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);        
         break;
       case 'Linked Risk':
         templatesObj.linkRiskTemplate = this.GetLinkRiskNodeTemplateGlobal(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);        
         break;
       case 'Action':
         templatesObj.riskActionTemplateExpand = this.GetRiskActionTreatmentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);        
         break;
       case 'Obligation':
         templatesObj.complianceTemplateExpnad = this.GetComplianceObligationExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);        
         break;
       case 'Authority Document':
         templatesObj.authorityDocumentTemplateExpnad = this.GetAuthorityDocumentExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);        
         break;
       case 'Audit':
         templatesObj.auditTemplateExpnad = this.GetAuditExpand(dataItem);
-        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);        
+        templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);        
         break;
         case "Hierarchy Linkages":
           templatesObj.hierarchyTemplate = this.GetHierarchyExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);          
           break;
         case "Audit Recommendations":
           templatesObj.auditRecommendationTemplate = this.GetAuditRecommendationsExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);          
           break;
         case "Audit Finding":
           templatesObj.auditFindingTemplate = this.GetAuditFindingExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);          
           break;
         case "Policy":
           templatesObj.PolicyTemplate = this.GetPolicyExpand(dataItem);
-          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem, isPerformanceView);          
+          templatesObj.bottomTemplate = this.GetBottomCollapesTemplateGlobal(dataItem);          
           break;
       default:
     }

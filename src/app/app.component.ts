@@ -46,15 +46,11 @@ export class AppComponent implements OnChanges {
     this.dataAvailability = this.bowTieNodeDetails.length > 0 ? true : false;
     sessionStorage.clear();
     this.originalData = this.bowTieNodeDetails;
-
     var tempTitleDetail = '';
     let isRiskView = false;
     let isKpIview = false;
-    let isPerformanceView = false;
     let isExpand = false;
     let clicked = false;
-    var originalConnections; // Variable to store the original connections
-
     var Templates = new TemplateClass();
     var diagramManager = new DiagramManager();
 
@@ -103,7 +99,7 @@ export class AppComponent implements OnChanges {
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isPerformanceView, isKpIview, isRiskView, renderElement);
+      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isKpIview, isRiskView, renderElement);
 
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
@@ -212,19 +208,7 @@ export class AppComponent implements OnChanges {
               },
             },
           },
-          // change: function (e) {
-          //   for (var idx = 0; idx < e.added.length; idx++) {
-          //     if (e.added[idx] instanceof kendo.dataviz.diagram.Connection) {
-
-          //       e.added[idx].redraw({
-          //         stroke: {
-          //           color: "#323250",
-          //           "shape-rendering": "crispEdges"
-          //         }
-          //       })
-          //     }
-          //   }
-          // },
+        
 
           shapeDefaults: {
             stroke: {
@@ -361,17 +345,7 @@ export class AppComponent implements OnChanges {
         });
 
 
-        // diagram.wrapper.on("wheel", function (e) {
-        //   e.preventDefault();
-        //   //positive delta value means the scroller scrolls down, negative means the scroller scrolls up
-        //   var delta = e.originalEvent.deltaY;
-        //   if (delta > 0) {
-        //     $(".zoomOutIcon").trigger("click")
-        //   } else {
-        //     $(".zoomInIcon").trigger("click")
-        //   }
-        // });
-
+     
 
         // Bind the double-click event to the diagram element
 
