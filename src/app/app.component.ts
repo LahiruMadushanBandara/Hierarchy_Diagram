@@ -47,8 +47,6 @@ export class AppComponent implements OnChanges {
     sessionStorage.clear();
     this.originalData = this.bowTieNodeDetails;
     var tempTitleDetail = '';
-    let isRiskView = false;
-    let isKpIview = false;
     let isExpand = false;
     let clicked = false;
     var Templates = new TemplateClass();
@@ -99,7 +97,7 @@ export class AppComponent implements OnChanges {
 
       var renderElement = $("<div style='display:inline-block' />").appendTo('body');
 
-      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, isKpIview, isRiskView, renderElement);
+      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, renderElement);
 
       var output = new kendo.drawing.Group();
       var width = renderElement.width();

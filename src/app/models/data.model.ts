@@ -136,8 +136,7 @@ interface Treatment {
 interface Hierarchy {
   isPermitted: boolean;
   nodeId: string;
-  expandedString: string;
-  collapseHierarchyView: string;
+  hierarchyString: string;
 }
 
 
@@ -182,6 +181,5 @@ export interface HierarchyString {
   nodeId: string;
   nodeName: string;
   nodeParentData: any;
-  expandedString: string;
-  collapsString: string;
+  hierarchyString: string;
 }

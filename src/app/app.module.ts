@@ -6,10 +6,9 @@ import '@progress/kendo-ui';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { createCustomElement } from '@angular/elements';
-import { FocusComponent } from './components/focus/focus.component';
 
 @NgModule({
-  declarations: [AppComponent, FocusComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -17,7 +16,7 @@ import { FocusComponent } from './components/focus/focus.component';
     BrowserAnimationsModule,
   ],
   providers: [],
-  // bootstrap: [AppComponent],
+ 
   entryComponents:[AppComponent]
 })
 export class AppModule implements DoBootstrap {

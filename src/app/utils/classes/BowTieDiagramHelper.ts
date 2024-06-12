@@ -499,22 +499,11 @@ export class BowTieDiagramHelper {
         CommonPoint.y = CommonPointYValue;
         arrangedNodes.push(CommonPoint);
       }
-
-
-      //..............................Arrange type 4 nodes (below type 2 and type 3)....................................
-
-      //filter type four nodes
-
-      const typeFourNodes = this.RearrangedDataset.filter((node) => node.Type === 4);
-      rowNodeCount = 0;
-
-
-
-
+        
 
       //................................Arrange type 4 nodes (below type 2 and type 3).....................................
 
-
+      rowNodeCount = 0;
       let typeFourNodePlacingValue;
 
 

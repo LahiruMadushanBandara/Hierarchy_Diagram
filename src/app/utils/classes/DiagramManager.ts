@@ -93,8 +93,7 @@ export class DiagramManager {
       };
 
       for (let i = 1; i < linkedNodesToClickedNode.length; i++) {
-        for (let i = 0; i < CauseNodes.length; i++) {
-          debugger
+        for (let i = 0; i < CauseNodes.length; i++) {      
           if (CauseNodes[i].id == linkedNodesToClickedNode[0].LinkedControlIds[0]) {
             isCausePrimary = true
             break
@@ -195,7 +194,6 @@ export class DiagramManager {
   </div>        
       `;
   }
-
 
   public CreateDataConnection(originalData) {
     //create data connection

@@ -833,9 +833,9 @@ export class TemplateClass {
   public GetHierarchyExpand(contentDetails: DiagramNodeData) {  
     const maxCharacters = 100;
     const truncatedHierarchyData =
-    contentDetails.HierarchyData.expandedString.length > maxCharacters
-      ? contentDetails.HierarchyData.expandedString.substring(0, maxCharacters) + '...'
-      : contentDetails.HierarchyData.expandedString;
+    contentDetails.HierarchyData.hierarchyString.length > maxCharacters
+      ? contentDetails.HierarchyData.hierarchyString.substring(0, maxCharacters) + '...'
+      : contentDetails.HierarchyData.hierarchyString;
     return (
       "<div class='bow-tie-expand-card-content rounded'>" +
         "<div class='bow-tie-expand-card-header'>" +
@@ -1020,7 +1020,7 @@ export class TemplateClass {
 
 
 
-  public AddTemplatesToNode(dataItem,templatesObj,isExpand,isKpIview,isRiskView,renderElement) 
+  public AddTemplatesToNode(dataItem,templatesObj,isExpand,renderElement) 
   {
     switch (dataItem.Header) {
       case 'Risk':
@@ -1084,44 +1084,6 @@ export class TemplateClass {
       default:
     }
 
-    if (isRiskView) {
-      isKpIview = false;
-      if (isExpand) {
-        if (dataItem.Header === 'Linked Risk') {
-          var linkRiskBottomTemp = kendo.template(templatesObj.linkRiskTemplate);
-          renderElement.html(linkRiskBottomTemp(dataItem));
-        }
-      } else {
-        if (dataItem.Header === 'Linked Risk') {
-          var otherTemp = kendo.template(templatesObj.bottomTemplate);
-          renderElement.html(otherTemp(dataItem));
-        }
-      }
-
-      if (dataItem.Title === 'Risk Node') {
-        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-        renderElement.html(riskNodeTemp(dataItem));
-      }
-
-    } else if (isKpIview) {
-      isRiskView = false;
-      if (isExpand) {
-        if (dataItem.Header === 'KPI') {
-          var KPIExpandTemp = kendo.template(templatesObj.kpiTemplateExpnad);
-          renderElement.html(KPIExpandTemp(dataItem));
-        }
-      } else {
-        if (dataItem.Header === 'KPI') {
-          var otherTemp = kendo.template(templatesObj.bottomTemplate);
-          renderElement.html(otherTemp(dataItem));
-        }
-      }
-      if (dataItem.Title === 'Risk Node') {
-        var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
-        renderElement.html(riskNodeTemp(dataItem));
-      }
-
-    } else {
       if (isExpand) {
         if (dataItem.Title === 'Risk Node') {
           var riskNodeTemp = kendo.template(templatesObj.riskTemplate);
@@ -1192,7 +1154,7 @@ export class TemplateClass {
           renderElement.html(otherTemp(dataItem));
         }
       }
-    }
+    
   }
 
 
