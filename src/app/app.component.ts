@@ -12,6 +12,7 @@ import { TemplateClass } from './utils/classes/TemplateClass';
 import { DiagramNodeData } from './models/data.model';
 import { BowTieDiagramHelper } from './utils/classes/BowTieDiagramHelper';
 import { DiagramManager } from './utils/classes/DiagramManager';
+import '../kendo-ui-license.js'
 
 
 declare var $: any;
