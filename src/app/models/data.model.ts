@@ -8,6 +8,7 @@ export interface DiagramNodeData {
   Header: string;
   Rating: string;
   htmlTemplate: string;
+  HeaderDisplayName: string;
   RiskData?: RiskData;
   ControlData?: ControlData;
   IncidentData?: IncidentData;

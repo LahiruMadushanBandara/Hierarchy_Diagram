@@ -21,7 +21,7 @@ export class TemplateClass {
       "<div class='bow-tie-control-card-header' " +
       '>' +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-control-card-body' " +
@@ -53,7 +53,7 @@ export class TemplateClass {
       "<div class='Bow-tie-BottomCollapes-card-header'" +
       '>' +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='Bow-tie-BottomCollapes-card-body'" +
@@ -82,7 +82,7 @@ export class TemplateClass {
       "<div class='bow-tie-cause-card-content rounded'>" +
       "<div class='bow-tie-consequences-card-header'>" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-cause-card-body'>\\" +
@@ -108,7 +108,7 @@ export class TemplateClass {
       "<div class='bow-tie-cause-card-content rounded'>" +
       "<div class='bow-tie-cause-card-header'>" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-cause-card-body' >\\" +
@@ -192,7 +192,7 @@ export class TemplateClass {
         "<div class='bow-tie-risk-card-header-top' >" +
         "<p class='bow-tie-risk-card-header-top-text'>" +
         '<span>' +
-        (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+        (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
         '</span>' +
         '</p>' +
         '</div>' +
@@ -319,7 +319,7 @@ export class TemplateClass {
         "<div class='bow-tie-control-card-header' " +
           ' >' +
           '<span>' +
-          (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+          (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
           '</span>' +
         '</div>' +
         "<div class='bow-tie-control-expand-card-body' " +
@@ -436,7 +436,7 @@ export class TemplateClass {
       "<div class='bow-tie-risk-card-content-expand rounded' >" +
         "<div class='bow-tie-risk-card-header-top-expand' >" +
           "<p class='bow-tie-risk-card-header-top-text'>" +
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+            (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
           '</p>' +
         '</div>' +
         "<div class='bow-tie-risk-card-header-expand'>" +
@@ -546,7 +546,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-Action'>" +
@@ -617,7 +617,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-Incident'>" +
@@ -680,7 +680,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header'>" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-Obligation'>" +
@@ -746,7 +746,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-header' " +
       '>' +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-KPI'" +
@@ -811,7 +811,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-Audit'>" +
@@ -840,7 +840,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded'>" +
         "<div class='bow-tie-expand-card-header'>" +
           '<span>' +
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+            (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
           '</span>' +
         '</div>' +
         "<div class='bow-tie-expand-card-body-Hierarchy' >" +
@@ -877,7 +877,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
         "<div class='bow-tie-expand-card-header'>" +
           '<span>' +
-            (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+            (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
           '</span>' +
         '</div>' +
         "<div class='bow-tie-expand-card-body-AuthorityDocument'>" +
@@ -933,7 +933,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-Policy'>" +
@@ -979,7 +979,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header'>" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-AuditRecommendations'>" +
@@ -1005,7 +1005,7 @@ export class TemplateClass {
       "<div class='bow-tie-expand-card-content rounded' >" +
       "<div class='bow-tie-expand-card-header' >" +
       '<span>' +
-      (contentDetails.Header === undefined ? 'Title' : contentDetails.Header) +
+      (contentDetails.HeaderDisplayName === undefined ?contentDetails.Header : contentDetails.HeaderDisplayName) +
       '</span>' +
       '</div>' +
       "<div class='bow-tie-expand-card-body-AuditFinding' >" +
