@@ -468,6 +468,8 @@ export class AppComponent implements OnChanges {
 
           $('#btExpandView').prop("disabled", false);
           $('#btExport').prop("disabled", false);
+          var reloadButton = document.getElementById("backButton");
+          reloadButton.style.display = "none";
 
           // Reset both data source and connections data source
           diagram.setDataSource(dataShapes);
@@ -491,33 +493,24 @@ export class AppComponent implements OnChanges {
             },
           });
 
-          //  Enable the buttons
-          $('#btRiskView').prop("disabled", false);
-          $('#btKpikView').prop("disabled", false);
-
-          var reloadButton = document.getElementById("btReload");
-          reloadButton.style.display = "none";
+       
           diagram.bringIntoView(diagram.shapes);
           diagramManager.updateDiagramDimensions(diagram, dataArrayoriginal);
         });
 
         //return button function and return to the register page
         $(".btn-Return").click(function () {
-          // Get the current URL
-          var currentUrl = window.location.href;
-          var RiskRegisterID = localStorage.getItem("RiskRegisterID")
-
-          // Extract the base path up to '/cammsrisk'
-          var basePath = currentUrl.match(/^(.*\/cammsrisk)/);
+          var currentUrl = window.location.href;// Get the current URL
+          var RiskRegisterID = localStorage.getItem("RiskRegisterID")          
+          var basePath = currentUrl.match(/^(.*\/cammsrisk)/);// Extract the base path up to '/cammsrisk'
           RiskRegisterID = RiskRegisterID == null ? "/register/1" : `/register/${RiskRegisterID}`;
-          if (basePath && basePath[1]) {
 
+          if (basePath && basePath[1]) {
             // Append '/register/1' to the base path
             var regiterPageUrl = basePath[1] + RiskRegisterID;
             // Navigate to the new URL
             window.location.href = regiterPageUrl;
           }
-
         });
 
 

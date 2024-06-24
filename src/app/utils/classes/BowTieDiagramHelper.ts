@@ -208,29 +208,22 @@ export class BowTieDiagramHelper {
       const verticalSpacing = isExpand ? 470 : 250;
       let riskCordinateIncrementValue = 10;
       let CommonPointYValueIncrement = isExpand ? 500 : 300;
-      let CommonPointYValue;
       const originX = 0;
       const originY = 0;
       let rowNumbertypetwo = 0;
       let columnNumber = 0;
-      let rowNodeCount = 0;
+      let rowNodeCount = 0;      
+      let controlNodesPerRow = 0;
       var ControlNodesLinkedToCause = [];
       var primaryLinkedcontrols = [];
+      let CommonPointYValue;
       var controlId: number;
-      let controlNodesPerRow = 0;
       const typeTwoNodes = this.RearrangedDataset.filter((node) => node.Type === 2); //filter type two nodes
       const typeThreeNodes = this.RearrangedDataset.filter((node) => node.Type === 3);
       const notLinkedControlTypeTwo = typeTwoNodes.filter((node) => node.Title === 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
       const notLinkedControlTypeThree = typeThreeNodes.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
 
-
-
-
-
-
       // arrange type 2 nodes (left of type 1)
-
-
       for (let i = 0; i < typeTwoNodes.length; i++) {
 
         if (typeTwoNodes[i].Title == 'Cause Node' && typeTwoNodes[i].LinkedControlIds.length != 0) {
@@ -247,11 +240,12 @@ export class BowTieDiagramHelper {
               }
             }
           }
+
           //place the cause node 
           if (primaryLinkedcontrols.length == 0 && typeTwoNodes[i].LinkedControlIds.length != 0) {
             //place the cause node 
             rowNodeCount = 0;
-            const x = originX - 1 * horizontalSpacing; // Fifth place from the left
+            const x = originX - 1 * horizontalSpacing; 
             const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
@@ -261,7 +255,7 @@ export class BowTieDiagramHelper {
           }
           else {
             //place the cause node 
-            const x = originX - maxCauseNodeLength * horizontalSpacing; // Fifth place from the left
+            const x = originX - maxCauseNodeLength * horizontalSpacing; 
             const y = originY + rowNumbertypetwo * verticalSpacing;
             typeTwoNodes[i].x = x;
             typeTwoNodes[i].y = y;
@@ -521,7 +515,7 @@ export class BowTieDiagramHelper {
       const ObligationNodes = this.RearrangedDataset.filter((node) => node.Header == 'Obligation');
       const AuthorityDocumentNodes = this.RearrangedDataset.filter((node) => node.Header == 'Authority Document');
 
-      const nonEmptyHeaders = [
+      const availableTypeFourNodes = [
         { nodes: TreatmentNodes, verticalSpacingFour: isExpand ? 400 : 200 },
         { nodes: KPINodes, verticalSpacingFour: isExpand ? 380 : 200 },
         { nodes: IncidentNodes, verticalSpacingFour: isExpand ? 430 : 200 },
@@ -536,7 +530,7 @@ export class BowTieDiagramHelper {
       ].filter(({ nodes }) => nodes.length > 0);
 
       // Total number of columns
-      const totalColumns = nonEmptyHeaders.length;
+      const totalColumns = availableTypeFourNodes.length;
 
       // Function to arrange nodes in a column based on their header
       const arrangeNodesInColumn = (nodes, columnOffset, totalColumns, verticalSpacingFour) => {
@@ -559,7 +553,7 @@ export class BowTieDiagramHelper {
       };
 
       // Arrange nodes for each header type in columns
-      nonEmptyHeaders.forEach(({ nodes, verticalSpacingFour }, index) => {
+      availableTypeFourNodes.forEach(({ nodes, verticalSpacingFour }, index) => {
         arrangeNodesInColumn(nodes, index, totalColumns, verticalSpacingFour);
       });
 

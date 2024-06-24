@@ -1,4 +1,3 @@
-
 export class DiagramManager {
   constructor() { }
 
@@ -55,17 +54,13 @@ export class DiagramManager {
 
       var clickedNodeId = e.item.dataItem.id;
       clicked = true;
-
       var dataArray = diagram.dataSource.data();
       var linkedNodesToClickedNode = [];
+      var reloadButton = document.getElementById("backButton");
 
-
-      var reloadButton = document.getElementById("btReload");
-      if (clicked) {
-        reloadButton.style.display = "flex"; // Show the button
-      } else {
-        reloadButton.style.display = "none"; // Hide the button
-      }
+      reloadButton.style.display = "flex"; // Show the button
+     
+      
 
       //create linkedNodesToClickedNode array to recreate the datasource
       if (clicked) {
@@ -163,7 +158,7 @@ export class DiagramManager {
       <div class="k-actions btn-row-bottom k-actions-end align-items-start button-flex">            
 
           <div kendoTooltip position="bottom" [title]="'Back'">
-          <button type="button" class="bt-BackFromCentralizedView btn bow-tie-btn-outline-primary" id="btReload"  style="display: none;">
+          <button type="button" class="bt-BackFromCentralizedView btn bow-tie-btn-outline-primary" id="backButton"  style="display: none;">
             <span>Back</span>
           </button>
           </div>
