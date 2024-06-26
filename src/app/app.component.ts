@@ -500,16 +500,16 @@ export class AppComponent implements OnChanges {
 
         //return button function and return to the register page
         $(".btn-Return").click(function () {
-          var currentUrl = window.location.href;// Get the current URL
-          var RiskRegisterID = localStorage.getItem("RiskRegisterID")          
-          var basePath = currentUrl.match(/^(.*\/cammsrisk)/);// Extract the base path up to '/cammsrisk'
-          RiskRegisterID = RiskRegisterID == null ? "/register/1" : `/register/${RiskRegisterID}`;
+          var currentUrl = window.location.href;// Get the current URL    
+          var basePath = currentUrl.match(/^(.*\/cammsrisk)/);// Extract the base path up to '/cammsrisk'         
+          var urlParams = new URLSearchParams(window.location.search); // Extract query parameters from the URL
+          var registerId = urlParams.get('registerId');
+          var RiskRegisterID =
+            registerId == null ? "/register/1" : `/register/${registerId}`;
 
           if (basePath && basePath[1]) {
-            // Append '/register/1' to the base path
             var regiterPageUrl = basePath[1] + RiskRegisterID;
-            // Navigate to the new URL
-            window.location.href = regiterPageUrl;
+            window.location.href = regiterPageUrl; // Navigate to the new URL
           }
         });
 
