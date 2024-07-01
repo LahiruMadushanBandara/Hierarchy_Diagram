@@ -12,8 +12,7 @@ import { TemplateClass } from './utils/classes/TemplateClass';
 import { DiagramNodeData } from './models/data.model';
 import { BowTieDiagramHelper } from './utils/classes/BowTieDiagramHelper';
 import { DiagramManager } from './utils/classes/DiagramManager';
-import '../kendo-ui-license.js'
-
+import '../kendo-ui-license.js';
 
 declare var $: any;
 @Component({
@@ -21,84 +20,73 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-
-
 export class AppComponent implements OnChanges {
-
   @Output() expandChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('diagram', { static: false }) diagram: any;
   @ViewChild('buttonContainer', { static: true }) buttonContainer: ElementRef;
   @Input() bowTieNodeDetails: DiagramNodeData[] = [];
-
-
-  riskTemplate: string = '';
-  controlTemplate: string = '';
-  causeTemplate: string = '';
-  consequencesTemplate: string = '';
-  otherTemplate: string = '';
+  @Input() IsExpanded: boolean = false;
   originalData: DiagramNodeData[] = [];
   dataAvailability: boolean = false;
 
-  @Input() IsExpanded: boolean = false;
-
-  constructor() { }
+  constructor() {}
 
   ngOnChanges(): void {
     this.dataAvailability = this.bowTieNodeDetails.length > 0 ? true : false;
     sessionStorage.clear();
     this.originalData = this.bowTieNodeDetails;
-    var tempTitleDetail = '';
-    let isExpand = false;
-    let clicked = false;
+    var isExpand = false;
+    var clicked = false;
     var Templates = new TemplateClass();
     var diagramManager = new DiagramManager();
 
 
-
-    // Import the Drawing API namespaces.
-    var draw = kendo.drawing;
     function visualTemplate(options: any) {
+      var draw = kendo.drawing;
       var visual = new kendo.dataviz.diagram.Group();
       var dataItem = options.dataItem;
-      tempTitleDetail = dataItem.Title;
 
       //tooltip
-      if ((dataItem.htmlTemplate.length > 105)) {
-
+      if (dataItem.htmlTemplate.length > 105) {
         visual.drawingElement.options.tooltip = {
           content: dataItem.htmlTemplate,
-          position: "bottom",
+          position: 'bottom',
           width: 500, // Adjust the width as needed
           height: 10,
-          showOn: "mouseenter"
+          showOn: 'mouseenter',
         };
-
       }
 
-      var templatesObj =
-      {
-        riskTemplate: "",
-        controlTemplate: "",
-        controlTemplateExpand: "",
-        causeTemplate: "",
-        consequencesTemplate: "",
-        incidentTemplateExpnad: "",
-        kpiTemplateExpnad: "",
-        bottomTemplate: "",
-        linkRiskTemplate: "",
-        riskActionTemplateExpand: "",
-        complianceTemplateExpnad: "",
-        authorityDocumentTemplateExpnad: "",
-        auditTemplateExpnad: "",
-        hierarchyTemplate: "",
-        auditRecommendationTemplate: "",
-        auditFindingTemplate: "",
-        PolicyTemplate: "",
-      }
+      var templatesObj = {
+        riskTemplate: '',
+        controlTemplate: '',
+        controlTemplateExpand: '',
+        causeTemplate: '',
+        consequencesTemplate: '',
+        incidentTemplateExpnad: '',
+        kpiTemplateExpnad: '',
+        bottomTemplate: '',
+        linkRiskTemplate: '',
+        riskActionTemplateExpand: '',
+        complianceTemplateExpnad: '',
+        authorityDocumentTemplateExpnad: '',
+        auditTemplateExpnad: '',
+        hierarchyTemplate: '',
+        auditRecommendationTemplate: '',
+        auditFindingTemplate: '',
+        PolicyTemplate: '',
+      };
 
-      var renderElement = $("<div style='display:inline-block' />").appendTo('body');
+      var renderElement = $("<div style='display:inline-block' />").appendTo(
+        'body'
+      );
 
-      Templates.AddTemplatesToNode(dataItem, templatesObj, isExpand, renderElement);
+      Templates.AddTemplatesToNode(
+        dataItem,
+        templatesObj,
+        isExpand,
+        renderElement
+      );
 
       var output = new kendo.drawing.Group();
       var width = renderElement.width();
@@ -112,17 +100,16 @@ export class AppComponent implements OnChanges {
         renderElement.remove();
       });
 
-
       visual.drawingElement.append(output);
       return visual;
     }
 
     var diagramHelper = new BowTieDiagramHelper();
     diagramHelper.ArrangeData(this.originalData);
-    const arrangedData = diagramHelper.ArrangeNodes(isExpand);
+    const arrangedData = diagramHelper.ArrangeNodes(isExpand , this.originalData) ;
     arrangedData.map((node) => ({ Id: node.Id, x: node.x, y: node.y }));
     diagramManager.CreateDataConnection(this.originalData);
-
+    var dataArrayoriginal = this.originalData;
 
     $(() => {
       $(document).ready(() => {
@@ -135,10 +122,8 @@ export class AppComponent implements OnChanges {
       }
 
       function createDiagram(originalData: any[], isExpanded: boolean) {
-
         var dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         var isExpanded = isExpanded;
-
 
         if (!dataShapes || dataShapes.length == 0) {
           sessionStorage.setItem('shapes', JSON.stringify(originalData));
@@ -147,15 +132,13 @@ export class AppComponent implements OnChanges {
           dataShapes = JSON.parse(sessionStorage.getItem('shapes'));
         }
 
-       
-
         //create data and connection object
         var initialStateOfDataAndConnections = {
           data: dataShapes.slice(),
-          connections: diagramManager.dataConnections
+          connections: diagramManager.dataConnections,
         };
 
-        //create diagram 
+        //create diagram
         $('#diagram').kendoDiagram({
           //create data Source
           dataSource: {
@@ -168,7 +151,7 @@ export class AppComponent implements OnChanges {
                   Type: { type: 'number' },
                   Color: { type: 'string' },
                 },
-                isExpanded: isExpanded
+                isExpanded: isExpanded,
               },
             },
             change: function (ev) {
@@ -207,7 +190,6 @@ export class AppComponent implements OnChanges {
               },
             },
           },
-        
 
           shapeDefaults: {
             stroke: {
@@ -216,39 +198,39 @@ export class AppComponent implements OnChanges {
             },
             connectors: [
               {
-                name: "auto",
-                width: 0,
-                height: 0
-              },
-              {
-                name: "center",
-                width: 0,
-                height: 0
-              },
-              {
-                name: "top",
-                width: 0,
-                height: 0
-              },
-              {
-                name: "bottom",
+                name: 'auto',
                 width: 0,
                 height: 0,
               },
               {
-                name: "left",
-                width: 0,
-                height: 0
-              },
-              {
-                name: "right",
+                name: 'center',
                 width: 0,
                 height: 0,
-              }],
+              },
+              {
+                name: 'top',
+                width: 0,
+                height: 0,
+              },
+              {
+                name: 'bottom',
+                width: 0,
+                height: 0,
+              },
+              {
+                name: 'left',
+                width: 0,
+                height: 0,
+              },
+              {
+                name: 'right',
+                width: 0,
+                height: 0,
+              },
+            ],
             visual: function (options) {
-              return visualTemplate(options)
+              return visualTemplate(options);
             },
-
           },
           connectionDefaults: {
             stroke: {
@@ -271,56 +253,55 @@ export class AppComponent implements OnChanges {
           layout: false,
           selectable: false,
           //centralized view click event
-          click: (e) => diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
-          //toolbar 
+          click: (e) =>
+            diagramManager.onNodeClick(e, clicked, diagram, dataArrayoriginal),
+          //toolbar
           editable: {
             drag: true,
             tools: [
               {
-                template: diagramManager.GetToolbarTemplate()
-              }
-            ]
+                template: diagramManager.GetToolbarTemplate(),
+              },
+            ],
           },
           pannable: {
-            key: "none", // Use the Ctrl key for panning
+            key: 'none', // Use the Ctrl key for panning
             pan: function (e) {
               // Call the function to handle panning
               diagramManager.handlePan(e, this);
-            }
+            },
           },
           dataBound: function () {
             // Call the function to update diagram dimensions
             diagramManager.updateDiagramDimensions(this, dataArrayoriginal);
-          }
+          },
         });
 
-
-
         var diagram = $('#diagram').getKendoDiagram();
+        var currentZoom:number
+        //zoom by zoom slider
+        var slider = $('.eqSlider')
+          .kendoSlider({
+            orientation: 'vertical',
+            min: 0.02,
+            max: 2,
+            smallStep: 0.01,
+            largeStep: 0.02,
+            value: diagram.zoom(),
+            tooltip: {
+              enabled: false,
+            },
+            slide: function (e) {
+              diagram.zoom(e.value);
+            },
+            change: function (e) {
+              diagram.zoom(e.value);
+            },
+          })
+          .data('kendoSlider');
 
-
-        //zoom by zoom slider  
-        var slider = $(".eqSlider").kendoSlider({
-          orientation: "vertical",
-          min: 0.02,
-          max: 2,
-          smallStep: 0.01,
-          largeStep: 0.02,
-          value: diagram.zoom(),
-          tooltip: {
-            enabled: false,
-          },
-          slide: function (e) {
-            diagram.zoom(e.value);
-          },
-          change: function (e) {
-            diagram.zoom(e.value);
-          }
-
-        }).data("kendoSlider");
-
-        //zoom by mouse wheel 
-        diagram.wrapper.on("wheel", function (e) {
+        //zoom by mouse wheel
+        diagram.wrapper.on('wheel', function (e) {
           e.preventDefault();
           var delta = e.originalEvent.deltaY;
 
@@ -330,9 +311,12 @@ export class AppComponent implements OnChanges {
           var zoomPointY = e.pageY - offset.top;
 
           // Convert the mouse position to the diagram's coordinate system
-          var diagramPoint = diagram.documentToModel({ x: zoomPointX, y: zoomPointY });
+          var diagramPoint = diagram.documentToModel({
+            x: zoomPointX,
+            y: zoomPointY,
+          });
 
-          var currentZoom = diagram.zoom();
+          currentZoom = diagram.zoom();
           if (delta > 0) {
             currentZoom = Math.max(slider.options.min, currentZoom - 0.02);
           } else {
@@ -343,43 +327,37 @@ export class AppComponent implements OnChanges {
           slider.value(currentZoom);
         });
 
-
-     
-
-        // Bind the double-click event to the diagram element
-
-
-        //zoom by double click  
+        //zoom by double click
 
         $('#diagram').on('dblclick', function (e) {
           e.preventDefault(); // Prevent the default zoom behavior on double-click
           slider.value(diagram.zoom());
-
         });
-
 
         //set the cordinates for originate zoom from the main risk card.added risk cordinates
 
         const zoomPointX = originalData[1].x + 190;
         const zoomPointY = originalData[1].y + 190;
 
-
-
         //zoom by zoom icons
-        $(".zoomInIcon").click(function () {
-
-          var currentZoom = diagram.zoom();
-          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom + 0.02,
-            { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });
+        $('.zoomInIcon').click(function () {
+          currentZoom = diagram.zoom();
+          currentZoom = $('#diagram')
+            .data('kendoDiagram')
+            .zoom(currentZoom + 0.02, {
+              point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY),
+            });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
-
         });
 
-        $(".zoomOutIcon").click(function () {
-          var currentZoom = diagram.zoom();
-          currentZoom = $("#diagram").data("kendoDiagram").zoom(currentZoom - 0.02,
-            { point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY) });
+        $('.zoomOutIcon').click(function () {
+          currentZoom = diagram.zoom();
+          currentZoom = $('#diagram')
+            .data('kendoDiagram')
+            .zoom(currentZoom - 0.02, {
+              point: new kendo.dataviz.diagram.Point(zoomPointX, zoomPointY),
+            });
           diagram.zoom(currentZoom);
           slider.value(currentZoom);
         });
@@ -391,20 +369,21 @@ export class AppComponent implements OnChanges {
             return slider.value();
           },
           position: 'top',
-          animation: false // You can enable animation if needed
+          animation: false, // You can enable animation if needed
         });
 
         //switch views when expand and collapes
-        function switchView(isExpand) {
-
-          diagramHelper.ArrangeNodes(isExpand);
+        function switchView(isExpand: boolean) {
+          diagramHelper.ArrangeNodes(isExpand , originalData);
 
           // Reset both data source and connections data source
           diagram.setDataSource(dataShapes);
 
           // Re-add the initial connections using a deep copy
           diagram.setConnectionsDataSource({
-            data: JSON.parse(JSON.stringify(initialStateOfDataAndConnections.connections)),
+            data: JSON.parse(
+              JSON.stringify(initialStateOfDataAndConnections.connections)
+            ),
             schema: {
               model: {
                 id: 'id',
@@ -421,22 +400,29 @@ export class AppComponent implements OnChanges {
             },
           });
 
+          currentZoom = diagram.zoom();
+          slider.value(currentZoom);
         }
 
-        //expand button funtion 
-        $(".bt-Expand").click(function () {
-          isExpand = !isExpand;
-
+        //expand button funtion
+        $('.bt-Expand').click(function () {
+          isExpand = !isExpand;          
           const expandButton = document.getElementById('btExpandView');
           expandButton.classList.toggle('active', isExpand);
 
           // Toggle between expand and collapse icons
-          const expandIcon = expandButton.querySelector('.expand-icon') as HTMLElement;
-          const collapseIcon = expandButton.querySelector('.collapse-icon') as HTMLElement;
+          const expandIcon = expandButton.querySelector(
+            '.expand-icon'
+          ) as HTMLElement;
+          const collapseIcon = expandButton.querySelector(
+            '.collapse-icon'
+          ) as HTMLElement;
 
           // Toggle between expand and collapse text
           const buttonText = isExpand ? 'Collapse Panel' : 'Expand Panel';
-          const textElement = expandButton.querySelector('.text') as HTMLElement;
+          const textElement = expandButton.querySelector(
+            '.text'
+          ) as HTMLElement;
           if (textElement) {
             textElement.innerText = buttonText;
           }
@@ -448,35 +434,41 @@ export class AppComponent implements OnChanges {
           switchView(isExpand);
 
           // diagram.refresh();
-
-
         });
 
         //import button function
-        $(".btn-Export").click(function () {
-          var diagram = $("#diagram").getKendoDiagram();
-          diagram.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
-            kendo.saveAs({
-              dataURI: data,
-              fileName: "bow-tie-analysis.pdf"
+        $('.btn-Export').click(function () {
+          var diagram = $('#diagram').getKendoDiagram();
+          diagram
+            .exportPDF({
+              paperSize: 'auto',
+              margin: { left: '1cm', top: '1cm', right: '1cm', bottom: '1cm' },
+            })
+            .done(function (data) {
+              kendo.saveAs({
+                dataURI: data,
+                fileName: 'bow-tie-analysis.pdf',
+              });
             });
-          });
         });
 
         //back button function when back from centralized view
-        $(".bt-BackFromCentralizedView").click(function () {
-
-          $('#btExpandView').prop("disabled", false);
-          $('#btExport').prop("disabled", false);
-          var reloadButton = document.getElementById("backButton");
-          reloadButton.style.display = "none";
+        $('.bt-BackFromCentralizedView').click(function () {
+         
+          $('#btExpandView').prop('disabled', false);
+          $('#btExport').prop('disabled', false);
+        
+          var backButton = document.getElementById('backButton');
+          backButton.style.display = 'none';
 
           // Reset both data source and connections data source
           diagram.setDataSource(dataShapes);
 
           // Re-add the initial connections using a deep copy
           diagram.setConnectionsDataSource({
-            data: JSON.parse(JSON.stringify(initialStateOfDataAndConnections.connections)),
+            data: JSON.parse(
+              JSON.stringify(initialStateOfDataAndConnections.connections)
+            ),
             schema: {
               model: {
                 id: 'id',
@@ -493,28 +485,25 @@ export class AppComponent implements OnChanges {
             },
           });
 
-       
           diagram.bringIntoView(diagram.shapes);
           diagramManager.updateDiagramDimensions(diagram, dataArrayoriginal);
+          currentZoom = diagram.zoom();
+          slider.value(currentZoom);
         });
 
         //return button function and return to the register page
-        $(".btn-Return").click(function () {
-          var currentUrl = window.location.href;// Get the current URL    
-          var basePath = currentUrl.match(/^(.*\/cammsrisk)/);// Extract the base path up to '/cammsrisk'         
+        $('.btn-Return').click(function () {
+          var currentUrl = window.location.href; // Get the current URL
+          var basePath = currentUrl.match(/^(.*\/cammsrisk)/); // Extract the base path up to '/cammsrisk'
           var urlParams = new URLSearchParams(window.location.search); // Extract query parameters from the URL
           var registerId = urlParams.get('registerId');
-          var RiskRegisterID =
-            registerId == null ? "/register/1" : `/register/${registerId}`;
+          var riskRegisterID = registerId == null ? '/register/1' : `/register/${registerId}`;
 
           if (basePath && basePath[1]) {
-            var regiterPageUrl = basePath[1] + RiskRegisterID;
+            var regiterPageUrl = basePath[1] + riskRegisterID;
             window.location.href = regiterPageUrl; // Navigate to the new URL
           }
         });
-
-
-
 
         diagram.bringIntoView(diagram.shapes);
         for (var i = 0; i < diagram.shapes.length; i++) {
@@ -531,17 +520,6 @@ export class AppComponent implements OnChanges {
         }, 2000);
       }
     });
-
-
-
-
-    //..................centralized view function...........................
-    var dataArrayoriginal = this.originalData;
-
+   
   }
-
-
-
-
-
 }

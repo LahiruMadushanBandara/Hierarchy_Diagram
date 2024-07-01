@@ -1,28 +1,38 @@
+import { NodeHeaderTypes } from '../Enums/node-headers';
 export class BowTieDiagramHelper {
-  constructor() { }
+  constructor() {}
 
   public RearrangedDataset = [];
 
-  ArrangeData(originalData) {
-
+  ArrangeData(originalData: any) {
     //get the data seperated from the original data array
-    const riskNode = originalData.find((node) => node.Type === 1 && node.ParentNodeId === 0);
-    const CommonPoint = originalData.find((node) => node.Title == 'Common-point');
-    const linkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId != 0);
-    const notLinkedCauseNodes = originalData.filter((node) => node.Title == 'Cause Node' && node.ParentNodeId == 0);
-    const linkedConsequenceNodes = originalData.filter((node) => node.Title == 'Consequences Node' && node.ParentNodeId != 0);
-    const LinkedControlNodes = originalData.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === true);
-    const notLinkedConsequenceNodes = originalData.filter((node) => node.Title == 'Consequences Node' && node.ParentNodeId == 0);
-    const notLinkedControlNodes = originalData.filter((node) => node.Title == 'Control Node' && node.ControlData.IsLinkedToCauseOrConsequence === false);
-    const linkedBottomNodes = originalData.filter((node) => node.Type === 4);
-    
-    //push risk node and common point
-    this.RearrangedDataset.push(CommonPoint);
-    this.RearrangedDataset.push(riskNode);
+    const linkedCauseNodes = originalData.filter(
+      (node) => node.Header == NodeHeaderTypes.Cause && node.ParentNodeId != 0
+    );
+    const notLinkedCauseNodes = originalData.filter(
+      (node) => node.Header == NodeHeaderTypes.Cause && node.ParentNodeId == 0
+    );
+    const linkedConsequenceNodes = originalData.filter(
+      (node) =>
+        node.Header == NodeHeaderTypes.Consequence && node.ParentNodeId != 0
+    );
+    const LinkedControlNodes = originalData.filter(
+      (node) =>
+        node.Header == NodeHeaderTypes.Control &&
+        node.ControlData.IsLinkedToCauseOrConsequence === true
+    );
+    const notLinkedConsequenceNodes = originalData.filter(
+      (node) =>
+        node.Header == NodeHeaderTypes.Consequence && node.ParentNodeId == 0
+    );
+    const notLinkedControlNodes = originalData.filter(
+      (node) =>
+        node.Header == NodeHeaderTypes.Control &&
+        node.ControlData.IsLinkedToCauseOrConsequence === false
+    );
 
     // Combine cause and consequence nodes
     const linkedNodes = linkedCauseNodes.concat(linkedConsequenceNodes);
-
     // Iterate through each node (both cause and consequence) to push the linked causes and consequnces to the relavant control
     for (let i = 0; i < linkedNodes.length; i++) {
       const node = linkedNodes[i];
