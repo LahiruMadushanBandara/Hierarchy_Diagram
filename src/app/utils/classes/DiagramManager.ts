@@ -387,113 +387,26 @@ export class DiagramManager {
       });
     }
     //generate connection lines for bottom nodes
-    for (let j = 0; j < incidentNodes.length; j++) {
+
+    this.GenerateConnectionsForLinkedNodes(incidentNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(kpiNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(treatmentNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(auditNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(hierarchyNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(auditRecommendationNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(auditFindingNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(policyNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(linkRiskNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(obligationNodes, originalData);
+    this.GenerateConnectionsForLinkedNodes(authorityDocumentNodes, originalData);
+  }
+
+  public GenerateConnectionsForLinkedNodes(nodes: any, originalData: any) {
+    for (let j = 0; j < nodes.length; j++) {
       this.dataConnections.push({
-        Id: incidentNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : incidentNodes[j - 1].Id,
-        ToShapeId: incidentNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < kpiNodes.length; j++) {
-      this.dataConnections.push({
-        Id: kpiNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : kpiNodes[j - 1].Id,
-        ToShapeId: kpiNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < treatmentNodes.length; j++) {
-      this.dataConnections.push({
-        Id: treatmentNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : treatmentNodes[j - 1].Id,
-        ToShapeId: treatmentNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < auditNodes.length; j++) {
-      this.dataConnections.push({
-        Id: auditNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : auditNodes[j - 1].Id,
-        ToShapeId: auditNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < hierarchyNodes.length; j++) {
-      this.dataConnections.push({
-        Id: hierarchyNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : hierarchyNodes[j - 1].Id,
-        ToShapeId: hierarchyNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < auditRecommendationNodes.length; j++) {
-      this.dataConnections.push({
-        Id: auditRecommendationNodes[j].Id,
-        FromShapeId:
-          j == 0 ? originalData[0].Id : auditRecommendationNodes[j - 1].Id,
-        ToShapeId: auditRecommendationNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < auditFindingNodes.length; j++) {
-      this.dataConnections.push({
-        Id: auditFindingNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : auditFindingNodes[j - 1].Id,
-        ToShapeId: auditFindingNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < policyNodes.length; j++) {
-      this.dataConnections.push({
-        Id: policyNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : policyNodes[j - 1].Id,
-        ToShapeId: policyNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < linkRiskNodes.length; j++) {
-      this.dataConnections.push({
-        Id: linkRiskNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : linkRiskNodes[j - 1].Id,
-        ToShapeId: linkRiskNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < obligationNodes.length; j++) {
-      this.dataConnections.push({
-        Id: obligationNodes[j].Id,
-        FromShapeId: j == 0 ? originalData[0].Id : obligationNodes[j - 1].Id,
-        ToShapeId: obligationNodes[j].Id,
-        Text: null,
-        fromConnector: j == 0 ? 'center' : 'bottom',
-        toConnector: 'top',
-      });
-    }
-    for (let j = 0; j < authorityDocumentNodes.length; j++) {
-      this.dataConnections.push({
-        Id: authorityDocumentNodes[j].Id,
-        FromShapeId:
-          j == 0 ? originalData[0].Id : authorityDocumentNodes[j - 1].Id,
-        ToShapeId: authorityDocumentNodes[j].Id,
+        Id: nodes[j].Id,
+        FromShapeId: j == 0 ? originalData[0].Id : nodes[j - 1].Id,
+        ToShapeId: nodes[j].Id,
         Text: null,
         fromConnector: j == 0 ? 'center' : 'bottom',
         toConnector: 'top',

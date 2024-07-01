@@ -168,15 +168,10 @@ export class BowTieDiagramHelper {
       }
     }
     //push all other nodes to the data set
-    for (let i = 0; i < notLinkedControlNodes.length; i++) {
-      this.RearrangedDataset.push(notLinkedControlNodes[i]);
-    }
-    for (let i = 0; i < notLinkedCauseNodes.length; i++) {
-      this.RearrangedDataset.push(notLinkedCauseNodes[i]);
-    }
-    for (let i = 0; i < notLinkedConsequenceNodes.length; i++) {
-      this.RearrangedDataset.push(notLinkedConsequenceNodes[i]);
-    }
+    this.RearrangedDataset.push(...notLinkedControlNodes);
+    this.RearrangedDataset.push(...notLinkedCauseNodes);
+    this.RearrangedDataset.push(...notLinkedConsequenceNodes);
+
     return this.RearrangedDataset;
   }
 
@@ -188,20 +183,12 @@ export class BowTieDiagramHelper {
     let consequenceNodeLength = 0;
 
     // Find the risk node (type 1 with ParentNodeId 0)
-    const riskNode = originalData.find(
-      (node) => node.Header == NodeHeaderTypes.Risk
-    );
-    const CommonPoint = originalData.find(
-      (node) => node.Header == NodeHeaderTypes.common_point
-    );
+    const riskNode = originalData.find((node) => node.Header == NodeHeaderTypes.Risk);
+    const CommonPoint = originalData.find((node) => node.Header == NodeHeaderTypes.common_point);
 
     //filter all causes & Consequences
-    const causeNodes = this.RearrangedDataset.filter(
-      (node) => node.Header == NodeHeaderTypes.Cause
-    );
-    const consequenceNodes = this.RearrangedDataset.filter(
-      (node) => node.Header == NodeHeaderTypes.Consequence
-    );
+    const causeNodes = this.RearrangedDataset.filter((node) => node.Header == NodeHeaderTypes.Cause);
+    const consequenceNodes = this.RearrangedDataset.filter((node) => node.Header == NodeHeaderTypes.Consequence);
 
     /*find the cause that have maximum linked controls in the LinkedControlIds array to place the cause after the last column of maximum 
     linked control row and all other causes place the same column  */
@@ -252,14 +239,9 @@ export class BowTieDiagramHelper {
       var primaryLinkedcontrols = [];
       var controlId: number;
 
-      const typeTwoNodes = this.RearrangedDataset.filter(
-        (node) => node.Type === 2
-      ); //filter type two nodes
-      const typeThreeNodes = this.RearrangedDataset.filter(
-        (node) => node.Type === 3
-      );
-      const notLinkedControlTypeTwo = typeTwoNodes.filter(
-        (node) =>
+      const typeTwoNodes = this.RearrangedDataset.filter((node) => node.Type === 2 ); //filter type two nodes
+      const typeThreeNodes = this.RearrangedDataset.filter((node) => node.Type === 3 );
+      const notLinkedControlTypeTwo = typeTwoNodes.filter((node) =>
           node.Header === NodeHeaderTypes.Control &&
           node.ControlData.IsLinkedToCauseOrConsequence === false
       );
